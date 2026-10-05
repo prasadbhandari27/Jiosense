@@ -582,7 +582,12 @@ h1,h2,h3,p{margin:0}
 }
 
 /* ── Device shell ─────────────────────────────────────────────────────── */
-.stage{min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:0}
+.stage{min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:0;background:#000}
+/* On wide viewports (Maze desktop preview, browser on PC) show app centred at mobile width */
+@media(min-width:480px){
+  .stage{padding:0}
+  .device{width:390px!important;height:844px!important;border-radius:40px!important;box-shadow:0 0 0 10px #1a1a1a,0 32px 80px rgba(0,0,0,.5)!important;overflow:hidden!important;padding:0!important}
+}
 
 /* Stage-level jump link — a small pill anchored to the top-left of the
    viewport (outside the device frame) so a reviewer can drop back into
