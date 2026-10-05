@@ -6324,6 +6324,10 @@ window.addEventListener('error', function(e){
      splash carousel so a reviewer can walk the whole intro. */
   var startAt = (location.hash || '').replace(/^#/, '');
   if(startAt === 'onboard') startAt = 'ob-camselect';
+  /* First launch → start from onboarding splash; subsequent launches → home */
+  if(!startAt){
+    startAt = localStorage.getItem('jiosense_onboarded') ? 'my-home' : 'splash';
+  }
   open(byName[startAt] ? startAt : 'my-home');
 
   /* Expose the router's open()/back() so the onboarding controller
@@ -6820,6 +6824,7 @@ window.addEventListener('error', function(e){
          "You're all set" screen was removed. Everything else
          advances to the next entry in OB_FLOW. */
       if(i >= OB_FLOW.length - 1){
+        localStorage.setItem('jiosense_onboarded', '1');
         openScreen('my-home');
         return;
       }

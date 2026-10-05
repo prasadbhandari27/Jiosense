@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#FFFFFF">
 <title>JioSense — OneUI</title>
-<link rel="manifest" href="manifest.json">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- ═══════════════════════════════════════════════════════════════════════
@@ -6325,6 +6324,10 @@ window.addEventListener('error', function(e){
      splash carousel so a reviewer can walk the whole intro. */
   var startAt = (location.hash || '').replace(/^#/, '');
   if(startAt === 'onboard') startAt = 'ob-camselect';
+  /* First launch → start from onboarding splash; subsequent launches → home */
+  if(!startAt){
+    startAt = localStorage.getItem('jiosense_onboarded') ? 'my-home' : 'splash';
+  }
   open(byName[startAt] ? startAt : 'my-home');
 
   /* Expose the router's open()/back() so the onboarding controller
@@ -6821,6 +6824,7 @@ window.addEventListener('error', function(e){
          "You're all set" screen was removed. Everything else
          advances to the next entry in OB_FLOW. */
       if(i >= OB_FLOW.length - 1){
+        localStorage.setItem('jiosense_onboarded', '1');
         openScreen('my-home');
         return;
       }
@@ -11443,11 +11447,6 @@ window.addEventListener('error', function(e){
   })();
 
 })();
-</script>
-<script>
-if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('sw.js');
-}
 </script>
 </body>
 </html>
