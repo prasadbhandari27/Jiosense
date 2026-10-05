@@ -3542,6 +3542,7 @@ h1,h2,h3,p{margin:0}
 .notif-stack:not(.has-nudge) .notif-decor{transform:translateY(18px) scaleX(0.88)}
 .member-nudge-ico{width:36px;height:36px;border-radius:50%;background:rgba(52,120,246,.1);display:grid;place-items:center;flex-shrink:0}
 </style>
+<link rel="manifest" href="manifest.json">
 </head>
 <body>
 <div class="stage">
@@ -11456,6 +11457,11 @@ window.addEventListener('error', function(e){
   })();
 
 })();
+</script>
+<script>
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('sw.js');
+}
 </script>
 </body>
 </html>
