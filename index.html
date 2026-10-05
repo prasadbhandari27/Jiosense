@@ -6322,6 +6322,13 @@ window.addEventListener('error', function(e){
      enters the pre-onboarding USP carousel. Unknown hashes fall
      back to Today. The stage-level "Onboarding" link jumps into the
      splash carousel so a reviewer can walk the whole intro. */
+  /* ?fresh=1 in the URL clears saved state and restarts onboarding —
+     use this URL in Maze so every participant starts from scratch */
+  if(new URLSearchParams(location.search).get('fresh') === '1'){
+    localStorage.removeItem('jiosense_onboarded');
+    localStorage.removeItem('jiosense_members');
+    localStorage.removeItem('jiosense_cameras');
+  }
   var startAt = (location.hash || '').replace(/^#/, '');
   if(startAt === 'onboard') startAt = 'ob-camselect';
   /* First launch → start from onboarding splash; subsequent launches → home */
