@@ -1,0 +1,254 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "CircularProgressIndicator",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.248Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Public API contract for JdsCircularProgressIndicator."
+  },
+  "composable": "JdsCircularProgressIndicator",
+  "attributesClass": "JdsCircularProgressIndicatorAttributes",
+  "importPath": "com.jds.components.circularprogressindicator",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.circularprogressindicator.JdsCircularProgressIndicator",
+    "attributes": "com.jds.components.circularprogressindicator.JdsCircularProgressIndicatorAttributes",
+    "enums": {
+      "JdsCircularProgressIndicatorVariant": "com.jds.components.circularprogressindicator.JdsCircularProgressIndicatorVariant",
+      "JdsCircularProgressIndicatorSize": "com.jds.components.circularprogressindicator.JdsCircularProgressIndicatorSize",
+      "Appearance": "com.jds.foundation.token.Appearance"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [
+      "contentDescription"
+    ],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "contentDescription",
+      "type": "String",
+      "required": true,
+      "description": ""
+    },
+    {
+      "name": "variant",
+      "type": "JdsCircularProgressIndicatorVariant",
+      "required": false,
+      "defaultValue": "JdsCircularProgressIndicatorVariant.Determinate",
+      "enumValues": [
+        "Determinate",
+        "Indeterminate"
+      ],
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "JdsCircularProgressIndicatorSize",
+      "required": false,
+      "defaultValue": "JdsCircularProgressIndicatorSize.M",
+      "enumValues": [
+        "X2S",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "X2L",
+        "X3L",
+        "X4L",
+        "X5L"
+      ],
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "Appearance",
+      "required": false,
+      "defaultValue": "Appearance.Secondary",
+      "enumValues": [
+        "Auto",
+        "Primary",
+        "Secondary",
+        "Sparkle",
+        "BrandBg",
+        "Neutral",
+        "Positive",
+        "Negative",
+        "Warning",
+        "Informative"
+      ],
+      "description": ""
+    },
+    {
+      "name": "content",
+      "type": "JdsSlot",
+      "required": false,
+      "defaultValue": "JdsSlot.None",
+      "slot": true,
+      "slotTypes": [],
+      "description": ""
+    },
+    {
+      "name": "value",
+      "type": "Float?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "valueRange",
+      "type": "ClosedFloatingPointRange<Float>",
+      "required": false,
+      "defaultValue": "0f..100f",
+      "description": ""
+    },
+    {
+      "name": "animate",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "show",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": ""
+    },
+    {
+      "name": "showTrack",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": ""
+    },
+    {
+      "name": "indicatorColorOverride",
+      "type": "Color?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "trackColorOverride",
+      "type": "Color?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "content",
+      "types": []
+    }
+  ],
+  "enums": {
+    "JdsCircularProgressIndicatorVariant": [
+      "Determinate",
+      "Indeterminate"
+    ],
+    "JdsCircularProgressIndicatorSize": [
+      "X2S",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "X2L",
+      "X3L",
+      "X4L",
+      "X5L"
+    ],
+    "Appearance": [
+      "Auto",
+      "Primary",
+      "Secondary",
+      "Sparkle",
+      "BrandBg",
+      "Neutral",
+      "Positive",
+      "Negative",
+      "Warning",
+      "Informative"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.CircularProgressIndicator",
+    "type": "object",
+    "properties": {
+      "contentDescription": {
+        "type": "string"
+      },
+      "variant": {
+        "enum": [
+          "Determinate",
+          "Indeterminate"
+        ],
+        "default": "JdsCircularProgressIndicatorVariant.Determinate"
+      },
+      "size": {
+        "enum": [
+          "X2S",
+          "XS",
+          "S",
+          "M",
+          "L",
+          "XL",
+          "X2L",
+          "X3L",
+          "X4L",
+          "X5L"
+        ],
+        "default": "JdsCircularProgressIndicatorSize.M"
+      },
+      "appearance": {
+        "enum": [
+          "Auto",
+          "Primary",
+          "Secondary",
+          "Sparkle",
+          "BrandBg",
+          "Neutral",
+          "Positive",
+          "Negative",
+          "Warning",
+          "Informative"
+        ],
+        "default": "Appearance.Secondary"
+      },
+      "content": {},
+      "value": {},
+      "valueRange": {},
+      "animate": {
+        "type": "boolean"
+      },
+      "show": {
+        "type": "boolean"
+      },
+      "showTrack": {
+        "type": "boolean"
+      },
+      "indicatorColorOverride": {},
+      "trackColorOverride": {}
+    },
+    "required": [
+      "contentDescription"
+    ]
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "circularprogressindicator"
+  ],
+  "importPathMaven": "com.jds:components"
+}

@@ -1,0 +1,353 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "SegmentedControl",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Mutually exclusive segmented control for switching between related views or filters. Wraps Base UI ToggleGroup. Supports track emphasis, attention-driven selected states, equal-width layout, text and icon-only segments, and start (icon) / end (CounterBadge) slots.",
+    "taskContexts": [
+      "navigation",
+      "filter",
+      "toggle",
+      "selection",
+      "segmented"
+    ],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [
+      "children"
+    ],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "high",
+        "useWhen": [
+          "High"
+        ]
+      },
+      {
+        "name": "medium",
+        "useWhen": [
+          "Medium"
+        ]
+      },
+      {
+        "name": "low",
+        "useWhen": [
+          "Low"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": true,
+      "description": "children property"
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "description": "Multi-accent colour role for active segments at high and medium attention. Omitted or `auto` resolves to `primary`, matching the Figma default. At `low` attention the selected segment follows the track/background role (parent Surface appearance, or neutral at page root) instead."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "aria-label property"
+    },
+    {
+      "name": "aria-labelledby",
+      "type": "string",
+      "required": false,
+      "description": "aria-labelledby property"
+    },
+    {
+      "name": "attention",
+      "type": "'high' | 'medium' | 'low'",
+      "required": false,
+      "description": "Drives the SELECTED segment fill prominence. Default: `high`."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "className property"
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "data-testid property"
+    },
+    {
+      "name": "defaultValue",
+      "type": "string",
+      "required": false,
+      "description": "Uncontrolled initial value"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "disabled property"
+    },
+    {
+      "name": "equalWidth",
+      "type": "boolean",
+      "required": false,
+      "description": "Equal-width segments. Default depends on `type`: text → `true` (fill track); icon → `false` (fixed square cells). Figma API describes distributing equal width regardless of content length."
+    },
+    {
+      "name": "onValueChange",
+      "type": "(value: string) => void",
+      "required": false,
+      "description": "Called when the selected segment changes"
+    },
+    {
+      "name": "shape",
+      "type": "'pill' | 'rectangular'",
+      "required": false,
+      "description": "shape property"
+    },
+    {
+      "name": "size",
+      "type": "'s' | 'm' | 'l'",
+      "required": false,
+      "description": "size property"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "style property"
+    },
+    {
+      "name": "trackEmphasis",
+      "type": "'high' | 'medium' | 'low'",
+      "required": false,
+      "description": "Track (outer container) background prominence. Default: `high`."
+    },
+    {
+      "name": "type",
+      "type": "'text' | 'icon'",
+      "required": false,
+      "description": "`text` (default) or `icon` — icon-only requires `aria-label` on each item."
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "required": false,
+      "description": "Controlled selected value"
+    }
+  ],
+  "slots": [
+    {
+      "name": "children",
+      "types": [
+        "SegmentedControl.Item"
+      ],
+      "tokens": []
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.segmented-control",
+    "type": "object",
+    "properties": {
+      "children": {
+        "description": "children property"
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent colour role for active segments at high and medium attention. Omitted or `auto` resolves to `primary`, matching the Figma default. At `low` attention the selected segment follows the track/background role (parent Surface appearance, or neutral at page root) instead."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "aria-label property"
+      },
+      "aria-labelledby": {
+        "type": "string",
+        "description": "aria-labelledby property"
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "description": "Drives the SELECTED segment fill prominence. Default: `high`."
+      },
+      "className": {
+        "type": "string",
+        "description": "className property"
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "data-testid property"
+      },
+      "defaultValue": {
+        "type": "string",
+        "description": "Uncontrolled initial value"
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "disabled property"
+      },
+      "equalWidth": {
+        "type": "boolean",
+        "description": "Equal-width segments. Default depends on `type`: text → `true` (fill track); icon → `false` (fixed square cells). Figma API describes distributing equal width regardless of content length."
+      },
+      "onValueChange": {
+        "description": "Called when the selected segment changes"
+      },
+      "shape": {
+        "enum": [
+          "pill",
+          "rectangular"
+        ],
+        "description": "shape property"
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "size property"
+      },
+      "style": {
+        "description": "style property"
+      },
+      "trackEmphasis": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "description": "Track (outer container) background prominence. Default: `high`."
+      },
+      "type": {
+        "enum": [
+          "text",
+          "icon"
+        ],
+        "description": "`text` (default) or `icon` — icon-only requires `aria-label` on each item."
+      },
+      "value": {
+        "type": "string",
+        "description": "Controlled selected value"
+      }
+    },
+    "required": [
+      "children"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "segmented-control-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { SegmentedControl } from '@oneui/ui';\n\n<SegmentedControl />"
+    },
+    {
+      "id": "segmented-control-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"SegmentedControl\",\n  \"decisions\": [\n    \"Shape\",\n    \"Track emphasis\",\n    \"Selected attention\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "segmented-control"
+  ],
+  "interactionBehavior": {
+    "summary": "SegmentedControl is a required single-select ToggleGroup whose selected fill is a sliding pill behind the segments, not a background on the item. Unselected hover is a second pill that follows the cursor in JS; selected hover/press tint that same active pill via `:has()`, so there is never a second fill racing the glide. Arrow keys move focus only — `Enter` / `Space` / click commit — and the currently selected segment cannot be turned off.",
+    "hover": [
+      "Unselected hover does not paint the item: a `.hoverIndicator` pill glides to the hovered segment in `--{TrackRole}-Subtle` at `trackEmphasis=\"high\"`, or `--{TrackRole}-Minimal` at medium/low. The item only keeps `--{TrackRole}-High` text.",
+      "The pill is driven by `pointermove` on the group. `pointerType === \"touch\"` is ignored, and the pill hides when the pointer is over a disabled or already-selected (`[data-pressed]`) segment.",
+      "Selected hover tints the `.activeIndicator` itself via `:has(.item[data-pressed]:hover)`: `--{Role}-Bold-Hover` at `attention=\"high\"`, `--{Role}-Subtle-Hover` at medium, `--{Role}-Subtle-Hover` of the track role at low.",
+      "Both hover fills are wrapped in `@media (hover: hover)`, so a touch tap never leaves a stuck hover pill."
+    ],
+    "press": [
+      "An unselected press fills the item's state-layer with the track pressed token (`--{TrackRole}-Subtle-Pressed` at high track emphasis, `--{TrackRole}-Pressed` at medium/low) — this is fill-on-the-item, not the hover pill, and is NOT `(hover: hover)`-guarded.",
+      "A selected press tints the active pill via `:has(.item[data-pressed]:active)` to `--{Role}-Bold-Pressed` / `--{Role}-Subtle-Pressed` / track `--{Role}-Subtle-Pressed` by attention.",
+      "There is no tap-scale on the segment. Feedback is pill + text colour only."
+    ],
+    "focus": [
+      "Keyboard focus draws the two-layer halo on the inner state-layer: `--Stroke-XL` gap in `--Surface-Halo-Gap` plus an outer `--Focus-Outline` ring.",
+      "A high-attention selected segment prepends `--Elevation-1` to that same `box-shadow` so the raised pill and the halo coexist.",
+      "`:focus` only clears the native outline; the ring is `:focus-visible`, so a mouse click does not paint it."
+    ],
+    "keyboard": [
+      "Each segment is a native `<button aria-pressed>`. `Enter` / `Space` select it; they do not live in OneUI code — Base UI Toggle + `useButton` handle them.",
+      "`ArrowRight` / `ArrowLeft` move focus only. They do not change the selected segment. `Home` / `End` jump focus to the first / last enabled segment. `loopFocus` is always on.",
+      "Disabled segments are natively `disabled`, so arrows skip them.",
+      "Clicking or key-activating the already-selected segment would toggle it off in Base UI, but the group's `onValueChange` ignores an empty array, so selection is required — the pill never disappears."
+    ],
+    "selected": [
+      "Selected is Base UI Toggle `pressed`, exposed as `aria-pressed` and `[data-pressed]`. The fill lives on `.activeIndicator`, not on the item — the item's state-layer only changes text colour.",
+      "`attention=\"high\"`: pill is `--{Role}-Bold` (or `--{Role}-Material-Fill` when the role has a material) plus `--Elevation-1`, text `--{Role}-Bold-High`. Medium: `--{Role}-Subtle` fill, `--{Role}-TintedA11y` text. Low: track-role `--{Role}-Subtle` fill, track `--{Role}-TintedA11y` text.",
+      "On a selection change `.activeIndicator` glides to the new segment: `transform: translateX(...)` plus a `width` transition over `--Motion-Duration-L` / `--Motion-Easing-Transition-Moderate`. It only eases while continuously visible; a pill appearing fresh (through `display` + `allow-discrete`) fades in at the target spot instead of sliding from a stale position.",
+      "The one place motion is intentionally killed is resize — the pill is repositioned with `transition: none` for a single frame so a window resize never replays the tap-to-select glide."
+    ],
+    "disabled": [
+      "A disabled group sets `[data-disabled]` and dims to `--Disabled-Opacity` with `cursor: not-allowed`. A per-item `disabled` is a native `disabled` attribute plus `pointer-events: none`.",
+      "Because the item is natively disabled with `pointer-events: none`, `cursor: not-allowed` on the item is not observable — the pointer shows the group's cursor. This is the known system-wide gap (docs/design/disabled-states.md).",
+      "Hover pill tracking skips `[data-disabled]` items, and every hover/press selector excludes them."
+    ],
+    "touch": [
+      "Touch pointers never drive the hover pill (`pointerType === \"touch\"` returns before measuring), so a tap does not leave a hover fill on the next segment.",
+      "The pressed fill on an unselected segment, then the active pill glide, are the entire tap response."
+    ]
+  },
+  "importPath": "@jds4/oneui-react"
+}

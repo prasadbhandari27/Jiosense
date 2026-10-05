@@ -1,0 +1,240 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "CheckboxField",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.247Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Public API contract for JdsCheckboxField."
+  },
+  "composable": "JdsCheckboxField",
+  "attributesClass": "JdsCheckboxFieldAttributes",
+  "importPath": "com.jds.components.checkboxfield",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.checkboxfield.JdsCheckboxField",
+    "attributes": "com.jds.components.checkboxfield.JdsCheckboxFieldAttributes",
+    "enums": {
+      "JdsCheckboxSize": "com.jds.components.checkbox.JdsCheckboxSize",
+      "Appearance": "com.jds.foundation.token.Appearance"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [
+      "label"
+    ],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "label",
+      "type": "String",
+      "required": true,
+      "description": "Field-level content (rendered via JdsInputLabel + feedback)"
+    },
+    {
+      "name": "description",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "required",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "infoIcon",
+      "type": "JdsSlot?",
+      "required": false,
+      "defaultValue": "null",
+      "slot": true,
+      "slotTypes": [],
+      "description": ""
+    },
+    {
+      "name": "feedback",
+      "type": "JdsSlot?",
+      "required": false,
+      "defaultValue": "null",
+      "slot": true,
+      "slotTypes": [],
+      "description": ""
+    },
+    {
+      "name": "checked",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Selection state (passed through to inner JdsCheckbox)"
+    },
+    {
+      "name": "indeterminate",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "onCheckedChange",
+      "type": "((Boolean) -> Unit)?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "JdsCheckboxSize",
+      "required": false,
+      "defaultValue": "JdsCheckboxSize.M",
+      "enumValues": [
+        "S",
+        "M",
+        "L"
+      ],
+      "description": "Checkbox control props"
+    },
+    {
+      "name": "appearance",
+      "type": "Appearance",
+      "required": false,
+      "defaultValue": "Appearance.Auto",
+      "enumValues": [
+        "Auto",
+        "Primary",
+        "Secondary",
+        "Sparkle",
+        "BrandBg",
+        "Neutral",
+        "Positive",
+        "Negative",
+        "Warning",
+        "Informative"
+      ],
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "readOnly",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "contentDescription",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "infoIcon",
+      "types": []
+    },
+    {
+      "name": "feedback",
+      "types": []
+    }
+  ],
+  "enums": {
+    "JdsCheckboxSize": [
+      "S",
+      "M",
+      "L"
+    ],
+    "Appearance": [
+      "Auto",
+      "Primary",
+      "Secondary",
+      "Sparkle",
+      "BrandBg",
+      "Neutral",
+      "Positive",
+      "Negative",
+      "Warning",
+      "Informative"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.CheckboxField",
+    "type": "object",
+    "properties": {
+      "label": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "required": {
+        "type": "boolean"
+      },
+      "infoIcon": {},
+      "feedback": {},
+      "checked": {
+        "type": "boolean"
+      },
+      "indeterminate": {
+        "type": "boolean"
+      },
+      "onCheckedChange": {},
+      "size": {
+        "enum": [
+          "S",
+          "M",
+          "L"
+        ],
+        "default": "JdsCheckboxSize.M"
+      },
+      "appearance": {
+        "enum": [
+          "Auto",
+          "Primary",
+          "Secondary",
+          "Sparkle",
+          "BrandBg",
+          "Neutral",
+          "Positive",
+          "Negative",
+          "Warning",
+          "Informative"
+        ],
+        "default": "Appearance.Auto"
+      },
+      "disabled": {
+        "type": "boolean"
+      },
+      "readOnly": {
+        "type": "boolean"
+      },
+      "contentDescription": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "label"
+    ]
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "checkboxfield"
+  ],
+  "importPathMaven": "com.jds:components"
+}

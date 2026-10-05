@@ -1,0 +1,236 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "IconContained",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Display an icon within a filled container shape with attention-level emphasis.",
+    "taskContexts": [
+      "status-badge",
+      "category-indicator",
+      "feature-highlight",
+      "list-item-icon"
+    ],
+    "sentiments": [
+      "neutral",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ]
+  },
+  "compositionRules": {
+    "requires": [
+      "icon prop (semantic name or React element)"
+    ],
+    "allows": [
+      "aria-label for accessibility"
+    ],
+    "forbids": [
+      "interactive behaviour (non-interactive display only)",
+      "text content"
+    ]
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "high attention",
+        "useWhen": [
+          "prominent solid bold fill container"
+        ]
+      },
+      {
+        "name": "medium attention",
+        "useWhen": [
+          "subtle tinted fill container"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": [
+      "Icon",
+      "Avatar",
+      "IconButton"
+    ]
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [
+      "impression"
+    ],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "icon",
+      "type": "'add' | 'remove' | 'close' | 'edit' | 'delete' | 'copy' | 'save' | 'refresh' | 'download' | 'upload' | 'share' | 'link' | 'unlink' | 'cart' | 'helloJio' | 'favourite' | 'rewind' | 'forward' | 'menu' | 'search' | 'home' | 'settings' | 'arrowLeft' | 'arrowRight' | 'arrowUp' | 'arrowDown' | 'chevronLeft' | 'chevronRight' | 'chevronUp' | 'chevronDown' | 'externalLink' | 'firstPage' | 'lastPage' /** Single-step back / forward (Jio: `IcBack` / `IcNext` — distinct from chevrons). */ | 'back' | 'next' | 'check' | 'checkCircle' | 'warning' | 'error' | 'info' | 'help' | 'loading' | 'play' | 'pause' | 'stop' | 'volumeOn' | 'volumeOff' | 'microphone' | 'image' | 'video' | 'user' | 'users' | 'userAdd' | 'userRemove' | 'logout' | 'eye' | 'eyeOff' | 'lock' | 'unlock' | 'star' | 'starFilled' | 'heart' | 'heartFilled' | 'bookmark' | 'bookmarkFilled' | 'filter' | 'sort' | 'grid' | 'list' | 'moreHorizontal' | 'moreVertical' | 'mail' | 'phone' | 'chat' | 'notification' | 'file' | 'folder' | 'document' | 'calendar' | 'clock' | 'location' | 'sun' | 'moon' | 'palette' | 'brand' | 'layers' | 'components' | 'canvas' | 'create' | 'sparkles' | 'analytics' | 'globe' | 'smartphone' | 'tablet' | 'monitor' | 'tv' | 'printer' | 'billboard' | 'bus' | (string & {}) | IconComponent | ReactElement",
+      "required": true,
+      "description": "icon property"
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "description": "Multi-accent appearance role. `auto`: inherit nearest Surface effective role, else `secondary` at page root (Figma default). Default: `'secondary'`."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label for the icon"
+    },
+    {
+      "name": "attention",
+      "type": "'high' | 'medium'",
+      "required": false,
+      "description": "Attention level — High (solid bold fill), Medium (subtle tinted fill). Default: 'medium'"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Disabled state"
+    },
+    {
+      "name": "size",
+      "type": "'xs' | 's' | 'm' | 'l' | 'xl'",
+      "required": false,
+      "description": "Size preset. Default: 'm'"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.icon-contained",
+    "type": "object",
+    "properties": {
+      "icon": {
+        "description": "icon property"
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. `auto`: inherit nearest Surface effective role, else `secondary` at page root (Figma default). Default: `'secondary'`."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label for the icon"
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium"
+        ],
+        "description": "Attention level — High (solid bold fill), Medium (subtle tinted fill). Default: 'medium'"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Disabled state"
+      },
+      "size": {
+        "enum": [
+          "xs",
+          "s",
+          "m",
+          "l",
+          "xl"
+        ],
+        "description": "Size preset. Default: 'm'"
+      },
+      "style": {
+        "description": "Inline styles"
+      }
+    },
+    "required": [
+      "icon"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "iconcontained-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { IconContained } from '@oneui/ui';\n\n<IconContained icon=\"check\" />"
+    },
+    {
+      "id": "iconcontained-subtle",
+      "title": "Medium Attention",
+      "language": "tsx",
+      "code": "<IconContained icon=\"info\" attention=\"medium\" appearance=\"informative\" />"
+    },
+    {
+      "id": "icon-contained-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"IconContained\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "icon-contained"
+  ],
+  "interactionBehavior": {
+    "summary": "IconContained is a decorative filled glyph in a pill (`<span>`), explicitly non-interactive: no hover, press, focus halo, or key handling, and no `onPress`. Without `aria-label` the root is `aria-hidden`; with a label it is `role=\"img\"`. `disabled` only dims to `--IconContained-disabledOpacity` (`--Disabled-Opacity`) and sets `pointer-events: none` — there is no `cursor: not-allowed`, so the pointer shows the parent's cursor. For a tappable contained icon use `IconButton` with `contained`."
+  },
+  "importPath": "@jds4/oneui-react",
+  "figma": {
+    "componentKey": "jds-icon-contained-v4"
+  },
+  "renderHints": {
+    "baseElement": "img",
+    "readsFromSurfaceContext": true
+  },
+  "a11y": {
+    "role": "img",
+    "minTouchTarget": 44,
+    "accessibleNameSource": "aria-label"
+  }
+}

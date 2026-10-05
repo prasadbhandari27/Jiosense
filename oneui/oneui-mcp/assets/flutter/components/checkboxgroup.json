@@ -1,0 +1,98 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "CheckboxGroup",
+  "flutterExport": "OneUiCheckboxGroup",
+  "importPath": "package:ui_flutter/ui_flutter.dart",
+  "generatedAt": "2026-09-04T05:50:48.675Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "OneUiCheckboxGroup from the ui_flutter barrel. Use Surface context (OneUiSurface) for tinted backgrounds."
+  },
+  "props": [
+    {
+      "name": "children",
+      "required": true,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "value",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "defaultValue",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onValueChange",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "readOnly",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "accent",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "semanticsDescribedBy",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "ariaDescribedby",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "errorHighlight",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "testId",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "testID",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    }
+  ]
+}

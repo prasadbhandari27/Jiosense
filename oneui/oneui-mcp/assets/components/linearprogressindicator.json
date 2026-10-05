@@ -1,0 +1,218 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "LinearProgressIndicator",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Horizontal progress bar for determinate (value-driven) or indeterminate loading. Three sizes (S/M/L), pill or flat caps, and multi-accent appearance roles.",
+    "taskContexts": [
+      "progress",
+      "loading",
+      "linear",
+      "indicator",
+      "bar"
+    ],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "determinate",
+        "useWhen": [
+          "Determinate"
+        ]
+      },
+      {
+        "name": "indeterminate",
+        "useWhen": [
+          "Indeterminate"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "description": "Multi-accent appearance role. Default: `auto` (inherits Surface, else `secondary` at page root)."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label for screen readers."
+    },
+    {
+      "name": "aria-labelledby",
+      "type": "string",
+      "required": false,
+      "description": "ID of element that labels this progress indicator."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name on the root progress element."
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "Optional test hook — forwarded to the visual root wrapper."
+    },
+    {
+      "name": "roundCaps",
+      "type": "boolean",
+      "required": false,
+      "description": "When true, track and indicator use pill ends. When false, track is square. Determinate fill is flat at the start and rounded at the leading tip; indeterminate keeps both ends rounded. Default: `true`."
+    },
+    {
+      "name": "size",
+      "type": "'S' | 'M' | 'L'",
+      "required": false,
+      "description": "Track height preset (Figma: S=2px / M=4px / L=8px). Default: `M`."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles on the visual root wrapper."
+    },
+    {
+      "name": "type",
+      "type": "'determinate' | 'indeterminate'",
+      "required": false,
+      "description": "Determinate shows fill proportional to `value`; indeterminate animates the bar. Default: `determinate`."
+    },
+    {
+      "name": "value",
+      "type": "number",
+      "required": false,
+      "description": "Current progress (0–100). Determinate only; ignored when `type=\"indeterminate\"`. Default: `0`."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.linear-progress-indicator",
+    "type": "object",
+    "properties": {
+      "appearance": {
+        "enum": [
+          "auto",
+          "secondary",
+          "primary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "negative",
+          "positive",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. Default: `auto` (inherits Surface, else `secondary` at page root)."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label for screen readers."
+      },
+      "aria-labelledby": {
+        "type": "string",
+        "description": "ID of element that labels this progress indicator."
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name on the root progress element."
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "Optional test hook — forwarded to the visual root wrapper."
+      },
+      "roundCaps": {
+        "type": "boolean",
+        "description": "When true, track and indicator use pill ends. When false, track is square. Determinate fill is flat at the start and rounded at the leading tip; indeterminate keeps both ends rounded. Default: `true`."
+      },
+      "size": {
+        "enum": [
+          "S",
+          "M",
+          "L"
+        ],
+        "description": "Track height preset (Figma: S=2px / M=4px / L=8px). Default: `M`."
+      },
+      "style": {
+        "description": "Inline styles on the visual root wrapper."
+      },
+      "type": {
+        "enum": [
+          "determinate",
+          "indeterminate"
+        ],
+        "description": "Determinate shows fill proportional to `value`; indeterminate animates the bar. Default: `determinate`."
+      },
+      "value": {
+        "type": "number",
+        "description": "Current progress (0–100). Determinate only; ignored when `type=\"indeterminate\"`. Default: `0`."
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "linear-progress-indicator-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { LinearProgressIndicator } from '@oneui/ui';\n\n<LinearProgressIndicator />"
+    },
+    {
+      "id": "linear-progress-indicator-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"LinearProgressIndicator\",\n  \"decisions\": [\n    \"Type\",\n    \"Round caps\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "linear-progress-indicator"
+  ],
+  "interactionBehavior": {
+    "summary": "LinearProgressIndicator is not a control: no hover, press, or focus styles, and it never takes focus. Base UI Progress exposes `role=\"progressbar\"`. Determinate (the default `type`) always has a value — it defaults to `0`, not to indeterminate — and sets `aria-valuenow` clamped to 0–100 along with `aria-valuemin` / `aria-valuemax`. `type=\"indeterminate\"` ignores `value` entirely, omits `aria-valuenow`, and paints a second decorative bar that is `aria-hidden`. Unlike CircularProgressIndicator, omitting `value` on a determinate bar announces 0%, not a busy wait. Pass `aria-label` or `aria-labelledby` — there is no default name. A determinate value change animates smoothly: Base UI writes the fill as an inline `width` percentage and `.indicator` transitions `width` over `--LinearProgressIndicator-valueTransitionDuration` (default `--Motion-Duration-3XL`) with `--Motion-Easing-Transition-Moderate`, so the bar eases to the new value rather than jumping. Indeterminate motion is two offset bars (`lpi-indeterminate-bar1` / `bar2`) that set `transition: none` while looping. Under `prefers-reduced-motion: reduce` both stop and the bar is pinned at a 60% fill, which is visually indistinguishable from a determinate `value={60}` — so do not rely on the bar alone to communicate 'unknown duration' to a reduced-motion user."
+  },
+  "importPath": "@jds4/oneui-react"
+}

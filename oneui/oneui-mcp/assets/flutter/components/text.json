@@ -1,0 +1,176 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Text",
+  "flutterExport": "OneUiText",
+  "importPath": "package:ui_flutter/ui_flutter.dart",
+  "generatedAt": "2026-09-04T05:50:48.675Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "OneUiText from the ui_flutter barrel. Use Surface context (OneUiSurface) for tinted backgrounds."
+  },
+  "props": [
+    {
+      "name": "variant",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "weight",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "attention",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "language",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "lang",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "script",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "scriptMode",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "italic",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "underline",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "strikethrough",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "textAlign",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "maxLines",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "text",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "child",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "link",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onLinkPress",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onPressed",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "href",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "target",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "rel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "semanticsLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "semanticsHint",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "excludeFromSemantics",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "ariaHidden",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "testId",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    }
+  ]
+}

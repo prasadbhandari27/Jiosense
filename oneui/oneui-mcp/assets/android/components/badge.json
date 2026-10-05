@@ -1,0 +1,201 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Badge",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.245Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "JDS Badge Compose component."
+  },
+  "composable": "JdsBadge",
+  "attributesClass": "JdsBadgeAttributes",
+  "importPath": "com.jds.components.badge",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.badge.JdsBadge",
+    "attributes": "com.jds.components.badge.JdsBadgeAttributes",
+    "enums": {
+      "JdsBadgeSize": "com.jds.components.badge.JdsBadgeSize",
+      "JdsBadgeAttention": "com.jds.components.badge.JdsBadgeAttention",
+      "Appearance": "com.jds.foundation.token.Appearance"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "label",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "start",
+      "type": "JdsSlot?",
+      "required": false,
+      "defaultValue": "null",
+      "slot": true,
+      "slotTypes": [],
+      "description": ""
+    },
+    {
+      "name": "end",
+      "type": "JdsSlot?",
+      "required": false,
+      "defaultValue": "null",
+      "slot": true,
+      "slotTypes": [],
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "JdsBadgeSize",
+      "required": false,
+      "defaultValue": "JdsBadgeSize.M",
+      "enumValues": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "description": ""
+    },
+    {
+      "name": "attention",
+      "type": "JdsBadgeAttention",
+      "required": false,
+      "defaultValue": "JdsBadgeAttention.High",
+      "enumValues": [
+        "High",
+        "Medium",
+        "Low"
+      ],
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "Appearance",
+      "required": false,
+      "defaultValue": "Appearance.Auto",
+      "enumValues": [
+        "Auto",
+        "Primary",
+        "Secondary",
+        "Sparkle",
+        "BrandBg",
+        "Neutral",
+        "Positive",
+        "Negative",
+        "Warning",
+        "Informative"
+      ],
+      "description": ""
+    },
+    {
+      "name": "contentDescription",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "start",
+      "types": []
+    },
+    {
+      "name": "end",
+      "types": []
+    }
+  ],
+  "enums": {
+    "JdsBadgeSize": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "JdsBadgeAttention": [
+      "High",
+      "Medium",
+      "Low"
+    ],
+    "Appearance": [
+      "Auto",
+      "Primary",
+      "Secondary",
+      "Sparkle",
+      "BrandBg",
+      "Neutral",
+      "Positive",
+      "Negative",
+      "Warning",
+      "Informative"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.Badge",
+    "type": "object",
+    "properties": {
+      "label": {
+        "type": "string"
+      },
+      "start": {},
+      "end": {},
+      "size": {
+        "enum": [
+          "XS",
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "default": "JdsBadgeSize.M"
+      },
+      "attention": {
+        "enum": [
+          "High",
+          "Medium",
+          "Low"
+        ],
+        "default": "JdsBadgeAttention.High"
+      },
+      "appearance": {
+        "enum": [
+          "Auto",
+          "Primary",
+          "Secondary",
+          "Sparkle",
+          "BrandBg",
+          "Neutral",
+          "Positive",
+          "Negative",
+          "Warning",
+          "Informative"
+        ],
+        "default": "Appearance.Auto"
+      },
+      "contentDescription": {
+        "type": "string"
+      }
+    },
+    "required": []
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "badge"
+  ],
+  "importPathMaven": "com.jds:components"
+}

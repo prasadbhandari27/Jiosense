@@ -1,0 +1,202 @@
+[
+  {
+    "name": "oneui",
+    "description": "Build correct OneUI / JDS UI with @jds4/oneui-react (web) and @oneui/ui-native (React Native). The entry-point skill for any project that consumes the published OneUI component library: it loads project context, enforces the cross-cutting correctness rules (appearance vs attention, surface discipline, icons, images, Base-UI composition, token-only styling), and drives component APIs live from the OneUI MCP so generated code matches the installed version. Use this skill whenever building a screen, page, form, or component with OneUI/JDS, whenever a project has @jds4/oneui-react / @oneui/ui-native in package.json or an oneui.brands.json file, and whenever someone says \"OneUI\", \"JDS\", \"Jio design system\", \"build a OneUI screen\", or imports from @jds4/oneui-react. SCOPE: this skill owns component-API correctness + the build workflow. For page composition/layout/typography/navigation defer to `oneui-design-composition`; for WHICH surface level a region earns defer to `surface`; for the [data-surface] remapping mechanism defer to `surface-context`; for authoring a NEW custom component the library does NOT ship (building it token-only from the exported tokens / hooks), defer to `build-with-tokens`.",
+    "files": [
+      "SKILL.md",
+      "rules/appearance-vs-attention.md",
+      "rules/base-ui-composition.md",
+      "rules/icons-and-text.md",
+      "rules/images.md",
+      "rules/imports-and-setup.md",
+      "rules/surface-discipline.md",
+      "evals/evals.json"
+    ]
+  },
+  {
+    "name": "oneui-design-composition",
+    "description": "OneUI/Jio design composition philosophy and UI authoring guide — the holistic layer that decides how a whole page or screen hangs together. Teaches layout and grid, navigation and app structure, component selection, typography, color roles, spacing, shape, elevation, motion, and the content-first / attention-as-budget philosophy of the OneUI design system. Use this skill when composing pages, building layouts, structuring screens, designing navigation (tabs, bottom nav, headers, app shell), selecting which component fits a need, applying color roles, picking typography styles, deciding spacing or grid, or creating any UI that should follow OneUI/Jio conventions. Trigger when the user says \"design\", \"layout\", \"compose\", \"page structure\", \"visual hierarchy\", \"navigation\", \"nav\", \"tab bar\", \"bottom nav\", \"header\", \"app structure\", \"which component\", \"typography\", \"color role\", \"spacing\", \"whitespace\", \"card design\", \"hero section\", \"product grid\", or asks about Apple-like simplicity, content-first design, or Jio brand conventions. Even a plain \"build a page\" / \"create a screen\" / \"add a section\" should pull this skill in for composition decisions. For the specific decision of WHICH surface level to use and WHEN (default vs minimal/subtle/moderate/bold/elevated/brand-bg, restraint, tinting rules), defer to the dedicated `surface` skill — this skill references it rather than duplicating it. Do NOT use this skill for engine internals (the [data-surface] remapping mechanism, CSS generation pipeline, Convex schema, brand CSS injection) — use `surface-context` or `oneui-multi-brand` for those.",
+    "files": [
+      "SKILL.md",
+      "references/agent-skill-map.md",
+      "references/attention-level-mapping.md",
+      "references/composition-patterns.md",
+      "references/navigation-patterns.md",
+      "references/token-quick-reference.md",
+      "references/typography-scale.md",
+      "evals/evals.json"
+    ]
+  },
+  {
+    "name": "surface",
+    "description": "Decide WHEN, WHICH, and WHY to use a surface in OneUI — the focused design-judgment layer for surface, background, and attention-level choice. A surface is a choice about meaning and attention, not color: you pick a level (default/minimal/subtle/moderate/bold/elevated/brand-bg/sparkle) and the engine computes every fill, text, stroke, contrast, and state automatically. Use this skill specifically when choosing a section/card/hero/banner/toast background or attention level, when placing components on colored/dark/brand areas, when someone asks 'what surface should I use', 'should this be bold/tinted/branded', 'why does this screen feel busy/loud', or wants a screen to feel calm and uncluttered, and when reviewing or repairing surface misuse (tinted default backgrounds, too many colored cards, competing bold areas, decorative color, tinted dark mode, hardcoded backgrounds). Reach for it even when the user doesn't say 'surface' — any time a UI background, emphasis, or visual-hierarchy decision is in play, surface choice is the question. SCOPE BOUNDARY: this skill owns surface-level choice only. For overall page composition — layout, grid, navigation/app structure, typography, color roles, component selection, spacing — use the `oneui-design-composition` skill (it hands surface decisions back to this one). For the underlying [data-surface] token-remapping mechanism, building surface-aware components, or debugging adaptation, use the `surface-context` skill.\"",
+    "files": [
+      "SKILL.md",
+      "references/decision-tree.md",
+      "references/patterns.md",
+      "references/surface-levels.md",
+      "evals/evals.json",
+      "assets/surface-taxonomy.json"
+    ]
+  },
+  {
+    "name": "surface-context",
+    "description": "OneUI surface context awareness system — how components automatically adapt colors when placed on different background surfaces via CSS-only token remapping. Use this skill whenever working with: surface tokens, the <Surface> component, data-surface attributes, surface modes (default/ghost/minimal/subtle/moderate/bold/elevated), on-colour tokens, bold inversion, content tokens (high/medium/low/tinted/tintedA11y/strokeMedium/strokeLow), state tokens, component surface adaptation, creating surface-aware components, or the intermediate variable CSS pattern. Also use when placing components on colored/dark/brand backgrounds, debugging invisible components on bold surfaces, understanding token naming (--Role-Bold, --Role-TintedA11y), or building showcase pages with Surface context sections.\"",
+    "files": [
+      "SKILL.md",
+      "references/token-reference.md"
+    ]
+  },
+  {
+    "name": "build-with-tokens",
+    "description": "Build custom, brand-aware React Native components on @oneui/ui-native by reading design tokens by semantic job — so the same component follows brand, theme, density, and surface context with no per-brand code. Use this skill whenever authoring a NEW custom RN component (a bespoke button, card, chip, badge, tile, banner — anything the library doesn't already ship) and you need to know WHICH token to reach for and HOW to consume it: colour via useSurfaceTokens, typography via useTypographyTokens or the library <Text>, motion via useMotion, and the static spacing / shape / stroke / grid / interaction / motion / touchTarget primitives from '@oneui/ui-native/tokens'. Reach for it on questions like 'how do I build a custom component with OneUI tokens on native', 'which token do I use for a border / radius / disabled state / press animation', 'how do I get brand colour into my own View/Pressable', 'what is @oneui/ui-native/tokens', 'why is my custom component grey / not following the brand', or 'how do I make a custom component adapt inside a Surface'. SCOPE: this skill is React-Native-only right now (web/CSS-variable authoring is handled separately). It owns the token-selection + consumption story for custom components. For WHICH surface level a region earns, defer to `surface`; for the [data-surface] / Container remapping mechanism and building surface-aware components, defer to `surface-context`; for using the SHIPPED library components' real props, defer to `oneui`.\"",
+    "category": "foundations",
+    "files": [
+      "SKILL.md",
+      "references/native-tokens.md",
+      "references/recipes.md"
+    ]
+  },
+  {
+    "name": "expand-prd",
+    "description": "Expand any brief (one-liner, rough notes, or incomplete PRD) into a filled OneUI PRD matching docs/prds/*.md — for mobile and/or web — then STOP for human confirmation before Figma. Use when the user says \"build an ecommerce page\", \"TV home screen\", \"make a PRD\", \"expand this brief\", \"restructure the PRD\", hands a one-line ask before design, or before prd-to-figma when the input lacks §1–§7 structure. Owns PRD authoring only; after confirmation hand off to `prd-to-figma` (Figma) or `/oneui:build-from-prd` (code).",
+    "files": [
+      "SKILL.md",
+      "references/examples.md",
+      "references/template.md"
+    ]
+  },
+  {
+    "name": "figma-to-native",
+    "description": "Turn a Figma frame into a runnable @oneui/ui-native (React Native) screen with the OneUI MCP's figma_to_code pipeline, then certify it with validate_oneui_code. Use this skill whenever building a React Native screen FROM a Figma design (a figma.com URL with a node-id), when running /oneui:figma-to-native, or when debugging the extract → refine → download-assets → codegen → validate chain. It owns the Figma→RN mapping semantics (Figma size tokens → KB enums, attention → variant, surface Modes → <Surface mode>, required a11y string defaults, icon/image wiring) and the runtime-error fixes that make generated code run without manual edits. For WHICH surface level a region earns defer to `surface`; for the [data-surface] remapping mechanism defer to `surface-context`; for component-API correctness defer to `oneui`.",
+    "files": [
+      "SKILL.md"
+    ]
+  },
+  {
+    "name": "figma-to-android",
+    "description": "Turn a Figma frame into a runnable, visually-verified JDS Jetpack Compose (Kotlin) screen. Drives figma_to_code(platform:\"android\", codegen=true), certifies with validate_oneui_code(platform:\"android\"), then builds on an emulator, screenshots, and compares against the Figma frame — hand-authoring fixes for visual mismatches. Use whenever building an Android screen FROM a Figma design (figma.com URL with node-id), or debugging extract → refine → download-assets → Compose codegen → validate → build → screenshot → fix.",
+    "files": [
+      "SKILL.md"
+    ]
+  },
+  {
+    "name": "figma-to-flutter",
+    "description": "Turn a Figma frame into a runnable, visually-verified OneUI Flutter (Dart) screen. Drives figma_to_code(platform:\"flutter\", codegen=true), certifies with validate_oneui_code(platform:\"flutter\"), then flutter run, screenshot, and compare against the Figma frame — hand-authoring fixes for visual mismatches. Owns the Figma→Flutter mapping semantics (attention → variant, Surface Mode → OneUiSurface, size tokens → catalog enums, icon/image/a11y wiring), the build/screenshot/hand-fix verify loop, and Flutter widget authoring that agents get wrong from the catalog alone — Avatar, progress 0–100, toast provider, Image src, 2-char SelectableSingleTextButton, token EdgeInsets, independent selection state, Tooltip click trigger on touch, Tooltip placement colliding with adjacent content, Chip primary appearance, BottomNavigation Surface wrapping, Carousel pagination ambient scope, ChipGroup List<String> typing, Object-typed Slider/Tabs callbacks.",
+    "files": [
+      "SKILL.md",
+      "references/avatar.md",
+      "references/widget-authoring.md"
+    ]
+  },
+  {
+    "name": "prd-to-android",
+    "description": "Build a JDS Jetpack Compose screen from a PRD (no Figma required). Load android foundation tokens (DimToken @360) and MVI/Clean Architecture guidelines, author RefinedNode IR, call codegen_from_ir(platform:\"android\"), scaffold feature ViewModel/UseCase layers per android-mvi-architecture, validate, then emulator verify against PRD §6. Use when the user wants Android/Compose code from a PRD, Login/feature brief, or screenshot — not when they have a Figma node (use figma-to-android instead).",
+    "files": [
+      "SKILL.md",
+      "references/android-mvi-architecture.md",
+      "references/ir-android.md"
+    ]
+  },
+  {
+    "name": "oneui-motion-build",
+    "description": "Add motion to a Jio (or sibling-brand) design-system component or pattern — decide whether it should animate, how much, which easing/duration tokens, and which existing pattern to use. Use proactively whenever adding, building, implementing, or specifying UI motion for OneUiStudio components — buttons, chips, tabs, sheets, toasts, cards, carousels, spinners, page transitions. Triggers on — animate, animation, motion, add motion, motion spec, easing, duration, transition, keyframes, hover, tap, press, scale, bucket, frequency, purpose, entrance, exit, stagger, pattern, \"how should this animate\", \"does this need motion\", \"add a transition\". Does not review existing motion (use oneui-motion-review) and does not compare motion options (use oneui-motion-prototype).",
+    "files": [
+      "SKILL.md"
+    ]
+  },
+  {
+    "name": "oneui-motion-review",
+    "description": "Reviews existing motion/animation code in a Jio or sibling-brand component against the Jio motion system — flags wrong buckets, undefined tokens, bad easing, broken entry/exit pairing, and accessibility gaps, then gives a block-or-approve verdict. Use only when explicitly asked to review, audit, or check motion/animation code — never as part of building or adding motion. Triggers on — review motion, review animation, audit motion, check this animation, motion review, is this motion correct, flag animation issues, motion code review. disable-model-invocation: true",
+    "files": [
+      "SKILL.md"
+    ]
+  },
+  {
+    "name": "oneui-motion-accessibility",
+    "description": "Decides what a component's motion owes under prefers-reduced-motion — whether movement is essential, what the reduced state has to preserve, and how to test it. Use whenever building or reviewing motion that needs a reduced-motion pass, deciding if an animation is essential, judging whether a stopped animation reads as broken, or checking WCAG 2.2 motion criteria. Triggers on — reduced motion, prefers-reduced-motion, accessibility, WCAG, essential animation, motion sickness, spinner accessibility, is this animation essential, reduced-motion checklist, a11y motion.",
+    "files": [
+      "SKILL.md"
+    ]
+  },
+  {
+    "name": "oneui-motion-brief",
+    "description": "Settles the few genuinely open motion decisions for a Jio component before any code gets written, by working through a short mostly-automatic checklist rather than a long interview — because bucket, purpose, and pattern already answer most of what a generic system would need to ask. Use when motion needs deciding before it's built, when no existing pattern obviously covers a component, when asked to \"brief this animation\" or \"decide how this should animate,\" or when oneui-motion-build hits an ambiguous case it can't resolve on its own. Produces a brief, not an implementation. Triggers on — motion brief, brief this animation, decide how this animates, what should this motion do, plan this animation, new motion pattern.",
+    "files": [
+      "SKILL.md"
+    ]
+  },
+  {
+    "name": "oneui-motion-prototype",
+    "description": "Builds two or three named, real versions of an undecided motion choice behind a reusable picker, so the difference can be judged by watching rather than guessing. Use only when explicitly asked to compare motion options, prototype an animation, or decide between multiple ways something could animate — for example \"does this feel better at XL or 2XL\". Never use while just adding motion. Triggers on — compare motion options, prototype animation, motion picker, which duration feels better, A/B animation, motion comparison. disable-model-invocation: true",
+    "files": [
+      "SKILL.md"
+    ]
+  },
+  {
+    "name": "oneui-motion-improve",
+    "description": "Audits motion debt across many components at once — not a single diff — and writes self-contained implementation plans another agent can execute, for Jio or any sibling brand with its own documented motion system. Use when asked to audit motion across a codebase, sweep multiple components for motion issues, do a motion health check, or \"audit our animations.\" Does not implement fixes itself. Triggers on — audit motion, motion debt, sweep animations, audit our animations, motion audit plan, find motion problems, motion health check, motion cleanup plan. disable-model-invocation: true",
+    "files": [
+      "SKILL.md"
+    ]
+  },
+  {
+    "name": "jds-to-oneui-figma",
+    "description": "Redesign legacy JDS (Jio Testlab / @jds/react 3.x) Figma screens into real OneUI Components + Micropatterns instances. Use when the user says \"convert this JDS screen to OneUI\", \"migrate Testlab screens\", \"redesign old JDS in Figma\", hands Jio-Testlab-Library frames plus a working-file target, or asks to bake a JDS→OneUI Figma rebuild. Owns component mapping from jds-to-oneui-component-map.json, gap handling for missing designs (OTP, Date, …), placement below source frames, and surface/theme discipline. For WHICH surface level defer to `surface`; for mode writes defer to `figma-surface-cascade`; for PRD→Figma (greenfield) defer to `prd-to-figma`.",
+    "files": [
+      "SKILL.md",
+      "references/jds-to-oneui-component-map.json"
+    ]
+  },
+  {
+    "name": "legacy-to-oneui",
+    "description": "- Rebuild a frame that was built with an old/legacy Figma component library, recreating it from scratch using ONLY components from OneUI Components and OneUI Micropatterns, with every colour, spacing, radius and stroke bound to OneUI Foundations tokens. Orchestrator: loads the OneUI foundations skills itself and gates on a deep, fail-closed library audit. Use when the user asks to recreate, rebuild or migrate a selected frame with OneUI.",
+    "category": "figma-design",
+    "files": [
+      "SKILL.md",
+      "references/jds-v3-oneui-actions-and-triggers.md",
+      "references/jds-v3-oneui-disclosure-and-paging.md",
+      "references/jds-v3-oneui-feedback.md",
+      "references/jds-v3-oneui-form-controls.md",
+      "references/jds-v3-oneui-form-fields.md",
+      "references/jds-v3-oneui-lists-and-collections.md",
+      "references/jds-v3-oneui-media-and-identity.md",
+      "references/jds-v3-oneui-migration-figma-agent.md",
+      "references/jds-v3-oneui-navigation.md",
+      "references/jds-v3-oneui-overlays.md",
+      "references/jds-v3-oneui-selection-controls.md",
+      "references/jds-v3-oneui-status-indicators.md",
+      "references/jds-v3-oneui-structure-and-separators.md"
+    ]
+  },
+  {
+    "name": "oneui-figma-foundations",
+    "description": "- Orchestrator for OneUI design-system foundations in Figma. Use whenever building, editing, auditing or debugging OneUI/Jio/Tira screens or components — variable modes, Brand paint bindings, theme/appearance/colour-mode switches, parent-step cascade, or wrong colours after reparent/paste. Loads the core rules and routes to the supporting OneUI Figma skills as needed.",
+    "category": "figma-design",
+    "files": [
+      "SKILL.md",
+      "references/oneui-figma-appearance-and-themes.md",
+      "references/oneui-figma-brand-variables.md",
+      "references/oneui-figma-cascade.md",
+      "references/oneui-figma-collections-and-modes.md",
+      "references/oneui-figma-foundations-core.md",
+      "references/oneui-figma-resolution-maths.md",
+      "references/oneui-figma-scale-colours.md",
+      "references/oneui-figma-size-and-typography.md",
+      "references/oneui-figma-verify.md",
+      "references/oneui-figma-worked-example.md",
+      "references/oneui-figma-writing-to-figma.md"
+    ]
+  },
+  {
+    "name": "oneui-definitions",
+    "description": "- Definitions of OneUI components and micropatterns, plus the legacy colour-token → OneUI surface/appearance mapping — the shared vocabulary for choosing, disambiguating and placing OneUI elements in Figma. Use when deciding which OneUI component or micropattern fits, which of two similar components to reach for, or how a legacy colour/{scale}/{step} fill maps to a OneUI surface + appearance.",
+    "category": "figma-design",
+    "files": [
+      "SKILL.md",
+      "references/oneui-components-definition.md",
+      "references/oneui-micropatterns-definition.md",
+      "references/oneui-surface-color-token-mapping.md"
+    ]
+  }
+]

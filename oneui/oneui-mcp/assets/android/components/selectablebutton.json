@@ -1,0 +1,278 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "SelectableButton",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.254Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Public API contract for JdsSelectableButton."
+  },
+  "composable": "JdsSelectableButton",
+  "attributesClass": "JdsSelectableButtonAttributes",
+  "importPath": "com.jds.components.selectablebutton",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.selectablebutton.JdsSelectableButton",
+    "attributes": "com.jds.components.selectablebutton.JdsSelectableButtonAttributes",
+    "enums": {
+      "JdsSelectableButtonAttention": "com.jds.components.selectablebutton.JdsSelectableButtonAttention",
+      "JdsSelectableButtonSize": "com.jds.components.selectablebutton.JdsSelectableButtonSize",
+      "Appearance": "com.jds.foundation.token.Appearance"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [
+      "selected",
+      "onSelectedChange"
+    ],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "selected",
+      "type": "Boolean",
+      "required": true,
+      "description": ""
+    },
+    {
+      "name": "onSelectedChange",
+      "type": "(Boolean) -> Unit",
+      "required": true,
+      "description": ""
+    },
+    {
+      "name": "label",
+      "type": "JdsTextAttributes?",
+      "required": false,
+      "defaultValue": "null",
+      "slot": true,
+      "slotTypes": [
+        "Text"
+      ],
+      "description": ""
+    },
+    {
+      "name": "start",
+      "type": "JdsSlot?",
+      "required": false,
+      "defaultValue": "null",
+      "slot": true,
+      "slotTypes": [],
+      "description": ""
+    },
+    {
+      "name": "end",
+      "type": "JdsSlot?",
+      "required": false,
+      "defaultValue": "null",
+      "slot": true,
+      "slotTypes": [],
+      "description": ""
+    },
+    {
+      "name": "attention",
+      "type": "JdsSelectableButtonAttention",
+      "required": false,
+      "defaultValue": "JdsSelectableButtonAttention.High",
+      "enumValues": [
+        "High",
+        "Medium",
+        "Low"
+      ],
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "JdsSelectableButtonSize",
+      "required": false,
+      "defaultValue": "JdsSelectableButtonSize.M",
+      "enumValues": [
+        "XS",
+        "S",
+        "M",
+        "L"
+      ],
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "Appearance",
+      "required": false,
+      "defaultValue": "Appearance.Auto",
+      "enumValues": [
+        "Auto",
+        "Primary",
+        "Secondary",
+        "Sparkle",
+        "BrandBg",
+        "Neutral",
+        "Positive",
+        "Negative",
+        "Warning",
+        "Informative"
+      ],
+      "description": ""
+    },
+    {
+      "name": "contained",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": ""
+    },
+    {
+      "name": "condensed",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "fullWidth",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "enabled",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "contentDescription",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": "Override accessible name; required when label is null/blank (icon-only)."
+    }
+  ],
+  "slots": [
+    {
+      "name": "label",
+      "types": [
+        "Text"
+      ]
+    },
+    {
+      "name": "start",
+      "types": []
+    },
+    {
+      "name": "end",
+      "types": []
+    }
+  ],
+  "enums": {
+    "JdsSelectableButtonAttention": [
+      "High",
+      "Medium",
+      "Low"
+    ],
+    "JdsSelectableButtonSize": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "Appearance": [
+      "Auto",
+      "Primary",
+      "Secondary",
+      "Sparkle",
+      "BrandBg",
+      "Neutral",
+      "Positive",
+      "Negative",
+      "Warning",
+      "Informative"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.SelectableButton",
+    "type": "object",
+    "properties": {
+      "selected": {
+        "type": "boolean"
+      },
+      "onSelectedChange": {},
+      "label": {},
+      "start": {},
+      "end": {},
+      "attention": {
+        "enum": [
+          "High",
+          "Medium",
+          "Low"
+        ],
+        "default": "JdsSelectableButtonAttention.High"
+      },
+      "size": {
+        "enum": [
+          "XS",
+          "S",
+          "M",
+          "L"
+        ],
+        "default": "JdsSelectableButtonSize.M"
+      },
+      "appearance": {
+        "enum": [
+          "Auto",
+          "Primary",
+          "Secondary",
+          "Sparkle",
+          "BrandBg",
+          "Neutral",
+          "Positive",
+          "Negative",
+          "Warning",
+          "Informative"
+        ],
+        "default": "Appearance.Auto"
+      },
+      "contained": {
+        "type": "boolean"
+      },
+      "condensed": {
+        "type": "boolean"
+      },
+      "fullWidth": {
+        "type": "boolean"
+      },
+      "enabled": {
+        "type": "boolean"
+      },
+      "loading": {
+        "type": "boolean"
+      },
+      "contentDescription": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "selected",
+      "onSelectedChange"
+    ]
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "selectablebutton"
+  ],
+  "importPathMaven": "com.jds:components"
+}

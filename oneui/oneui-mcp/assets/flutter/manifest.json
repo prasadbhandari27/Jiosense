@@ -1,0 +1,11 @@
+{
+  "snapshotVersion": "flutter-1",
+  "generatedAt": "2026-09-04T05:50:48.675Z",
+  "source": {
+    "package": "ui_flutter",
+    "barrel": "packages/ui_flutter/lib/ui_flutter.dart"
+  },
+  "counts": {
+    "components": 74
+  }
+}

@@ -1,0 +1,278 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Icon",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Render a semantic or custom icon with configurable size, colour role, and emphasis level.",
+    "taskContexts": [
+      "inline-decoration",
+      "button-icon",
+      "status-indicator",
+      "navigation-icon"
+    ],
+    "sentiments": [
+      "neutral",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ]
+  },
+  "compositionRules": {
+    "requires": [
+      "icon prop (semantic name or React element)"
+    ],
+    "allows": [
+      "aria-label for non-decorative use"
+    ],
+    "forbids": [
+      "interactive behaviour (use IconButton instead)",
+      "text content"
+    ]
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "high emphasis",
+        "useWhen": [
+          "primary content icon requiring strongest contrast"
+        ]
+      },
+      {
+        "name": "medium emphasis",
+        "useWhen": [
+          "secondary or supporting icon"
+        ]
+      },
+      {
+        "name": "low emphasis",
+        "useWhen": [
+          "subtle decorative icon"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": [
+      "IconButton",
+      "IconContained",
+      "Button"
+    ]
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "icon",
+      "type": "'add' | 'remove' | 'close' | 'edit' | 'delete' | 'copy' | 'save' | 'refresh' | 'download' | 'upload' | 'share' | 'link' | 'unlink' | 'cart' | 'helloJio' | 'favourite' | 'rewind' | 'forward' | 'menu' | 'search' | 'home' | 'settings' | 'arrowLeft' | 'arrowRight' | 'arrowUp' | 'arrowDown' | 'chevronLeft' | 'chevronRight' | 'chevronUp' | 'chevronDown' | 'externalLink' | 'firstPage' | 'lastPage' /** Single-step back / forward (Jio: `IcBack` / `IcNext` — distinct from chevrons). */ | 'back' | 'next' | 'check' | 'checkCircle' | 'warning' | 'error' | 'info' | 'help' | 'loading' | 'play' | 'pause' | 'stop' | 'volumeOn' | 'volumeOff' | 'microphone' | 'image' | 'video' | 'user' | 'users' | 'userAdd' | 'userRemove' | 'logout' | 'eye' | 'eyeOff' | 'lock' | 'unlock' | 'star' | 'starFilled' | 'heart' | 'heartFilled' | 'bookmark' | 'bookmarkFilled' | 'filter' | 'sort' | 'grid' | 'list' | 'moreHorizontal' | 'moreVertical' | 'mail' | 'phone' | 'chat' | 'notification' | 'file' | 'folder' | 'document' | 'calendar' | 'clock' | 'location' | 'sun' | 'moon' | 'palette' | 'brand' | 'layers' | 'components' | 'canvas' | 'create' | 'sparkles' | 'analytics' | 'globe' | 'smartphone' | 'tablet' | 'monitor' | 'tv' | 'printer' | 'billboard' | 'bus' | (string & {}) | IconComponent | ReactElement",
+      "required": true,
+      "description": "Icon to display — semantic name, pack id, component, or React element"
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'neutral' | 'primary' | 'secondary' | 'sparkle' | 'negative' | 'positive' | 'warning' | 'informative'",
+      "required": false,
+      "description": "Colour role. - Omit: inherit the slot parent's role (Badge, Button, Chip…), else `'secondary'`. An ambient `<Surface>` is NOT consulted. - `'auto'`: as above, but fall back to the nearest Surface's role before `'secondary'`. - A role: pin it, ignoring both."
+    },
+    {
+      "name": "aria-hidden",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether icon is hidden from assistive technology. Default: true when no label"
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label — if provided, icon is not decorative"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "customSizeToken",
+      "type": "string",
+      "required": false,
+      "description": "Dimension token name when `size=\"custom\"` (e.g. `'Spacing-12'`). Sets `--Icon-size: var(--Spacing-12)` on the root. Figma: custom via any dimension token."
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "QA / Playwright hook — forwarded to the root span"
+    },
+    {
+      "name": "emphasis",
+      "type": "'high' | 'medium' | 'low' | 'tinted' | 'tintedA11y'",
+      "required": false,
+      "description": "Colour emphasis level. Default: 'high'"
+    },
+    {
+      "name": "size",
+      "type": "'xs' | 'sm' | 'md' | 'lg' | 'xl'",
+      "required": false,
+      "description": "Size preset. Default: `'m'` (20px). T-shirt aliases (`2xs`…`2xl`) map to spacing tokens; `custom` uses `--Icon-size`."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.icon",
+    "type": "object",
+    "properties": {
+      "icon": {
+        "description": "Icon to display — semantic name, pack id, component, or React element"
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "neutral",
+          "primary",
+          "secondary",
+          "sparkle",
+          "negative",
+          "positive",
+          "warning",
+          "informative"
+        ],
+        "description": "Colour role. - Omit: inherit the slot parent's role (Badge, Button, Chip…), else `'secondary'`. An ambient `<Surface>` is NOT consulted. - `'auto'`: as above, but fall back to the nearest Surface's role before `'secondary'`. - A role: pin it, ignoring both."
+      },
+      "aria-hidden": {
+        "type": "boolean",
+        "description": "Whether icon is hidden from assistive technology. Default: true when no label"
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label — if provided, icon is not decorative"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "customSizeToken": {
+        "type": "string",
+        "description": "Dimension token name when `size=\"custom\"` (e.g. `'Spacing-12'`). Sets `--Icon-size: var(--Spacing-12)` on the root. Figma: custom via any dimension token."
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "QA / Playwright hook — forwarded to the root span"
+      },
+      "emphasis": {
+        "enum": [
+          "high",
+          "medium",
+          "low",
+          "tinted",
+          "tintedA11y"
+        ],
+        "description": "Colour emphasis level. Default: 'high'"
+      },
+      "size": {
+        "enum": [
+          "2xs",
+          "xs",
+          "s",
+          "m",
+          "l",
+          "xl",
+          "2xl",
+          "custom",
+          "2",
+          "2.5",
+          "3",
+          "3.5",
+          "4",
+          "4.5",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "12",
+          "14",
+          "16",
+          "18",
+          "20",
+          "24",
+          "32",
+          "40"
+        ],
+        "description": "Size preset. Default: `'m'` (20px). T-shirt aliases (`2xs`…`2xl`) map to spacing tokens; `custom` uses `--Icon-size`."
+      },
+      "style": {
+        "description": "Inline styles"
+      }
+    },
+    "required": [
+      "icon"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "icon-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Icon } from '@oneui/ui';\n\n<Icon icon=\"check\" />"
+    },
+    {
+      "id": "icon-appearance",
+      "title": "With Appearance",
+      "language": "tsx",
+      "code": "<Icon icon=\"warning\" appearance=\"negative\" emphasis=\"high\" size=\"7\" />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "icon"
+  ],
+  "interactionBehavior": {
+    "summary": "Icon is a decorative `<span>` with no hover, press, focus, or keyboard behaviour. It is `aria-hidden` unless you pass `aria-label` (which then sets `role=\"img\"`). It does not take focus, does not set a cursor, and does not have a `disabled` or `onPress` prop. For a tappable glyph use `IconButton` (or a `Button` with an `icon` slot) — wrapping this span yourself is how you add interactivity, and that wrapper owns hover / press / focus."
+  },
+  "importPath": "@jds4/oneui-react",
+  "figma": {
+    "componentKey": "jds-icon-v4"
+  },
+  "renderHints": {
+    "baseElement": "img",
+    "readsFromSurfaceContext": true
+  },
+  "a11y": {
+    "role": "img",
+    "minTouchTarget": 44,
+    "accessibleNameSource": "aria-label"
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "InputField",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.252Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Public API for JdsInputField."
+  },
+  "composable": "JdsInputField",
+  "attributesClass": "JdsInputFieldAttributes",
+  "importPath": "com.jds.components.inputfield",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.inputfield.JdsInputField",
+    "attributes": "com.jds.components.inputfield.JdsInputFieldAttributes"
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [
+      "input"
+    ],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "input",
+      "type": "JdsInputAttributes",
+      "required": true,
+      "slot": true,
+      "slotTypes": [
+        "Input"
+      ],
+      "description": ""
+    },
+    {
+      "name": "label",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "description",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "required",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "infoIcon",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Shown only when (label != null || description != null) && infoIcon=true."
+    },
+    {
+      "name": "infoIconSlot",
+      "type": "JdsIconAttributes?",
+      "required": false,
+      "defaultValue": "null",
+      "slot": true,
+      "slotTypes": [
+        "Icon"
+      ],
+      "description": ""
+    },
+    {
+      "name": "error",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": "Shorthand: non-null → error border on input + auto Negative/Low feedback row."
+    },
+    {
+      "name": "feedback",
+      "type": "JdsInputFeedbackAttributes?",
+      "required": false,
+      "defaultValue": "null",
+      "slot": true,
+      "slotTypes": [
+        "InputFeedback"
+      ],
+      "description": "Full feedback slot — overrides error shorthand for the feedback row."
+    },
+    {
+      "name": "dynamicText",
+      "type": "JdsInputDynamicTextAttributes?",
+      "required": false,
+      "defaultValue": "null",
+      "slot": true,
+      "slotTypes": [
+        "InputDynamicText"
+      ],
+      "description": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "input",
+      "types": [
+        "Input"
+      ]
+    },
+    {
+      "name": "infoIconSlot",
+      "types": [
+        "Icon"
+      ]
+    },
+    {
+      "name": "feedback",
+      "types": [
+        "InputFeedback"
+      ]
+    },
+    {
+      "name": "dynamicText",
+      "types": [
+        "InputDynamicText"
+      ]
+    }
+  ],
+  "enums": {},
+  "propsSchema": {
+    "$id": "jds.kb.android.InputField",
+    "type": "object",
+    "properties": {
+      "input": {},
+      "label": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "required": {
+        "type": "boolean"
+      },
+      "infoIcon": {
+        "type": "boolean"
+      },
+      "infoIconSlot": {},
+      "error": {
+        "type": "string"
+      },
+      "feedback": {},
+      "dynamicText": {}
+    },
+    "required": [
+      "input"
+    ]
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "inputfield"
+  ],
+  "importPathMaven": "com.jds:components"
+}

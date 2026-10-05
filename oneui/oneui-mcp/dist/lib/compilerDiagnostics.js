@@ -1,0 +1,1 @@
+function r(c){return[...c].sort((o,e)=>o.figId.localeCompare(e.figId)||o.code.localeCompare(e.code)||(o.component??"").localeCompare(e.component??"")||o.message.localeCompare(e.message))}export{r as sortDiagnostics};

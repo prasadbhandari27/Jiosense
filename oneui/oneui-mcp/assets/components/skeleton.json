@@ -1,0 +1,114 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Skeleton",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "PRD-derived loading placeholder primitives. Compose SkeletonItem blocks inside SkeletonGroup for automatic shimmer stagger. No canonical OneUI Figma component is currently published.",
+    "taskContexts": [
+      "loading",
+      "skeleton",
+      "placeholder",
+      "shimmer",
+      "busy",
+      "prd-derived"
+    ],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "default",
+        "useWhen": [
+          "Default"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Content used for natural size inference when width/height are omitted."
+    },
+    {
+      "name": "height",
+      "type": "SkeletonLength",
+      "required": false,
+      "description": "Explicit height — when set, sizing ignores children."
+    },
+    {
+      "name": "width",
+      "type": "SkeletonLength",
+      "required": false,
+      "description": "Explicit width — when set, sizing ignores children."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.skeleton",
+    "type": "object",
+    "properties": {
+      "children": {
+        "description": "Content used for natural size inference when width/height are omitted."
+      },
+      "height": {
+        "description": "Explicit height — when set, sizing ignores children."
+      },
+      "width": {
+        "description": "Explicit width — when set, sizing ignores children."
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "skeleton-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { SkeletonGroup, SkeletonItem } from '@oneui/ui';\n\n<SkeletonGroup>\n  <SkeletonItem width=\"100%\" height=\"var(--Spacing-5)\" />\n  <SkeletonItem width=\"75%\" height=\"var(--Spacing-5)\" />\n</SkeletonGroup>"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "skeleton"
+  ],
+  "importPath": "@jds4/oneui-react"
+}

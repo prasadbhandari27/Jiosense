@@ -1,0 +1,170 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "IconContained",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.250Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Public API contract for JdsIconContained."
+  },
+  "composable": "JdsIconContained",
+  "attributesClass": "JdsIconContainedAttributes",
+  "importPath": "com.jds.components.iconcontained",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.iconcontained.JdsIconContained",
+    "attributes": "com.jds.components.iconcontained.JdsIconContainedAttributes",
+    "enums": {
+      "JdsIconContainedSize": "com.jds.components.iconcontained.JdsIconContainedSize",
+      "JdsIconContainedAttention": "com.jds.components.iconcontained.JdsIconContainedAttention",
+      "Appearance": "com.jds.foundation.token.Appearance"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [
+      "icon"
+    ],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "icon",
+      "type": "ImageVector",
+      "required": true,
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "JdsIconContainedSize",
+      "required": false,
+      "defaultValue": "JdsIconContainedSize.M",
+      "enumValues": [
+        "Xs",
+        "S",
+        "M",
+        "L",
+        "Xl"
+      ],
+      "description": ""
+    },
+    {
+      "name": "attention",
+      "type": "JdsIconContainedAttention",
+      "required": false,
+      "defaultValue": "JdsIconContainedAttention.Medium",
+      "enumValues": [
+        "High",
+        "Medium"
+      ],
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "Appearance",
+      "required": false,
+      "defaultValue": "Appearance.Secondary",
+      "enumValues": [
+        "Auto",
+        "Primary",
+        "Secondary",
+        "Sparkle",
+        "BrandBg",
+        "Neutral",
+        "Positive",
+        "Negative",
+        "Warning",
+        "Informative"
+      ],
+      "description": ""
+    },
+    {
+      "name": "contentDescription",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "enums": {
+    "JdsIconContainedSize": [
+      "Xs",
+      "S",
+      "M",
+      "L",
+      "Xl"
+    ],
+    "JdsIconContainedAttention": [
+      "High",
+      "Medium"
+    ],
+    "Appearance": [
+      "Auto",
+      "Primary",
+      "Secondary",
+      "Sparkle",
+      "BrandBg",
+      "Neutral",
+      "Positive",
+      "Negative",
+      "Warning",
+      "Informative"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.IconContained",
+    "type": "object",
+    "properties": {
+      "icon": {},
+      "size": {
+        "enum": [
+          "Xs",
+          "S",
+          "M",
+          "L",
+          "Xl"
+        ],
+        "default": "JdsIconContainedSize.M"
+      },
+      "attention": {
+        "enum": [
+          "High",
+          "Medium"
+        ],
+        "default": "JdsIconContainedAttention.Medium"
+      },
+      "appearance": {
+        "enum": [
+          "Auto",
+          "Primary",
+          "Secondary",
+          "Sparkle",
+          "BrandBg",
+          "Neutral",
+          "Positive",
+          "Negative",
+          "Warning",
+          "Informative"
+        ],
+        "default": "Appearance.Secondary"
+      },
+      "contentDescription": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "icon"
+    ]
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "iconcontained"
+  ],
+  "importPathMaven": "com.jds:components"
+}

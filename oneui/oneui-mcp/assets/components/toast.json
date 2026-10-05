@@ -1,0 +1,289 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Toast",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Transient status feedback with semantic type, independent visual attention and announcement priority, optional action content, progress, stacking, dedupe, and promise lifecycle.",
+    "taskContexts": [
+      "toast",
+      "notification",
+      "status",
+      "feedback",
+      "promise"
+    ],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [
+      "start",
+      "actions"
+    ],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "high",
+        "useWhen": [
+          "High"
+        ]
+      },
+      {
+        "name": "medium",
+        "useWhen": [
+          "Medium"
+        ]
+      },
+      {
+        "name": "low",
+        "useWhen": [
+          "Low"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "actions",
+      "type": "ToastActions",
+      "required": false,
+      "description": "Up to two action nodes. Structured descriptors additionally support managed auto-close."
+    },
+    {
+      "name": "actionsPlacement",
+      "type": "'bottom' | 'end'",
+      "required": false,
+      "description": "Whether actions sit beside (`end`, max 1 structured) or below (`bottom`, max 2, trailing-aligned)."
+    },
+    {
+      "name": "attention",
+      "type": "'high' | 'medium' | 'low'",
+      "required": false,
+      "description": "Visual prominence only."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "className property"
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "data-testid property"
+    },
+    {
+      "name": "description",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Supporting/help text."
+    },
+    {
+      "name": "dismissible",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the dismiss control is visible."
+    },
+    {
+      "name": "helpText",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Optional help/status line rendered below the progress track (Figma `helpText`). Only rendered when the progress bar is visible (`type=\"default\"` and `progress` is set). Independent of `description`. Empty/null renders nothing; ignored when progress is hidden."
+    },
+    {
+      "name": "onDismiss",
+      "type": "() => void",
+      "required": false,
+      "description": "Display-only Toast callback. Managed ToastItem instances close through their manager."
+    },
+    {
+      "name": "priority",
+      "type": "'low' | 'high'",
+      "required": false,
+      "description": "Announcement urgency only."
+    },
+    {
+      "name": "progress",
+      "type": "number | 'indeterminate'",
+      "required": false,
+      "description": "Optional determinate percentage or indeterminate progress. Figma (15107:2861): only rendered when `type=\"default\"`."
+    },
+    {
+      "name": "start",
+      "type": "ReactNode | false",
+      "required": false,
+      "description": "Leading visual. `false` hides the type-derived default visual."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "style property"
+    },
+    {
+      "name": "timeout",
+      "type": "number",
+      "required": false,
+      "description": "Auto-dismiss timeout when published through a manager. Defaults to 3000ms; zero is persistent."
+    },
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Primary message. A description-only toast is valid."
+    },
+    {
+      "name": "type",
+      "type": "'default' | 'loading' | 'positive' | 'negative' | 'warning' | 'info'",
+      "required": false,
+      "description": "Figma semantic/visual type."
+    }
+  ],
+  "slots": [
+    {
+      "name": "start",
+      "types": [
+        "Icon",
+        "Avatar",
+        "Logo",
+        "ProgressIndicator"
+      ],
+      "tokens": []
+    },
+    {
+      "name": "actions",
+      "types": [
+        "ReactNode",
+        "ToastAction"
+      ],
+      "tokens": []
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.toast",
+    "type": "object",
+    "properties": {
+      "actions": {
+        "description": "Up to two action nodes. Structured descriptors additionally support managed auto-close."
+      },
+      "actionsPlacement": {
+        "enum": [
+          "end",
+          "bottom"
+        ],
+        "description": "Whether actions sit beside (`end`, max 1 structured) or below (`bottom`, max 2, trailing-aligned)."
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "description": "Visual prominence only."
+      },
+      "className": {
+        "type": "string",
+        "description": "className property"
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "data-testid property"
+      },
+      "description": {
+        "description": "Supporting/help text."
+      },
+      "dismissible": {
+        "type": "boolean",
+        "description": "Whether the dismiss control is visible."
+      },
+      "helpText": {
+        "description": "Optional help/status line rendered below the progress track (Figma `helpText`). Only rendered when the progress bar is visible (`type=\"default\"` and `progress` is set). Independent of `description`. Empty/null renders nothing; ignored when progress is hidden."
+      },
+      "onDismiss": {
+        "description": "Display-only Toast callback. Managed ToastItem instances close through their manager."
+      },
+      "priority": {
+        "enum": [
+          "low",
+          "high"
+        ],
+        "description": "Announcement urgency only."
+      },
+      "progress": {
+        "description": "Optional determinate percentage or indeterminate progress. Figma (15107:2861): only rendered when `type=\"default\"`."
+      },
+      "start": {
+        "description": "Leading visual. `false` hides the type-derived default visual."
+      },
+      "style": {
+        "description": "style property"
+      },
+      "timeout": {
+        "type": "number",
+        "description": "Auto-dismiss timeout when published through a manager. Defaults to 3000ms; zero is persistent."
+      },
+      "title": {
+        "description": "Primary message. A description-only toast is valid."
+      },
+      "type": {
+        "enum": [
+          "default",
+          "loading",
+          "positive",
+          "negative",
+          "warning",
+          "info"
+        ],
+        "description": "Figma semantic/visual type."
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "toast-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Toast } from '@oneui/ui';\n\n<Toast title=\"Saved\" description=\"Your changes are ready.\" />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "toast"
+  ],
+  "importPath": "@jds4/oneui-react"
+}

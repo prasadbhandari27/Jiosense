@@ -1,0 +1,194 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Tooltip",
+  "flutterExport": "OneUiTooltip",
+  "importPath": "package:ui_flutter/ui_flutter.dart",
+  "generatedAt": "2026-09-04T05:50:48.675Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "OneUiTooltip from the ui_flutter barrel. Use Surface context (OneUiSurface) for tinted backgrounds."
+  },
+  "props": [
+    {
+      "name": "child",
+      "required": true,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "content",
+      "required": true,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "position",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "side",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "align",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "sideOffset",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "offset",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "open",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "defaultOpen",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onOpenChange",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "trigger",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "delay",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "closeDelay",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "hideDelay",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "arrow",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "tip",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "maxWidth",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "hoverable",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "disable",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "portal",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "zIndex",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "subtle",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "minWidth",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "semanticsHint",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "accessibilityHint",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "accessibilityLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "testId",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "testID",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    }
+  ]
+}

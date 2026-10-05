@@ -1,0 +1,134 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Pagination",
+  "flutterExport": "OneUiPagination",
+  "importPath": "package:ui_flutter/ui_flutter.dart",
+  "generatedAt": "2026-09-04T05:50:48.675Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "OneUiPagination from the ui_flutter barrel. Use Surface context (OneUiSurface) for tinted backgrounds."
+  },
+  "props": [
+    {
+      "name": "totalPages",
+      "required": true,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "page",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "defaultPage",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onPageChange",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "siblingCount",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "boundaryCount",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "showPrevNext",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "showFirstLast",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "fullWidth",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "type",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "attention",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "semanticsLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "forceFocusRing",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "autofocus",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "testId",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "testID",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    }
+  ]
+}

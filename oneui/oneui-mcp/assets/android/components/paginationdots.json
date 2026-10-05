@@ -1,0 +1,152 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "PaginationDots",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.253Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Public API contract for JdsPaginationDots."
+  },
+  "composable": "JdsPaginationDots",
+  "attributesClass": "JdsPaginationDotsAttributes",
+  "importPath": "com.jds.components.paginationdots",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.paginationdots.JdsPaginationDots",
+    "attributes": "com.jds.components.paginationdots.JdsPaginationDotsAttributes",
+    "enums": {
+      "Appearance": "com.jds.foundation.token.Appearance"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "pageCount",
+      "type": "Int",
+      "required": false,
+      "defaultValue": "0",
+      "description": ""
+    },
+    {
+      "name": "activeIndex",
+      "type": "Int",
+      "required": false,
+      "defaultValue": "0",
+      "description": ""
+    },
+    {
+      "name": "onActiveIndexChange",
+      "type": "((Int) -> Unit)?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "loop",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "Appearance",
+      "required": false,
+      "defaultValue": "Appearance.Auto",
+      "enumValues": [
+        "Auto",
+        "Primary",
+        "Secondary",
+        "Sparkle",
+        "BrandBg",
+        "Neutral",
+        "Positive",
+        "Negative",
+        "Warning",
+        "Informative"
+      ],
+      "description": ""
+    },
+    {
+      "name": "readOnly",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "contentDescription",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "enums": {
+    "Appearance": [
+      "Auto",
+      "Primary",
+      "Secondary",
+      "Sparkle",
+      "BrandBg",
+      "Neutral",
+      "Positive",
+      "Negative",
+      "Warning",
+      "Informative"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.PaginationDots",
+    "type": "object",
+    "properties": {
+      "pageCount": {
+        "type": "integer"
+      },
+      "activeIndex": {
+        "type": "integer"
+      },
+      "onActiveIndexChange": {},
+      "loop": {
+        "type": "boolean"
+      },
+      "appearance": {
+        "enum": [
+          "Auto",
+          "Primary",
+          "Secondary",
+          "Sparkle",
+          "BrandBg",
+          "Neutral",
+          "Positive",
+          "Negative",
+          "Warning",
+          "Informative"
+        ],
+        "default": "Appearance.Auto"
+      },
+      "readOnly": {
+        "type": "boolean"
+      },
+      "contentDescription": {
+        "type": "string"
+      }
+    },
+    "required": []
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "paginationdots"
+  ],
+  "importPathMaven": "com.jds:components"
+}

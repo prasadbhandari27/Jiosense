@@ -1,0 +1,140 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Carousel",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Multi-brand carousel micropattern. Compound API (`Carousel.Root` / `Viewport` / `Track` / `Slide` / controls) with thin design-variant presets (`Carousel.Desktop`, `Carousel.Tablet`, `Carousel.Mobile`). Slides layer image, scrim, content (badge / headline / body / actions), and corner slots. Surface-context-aware. Web engine: Embla Carousel. Figma-aligned API: `followsAspectRatio`, 1-based `activePage` / `pageCount`.",
+    "taskContexts": [],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [
+      "image",
+      "content",
+      "cornerStart",
+      "cornerEnd",
+      "controls"
+    ],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "pagination",
+        "useWhen": [
+          "Pagination below"
+        ]
+      },
+      {
+        "name": "paginationOnMedia",
+        "useWhen": [
+          "Pagination on media"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [],
+  "slots": [
+    {
+      "name": "image",
+      "types": [
+        "image",
+        "video"
+      ],
+      "tokens": [
+        "slideRadius"
+      ]
+    },
+    {
+      "name": "content",
+      "types": [
+        "headline",
+        "body",
+        "badge",
+        "buttonGroup"
+      ],
+      "tokens": [
+        "contentPaddingBlockStart",
+        "contentPaddingBlockEnd",
+        "contentPaddingInline",
+        "contentGap",
+        "contentOuterGap"
+      ]
+    },
+    {
+      "name": "cornerStart",
+      "types": [
+        "badge",
+        "iconButton",
+        "custom"
+      ],
+      "tokens": [
+        "cornerPadding"
+      ]
+    },
+    {
+      "name": "cornerEnd",
+      "types": [
+        "badge",
+        "iconButton",
+        "playButton",
+        "custom"
+      ],
+      "tokens": [
+        "cornerPadding"
+      ]
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.carousel",
+    "type": "object",
+    "properties": {}
+  },
+  "codeSnippets": [
+    {
+      "id": "carousel-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Carousel } from '@oneui/ui';\n\n<Carousel />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "carousel"
+  ],
+  "importPath": "@jds4/oneui-react"
+}

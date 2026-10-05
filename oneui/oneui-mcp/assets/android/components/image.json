@@ -1,0 +1,266 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Image",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.250Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "JDS Image Compose component."
+  },
+  "composable": "JdsImage",
+  "attributesClass": "JdsImageAttributes",
+  "importPath": "com.jds.components.image",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.image.JdsImage",
+    "attributes": "com.jds.components.image.JdsImageAttributes",
+    "enums": {
+      "JdsImageAspectRatio": "com.jds.components.image.JdsImageAspectRatio",
+      "JdsImageObjectFit": "com.jds.components.image.JdsImageObjectFit"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [
+      "model"
+    ],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "model",
+      "type": "Any",
+      "required": true,
+      "description": ""
+    },
+    {
+      "name": "contentDescription",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "aspectRatio",
+      "type": "JdsImageAspectRatio",
+      "required": false,
+      "defaultValue": "JdsImageAspectRatio.Auto",
+      "enumValues": [
+        "Auto",
+        "Ratio1x1",
+        "Ratio1x2",
+        "Ratio2x1",
+        "Ratio2x3",
+        "Ratio3x2",
+        "Ratio3x4",
+        "Ratio4x3",
+        "Ratio9x16",
+        "Ratio16x9",
+        "Ratio9x21",
+        "Ratio21x9"
+      ],
+      "description": ""
+    },
+    {
+      "name": "fit",
+      "type": "JdsImageObjectFit",
+      "required": false,
+      "defaultValue": "JdsImageObjectFit.Cover",
+      "enumValues": [
+        "Cover",
+        "Contain",
+        "Fill",
+        "None",
+        "ScaleDown"
+      ],
+      "description": ""
+    },
+    {
+      "name": "interactive",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "onClick",
+      "type": "(() -> Unit)?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "onLoad",
+      "type": "(() -> Unit)?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "onError",
+      "type": "(() -> Unit)?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "fallbackModel",
+      "type": "Any?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "accessibilityLabel",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "imageLoader",
+      "type": "Any?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "lottieAttributes",
+      "type": "JdsLottieAttributes?",
+      "required": false,
+      "defaultValue": "null",
+      "slot": true,
+      "slotTypes": [
+        "Lottie"
+      ],
+      "description": ""
+    },
+    {
+      "name": "width",
+      "type": "Dp?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "height",
+      "type": "Dp?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "fallback",
+      "type": "(@Composable () -> Unit)?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "lottieAttributes",
+      "types": [
+        "Lottie"
+      ]
+    }
+  ],
+  "enums": {
+    "JdsImageAspectRatio": [
+      "Auto",
+      "Ratio1x1",
+      "Ratio1x2",
+      "Ratio2x1",
+      "Ratio2x3",
+      "Ratio3x2",
+      "Ratio3x4",
+      "Ratio4x3",
+      "Ratio9x16",
+      "Ratio16x9",
+      "Ratio9x21",
+      "Ratio21x9"
+    ],
+    "JdsImageObjectFit": [
+      "Cover",
+      "Contain",
+      "Fill",
+      "None",
+      "ScaleDown"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.Image",
+    "type": "object",
+    "properties": {
+      "model": {},
+      "contentDescription": {
+        "type": "string"
+      },
+      "aspectRatio": {
+        "enum": [
+          "Auto",
+          "Ratio1x1",
+          "Ratio1x2",
+          "Ratio2x1",
+          "Ratio2x3",
+          "Ratio3x2",
+          "Ratio3x4",
+          "Ratio4x3",
+          "Ratio9x16",
+          "Ratio16x9",
+          "Ratio9x21",
+          "Ratio21x9"
+        ],
+        "default": "JdsImageAspectRatio.Auto"
+      },
+      "fit": {
+        "enum": [
+          "Cover",
+          "Contain",
+          "Fill",
+          "None",
+          "ScaleDown"
+        ],
+        "default": "JdsImageObjectFit.Cover"
+      },
+      "interactive": {
+        "type": "boolean"
+      },
+      "disabled": {
+        "type": "boolean"
+      },
+      "onClick": {},
+      "onLoad": {},
+      "onError": {},
+      "fallbackModel": {},
+      "accessibilityLabel": {
+        "type": "string"
+      },
+      "imageLoader": {},
+      "lottieAttributes": {},
+      "width": {},
+      "height": {},
+      "fallback": {}
+    },
+    "required": [
+      "model"
+    ]
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "image"
+  ],
+  "importPathMaven": "com.jds:components"
+}

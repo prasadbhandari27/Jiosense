@@ -1,0 +1,421 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "BottomSheet",
+  "generatedAt": "2026-08-26T06:20:09.453Z",
+  "machineReadable": true,
+  "status": "alpha",
+  "intentAndPurpose": {
+    "intent": "Bottom-anchored overlay sheet with semantic snap points (collapsed, halfExpanded, fullyExpanded, custom), drag handle, header/footer chrome, and scroll/drag arbitration. Supports fullView immersive layout, dismissible backdrop/back/swipe, and multi-accent appearance on an elevated surface."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "variadic"
+  },
+  "props": [
+    {
+      "name": "open",
+      "type": "boolean",
+      "required": false,
+      "description": "Controlled open state."
+    },
+    {
+      "name": "defaultOpen",
+      "type": "boolean",
+      "required": false,
+      "description": "Uncontrolled initial open state."
+    },
+    {
+      "name": "onOpenChange",
+      "type": "ReactNode",
+      "required": false,
+      "description": "(open, details) => void — fires on open/close; details.reason reports why."
+    },
+    {
+      "name": "onOpenChangeComplete",
+      "type": "ReactNode",
+      "required": false,
+      "description": "(open) => void — fires after open/close animation."
+    },
+    {
+      "name": "dismissible",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": "Allow backdrop, back, or swipe dismiss."
+    },
+    {
+      "name": "snapPoint",
+      "type": "'collapsed' | 'halfExpanded' | 'fullyExpanded' | 'custom'",
+      "required": false,
+      "description": "Controlled semantic snap point."
+    },
+    {
+      "name": "defaultSnapPoint",
+      "type": "'collapsed' | 'halfExpanded' | 'fullyExpanded' | 'custom'",
+      "required": false,
+      "defaultValue": "halfExpanded",
+      "description": "Uncontrolled initial snap point."
+    },
+    {
+      "name": "availableSnapPoints",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Semantic snap points gestures may select."
+    },
+    {
+      "name": "customSnapPoint",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Positive number, px, or rem used when snapPoint is custom."
+    },
+    {
+      "name": "onSnapPointChange",
+      "type": "ReactNode",
+      "required": false,
+      "description": "(snapPoint, details) => void — fires when snap changes."
+    },
+    {
+      "name": "snapToSequentialPoints",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Snap only to neighbouring points (no velocity skip)."
+    },
+    {
+      "name": "handle",
+      "type": "boolean",
+      "required": false,
+      "description": "Show the drag handle."
+    },
+    {
+      "name": "header",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": "Show header chrome."
+    },
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Title content — boolean, string, or ReactNode."
+    },
+    {
+      "name": "description",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Description content — boolean, string, or ReactNode."
+    },
+    {
+      "name": "start",
+      "type": "'none' | 'textButton'",
+      "required": false,
+      "defaultValue": "none",
+      "description": "Leading header action (Figma enum or ReactNode slot)."
+    },
+    {
+      "name": "end",
+      "type": "'none' | 'textButton' | 'close'",
+      "required": false,
+      "defaultValue": "none",
+      "description": "Trailing header action (Figma enum or ReactNode slot)."
+    },
+    {
+      "name": "closeButton",
+      "type": "boolean",
+      "required": false,
+      "description": "Show a close control in the header."
+    },
+    {
+      "name": "closeLabel",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label for the close control."
+    },
+    {
+      "name": "fullView",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Immersive layout — body scroll from sheet top; handle/header overlay body."
+    },
+    {
+      "name": "topDivider",
+      "type": "boolean",
+      "required": false,
+      "description": "Divider below header (default layout)."
+    },
+    {
+      "name": "bottomDivider",
+      "type": "boolean",
+      "required": false,
+      "description": "Divider above footer."
+    },
+    {
+      "name": "footer",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": "Show footer chrome."
+    },
+    {
+      "name": "footerOrientation",
+      "type": "'horizontal' | 'vertical'",
+      "required": false,
+      "defaultValue": "horizontal",
+      "description": "Footer button stack direction."
+    },
+    {
+      "name": "footerStart",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Leading footer action — boolean or ReactNode slot."
+    },
+    {
+      "name": "footerEnd",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Trailing footer actions (typically Button(s))."
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": ""
+    },
+    {
+      "name": "style",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Inline native styles on the sheet container."
+    },
+    {
+      "name": "testID",
+      "type": "string",
+      "required": false,
+      "description": "React Native test identifier."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.BottomSheet",
+    "type": "object",
+    "properties": {
+      "open": {
+        "type": "boolean",
+        "description": "Controlled open state."
+      },
+      "defaultOpen": {
+        "type": "boolean",
+        "description": "Uncontrolled initial open state."
+      },
+      "onOpenChange": {
+        "description": "(open, details) => void — fires on open/close; details.reason reports why."
+      },
+      "onOpenChangeComplete": {
+        "description": "(open) => void — fires after open/close animation."
+      },
+      "dismissible": {
+        "type": "boolean",
+        "default": true,
+        "description": "Allow backdrop, back, or swipe dismiss."
+      },
+      "snapPoint": {
+        "enum": [
+          "collapsed",
+          "halfExpanded",
+          "fullyExpanded",
+          "custom"
+        ],
+        "description": "Controlled semantic snap point."
+      },
+      "defaultSnapPoint": {
+        "enum": [
+          "collapsed",
+          "halfExpanded",
+          "fullyExpanded",
+          "custom"
+        ],
+        "default": "halfExpanded",
+        "description": "Uncontrolled initial snap point."
+      },
+      "availableSnapPoints": {
+        "description": "Semantic snap points gestures may select."
+      },
+      "customSnapPoint": {
+        "description": "Positive number, px, or rem used when snapPoint is custom."
+      },
+      "onSnapPointChange": {
+        "description": "(snapPoint, details) => void — fires when snap changes."
+      },
+      "snapToSequentialPoints": {
+        "type": "boolean",
+        "default": false,
+        "description": "Snap only to neighbouring points (no velocity skip)."
+      },
+      "handle": {
+        "type": "boolean",
+        "description": "Show the drag handle."
+      },
+      "header": {
+        "type": "boolean",
+        "default": true,
+        "description": "Show header chrome."
+      },
+      "title": {
+        "description": "Title content — boolean, string, or ReactNode."
+      },
+      "description": {
+        "description": "Description content — boolean, string, or ReactNode."
+      },
+      "start": {
+        "enum": [
+          "none",
+          "textButton"
+        ],
+        "default": "none",
+        "description": "Leading header action (Figma enum or ReactNode slot)."
+      },
+      "end": {
+        "enum": [
+          "none",
+          "textButton",
+          "close"
+        ],
+        "default": "none",
+        "description": "Trailing header action (Figma enum or ReactNode slot)."
+      },
+      "closeButton": {
+        "type": "boolean",
+        "description": "Show a close control in the header."
+      },
+      "closeLabel": {
+        "type": "string",
+        "description": "Accessible label for the close control."
+      },
+      "fullView": {
+        "type": "boolean",
+        "default": false,
+        "description": "Immersive layout — body scroll from sheet top; handle/header overlay body."
+      },
+      "topDivider": {
+        "type": "boolean",
+        "description": "Divider below header (default layout)."
+      },
+      "bottomDivider": {
+        "type": "boolean",
+        "description": "Divider above footer."
+      },
+      "footer": {
+        "type": "boolean",
+        "default": true,
+        "description": "Show footer chrome."
+      },
+      "footerOrientation": {
+        "enum": [
+          "horizontal",
+          "vertical"
+        ],
+        "default": "horizontal",
+        "description": "Footer button stack direction."
+      },
+      "footerStart": {
+        "description": "Leading footer action — boolean or ReactNode slot."
+      },
+      "footerEnd": {
+        "description": "Trailing footer actions (typically Button(s))."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "default": "auto"
+      },
+      "style": {
+        "description": "Inline native styles on the sheet container."
+      },
+      "testID": {
+        "type": "string",
+        "description": "React Native test identifier."
+      }
+    },
+    "required": []
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "neutral",
+      "sparkle",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ],
+    "surface": [
+      "elevated"
+    ],
+    "typography": [
+      "title.M",
+      "body.M",
+      "label.S"
+    ],
+    "shape": [
+      "M",
+      "L"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "none",
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [
+      "mount"
+    ],
+    "honorsReduceMotion": true,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-bottomsheet-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "BottomSheet"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { BottomSheet } from '@oneui/ui-native/components/BottomSheet';\n\n<BottomSheet />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "bottomsheet",
+    "overlay",
+    "sheet",
+    "drawer",
+    "snap",
+    "surface-aware"
+  ],
+  "importPath": "@oneui/ui-native/components/BottomSheet"
+}

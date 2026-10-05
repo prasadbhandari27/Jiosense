@@ -1,0 +1,138 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Skeleton",
+  "generatedAt": "2026-08-26T06:20:09.506Z",
+  "machineReadable": true,
+  "status": "beta",
+  "intentAndPurpose": {
+    "intent": "Loading-placeholder primitives. `SkeletonItem` resolves size from explicit width/height, else infers it from children (measured, not painted), else a token fallback box (never 0×0). `SkeletonGroup` wraps SkeletonItem children and staggers each one's shimmer automatically (delay = index × Motion-Offset-L). Single fixed shimmer (colour change), static under reduce-motion. The item is decorative (aria-hidden); the group is the announced loading region."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "leaf"
+  },
+  "props": [
+    {
+      "name": "width",
+      "type": "ReactNode",
+      "required": false,
+      "description": "SkeletonItem: explicit width (px number or \"%\"). When set, children are ignored for sizing. RN honours numbers and percentages only."
+    },
+    {
+      "name": "height",
+      "type": "ReactNode",
+      "required": false,
+      "description": "SkeletonItem: explicit height (px number or \"%\"). When set, children are ignored for sizing."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "SkeletonItem: content used for natural-size inference when width/height are omitted (laid out but not painted). SkeletonGroup: the direct SkeletonItem children to stagger."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "SkeletonGroup: label for the loading region. Default: \"Loading\"."
+    },
+    {
+      "name": "testID",
+      "type": "string",
+      "required": false,
+      "description": "React Native test identifier."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.Skeleton",
+    "type": "object",
+    "properties": {
+      "width": {
+        "type": [
+          "number",
+          "string"
+        ],
+        "description": "SkeletonItem: explicit width (px number or \"%\"). When set, children are ignored for sizing. RN honours numbers and percentages only."
+      },
+      "height": {
+        "type": [
+          "number",
+          "string"
+        ],
+        "description": "SkeletonItem: explicit height (px number or \"%\"). When set, children are ignored for sizing."
+      },
+      "children": {
+        "description": "SkeletonItem: content used for natural-size inference when width/height are omitted (laid out but not painted). SkeletonGroup: the direct SkeletonItem children to stagger."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "SkeletonGroup: label for the loading region. Default: \"Loading\"."
+      },
+      "testID": {
+        "type": "string",
+        "description": "React Native test identifier."
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "neutral"
+    ],
+    "surface": [
+      "subtle",
+      "minimal"
+    ],
+    "motion": [
+      "motion.duration.expressive.long",
+      "motion.easing.transition"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "progressbar",
+    "accessibilityState": [
+      "busy"
+    ],
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": false,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [
+      "mount"
+    ],
+    "honorsReduceMotion": true,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-skeleton-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "Skeleton"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Skeleton } from '@oneui/ui-native/components/Skeleton';\n\n<Skeleton />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "skeleton",
+    "feedback",
+    "loading",
+    "placeholder",
+    "skeleton",
+    "shimmer",
+    "surface-aware"
+  ],
+  "importPath": "@oneui/ui-native/components/Skeleton"
+}

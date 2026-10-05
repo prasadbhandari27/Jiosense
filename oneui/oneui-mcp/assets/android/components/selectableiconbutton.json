@@ -1,0 +1,281 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "SelectableIconButton",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.254Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "JDS SelectableIconButton Compose component."
+  },
+  "composable": "JdsSelectableIconButton",
+  "attributesClass": "JdsSelectableIconButtonAttributes",
+  "importPath": "com.jds.components.selectableiconbutton",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.selectableiconbutton.JdsSelectableIconButton",
+    "attributes": "com.jds.components.selectableiconbutton.JdsSelectableIconButtonAttributes",
+    "enums": {
+      "JdsSelectableIconButtonAttention": "com.jds.components.selectableiconbutton.JdsSelectableIconButtonAttention",
+      "JdsSelectableIconButtonSize": "com.jds.components.selectableiconbutton.JdsSelectableIconButtonSize",
+      "Appearance": "com.jds.foundation.token.Appearance",
+      "JdsSelectableIconButtonShape": "com.jds.components.selectableiconbutton.JdsSelectableIconButtonShape"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [
+      "selected",
+      "onSelectedChange",
+      "icon",
+      "contentDescription"
+    ],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "selected",
+      "type": "Boolean",
+      "required": true,
+      "description": ""
+    },
+    {
+      "name": "onSelectedChange",
+      "type": "(Boolean) -> Unit",
+      "required": true,
+      "description": ""
+    },
+    {
+      "name": "icon",
+      "type": "JdsIconAttributes",
+      "required": true,
+      "slot": true,
+      "slotTypes": [
+        "Icon"
+      ],
+      "description": ""
+    },
+    {
+      "name": "contentDescription",
+      "type": "String",
+      "required": true,
+      "description": "MANDATORY accessible description for screen readers (TalkBack / VoiceOver)"
+    },
+    {
+      "name": "attention",
+      "type": "JdsSelectableIconButtonAttention",
+      "required": false,
+      "defaultValue": "JdsSelectableIconButtonAttention.High",
+      "enumValues": [
+        "High",
+        "Medium",
+        "Low"
+      ],
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "JdsSelectableIconButtonSize",
+      "required": false,
+      "defaultValue": "JdsSelectableIconButtonSize.M",
+      "enumValues": [
+        "XS2",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "Appearance",
+      "required": false,
+      "defaultValue": "Appearance.Auto",
+      "enumValues": [
+        "Auto",
+        "Primary",
+        "Secondary",
+        "Sparkle",
+        "BrandBg",
+        "Neutral",
+        "Positive",
+        "Negative",
+        "Warning",
+        "Informative"
+      ],
+      "description": ""
+    },
+    {
+      "name": "contained",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": ""
+    },
+    {
+      "name": "condensed",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "shape",
+      "type": "JdsSelectableIconButtonShape?",
+      "required": false,
+      "defaultValue": "JdsSelectableIconButtonShape._1_1",
+      "enumValues": [
+        "_1_1",
+        "_2_3"
+      ],
+      "description": ""
+    },
+    {
+      "name": "fullWidth",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "enabled",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "icon",
+      "types": [
+        "Icon"
+      ]
+    }
+  ],
+  "enums": {
+    "JdsSelectableIconButtonAttention": [
+      "High",
+      "Medium",
+      "Low"
+    ],
+    "JdsSelectableIconButtonSize": [
+      "XS2",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "Appearance": [
+      "Auto",
+      "Primary",
+      "Secondary",
+      "Sparkle",
+      "BrandBg",
+      "Neutral",
+      "Positive",
+      "Negative",
+      "Warning",
+      "Informative"
+    ],
+    "JdsSelectableIconButtonShape": [
+      "_1_1",
+      "_2_3"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.SelectableIconButton",
+    "type": "object",
+    "properties": {
+      "selected": {
+        "type": "boolean"
+      },
+      "onSelectedChange": {},
+      "icon": {},
+      "contentDescription": {
+        "type": "string"
+      },
+      "attention": {
+        "enum": [
+          "High",
+          "Medium",
+          "Low"
+        ],
+        "default": "JdsSelectableIconButtonAttention.High"
+      },
+      "size": {
+        "enum": [
+          "XS2",
+          "XS",
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "default": "JdsSelectableIconButtonSize.M"
+      },
+      "appearance": {
+        "enum": [
+          "Auto",
+          "Primary",
+          "Secondary",
+          "Sparkle",
+          "BrandBg",
+          "Neutral",
+          "Positive",
+          "Negative",
+          "Warning",
+          "Informative"
+        ],
+        "default": "Appearance.Auto"
+      },
+      "contained": {
+        "type": "boolean"
+      },
+      "condensed": {
+        "type": "boolean"
+      },
+      "shape": {
+        "enum": [
+          "_1_1",
+          "_2_3"
+        ],
+        "default": "JdsSelectableIconButtonShape._1_1"
+      },
+      "fullWidth": {
+        "type": "boolean"
+      },
+      "enabled": {
+        "type": "boolean"
+      },
+      "loading": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "selected",
+      "onSelectedChange",
+      "icon",
+      "contentDescription"
+    ]
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "selectableiconbutton"
+  ],
+  "importPathMaven": "com.jds:components"
+}

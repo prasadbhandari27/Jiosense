@@ -1,0 +1,588 @@
+{
+  "schemaVersion": "3.0.0",
+  "generatedAtCommit": "cbaed288f2579da4d0dd1448ee6e6fb90050ecd1",
+  "fileKey": "1XQe4YCRo3qbrqyp8tEOpU",
+  "ownerAttestedStable": true,
+  "sourceVersionPinned": false,
+  "productionIdentityMappingsActivated": 0,
+  "corpusRules": {
+    "classification": "regression/tuning only",
+    "usedForTuning": true,
+    "heldOut": false,
+    "trustedDraftMappingsAreCorpusScoped": true,
+    "screenshotsAreNeverApplicationContent": true
+  },
+  "entries": [
+    {
+      "id": "home",
+      "fileKey": "1XQe4YCRo3qbrqyp8tEOpU",
+      "nodeId": "8:17261",
+      "page": "Page 1",
+      "role": "composed-screen",
+      "dimensions": {
+        "width": 360,
+        "height": 2378
+      },
+      "sourceTrust": "OWNER_ATTESTED_DRAFT",
+      "ownerAttestedStable": true,
+      "sourceVersionPinned": false,
+      "classification": "regression",
+      "usedForTuning": true,
+      "heldOut": false,
+      "productionIdentityVerified": false,
+      "statusBarMaskPolicy": "MASK_REFERENCE_DEVICE_CHROME_FOR_WEB_SCORING",
+      "reference": {
+        "path": "reference/full.png",
+        "sha256": "32e1e3b53e216d1cebb1c2b28ad9c5f0fe5f429748dca9c3984e31dc2aa26a55",
+        "status": "CAPTURED"
+      },
+      "captureV2": {
+        "status": "COMPLETE_WITHIN_ROOT_BUDGETS",
+        "schemaVersion": 2,
+        "path": "compiler-v2/capture-v2.json",
+        "normalizedSha256": "559180849342d3f49a1a66b6007758f08ec80c26456200458ae53669e2bc593e",
+        "representedNodes": 258,
+        "totalVisitedNodes": null,
+        "actualSerializedBytes": 181540,
+        "truncations": 0
+      },
+      "legacyStatus": "GENERATED",
+      "compilerV2Status": "GENERATED"
+    },
+    {
+      "id": "music",
+      "fileKey": "1XQe4YCRo3qbrqyp8tEOpU",
+      "nodeId": "8:17677",
+      "page": "Page 1",
+      "role": "composed-screen",
+      "dimensions": {
+        "width": 360,
+        "height": 1487
+      },
+      "sourceTrust": "OWNER_ATTESTED_DRAFT",
+      "ownerAttestedStable": true,
+      "sourceVersionPinned": false,
+      "classification": "regression",
+      "usedForTuning": true,
+      "heldOut": false,
+      "productionIdentityVerified": false,
+      "statusBarMaskPolicy": "MASK_REFERENCE_DEVICE_CHROME_FOR_WEB_SCORING",
+      "reference": {
+        "path": "reference/full.png",
+        "sha256": "8b83f2dd412928dce32a9d8ac6df6705efa48111dd8c98fd41e6e47233b58306",
+        "status": "CAPTURED"
+      },
+      "captureV2": {
+        "status": "COMPLETE_WITHIN_ROOT_BUDGETS",
+        "schemaVersion": 2,
+        "path": "compiler-v2/capture-v2.json",
+        "normalizedSha256": "a43621112c811961ad5c9aacbe8055d09cd55fee6f09d2976db8462035cb47f5",
+        "representedNodes": 263,
+        "totalVisitedNodes": null,
+        "actualSerializedBytes": 188052,
+        "truncations": 0
+      },
+      "legacyStatus": "GENERATED",
+      "compilerV2Status": "GENERATED"
+    },
+    {
+      "id": "games",
+      "fileKey": "1XQe4YCRo3qbrqyp8tEOpU",
+      "nodeId": "8:14730",
+      "page": "Page 1",
+      "role": "composed-screen",
+      "dimensions": {
+        "width": 360,
+        "height": 1595
+      },
+      "sourceTrust": "OWNER_ATTESTED_DRAFT",
+      "ownerAttestedStable": true,
+      "sourceVersionPinned": false,
+      "classification": "regression",
+      "usedForTuning": true,
+      "heldOut": false,
+      "productionIdentityVerified": false,
+      "statusBarMaskPolicy": "MASK_REFERENCE_DEVICE_CHROME_FOR_WEB_SCORING",
+      "reference": {
+        "status": "OWNER_OBSERVED_NOT_PACKAGED"
+      },
+      "captureV2": {
+        "status": "LIVE_CAPTURE_OBSERVED_NOT_PACKAGED",
+        "schemaVersion": 2,
+        "representedNodes": 298,
+        "truncations": 0
+      },
+      "legacyStatus": "NOT_MEASURED",
+      "compilerV2Status": "LIVE_GENERATED"
+    },
+    {
+      "id": "commerce",
+      "fileKey": "1XQe4YCRo3qbrqyp8tEOpU",
+      "nodeId": "8:15576",
+      "page": "Page 1",
+      "role": "composed-screen",
+      "dimensions": {
+        "width": 360,
+        "height": 1473
+      },
+      "sourceTrust": "OWNER_ATTESTED_DRAFT",
+      "ownerAttestedStable": true,
+      "sourceVersionPinned": false,
+      "classification": "regression",
+      "usedForTuning": true,
+      "heldOut": false,
+      "productionIdentityVerified": false,
+      "statusBarMaskPolicy": "MASK_REFERENCE_DEVICE_CHROME_FOR_WEB_SCORING",
+      "reference": {
+        "path": "reference/full.png",
+        "sha256": "6554f89445605001b977acfe62dd700ccf3f0ac9cb5aaa445ee5d32a0737703e",
+        "status": "CAPTURED"
+      },
+      "captureV2": {
+        "status": "COMPLETE_WITHIN_ROOT_BUDGETS",
+        "schemaVersion": 2,
+        "path": "compiler-v2/capture-v2.json",
+        "normalizedSha256": "c838c99b3938b456ef316a3ee6b907eadcd492e3aed8b0ace700845a5f8f2f1f",
+        "representedNodes": 380,
+        "totalVisitedNodes": null,
+        "actualSerializedBytes": 245158,
+        "truncations": 0
+      },
+      "legacyStatus": "GENERATED",
+      "compilerV2Status": "GENERATED"
+    },
+    {
+      "id": "component-showcase",
+      "fileKey": "1XQe4YCRo3qbrqyp8tEOpU",
+      "nodeId": "110:18094",
+      "page": "Page 1",
+      "role": "component-showcase-parent",
+      "dimensions": {
+        "width": 1264,
+        "height": 9708
+      },
+      "sourceTrust": "OWNER_ATTESTED_DRAFT",
+      "ownerAttestedStable": true,
+      "sourceVersionPinned": false,
+      "classification": "component-showcase-regression",
+      "usedForTuning": true,
+      "heldOut": false,
+      "productionIdentityVerified": false,
+      "statusBarMaskPolicy": "NOT_APPLICABLE",
+      "reference": {
+        "path": "reference/full-overview.png",
+        "sha256": "4e39442b54fb059eaf89188de4f5cf5967dbdb3e9bedfcef6f9fe899a4b215ed",
+        "status": "CAPTURED"
+      },
+      "captureV2": {
+        "status": "PENDING"
+      },
+      "legacyStatus": "PENDING",
+      "compilerV2Status": "PENDING"
+    },
+    {
+      "id": "component-batch-1",
+      "fileKey": "1XQe4YCRo3qbrqyp8tEOpU",
+      "nodeId": "125:21566",
+      "page": "Page 1",
+      "role": "component-showcase-batch",
+      "dimensions": {
+        "width": 1200,
+        "height": 654
+      },
+      "sourceTrust": "OWNER_ATTESTED_DRAFT",
+      "ownerAttestedStable": true,
+      "sourceVersionPinned": false,
+      "classification": "component-showcase-regression",
+      "usedForTuning": true,
+      "heldOut": false,
+      "productionIdentityVerified": false,
+      "statusBarMaskPolicy": "NOT_APPLICABLE",
+      "reference": {
+        "path": "reference/full.png",
+        "sha256": "e17f9cbcdee7c1a0e7bb5362efce442be663134b453b8d47de4b516e7173eacd",
+        "status": "CAPTURED"
+      },
+      "captureV2": {
+        "status": "COMPLETE_WITHIN_ROOT_BUDGETS",
+        "schemaVersion": 2,
+        "path": "compiler-v2/capture-v2.json",
+        "normalizedSha256": "a439dea6699146d5e0286799d2e909856db7a937b4bc74d460280105868aeaff",
+        "representedNodes": 264,
+        "totalVisitedNodes": null,
+        "actualSerializedBytes": 178570,
+        "truncations": 0
+      },
+      "legacyStatus": "PENDING",
+      "compilerV2Status": "CAPTURED"
+    },
+    {
+      "id": "component-batch-2",
+      "fileKey": "1XQe4YCRo3qbrqyp8tEOpU",
+      "nodeId": "125:21567",
+      "page": "Page 1",
+      "role": "component-showcase-batch",
+      "dimensions": {
+        "width": 1200,
+        "height": 704
+      },
+      "sourceTrust": "OWNER_ATTESTED_DRAFT",
+      "ownerAttestedStable": true,
+      "sourceVersionPinned": false,
+      "classification": "component-showcase-regression",
+      "usedForTuning": true,
+      "heldOut": false,
+      "productionIdentityVerified": false,
+      "statusBarMaskPolicy": "NOT_APPLICABLE",
+      "reference": {
+        "path": "reference/full.png",
+        "sha256": "d4a005601b00f0c2fe40a326561d842ecc31316084499dd8e2b1b1c60cbf186c",
+        "status": "CAPTURED"
+      },
+      "captureV2": {
+        "status": "COMPLETE_WITHIN_ROOT_BUDGETS",
+        "schemaVersion": 2,
+        "path": "compiler-v2/capture-v2.json",
+        "normalizedSha256": "d94056db9e9353ee6a4c5a9b9932eb28b2cda3b72471ab3d70615335a5862c32",
+        "representedNodes": 428,
+        "totalVisitedNodes": null,
+        "actualSerializedBytes": 276927,
+        "truncations": 0
+      },
+      "legacyStatus": "PENDING",
+      "compilerV2Status": "CAPTURED"
+    },
+    {
+      "id": "component-batch-3",
+      "fileKey": "1XQe4YCRo3qbrqyp8tEOpU",
+      "nodeId": "125:21568",
+      "page": "Page 1",
+      "role": "component-showcase-batch",
+      "dimensions": {
+        "width": 1200,
+        "height": 1380
+      },
+      "sourceTrust": "OWNER_ATTESTED_DRAFT",
+      "ownerAttestedStable": true,
+      "sourceVersionPinned": false,
+      "classification": "component-showcase-regression",
+      "usedForTuning": true,
+      "heldOut": false,
+      "productionIdentityVerified": false,
+      "statusBarMaskPolicy": "NOT_APPLICABLE",
+      "reference": {
+        "path": "reference/full.png",
+        "sha256": "f5300ef3710d8f58d04d8f3b73c9466efd72abae0d25de108a6d6d377f80ca4e",
+        "status": "CAPTURED"
+      },
+      "captureV2": {
+        "status": "COMPLETE_WITHIN_ROOT_BUDGETS",
+        "schemaVersion": 2,
+        "path": "compiler-v2/capture-v2.json",
+        "normalizedSha256": "c4f89b07c89d12b7cfe0f242a7f384a21287bb2bfb80b16b5750800625298f83",
+        "representedNodes": 248,
+        "totalVisitedNodes": null,
+        "actualSerializedBytes": 174920,
+        "truncations": 0
+      },
+      "legacyStatus": "PENDING",
+      "compilerV2Status": "CAPTURED"
+    },
+    {
+      "id": "component-batch-4",
+      "fileKey": "1XQe4YCRo3qbrqyp8tEOpU",
+      "nodeId": "125:21569",
+      "page": "Page 1",
+      "role": "component-showcase-batch",
+      "dimensions": {
+        "width": 1200,
+        "height": 526
+      },
+      "sourceTrust": "OWNER_ATTESTED_DRAFT",
+      "ownerAttestedStable": true,
+      "sourceVersionPinned": false,
+      "classification": "component-showcase-regression",
+      "usedForTuning": true,
+      "heldOut": false,
+      "productionIdentityVerified": false,
+      "statusBarMaskPolicy": "NOT_APPLICABLE",
+      "reference": {
+        "path": "reference/full.png",
+        "sha256": "b21cfca535e55019adc1d920ccf98d1ac03cdbb6adefbd5f90dd04c317524754",
+        "status": "CAPTURED"
+      },
+      "captureV2": {
+        "status": "COMPLETE_WITHIN_ROOT_BUDGETS",
+        "schemaVersion": 2,
+        "path": "compiler-v2/capture-v2.json",
+        "normalizedSha256": "26dd8dc1f08414438b5a03ae9db626b0ac8895edd14967f46fd6c5f26cd9323f",
+        "representedNodes": 177,
+        "totalVisitedNodes": null,
+        "actualSerializedBytes": 114830,
+        "truncations": 0
+      },
+      "legacyStatus": "PENDING",
+      "compilerV2Status": "CAPTURED"
+    },
+    {
+      "id": "component-batch-5",
+      "fileKey": "1XQe4YCRo3qbrqyp8tEOpU",
+      "nodeId": "125:21570",
+      "page": "Page 1",
+      "role": "component-showcase-batch",
+      "dimensions": {
+        "width": 1200,
+        "height": 852
+      },
+      "sourceTrust": "OWNER_ATTESTED_DRAFT",
+      "ownerAttestedStable": true,
+      "sourceVersionPinned": false,
+      "classification": "component-showcase-regression",
+      "usedForTuning": true,
+      "heldOut": false,
+      "productionIdentityVerified": false,
+      "statusBarMaskPolicy": "NOT_APPLICABLE",
+      "reference": {
+        "path": "reference/full.png",
+        "sha256": "8f52029c5f2cac8b2ae9ae73ef9b8b9cca42a2280cd7958ef3bc4b65172d6cc1",
+        "status": "CAPTURED"
+      },
+      "captureV2": {
+        "status": "COMPLETE_WITHIN_ROOT_BUDGETS",
+        "schemaVersion": 2,
+        "path": "compiler-v2/capture-v2.json",
+        "normalizedSha256": "99a369e5c7c115ebd1df6a5fe07ea4f55506c8fec7ce93f17d5bfb1d782eb991",
+        "representedNodes": 292,
+        "totalVisitedNodes": null,
+        "actualSerializedBytes": 184297,
+        "truncations": 0
+      },
+      "legacyStatus": "PENDING",
+      "compilerV2Status": "CAPTURED"
+    },
+    {
+      "id": "component-batch-6",
+      "fileKey": "1XQe4YCRo3qbrqyp8tEOpU",
+      "nodeId": "125:21571",
+      "page": "Page 1",
+      "role": "component-showcase-batch",
+      "dimensions": {
+        "width": 1200,
+        "height": 758
+      },
+      "sourceTrust": "OWNER_ATTESTED_DRAFT",
+      "ownerAttestedStable": true,
+      "sourceVersionPinned": false,
+      "classification": "component-showcase-regression",
+      "usedForTuning": true,
+      "heldOut": false,
+      "productionIdentityVerified": false,
+      "statusBarMaskPolicy": "NOT_APPLICABLE",
+      "reference": {
+        "path": "reference/full.png",
+        "sha256": "a11c3ee5e1da81f5b6939fa9f8516a83b74140173dcb7ceed95b32c8539ca427",
+        "status": "CAPTURED"
+      },
+      "captureV2": {
+        "status": "COMPLETE_WITHIN_ROOT_BUDGETS",
+        "schemaVersion": 2,
+        "path": "compiler-v2/capture-v2.json",
+        "normalizedSha256": "8617398124d5732c6d7ec43ccd0ce7d96aaa32dfdfb63bed80bd1e6c1faf886a",
+        "representedNodes": 587,
+        "totalVisitedNodes": null,
+        "actualSerializedBytes": 417423,
+        "truncations": 0
+      },
+      "legacyStatus": "PENDING",
+      "compilerV2Status": "CAPTURED"
+    },
+    {
+      "id": "component-batch-7",
+      "fileKey": "1XQe4YCRo3qbrqyp8tEOpU",
+      "nodeId": "125:21572",
+      "page": "Page 1",
+      "role": "component-showcase-batch",
+      "dimensions": {
+        "width": 1200,
+        "height": 2000
+      },
+      "sourceTrust": "OWNER_ATTESTED_DRAFT",
+      "ownerAttestedStable": true,
+      "sourceVersionPinned": false,
+      "classification": "component-showcase-regression",
+      "usedForTuning": true,
+      "heldOut": false,
+      "productionIdentityVerified": false,
+      "statusBarMaskPolicy": "NOT_APPLICABLE",
+      "reference": {
+        "path": "reference/full.png",
+        "sha256": "866acc6b5d83d4047c9a9c71222fa054f91f4bc63a51be8865e90091709a0621",
+        "status": "CAPTURED"
+      },
+      "captureV2": {
+        "status": "COMPLETE_WITHIN_ROOT_BUDGETS",
+        "schemaVersion": 2,
+        "path": "compiler-v2/capture-v2.json",
+        "normalizedSha256": "66a3695c3c39415e7266d1560231e2c7135fad394f1e118bf2f02a07ca42d4a5",
+        "representedNodes": 290,
+        "totalVisitedNodes": null,
+        "actualSerializedBytes": 203459,
+        "truncations": 0
+      },
+      "legacyStatus": "PENDING",
+      "compilerV2Status": "CAPTURED"
+    },
+    {
+      "id": "component-batch-8",
+      "fileKey": "1XQe4YCRo3qbrqyp8tEOpU",
+      "nodeId": "218:22199",
+      "page": "Page 1",
+      "role": "component-showcase-batch",
+      "dimensions": {
+        "width": 1200,
+        "height": 766
+      },
+      "sourceTrust": "OWNER_ATTESTED_DRAFT",
+      "ownerAttestedStable": true,
+      "sourceVersionPinned": false,
+      "classification": "component-showcase-regression",
+      "usedForTuning": true,
+      "heldOut": false,
+      "productionIdentityVerified": false,
+      "statusBarMaskPolicy": "NOT_APPLICABLE",
+      "reference": {
+        "path": "reference/full.png",
+        "sha256": "8e3544132d8467fd1c7c2b6c97bae94b0fc03231d8c1416949ab3fb70488ba5b",
+        "status": "CAPTURED"
+      },
+      "captureV2": {
+        "status": "COMPLETE_WITHIN_ROOT_BUDGETS",
+        "schemaVersion": 2,
+        "path": "compiler-v2/capture-v2.json",
+        "normalizedSha256": "bbfb0d626af6f731feb9e94c2e1414f12bba338a0c444842b96e12e928b0b89d",
+        "representedNodes": 392,
+        "totalVisitedNodes": null,
+        "actualSerializedBytes": 267137,
+        "truncations": 0
+      },
+      "legacyStatus": "PENDING",
+      "compilerV2Status": "CAPTURED"
+    },
+    {
+      "id": "component-batch-9",
+      "fileKey": "1XQe4YCRo3qbrqyp8tEOpU",
+      "nodeId": "218:23209",
+      "page": "Page 1",
+      "role": "component-showcase-batch",
+      "dimensions": {
+        "width": 1200,
+        "height": 1022
+      },
+      "sourceTrust": "OWNER_ATTESTED_DRAFT",
+      "ownerAttestedStable": true,
+      "sourceVersionPinned": false,
+      "classification": "component-showcase-regression",
+      "usedForTuning": true,
+      "heldOut": false,
+      "productionIdentityVerified": false,
+      "statusBarMaskPolicy": "NOT_APPLICABLE",
+      "reference": {
+        "path": "reference/full.png",
+        "sha256": "6983d2fc5503c624e8ccf79052d33c05ed595e804b3e8bfeb78556a1eb85143e",
+        "status": "CAPTURED"
+      },
+      "captureV2": {
+        "status": "COMPLETE_WITHIN_ROOT_BUDGETS",
+        "schemaVersion": 2,
+        "path": "compiler-v2/capture-v2.json",
+        "normalizedSha256": "b5409aef81aa9b6f9321fb81c8cee4345c25709c7740afd6a536ccdd7c48d308",
+        "representedNodes": 568,
+        "totalVisitedNodes": null,
+        "actualSerializedBytes": 390658,
+        "truncations": 0
+      },
+      "legacyStatus": "PENDING",
+      "compilerV2Status": "CAPTURED"
+    },
+    {
+      "id": "component-batch-10",
+      "fileKey": "1XQe4YCRo3qbrqyp8tEOpU",
+      "nodeId": "218:25419",
+      "page": "Page 1",
+      "role": "component-showcase-batch",
+      "dimensions": {
+        "width": 1200,
+        "height": 550
+      },
+      "sourceTrust": "OWNER_ATTESTED_DRAFT",
+      "ownerAttestedStable": true,
+      "sourceVersionPinned": false,
+      "classification": "component-showcase-regression",
+      "usedForTuning": true,
+      "heldOut": false,
+      "productionIdentityVerified": false,
+      "statusBarMaskPolicy": "NOT_APPLICABLE",
+      "reference": {
+        "path": "reference/full.png",
+        "sha256": "48215b29d145fdb4e2dee03cb9ba18b46a5e9b3414199712bdb85c631192ae2f",
+        "status": "CAPTURED"
+      },
+      "captureV2": {
+        "status": "COMPLETE_WITHIN_ROOT_BUDGETS",
+        "schemaVersion": 2,
+        "path": "compiler-v2/capture-v2.json",
+        "normalizedSha256": "4ec809cb728054e6c82a144a18b3fc42fe081dc707b4c738a3276066a2858b53",
+        "representedNodes": 221,
+        "totalVisitedNodes": null,
+        "actualSerializedBytes": 148617,
+        "truncations": 0
+      },
+      "legacyStatus": "PENDING",
+      "compilerV2Status": "CAPTURED"
+    },
+    {
+      "id": "foreign-employee",
+      "fileKey": "1XQe4YCRo3qbrqyp8tEOpU",
+      "nodeId": "302:55371",
+      "page": "Page 1",
+      "role": "foreign-screen",
+      "dimensions": {
+        "width": 1440,
+        "height": 800
+      },
+      "sourceTrust": "UNTRUSTED_FOREIGN",
+      "ownerAttestedStable": false,
+      "sourceVersionPinned": false,
+      "classification": "foreign-regression",
+      "usedForTuning": true,
+      "heldOut": false,
+      "productionIdentityVerified": false,
+      "statusBarMaskPolicy": "NOT_APPLICABLE",
+      "reference": {
+        "path": "reference/full.png",
+        "sha256": "b6dbd0d2087163682f1513f393707a5cf678a0d3a191d0905238ec1e5e0b135e",
+        "status": "CAPTURED"
+      },
+      "captureV2": {
+        "status": "PARTIAL_TRUNCATED",
+        "schemaVersion": 2,
+        "path": "compiler-v2/capture-v2.json",
+        "normalizedSha256": "b35c2997fe072acf9d684dcb189296578e088057654c09bc4b36bbadea1e8abc",
+        "representedNodes": 600,
+        "totalVisitedNodes": null,
+        "actualSerializedBytes": 285631,
+        "truncations": 6
+      },
+      "legacyStatus": "RENDERED_DETERMINISTIC",
+      "compilerV2Status": "RENDERED_DETERMINISTIC",
+      "routingEvidence": {
+        "ruleVersion": "1.0.0",
+        "coverageClass": "LOW_FIRST_PARTY",
+        "knownIdentityBearingInstances": 0,
+        "unresolvedIdentityBearingInstances": 150,
+        "preventedNameOnlyFalsePositives": 28,
+        "productRoutingChanged": false
+      }
+    }
+  ]
+}

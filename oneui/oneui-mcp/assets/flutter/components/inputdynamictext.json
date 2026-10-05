@@ -1,0 +1,80 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "InputDynamicText",
+  "flutterExport": "OneUiInputDynamicText",
+  "importPath": "package:ui_flutter/ui_flutter.dart",
+  "generatedAt": "2026-09-04T05:50:48.675Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "OneUiInputDynamicText from the ui_flutter barrel. Use Surface context (OneUiSurface) for tinted backgrounds."
+  },
+  "props": [
+    {
+      "name": "content",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "end",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "dimWhenDisabled",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "ariaLive",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onEndClick",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "endAriaLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "accessibilityHint",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "testId",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "semanticsIdentifier",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    }
+  ]
+}

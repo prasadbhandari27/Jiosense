@@ -1,0 +1,352 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "SelectableSingleTextButton",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Text-only toggle button for binary selection — no start/end slots, simpler than SelectableButton.",
+    "taskContexts": [
+      "text-filter-toggle",
+      "segmented-text-control",
+      "simple-option-selection"
+    ],
+    "sentiments": [
+      "neutral",
+      "positive"
+    ]
+  },
+  "compositionRules": {
+    "requires": [
+      "children (text label — required)"
+    ],
+    "allows": [
+      "condensed mode",
+      "loading state"
+    ],
+    "forbids": [
+      "icon slots (use SelectableButton instead)",
+      "missing text content"
+    ]
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "high attention",
+        "useWhen": [
+          "selected state needs bold fill emphasis"
+        ]
+      },
+      {
+        "name": "medium attention",
+        "useWhen": [
+          "selected state with subtle tinted fill"
+        ]
+      },
+      {
+        "name": "low attention",
+        "useWhen": [
+          "selected state with ghost appearance and accent border"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": [
+      "SelectableButton",
+      "SelectableIconButton",
+      "Toggle",
+      "ToggleGroup"
+    ],
+    "groupsWith": [
+      "ToggleGroup"
+    ]
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [
+      "select",
+      "deselect"
+    ],
+    "health": [
+      "a11y_violations",
+      "adoption_rate"
+    ]
+  },
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": true,
+      "description": "Text label content — max 2 characters (e.g. \"Ag\", \"En\", \"A\", \"12\"). This component renders as a circular button; longer text breaks the shape. Text exceeding 2 characters will be truncated in development with a warning."
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "description": "Multi-accent appearance role. 'auto' resolves to 'primary'."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label for screen readers (optional — children text is visible)"
+    },
+    {
+      "name": "attention",
+      "type": "'high' | 'medium' | 'low'",
+      "required": false,
+      "description": "Attention level — determines the visual prominence of the SELECTED state. high → bold fill; medium → subtle fill; low → ghost with accent border. The UNSELECTED state is always muted ghost regardless of attention. Default: 'high'."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "condensed",
+      "type": "boolean",
+      "required": false,
+      "description": "Condensed mode: reduces height and horizontal padding while keeping the same typography."
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "QA / e2e anchor on the root toggle element"
+    },
+    {
+      "name": "defaultSelected",
+      "type": "boolean",
+      "required": false,
+      "description": "Default selected state (uncontrolled)."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the button is disabled."
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "required": false,
+      "description": "Loading state — shows circular progress indicator replacing the text label. Disables interaction while loading."
+    },
+    {
+      "name": "onSelectedChange",
+      "type": "(selected: boolean) => void",
+      "required": false,
+      "description": "Called when selected state changes."
+    },
+    {
+      "name": "selected",
+      "type": "boolean",
+      "required": false,
+      "description": "Selected state (controlled). Maps to Toggle pressed."
+    },
+    {
+      "name": "size",
+      "type": "'s' | 'm' | 'l'",
+      "required": false,
+      "description": "Button size. Default: 'm'. S/M/L only (no XS)."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "required": false,
+      "description": "Value for use within ToggleGroup."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.selectable-single-text-button",
+    "type": "object",
+    "properties": {
+      "children": {
+        "description": "Text label content — max 2 characters (e.g. \"Ag\", \"En\", \"A\", \"12\"). This component renders as a circular button; longer text breaks the shape. Text exceeding 2 characters will be truncated in development with a warning."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. 'auto' resolves to 'primary'."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label for screen readers (optional — children text is visible)"
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "description": "Attention level — determines the visual prominence of the SELECTED state. high → bold fill; medium → subtle fill; low → ghost with accent border. The UNSELECTED state is always muted ghost regardless of attention. Default: 'high'."
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "condensed": {
+        "type": "boolean",
+        "description": "Condensed mode: reduces height and horizontal padding while keeping the same typography."
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "QA / e2e anchor on the root toggle element"
+      },
+      "defaultSelected": {
+        "type": "boolean",
+        "description": "Default selected state (uncontrolled)."
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Whether the button is disabled."
+      },
+      "loading": {
+        "type": "boolean",
+        "description": "Loading state — shows circular progress indicator replacing the text label. Disables interaction while loading."
+      },
+      "onSelectedChange": {
+        "description": "Called when selected state changes."
+      },
+      "selected": {
+        "type": "boolean",
+        "description": "Selected state (controlled). Maps to Toggle pressed."
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "Button size. Default: 'm'. S/M/L only (no XS)."
+      },
+      "style": {
+        "description": "Inline styles"
+      },
+      "value": {
+        "type": "string",
+        "description": "Value for use within ToggleGroup."
+      }
+    },
+    "required": [
+      "children"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "selectablesingletextbutton-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { SelectableSingleTextButton } from '@oneui/ui';\n\n<SelectableSingleTextButton>Option</SelectableSingleTextButton>"
+    },
+    {
+      "id": "selectablesingletextbutton-controlled",
+      "title": "Controlled",
+      "language": "tsx",
+      "code": "<SelectableSingleTextButton selected={isActive} onSelectedChange={setIsActive}>Active</SelectableSingleTextButton>"
+    },
+    {
+      "id": "selectable-single-text-button-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"SelectableSingleTextButton\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "selectable-single-text-button"
+  ],
+  "interactionBehavior": {
+    "summary": "SelectableSingleTextButton is a Base UI Toggle for a 1–2 character circular label, so every click flips `aria-pressed` and it starts UNSELECTED. Attention colours the SELECTED look only; unselected is always a muted ghost with a `--{Role}-Stroke-Low` hairline. It scales UP on press (`--Motion-Tap-Scale-Up`, 7%) with NO pressed fill token — the same grow-not-squash direction as SelectableIconButton, opposite SelectableButton. There is no `contained={false}`. `loading` implies disabled and injects a spinner, but the CSS that would hide the letters is keyed off a `.loading` class the component never applies, so the characters stay visible beside the spinner.",
+    "hover": [
+      "Every hover rule is wrapped in `@media (hover: hover)` and excluded for `[data-disabled]`.",
+      "UNSELECTED tints the transparent rest fill to `--{Role}-Hover`.",
+      "SELECTED at `attention=\"high\"` steps the fill to `--{Role}-Bold-Hover` (or keeps `--{Role}-Material-Fill`); at `medium` it steps to `--{Role}-Subtle-Hover`; at `low` it ADDS a `--{Role}-Hover` fill over the rest transparent-plus-accent-hairline.",
+      "Label colour never changes on hover — only the background."
+    ],
+    "press": [
+      "The whole circle scales UP: `scale(calc(1 + var(--_tap-direction) * var(--_tap-scale) / 100))` with `--Motion-Tap-Scale-Up` at 7%. SelectableButton scales DOWN; this matches IconButton and SelectableIconButton.",
+      "There is no `:active` fill, border, or text-colour rule — the scale-up is the entire pressed look.",
+      "Press is NOT `(hover: hover)`-guarded, so a finger tap gets the same grow a mouse press does.",
+      "Qualified with `:not([data-disabled])`."
+    ],
+    "focus": [
+      "Keyboard focus draws the two-layer halo: an inner `--Stroke-XL` gap ring in `--Surface-Halo-Gap` plus an outer `--Focus-Outline` ring.",
+      "`:focus` alone only clears the native outline; the visible ring is `:focus-visible`.",
+      "The halo follows `--SelectableSingleTextButton-borderRadius` (default `--Shape-Pill`)."
+    ],
+    "keyboard": [
+      "Base UI Toggle renders a native `<button aria-pressed>`, so `Enter` and `Space` both toggle.",
+      "Controlled via `selected` / `onSelectedChange`; uncontrolled via `defaultSelected` (unset → unselected). Pass `value` when nesting inside a ToggleGroup.",
+      "Disabled and loading are natively `disabled`, so they are out of the tab order and cannot toggle — covered by a unit test."
+    ],
+    "selected": [
+      "Selected maps to Base UI Toggle's `pressed`, exposed as `aria-pressed` and matched in CSS with `[data-pressed]`.",
+      "It defaults to unselected in uncontrolled mode.",
+      "`attention` colours the SELECTED look only: high → `--{Role}-Bold` fill with `--{Role}-Bold-High` text and a transparent border; medium → `--{Role}-Subtle` fill with `--{Role}-TintedA11y` text; low → transparent fill with a `--{Role}-Bold` hairline and accent text.",
+      "Unselected is always transparent + `--{Role}-Medium-Text` + `--{Role}-Stroke-Low` hairline, ignoring attention — there is no uncontained variant to change that."
+    ],
+    "loading": [
+      "`loading` implies disabled — `isDisabled = disabled || loading` — so the native `disabled` attribute is set, `aria-busy` / `data-loading` are set, and `onSelectedChange` stops firing.",
+      "A spinner is injected as a sibling of the still-rendered label. The CSS that would hide that label (`.loading .label { opacity: 0 }`) and absolutely centre the spinner is keyed off a `.loading` class that SelectableSingleTextButton never applies, so the letters stay visible beside the spinner and the circle can grow.",
+      "Tests only assert that a spinner SVG is present and that the toggle is blocked — they do not assert the label is hidden."
+    ],
+    "disabled": [
+      "`data-disabled` dims to `--Disabled-Opacity` and sets `cursor: not-allowed` plus `pointer-events: none`.",
+      "Because the element is natively `disabled` AND has `pointer-events: none`, the `not-allowed` cursor is not observable — the pointer shows the parent's cursor. Known, accepted system-wide gap (see docs/design/disabled-states.md).",
+      "Hover fills and the tap-scale are qualified with `:not([data-disabled])`. Disabling does not clear the selected styling — it only dims it."
+    ],
+    "touch": [
+      "Hover fills never apply on touch-only devices; the 7% scale-up is the entire visual response to a tap, because there is no pressed fill.",
+      "Growing on press is the right direction for a control this small — the circle expands out from under the fingertip that is covering the letters."
+    ]
+  },
+  "importPath": "@jds4/oneui-react",
+  "renderHints": {
+    "baseElement": "button",
+    "readsFromSurfaceContext": true
+  },
+  "a11y": {
+    "role": "button",
+    "minTouchTarget": 44,
+    "accessibleNameSource": "children"
+  }
+}

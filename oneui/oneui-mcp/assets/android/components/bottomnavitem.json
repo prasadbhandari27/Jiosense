@@ -1,0 +1,153 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "BottomNavItem",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.245Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Public API contract for JdsBottomNavItem — one attributes data class per the attributes-class convention; enums live in this file."
+  },
+  "composable": "JdsBottomNavItem",
+  "attributesClass": "JdsBottomNavItemAttributes",
+  "importPath": "com.jds.components.bottomnavitem",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.bottomnavitem.JdsBottomNavItem",
+    "attributes": "com.jds.components.bottomnavitem.JdsBottomNavItemAttributes",
+    "enums": {
+      "JdsBottomNavLabelType": "com.jds.components.bottomnavitem.JdsBottomNavLabelType"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [
+      "icon"
+    ],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "icon",
+      "type": "JdsIconAttributes",
+      "required": true,
+      "slot": true,
+      "slotTypes": [
+        "Icon"
+      ],
+      "description": "Icon slot. Component enriches size and emphasis based on active state and labelType."
+    },
+    {
+      "name": "label",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": "Visible label text. Rendered when labelType is OneLine/TwoLine; ignored when None."
+    },
+    {
+      "name": "labelType",
+      "type": "JdsBottomNavLabelType?",
+      "required": false,
+      "defaultValue": "null",
+      "enumValues": [
+        "None",
+        "OneLine",
+        "TwoLine"
+      ],
+      "description": "Label layout. When null, falls back to LocalBottomNavItemContext, then OneLine."
+    },
+    {
+      "name": "active",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Explicit active flag — caller-owned (hoisted state)."
+    },
+    {
+      "name": "disabled",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Disables interaction; stays in the a11y tree, announces \"dimmed\"."
+    },
+    {
+      "name": "value",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": "Opaque identity matched against the container's selected value (used only inside JdsBottomNavigation)."
+    },
+    {
+      "name": "onClick",
+      "type": "(() -> Unit)?",
+      "required": false,
+      "defaultValue": "null",
+      "description": "Invoked on tap (when enabled). Caller updates active / routes navigation."
+    },
+    {
+      "name": "contentDescription",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": "Accessible name. REQUIRED (non-blank) when labelType resolves to None."
+    }
+  ],
+  "slots": [
+    {
+      "name": "icon",
+      "types": [
+        "Icon"
+      ]
+    }
+  ],
+  "enums": {
+    "JdsBottomNavLabelType": [
+      "None",
+      "OneLine",
+      "TwoLine"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.BottomNavItem",
+    "type": "object",
+    "properties": {
+      "icon": {},
+      "label": {
+        "type": "string"
+      },
+      "labelType": {
+        "enum": [
+          "None",
+          "OneLine",
+          "TwoLine"
+        ],
+        "default": "null"
+      },
+      "active": {
+        "type": "boolean"
+      },
+      "disabled": {
+        "type": "boolean"
+      },
+      "value": {
+        "type": "string"
+      },
+      "onClick": {},
+      "contentDescription": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "icon"
+    ]
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "bottomnavitem"
+  ],
+  "importPathMaven": "com.jds:components"
+}

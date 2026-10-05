@@ -1,0 +1,229 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "SelectableSingleTextButton",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.255Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Public API contract for JdsSelectableSingleTextButton."
+  },
+  "composable": "JdsSelectableSingleTextButton",
+  "attributesClass": "JdsSelectableSingleTextButtonAttributes",
+  "importPath": "com.jds.components.selectablesingletextbutton",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.selectablesingletextbutton.JdsSelectableSingleTextButton",
+    "attributes": "com.jds.components.selectablesingletextbutton.JdsSelectableSingleTextButtonAttributes",
+    "enums": {
+      "JdsSelectableSingleTextButtonSize": "com.jds.components.selectablesingletextbutton.JdsSelectableSingleTextButtonSize",
+      "JdsSelectableSingleTextButtonAttention": "com.jds.components.selectablesingletextbutton.JdsSelectableSingleTextButtonAttention",
+      "Appearance": "com.jds.foundation.token.Appearance"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [
+      "selected",
+      "onSelectedChange",
+      "text"
+    ],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "selected",
+      "type": "Boolean",
+      "required": true,
+      "description": ""
+    },
+    {
+      "name": "onSelectedChange",
+      "type": "(Boolean) -> Unit",
+      "required": true,
+      "description": ""
+    },
+    {
+      "name": "text",
+      "type": "String",
+      "required": true,
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "JdsSelectableSingleTextButtonSize",
+      "required": false,
+      "defaultValue": "JdsSelectableSingleTextButtonSize.M",
+      "enumValues": [
+        "S",
+        "M",
+        "L"
+      ],
+      "description": ""
+    },
+    {
+      "name": "attention",
+      "type": "JdsSelectableSingleTextButtonAttention",
+      "required": false,
+      "defaultValue": "JdsSelectableSingleTextButtonAttention.High",
+      "enumValues": [
+        "High",
+        "Medium",
+        "Low"
+      ],
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "Appearance",
+      "required": false,
+      "defaultValue": "Appearance.Auto",
+      "enumValues": [
+        "Auto",
+        "Primary",
+        "Secondary",
+        "Sparkle",
+        "BrandBg",
+        "Neutral",
+        "Positive",
+        "Negative",
+        "Warning",
+        "Informative"
+      ],
+      "description": ""
+    },
+    {
+      "name": "condensed",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "fullWidth",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "enabled",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "contentDescription",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "enums": {
+    "JdsSelectableSingleTextButtonSize": [
+      "S",
+      "M",
+      "L"
+    ],
+    "JdsSelectableSingleTextButtonAttention": [
+      "High",
+      "Medium",
+      "Low"
+    ],
+    "Appearance": [
+      "Auto",
+      "Primary",
+      "Secondary",
+      "Sparkle",
+      "BrandBg",
+      "Neutral",
+      "Positive",
+      "Negative",
+      "Warning",
+      "Informative"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.SelectableSingleTextButton",
+    "type": "object",
+    "properties": {
+      "selected": {
+        "type": "boolean"
+      },
+      "onSelectedChange": {},
+      "text": {
+        "type": "string"
+      },
+      "size": {
+        "enum": [
+          "S",
+          "M",
+          "L"
+        ],
+        "default": "JdsSelectableSingleTextButtonSize.M"
+      },
+      "attention": {
+        "enum": [
+          "High",
+          "Medium",
+          "Low"
+        ],
+        "default": "JdsSelectableSingleTextButtonAttention.High"
+      },
+      "appearance": {
+        "enum": [
+          "Auto",
+          "Primary",
+          "Secondary",
+          "Sparkle",
+          "BrandBg",
+          "Neutral",
+          "Positive",
+          "Negative",
+          "Warning",
+          "Informative"
+        ],
+        "default": "Appearance.Auto"
+      },
+      "condensed": {
+        "type": "boolean"
+      },
+      "fullWidth": {
+        "type": "boolean"
+      },
+      "enabled": {
+        "type": "boolean"
+      },
+      "loading": {
+        "type": "boolean"
+      },
+      "contentDescription": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "selected",
+      "onSelectedChange",
+      "text"
+    ]
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "selectablesingletextbutton"
+  ],
+  "importPathMaven": "com.jds:components"
+}

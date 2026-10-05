@@ -1,0 +1,344 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "BottomSheet",
+  "flutterExport": "OneUiBottomSheet",
+  "importPath": "package:ui_flutter/ui_flutter.dart",
+  "generatedAt": "2026-09-04T05:50:48.675Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "OneUiBottomSheet from the ui_flutter barrel. Use Surface context (OneUiSurface) for tinted backgrounds."
+  },
+  "props": [
+    {
+      "name": "trigger",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "open",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "defaultOpen",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onOpenChange",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onOpenChangeComplete",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "dismissible",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "fullView",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "snapPoint",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "defaultSnapPoint",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "availableSnapPoints",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "customSnapPoint",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onSnapPointChange",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "snapToSequentialPoints",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "handle",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "header",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "headerAlign",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "showTitle",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "showDescription",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "description",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "closeButton",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "start",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "end",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "startTextButtonLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "endTextButtonLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onStartTextButtonPressed",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onEndTextButtonPressed",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "headerStart",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "headerEnd",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onBack",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "mediaHeader",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "child",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "bodyPadding",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "topDivider",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "bottomDivider",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "footer",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "footerOrientation",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "footerStart",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "footerStartChild",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "footerEnd",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "footerStartLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "footerPrimaryLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "footerSecondaryLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onFooterStartPressed",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onFooterPrimaryPressed",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onFooterSecondaryPressed",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "semanticsLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "closeLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "backLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "backdropLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "handleLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "handleHint",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "testId",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "testID",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    }
+  ]
+}

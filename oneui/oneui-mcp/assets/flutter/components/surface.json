@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Surface",
+  "flutterExport": "OneUiSurface",
+  "importPath": "package:ui_flutter/ui_flutter.dart",
+  "generatedAt": "2026-09-04T05:50:48.675Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "OneUiSurface from the ui_flutter barrel. Use Surface context (OneUiSurface) for tinted backgrounds."
+  },
+  "props": [
+    {
+      "name": "child",
+      "required": true,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "mode",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "borderRadius",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "shape",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "padding",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "clipBehavior",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "transparentBackground",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    }
+  ]
+}

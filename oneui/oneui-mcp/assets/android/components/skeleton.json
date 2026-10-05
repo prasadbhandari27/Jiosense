@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Skeleton",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.255Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Attributes for configuring a JdsSkeleton loading placeholder."
+  },
+  "composable": "JdsSkeleton",
+  "attributesClass": "JdsSkeletonAttributes",
+  "importPath": "com.jds.components.skeleton",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.skeleton.JdsSkeleton",
+    "attributes": "com.jds.components.skeleton.JdsSkeletonAttributes"
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "enabled",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "enums": {},
+  "propsSchema": {
+    "$id": "jds.kb.android.Skeleton",
+    "type": "object",
+    "properties": {
+      "enabled": {
+        "type": "boolean"
+      }
+    },
+    "required": []
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "skeleton"
+  ],
+  "importPathMaven": "com.jds:components"
+}

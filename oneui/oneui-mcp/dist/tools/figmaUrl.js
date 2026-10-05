@@ -1,0 +1,1 @@
+function d(e){const t=e.match(/\/(?:file|design|board|proto)\/([A-Za-z0-9]+)/)?.[1]??null;let n=null;const o=e.match(/[?&]node-id=([^&]+)/);return o&&(n=decodeURIComponent(o[1]).replace(/-/g,":")),{fileKey:t,nodeId:n}}export{d as parseFigmaUrl};

@@ -1,0 +1,109 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "LinearProgressIndicator",
+  "flutterExport": "OneUiLinearProgressIndicator",
+  "importPath": "package:ui_flutter/ui_flutter.dart",
+  "generatedAt": "2026-09-04T05:50:48.675Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Linear progress. Determinate value is 0–max (default max 100). 0.45 is not 45%."
+  },
+  "compositionRules": {
+    "forbids": [
+      "value: 0.45 without max: 1 when meaning 45%"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "title": "45 percent",
+      "code": "OneUiLinearProgressIndicator(type: 'determinate', value: 45, semanticsLabel: 'Download 45 percent')"
+    }
+  ],
+  "props": [
+    {
+      "name": "type",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "roundCaps",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "value",
+      "required": false,
+      "type": "double",
+      "description": "0–max. Default max is 100. Do not pass 0.45 for 45% unless max: 1."
+    },
+    {
+      "name": "semanticsLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "semanticsLabelledBy",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "semanticsDescribedBy",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "ariaLive",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "ariaHidden",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "semanticsHint",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "testId",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "indicatorColor",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "trackColor",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    }
+  ]
+}

@@ -1,0 +1,357 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Stepper",
+  "generatedAt": "2026-08-26T06:20:09.507Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Numeric stepper — a value display with decrement/increment controls. `attention` (high/medium/low) drives visual weight; `appearance` resolves colour tokens (auto → nearest <Surface> role, else secondary), with an optional `accent` override for the high-attention fill. Supports min/max clamping, `step`, `shiftMultiplier` (long-press large step), `condensed`, `direction` (ltr/rtl), and `disabled`/`readOnly`/`error`/`required` states. Custom `start`/`end` controls are IconButton-only."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "fixed-slots"
+  },
+  "props": [
+    {
+      "name": "value",
+      "type": "number",
+      "required": false,
+      "description": "Controlled value (nullable)."
+    },
+    {
+      "name": "defaultValue",
+      "type": "number",
+      "required": false,
+      "description": "Uncontrolled initial value."
+    },
+    {
+      "name": "onChange",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Base UI-style change handler: (event, value) => void."
+    },
+    {
+      "name": "min",
+      "type": "number",
+      "required": false,
+      "description": "Minimum allowed value; decrement disables at this bound."
+    },
+    {
+      "name": "max",
+      "type": "number",
+      "required": false,
+      "description": "Maximum allowed value; increment disables at this bound."
+    },
+    {
+      "name": "step",
+      "type": "number",
+      "required": false,
+      "defaultValue": "1",
+      "description": "Step increment."
+    },
+    {
+      "name": "shiftMultiplier",
+      "type": "number",
+      "required": false,
+      "defaultValue": "10",
+      "description": "Long-press jump multiplier (largeStep = step * shiftMultiplier). Maps to Base UI largeStep / Shift on web."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "error",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Error state (aria-invalid)."
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Marks the field required (aria-required)."
+    },
+    {
+      "name": "size",
+      "type": "'s' | 'm' | 'l'",
+      "required": false,
+      "defaultValue": "m",
+      "description": ""
+    },
+    {
+      "name": "attention",
+      "type": "'high' | 'medium' | 'low'",
+      "required": false,
+      "defaultValue": "medium",
+      "description": "Controls visual weight (Figma high/medium/low)."
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": "Multi-accent role. Explicit non-'auto' wins; otherwise inherits the nearest <Surface> role, falling back to 'secondary'."
+    },
+    {
+      "name": "accent",
+      "type": "'primary' | 'secondary' | 'sparkle'",
+      "required": false,
+      "description": "Accent override for the fill colour at high attention — keeps appearance's context but repaints the container fill."
+    },
+    {
+      "name": "condensed",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Use condensed height."
+    },
+    {
+      "name": "direction",
+      "type": "'ltr' | 'rtl'",
+      "required": false,
+      "defaultValue": "ltr",
+      "description": "Visual layout direction: ltr = decrement left / increment right; rtl mirrors."
+    },
+    {
+      "name": "start",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Optional decrement control — a single <IconButton /> element."
+    },
+    {
+      "name": "end",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Optional increment control — a single <IconButton /> element."
+    },
+    {
+      "name": "style",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Inline native styles on the root wrapper."
+    },
+    {
+      "name": "testID",
+      "type": "string",
+      "required": false,
+      "description": "React Native test identifier."
+    },
+    {
+      "name": "accessibilityHint",
+      "type": "string",
+      "required": false,
+      "description": "Describes the result of adjusting the value (React Native)."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.Stepper",
+    "type": "object",
+    "properties": {
+      "value": {
+        "type": "number",
+        "description": "Controlled value (nullable)."
+      },
+      "defaultValue": {
+        "type": "number",
+        "description": "Uncontrolled initial value."
+      },
+      "onChange": {
+        "description": "Base UI-style change handler: (event, value) => void."
+      },
+      "min": {
+        "type": "number",
+        "description": "Minimum allowed value; decrement disables at this bound."
+      },
+      "max": {
+        "type": "number",
+        "description": "Maximum allowed value; increment disables at this bound."
+      },
+      "step": {
+        "type": "number",
+        "default": 1,
+        "description": "Step increment."
+      },
+      "shiftMultiplier": {
+        "type": "number",
+        "default": 10,
+        "description": "Long-press jump multiplier (largeStep = step * shiftMultiplier). Maps to Base UI largeStep / Shift on web."
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false
+      },
+      "readOnly": {
+        "type": "boolean",
+        "default": false
+      },
+      "error": {
+        "type": "boolean",
+        "default": false,
+        "description": "Error state (aria-invalid)."
+      },
+      "required": {
+        "type": "boolean",
+        "default": false,
+        "description": "Marks the field required (aria-required)."
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "default": "m"
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "default": "medium",
+        "description": "Controls visual weight (Figma high/medium/low)."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "default": "auto",
+        "description": "Multi-accent role. Explicit non-'auto' wins; otherwise inherits the nearest <Surface> role, falling back to 'secondary'."
+      },
+      "accent": {
+        "enum": [
+          "primary",
+          "secondary",
+          "sparkle"
+        ],
+        "description": "Accent override for the fill colour at high attention — keeps appearance's context but repaints the container fill."
+      },
+      "condensed": {
+        "type": "boolean",
+        "default": false,
+        "description": "Use condensed height."
+      },
+      "direction": {
+        "enum": [
+          "ltr",
+          "rtl"
+        ],
+        "default": "ltr",
+        "description": "Visual layout direction: ltr = decrement left / increment right; rtl mirrors."
+      },
+      "start": {
+        "description": "Optional decrement control — a single <IconButton /> element."
+      },
+      "end": {
+        "description": "Optional increment control — a single <IconButton /> element."
+      },
+      "style": {
+        "description": "Inline native styles on the root wrapper."
+      },
+      "testID": {
+        "type": "string",
+        "description": "React Native test identifier."
+      },
+      "accessibilityHint": {
+        "type": "string",
+        "description": "Describes the result of adjusting the value (React Native)."
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "neutral",
+      "sparkle",
+      "brand-bg",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ],
+    "surface": [
+      "bold",
+      "subtle",
+      "ghost"
+    ],
+    "typography": [
+      "label.S",
+      "label.M",
+      "label.L"
+    ],
+    "shape": [
+      "S"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "adjustable",
+    "accessibilityState": [
+      "disabled"
+    ],
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [
+      "press"
+    ],
+    "honorsReduceMotion": true,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-stepper-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "Stepper"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Stepper } from '@oneui/ui-native/components/Stepper';\n\n<Stepper />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "stepper",
+    "input",
+    "numeric",
+    "stepper",
+    "form",
+    "surface-aware",
+    "inherits-appearance"
+  ],
+  "importPath": "@oneui/ui-native/components/Stepper"
+}

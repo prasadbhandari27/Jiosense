@@ -1,0 +1,139 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "IndicatorBadge",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.251Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Public API contract for JdsIndicatorBadge."
+  },
+  "composable": "JdsIndicatorBadge",
+  "attributesClass": "JdsIndicatorBadgeAttributes",
+  "importPath": "com.jds.components.indicatorbadge",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.indicatorbadge.JdsIndicatorBadge",
+    "attributes": "com.jds.components.indicatorbadge.JdsIndicatorBadgeAttributes",
+    "enums": {
+      "JdsIndicatorBadgeSize": "com.jds.components.indicatorbadge.JdsIndicatorBadgeSize",
+      "Appearance": "com.jds.foundation.token.Appearance"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [
+      "ariaLabel"
+    ],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "ariaLabel",
+      "type": "String",
+      "required": true,
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "JdsIndicatorBadgeSize",
+      "required": false,
+      "defaultValue": "JdsIndicatorBadgeSize.M",
+      "enumValues": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "Appearance",
+      "required": false,
+      "defaultValue": "Appearance.Auto",
+      "enumValues": [
+        "Auto",
+        "Primary",
+        "Secondary",
+        "Sparkle",
+        "BrandBg",
+        "Neutral",
+        "Positive",
+        "Negative",
+        "Warning",
+        "Informative"
+      ],
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "enums": {
+    "JdsIndicatorBadgeSize": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "Appearance": [
+      "Auto",
+      "Primary",
+      "Secondary",
+      "Sparkle",
+      "BrandBg",
+      "Neutral",
+      "Positive",
+      "Negative",
+      "Warning",
+      "Informative"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.IndicatorBadge",
+    "type": "object",
+    "properties": {
+      "ariaLabel": {
+        "type": "string"
+      },
+      "size": {
+        "enum": [
+          "XS",
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "default": "JdsIndicatorBadgeSize.M"
+      },
+      "appearance": {
+        "enum": [
+          "Auto",
+          "Primary",
+          "Secondary",
+          "Sparkle",
+          "BrandBg",
+          "Neutral",
+          "Positive",
+          "Negative",
+          "Warning",
+          "Informative"
+        ],
+        "default": "Appearance.Auto"
+      }
+    },
+    "required": [
+      "ariaLabel"
+    ]
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "indicatorbadge"
+  ],
+  "importPathMaven": "com.jds:components"
+}

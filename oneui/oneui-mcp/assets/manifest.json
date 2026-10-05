@@ -1,0 +1,20 @@
+{
+  "snapshotVersion": "0.1.0",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "designSystem": {
+    "version": "cdn-v2"
+  },
+  "counts": {
+    "skills": 20,
+    "invariants": 1,
+    "surfaceGuide": 1,
+    "prdTemplate": 1,
+    "components": 49,
+    "webMetaMerged": 40,
+    "charts": 25,
+    "brands": 10,
+    "brandCss": 10,
+    "brandSpecs": 5,
+    "corpusEntries": 102
+  }
+}

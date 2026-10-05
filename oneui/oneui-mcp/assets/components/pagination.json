@@ -1,0 +1,363 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Pagination",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Composite page navigator with backward-compatible numbered `truncate` and selectable `compact` treatments. Compact composes the existing Select menu, displays `current / total`, and supports previous/next plus optional first/last controls. Uncontrolled by default (`defaultPage`); pass `page` + `onPageChange` for controlled mode. Includes a WAI-ARIA navigation landmark, keyboard support, selected-option semantics, and a polite live region.",
+    "taskContexts": [
+      "pagination",
+      "pages",
+      "navigation",
+      "navigator",
+      "page-numbers",
+      "compact",
+      "select",
+      "next",
+      "previous",
+      "list",
+      "table",
+      "carousel"
+    ],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "high",
+        "useWhen": [
+          "High (bold chip)"
+        ]
+      },
+      {
+        "name": "medium",
+        "useWhen": [
+          "Medium (subtle chip)"
+        ]
+      },
+      {
+        "name": "low",
+        "useWhen": [
+          "Low (ghost chip)"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "totalPage",
+      "type": "number",
+      "required": true,
+      "description": "Total number of pages. Required. Values &lt; 1 render an empty navigation landmark."
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "description": "Multi-accent appearance role for page chips and nav controls. `'auto'` inherits the nearest Surface role. At the page root, numbered selection navigation, and the compact Select trigger fall back to primary."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label for the navigation landmark. Default `\"Pagination\"`."
+    },
+    {
+      "name": "attention",
+      "type": "'high' | 'medium' | 'low'",
+      "required": false,
+      "description": "Emphasis level for the **selected** page chip only — `high` (bold fill), `medium` (tinted fill), `low` (ghost). Inactive page chips stay ghost with high-emphasis numeral colour; nav + ellipsis stay ghost + low attention. Default `'medium'` for `truncate`; Figma's `compact` treatment defaults to `'high'` when this prop is omitted."
+    },
+    {
+      "name": "boundaryCount",
+      "type": "number",
+      "required": false,
+      "description": "Number of always-visible page numbers at the very start AND the very end of the sequence. Default `1`. Set to `0` to hide them. Only used when `type=\"truncate\"`."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name applied to the root."
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "Test ID."
+    },
+    {
+      "name": "defaultPage",
+      "type": "number",
+      "required": false,
+      "description": "Default current page (1-based) when uncontrolled. Default `1`."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Disable the entire control."
+    },
+    {
+      "name": "firstLast",
+      "type": "boolean",
+      "required": false,
+      "description": "Show the first-page / last-page jump buttons. Default `false`."
+    },
+    {
+      "name": "fullwidth",
+      "type": "boolean",
+      "required": false,
+      "description": "Stretch to fill the container width per Figma `fullwidth`. Default `false`."
+    },
+    {
+      "name": "onPageChange",
+      "type": "(page: number) => void",
+      "required": false,
+      "description": "Fires whenever the active page changes (click, keyboard, controlled update)."
+    },
+    {
+      "name": "page",
+      "type": "number",
+      "required": false,
+      "description": "Controlled current page (1-based)."
+    },
+    {
+      "name": "prevNext",
+      "type": "boolean",
+      "required": false,
+      "description": "Show the previous-page / next-page arrow buttons. Default `true`."
+    },
+    {
+      "name": "siblingCounts",
+      "type": "number",
+      "required": false,
+      "description": "Number of always-visible page numbers immediately around the current page. Default `1`. Only used when `type=\"truncate\"`."
+    },
+    {
+      "name": "size",
+      "type": "'S' | 'M' | 'L' | 's' | 'm' | 'l'",
+      "required": false,
+      "description": "T-shirt size for page chips, nav `IconButton`s, and ellipsis. Default `'M'`."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles."
+    },
+    {
+      "name": "type",
+      "type": "'truncate' | 'compact'",
+      "required": false,
+      "description": "Pagination layout. `truncate` renders windowed page numbers + ellipses; `compact` renders prev/next around a Select showing `current / total`. Default `'truncate'`."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.pagination",
+    "type": "object",
+    "properties": {
+      "totalPage": {
+        "type": "number",
+        "description": "Total number of pages. Required. Values &lt; 1 render an empty navigation landmark."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role for page chips and nav controls. `'auto'` inherits the nearest Surface role. At the page root, numbered selection navigation, and the compact Select trigger fall back to primary."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label for the navigation landmark. Default `\"Pagination\"`."
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "description": "Emphasis level for the **selected** page chip only — `high` (bold fill), `medium` (tinted fill), `low` (ghost). Inactive page chips stay ghost with high-emphasis numeral colour; nav + ellipsis stay ghost + low attention. Default `'medium'` for `truncate`; Figma's `compact` treatment defaults to `'high'` when this prop is omitted."
+      },
+      "boundaryCount": {
+        "type": "number",
+        "description": "Number of always-visible page numbers at the very start AND the very end of the sequence. Default `1`. Set to `0` to hide them. Only used when `type=\"truncate\"`."
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name applied to the root."
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "Test ID."
+      },
+      "defaultPage": {
+        "type": "number",
+        "description": "Default current page (1-based) when uncontrolled. Default `1`."
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Disable the entire control."
+      },
+      "firstLast": {
+        "type": "boolean",
+        "description": "Show the first-page / last-page jump buttons. Default `false`."
+      },
+      "fullwidth": {
+        "type": "boolean",
+        "description": "Stretch to fill the container width per Figma `fullwidth`. Default `false`."
+      },
+      "onPageChange": {
+        "description": "Fires whenever the active page changes (click, keyboard, controlled update)."
+      },
+      "page": {
+        "type": "number",
+        "description": "Controlled current page (1-based)."
+      },
+      "prevNext": {
+        "type": "boolean",
+        "description": "Show the previous-page / next-page arrow buttons. Default `true`."
+      },
+      "siblingCounts": {
+        "type": "number",
+        "description": "Number of always-visible page numbers immediately around the current page. Default `1`. Only used when `type=\"truncate\"`."
+      },
+      "size": {
+        "enum": [
+          "S",
+          "M",
+          "L"
+        ],
+        "description": "T-shirt size for page chips, nav `IconButton`s, and ellipsis. Default `'M'`."
+      },
+      "style": {
+        "description": "Inline styles."
+      },
+      "type": {
+        "enum": [
+          "truncate",
+          "compact"
+        ],
+        "description": "Pagination layout. `truncate` renders windowed page numbers + ellipses; `compact` renders prev/next around a Select showing `current / total`. Default `'truncate'`."
+      }
+    },
+    "required": [
+      "totalPage"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "pagination-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Pagination } from '@oneui/ui';\n\n<Pagination />"
+    },
+    {
+      "id": "pagination-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Pagination\",\n  \"decisions\": [\n    \"Shape\",\n    \"Default attention (selected page)\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "pagination"
+  ],
+  "interactionBehavior": {
+    "summary": "Pagination is a composite navigator, not a set of independent buttons: in `type=\"truncate\"` (the default) only the current numbered page is in the tab order, and `ArrowLeft` / `ArrowRight` change the page — they do not merely move focus. Prev/next/first/last stay separately tabbable and ignore those arrows. `type=\"compact\"` drops the numbered chips for a Select of `current / total` plus the same nav IconButtons.",
+    "hover": [
+      "Numbered chips own their hover in PaginationItem — see that component. Pagination's layout CSS has no hover rules.",
+      "Prev / next / first / last are IconButtons at `attention=\"low\"`, so they take IconButton's ghost hover fill (and IconButton's `(hover: hover)` guard).",
+      "Ellipsis is a permanently `disabled` IconButton inside an `aria-hidden` span, so it never hovers."
+    ],
+    "press": [
+      "Numbered chips scale UP on press and delay `onSelect` until that transform transition settles — documented on PaginationItem.",
+      "Nav IconButtons use IconButton press (scale UP, ghost pressed fill). They fire `setPage` immediately on click; they do not wait for a transition.",
+      "Compact's page chooser is a Select `selectableButton` trigger; its press is Button's, including Button's scale-DOWN squash."
+    ],
+    "focus": [
+      "Truncate: only the current numbered page has `tabIndex={0}`; other page chips are `tabIndex={-1}` and are reached by arrows, not Tab. Tab from the current page moves to the next nav IconButton (or out of the control).",
+      "Each numbered chip paints PaginationItem's two-layer halo; each nav IconButton paints IconButton's.",
+      "A polite, visually hidden live region announces `Page N of M` after every change."
+    ],
+    "keyboard": [
+      "On a numbered page chip (`data-type=\"page\"`): `ArrowRight` / `ArrowDown` step to the next page and move focus there; `ArrowLeft` / `ArrowUp` step back. This CHANGES the selected page, it does not rove focus across the visible chips.",
+      "`Home` jumps to page 1; `End` jumps to the last page. Both also move focus to the new current chip after the windowed slot list reshuffles.",
+      "Arrows on a prev/next/first/last IconButton do nothing — those stay individually focusable and activate with `Enter` / `Space` like any IconButton. Tests cover this.",
+      "If the control is `disabled` or `totalPage` is 0, the key handler returns immediately.",
+      "Compact does not use this roving handler. Keyboard behaviour is Select's (closed typeahead when `totalPage` is 99 or fewer; Search when `totalPage` > 99) plus ordinary IconButton keys on the nav pair. While a large compact menu is closed, only the current page is registered as an option — the full list materialises on open."
+    ],
+    "selected": [
+      "The current page chip is `aria-current=\"page\"` with `data-selected=\"true\"`. Its fill follows Pagination `attention`: `--{Role}-Bold` at high, `--{Role}-Subtle` at medium, transparent plus a `--{Role}-Bold` hairline at low.",
+      "Unselected chips stay ghost with `--Neutral-High` numerals (surface-auto appearance, not the Pagination `appearance` role).",
+      "Compact shows the selection as the Select trigger label `N / total`; opening the menu and picking a page calls `setPage` and closes."
+    ],
+    "disabled": [
+      "`disabled` on the root sets `[data-disabled]`, `--Disabled-Opacity` (via `--Pagination-disabledOpacity`), and `pointer-events: none` on the whole `<nav>`. Clicks and arrows no-op.",
+      "Prev is natively disabled on page 1 and next on the last page, even when the control is enabled.",
+      "Ellipsis IconButtons are always `disabled` and `aria-hidden` — they are decoration, not a jump-to control.",
+      "Because the root has `pointer-events: none` while disabled, `cursor: not-allowed` on inner natively-disabled chips is not observable. This is the known system-wide gap (docs/design/disabled-states.md)."
+    ],
+    "touch": [
+      "Chip hover fills are `(hover: hover)`-guarded on PaginationItem; a tap's response is the press scale-up plus the delayed page change.",
+      "Nav IconButtons follow IconButton touch rules (no hover fill, press scale-up still runs)."
+    ]
+  },
+  "importPath": "@jds4/oneui-react",
+  "renderHints": {
+    "baseElement": "nav",
+    "readsFromSurfaceContext": true
+  },
+  "a11y": {
+    "role": null,
+    "minTouchTarget": 44,
+    "accessibleNameSource": "aria-label"
+  }
+}

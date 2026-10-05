@@ -1,0 +1,211 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "BottomNavigationItem",
+  "generatedAt": "2026-08-26T06:20:09.452Z",
+  "machineReadable": true,
+  "status": "beta",
+  "intentAndPurpose": {
+    "intent": "Single native destination inside BottomNavigation. Required icon glyph + optional label and activeIcon; the parent selection value is authoritative."
+  },
+  "compositionRules": {
+    "requires": [
+      "icon"
+    ],
+    "allows": [],
+    "forbids": [],
+    "childKind": "fixed-slots"
+  },
+  "props": [
+    {
+      "name": "value",
+      "type": "string",
+      "required": false,
+      "description": "Unique destination selection value."
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "active",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "href",
+      "type": "string",
+      "required": false,
+      "description": "Optional destination URL."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Trimmed accessible name override; required for an icon-only destination without a label."
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": ""
+    },
+    {
+      "name": "labelType",
+      "type": "'none' | '1line' | '2line'",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "required": true,
+      "description": "Required glyph — a semantic icon name, ReactElement, or JDS icon component reference (e.g. `icon={IcHome}`)."
+    },
+    {
+      "name": "activeIcon",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Optional glyph swapped in when the item is active (same value shape as `icon`)."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.BottomNavigationItem",
+    "type": "object",
+    "properties": {
+      "value": {
+        "type": "string",
+        "description": "Unique destination selection value."
+      },
+      "label": {
+        "type": "string"
+      },
+      "active": {
+        "type": "boolean",
+        "default": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false
+      },
+      "href": {
+        "type": "string",
+        "description": "Optional destination URL."
+      },
+      "aria-label": {
+        "type": "string",
+        "minLength": 1,
+        "description": "Trimmed accessible name override; required for an icon-only destination without a label."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "default": "auto"
+      },
+      "labelType": {
+        "enum": [
+          "none",
+          "1line",
+          "2line"
+        ]
+      },
+      "icon": {
+        "description": "Required glyph — a semantic icon name, ReactElement, or JDS icon component reference (e.g. `icon={IcHome}`)."
+      },
+      "activeIcon": {
+        "description": "Optional glyph swapped in when the item is active (same value shape as `icon`)."
+      }
+    },
+    "required": [
+      "icon"
+    ]
+  },
+  "tokens": {
+    "color": [
+      "neutral",
+      "primary"
+    ],
+    "surface": [
+      "ghost",
+      "subtle"
+    ],
+    "typography": [
+      "label.XS"
+    ],
+    "spacing": [
+      "3XS",
+      "2XS",
+      "XS",
+      "S"
+    ],
+    "motion": [
+      "motion.duration.discreet.short"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "tab",
+    "accessibilityState": [
+      "selected",
+      "disabled"
+    ],
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "Pressable",
+    "animatedOn": [
+      "press"
+    ],
+    "honorsReduceMotion": true,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-bottomnav-item-v4",
+    "keyHistory": [
+      "jds-tabbar-item-v4"
+    ],
+    "variantProperties": {
+      "Component": "BottomNavigationItem"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { BottomNavigationItem } from '@oneui/ui-native/components/BottomNavigationItem';\n\n<BottomNavigationItem />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "bottomnavigationitem",
+    "navigation",
+    "chassis"
+  ],
+  "importPath": "@oneui/ui-native/components/BottomNavigationItem"
+}

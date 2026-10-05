@@ -1,0 +1,204 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Avatar",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.245Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "JDS Avatar Compose component."
+  },
+  "composable": "JdsAvatar",
+  "attributesClass": "JdsAvatarAttributes",
+  "importPath": "com.jds.components.avatar",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.avatar.JdsAvatar",
+    "attributes": "com.jds.components.avatar.JdsAvatarAttributes",
+    "enums": {
+      "JdsAvatarSize": "com.jds.components.avatar.JdsAvatarSize",
+      "JdsAvatarAttention": "com.jds.components.avatar.JdsAvatarAttention",
+      "Appearance": "com.jds.foundation.token.Appearance"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "content",
+      "type": "JdsSlot",
+      "required": false,
+      "defaultValue": "JdsSlot.None",
+      "slot": true,
+      "slotTypes": [],
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "JdsAvatarSize",
+      "required": false,
+      "defaultValue": "JdsAvatarSize.M",
+      "enumValues": [
+        "XS2",
+        "Xs",
+        "S",
+        "M",
+        "L",
+        "Xl",
+        "XL2",
+        "Custom"
+      ],
+      "description": ""
+    },
+    {
+      "name": "attention",
+      "type": "JdsAvatarAttention",
+      "required": false,
+      "defaultValue": "JdsAvatarAttention.High",
+      "enumValues": [
+        "High",
+        "Medium",
+        "Low"
+      ],
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "Appearance",
+      "required": false,
+      "defaultValue": "Appearance.Auto",
+      "enumValues": [
+        "Auto",
+        "Primary",
+        "Secondary",
+        "Sparkle",
+        "BrandBg",
+        "Neutral",
+        "Positive",
+        "Negative",
+        "Warning",
+        "Informative"
+      ],
+      "description": ""
+    },
+    {
+      "name": "contentDescription",
+      "type": "String",
+      "required": false,
+      "defaultValue": "\"\"",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "onClick",
+      "type": "(() -> Unit)?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "content",
+      "types": []
+    }
+  ],
+  "enums": {
+    "JdsAvatarSize": [
+      "XS2",
+      "Xs",
+      "S",
+      "M",
+      "L",
+      "Xl",
+      "XL2",
+      "Custom"
+    ],
+    "JdsAvatarAttention": [
+      "High",
+      "Medium",
+      "Low"
+    ],
+    "Appearance": [
+      "Auto",
+      "Primary",
+      "Secondary",
+      "Sparkle",
+      "BrandBg",
+      "Neutral",
+      "Positive",
+      "Negative",
+      "Warning",
+      "Informative"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.Avatar",
+    "type": "object",
+    "properties": {
+      "content": {},
+      "size": {
+        "enum": [
+          "XS2",
+          "Xs",
+          "S",
+          "M",
+          "L",
+          "Xl",
+          "XL2",
+          "Custom"
+        ],
+        "default": "JdsAvatarSize.M"
+      },
+      "attention": {
+        "enum": [
+          "High",
+          "Medium",
+          "Low"
+        ],
+        "default": "JdsAvatarAttention.High"
+      },
+      "appearance": {
+        "enum": [
+          "Auto",
+          "Primary",
+          "Secondary",
+          "Sparkle",
+          "BrandBg",
+          "Neutral",
+          "Positive",
+          "Negative",
+          "Warning",
+          "Informative"
+        ],
+        "default": "Appearance.Auto"
+      },
+      "contentDescription": {
+        "type": "string"
+      },
+      "disabled": {
+        "type": "boolean"
+      },
+      "onClick": {}
+    },
+    "required": []
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "avatar"
+  ],
+  "importPathMaven": "com.jds:components"
+}

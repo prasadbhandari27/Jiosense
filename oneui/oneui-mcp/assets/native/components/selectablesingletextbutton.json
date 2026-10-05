@@ -1,0 +1,349 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "SelectableSingleTextButton",
+  "generatedAt": "2026-08-26T06:20:09.504Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Circular toggle button carrying a max-2-character label (e.g. \"Ag\", \"En\", \"12\"). Toggle sibling of SingleTextButton. The unselected state is always a muted ghost; `attention` (high/medium/low) drives the selected-state prominence (bold/subtle/ghost-with-border). Supports `condensed`, `fullWidth`, `disabled`, and `loading` (busy, non-disabled). Controlled via `selected`/`onSelectedChange` or uncontrolled via `defaultSelected`."
+  },
+  "compositionRules": {
+    "requires": [
+      "children"
+    ],
+    "allows": [],
+    "forbids": [],
+    "childKind": "leaf"
+  },
+  "props": [
+    {
+      "name": "children",
+      "type": "string",
+      "required": true,
+      "description": "Visible label — max 2 characters (e.g. \"Ag\", \"En\", \"A\", \"12\"). Longer text breaks the circular shape and is truncated in dev with a warning."
+    },
+    {
+      "name": "selected",
+      "type": "boolean",
+      "required": false,
+      "description": "Controlled selected state (the toggle pressed state)."
+    },
+    {
+      "name": "defaultSelected",
+      "type": "boolean",
+      "required": false,
+      "description": "Uncontrolled initial selected state."
+    },
+    {
+      "name": "onSelectedChange",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Fires with the next boolean selected state."
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "required": false,
+      "description": "Value for a selection group (parity — passthrough for a future native ToggleGroup)."
+    },
+    {
+      "name": "size",
+      "type": "'s' | 'm' | 'l'",
+      "required": false,
+      "defaultValue": "m",
+      "description": "Button size. S/M/L only — no XS."
+    },
+    {
+      "name": "attention",
+      "type": "'high' | 'medium' | 'low'",
+      "required": false,
+      "defaultValue": "high",
+      "description": "Prominence of the SELECTED state: high→bold fill, medium→subtle fill, low→ghost with accent border. Unselected is always muted ghost."
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": "Multi-accent role. Explicit non-'auto' wins; otherwise resolves to 'primary'."
+    },
+    {
+      "name": "condensed",
+      "type": "boolean",
+      "required": false,
+      "description": "Reduces height/padding while keeping the same typography."
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "required": false,
+      "description": "Stretch to fill container width — overrides the circular shape."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Shows a spinner replacing the label and marks the control busy. Activation is suppressed while busy, but it is NOT marked disabled."
+    },
+    {
+      "name": "onPress",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Press handler (React Native convention)."
+    },
+    {
+      "name": "onClick",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Web parity alias for onPress."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label override — children text is visible so this is optional."
+    },
+    {
+      "name": "accessibilityHint",
+      "type": "string",
+      "required": false,
+      "description": "Describes the result of toggling (React Native)."
+    },
+    {
+      "name": "testID",
+      "type": "string",
+      "required": false,
+      "description": "React Native test identifier."
+    },
+    {
+      "name": "backgroundColor",
+      "type": "string",
+      "required": false,
+      "description": "[error] Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill."
+    },
+    {
+      "name": "style",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Layout style only. attention + appearance + the parent <Surface> drive bg / text — do not paint here. — [warn] SelectableSingleTextButton colour is surface-resolved from `attention` + `appearance`. Don't set backgroundColor; wrap in <Surface> and it adapts automatically."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.SelectableSingleTextButton",
+    "type": "object",
+    "required": [
+      "children"
+    ],
+    "properties": {
+      "children": {
+        "type": "string",
+        "description": "Visible label — max 2 characters (e.g. \"Ag\", \"En\", \"A\", \"12\"). Longer text breaks the circular shape and is truncated in dev with a warning."
+      },
+      "selected": {
+        "type": "boolean",
+        "description": "Controlled selected state (the toggle pressed state)."
+      },
+      "defaultSelected": {
+        "type": "boolean",
+        "description": "Uncontrolled initial selected state."
+      },
+      "onSelectedChange": {
+        "description": "Fires with the next boolean selected state."
+      },
+      "value": {
+        "type": "string",
+        "description": "Value for a selection group (parity — passthrough for a future native ToggleGroup)."
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "default": "m",
+        "description": "Button size. S/M/L only — no XS."
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "default": "high",
+        "description": "Prominence of the SELECTED state: high→bold fill, medium→subtle fill, low→ghost with accent border. Unselected is always muted ghost."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "default": "auto",
+        "description": "Multi-accent role. Explicit non-'auto' wins; otherwise resolves to 'primary'."
+      },
+      "condensed": {
+        "type": "boolean",
+        "description": "Reduces height/padding while keeping the same typography."
+      },
+      "fullWidth": {
+        "type": "boolean",
+        "description": "Stretch to fill container width — overrides the circular shape."
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false
+      },
+      "loading": {
+        "type": "boolean",
+        "default": false,
+        "description": "Shows a spinner replacing the label and marks the control busy. Activation is suppressed while busy, but it is NOT marked disabled."
+      },
+      "onPress": {
+        "description": "Press handler (React Native convention)."
+      },
+      "onClick": {
+        "description": "Web parity alias for onPress."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label override — children text is visible so this is optional."
+      },
+      "accessibilityHint": {
+        "type": "string",
+        "description": "Describes the result of toggling (React Native)."
+      },
+      "testID": {
+        "type": "string",
+        "description": "React Native test identifier."
+      },
+      "backgroundColor": {
+        "type": "string",
+        "not": {
+          "anyOf": [
+            {
+              "pattern": "^#"
+            },
+            {
+              "pattern": "^rgba?\\("
+            },
+            {
+              "pattern": "^hsla?\\("
+            },
+            {
+              "pattern": "^oklch\\("
+            },
+            {
+              "pattern": "^color-mix\\("
+            },
+            {
+              "enum": [
+                "transparent",
+                "inherit"
+              ]
+            }
+          ]
+        },
+        "x-jds-suggestion": "Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill.",
+        "x-jds-severity": "error"
+      },
+      "style": {
+        "description": "Layout style only. attention + appearance + the parent <Surface> drive bg / text — do not paint here.",
+        "x-jds-suggestion": "SelectableSingleTextButton colour is surface-resolved from `attention` + `appearance`. Don't set backgroundColor; wrap in <Surface> and it adapts automatically.",
+        "x-jds-severity": "warn"
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "neutral",
+      "sparkle",
+      "brand-bg",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ],
+    "surface": [
+      "bold",
+      "subtle",
+      "ghost"
+    ],
+    "typography": [
+      "label.S",
+      "label.M",
+      "label.L"
+    ],
+    "shape": [
+      "pill"
+    ],
+    "motion": [
+      "motion.duration.expressive.long"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "button",
+    "accessibilityState": [
+      "selected",
+      "disabled",
+      "busy"
+    ],
+    "accessibleNameSource": "children",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [
+      "press"
+    ],
+    "honorsReduceMotion": true,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-selectable-single-text-button-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "SelectableSingleTextButton"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { SelectableSingleTextButton } from '@oneui/ui-native/components/SelectableSingleTextButton';\n\n<SelectableSingleTextButton />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "selectablesingletextbutton",
+    "action",
+    "button",
+    "toggle",
+    "selection",
+    "circular",
+    "surface-aware",
+    "inherits-appearance"
+  ],
+  "importPath": "@oneui/ui-native/components/SelectableSingleTextButton"
+}

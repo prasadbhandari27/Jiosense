@@ -1,0 +1,290 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Modal",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.252Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Public API contract for JdsModal."
+  },
+  "composable": "JdsModal",
+  "attributesClass": "JdsModalAttributes",
+  "importPath": "com.jds.components.modal",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.modal.JdsModal",
+    "attributes": "com.jds.components.modal.JdsModalAttributes",
+    "enums": {
+      "JdsModalSize": "com.jds.components.modal.JdsModalSize",
+      "JdsModalHeaderAlign": "com.jds.components.modal.JdsModalHeaderAlign",
+      "JdsModalDividerVisibility": "com.jds.components.modal.JdsModalDividerVisibility",
+      "JdsModalDividerScrollPosition": "com.jds.components.modal.JdsModalDividerScrollPosition",
+      "JdsModalFooterOrientation": "com.jds.components.modal.JdsModalFooterOrientation"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "open",
+      "type": "Boolean?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "defaultOpen",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "onOpenChange",
+      "type": "((Boolean, JdsModalCloseReason) -> Unit)?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "dismissible",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "JdsModalSize",
+      "required": false,
+      "defaultValue": "JdsModalSize.M",
+      "enumValues": [
+        "S",
+        "M",
+        "L",
+        "FullWidth"
+      ],
+      "description": ""
+    },
+    {
+      "name": "maxHeight",
+      "type": "Dp?",
+      "required": false,
+      "defaultValue": "null",
+      "description": "Explicit viewport height cap for the panel, independent of size. `null` → derive the cap from size (S = 50, M = 70, L = 85, FullWidth = 100 percent of viewport height). When set: - content shorter than maxHeight → panel wraps its content (small window), - content taller → panel is capped at maxHeight and the body scrolls while header and footer stay fixed. Clamped to the available viewport (screen height − vertical window margins); a value larger than the viewport behaves as full height. size still drives width."
+    },
+    {
+      "name": "headerAlign",
+      "type": "JdsModalHeaderAlign",
+      "required": false,
+      "defaultValue": "JdsModalHeaderAlign.Left",
+      "enumValues": [
+        "Left",
+        "Center"
+      ],
+      "description": ""
+    },
+    {
+      "name": "title",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": "Non-blank → show header (title + close). Blank/null → no header."
+    },
+    {
+      "name": "description",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": "Non-blank → show under title when header is visible."
+    },
+    {
+      "name": "dividerTopVisibility",
+      "type": "JdsModalDividerVisibility",
+      "required": false,
+      "defaultValue": "JdsModalDividerVisibility.None",
+      "enumValues": [
+        "None",
+        "OnScroll",
+        "Always"
+      ],
+      "description": ""
+    },
+    {
+      "name": "dividerTopScrollPosition",
+      "type": "JdsModalDividerScrollPosition",
+      "required": false,
+      "defaultValue": "JdsModalDividerScrollPosition.Middle",
+      "enumValues": [
+        "Start",
+        "Middle",
+        "End"
+      ],
+      "description": ""
+    },
+    {
+      "name": "dividerBottomVisibility",
+      "type": "JdsModalDividerVisibility",
+      "required": false,
+      "defaultValue": "JdsModalDividerVisibility.None",
+      "enumValues": [
+        "None",
+        "OnScroll",
+        "Always"
+      ],
+      "description": ""
+    },
+    {
+      "name": "dividerBottomScrollPosition",
+      "type": "JdsModalDividerScrollPosition",
+      "required": false,
+      "defaultValue": "JdsModalDividerScrollPosition.Middle",
+      "enumValues": [
+        "Start",
+        "Middle",
+        "End"
+      ],
+      "description": ""
+    },
+    {
+      "name": "footerOrientation",
+      "type": "JdsModalFooterOrientation",
+      "required": false,
+      "defaultValue": "JdsModalFooterOrientation.Horizontal",
+      "enumValues": [
+        "Horizontal",
+        "Vertical"
+      ],
+      "description": ""
+    },
+    {
+      "name": "contentDescription",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": "Required for a11y when title is blank (OneUI-573 / WCAG 4.1.2)."
+    }
+  ],
+  "slots": [],
+  "enums": {
+    "JdsModalSize": [
+      "S",
+      "M",
+      "L",
+      "FullWidth"
+    ],
+    "JdsModalHeaderAlign": [
+      "Left",
+      "Center"
+    ],
+    "JdsModalDividerVisibility": [
+      "None",
+      "OnScroll",
+      "Always"
+    ],
+    "JdsModalDividerScrollPosition": [
+      "Start",
+      "Middle",
+      "End"
+    ],
+    "JdsModalFooterOrientation": [
+      "Horizontal",
+      "Vertical"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.Modal",
+    "type": "object",
+    "properties": {
+      "open": {
+        "type": "boolean"
+      },
+      "defaultOpen": {
+        "type": "boolean"
+      },
+      "onOpenChange": {},
+      "dismissible": {
+        "type": "boolean"
+      },
+      "size": {
+        "enum": [
+          "S",
+          "M",
+          "L",
+          "FullWidth"
+        ],
+        "default": "JdsModalSize.M"
+      },
+      "maxHeight": {},
+      "headerAlign": {
+        "enum": [
+          "Left",
+          "Center"
+        ],
+        "default": "JdsModalHeaderAlign.Left"
+      },
+      "title": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "dividerTopVisibility": {
+        "enum": [
+          "None",
+          "OnScroll",
+          "Always"
+        ],
+        "default": "JdsModalDividerVisibility.None"
+      },
+      "dividerTopScrollPosition": {
+        "enum": [
+          "Start",
+          "Middle",
+          "End"
+        ],
+        "default": "JdsModalDividerScrollPosition.Middle"
+      },
+      "dividerBottomVisibility": {
+        "enum": [
+          "None",
+          "OnScroll",
+          "Always"
+        ],
+        "default": "JdsModalDividerVisibility.None"
+      },
+      "dividerBottomScrollPosition": {
+        "enum": [
+          "Start",
+          "Middle",
+          "End"
+        ],
+        "default": "JdsModalDividerScrollPosition.Middle"
+      },
+      "footerOrientation": {
+        "enum": [
+          "Horizontal",
+          "Vertical"
+        ],
+        "default": "JdsModalFooterOrientation.Horizontal"
+      },
+      "contentDescription": {
+        "type": "string"
+      }
+    },
+    "required": []
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "modal"
+  ],
+  "importPathMaven": "com.jds:components"
+}

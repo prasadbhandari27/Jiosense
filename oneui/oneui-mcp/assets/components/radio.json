@@ -1,0 +1,410 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Radio",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Single-selection control within a mutually-exclusive option group.",
+    "taskContexts": [
+      "single-select-form",
+      "preference-setting",
+      "wizard-step"
+    ],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [
+      "value prop",
+      "RadioGroup parent",
+      "label or aria-label"
+    ],
+    "allows": [
+      "read-only mode",
+      "group-level appearance inheritance"
+    ],
+    "forbids": [
+      "standalone use without RadioGroup",
+      "multiple selection"
+    ]
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "default",
+        "useWhen": [
+          "standard option in a radio group"
+        ]
+      },
+      {
+        "name": "readOnly",
+        "useWhen": [
+          "display-only, value shown but cannot change"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": [
+      "Checkbox",
+      "Switch",
+      "RadioGroup"
+    ],
+    "groupsWith": [
+      "RadioGroup",
+      "FormField"
+    ]
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "appearance + accent dual-role"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [
+      "select"
+    ],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "value",
+      "type": "string",
+      "required": true,
+      "description": "Value for this radio item (required)"
+    },
+    {
+      "name": "accent",
+      "type": "'primary' | 'secondary' | 'sparkle'",
+      "required": false,
+      "description": "accent property"
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "description": "Multi-accent appearance role. Controls border, hover, AND fill tokens. `auto` → secondary stack."
+    },
+    {
+      "name": "aria-describedby",
+      "type": "string",
+      "required": false,
+      "description": "aria-describedby property"
+    },
+    {
+      "name": "aria-invalid",
+      "type": "boolean | 'true' | 'false'",
+      "required": false,
+      "description": "aria-invalid property"
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label when there is no visible `label` (or when overriding the visible copy). Maps directly to `aria-label` on the underlying radio control."
+    },
+    {
+      "name": "aria-labelledby",
+      "type": "string",
+      "required": false,
+      "description": "When set, names the control via `aria-labelledby` (e.g. `RadioField` single-option layout where the visible label lives on the field, not on this `Radio`)."
+    },
+    {
+      "name": "checked",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether this option is selected. Selection is owned by the parent **`RadioGroup`** via `value` / `defaultValue` matching this `value`. This prop is accepted for tooling (e.g. Storybook) and is **not** forwarded to the underlying primitive."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "children property"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "Test automation id — forwarded to the radio control (`BaseRadio.Root`)."
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "required": false,
+      "description": "Supplementary copy below the label row. Maps to `aria-describedby` on the control."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether this radio is disabled"
+    },
+    {
+      "name": "errorHighlight",
+      "type": "boolean",
+      "required": false,
+      "description": "Error-state chrome on the wrapper (from `RadioField` when invalid). Standalone `Radio` does not use `errorHighlight`; use `RadioField` for validation UX."
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "description": "HTML id attribute"
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "required": false,
+      "description": "Visible label beside the control. Maps to `aria-label` when the wrapper is a `div`."
+    },
+    {
+      "name": "labelWrapper",
+      "type": "'label' | 'div'",
+      "required": false,
+      "defaultValue": "label",
+      "description": "Outer wrapper element. Use `'div'` inside a field composition so the visible label is not nested inside a second `<label>`."
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether this radio is read-only (focusable but value cannot change)"
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "required": false,
+      "description": "HTML required — form validation"
+    },
+    {
+      "name": "size",
+      "type": "'s' | 'm' | 'l'",
+      "required": false,
+      "description": "Size preset. Default: 'm'"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.radio",
+    "type": "object",
+    "properties": {
+      "value": {
+        "type": "string",
+        "description": "Value for this radio item (required)"
+      },
+      "accent": {
+        "enum": [
+          "primary",
+          "secondary",
+          "sparkle"
+        ],
+        "description": "accent property"
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. Controls border, hover, AND fill tokens. `auto` → secondary stack."
+      },
+      "aria-describedby": {
+        "type": "string",
+        "description": "aria-describedby property"
+      },
+      "aria-invalid": {
+        "description": "aria-invalid property"
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label when there is no visible `label` (or when overriding the visible copy). Maps directly to `aria-label` on the underlying radio control."
+      },
+      "aria-labelledby": {
+        "type": "string",
+        "description": "When set, names the control via `aria-labelledby` (e.g. `RadioField` single-option layout where the visible label lives on the field, not on this `Radio`)."
+      },
+      "checked": {
+        "type": "boolean",
+        "description": "Whether this option is selected. Selection is owned by the parent **`RadioGroup`** via `value` / `defaultValue` matching this `value`. This prop is accepted for tooling (e.g. Storybook) and is **not** forwarded to the underlying primitive."
+      },
+      "children": {
+        "description": "children property"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "Test automation id — forwarded to the radio control (`BaseRadio.Root`)."
+      },
+      "description": {
+        "type": "string",
+        "description": "Supplementary copy below the label row. Maps to `aria-describedby` on the control."
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Whether this radio is disabled"
+      },
+      "errorHighlight": {
+        "type": "boolean",
+        "description": "Error-state chrome on the wrapper (from `RadioField` when invalid). Standalone `Radio` does not use `errorHighlight`; use `RadioField` for validation UX."
+      },
+      "id": {
+        "type": "string",
+        "description": "HTML id attribute"
+      },
+      "label": {
+        "type": "string",
+        "description": "Visible label beside the control. Maps to `aria-label` when the wrapper is a `div`."
+      },
+      "labelWrapper": {
+        "description": "Outer wrapper element. Use `'div'` inside a field composition so the visible label is not nested inside a second `<label>`.",
+        "default": "label"
+      },
+      "readOnly": {
+        "type": "boolean",
+        "description": "Whether this radio is read-only (focusable but value cannot change)"
+      },
+      "required": {
+        "type": "boolean",
+        "description": "HTML required — form validation"
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "Size preset. Default: 'm'"
+      },
+      "style": {
+        "description": "Inline styles"
+      }
+    },
+    "required": [
+      "value"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "radio-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Radio, RadioGroup } from '@oneui/ui';\n\n<RadioGroup value={value} onValueChange={setValue}>\n  <Radio value=\"a\">Option A</Radio>\n  <Radio value=\"b\">Option B</Radio>\n</RadioGroup>"
+    },
+    {
+      "id": "radio-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Radio\",\n  \"decisions\": [\n    \"Outer Shape\",\n    \"Dot Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "radio"
+  ],
+  "interactionBehavior": {
+    "summary": "Radio's dot animates by scaling DOWN: it rests at `scale(2)` and `opacity: 0` when unchecked, so checking shrinks a box-filling shape into the dot while it fades in, and unchecking grows it back out. The circle itself scales UP on press — the opposite direction to Button, which squashes down. The most surprising part of the colour model is that the unchecked stroke and hover tint ignore the `appearance` prop entirely: they follow the parent `<Surface>`'s role (Neutral on the bare page and at the palette extremes), while only the checked fill follows `appearance`. Keyboard is standard radio-group roving with two twists — `Enter` is deliberately swallowed so only `Space` selects, and `Home` / `End` are switched off.",
+    "hover": [
+      "Unchecked, the circle's interior fills with the unchecked role's `--{Role}-Hover` (falling back to `--Neutral-Hover`); checked, both the background AND the border step to `--{Role}-Bold-Hover`.",
+      "Which role that hover tint comes from is decided by the resolved parent-surface role, not the `appearance` prop — `appearance=\"positive\"` on the bare page still hovers Neutral.",
+      "Both rules are wrapped in `@media (hover: hover)`, so a touch tap never leaves a stuck fill behind.",
+      "The tint lands inside the 16–24px circle only. There is no separate state-layer element, and the circle's `overflow: hidden` clips the fill to the shape.",
+      "Read-only and disabled radios never hover — both set `pointer-events: none` on the control."
+    ],
+    "press": [
+      "The whole circle scales UP on press: `scale(1 + --Motion-Tap-Scale-Up / 100)`, i.e. +7% by default. Note this is the opposite direction to Button, which scales DOWN.",
+      "Unchecked press tints the interior to `--{Role}-Pressed`; checked press moves both fill and border to `--{Role}-Bold-Pressed`.",
+      "Press is NOT `(hover: hover)`-guarded, so a touch tap gets the same scale-up and tint a mouse press does.",
+      "A brand can remove the squash entirely by setting `--Motion-Tap-Scale-Up` to 0."
+    ],
+    "focus": [
+      "Keyboard focus draws the standard two-layer halo: an inner `--Stroke-XL` gap ring in `--Surface-Halo-Gap` plus an outer ring at `calc(--Stroke-XL + --Focus-Outline-Width)`, so it stays legible inside a tinted `<Surface>`.",
+      "The outer ring colour is ALWAYS `--Informative-Bold`, never the appearance role — a `positive` or `negative` radio still focuses informative-blue, per the Figma focus-ring spec.",
+      "`:focus-visible` only; `.radio:focus` merely clears the native outline, so a mouse click paints no ring.",
+      "`box-shadow` is absent from the transition list, so the halo appears and disappears instantly rather than fading.",
+      "A global `[data-force-state=\"focus\"]` ancestor hook forces the halo on for documentation and preview screenshots.",
+      "Read-only radios stay focusable (Base UI `readOnly`, not `disabled`), so they can still show the halo even though pointer interaction is blocked."
+    ],
+    "keyboard": [
+      "`Space` selects the focused option. `Enter` deliberately does nothing — Base UI's Radio root calls `preventDefault()` on the `Enter` keydown specifically so its button helper cannot turn it into a click.",
+      "Arrow keys move between options and wrap around at both ends (Base UI's composite root defaults `loopFocus` to true).",
+      "All four arrow keys work regardless of the `orientation` prop: RadioGroup never passes an orientation to the composite, so it stays `'both'`. `orientation` only sets `data-orientation` for the group's flex direction.",
+      "`Home` / `End` do nothing — RadioGroup explicitly sets `enableHomeAndEndKeys: false`.",
+      "Arrowing SELECTS as it moves: the arrow keydown marks the group as touched, and the newly focused radio then clicks its own hidden input. You cannot arrow past an option without selecting it.",
+      "Roving tabindex: only the checked radio is the group's single tab stop, so `Tab` enters and leaves the whole group in one step."
+    ],
+    "selected": [
+      "Checked paints both `background-color` and `border-color` with `--{Role}-Bold`, and the inner dot with `--{Role}-Bold-TintedA11y` (falling back to `--{Role}-Bold-High`).",
+      "The dot's resting unchecked state is `scale(2)` with `opacity: 0` — box-filling and invisible. Checking scales it DOWN to `scale(1)` as it fades in; unchecking scales it back UP to box size as it fades out.",
+      "The indicator is rendered with `keepMounted`, so the element always exists — that is what lets the transition run in both directions instead of only on entry.",
+      "Neither transition fires on mount, so an initially-unchecked group loads silently with no flash of a box-sized dot.",
+      "Selection is owned by the parent `RadioGroup` via `value` / `defaultValue`. `Radio`'s own `checked` prop is tooling-only and is NOT forwarded to the primitive."
+    ],
+    "disabled": [
+      "`disabled` on the item — or on `RadioGroup`, which cascades through context — sets `pointer-events: none` plus `cursor: not-allowed` on the circle and dims the whole row to `--Disabled-Opacity` via the `<label>` wrapper.",
+      "Here the `not-allowed` cursor IS observable: the circle is `pointer-events: none`, so the pointer falls through to the `<label>` wrapper, which also declares `not-allowed` and keeps its pointer events. This is unlike a natively `disabled` control (see docs/design/disabled-states.md).",
+      "Base UI renders the control as a `<span role=\"radio\">` with `aria-disabled`, not a native disabled input, so it stays in the accessibility tree.",
+      "`readOnly` is a separate contract at the control level: `aria-readonly` + `data-readonly`, `cursor: default`, `pointer-events: none`, and the checked fill / unchecked stroke are repainted with the neutral `--{Role}-High` ink instead of the brand `Bold`.",
+      "Counter-intuitive: a read-only Radio also receives `data-disabled` on its `<label>` wrapper, and the wrapper never receives `data-readonly` — so the `[data-disabled]:not([data-readonly])` rule matches and a read-only row still dims to `--Disabled-Opacity` and shows `cursor: not-allowed`, despite the control itself rendering the distinct read-only ink.",
+      "`errorHighlight` sets `data-invalid` on the wrapper but `Radio.module.css` has no `[data-invalid]` rule at all — nothing is painted. Use `RadioField` when you need visible validation chrome."
+    ],
+    "touch": [
+      "Hover tints never apply on touch-only devices; the +7% press scale plus the pressed tint are the whole response to a tap.",
+      "The circle is only `--Spacing-4` / `--Spacing-5` / `--Spacing-6` (16 / 20 / 24px) at sizes S / M / L — far below the 44px mobile minimum.",
+      "The `<label>` wrapper does extend the hit area across the label and description text, but nothing pads the row to 44px; add your own spacing when you need the mobile touch-target minimum."
+    ]
+  },
+  "importPath": "@jds4/oneui-react",
+  "figma": {
+    "componentKey": "jds-radio-v4"
+  },
+  "renderHints": {
+    "baseElement": "div",
+    "readsFromSurfaceContext": true
+  },
+  "a11y": {
+    "role": "radio",
+    "minTouchTarget": 44,
+    "accessibleNameSource": "aria-label"
+  }
+}

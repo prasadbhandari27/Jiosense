@@ -1,0 +1,148 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "InputFeedback",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.251Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Public API contract for JdsInputFeedback."
+  },
+  "composable": "JdsInputFeedback",
+  "attributesClass": "JdsInputFeedbackAttributes",
+  "importPath": "com.jds.components.inputfeedback",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.inputfeedback.JdsInputFeedback",
+    "attributes": "com.jds.components.inputfeedback.JdsInputFeedbackAttributes",
+    "enums": {
+      "JdsInputFeedbackVariant": "com.jds.components.inputfeedback.JdsInputFeedbackVariant",
+      "JdsInputFeedbackAttention": "com.jds.components.inputfeedback.JdsInputFeedbackAttention",
+      "JdsInputFeedbackSize": "com.jds.components.inputfeedback.JdsInputFeedbackSize"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "variant",
+      "type": "JdsInputFeedbackVariant",
+      "required": false,
+      "defaultValue": "JdsInputFeedbackVariant.Negative",
+      "enumValues": [
+        "Negative",
+        "Positive",
+        "Warning",
+        "Informative"
+      ],
+      "description": ""
+    },
+    {
+      "name": "attention",
+      "type": "JdsInputFeedbackAttention",
+      "required": false,
+      "defaultValue": "JdsInputFeedbackAttention.Low",
+      "enumValues": [
+        "Low",
+        "Medium",
+        "High"
+      ],
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "JdsInputFeedbackSize",
+      "required": false,
+      "defaultValue": "JdsInputFeedbackSize.M",
+      "enumValues": [
+        "S",
+        "M",
+        "L"
+      ],
+      "description": ""
+    },
+    {
+      "name": "message",
+      "type": "String",
+      "required": false,
+      "defaultValue": "\"\"",
+      "description": ""
+    },
+    {
+      "name": "customIcon",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "enums": {
+    "JdsInputFeedbackVariant": [
+      "Negative",
+      "Positive",
+      "Warning",
+      "Informative"
+    ],
+    "JdsInputFeedbackAttention": [
+      "Low",
+      "Medium",
+      "High"
+    ],
+    "JdsInputFeedbackSize": [
+      "S",
+      "M",
+      "L"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.InputFeedback",
+    "type": "object",
+    "properties": {
+      "variant": {
+        "enum": [
+          "Negative",
+          "Positive",
+          "Warning",
+          "Informative"
+        ],
+        "default": "JdsInputFeedbackVariant.Negative"
+      },
+      "attention": {
+        "enum": [
+          "Low",
+          "Medium",
+          "High"
+        ],
+        "default": "JdsInputFeedbackAttention.Low"
+      },
+      "size": {
+        "enum": [
+          "S",
+          "M",
+          "L"
+        ],
+        "default": "JdsInputFeedbackSize.M"
+      },
+      "message": {
+        "type": "string"
+      },
+      "customIcon": {
+        "type": "string"
+      }
+    },
+    "required": []
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "inputfeedback"
+  ],
+  "importPathMaven": "com.jds:components"
+}

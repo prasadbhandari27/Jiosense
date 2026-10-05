@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "CounterBadge",
+  "flutterExport": "OneUiCounterBadge",
+  "importPath": "package:ui_flutter/ui_flutter.dart",
+  "generatedAt": "2026-09-04T05:50:48.675Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "OneUiCounterBadge from the ui_flutter barrel. Use Surface context (OneUiSurface) for tinted backgrounds."
+  },
+  "props": [
+    {
+      "name": "value",
+      "required": true,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "max",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "showZero",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "variant",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "attention",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "semanticsLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "testId",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    }
+  ]
+}

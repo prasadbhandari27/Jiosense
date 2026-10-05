@@ -1,0 +1,371 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "TouchSlider",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Chunky 160×32 fingertip-friendly slider. The track is the tap target; the fill represents the value. Ideal for touch devices, TV remotes, and large-target contexts.",
+    "taskContexts": [],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [
+      "start"
+    ],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "rounded",
+        "useWhen": [
+          "Rounded"
+        ]
+      },
+      {
+        "name": "sharp",
+        "useWhen": [
+          "Sharp"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "description": "appearance property"
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "aria-label property"
+    },
+    {
+      "name": "aria-labelledby",
+      "type": "string",
+      "required": false,
+      "description": "aria-labelledby property"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "className property"
+    },
+    {
+      "name": "defaultValue",
+      "type": "number | number[]",
+      "required": false,
+      "description": "Initial uncontrolled value. Defaults to `50` (Figma); pass `0` explicitly to retain the pre-conformance default."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "disabled property"
+    },
+    {
+      "name": "form",
+      "type": "string",
+      "required": false,
+      "description": "form property"
+    },
+    {
+      "name": "largeStep",
+      "type": "number",
+      "required": false,
+      "description": "largeStep property"
+    },
+    {
+      "name": "max",
+      "type": "number",
+      "required": false,
+      "description": "max property"
+    },
+    {
+      "name": "min",
+      "type": "number",
+      "required": false,
+      "description": "min property"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "required": false,
+      "description": "name property"
+    },
+    {
+      "name": "onValueChange",
+      "type": "(value: number | number[]) => void",
+      "required": false,
+      "description": "onValueChange property"
+    },
+    {
+      "name": "onValueCommitted",
+      "type": "(value: number | number[]) => void",
+      "required": false,
+      "description": "onValueCommitted property"
+    },
+    {
+      "name": "orientation",
+      "type": "'horizontal' | 'vertical'",
+      "required": false,
+      "description": "orientation property"
+    },
+    {
+      "name": "progressStyle",
+      "type": "'rounded' | 'sharp'",
+      "required": false,
+      "description": "Canonical public name for Figma's `trackStyle` axis."
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean",
+      "required": false,
+      "description": "readOnly property"
+    },
+    {
+      "name": "start",
+      "type": "ReactElement<IconProps>",
+      "required": false,
+      "description": "Decorative, non-interactive OneUI Icon rendered in the leading cap. The complete slider owns the accessible name; do not pass IconButton."
+    },
+    {
+      "name": "step",
+      "type": "number",
+      "required": false,
+      "description": "step property"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "style property"
+    },
+    {
+      "name": "trackStyle",
+      "type": "'rounded' | 'sharp'",
+      "required": false,
+      "description": "Deprecated alias matching the actual Figma component-set property. `progressStyle` wins when both are supplied."
+    },
+    {
+      "name": "value",
+      "type": "number | number[]",
+      "required": false,
+      "description": "Canonical TouchSlider values are scalar. Arrays remain accepted as a deprecated compatibility shape and preserve their array callback shape; use Slider `type=\"range\"` for a supported multi-thumb control."
+    }
+  ],
+  "slots": [
+    {
+      "name": "start",
+      "types": [
+        "Icon"
+      ],
+      "tokens": []
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.touch-slider",
+    "type": "object",
+    "properties": {
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "appearance property"
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "aria-label property"
+      },
+      "aria-labelledby": {
+        "type": "string",
+        "description": "aria-labelledby property"
+      },
+      "className": {
+        "type": "string",
+        "description": "className property"
+      },
+      "defaultValue": {
+        "description": "Initial uncontrolled value. Defaults to `50` (Figma); pass `0` explicitly to retain the pre-conformance default."
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "disabled property"
+      },
+      "form": {
+        "type": "string",
+        "description": "form property"
+      },
+      "largeStep": {
+        "type": "number",
+        "description": "largeStep property"
+      },
+      "max": {
+        "type": "number",
+        "description": "max property"
+      },
+      "min": {
+        "type": "number",
+        "description": "min property"
+      },
+      "name": {
+        "type": "string",
+        "description": "name property"
+      },
+      "onValueChange": {
+        "description": "onValueChange property"
+      },
+      "onValueCommitted": {
+        "description": "onValueCommitted property"
+      },
+      "orientation": {
+        "enum": [
+          "horizontal",
+          "vertical"
+        ],
+        "description": "orientation property"
+      },
+      "progressStyle": {
+        "enum": [
+          "rounded",
+          "sharp"
+        ],
+        "description": "Canonical public name for Figma's `trackStyle` axis."
+      },
+      "readOnly": {
+        "type": "boolean",
+        "description": "readOnly property"
+      },
+      "start": {
+        "description": "Decorative, non-interactive OneUI Icon rendered in the leading cap. The complete slider owns the accessible name; do not pass IconButton."
+      },
+      "step": {
+        "type": "number",
+        "description": "step property"
+      },
+      "style": {
+        "description": "style property"
+      },
+      "trackStyle": {
+        "enum": [
+          "rounded",
+          "sharp"
+        ],
+        "description": "Deprecated alias matching the actual Figma component-set property. `progressStyle` wins when both are supplied."
+      },
+      "value": {
+        "description": "Canonical TouchSlider values are scalar. Arrays remain accepted as a deprecated compatibility shape and preserve their array callback shape; use Slider `type=\"range\"` for a supported multi-thumb control."
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "touch-slider-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { TouchSlider } from '@oneui/ui';\n\n<TouchSlider aria-label=\"Volume\" defaultValue={50} />"
+    },
+    {
+      "id": "touch-slider-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"TouchSlider\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "touch-slider"
+  ],
+  "interactionBehavior": {
+    "summary": "TouchSlider is a chunky single-thumb fill control: there is no visible knob. The whole 32px pill is the hit target (with a 44px slop via a pseudo-element), a tap anywhere on the track moves the fill to that point — the value jumps but the fill eases across via a real `width`/`height` transition rather than snapping — and a drag captures the pointer on the Control. The thumb is a zero-size, `pointer-events: none` host for the hidden range input. Keyboard uses the same macOS-style accelerator as Slider.",
+    "press": [
+      "Pointer-down anywhere on the Control — including the hit-slop `::before` that extends the 32px pill to 44px — is a track press: Base UI jumps the (invisible) thumb to that point and then `setPointerCapture`s for the drag.",
+      "There is no separate thumb to grab; `pointer-events: none` on `.thumb` makes every press hit the track.",
+      "The start-slot icon is `inert` and `pointer-events: none`, so a tap on the leading cap still drags the fill rather than activating the icon.",
+      "`onValueCommitted` fires on release, matching Slider."
+    ],
+    "focus": [
+      "Keyboard focus draws the two-layer halo on the CONTROL (the pill), not on a knob: `--Stroke-XL` gap in `--Surface-Halo-Gap` plus an outer `--Informative-Bold` ring (always Informative, regardless of appearance).",
+      "The selector is `:has(:focus-visible)`, not `:focus-within`, so a mouse click that focuses the hidden input does not paint the halo.",
+      "There is no value tooltip."
+    ],
+    "keyboard": [
+      "The same capture-phase accelerator as Slider intercepts `ArrowLeft` / `ArrowRight` (horizontal) or `ArrowUp` / `ArrowDown` (vertical), `PageUp` / `PageDown`, and `Shift+Arrow`. Repeats accelerate (×2 / ×5 / `largeStep`); `Shift` and page keys always use `largeStep`.",
+      "`Home` / `End` fall through to Base UI and jump to `min` / `max`.",
+      "On a horizontal TouchSlider, `ArrowUp` / `ArrowDown` are not accelerated; they fall through and Base UI steps them by Root's `step` (TouchSlider always passes the public `step`, unlike Slider's `dragStep`). Same for `ArrowLeft` / `ArrowRight` when vertical.",
+      "`readOnly` sets `aria-readonly`, keeps the input focusable (not natively disabled), and both cancels Base UI changes and skips the accelerator. `disabled` natively disables the input."
+    ],
+    "disabled": [
+      "`disabled` dims the root to `--Disabled-Opacity` and sets `cursor: not-allowed`. The Control, its hit-slop `::before`, the thumb, and the input all get `pointer-events: none`.",
+      "The not-allowed cursor is on the root, so it is observable — this is not the Button-style cursor gap.",
+      "`readOnly` is stricter than Slider's: the whole root gets `pointer-events: none` (cursor `default` on the Control), so pointer dragging is blocked, while the input stays focusable for AT. It does not dim."
+    ],
+    "touch": [
+      "The visual pill is `--Spacing-8` (32px) thick; `.control::before` extends the hit area by `--TouchSlider-hitSlop` (`--Spacing-Negative-1-5`) so the target is 44px without changing layout. Because the slop belongs to Base UI's Control, presses in that extra band still jump-and-drag.",
+      "Root and Control set `touch-action: none` so a drag does not scroll the page.",
+      "There is no hover fill or knob growth — a tap's only visual is the fill easing into place: `.indicator` transitions its `width` / `height` over `--Motion-Duration-M` with `--Motion-Easing-Entrance-Moderate`, so it glides to the new point rather than snapping there. `prefers-reduced-motion` keeps only the colour fade and drops the size animation."
+    ]
+  },
+  "importPath": "@jds4/oneui-react",
+  "figma": {
+    "componentKey": "jds-touchslider-v4",
+    "componentSetKeys": [
+      "56fcdb4c36de2d7a5c5b2ea2132b50be23668824"
+    ]
+  },
+  "renderHints": {
+    "baseElement": "div",
+    "readsFromSurfaceContext": true
+  },
+  "a11y": {
+    "role": "slider",
+    "minTouchTarget": 44,
+    "accessibleNameSource": "aria-label"
+  }
+}

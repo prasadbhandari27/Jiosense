@@ -1,0 +1,220 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "HeaderNativePrimaryNav",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.249Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Public API for JdsHeaderNativePrimaryNav."
+  },
+  "composable": "JdsHeaderNativePrimaryNav",
+  "attributesClass": "JdsHeaderNativePrimaryNavAttributes",
+  "importPath": "com.jds.components.headernativeprimarynav",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.headernativeprimarynav.JdsHeaderNativePrimaryNav",
+    "attributes": "com.jds.components.headernativeprimarynav.JdsHeaderNativePrimaryNavAttributes",
+    "enums": {
+      "JdsHeaderNativePrimaryNavType": "com.jds.components.headernativeprimarynav.JdsHeaderNativePrimaryNavType"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "type",
+      "type": "JdsHeaderNativePrimaryNavType",
+      "required": false,
+      "defaultValue": "JdsHeaderNativePrimaryNavType.HomeBar",
+      "enumValues": [
+        "HomeBar",
+        "ContextBar",
+        "SearchBar"
+      ],
+      "description": ""
+    },
+    {
+      "name": "expanded",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "logo",
+      "type": "JdsSlot?",
+      "required": false,
+      "defaultValue": "null",
+      "slot": true,
+      "slotTypes": [],
+      "description": ""
+    },
+    {
+      "name": "start",
+      "type": "JdsSlot?",
+      "required": false,
+      "defaultValue": "null",
+      "slot": true,
+      "slotTypes": [],
+      "description": ""
+    },
+    {
+      "name": "endActions",
+      "type": "List<JdsSlot>",
+      "required": false,
+      "defaultValue": "emptyList()",
+      "description": ""
+    },
+    {
+      "name": "avatar",
+      "type": "JdsSlot?",
+      "required": false,
+      "defaultValue": "null",
+      "slot": true,
+      "slotTypes": [],
+      "description": ""
+    },
+    {
+      "name": "searchInput",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "titleContent",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "secondaryTextContent",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "searchPlaceholder",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "searchValue",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "onSearchChange",
+      "type": "((String) -> Unit)?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "onSearchSubmit",
+      "type": "((String) -> Unit)?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "searchAriaLabel",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "contentDescription",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "logo",
+      "types": []
+    },
+    {
+      "name": "start",
+      "types": []
+    },
+    {
+      "name": "avatar",
+      "types": []
+    }
+  ],
+  "enums": {
+    "JdsHeaderNativePrimaryNavType": [
+      "HomeBar",
+      "ContextBar",
+      "SearchBar"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.HeaderNativePrimaryNav",
+    "type": "object",
+    "properties": {
+      "type": {
+        "enum": [
+          "HomeBar",
+          "ContextBar",
+          "SearchBar"
+        ],
+        "default": "JdsHeaderNativePrimaryNavType.HomeBar"
+      },
+      "expanded": {
+        "type": "boolean"
+      },
+      "logo": {},
+      "start": {},
+      "endActions": {},
+      "avatar": {},
+      "searchInput": {
+        "type": "boolean"
+      },
+      "titleContent": {
+        "type": "string"
+      },
+      "secondaryTextContent": {
+        "type": "string"
+      },
+      "searchPlaceholder": {
+        "type": "string"
+      },
+      "searchValue": {
+        "type": "string"
+      },
+      "onSearchChange": {},
+      "onSearchSubmit": {},
+      "searchAriaLabel": {
+        "type": "string"
+      },
+      "contentDescription": {
+        "type": "string"
+      }
+    },
+    "required": []
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "headernativeprimarynav"
+  ],
+  "importPathMaven": "com.jds:components"
+}

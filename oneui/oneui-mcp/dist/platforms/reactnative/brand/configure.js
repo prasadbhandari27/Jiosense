@@ -1,0 +1,1 @@
+import{ensureBrandSubBrand as a}from"../../../lib/brandsConfig.js";function s(r,n,t){return a(r,n,t)}function u(r,n,t){const e=s(r,n,t);return[e.ok?e.changed?`\u2705 ${e.message}`:e.message:`\u26A0\uFE0F ${e.message}`]}export{u as configureReactNativeBrand,s as ensureReactNativeBrand};

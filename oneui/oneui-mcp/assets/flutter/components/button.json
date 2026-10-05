@@ -1,0 +1,152 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Button",
+  "flutterExport": "OneUiButton",
+  "importPath": "package:ui_flutter/ui_flutter.dart",
+  "generatedAt": "2026-09-04T05:50:48.675Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "OneUiButton from the ui_flutter barrel. Use Surface context (OneUiSurface) for tinted backgrounds."
+  },
+  "props": [
+    {
+      "name": "label",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "child",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "attention",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "variant",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "sizeAlias",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "contained",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "condensed",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "fullWidth",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "start",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "end",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "startSemanticIcon",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "endSemanticIcon",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onPressed",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onPress",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onClick",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "inheritOrnamentFromScope",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "decoration",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "semanticButtonType",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "semanticsLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    }
+  ]
+}

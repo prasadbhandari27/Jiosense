@@ -1,0 +1,109 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Avatar",
+  "flutterExport": "OneUiAvatar",
+  "importPath": "package:ui_flutter/ui_flutter.dart",
+  "generatedAt": "2026-09-04T05:50:48.675Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Circular identity mark. Text initials from alt (not OneUiText). Image mode requires src. Wrap in OneUiSurface."
+  },
+  "compositionRules": {
+    "forbids": [
+      "fallback: OneUiText(...) or icon: OneUiText(...)",
+      "content: OneUiAvatarContent.image without src",
+      "text content at size 2xs or xs (widget demotes those to icon)"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "title": "Initials",
+      "code": "OneUiAvatar(\n  content: OneUiAvatarContent.text,\n  size: 's',\n  attention: OneUiAvatarAttention.medium,\n  appearance: 'secondary',\n  alt: 'Jane Patel',\n)"
+    },
+    {
+      "title": "Photo",
+      "code": "OneUiAvatar(\n  content: OneUiAvatarContent.image,\n  src: 'https://example.com/photo.jpg',\n  size: 'l',\n  attention: OneUiAvatarAttention.low,\n  alt: 'Alex Brown',\n)"
+    }
+  ],
+  "props": [
+    {
+      "name": "content",
+      "required": false,
+      "type": "OneUiAvatarContent",
+      "description": "image | icon | text. image requires src."
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "String ('2xs'|'xs'|'s'|'m'|'l'|'xl'|'2xl'|'custom')",
+      "description": "T-shirt size string, not sizeAlias. Text initials need s or larger (2xs/xs demote to icon)."
+    },
+    {
+      "name": "attention",
+      "required": false,
+      "type": "OneUiAvatarAttention",
+      "description": "high | medium | low"
+    },
+    {
+      "name": "appearance",
+      "required": false,
+      "type": "String",
+      "description": "Role: secondary (default), primary, neutral, …"
+    },
+    {
+      "name": "src",
+      "required": false,
+      "type": "String?",
+      "description": "Required when content is image. HTTPS or vendored asset path."
+    },
+    {
+      "name": "alt",
+      "required": false,
+      "type": "String",
+      "description": "Person name for initials (Jane Patel → JP) and semantics. Prefer this over fallback text."
+    },
+    {
+      "name": "fallback",
+      "required": false,
+      "type": "Widget?",
+      "description": "Optional. Never OneUiText. Initials: omit and use alt. Custom letters: Text('JP')."
+    },
+    {
+      "name": "icon",
+      "required": false,
+      "type": "Widget?",
+      "description": "Glyph only — not OneUiText."
+    },
+    {
+      "name": "customSize",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "semanticsHint",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "excludeFromSemantics",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "testId",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    }
+  ]
+}

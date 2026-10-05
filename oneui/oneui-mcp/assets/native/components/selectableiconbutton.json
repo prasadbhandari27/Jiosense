@@ -1,0 +1,380 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "SelectableIconButton",
+  "generatedAt": "2026-08-26T06:20:09.505Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Icon-only toggle button (like / favourite pattern). Toggle sibling of IconButton. The unselected state is always a muted ghost; `attention` (high/medium/low) drives the selected-state prominence (bold fill / subtle fill / ghost-with-accent-border). Supports 6 sizes, `1:1`/`2:3` shape, `condensed`, `contained`, `fullWidth`, `disabled`, and `loading` (busy, non-disabled). Controlled via `selected`/`onSelectedChange` or uncontrolled via `defaultSelected`. `aria-label` is required."
+  },
+  "compositionRules": {
+    "requires": [
+      "icon",
+      "aria-label"
+    ],
+    "allows": [],
+    "forbids": [],
+    "childKind": "leaf"
+  },
+  "props": [
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "required": true,
+      "description": "Glyph to render — a SemanticIconName, a ReactElement, or an IconComponent (e.g. icon={IcStar})."
+    },
+    {
+      "name": "selected",
+      "type": "boolean",
+      "required": false,
+      "description": "Controlled selected state (the toggle pressed state)."
+    },
+    {
+      "name": "defaultSelected",
+      "type": "boolean",
+      "required": false,
+      "description": "Uncontrolled initial selected state."
+    },
+    {
+      "name": "onSelectedChange",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Fires with the next boolean selected state."
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "required": false,
+      "description": "Value for a selection group (parity — passthrough for a future native ToggleGroup)."
+    },
+    {
+      "name": "attention",
+      "type": "'high' | 'medium' | 'low'",
+      "required": false,
+      "defaultValue": "high",
+      "description": "Prominence of the SELECTED state: high→bold fill, medium→subtle fill, low→ghost with accent border. Unselected is always muted ghost."
+    },
+    {
+      "name": "size",
+      "type": "4 | 6 | 8 | 10 | 12 | 14 | '2xs' | 'xs' | 's' | 'm' | 'l' | 'xl'",
+      "required": false,
+      "defaultValue": "10",
+      "description": "Button size — f-step number (4|6|8|10|12|14) or t-shirt alias (2xs–xl). Default 10 (M)."
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": "Multi-accent role. Explicit non-'auto' wins; otherwise resolves to 'primary'."
+    },
+    {
+      "name": "shape",
+      "type": "'1:1' | '2:3'",
+      "required": false,
+      "defaultValue": "1:1",
+      "description": "Square (1:1) or wide rectangle (2:3). Contained only."
+    },
+    {
+      "name": "contained",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": "When true (default), a contained icon chip with background/border. When false, a bare icon (no background/border/box); condensed/fullWidth/shape are ignored."
+    },
+    {
+      "name": "condensed",
+      "type": "boolean",
+      "required": false,
+      "description": "Reduces the container size while keeping the icon size. Contained only."
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "required": false,
+      "description": "Stretch to fill container width. Contained only."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Shows a spinner replacing the icon and marks the control busy. Activation is suppressed while busy, but it is NOT marked disabled."
+    },
+    {
+      "name": "onPress",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Press handler (React Native convention)."
+    },
+    {
+      "name": "onClick",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Web parity alias for onPress."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": true,
+      "description": "Required accessible label — icon-only controls need an accessible name."
+    },
+    {
+      "name": "accessibilityHint",
+      "type": "string",
+      "required": false,
+      "description": "Describes the result of toggling (React Native)."
+    },
+    {
+      "name": "testID",
+      "type": "string",
+      "required": false,
+      "description": "React Native test identifier."
+    },
+    {
+      "name": "backgroundColor",
+      "type": "string",
+      "required": false,
+      "description": "[error] Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill."
+    },
+    {
+      "name": "style",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Layout style only. attention + appearance + the parent <Surface> drive bg / icon colour — do not paint here. — [warn] SelectableIconButton colour is surface-resolved from `attention` + `appearance`. Don't set backgroundColor; wrap in <Surface> and it adapts automatically."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.SelectableIconButton",
+    "type": "object",
+    "required": [
+      "icon",
+      "aria-label"
+    ],
+    "properties": {
+      "icon": {
+        "description": "Glyph to render — a SemanticIconName, a ReactElement, or an IconComponent (e.g. icon={IcStar})."
+      },
+      "selected": {
+        "type": "boolean",
+        "description": "Controlled selected state (the toggle pressed state)."
+      },
+      "defaultSelected": {
+        "type": "boolean",
+        "description": "Uncontrolled initial selected state."
+      },
+      "onSelectedChange": {
+        "description": "Fires with the next boolean selected state."
+      },
+      "value": {
+        "type": "string",
+        "description": "Value for a selection group (parity — passthrough for a future native ToggleGroup)."
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "default": "high",
+        "description": "Prominence of the SELECTED state: high→bold fill, medium→subtle fill, low→ghost with accent border. Unselected is always muted ghost."
+      },
+      "size": {
+        "enum": [
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          "2xs",
+          "xs",
+          "s",
+          "m",
+          "l",
+          "xl"
+        ],
+        "default": 10,
+        "description": "Button size — f-step number (4|6|8|10|12|14) or t-shirt alias (2xs–xl). Default 10 (M)."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "default": "auto",
+        "description": "Multi-accent role. Explicit non-'auto' wins; otherwise resolves to 'primary'."
+      },
+      "shape": {
+        "enum": [
+          "1:1",
+          "2:3"
+        ],
+        "default": "1:1",
+        "description": "Square (1:1) or wide rectangle (2:3). Contained only."
+      },
+      "contained": {
+        "type": "boolean",
+        "default": true,
+        "description": "When true (default), a contained icon chip with background/border. When false, a bare icon (no background/border/box); condensed/fullWidth/shape are ignored."
+      },
+      "condensed": {
+        "type": "boolean",
+        "description": "Reduces the container size while keeping the icon size. Contained only."
+      },
+      "fullWidth": {
+        "type": "boolean",
+        "description": "Stretch to fill container width. Contained only."
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false
+      },
+      "loading": {
+        "type": "boolean",
+        "default": false,
+        "description": "Shows a spinner replacing the icon and marks the control busy. Activation is suppressed while busy, but it is NOT marked disabled."
+      },
+      "onPress": {
+        "description": "Press handler (React Native convention)."
+      },
+      "onClick": {
+        "description": "Web parity alias for onPress."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Required accessible label — icon-only controls need an accessible name."
+      },
+      "accessibilityHint": {
+        "type": "string",
+        "description": "Describes the result of toggling (React Native)."
+      },
+      "testID": {
+        "type": "string",
+        "description": "React Native test identifier."
+      },
+      "backgroundColor": {
+        "type": "string",
+        "not": {
+          "anyOf": [
+            {
+              "pattern": "^#"
+            },
+            {
+              "pattern": "^rgba?\\("
+            },
+            {
+              "pattern": "^hsla?\\("
+            },
+            {
+              "pattern": "^oklch\\("
+            },
+            {
+              "pattern": "^color-mix\\("
+            },
+            {
+              "enum": [
+                "transparent",
+                "inherit"
+              ]
+            }
+          ]
+        },
+        "x-jds-suggestion": "Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill.",
+        "x-jds-severity": "error"
+      },
+      "style": {
+        "description": "Layout style only. attention + appearance + the parent <Surface> drive bg / icon colour — do not paint here.",
+        "x-jds-suggestion": "SelectableIconButton colour is surface-resolved from `attention` + `appearance`. Don't set backgroundColor; wrap in <Surface> and it adapts automatically.",
+        "x-jds-severity": "warn"
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "neutral",
+      "sparkle",
+      "brand-bg",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ],
+    "surface": [
+      "bold",
+      "subtle",
+      "ghost"
+    ],
+    "shape": [
+      "pill"
+    ],
+    "motion": [
+      "motion.duration.expressive.long"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "button",
+    "accessibilityState": [
+      "selected",
+      "disabled",
+      "busy"
+    ],
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": false,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [
+      "press"
+    ],
+    "honorsReduceMotion": true,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-selectable-icon-button-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "SelectableIconButton"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { SelectableIconButton } from '@oneui/ui-native/components/SelectableIconButton';\n\n<SelectableIconButton />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "selectableiconbutton",
+    "action",
+    "icon-button",
+    "toggle",
+    "selection",
+    "surface-aware",
+    "inherits-appearance"
+  ],
+  "importPath": "@oneui/ui-native/components/SelectableIconButton"
+}

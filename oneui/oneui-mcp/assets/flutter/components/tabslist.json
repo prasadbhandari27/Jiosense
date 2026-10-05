@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "TabsList",
+  "flutterExport": "OneUiTabsList",
+  "importPath": "package:ui_flutter/ui_flutter.dart",
+  "generatedAt": "2026-09-04T05:50:48.675Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "OneUiTabsList from the ui_flutter barrel. Use Surface context (OneUiSurface) for tinted backgrounds."
+  },
+  "props": [
+    {
+      "name": "children",
+      "required": true,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "activateOnFocus",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "loopFocus",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "showIndicator",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "semanticsLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "accessibilityHint",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "semanticsHint",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "testId",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "testID",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "focusController",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "tabsDefaults",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    }
+  ]
+}

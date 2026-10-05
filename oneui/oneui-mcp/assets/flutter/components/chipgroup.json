@@ -1,0 +1,158 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "ChipGroup",
+  "flutterExport": "OneUiChipGroup",
+  "importPath": "package:ui_flutter/ui_flutter.dart",
+  "generatedAt": "2026-09-04T05:50:48.675Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "OneUiChipGroup from the ui_flutter barrel. Use Surface context (OneUiSurface) for tinted backgrounds."
+  },
+  "props": [
+    {
+      "name": "children",
+      "required": true,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "value",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "defaultValue",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onValueChange",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "multiple",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "orientation",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "containerType",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "wrap",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "attention",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "variant",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "maxSelections",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "required",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "loopFocus",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "semanticsLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "semanticsLabelledBy",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "ariaLabelledBy",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "semanticsHint",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "accessibilityHint",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "testId",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "testID",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    }
+  ]
+}

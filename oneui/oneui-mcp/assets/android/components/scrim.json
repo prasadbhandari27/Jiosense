@@ -1,0 +1,189 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Scrim",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.254Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Public API contract for JdsScrim."
+  },
+  "composable": "JdsScrim",
+  "attributesClass": "JdsScrimAttributes",
+  "importPath": "com.jds.components.scrim",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.scrim.JdsScrim",
+    "attributes": "com.jds.components.scrim.JdsScrimAttributes",
+    "enums": {
+      "JdsScrimVariant": "com.jds.components.scrim.JdsScrimVariant",
+      "JdsScrimPosition": "com.jds.components.scrim.JdsScrimPosition",
+      "JdsScrimSize": "com.jds.components.scrim.JdsScrimSize",
+      "JdsScrimAttention": "com.jds.components.scrim.JdsScrimAttention",
+      "JdsScrimBlurSize": "com.jds.components.scrim.JdsScrimBlurSize"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "variant",
+      "type": "JdsScrimVariant",
+      "required": false,
+      "defaultValue": "JdsScrimVariant.Gradient",
+      "enumValues": [
+        "Gradient",
+        "Overlay"
+      ],
+      "description": ""
+    },
+    {
+      "name": "position",
+      "type": "JdsScrimPosition",
+      "required": false,
+      "defaultValue": "JdsScrimPosition.Bottom",
+      "enumValues": [
+        "Bottom",
+        "Left",
+        "Top",
+        "Right"
+      ],
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "JdsScrimSize",
+      "required": false,
+      "defaultValue": "JdsScrimSize.M",
+      "enumValues": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "Full"
+      ],
+      "description": ""
+    },
+    {
+      "name": "attention",
+      "type": "JdsScrimAttention",
+      "required": false,
+      "defaultValue": "JdsScrimAttention.Medium",
+      "enumValues": [
+        "High",
+        "Medium",
+        "Low"
+      ],
+      "description": ""
+    },
+    {
+      "name": "overlayBlurSize",
+      "type": "JdsScrimBlurSize",
+      "required": false,
+      "defaultValue": "JdsScrimBlurSize.None",
+      "enumValues": [
+        "None",
+        "S",
+        "M",
+        "L"
+      ],
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "enums": {
+    "JdsScrimVariant": [
+      "Gradient",
+      "Overlay"
+    ],
+    "JdsScrimPosition": [
+      "Bottom",
+      "Left",
+      "Top",
+      "Right"
+    ],
+    "JdsScrimSize": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "Full"
+    ],
+    "JdsScrimAttention": [
+      "High",
+      "Medium",
+      "Low"
+    ],
+    "JdsScrimBlurSize": [
+      "None",
+      "S",
+      "M",
+      "L"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.Scrim",
+    "type": "object",
+    "properties": {
+      "variant": {
+        "enum": [
+          "Gradient",
+          "Overlay"
+        ],
+        "default": "JdsScrimVariant.Gradient"
+      },
+      "position": {
+        "enum": [
+          "Bottom",
+          "Left",
+          "Top",
+          "Right"
+        ],
+        "default": "JdsScrimPosition.Bottom"
+      },
+      "size": {
+        "enum": [
+          "XS",
+          "S",
+          "M",
+          "L",
+          "XL",
+          "Full"
+        ],
+        "default": "JdsScrimSize.M"
+      },
+      "attention": {
+        "enum": [
+          "High",
+          "Medium",
+          "Low"
+        ],
+        "default": "JdsScrimAttention.Medium"
+      },
+      "overlayBlurSize": {
+        "enum": [
+          "None",
+          "S",
+          "M",
+          "L"
+        ],
+        "default": "JdsScrimBlurSize.None"
+      }
+    },
+    "required": []
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "scrim"
+  ],
+  "importPathMaven": "com.jds:components"
+}

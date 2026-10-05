@@ -1,0 +1,308 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Input",
+  "flutterExport": "OneUiInput",
+  "importPath": "package:ui_flutter/ui_flutter.dart",
+  "generatedAt": "2026-09-04T05:50:48.675Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "OneUiInput from the ui_flutter barrel. Use Surface context (OneUiSurface) for tinted backgrounds."
+  },
+  "props": [
+    {
+      "name": "label",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "description",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "labelSuffixInside",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "labelTrailing",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "labelAssociation",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "externalLabelHeader",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "errorHighlight",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "ariaInvalid",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "shape",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "attention",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "start",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "start2",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "end",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "end2",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "leftAddon",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "rightAddon",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "placeholder",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "value",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "defaultValue",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onChanged",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onSubmit",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onSubmitEditing",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "readOnly",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "decorative",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "active",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "emphasizeValue",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "required",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "maxLength",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "name",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "type",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onKeyDown",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onBlur",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onFocus",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "id",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "testId",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "autoComplete",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "autofocus",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "accessibilityLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "accessibilityHint",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "ariaDescribedBy",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "ariaHidden",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "width",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "focusNode",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "controller",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "dimWhenDisabled",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    }
+  ]
+}

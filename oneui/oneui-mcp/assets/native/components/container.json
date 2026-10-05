@@ -1,0 +1,338 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Container",
+  "generatedAt": "2026-08-26T06:20:09.468Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "The one public layout wrapper — constrains children width via variant (fluid / fixed / full-bleed) + maxWidth, plus the shared token-resolved flex-layout props (direction/gap/padding*/align/justify/wrap/flex). ALSO establishes a surface-context boundary internally: `mode` defaults to 'ghost' (transparent, same step as parent — no visual change from plain layout use), or pass mode=\"bold\"/\"subtle\"/etc. + appearance to make this Container a real colour region, exactly like the old <Surface> component (now internal-only, not part of the public API). a11y-transparent."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "fixed-slots"
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "fluid"
+      },
+      {
+        "name": "fixed"
+      },
+      {
+        "name": "full-bleed"
+      }
+    ]
+  },
+  "props": [
+    {
+      "name": "variant",
+      "type": "'fluid' | 'fixed' | 'full-bleed'",
+      "required": false,
+      "defaultValue": "fluid",
+      "description": "fluid = grows with parent; fixed = capped at maxWidth; full-bleed = edge-to-edge."
+    },
+    {
+      "name": "maxWidth",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Width cap — number (px) or string (dim). Honoured for variant=\"fixed\"."
+    },
+    {
+      "name": "mode",
+      "type": "'default' | 'ghost' | 'minimal' | 'subtle' | 'moderate' | 'bold' | 'elevated'",
+      "required": false,
+      "defaultValue": "ghost",
+      "description": "Surface mode for this layout boundary. Container always establishes a surface-context boundary internally; 'ghost' (the default) paints no fill and keeps the parent's step, so callers that never pass `mode` see no visual change. Pass 'bold'/'subtle'/etc. to make this Container a real colour region."
+    },
+    {
+      "name": "appearance",
+      "type": "'primary' | 'secondary' | 'tertiary' | 'quaternary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": "Which role fills the surface when `mode` paints a real fill. Default resolves to primary."
+    },
+    {
+      "name": "direction",
+      "type": "'row' | 'column'",
+      "required": false,
+      "description": "Flex main-axis direction."
+    },
+    {
+      "name": "gap",
+      "type": "string",
+      "required": false,
+      "description": "Token-only spacing between children — a NativeSpacingKey (e.g. \"6\"), a Figma \"dimensions/spacings/N\" path, or a \"Spacing-N\" alias. NEVER a raw pixel number/string — resolveSpacingPx silently drops unresolvable values."
+    },
+    {
+      "name": "padding",
+      "type": "string",
+      "required": false,
+      "description": "Token-only padding on all sides. Same value shape as `gap`."
+    },
+    {
+      "name": "paddingX",
+      "type": "string",
+      "required": false,
+      "description": "Token-only horizontal padding. Same value shape as `gap`."
+    },
+    {
+      "name": "paddingY",
+      "type": "string",
+      "required": false,
+      "description": "Token-only vertical padding. Same value shape as `gap`."
+    },
+    {
+      "name": "paddingTop",
+      "type": "string",
+      "required": false,
+      "description": "Token-only. Same value shape as `gap`."
+    },
+    {
+      "name": "paddingRight",
+      "type": "string",
+      "required": false,
+      "description": "Token-only. Same value shape as `gap`."
+    },
+    {
+      "name": "paddingBottom",
+      "type": "string",
+      "required": false,
+      "description": "Token-only. Same value shape as `gap`."
+    },
+    {
+      "name": "paddingLeft",
+      "type": "string",
+      "required": false,
+      "description": "Token-only. Same value shape as `gap`."
+    },
+    {
+      "name": "align",
+      "type": "'start' | 'center' | 'end' | 'stretch' | 'baseline'",
+      "required": false,
+      "description": "Cross-axis alignment — maps to `alignItems`."
+    },
+    {
+      "name": "justify",
+      "type": "'start' | 'center' | 'end' | 'between' | 'around' | 'evenly'",
+      "required": false,
+      "description": "Main-axis distribution — maps to `justifyContent`."
+    },
+    {
+      "name": "wrap",
+      "type": "boolean",
+      "required": false,
+      "description": "Flex-wrap."
+    },
+    {
+      "name": "flex",
+      "type": "number",
+      "required": false,
+      "description": "Flex-grow factor — a plain number IS valid here (not a spacing token)."
+    },
+    {
+      "name": "minHeight",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Minimum height — a NativeSpacingKey/token path (same shape as `gap`) OR a raw dp number (a plain number IS valid here, unlike `gap`). Use to size a horizontal `ScrollView` rail, which RN cannot cross-axis-size from content: wrap the ScrollView in `<Container minHeight={N}>` instead of a raw `View`."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Arbitrary content; layout order preserved."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.Container",
+    "type": "object",
+    "properties": {
+      "variant": {
+        "enum": [
+          "fluid",
+          "fixed",
+          "full-bleed"
+        ],
+        "default": "fluid",
+        "description": "fluid = grows with parent; fixed = capped at maxWidth; full-bleed = edge-to-edge."
+      },
+      "maxWidth": {
+        "description": "Width cap — number (px) or string (dim). Honoured for variant=\"fixed\"."
+      },
+      "mode": {
+        "enum": [
+          "default",
+          "ghost",
+          "minimal",
+          "subtle",
+          "moderate",
+          "bold",
+          "elevated"
+        ],
+        "default": "ghost",
+        "description": "Surface mode for this layout boundary. Container always establishes a surface-context boundary internally; 'ghost' (the default) paints no fill and keeps the parent's step, so callers that never pass `mode` see no visual change. Pass 'bold'/'subtle'/etc. to make this Container a real colour region."
+      },
+      "appearance": {
+        "enum": [
+          "primary",
+          "secondary",
+          "tertiary",
+          "quaternary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "default": "auto",
+        "description": "Which role fills the surface when `mode` paints a real fill. Default resolves to primary."
+      },
+      "direction": {
+        "enum": [
+          "row",
+          "column"
+        ],
+        "description": "Flex main-axis direction."
+      },
+      "gap": {
+        "type": "string",
+        "description": "Token-only spacing between children — a NativeSpacingKey (e.g. \"6\"), a Figma \"dimensions/spacings/N\" path, or a \"Spacing-N\" alias. NEVER a raw pixel number/string — resolveSpacingPx silently drops unresolvable values."
+      },
+      "padding": {
+        "type": "string",
+        "description": "Token-only padding on all sides. Same value shape as `gap`."
+      },
+      "paddingX": {
+        "type": "string",
+        "description": "Token-only horizontal padding. Same value shape as `gap`."
+      },
+      "paddingY": {
+        "type": "string",
+        "description": "Token-only vertical padding. Same value shape as `gap`."
+      },
+      "paddingTop": {
+        "type": "string",
+        "description": "Token-only. Same value shape as `gap`."
+      },
+      "paddingRight": {
+        "type": "string",
+        "description": "Token-only. Same value shape as `gap`."
+      },
+      "paddingBottom": {
+        "type": "string",
+        "description": "Token-only. Same value shape as `gap`."
+      },
+      "paddingLeft": {
+        "type": "string",
+        "description": "Token-only. Same value shape as `gap`."
+      },
+      "align": {
+        "enum": [
+          "start",
+          "center",
+          "end",
+          "stretch",
+          "baseline"
+        ],
+        "description": "Cross-axis alignment — maps to `alignItems`."
+      },
+      "justify": {
+        "enum": [
+          "start",
+          "center",
+          "end",
+          "between",
+          "around",
+          "evenly"
+        ],
+        "description": "Main-axis distribution — maps to `justifyContent`."
+      },
+      "wrap": {
+        "type": "boolean",
+        "description": "Flex-wrap."
+      },
+      "flex": {
+        "type": "number",
+        "description": "Flex-grow factor — a plain number IS valid here (not a spacing token)."
+      },
+      "minHeight": {
+        "description": "Minimum height — a NativeSpacingKey/token path (same shape as `gap`) OR a raw dp number (a plain number IS valid here, unlike `gap`). Use to size a horizontal `ScrollView` rail, which RN cannot cross-axis-size from content: wrap the ScrollView in `<Container minHeight={N}>` instead of a raw `View`."
+      },
+      "children": {
+        "description": "Arbitrary content; layout order preserved."
+      }
+    }
+  },
+  "tokens": {
+    "spacing": [
+      "margin",
+      "gutter"
+    ],
+    "color": [
+      "primary",
+      "secondary",
+      "tertiary",
+      "quaternary",
+      "neutral",
+      "sparkle",
+      "brand-bg",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ],
+    "surface": [
+      "default",
+      "ghost",
+      "minimal",
+      "subtle",
+      "moderate",
+      "bold",
+      "elevated"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "none",
+    "accessibleNameSource": "children",
+    "minTouchTarget": 44,
+    "honorsBoldText": false,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [],
+    "honorsReduceMotion": false,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-container-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "Container"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Container } from '@oneui/ui-native/components/Container';\n\n<Container />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "container",
+    "layout",
+    "container",
+    "structural",
+    "surface",
+    "chassis"
+  ],
+  "importPath": "@oneui/ui-native/components/Container"
+}

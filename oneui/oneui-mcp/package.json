@@ -1,0 +1,93 @@
+{
+  "name": "@jds4/oneui-mcp",
+  "version": "0.1.0-alpha.13",
+  "description": "Model Context Protocol server for the One UI / JDS design system. Lets an AI coding agent install OneUI packages, load design skills, look up components/tokens/brands, and build OneUI-compliant React (web) apps. Self-contained, offline, zero runtime dependency on the OneUI monorepo.",
+  "type": "module",
+  "license": "UNLICENSED",
+  "private": false,
+  "bin": {
+    "oneui-mcp": "dist/index.js"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "assets",
+    "skills",
+    "commands",
+    "hooks",
+    "assist-docs",
+    "assist-regressions",
+    ".claude-plugin",
+    ".mcp.json",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "prebuild": "node scripts/bake-feed-auth.mjs",
+    "build": "tsc -p tsconfig.json",
+    "postbuild": "node scripts/write-build-info.mjs",
+    "prepack": "node scripts/build-plugin.mjs && node scripts/prepare-assist-package.mjs",
+    "postpack": "node scripts/prepare-assist-package.mjs --clean",
+    "pack:dist": "npm run build && node scripts/build-plugin.mjs && node scripts/prepare-assist-package.mjs && node scripts/minify-dist.mjs && npm pack --ignore-scripts --pack-destination ../../dist && node scripts/prepare-assist-package.mjs --clean",
+    "pack:mcp": "npm run pack:dist",
+    "write:cdn-manifest": "node scripts/write-cdn-manifest.mjs",
+    "build:snapshot": "node scripts/build-snapshot.mjs",
+    "sync:external-skills": "node scripts/sync-external-skills.mjs",
+    "refresh:external-skills": "node scripts/sync-external-skills.mjs && node scripts/rebuild-skills.mjs",
+    "build:chart-snapshot": "node scripts/build-chart-snapshot.mjs",
+    "check:snapshot-fresh": "node scripts/check-snapshot-fresh.mjs",
+    "check:native-freeze": "node scripts/check-native-freeze.mjs",
+    "smoke:react-screens": "node scripts/smoke-react-screens.mjs",
+    "check:distribution": "node scripts/check-distribution-contents.mjs",
+    "write:native-freeze": "node scripts/check-native-freeze.mjs --write",
+    "build:native-snapshot": "pnpm --filter @jds/kb-core build && pnpm --filter @jds/kb-rn build && node scripts/build-native-snapshot.mjs",
+    "build:android-snapshot": "node scripts/build-android-snapshot.mjs",
+    "build:flutter-snapshot": "node scripts/build-flutter-snapshot.mjs",
+    "build:android-components": "node scripts/build-android-components.mjs",
+    "build:plugin": "node scripts/build-plugin.mjs",
+    "pack:plugin": "node scripts/pack-plugin.mjs --mode=full",
+    "pack:plugin:npm": "node scripts/pack-plugin.mjs --mode=npm",
+    "start": "node dist/index.js",
+    "clean": "rm -rf dist",
+    "test": "vitest run",
+    "pretest": "npm run build",
+    "figma:identities": "node scripts/figma-identities.mjs",
+    "figma:identities:init-pending": "node scripts/initialize-pending-figma-identities.mjs",
+    "figma:capture:compare": "node scripts/compare-capture-schemas.mjs",
+    "figma:capture:resume": "node scripts/resumable-capture.mjs",
+    "figma:capture:merge-subroots": "node scripts/merge-capture-subroots.mjs",
+    "figma:capture:simulate-monolithic": "node scripts/simulate-capture-budgets.mjs",
+    "figma:visual:prepare": "node scripts/prepare-visual-eval.mjs",
+    "figma:visual:render": "node scripts/render-visual-eval.mjs",
+    "figma:visual:compare": "node scripts/build-visual-comparison.mjs",
+    "figma:visual:contact-sheet": "node scripts/build-visual-contact-sheet.mjs"
+  },
+  "dependencies": {
+    "@babel/parser": "^7.24.0",
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "ws": "^8.21.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/ws": "^8.18.1",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.6.0",
+    "vitest": "^3.2.7"
+  },
+  "optionalDependencies": {
+    "playwright": "^1.48.0",
+    "sharp": "^0.33.0"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "oneui",
+    "jds",
+    "design-system",
+    "react",
+    "ai"
+  ]
+}

@@ -1,0 +1,836 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Select",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Choose one or many values, or invoke an action, through a composed input, button, or icon-button trigger and an anchored menu.",
+    "taskContexts": [
+      "form-selection",
+      "filter-selection",
+      "compact-action-menu",
+      "grouped-option-picker"
+    ],
+    "sentiments": [
+      "neutral",
+      "informative"
+    ]
+  },
+  "compositionRules": {
+    "requires": [
+      "options",
+      "visible label or aria-label"
+    ],
+    "allows": [
+      "start and triggerIcon slots",
+      "sections and grouped options",
+      "canonical Search menu header",
+      "controlled or uncontrolled single/multi values",
+      "secondary option text"
+    ],
+    "forbids": [
+      "nested interactive controls inside an option",
+      "using presentation state to control popup visibility (use open)",
+      "assuming contextMenu=false creates responsive or sheet behavior",
+      "decorative popup strokes on the elevated Surface"
+    ]
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "trigger",
+        "useWhen": [
+          "selectableInput for form fields",
+          "selectableButton for labeled actions or compact pickers",
+          "selectableIconButton only when an aria-label supplies the name"
+        ]
+      },
+      {
+        "name": "menuType",
+        "useWhen": [
+          "singleSelect for one value",
+          "multiSelect for a values array",
+          "actions for onAction without selection state"
+        ]
+      },
+      {
+        "name": "placement",
+        "useWhen": [
+          "menuDirection \"-\" for the Figma default anchored-below placement",
+          "below, above, or alignWithTrigger only when placement is intentional",
+          "menuAlignment and menuSize fill to match an input trigger"
+        ]
+      },
+      {
+        "name": "contextMenu compatibility",
+        "useWhen": [
+          "contextMenu defaults true",
+          "false currently retains the anchored popup because no alternate false hierarchy or BottomSheet composition is evidenced",
+          "deprecated showContextMenu normalizes to contextMenu and does not add responsive behavior"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": [
+      "InputField",
+      "Button",
+      "IconButton",
+      "Search",
+      "ListItem",
+      "ContextMenu"
+    ],
+    "groupsWith": [
+      "Field labels",
+      "Form validation"
+    ]
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "keyboard",
+      "pointer",
+      "touch",
+      "web"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven",
+      "multi-accent content"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context",
+      "neutral-elevated popup"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [
+      "open",
+      "close",
+      "value_change",
+      "values_change",
+      "action"
+    ],
+    "health": [
+      "a11y_violations",
+      "broken_start_images",
+      "popup_clipping",
+      "selection_persistence"
+    ]
+  },
+  "props": [
+    {
+      "name": "options",
+      "type": "SelectOption<T>[]",
+      "required": true,
+      "description": "options property"
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": "Multi-accent role. `auto` inherits the nearest Surface appearance and falls back to `primary` at the page root."
+    },
+    {
+      "name": "aria-describedby",
+      "type": "string",
+      "required": false,
+      "description": "aria-describedby property"
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "aria-label property"
+    },
+    {
+      "name": "aria-labelledby",
+      "type": "string",
+      "required": false,
+      "description": "aria-labelledby property"
+    },
+    {
+      "name": "attention",
+      "type": "'high' | 'medium' | 'low'",
+      "required": false,
+      "defaultValue": "`\"medium\"`\n- `selectableInput`: `medium` | `high` only (`low` coerces to `medium`)\n- `selectableButton` / `selectableIconButton`: `low` | `medium` | `high`",
+      "description": "Figma `attention` — trigger prominence."
+    },
+    {
+      "name": "chevron",
+      "type": "boolean",
+      "required": false,
+      "description": "chevron property"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "className property"
+    },
+    {
+      "name": "condensed",
+      "type": "boolean",
+      "required": false,
+      "description": "condensed property"
+    },
+    {
+      "name": "contained",
+      "type": "boolean",
+      "required": false,
+      "description": "contained property"
+    },
+    {
+      "name": "contextMenu",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": "Figma authoring signal for the anchored menu presentation. The inspected source defines only the default `true` composition. `false` is accepted but uses the same warned anchored fallback because no BottomSheet/alternate hierarchy is evidenced."
+    },
+    {
+      "name": "defaultValue",
+      "type": "T",
+      "required": false,
+      "description": "Initial value for an uncontrolled single Select."
+    },
+    {
+      "name": "defaultValues",
+      "type": "T[]",
+      "required": false,
+      "description": "Initial values for an uncontrolled multi Select."
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "required": false,
+      "description": "description property"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "disabled property"
+    },
+    {
+      "name": "emptyMessage",
+      "type": "string",
+      "required": false,
+      "defaultValue": "No options available",
+      "description": "Empty state when the Select has no options."
+    },
+    {
+      "name": "feedback",
+      "type": "string",
+      "required": false,
+      "description": "feedback property"
+    },
+    {
+      "name": "filled",
+      "type": "boolean",
+      "required": false,
+      "description": "Figma SelectableInput axis — whether the input trigger uses filled (high) styling. When unset on interactive `<Select>`, derived from selection (`value` / `values`)."
+    },
+    {
+      "name": "groups",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Figma grouping axis. Explicit false flattens supplied sections."
+    },
+    {
+      "name": "helperText",
+      "type": "string",
+      "required": false,
+      "description": "helperText property"
+    },
+    {
+      "name": "infoIcon",
+      "type": "boolean",
+      "required": false,
+      "description": "infoIcon property"
+    },
+    {
+      "name": "inputAttention",
+      "type": "'medium' | 'high'",
+      "required": false,
+      "description": "Alias for SelectableInput `attention` (`medium` | `high`). Prefer `attention`."
+    },
+    {
+      "name": "inputStart",
+      "type": "'none' | 'icon' | 'avatar' | 'image' | 'text'",
+      "required": false,
+      "description": "Figma `start` preset when `start` node is not provided."
+    },
+    {
+      "name": "invalid",
+      "type": "boolean",
+      "required": false,
+      "description": "invalid property"
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "required": false,
+      "description": "label property"
+    },
+    {
+      "name": "menu",
+      "type": "'single' | 'multi' | 'actions' | 'singleSelect' | 'multiSelect' | 'action'",
+      "required": false,
+      "description": "Deprecated compatibility menu behavior using the established single/multi/actions vocabulary. Use `menuType`; it wins on conflict."
+    },
+    {
+      "name": "menuAlignment",
+      "type": "'start' | 'middle' | 'end' | 'fill'",
+      "required": false,
+      "defaultValue": "fill",
+      "description": "Menu alignment; omission resolves by trigger, and the default input uses fill."
+    },
+    {
+      "name": "menuDirection",
+      "type": "'below' | 'above' | 'alignWithTrigger' | '-'",
+      "required": false,
+      "defaultValue": "-",
+      "description": "Figma placement; `-` normalizes to automatic placement below."
+    },
+    {
+      "name": "menuMinWidth",
+      "type": "string",
+      "required": false,
+      "description": "Floor for the menu's width, as a CSS length. The menu normally sizes from `menuSize` or the trigger. Neither works for a deliberately tiny trigger — a swatch-sized control anchors a menu too narrow to read its own options — and the `menuSize` steps are coarse. This sets a minimum without dragging every other menu of that size with it."
+    },
+    {
+      "name": "menuSize",
+      "type": "'s' | 'm' | 'l' | 'fill'",
+      "required": false,
+      "defaultValue": "fill",
+      "description": "Menu width; omission resolves by trigger, and the default input uses fill."
+    },
+    {
+      "name": "menuType",
+      "type": "'singleSelect' | 'multiSelect' | 'actions' | 'action'",
+      "required": false,
+      "defaultValue": "singleSelect",
+      "description": "Figma menu behavior."
+    },
+    {
+      "name": "noResultsMessage",
+      "type": "string",
+      "required": false,
+      "defaultValue": "No matches",
+      "description": "Search empty state when no option matches."
+    },
+    {
+      "name": "onAction",
+      "type": "(value: T) => void",
+      "required": false,
+      "description": "onAction property"
+    },
+    {
+      "name": "onChange",
+      "type": "(value: T) => void",
+      "required": false,
+      "description": "Deprecated compatibility callback invoked after a single-select value changes. Use `onValueChange`."
+    },
+    {
+      "name": "onOpenChange",
+      "type": "(open: boolean) => void",
+      "required": false,
+      "description": "onOpenChange property"
+    },
+    {
+      "name": "onValueChange",
+      "type": "(value: T) => void",
+      "required": false,
+      "description": "Alias for controlled single-select updates (Figma / Base UI naming)."
+    },
+    {
+      "name": "onValuesChange",
+      "type": "(values: T[]) => void",
+      "required": false,
+      "description": "onValuesChange property"
+    },
+    {
+      "name": "onVoiceSearch",
+      "type": "() => void",
+      "required": false,
+      "description": "Enables Search's trailing voice action when the product supplies voice-search behavior."
+    },
+    {
+      "name": "open",
+      "type": "boolean",
+      "required": false,
+      "description": "Controlled open state (menu visibility)."
+    },
+    {
+      "name": "placeholder",
+      "type": "string",
+      "required": false,
+      "description": "placeholder property"
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "required": false,
+      "description": "required property"
+    },
+    {
+      "name": "searchable",
+      "type": "boolean",
+      "required": false,
+      "description": "Deprecated compatibility alias for Search visibility. Use `showSearch`; it wins on conflict."
+    },
+    {
+      "name": "searchPlaceholder",
+      "type": "string",
+      "required": false,
+      "defaultValue": "Search",
+      "description": "Placeholder shown by the canonical Search inside the menu."
+    },
+    {
+      "name": "secondaryText",
+      "type": "boolean",
+      "required": false,
+      "description": "When true, options may render `secondaryText`."
+    },
+    {
+      "name": "sections",
+      "type": "SelectSection[]",
+      "required": false,
+      "description": "sections property"
+    },
+    {
+      "name": "shape",
+      "type": "'default' | 'pill'",
+      "required": false,
+      "description": "shape property"
+    },
+    {
+      "name": "showContextMenu",
+      "type": "boolean",
+      "required": false,
+      "description": "Deprecated published-description alias. Use `contextMenu`; it wins on conflict. `false` uses the same anchored fallback and does not enable responsive behavior."
+    },
+    {
+      "name": "showSearch",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Show Search in the menu header."
+    },
+    {
+      "name": "size",
+      "type": "'s' | 'm' | 'l' | 'sm' | 'md' | 'lg'",
+      "required": false,
+      "defaultValue": "m",
+      "description": "Trigger size."
+    },
+    {
+      "name": "start",
+      "type": "ReactNode",
+      "required": false,
+      "description": "start property"
+    },
+    {
+      "name": "state",
+      "type": "'idle' | 'active' | 'feedback'",
+      "required": false,
+      "defaultValue": "idle",
+      "description": "Figma trigger presentation — `idle`, `active`, or `feedback`. This does not control menu visibility; use `open` for that."
+    },
+    {
+      "name": "trigger",
+      "type": "'input' | 'button' | 'iconButton' | 'selectableInput' | 'selectableButton' | 'selectableIconButton'",
+      "required": false,
+      "defaultValue": "selectableInput",
+      "description": "Figma trigger surface. Legacy internal spellings remain accepted."
+    },
+    {
+      "name": "triggerIcon",
+      "type": "'add' | 'remove' | 'close' | 'edit' | 'delete' | 'copy' | 'save' | 'refresh' | 'download' | 'upload' | 'share' | 'link' | 'unlink' | 'cart' | 'helloJio' | 'favourite' | 'rewind' | 'forward' | 'menu' | 'search' | 'home' | 'settings' | 'arrowLeft' | 'arrowRight' | 'arrowUp' | 'arrowDown' | 'chevronLeft' | 'chevronRight' | 'chevronUp' | 'chevronDown' | 'externalLink' | 'firstPage' | 'lastPage' /** Single-step back / forward (Jio: `IcBack` / `IcNext` — distinct from chevrons). */ | 'back' | 'next' | 'check' | 'checkCircle' | 'warning' | 'error' | 'info' | 'help' | 'loading' | 'play' | 'pause' | 'stop' | 'volumeOn' | 'volumeOff' | 'microphone' | 'image' | 'video' | 'user' | 'users' | 'userAdd' | 'userRemove' | 'logout' | 'eye' | 'eyeOff' | 'lock' | 'unlock' | 'star' | 'starFilled' | 'heart' | 'heartFilled' | 'bookmark' | 'bookmarkFilled' | 'filter' | 'sort' | 'grid' | 'list' | 'moreHorizontal' | 'moreVertical' | 'mail' | 'phone' | 'chat' | 'notification' | 'file' | 'folder' | 'document' | 'calendar' | 'clock' | 'location' | 'sun' | 'moon' | 'palette' | 'brand' | 'layers' | 'components' | 'canvas' | 'create' | 'sparkles' | 'analytics' | 'globe' | 'smartphone' | 'tablet' | 'monitor' | 'tv' | 'printer' | 'billboard' | 'bus' | (string & {}) | IconComponent | ReactElement",
+      "required": false,
+      "description": "triggerIcon property"
+    },
+    {
+      "name": "triggerLabel",
+      "type": "string",
+      "required": false,
+      "description": "triggerLabel property"
+    },
+    {
+      "name": "value",
+      "type": "T",
+      "required": false,
+      "description": "value property"
+    },
+    {
+      "name": "values",
+      "type": "T[]",
+      "required": false,
+      "description": "values property"
+    },
+    {
+      "name": "voiceSearchLabel",
+      "type": "string",
+      "required": false,
+      "defaultValue": "Voice search",
+      "description": "Accessible name for the voice-search action."
+    }
+  ],
+  "slots": [
+    {
+      "name": "start",
+      "types": [
+        "Icon",
+        "Avatar",
+        "Image",
+        "Text"
+      ],
+      "tokens": []
+    },
+    {
+      "name": "triggerIcon",
+      "types": [
+        "Icon"
+      ],
+      "tokens": []
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.select",
+    "type": "object",
+    "properties": {
+      "options": {
+        "description": "options property"
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "positive",
+          "negative",
+          "warning",
+          "informative",
+          "brand-bg"
+        ],
+        "description": "Multi-accent role. `auto` inherits the nearest Surface appearance and falls back to `primary` at the page root.",
+        "default": "auto"
+      },
+      "aria-describedby": {
+        "type": "string",
+        "description": "aria-describedby property"
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "aria-label property"
+      },
+      "aria-labelledby": {
+        "type": "string",
+        "description": "aria-labelledby property"
+      },
+      "attention": {
+        "description": "Figma `attention` — trigger prominence.",
+        "default": "`\"medium\"`\n- `selectableInput`: `medium` | `high` only (`low` coerces to `medium`)\n- `selectableButton` / `selectableIconButton`: `low` | `medium` | `high`"
+      },
+      "chevron": {
+        "type": "boolean",
+        "description": "chevron property"
+      },
+      "className": {
+        "type": "string",
+        "description": "className property"
+      },
+      "condensed": {
+        "type": "boolean",
+        "description": "condensed property"
+      },
+      "contained": {
+        "type": "boolean",
+        "description": "contained property"
+      },
+      "contextMenu": {
+        "type": "boolean",
+        "description": "Figma authoring signal for the anchored menu presentation. The inspected source defines only the default `true` composition. `false` is accepted but uses the same warned anchored fallback because no BottomSheet/alternate hierarchy is evidenced.",
+        "default": "true"
+      },
+      "defaultValue": {
+        "description": "Initial value for an uncontrolled single Select."
+      },
+      "defaultValues": {
+        "description": "Initial values for an uncontrolled multi Select."
+      },
+      "description": {
+        "type": "string",
+        "description": "description property"
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "disabled property"
+      },
+      "emptyMessage": {
+        "type": "string",
+        "description": "Empty state when the Select has no options.",
+        "default": "No options available"
+      },
+      "feedback": {
+        "type": "string",
+        "description": "feedback property"
+      },
+      "filled": {
+        "type": "boolean",
+        "description": "Figma SelectableInput axis — whether the input trigger uses filled (high) styling. When unset on interactive `<Select>`, derived from selection (`value` / `values`)."
+      },
+      "groups": {
+        "type": "boolean",
+        "description": "Figma grouping axis. Explicit false flattens supplied sections.",
+        "default": "false"
+      },
+      "helperText": {
+        "type": "string",
+        "description": "helperText property"
+      },
+      "infoIcon": {
+        "type": "boolean",
+        "description": "infoIcon property"
+      },
+      "inputAttention": {
+        "description": "Alias for SelectableInput `attention` (`medium` | `high`). Prefer `attention`."
+      },
+      "inputStart": {
+        "enum": [
+          "none",
+          "icon",
+          "avatar",
+          "image",
+          "text"
+        ],
+        "description": "Figma `start` preset when `start` node is not provided."
+      },
+      "invalid": {
+        "type": "boolean",
+        "description": "invalid property"
+      },
+      "label": {
+        "type": "string",
+        "description": "label property"
+      },
+      "menu": {
+        "enum": [
+          "singleSelect",
+          "multiSelect",
+          "actions"
+        ],
+        "description": "Deprecated compatibility menu behavior using the established single/multi/actions vocabulary. Use `menuType`; it wins on conflict."
+      },
+      "menuAlignment": {
+        "enum": [
+          "start",
+          "middle",
+          "end",
+          "fill"
+        ],
+        "description": "Menu alignment; omission resolves by trigger, and the default input uses fill.",
+        "default": "fill"
+      },
+      "menuDirection": {
+        "enum": [
+          "-",
+          "below",
+          "above",
+          "alignWithTrigger"
+        ],
+        "description": "Figma placement; `-` normalizes to automatic placement below.",
+        "default": "-"
+      },
+      "menuMinWidth": {
+        "type": "string",
+        "description": "Floor for the menu's width, as a CSS length. The menu normally sizes from `menuSize` or the trigger. Neither works for a deliberately tiny trigger — a swatch-sized control anchors a menu too narrow to read its own options — and the `menuSize` steps are coarse. This sets a minimum without dragging every other menu of that size with it."
+      },
+      "menuSize": {
+        "enum": [
+          "s",
+          "m",
+          "l",
+          "fill"
+        ],
+        "description": "Menu width; omission resolves by trigger, and the default input uses fill.",
+        "default": "fill"
+      },
+      "menuType": {
+        "enum": [
+          "singleSelect",
+          "multiSelect",
+          "actions"
+        ],
+        "description": "Figma menu behavior.",
+        "default": "singleSelect"
+      },
+      "noResultsMessage": {
+        "type": "string",
+        "description": "Search empty state when no option matches.",
+        "default": "No matches"
+      },
+      "onAction": {
+        "description": "onAction property"
+      },
+      "onChange": {
+        "description": "Deprecated compatibility callback invoked after a single-select value changes. Use `onValueChange`."
+      },
+      "onOpenChange": {
+        "description": "onOpenChange property"
+      },
+      "onValueChange": {
+        "description": "Alias for controlled single-select updates (Figma / Base UI naming)."
+      },
+      "onValuesChange": {
+        "description": "onValuesChange property"
+      },
+      "onVoiceSearch": {
+        "description": "Enables Search's trailing voice action when the product supplies voice-search behavior."
+      },
+      "open": {
+        "type": "boolean",
+        "description": "Controlled open state (menu visibility)."
+      },
+      "placeholder": {
+        "type": "string",
+        "description": "placeholder property"
+      },
+      "required": {
+        "type": "boolean",
+        "description": "required property"
+      },
+      "searchable": {
+        "type": "boolean",
+        "description": "Deprecated compatibility alias for Search visibility. Use `showSearch`; it wins on conflict."
+      },
+      "searchPlaceholder": {
+        "type": "string",
+        "description": "Placeholder shown by the canonical Search inside the menu.",
+        "default": "Search"
+      },
+      "secondaryText": {
+        "type": "boolean",
+        "description": "When true, options may render `secondaryText`."
+      },
+      "sections": {
+        "description": "sections property"
+      },
+      "shape": {
+        "enum": [
+          "default",
+          "pill"
+        ],
+        "description": "shape property"
+      },
+      "showContextMenu": {
+        "type": "boolean",
+        "description": "Deprecated published-description alias. Use `contextMenu`; it wins on conflict. `false` uses the same anchored fallback and does not enable responsive behavior."
+      },
+      "showSearch": {
+        "type": "boolean",
+        "description": "Show Search in the menu header.",
+        "default": "false"
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "Trigger size.",
+        "default": "m"
+      },
+      "start": {
+        "description": "start property"
+      },
+      "state": {
+        "enum": [
+          "idle",
+          "active",
+          "feedback"
+        ],
+        "description": "Figma trigger presentation — `idle`, `active`, or `feedback`. This does not control menu visibility; use `open` for that.",
+        "default": "idle"
+      },
+      "trigger": {
+        "enum": [
+          "selectableInput",
+          "selectableButton",
+          "selectableIconButton"
+        ],
+        "description": "Figma trigger surface. Legacy internal spellings remain accepted.",
+        "default": "selectableInput"
+      },
+      "triggerIcon": {
+        "description": "triggerIcon property"
+      },
+      "triggerLabel": {
+        "type": "string",
+        "description": "triggerLabel property"
+      },
+      "value": {
+        "description": "value property"
+      },
+      "values": {
+        "description": "values property"
+      },
+      "voiceSearchLabel": {
+        "type": "string",
+        "description": "Accessible name for the voice-search action.",
+        "default": "Voice search"
+      }
+    },
+    "required": [
+      "options"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "select-basic",
+      "title": "Uncontrolled Single Select",
+      "language": "tsx",
+      "code": "import { Select } from '@oneui/ui';\n\nconst options = [\n  { value: 'design', label: 'Design' },\n  { value: 'engineering', label: 'Engineering' },\n];\n\n<Select\n  label=\"Team\"\n  options={options}\n  defaultValue=\"design\"\n  menuType=\"singleSelect\"\n/>"
+    },
+    {
+      "id": "select-multiple",
+      "title": "Uncontrolled Multi Select with Search",
+      "language": "tsx",
+      "code": "<Select\n  aria-label=\"Teams\"\n  options={options}\n  menuType=\"multiSelect\"\n  defaultValues={['design']}\n  showSearch\n/>"
+    },
+    {
+      "id": "select-actions",
+      "title": "Actions Menu",
+      "language": "tsx",
+      "code": "<Select\n  aria-label=\"Document actions\"\n  trigger=\"selectableButton\"\n  triggerLabel=\"Actions\"\n  menuType=\"actions\"\n  options={actions}\n  onAction={handleAction}\n/>"
+    },
+    {
+      "id": "select-compound-preview",
+      "title": "Figma Compound Presentation",
+      "language": "tsx",
+      "code": "<Select.SelectableInput state=\"feedback\" label feedback />\n<Select.Menu menuType=\"multiSelect\" groups secondaryText showSearch />"
+    },
+    {
+      "id": "select-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Select\",\n  \"decisions\": [\n    \"Trigger\",\n    \"Menu type\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "select"
+  ],
+  "importPath": "@jds4/oneui-react"
+}

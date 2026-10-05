@@ -1,0 +1,342 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Logo",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "A visual mark that identifies and reinforces brand identity throughout the interface. Transparent size container — the SVG content controls its own shape and colors. Inside a BrandProvider, `<Logo alt=\"…\" />` renders the active brand's logo automatically; pass children / svgContent / src only to override it.",
+    "taskContexts": [
+      "brand",
+      "identity",
+      "mark",
+      "wordmark",
+      "image"
+    ],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [
+      "children"
+    ],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "mark",
+        "useWhen": [
+          "Mark"
+        ]
+      },
+      {
+        "name": "full",
+        "useWhen": [
+          "Full"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "alt",
+      "type": "string",
+      "required": true,
+      "description": "Accessible name for the brand mark. Meaningful text exposes an image/link/button name; `\"\"` or whitespace-only values hide decorative logos from assistive tech."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Logo content as React node (SVG element, icon, etc.) — highest priority"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "customSize",
+      "type": "number",
+      "required": false,
+      "description": "Custom size in pixels (only when size='custom')"
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "QA / Playwright hook — forwarded to the root element"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Disables interaction and reduces opacity. Default: false"
+    },
+    {
+      "name": "fallback",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Fallback content when src fails to load"
+    },
+    {
+      "name": "href",
+      "type": "string",
+      "required": false,
+      "description": "Navigation target when interactive (renders `<a>`)."
+    },
+    {
+      "name": "interactive",
+      "type": "boolean",
+      "required": false,
+      "description": "When true, logo is interactive (link or button). Default: false. Requires meaningful `alt` plus `href` or `onClick`/`onPress`."
+    },
+    {
+      "name": "material",
+      "type": "LogoMaterial",
+      "required": false,
+      "description": "Metallic material paint for inline SVG content. Raster src logos are unchanged."
+    },
+    {
+      "name": "materialGradientAngle",
+      "type": "number",
+      "required": false,
+      "description": "Gradient direction angle used by the metallic SVG paint server. Defaults to 135."
+    },
+    {
+      "name": "materialGradientType",
+      "type": "MetallicGradientType",
+      "required": false,
+      "description": "Gradient style used by the metallic SVG paint server. Defaults to linear."
+    },
+    {
+      "name": "materialTarget",
+      "type": "'fill' | 'stroke' | 'fill-stroke'",
+      "required": false,
+      "description": "SVG paint channels that receive the metallic material. Default: fill-stroke"
+    },
+    {
+      "name": "onClick",
+      "type": "() => void",
+      "required": false,
+      "description": "Web alias for `onPress`."
+    },
+    {
+      "name": "onError",
+      "type": "() => void",
+      "required": false,
+      "description": "Image error callback (src mode only)"
+    },
+    {
+      "name": "onLoad",
+      "type": "() => void",
+      "required": false,
+      "description": "Image load callback (src mode only)"
+    },
+    {
+      "name": "onPress",
+      "type": "() => void",
+      "required": false,
+      "description": "Press handler when interactive without `href` (renders `<button>`)."
+    },
+    {
+      "name": "size",
+      "type": "'2xs' | 'xs' | 's' | 'm' | 'l' | 'xl' | '2xl' | 'custom'",
+      "required": false,
+      "description": "Size preset. Default: 'm'"
+    },
+    {
+      "name": "src",
+      "type": "string",
+      "required": false,
+      "description": "Image source URL for raster/external logos"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    },
+    {
+      "name": "svgContent",
+      "type": "string",
+      "required": false,
+      "description": "Raw SVG markup string (e.g., from Convex brand.logoSvg)"
+    },
+    {
+      "name": "variant",
+      "type": "'mark' | 'full'",
+      "required": false,
+      "description": "Circular mark or full rectangular wordmark. Default: 'mark'"
+    }
+  ],
+  "slots": [
+    {
+      "name": "children",
+      "types": [],
+      "tokens": []
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.logo",
+    "type": "object",
+    "properties": {
+      "alt": {
+        "type": "string",
+        "description": "Accessible name for the brand mark. Meaningful text exposes an image/link/button name; `\"\"` or whitespace-only values hide decorative logos from assistive tech."
+      },
+      "children": {
+        "description": "Logo content as React node (SVG element, icon, etc.) — highest priority"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "customSize": {
+        "type": "number",
+        "description": "Custom size in pixels (only when size='custom')"
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "QA / Playwright hook — forwarded to the root element"
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Disables interaction and reduces opacity. Default: false"
+      },
+      "fallback": {
+        "description": "Fallback content when src fails to load"
+      },
+      "href": {
+        "type": "string",
+        "description": "Navigation target when interactive (renders `<a>`)."
+      },
+      "interactive": {
+        "type": "boolean",
+        "description": "When true, logo is interactive (link or button). Default: false. Requires meaningful `alt` plus `href` or `onClick`/`onPress`."
+      },
+      "material": {
+        "description": "Metallic material paint for inline SVG content. Raster src logos are unchanged."
+      },
+      "materialGradientAngle": {
+        "type": "number",
+        "description": "Gradient direction angle used by the metallic SVG paint server. Defaults to 135."
+      },
+      "materialGradientType": {
+        "description": "Gradient style used by the metallic SVG paint server. Defaults to linear."
+      },
+      "materialTarget": {
+        "description": "SVG paint channels that receive the metallic material. Default: fill-stroke"
+      },
+      "onClick": {
+        "description": "Web alias for `onPress`."
+      },
+      "onError": {
+        "description": "Image error callback (src mode only)"
+      },
+      "onLoad": {
+        "description": "Image load callback (src mode only)"
+      },
+      "onPress": {
+        "description": "Press handler when interactive without `href` (renders `<button>`)."
+      },
+      "size": {
+        "enum": [
+          "2xs",
+          "xs",
+          "s",
+          "m",
+          "l",
+          "xl",
+          "2xl",
+          "custom"
+        ],
+        "description": "Size preset. Default: 'm'"
+      },
+      "src": {
+        "type": "string",
+        "description": "Image source URL for raster/external logos"
+      },
+      "style": {
+        "description": "Inline styles"
+      },
+      "svgContent": {
+        "type": "string",
+        "description": "Raw SVG markup string (e.g., from Convex brand.logoSvg)"
+      },
+      "variant": {
+        "enum": [
+          "mark",
+          "full"
+        ],
+        "description": "Circular mark or full rectangular wordmark. Default: 'mark'"
+      }
+    },
+    "required": [
+      "alt"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "logo-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Logo } from '@oneui/ui';\n\n<Logo />"
+    },
+    {
+      "id": "logo-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Logo\",\n  \"decisions\": []\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "logo"
+  ],
+  "importPath": "@jds4/oneui-react",
+  "figma": {
+    "componentKey": "jds-logo-v4"
+  },
+  "renderHints": {
+    "baseElement": "img",
+    "readsFromSurfaceContext": true
+  },
+  "a11y": {
+    "role": "img",
+    "minTouchTarget": 44,
+    "accessibleNameSource": "aria-label"
+  }
+}

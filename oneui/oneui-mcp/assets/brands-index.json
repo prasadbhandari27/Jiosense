@@ -1,0 +1,115 @@
+[
+  {
+    "slug": "flowerpink",
+    "name": "FlowerPink",
+    "latest": "1.0.0",
+    "hasSpec": false,
+    "primaryColor": "#808080"
+  },
+  {
+    "slug": "jio",
+    "name": "Jio",
+    "latest": "1.0.0",
+    "hasSpec": true,
+    "primaryColor": "#3900AD",
+    "fontFamily": "'JioType Var', sans-serif",
+    "themes": [
+      "jiomart",
+      "jiohome",
+      "myjio",
+      "agriculture",
+      "business",
+      "finance",
+      "home",
+      "jioaicloud",
+      "jioblackrock",
+      "jioblast",
+      "jiobusiness",
+      "jiocx",
+      "jiofinance-new",
+      "jiofit",
+      "jiogames",
+      "jiohealthhub",
+      "jiomessages",
+      "jiomobile",
+      "jionews",
+      "jiopc",
+      "jiosaavn",
+      "jiosarthi",
+      "jiostar",
+      "jiothings",
+      "jiotranslate",
+      "jiotv",
+      "jiowave",
+      "jioworkspace",
+      "mobile",
+      "shopping",
+      "myjio-legacy",
+      "jiomeals"
+    ]
+  },
+  {
+    "slug": "one-ui-theme",
+    "name": "One UI Theme",
+    "latest": "1.0.0",
+    "hasSpec": false,
+    "primaryColor": "#CE1212",
+    "fontFamily": "Inter, system-ui, sans-serif"
+  },
+  {
+    "slug": "petal-bloom",
+    "name": "Petal & Bloom",
+    "latest": "1.0.0",
+    "hasSpec": false,
+    "primaryColor": "#C2185B"
+  },
+  {
+    "slug": "reliance",
+    "name": "Reliance",
+    "latest": "1.0.0",
+    "hasSpec": true,
+    "primaryColor": "#0053C8",
+    "fontFamily": "'JioType Variable', system-ui, sans-serif"
+  },
+  {
+    "slug": "smartsource",
+    "name": "SmartSource",
+    "latest": "1.0.0",
+    "hasSpec": false,
+    "primaryColor": "#07753C",
+    "fontFamily": "'JioType Variable', system-ui, sans-serif",
+    "themes": [
+      "smartfarmer"
+    ]
+  },
+  {
+    "slug": "solenne",
+    "name": "Solenne",
+    "latest": "1.0.0",
+    "hasSpec": false,
+    "primaryColor": "#808080"
+  },
+  {
+    "slug": "swadesh",
+    "name": "Swadesh",
+    "latest": "1.0.0",
+    "hasSpec": true,
+    "primaryColor": "#CF6249",
+    "fontFamily": "Inter, system-ui, sans-serif"
+  },
+  {
+    "slug": "tira",
+    "name": "Tira",
+    "latest": "1.0.0",
+    "hasSpec": true,
+    "primaryColor": "#050405",
+    "fontFamily": "'PP Object Sans', sans-serif"
+  },
+  {
+    "slug": "vaulta",
+    "name": "Vaulta",
+    "latest": "1.0.0",
+    "hasSpec": false,
+    "primaryColor": "#808080"
+  }
+]

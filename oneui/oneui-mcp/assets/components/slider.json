@@ -1,0 +1,478 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Slider",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Precision range input with s/m/l geometry, continuous/range types, inside/outside knob styles, optional step ticks, and a value tooltip that follows the thumb.",
+    "taskContexts": [],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [
+      "start",
+      "end"
+    ],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "continuous",
+        "useWhen": [
+          "Continuous"
+        ]
+      },
+      {
+        "name": "range",
+        "useWhen": [
+          "Range"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "description": "Multi-accent appearance role. Default 'auto' → 'secondary'."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "aria-label property"
+    },
+    {
+      "name": "aria-labelledby",
+      "type": "string",
+      "required": false,
+      "description": "aria-labelledby property"
+    },
+    {
+      "name": "ariaLabels",
+      "type": "string[]",
+      "required": false,
+      "description": "Per-thumb aria-label for range sliders (array indexed by thumb). Falls back to `aria-label` when absent. Use this only in range mode; for single-thumb sliders use `aria-label`."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "className property"
+    },
+    {
+      "name": "defaultValue",
+      "type": "number | number[]",
+      "required": false,
+      "description": "Default value (uncontrolled)."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "disabled property"
+    },
+    {
+      "name": "end",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Node rendered at the end of the slider (e.g. an IconButton). 24×24 slot per Figma."
+    },
+    {
+      "name": "form",
+      "type": "string",
+      "required": false,
+      "description": "form property"
+    },
+    {
+      "name": "formatValue",
+      "type": "(value: number, index: number) => string",
+      "required": false,
+      "description": "Formatter for tooltip value."
+    },
+    {
+      "name": "knobStyle",
+      "type": "'inside' | 'outside'",
+      "required": false,
+      "description": "Knob placement style. Default `inside` (Figma). Migration: the pre-conformance default was `outside`; pass it explicitly to retain the former appearance."
+    },
+    {
+      "name": "largeStep",
+      "type": "number",
+      "required": false,
+      "description": "largeStep property"
+    },
+    {
+      "name": "max",
+      "type": "number",
+      "required": false,
+      "description": "max property"
+    },
+    {
+      "name": "min",
+      "type": "number",
+      "required": false,
+      "description": "min property"
+    },
+    {
+      "name": "minStepsBetweenValues",
+      "type": "number",
+      "required": false,
+      "description": "minStepsBetweenValues property"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "required": false,
+      "description": "name property"
+    },
+    {
+      "name": "onValueChange",
+      "type": "(value: number | number[]) => void",
+      "required": false,
+      "description": "Called as the user drags."
+    },
+    {
+      "name": "onValueCommitted",
+      "type": "(value: number | number[]) => void",
+      "required": false,
+      "description": "Called when the user releases / commits the value."
+    },
+    {
+      "name": "orientation",
+      "type": "'horizontal' | 'vertical'",
+      "required": false,
+      "description": "Orientation. Default 'horizontal'."
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean",
+      "required": false,
+      "description": "readOnly property"
+    },
+    {
+      "name": "showSteps",
+      "type": "boolean",
+      "required": false,
+      "description": "Render tick marks at every step."
+    },
+    {
+      "name": "showTooltip",
+      "type": "'auto' | 'always' | false",
+      "required": false,
+      "description": "Tooltip visibility. Default 'auto' (drag + focus)."
+    },
+    {
+      "name": "size",
+      "type": "'s' | 'm' | 'l'",
+      "required": false,
+      "description": "Figma size axis. Default `s`. Migration: the pre-conformance default was `m`; pass `size=\"m\"` to retain it."
+    },
+    {
+      "name": "snapToSteps",
+      "type": "boolean",
+      "required": false,
+      "description": "When true (default), the thumb snaps to exact step positions. When false, dragging is continuous but tick marks still appear at step positions."
+    },
+    {
+      "name": "start",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Node rendered at the start of the slider (e.g. an IconButton). 24×24 slot per Figma."
+    },
+    {
+      "name": "step",
+      "type": "number",
+      "required": false,
+      "description": "step property"
+    },
+    {
+      "name": "stepLabels",
+      "type": "ReactNode[]",
+      "required": false,
+      "description": "Optional labels under step marks."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "style property"
+    },
+    {
+      "name": "type",
+      "type": "'continuous' | 'range'",
+      "required": false,
+      "description": "Slider value shape. When omitted, arrays keep the historical range behavior and scalar values resolve to `continuous`."
+    },
+    {
+      "name": "value",
+      "type": "number | number[]",
+      "required": false,
+      "description": "Current value (controlled). Number for single thumb, array for range."
+    }
+  ],
+  "slots": [
+    {
+      "name": "start",
+      "types": [],
+      "tokens": []
+    },
+    {
+      "name": "end",
+      "types": [],
+      "tokens": []
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.slider",
+    "type": "object",
+    "properties": {
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. Default 'auto' → 'secondary'."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "aria-label property"
+      },
+      "aria-labelledby": {
+        "type": "string",
+        "description": "aria-labelledby property"
+      },
+      "ariaLabels": {
+        "description": "Per-thumb aria-label for range sliders (array indexed by thumb). Falls back to `aria-label` when absent. Use this only in range mode; for single-thumb sliders use `aria-label`."
+      },
+      "className": {
+        "type": "string",
+        "description": "className property"
+      },
+      "defaultValue": {
+        "description": "Default value (uncontrolled)."
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "disabled property"
+      },
+      "end": {
+        "description": "Node rendered at the end of the slider (e.g. an IconButton). 24×24 slot per Figma."
+      },
+      "form": {
+        "type": "string",
+        "description": "form property"
+      },
+      "formatValue": {
+        "description": "Formatter for tooltip value."
+      },
+      "knobStyle": {
+        "enum": [
+          "inside",
+          "outside"
+        ],
+        "description": "Knob placement style. Default `inside` (Figma). Migration: the pre-conformance default was `outside`; pass it explicitly to retain the former appearance."
+      },
+      "largeStep": {
+        "type": "number",
+        "description": "largeStep property"
+      },
+      "max": {
+        "type": "number",
+        "description": "max property"
+      },
+      "min": {
+        "type": "number",
+        "description": "min property"
+      },
+      "minStepsBetweenValues": {
+        "type": "number",
+        "description": "minStepsBetweenValues property"
+      },
+      "name": {
+        "type": "string",
+        "description": "name property"
+      },
+      "onValueChange": {
+        "description": "Called as the user drags."
+      },
+      "onValueCommitted": {
+        "description": "Called when the user releases / commits the value."
+      },
+      "orientation": {
+        "enum": [
+          "horizontal",
+          "vertical"
+        ],
+        "description": "Orientation. Default 'horizontal'."
+      },
+      "readOnly": {
+        "type": "boolean",
+        "description": "readOnly property"
+      },
+      "showSteps": {
+        "type": "boolean",
+        "description": "Render tick marks at every step."
+      },
+      "showTooltip": {
+        "enum": [
+          "auto",
+          "always",
+          "false"
+        ],
+        "description": "Tooltip visibility. Default 'auto' (drag + focus)."
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "Figma size axis. Default `s`. Migration: the pre-conformance default was `m`; pass `size=\"m\"` to retain it."
+      },
+      "snapToSteps": {
+        "type": "boolean",
+        "description": "When true (default), the thumb snaps to exact step positions. When false, dragging is continuous but tick marks still appear at step positions."
+      },
+      "start": {
+        "description": "Node rendered at the start of the slider (e.g. an IconButton). 24×24 slot per Figma."
+      },
+      "step": {
+        "type": "number",
+        "description": "step property"
+      },
+      "stepLabels": {
+        "description": "Optional labels under step marks."
+      },
+      "style": {
+        "description": "style property"
+      },
+      "type": {
+        "enum": [
+          "continuous",
+          "range"
+        ],
+        "description": "Slider value shape. When omitted, arrays keep the historical range behavior and scalar values resolve to `continuous`."
+      },
+      "value": {
+        "description": "Current value (controlled). Number for single thumb, array for range."
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "slider-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Slider } from '@oneui/ui';\n\n<Slider aria-label=\"Volume\" defaultValue={50} />"
+    },
+    {
+      "id": "slider-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Slider\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "slider"
+  ],
+  "interactionBehavior": {
+    "summary": "Slider is a Base UI slider whose thumb grows to an explicit active diameter on hover, drag, and keyboard focus — not a `scale()` squash, because Figma's +2/+4/+4 growth is not a constant ratio. A click on the track jumps the nearest thumb to that point and captures the pointer; a click on the thumb itself waits for movement. Keyboard arrows accelerate like a macOS slider, while `Home` / `End` still jump to the bounds through Base UI.",
+    "hover": [
+      "Hover grows the knob dot from its idle diameter to the per-size active diameter (`--_knob-dot-active-size`), interpolating `width` / `height` rather than using `transform: scale()`.",
+      "Wrapped in `@media (hover: hover)`, so a touch tap never leaves a stuck grown knob.",
+      "In `showTooltip=\"auto\"` (the default) the value bubble also appears above the knob (or to the right when vertical) on that same hover.",
+      "The rail and fill colours do not change on hover — only the knob diameter, plus the tooltip."
+    ],
+    "press": [
+      "Pointer-down on the THUMB does not jump the value; it marks `[data-knob-active]` / `[data-dragging]`, switches the cursor to `grabbing`, and grows the dot to the same active diameter as hover.",
+      "Pointer-down on the TRACK (the Control, including empty rail) immediately sets the nearest enabled thumb to that point (`trackPress`) and then captures the pointer for the drag. Range sliders pick the closest thumb by midpoint distance.",
+      "The Control calls `setPointerCapture` on the pointer id, so the drag keeps updating if the finger leaves the track.",
+      "`snapToSteps` (default `true`) uses `step` as the drag increment. `snapToSteps={false}` uses `min(step, (max-min)/1000)` so dragging is nearly continuous; keyboard still uses the real `step`.",
+      "In `showTooltip=\"auto\"` the value bubble is also shown throughout the drag, not only on hover/focus: `[data-dragging]` on the thumb is one of its visibility triggers (alongside `[data-open]`, `:has(:focus-visible)`, and forced states), so the current value stays readable while the finger or cursor moves.",
+      "`onValueCommitted` fires on pointer-up / pointer-cancel, which also clears `activeKnobIndex` so the knob shrinks back and the drag-driven bubble hides."
+    ],
+    "focus": [
+      "Keyboard focus grows the knob to the active diameter and draws the two-layer halo on the DOT: `--Stroke-XL` gap in `--Surface-Halo-Gap` plus an outer ring in `--Informative-Bold` (always Informative, not the slider's appearance role).",
+      "The halo is `:has(:focus-visible)` on the thumb, so a mouse click that focuses the hidden range input does not paint it.",
+      "In `showTooltip=\"auto\"` the bubble also appears for `:focus-visible`. `showTooltip=\"always\"` pins it open via `[data-open]`; `false` omits the bubble entirely."
+    ],
+    "keyboard": [
+      "A capture-phase handler on the thumb input intercepts `ArrowLeft` / `ArrowRight` (horizontal) or `ArrowUp` / `ArrowDown` (vertical), `PageUp` / `PageDown`, and `Shift+Arrow`. It `preventDefault`s and `stopPropagation`s so ancestors never see those keys.",
+      "First presses move by `step`. Held repeats accelerate: ×2 after 4 repeats, ×5 after 12, then `largeStep` (default 10) after 24. `Shift` and `PageUp` / `PageDown` always use `largeStep`.",
+      "`Home` / `End` are NOT intercepted — Base UI jumps to `min` / `max`, or to the neighbouring thumb minus `minStepsBetweenValues` in range mode.",
+      "On a horizontal slider, `ArrowUp` / `ArrowDown` fall through the acceleration hook (it returns without preventing) and Base UI steps them by Root's `step` prop — that is `dragStep`, so with `snapToSteps={false}` those keys use the fine increment, not the public `step`. The same applies to `ArrowLeft` / `ArrowRight` on a vertical slider.",
+      "`readOnly` keeps the thumb focusable and sets `aria-readonly`, but cancels Base UI's change (`eventDetails.cancel()`) and does not attach the accelerator. `disabled` does not attach it either."
+    ],
+    "disabled": [
+      "`disabled` dims the root to `--Disabled-Opacity` and sets `cursor: not-allowed`. The Control and the hidden range input get `pointer-events: none`.",
+      "The not-allowed cursor is declared on the root, which is not the natively disabled input, so it is observable — this is not the Button-style cursor gap.",
+      "`readOnly` is a separate axis: it does not dim, does not set `pointer-events: none`, and stays in the tab order; it only rejects value changes."
+    ],
+    "touch": [
+      "The thumb hit target is `--Spacing-12` (48px) regardless of knob size, so the visual dot can be 2px while the finger still has a 48×48 target.",
+      "The root and Control set `touch-action: none` so a drag does not scroll the page.",
+      "Hover growth is `(hover: hover)`-guarded; a touch drag still grows the knob via `[data-knob-active]` / `[data-dragging]`, which are not hover-gated."
+    ]
+  },
+  "importPath": "@jds4/oneui-react",
+  "figma": {
+    "codeConnect": {
+      "componentKey": "062da6b16c003df9e60f739600ab99c9b6afec08",
+      "nodeId": "8643:16350"
+    }
+  },
+  "renderHints": {
+    "baseElement": "div",
+    "readsFromSurfaceContext": true
+  },
+  "a11y": {
+    "role": "slider",
+    "minTouchTarget": 44,
+    "accessibleNameSource": "aria-label"
+  }
+}

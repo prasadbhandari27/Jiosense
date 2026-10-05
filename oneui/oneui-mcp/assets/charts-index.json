@@ -1,0 +1,276 @@
+[
+  {
+    "name": "AngularGaugeChart",
+    "slug": "angulargaugechart",
+    "intent": "A complete angular gauge chart visualization that composes ChartHeader, ChartLegend, a standalone DataDisplay, AngularGaugeGroup (diverging arc + needle), and ChartFooter into a cohesive chart layout.",
+    "tags": [
+      "chart",
+      "datavis",
+      "angular",
+      "gauge"
+    ]
+  },
+  {
+    "name": "AreaChart",
+    "slug": "areachart",
+    "intent": "The AreaChart component is a complete area chart visualization that composes ChartHeader, ChartLegend, DataDisplay, AreaGroup, and ChartFooter. It supports three stacking modes (stacked, layered, fullHeight), animated entry and data morphing, broken Y-axis, interactive hover with a cursor-following badge, and an optional DataDisplay block that updates dynamically on series hover.",
+    "tags": [
+      "chart",
+      "datavis",
+      "area"
+    ]
+  },
+  {
+    "name": "AreaHeatMapChart",
+    "slug": "areaheatmapchart",
+    "intent": "A complete heatmap chart component that combines ChartHeader, SequentialChartKey or DivergingChartKey (legend), DataDisplay, AreaHeatMapGroup (heatmap grid), and ChartFooter. Supports both sequential and diverging color schemes with automatic detection from data.",
+    "tags": [
+      "chart",
+      "datavis",
+      "area",
+      "heat",
+      "map"
+    ]
+  },
+  {
+    "name": "CandleStickChart",
+    "slug": "candlestickchart",
+    "intent": "A complete candlestick chart component that composes `ChartHeader`, `ChartLegend`, `DataDisplay`, `CandleStickGroup`, and `ChartFooter` into a cohesive OHLC data visualization. Uses D3 for scaling and the CSS cascade for consistent styling via DataVis palette tokens and brand CSS engine.",
+    "tags": [
+      "chart",
+      "datavis",
+      "candle",
+      "stick"
+    ]
+  },
+  {
+    "name": "CircularProgressChart",
+    "slug": "circularprogresschart",
+    "intent": "`CircularProgressChart` is a top-level compound chart that visualises multiple metrics as concentric progress rings. Each ring represents progress toward its own goal (`value / max`). Use this chart to compare several KPIs against their own targets at a glance.",
+    "tags": [
+      "chart",
+      "datavis",
+      "circular",
+      "progress"
+    ]
+  },
+  {
+    "name": "ClusteredBubbleChart",
+    "slug": "clusteredbubblechart",
+    "intent": "A complete bubble chart visualization that combines ChartHeader, ChartLegend, DataDisplay, ClusteredBubbleGroup, InlineChartKeyGroup, and ChartFooter into a cohesive chart component.",
+    "tags": [
+      "chart",
+      "datavis",
+      "clustered",
+      "bubble"
+    ]
+  },
+  {
+    "name": "DonutChart",
+    "slug": "donutchart",
+    "intent": "Complete donut chart visualization that orchestrates ChartHeader, ChartLegend, DonutPathGroup, optional InlineChartKeyGroup, and ChartFooter into a cohesive chart layout.",
+    "tags": [
+      "chart",
+      "datavis",
+      "donut"
+    ]
+  },
+  {
+    "name": "DotGridChart",
+    "slug": "dotgridchart",
+    "intent": "`DotGridChart` is a top-level compound chart component that composes `ChartHeader`, `ChartLegend`, `DataDisplay`, `DotGridGroup`, and `ChartFooter` into a complete dot-grid visualisation. It follows the **Organised Props Pattern** with two meaningful layers: Parent Props and Child Configs.",
+    "tags": [
+      "chart",
+      "datavis",
+      "dot",
+      "grid"
+    ]
+  },
+  {
+    "name": "HistogramChart",
+    "slug": "histogramchart",
+    "intent": "`HistogramChart` is the top-level orchestration wrapper for histogram visualisations. It composes:",
+    "tags": [
+      "chart",
+      "datavis",
+      "histogram"
+    ]
+  },
+  {
+    "name": "HorizontalBarChart",
+    "slug": "horizontalbarchart",
+    "intent": "A complete horizontal bar chart component that composes ChartHeader, ChartLegend, DataDisplay, HorizontalBarGroup, and ChartFooter. Uses D3 for data scaling; all styling comes from the CSS token cascade (`--DataVis-Categorical-Bold-{n}` via `generateDataVisCSS`, surface/typography tokens via `useBrandCSSNew`, both injected at `@layer brand`) — there is no runtime JS token resolver and no `modes` prop.",
+    "tags": [
+      "chart",
+      "datavis",
+      "horizontal",
+      "bar"
+    ]
+  },
+  {
+    "name": "HorizontalButterflyBarChart",
+    "slug": "horizontalbutterflybarchart",
+    "intent": "The HorizontalButterflyBarChart displays two series growing outward from a center axis, commonly used for:",
+    "tags": [
+      "chart",
+      "datavis",
+      "horizontal",
+      "butterfly",
+      "bar"
+    ]
+  },
+  {
+    "name": "HorizontalDumbbellChart",
+    "slug": "horizontaldumbbellchart",
+    "intent": "Top-level orchestration wrapper for the horizontal dumbbell chart. Composes `ChartHeader`, `ChartLegend`, `DataDisplay`, `HorizontalDumbbellBarGroup`, `ChartFooter`, and `ChartAccessibility` into a complete dumbbell (gap/barbell) visualisation. Each category renders two dots connected by a stem, positioned along a shared D3 linear scale.",
+    "tags": [
+      "chart",
+      "datavis",
+      "horizontal",
+      "dumbbell"
+    ]
+  },
+  {
+    "name": "HorizontalStackedBarChart",
+    "slug": "horizontalstackedbarchart",
+    "intent": "A complete horizontal stacked bar chart visualization that combines ChartHeader, ChartLegend, DataDisplay, HorizontalStackedBarGroup, and ChartFooter components. Wrapped with ChartAccessibility for screen reader support.",
+    "tags": [
+      "chart",
+      "datavis",
+      "horizontal",
+      "stacked",
+      "bar"
+    ]
+  },
+  {
+    "name": "LayeredAreaChart3D",
+    "slug": "layeredareachart3d",
+    "intent": "LayeredAreaChart3D is an isometric 3D area chart that renders layered area series as stacked planes in a perspective view. It reuses the same D3 area generators as `AreaChart` (layered mode), with mathematical coordinate projection applied to every point to create a convincing 3D isometric perspective.",
+    "tags": [
+      "chart",
+      "datavis",
+      "layered",
+      "area",
+      "chart3",
+      "d"
+    ]
+  },
+  {
+    "name": "LineChart",
+    "slug": "linechart",
+    "intent": "The LineChart component is a complete line chart visualization that combines ChartHeader, ChartLegend, DataDisplay, PathGroup, and ChartFooter components. It supports multiple series with automatic categorical coloring from DataVis CSS tokens, making it ideal for trend visualization, time series data, and multi-series comparisons.",
+    "tags": [
+      "chart",
+      "datavis",
+      "line"
+    ]
+  },
+  {
+    "name": "LollipopBarChart",
+    "slug": "lollipopbarchart",
+    "intent": "`LollipopBarChart` is a top-level compound chart component that composes `ChartHeader`, `ChartLegend`, `DataDisplay`, `LollipopBarGroup`, and `ChartFooter` into a complete lollipop bar visualization. It follows the **Organized Props Pattern** with two layers: Parent Props and Child Configs.",
+    "tags": [
+      "chart",
+      "datavis",
+      "lollipop",
+      "bar"
+    ]
+  },
+  {
+    "name": "ProjectionLineChart",
+    "slug": "projectionlinechart",
+    "intent": "The ProjectionLineChart is a complete chart visualization component that supports two projection modes. In **confidence** mode (default), it displays a line chart with an optional confidence/projection band. In **forecast** mode, it renders actual data as a solid line and projected data as a dashed line. It combines ChartHeader, ChartLegend, DataDisplay, ProjectionPathGroup, and ChartFooter components. This component is ideal for forecasting visualizations, prediction intervals, and trend charts with uncertainty ranges.",
+    "tags": [
+      "chart",
+      "datavis",
+      "projection",
+      "line"
+    ]
+  },
+  {
+    "name": "RadarChart",
+    "slug": "radarchart",
+    "intent": "Full-layout radar/spider chart composing **ChartHeader**, **ChartLegend**, standalone **DataDisplay**, **RadarGroup** D3 visualisation, and **ChartFooter** into a single accessible component.",
+    "tags": [
+      "chart",
+      "datavis",
+      "radar"
+    ]
+  },
+  {
+    "name": "SankeyChart",
+    "slug": "sankeychart",
+    "intent": "`SankeyChart` is the top-level compound chart component that composes `ChartHeader`, `ChartLegend`, `DataDisplay`, `SankeyGroup`, and `ChartFooter` into a complete Sankey-flow visualization. All design tokens come from the CSS cascade — DataVis palette tokens (`--DataVis-Categorical-Bold-{n}`) via `generateDataVisCSS` → `useStyleInjection`, and surface/typography tokens via `useBrandCSSNew` — both injected at `@layer brand`. No runtime JS token resolver; no hardcoded dimensions, colours, typography, or spacing.",
+    "tags": [
+      "chart",
+      "datavis",
+      "sankey"
+    ]
+  },
+  {
+    "name": "ScatterPlotChart",
+    "slug": "scatterplotchart",
+    "intent": "ScatterPlotChart is a top-level compound chart component that composes `ChartHeader`, `ChartLegend`, `DataDisplay`, `ScatterPlotGroup`, and `ChartFooter` into a complete scatter plot visualization. It follows the **Organized Props Pattern** with two layers: Parent Props and Child Configs.",
+    "tags": [
+      "chart",
+      "datavis",
+      "scatter",
+      "plot"
+    ]
+  },
+  {
+    "name": "SlopeChart",
+    "slug": "slopechart",
+    "intent": "`SlopeChart` is a top-level compound chart component that composes `ChartHeader`, `ChartLegend`, `DataDisplay`, `SlopeGroup`, `InlineChartKeyGroup`, and `ChartFooter` into a complete classic **2-pillar slope chart** visualisation. Use it for before/after, year-over-year, or pre/post comparisons where the _change_ between two categories is the story and direct labelling beats a full axis grid.",
+    "tags": [
+      "chart",
+      "datavis",
+      "slope"
+    ]
+  },
+  {
+    "name": "TreemapChart",
+    "slug": "treemapchart",
+    "intent": "Complete treemap chart visualization that orchestrates ChartHeader, ChartLegend, DataDisplay, TreemapGroup (D3 squarify layout), and ChartFooter into a cohesive proportional-area rectangle chart.",
+    "tags": [
+      "chart",
+      "datavis",
+      "treemap"
+    ]
+  },
+  {
+    "name": "VerticalBarChart",
+    "slug": "verticalbarchart",
+    "intent": "A complete vertical bar chart component that composes `ChartHeader`, `ChartLegend`, `DataDisplay`, `VerticalBarGroup`, and `ChartFooter` into a cohesive data visualization. `VerticalBarChart` itself is a thin composition/orchestration layer — it has no D3 usage and no runtime JS token resolver; layout math (D3 scales) lives in `VerticalBarGroup`, and all styling reads CSS custom properties directly via `var(--Token-Name)`.",
+    "tags": [
+      "chart",
+      "datavis",
+      "vertical",
+      "bar"
+    ]
+  },
+  {
+    "name": "VerticalMultiBarChart",
+    "slug": "verticalmultibarchart",
+    "intent": "The VerticalMultiBarChart component is a complete chart visualization for grouped multi-bar data. It combines ChartHeader, ChartLegend, DataDisplay, VerticalMultiBarGroup, and ChartFooter to create a full chart with title, subtitle, legend, data summary, bars, and footer. It supports up to 3 bar series per category (with auto-generated legend), accepts both canonical (`ChartSeriesDataPoint[]`) and legacy (`MultiBarDataPoint[]`) data formats, and is ideal for comparing multiple data series.",
+    "tags": [
+      "chart",
+      "datavis",
+      "vertical",
+      "multi",
+      "bar"
+    ]
+  },
+  {
+    "name": "VerticalStackedBarChart",
+    "slug": "verticalstackedbarchart",
+    "intent": "A complete vertical stacked bar chart component that composes `ChartHeader`, `ChartLegend`, `DataDisplay`, `VerticalStackedBarGroup`, and `ChartFooter` into a cohesive data visualization. All tokens (colours, typography, spacing, DataVis palette) come from the CSS `@layer brand` cascade — no `modes` prop, no runtime JS resolver.",
+    "tags": [
+      "chart",
+      "datavis",
+      "vertical",
+      "stacked",
+      "bar"
+    ]
+  }
+]

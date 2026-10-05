@@ -1,0 +1,382 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "ListItem",
+  "generatedAt": "2026-08-26T06:20:09.451Z",
+  "machineReadable": true,
+  "status": "alpha",
+  "intentAndPurpose": {
+    "intent": "Surface-aware list row with optional decorative start/end slots and structured title/support content or a custom content node. Four sizes, full-width/rounded layouts, condensed spacing, divider control, and idle/medium/high selection emphasis. `appearance=\"auto\"` inherits a supported parent Surface appearance. Add `onPress` or `onClick` to make the complete row one accessible button."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "fixed-slots"
+  },
+  "props": [
+    {
+      "name": "size",
+      "type": "'xs' | 's' | 'm' | 'l'",
+      "required": false,
+      "defaultValue": "m",
+      "description": "Scales title/support typography, decorative slots, gaps, and default inline padding."
+    },
+    {
+      "name": "start",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Decorative leading slot (normally Icon, Avatar, Image, or Badge). Hidden from accessibility and pointer events; a JDS Icon inherits the slot size and colour. — [warn] Use a display-only JDS component. Do not place an IconButton or another interactive control here; activate the complete row with `onPress`."
+    },
+    {
+      "name": "content",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Main content. Prefer { title, secondaryText?, prefix? }; primitive title/support values supply the interactive accessible name. A custom ReactNode is also accepted but must provide `aria-label` when it cannot name the row."
+    },
+    {
+      "name": "end",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Decorative trailing slot (normally a chevron Icon or non-interactive status). Hidden from accessibility and pointer events. — [warn] Do not put a nested action in `end`; it cannot receive pointer or accessibility interaction. Put the action on ListItem via `onPress`."
+    },
+    {
+      "name": "contentAlignment",
+      "type": "'centre' | 'top'",
+      "required": false,
+      "defaultValue": "centre",
+      "description": "Vertical alignment of the start slot and main content."
+    },
+    {
+      "name": "type",
+      "type": "'fullwidth' | 'roundedCorner'",
+      "required": false,
+      "defaultValue": "roundedCorner",
+      "description": "Edge-to-edge row or fixed-width inset row with tokenized rounded corners."
+    },
+    {
+      "name": "selectedState",
+      "type": "'idle' | 'medium' | 'high'",
+      "required": false,
+      "defaultValue": "idle",
+      "description": "Selection emphasis. `medium` uses a minimal/subtle tint; `high` uses the appearance role bold surface and on-bold content colours."
+    },
+    {
+      "name": "showDivider",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": "Shows the inset bottom Divider. React Native cannot infer the last sibling; set false on the final row when the list should have no trailing divider."
+    },
+    {
+      "name": "condensed",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Uses tighter tokenized vertical padding while preserving the row accessibility target."
+    },
+    {
+      "name": "leftPadding",
+      "type": "'margin' | 2 | 3 | 4 | 5 | true",
+      "required": false,
+      "description": "Logical start-padding override. `true` and `margin` both use the responsive spacing-margin token; omit for the size default."
+    },
+    {
+      "name": "rightPadding",
+      "type": "'margin' | 2 | 3 | 4 | 5 | true",
+      "required": false,
+      "description": "Logical end-padding override. `true` and `margin` both use the responsive spacing-margin token; omit for the size default."
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": "`auto` inherits a supported parent Surface appearance and otherwise resolves to primary. Controls selection fill, content, divider, and press-state paint."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Blocks activation, applies disabled opacity, and exposes accessibilityState.disabled."
+    },
+    {
+      "name": "onPress",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Primary React Native press handler. Takes precedence over `onClick`."
+    },
+    {
+      "name": "onClick",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Web-parity fallback press handler, used only when `onPress` is absent."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible-name override. Required for an interactive row whose content is custom/non-textual; otherwise primitive structured title/support text supplies the name."
+    },
+    {
+      "name": "accessibilityHint",
+      "type": "string",
+      "required": false,
+      "description": "Describes the result of activating an interactive row."
+    },
+    {
+      "name": "style",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Additional native ViewStyle, merged last. Use for layout overrides only. — [warn] Do not paint the row directly. Use `selectedState`, `appearance`, and a parent <Container>/<Surface> so content and interaction colours remain context-aware."
+    },
+    {
+      "name": "testID",
+      "type": "string",
+      "required": false,
+      "description": "React Native test identifier applied to the root View/Pressable."
+    },
+    {
+      "name": "backgroundColor",
+      "type": "string",
+      "required": false,
+      "description": "[error] Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.ListItem",
+    "type": "object",
+    "properties": {
+      "size": {
+        "enum": [
+          "xs",
+          "s",
+          "m",
+          "l"
+        ],
+        "default": "m",
+        "description": "Scales title/support typography, decorative slots, gaps, and default inline padding."
+      },
+      "start": {
+        "description": "Decorative leading slot (normally Icon, Avatar, Image, or Badge). Hidden from accessibility and pointer events; a JDS Icon inherits the slot size and colour.",
+        "x-jds-suggestion": "Use a display-only JDS component. Do not place an IconButton or another interactive control here; activate the complete row with `onPress`.",
+        "x-jds-severity": "warn"
+      },
+      "content": {
+        "description": "Main content. Prefer { title, secondaryText?, prefix? }; primitive title/support values supply the interactive accessible name. A custom ReactNode is also accepted but must provide `aria-label` when it cannot name the row."
+      },
+      "end": {
+        "description": "Decorative trailing slot (normally a chevron Icon or non-interactive status). Hidden from accessibility and pointer events.",
+        "x-jds-suggestion": "Do not put a nested action in `end`; it cannot receive pointer or accessibility interaction. Put the action on ListItem via `onPress`.",
+        "x-jds-severity": "warn"
+      },
+      "contentAlignment": {
+        "enum": [
+          "centre",
+          "top"
+        ],
+        "default": "centre",
+        "description": "Vertical alignment of the start slot and main content."
+      },
+      "type": {
+        "enum": [
+          "fullwidth",
+          "roundedCorner"
+        ],
+        "default": "roundedCorner",
+        "description": "Edge-to-edge row or fixed-width inset row with tokenized rounded corners."
+      },
+      "selectedState": {
+        "enum": [
+          "idle",
+          "medium",
+          "high"
+        ],
+        "default": "idle",
+        "description": "Selection emphasis. `medium` uses a minimal/subtle tint; `high` uses the appearance role bold surface and on-bold content colours."
+      },
+      "showDivider": {
+        "type": "boolean",
+        "default": true,
+        "description": "Shows the inset bottom Divider. React Native cannot infer the last sibling; set false on the final row when the list should have no trailing divider."
+      },
+      "condensed": {
+        "type": "boolean",
+        "default": false,
+        "description": "Uses tighter tokenized vertical padding while preserving the row accessibility target."
+      },
+      "leftPadding": {
+        "enum": [
+          "margin",
+          2,
+          3,
+          4,
+          5,
+          true
+        ],
+        "description": "Logical start-padding override. `true` and `margin` both use the responsive spacing-margin token; omit for the size default."
+      },
+      "rightPadding": {
+        "enum": [
+          "margin",
+          2,
+          3,
+          4,
+          5,
+          true
+        ],
+        "description": "Logical end-padding override. `true` and `margin` both use the responsive spacing-margin token; omit for the size default."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "default": "auto",
+        "description": "`auto` inherits a supported parent Surface appearance and otherwise resolves to primary. Controls selection fill, content, divider, and press-state paint."
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false,
+        "description": "Blocks activation, applies disabled opacity, and exposes accessibilityState.disabled."
+      },
+      "onPress": {
+        "description": "Primary React Native press handler. Takes precedence over `onClick`."
+      },
+      "onClick": {
+        "description": "Web-parity fallback press handler, used only when `onPress` is absent."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible-name override. Required for an interactive row whose content is custom/non-textual; otherwise primitive structured title/support text supplies the name."
+      },
+      "accessibilityHint": {
+        "type": "string",
+        "description": "Describes the result of activating an interactive row."
+      },
+      "style": {
+        "description": "Additional native ViewStyle, merged last. Use for layout overrides only.",
+        "x-jds-suggestion": "Do not paint the row directly. Use `selectedState`, `appearance`, and a parent <Container>/<Surface> so content and interaction colours remain context-aware.",
+        "x-jds-severity": "warn"
+      },
+      "testID": {
+        "type": "string",
+        "description": "React Native test identifier applied to the root View/Pressable."
+      },
+      "backgroundColor": {
+        "type": "string",
+        "not": {
+          "anyOf": [
+            {
+              "pattern": "^#"
+            },
+            {
+              "pattern": "^rgba?\\("
+            },
+            {
+              "pattern": "^hsla?\\("
+            },
+            {
+              "pattern": "^oklch\\("
+            },
+            {
+              "pattern": "^color-mix\\("
+            },
+            {
+              "enum": [
+                "transparent",
+                "inherit"
+              ]
+            }
+          ]
+        },
+        "x-jds-suggestion": "Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill.",
+        "x-jds-severity": "error"
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "neutral",
+      "sparkle",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ],
+    "surface": [
+      "minimal",
+      "subtle",
+      "bold"
+    ],
+    "typography": [
+      "label.XS",
+      "label.S",
+      "label.M",
+      "label.L",
+      "body.2XS",
+      "body.XS",
+      "body.S",
+      "body.M"
+    ],
+    "shape": [
+      "3XS"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "button",
+    "accessibilityState": [
+      "disabled",
+      "selected"
+    ],
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "Pressable",
+    "animatedOn": [
+      "press"
+    ],
+    "honorsReduceMotion": false,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-list-item-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "ListItem"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { ListItem } from '@oneui/ui-native/components/ListItem';\n\n<ListItem />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "listitem",
+    "list",
+    "row",
+    "display",
+    "navigation",
+    "interactive",
+    "surface-aware"
+  ],
+  "importPath": "@oneui/ui-native/components/ListItem"
+}

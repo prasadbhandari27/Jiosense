@@ -1,0 +1,230 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "OverlaySideSheet",
+  "flutterExport": "OneUiOverlaySideSheet",
+  "importPath": "package:ui_flutter/ui_flutter.dart",
+  "generatedAt": "2026-09-04T05:50:48.675Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "OneUiOverlaySideSheet from the ui_flutter barrel. Use Surface context (OneUiSurface) for tinted backgrounds."
+  },
+  "props": [
+    {
+      "name": "open",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "defaultOpen",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onOpenChange",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "dismissible",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "customWidth",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "direction",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "header",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "footer",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "description",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "showDescription",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "headerEnd",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "rightActions",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "showRightActions",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onBack",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "backButton",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "backLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "closeButton",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "closeLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "child",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "footerStart",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "showFooterStart",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "footerEnd",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onDiscard",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "discardLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onSubmit",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "submitLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "dividers",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "bodyPadding",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "semanticsLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "ariaLabelledBy",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "semanticsLabelledBy",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "testId",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "testID",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    }
+  ]
+}

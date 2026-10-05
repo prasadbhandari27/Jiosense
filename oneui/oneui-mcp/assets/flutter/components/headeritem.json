@@ -1,0 +1,140 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "HeaderItem",
+  "flutterExport": "OneUiHeaderItem",
+  "importPath": "package:ui_flutter/ui_flutter.dart",
+  "generatedAt": "2026-09-04T05:50:48.675Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "OneUiHeaderItem from the ui_flutter barrel. Use Surface context (OneUiSurface) for tinted backgrounds."
+  },
+  "props": [
+    {
+      "name": "label",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "child",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "value",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "active",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "attention",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "start",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "startSize",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "end",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "endSize",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "visuallyAlignToStart",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onPressed",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "semanticsLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "semanticsHint",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "autofocus",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "forceFocusRing",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "forceHovered",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "forcePressed",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "testId",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    }
+  ]
+}

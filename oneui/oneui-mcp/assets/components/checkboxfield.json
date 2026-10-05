@@ -1,0 +1,497 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "CheckboxField",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "`Field.Root` + **Checkbox** with integrated `Field.Label` / `Field.Description`, optional `infoIconSlot`, `error` / `feedback`, and native `Field.Error` slot — same composition contract as **InputField** (Figma `.DNA/InputField` stack; control DNA from Checkbox). Colour follows `appearance` on the inner Checkbox.",
+    "taskContexts": [
+      "checkbox",
+      "field",
+      "form",
+      "selection"
+    ],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [
+      "feedback",
+      "infoIconSlot"
+    ],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "default",
+        "useWhen": [
+          "Default"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "description": "Appearance role — border, hover, and checked fill. `auto` → secondary stack."
+    },
+    {
+      "name": "aria-describedby",
+      "type": "string",
+      "required": false,
+      "description": "For composite fields — links to `Field.Description` etc."
+    },
+    {
+      "name": "aria-invalid",
+      "type": "boolean | 'true' | 'false'",
+      "required": false,
+      "description": "Invalid state for form validation (exposed on the checkbox control)."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label when there is no visible `label` (or when overriding the visible copy). Maps directly to `aria-label` on the underlying checkbox control. When using `CheckboxField`, the visible `Field.Label` provides association automatically — prefer that over `aria-label`."
+    },
+    {
+      "name": "checked",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the checkbox is checked (controlled)"
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Multiple standalone **Checkbox** options. When set, `label` / `description` render as the field header above the list; `feedback` and Omit for a single integrated field (label and description beside the control per Figma)."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "className property"
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "Test automation id — forwarded to the checkbox control (`BaseCheckbox.Root`)."
+    },
+    {
+      "name": "defaultChecked",
+      "type": "boolean",
+      "required": false,
+      "description": "Default checked state (uncontrolled)"
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "required": false,
+      "description": "Description below the label row."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the checkbox is disabled"
+    },
+    {
+      "name": "error",
+      "type": "string",
+      "required": false,
+      "description": "Error message (shorthand for `InputFeedback` variant negative)."
+    },
+    {
+      "name": "feedback",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Feedback slot — pass `<InputFeedback … />` or use `error` string."
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "required": false,
+      "description": "Stretch to fill container width."
+    },
+    {
+      "name": "groupDefaultValue",
+      "type": "CheckboxGroupProps['defaultValue']",
+      "required": false,
+      "description": "Multi-option default checked values (uncontrolled). Use with `children`."
+    },
+    {
+      "name": "groupValue",
+      "type": "CheckboxGroupProps['value']",
+      "required": false,
+      "description": "Multi-option checked values (controlled). Use with `children`."
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "description": "HTML id attribute"
+    },
+    {
+      "name": "indeterminate",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the checkbox is in indeterminate state"
+    },
+    {
+      "name": "infoIconSlot",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Trailing control beside the label (e.g. custom info `IconButton`, menu, or `InputFieldDefaultInfo`)."
+    },
+    {
+      "name": "invalid",
+      "type": "boolean",
+      "required": false,
+      "description": "Mark the field invalid for `Field.Root` and error chrome on the checkbox wrapper."
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "required": false,
+      "description": "Label text for the field header (multi-option) or integrated checkbox label (single)."
+    },
+    {
+      "name": "labelWrapper",
+      "type": "'label' | 'div'",
+      "required": false,
+      "defaultValue": "label",
+      "description": "Outer wrapper element. Use `'div'` inside `CheckboxField` (with `Field.Label`) so the visible label is not nested inside a second `<label>`."
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "required": false,
+      "description": "Field name for form submission"
+    },
+    {
+      "name": "onCheckedChange",
+      "type": "(checked: boolean) => void",
+      "required": false,
+      "description": "Change handler"
+    },
+    {
+      "name": "onGroupValueChange",
+      "type": "CheckboxGroupProps['onValueChange']",
+      "required": false,
+      "description": "Multi-option change handler. Use with `children`."
+    },
+    {
+      "name": "parent",
+      "type": "boolean",
+      "required": false,
+      "description": "Marks this checkbox as the select-all parent of its `CheckboxGroup`. Base UI then DERIVES `checked` / `indeterminate` from the children — do not pass either prop yourself — and toggling it selects or clears the whole group. Requires `allValues` on the surrounding `<CheckboxGroup>`."
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the checkbox is read-only (visually distinct from disabled)"
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "required": false,
+      "description": "HTML required — form validation when unchecked"
+    },
+    {
+      "name": "size",
+      "type": "'s' | 'm' | 'l' | 'small' | 'medium' | 'large'",
+      "required": false,
+      "description": "Size preset. Default: 'm'"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "style property"
+    },
+    {
+      "name": "validate",
+      "type": "(value: unknown) => string | string[] | null",
+      "required": false,
+      "description": "Custom validation — return message(s) or null."
+    },
+    {
+      "name": "validationMode",
+      "type": "'onBlur' | 'onChange'",
+      "required": false,
+      "description": "Validation mode for `Field.Root`."
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "required": false,
+      "description": "Value used when inside a CheckboxGroup"
+    }
+  ],
+  "slots": [
+    {
+      "name": "feedback",
+      "types": [
+        "InputFeedback"
+      ],
+      "tokens": []
+    },
+    {
+      "name": "infoIconSlot",
+      "types": [
+        "IconButton"
+      ],
+      "tokens": []
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.checkbox-field",
+    "type": "object",
+    "properties": {
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Appearance role — border, hover, and checked fill. `auto` → secondary stack."
+      },
+      "aria-describedby": {
+        "type": "string",
+        "description": "For composite fields — links to `Field.Description` etc."
+      },
+      "aria-invalid": {
+        "description": "Invalid state for form validation (exposed on the checkbox control)."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label when there is no visible `label` (or when overriding the visible copy). Maps directly to `aria-label` on the underlying checkbox control. When using `CheckboxField`, the visible `Field.Label` provides association automatically — prefer that over `aria-label`."
+      },
+      "checked": {
+        "type": "boolean",
+        "description": "Whether the checkbox is checked (controlled)"
+      },
+      "children": {
+        "description": "Multiple standalone **Checkbox** options. When set, `label` / `description` render as the field header above the list; `feedback` and Omit for a single integrated field (label and description beside the control per Figma)."
+      },
+      "className": {
+        "type": "string",
+        "description": "className property"
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "Test automation id — forwarded to the checkbox control (`BaseCheckbox.Root`)."
+      },
+      "defaultChecked": {
+        "type": "boolean",
+        "description": "Default checked state (uncontrolled)"
+      },
+      "description": {
+        "type": "string",
+        "description": "Description below the label row."
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Whether the checkbox is disabled"
+      },
+      "error": {
+        "type": "string",
+        "description": "Error message (shorthand for `InputFeedback` variant negative)."
+      },
+      "feedback": {
+        "description": "Feedback slot — pass `<InputFeedback … />` or use `error` string."
+      },
+      "fullWidth": {
+        "type": "boolean",
+        "description": "Stretch to fill container width."
+      },
+      "groupDefaultValue": {
+        "description": "Multi-option default checked values (uncontrolled). Use with `children`."
+      },
+      "groupValue": {
+        "description": "Multi-option checked values (controlled). Use with `children`."
+      },
+      "id": {
+        "type": "string",
+        "description": "HTML id attribute"
+      },
+      "indeterminate": {
+        "type": "boolean",
+        "description": "Whether the checkbox is in indeterminate state"
+      },
+      "infoIconSlot": {
+        "description": "Trailing control beside the label (e.g. custom info `IconButton`, menu, or `InputFieldDefaultInfo`)."
+      },
+      "invalid": {
+        "type": "boolean",
+        "description": "Mark the field invalid for `Field.Root` and error chrome on the checkbox wrapper."
+      },
+      "label": {
+        "type": "string",
+        "description": "Label text for the field header (multi-option) or integrated checkbox label (single)."
+      },
+      "labelWrapper": {
+        "description": "Outer wrapper element. Use `'div'` inside `CheckboxField` (with `Field.Label`) so the visible label is not nested inside a second `<label>`.",
+        "default": "label"
+      },
+      "name": {
+        "type": "string",
+        "description": "Field name for form submission"
+      },
+      "onCheckedChange": {
+        "description": "Change handler"
+      },
+      "onGroupValueChange": {
+        "description": "Multi-option change handler. Use with `children`."
+      },
+      "parent": {
+        "type": "boolean",
+        "description": "Marks this checkbox as the select-all parent of its `CheckboxGroup`. Base UI then DERIVES `checked` / `indeterminate` from the children — do not pass either prop yourself — and toggling it selects or clears the whole group. Requires `allValues` on the surrounding `<CheckboxGroup>`."
+      },
+      "readOnly": {
+        "type": "boolean",
+        "description": "Whether the checkbox is read-only (visually distinct from disabled)"
+      },
+      "required": {
+        "type": "boolean",
+        "description": "HTML required — form validation when unchecked"
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "Size preset. Default: 'm'"
+      },
+      "style": {
+        "description": "style property"
+      },
+      "validate": {
+        "description": "Custom validation — return message(s) or null."
+      },
+      "validationMode": {
+        "description": "Validation mode for `Field.Root`."
+      },
+      "value": {
+        "type": "string",
+        "description": "Value used when inside a CheckboxGroup"
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "checkbox-field-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { CheckboxField } from '@oneui/ui';\n\n<CheckboxField />"
+    },
+    {
+      "id": "checkbox-field-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"CheckboxField\",\n  \"decisions\": []\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "checkbox-field"
+  ],
+  "interactionBehavior": {
+    "summary": "CheckboxField is a Field.Root wrapper, not a control: hover, press, tap-scale, and the informative-blue focus halo all belong to the inner Checkbox. The wrapper's job is hit-target wiring. In single-field mode (no children) the Checkbox is `labelAssociation=\"field\"` + `labelWrapper=\"div\"`, which deliberately drops the native `<label>` wrap; the outer `Field.Label` is a real `<label>` with Base UI `htmlFor`, and a unit test confirms clicking that label text toggles the box. The description is a sibling `Field.Description` (`aria-describedby` only) and is not inside the label, so it does not toggle. Multi-option mode flips each child back to `labelAssociation=\"native\"` so that option's own label/description wrap is the hit target, while the field header is a fieldset legend that does not toggle anything.",
+    "hover": [
+      "CheckboxField.module.css has no `:hover` rule. Hover chrome is the inner Checkbox's: the box interior tints, wrapped in `@media (hover: hover)`.",
+      "Unchecked hover fills the box with the parent-surface role's `--{Role}-Hover` (Neutral on a bare page). Checked / indeterminate hover steps fill and border to `--{Role}-Bold-Hover`.",
+      "There is no hover styling on the field label or description — `Field.Label` is even `cursor: default`, so it does not look clickable even though it is."
+    ],
+    "press": [
+      "The inner Checkbox box scales UP on press (`--Motion-Tap-Scale-Up`, 7%) and tints to `--{Role}-Pressed` (unchecked) or `--{Role}-Bold-Pressed` (checked / indeterminate).",
+      "Press is NOT `(hover: hover)`-guarded.",
+      "Clicking the field label is a native `<label>` activation, so it produces the same press visuals on the box as clicking the box itself."
+    ],
+    "focus": [
+      "Focus lands on the inner `role=\"checkbox\"` control, not on the Field.Label. Clicking the label focuses that control.",
+      "The halo is Checkbox's two-layer ring whose OUTER colour is `--Informative-Bold` (falling back to `--Focus-Outline`) — a `negative` checkbox still focuses informative-blue.",
+      "`:focus-visible` only; clicking the label with a mouse does not paint the ring.",
+      "`readOnly` keeps the control in the tab order and does not suppress `:focus-visible`, so a read-only field still shows the halo."
+    ],
+    "keyboard": [
+      "CheckboxField adds no key handlers. Keyboard is the inner Checkbox: `Space` toggles on key-up; `Enter` does NOT toggle — Base UI forwards Enter to the form's default submitter.",
+      "In single-field mode the visible `Field.Label` is a genuine `<label>` associated via Base UI `htmlFor` with the checkbox control id, so clicking the label text toggles — covered by a unit test. The description is `aria-describedby` only and is not a hit target.",
+      "In multi-option mode the field `Field.Label` lives in a `<legend>` and does not toggle any box. Each child is forced to `labelAssociation=\"native\"`, so that option's own label and description wrap in a real `<label>` and clicking them toggles that option only.",
+      "`disabled` sets `aria-disabled` on the control and removes it from the tab order; `readOnly` sets `aria-readonly` and keeps it in the tab order."
+    ],
+    "selected": [
+      "Single-field checked / indeterminate / `onCheckedChange` are forwarded to the inner Checkbox. Indeterminate is a controlled prop, not a third click state — a click always resolves to checked or unchecked.",
+      "Multi-option selection is a CheckboxGroup: `groupValue` / `groupDefaultValue` / `onGroupValueChange`. Each child still exposes `aria-checked` independently; this is not `aria-pressed` and not a radio-style exclusive group.",
+      "Checked fill is Checkbox's: `--{Role}-Bold` box with `--{Role}-Bold-TintedA11y` glyph. `appearance` on the field is forwarded onto every option (`'auto'` resolves to `secondary` inside Checkbox)."
+    ],
+    "disabled": [
+      "`disabled` is passed to `Field.Root` and the inner Checkbox (or CheckboxGroup + every child), and `data-disabled` on the label stack drops the label/description to `--Text-Low`.",
+      "Clicking the field label does not toggle when disabled — covered by a unit test.",
+      "The inner Checkbox's `not-allowed` cursor IS observable: the box is `pointer-events: none`, so the pointer falls through to the wrapper, which declares `not-allowed`. In single-field mode that wrapper is a `<div>` (because `labelWrapper=\"div\"`) that still carries the cursor.",
+      "`readOnly` is the Checkbox contract (no dim from the `:not([data-readonly])` rule, `cursor: default`, Neutral/High ink) forwarded through; `onCheckedChange` is not wired when `readOnly`."
+    ],
+    "touch": [
+      "Hover tints never apply on touch-only devices; the inner Checkbox's pressed tint plus the 7% scale-up are the response to a tap on the box.",
+      "In single-field mode the `Field.Label` text extends the hit target across the label row; the description row below it does not. In multi-option mode each option's own native `<label>` (its label + description) is the hit target — the fieldset legend is not.",
+      "Nothing pads the row to 44px; the box itself is 16/20/24px at S/M/L."
+    ]
+  },
+  "importPath": "@jds4/oneui-react",
+  "figma": {
+    "componentKey": "jds-checkbox-field-v4"
+  },
+  "renderHints": {
+    "baseElement": "div",
+    "readsFromSurfaceContext": true
+  },
+  "a11y": {
+    "role": null,
+    "minTouchTarget": 44,
+    "accessibleNameSource": "aria-label"
+  }
+}

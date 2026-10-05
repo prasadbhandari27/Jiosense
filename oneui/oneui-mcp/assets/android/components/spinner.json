@@ -1,0 +1,142 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Spinner",
+  "platform": "android",
+  "generatedAt": "2026-07-30T00:00:00.000Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Figma Spinner maps to indeterminate JdsCircularProgressIndicator (Android has no separate JdsSpinner)."
+  },
+  "composable": "JdsCircularProgressIndicator",
+  "attributesClass": "JdsCircularProgressIndicatorAttributes",
+  "importPath": "com.jds.components.circularprogressindicator",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.circularprogressindicator.JdsCircularProgressIndicator",
+    "attributes": "com.jds.components.circularprogressindicator.JdsCircularProgressIndicatorAttributes",
+    "enums": {
+      "JdsCircularProgressIndicatorVariant": "com.jds.components.circularprogressindicator.JdsCircularProgressIndicatorVariant",
+      "JdsCircularProgressIndicatorSize": "com.jds.components.circularprogressindicator.JdsCircularProgressIndicatorSize",
+      "Appearance": "com.jds.foundation.token.Appearance"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": ["contentDescription"],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "contentDescription",
+      "type": "String",
+      "required": true,
+      "description": ""
+    },
+    {
+      "name": "variant",
+      "type": "JdsCircularProgressIndicatorVariant",
+      "required": false,
+      "defaultValue": "JdsCircularProgressIndicatorVariant.Indeterminate",
+      "enumValues": ["Determinate", "Indeterminate"],
+      "description": "Spinner is always indeterminate on Android."
+    },
+    {
+      "name": "size",
+      "type": "JdsCircularProgressIndicatorSize",
+      "required": false,
+      "defaultValue": "JdsCircularProgressIndicatorSize.M",
+      "enumValues": ["X2S", "XS", "S", "M", "L", "XL", "X2L", "X3L", "X4L", "X5L"],
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "Appearance",
+      "required": false,
+      "defaultValue": "Appearance.Secondary",
+      "enumValues": [
+        "Auto",
+        "Primary",
+        "Secondary",
+        "Sparkle",
+        "BrandBg",
+        "Neutral",
+        "Positive",
+        "Negative",
+        "Warning",
+        "Informative"
+      ],
+      "description": ""
+    },
+    {
+      "name": "label",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": "Accessible label; mapped to contentDescription when present."
+    }
+  ],
+  "slots": [],
+  "enums": {
+    "JdsCircularProgressIndicatorVariant": ["Determinate", "Indeterminate"],
+    "JdsCircularProgressIndicatorSize": [
+      "X2S",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "X2L",
+      "X3L",
+      "X4L",
+      "X5L"
+    ],
+    "Appearance": [
+      "Auto",
+      "Primary",
+      "Secondary",
+      "Sparkle",
+      "BrandBg",
+      "Neutral",
+      "Positive",
+      "Negative",
+      "Warning",
+      "Informative"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.Spinner",
+    "type": "object",
+    "properties": {
+      "contentDescription": { "type": "string" },
+      "variant": {
+        "enum": ["Determinate", "Indeterminate"],
+        "default": "JdsCircularProgressIndicatorVariant.Indeterminate"
+      },
+      "size": {
+        "enum": ["X2S", "XS", "S", "M", "L", "XL", "X2L", "X3L", "X4L", "X5L"],
+        "default": "JdsCircularProgressIndicatorSize.M"
+      },
+      "appearance": {
+        "enum": [
+          "Auto",
+          "Primary",
+          "Secondary",
+          "Sparkle",
+          "BrandBg",
+          "Neutral",
+          "Positive",
+          "Negative",
+          "Warning",
+          "Informative"
+        ],
+        "default": "Appearance.Secondary"
+      },
+      "label": { "type": "string" }
+    },
+    "required": ["contentDescription"]
+  },
+  "tags": ["machine-readable", "android", "compose", "spinner", "circularprogressindicator"],
+  "importPathMaven": "com.jds:components"
+}

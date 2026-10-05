@@ -1,0 +1,263 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "PaginationDots",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Sliding-conveyor pagination indicator for carousels and multi-page content. All N dots render inside a CSS-translating track; the active pill stays at the viewport centre when possible and walks toward the boundary near the start / end. Off-viewport dots collapse to 0 × 0 and scale up to edge (4px) as the conveyor slides them in, then back to 0 on exit — no pop-clip. Loop mode wraps last → first under --Motion-Duration-XL; every other advance runs at --Motion-Duration-L. CSS-only motion. Fully accessible: roving tabindex, keyboard nav, aria-selected.",
+    "taskContexts": [
+      "pagination",
+      "carousel",
+      "indicator",
+      "navigation",
+      "dots"
+    ],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "non-loop",
+        "useWhen": [
+          "Non-loop"
+        ]
+      },
+      {
+        "name": "loop",
+        "useWhen": [
+          "Loop"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "pageCount",
+      "type": "number",
+      "required": true,
+      "description": "Total number of pages / items. Required."
+    },
+    {
+      "name": "activeIndex",
+      "type": "number",
+      "required": false,
+      "description": "Controlled active index."
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "description": "Multi-accent appearance role. `auto` resolves to `primary`. Default: `primary`."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label for the tablist root."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name applied to the root."
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "Stable anchor for Playwright / QA harnesses (applied to the tablist / status root)."
+    },
+    {
+      "name": "defaultActiveIndex",
+      "type": "number",
+      "required": false,
+      "description": "Default active index when uncontrolled."
+    },
+    {
+      "name": "loop",
+      "type": "boolean",
+      "required": false,
+      "description": "Loop mode. `true` = stepping wraps (last → 0 and 0 → last), and the track reverse-slides its full length to get there. `false` = finite sequence, stepping stops at the ends. Default: `false`. The visible window clamps at the sequence edges in BOTH modes — loop does not keep the active dot centred by wrapping the window. That is a consequence of the translating-track conveyor: dots render in absolute order with `key = absIdx` so React never remounts them mid-slide, which is what lets CSS interpolate the width / height morph. A wrapped window would need the last dots rendered before the first, i.e. DOM reordering or ghost duplicates, either of which breaks that interpolation."
+    },
+    {
+      "name": "onActiveIndexChange",
+      "type": "(index: number) => void",
+      "required": false,
+      "description": "Fires when the active index changes (via click, keyboard, or controlled update)."
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean",
+      "required": false,
+      "description": "When true, disables all interaction (clicks, keyboard) and renders as a read-only live-region indicator (`role=\"status\"`, `aria-live=\"polite\"`). Use for components that purely mirror a parent carousel's state."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles applied to the root."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.pagination-dots",
+    "type": "object",
+    "properties": {
+      "pageCount": {
+        "type": "number",
+        "description": "Total number of pages / items. Required."
+      },
+      "activeIndex": {
+        "type": "number",
+        "description": "Controlled active index."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. `auto` resolves to `primary`. Default: `primary`."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label for the tablist root."
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name applied to the root."
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "Stable anchor for Playwright / QA harnesses (applied to the tablist / status root)."
+      },
+      "defaultActiveIndex": {
+        "type": "number",
+        "description": "Default active index when uncontrolled."
+      },
+      "loop": {
+        "type": "boolean",
+        "description": "Loop mode. `true` = stepping wraps (last → 0 and 0 → last), and the track reverse-slides its full length to get there. `false` = finite sequence, stepping stops at the ends. Default: `false`. The visible window clamps at the sequence edges in BOTH modes — loop does not keep the active dot centred by wrapping the window. That is a consequence of the translating-track conveyor: dots render in absolute order with `key = absIdx` so React never remounts them mid-slide, which is what lets CSS interpolate the width / height morph. A wrapped window would need the last dots rendered before the first, i.e. DOM reordering or ghost duplicates, either of which breaks that interpolation."
+      },
+      "onActiveIndexChange": {
+        "description": "Fires when the active index changes (via click, keyboard, or controlled update)."
+      },
+      "readOnly": {
+        "type": "boolean",
+        "description": "When true, disables all interaction (clicks, keyboard) and renders as a read-only live-region indicator (`role=\"status\"`, `aria-live=\"polite\"`). Use for components that purely mirror a parent carousel's state."
+      },
+      "style": {
+        "description": "Inline styles applied to the root."
+      }
+    },
+    "required": [
+      "pageCount"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "pagination-dots-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { PaginationDots } from '@oneui/ui';\n\n<PaginationDots />"
+    },
+    {
+      "id": "pagination-dots-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"PaginationDots\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "pagination-dots"
+  ],
+  "interactionBehavior": {
+    "summary": "PaginationDots are clickable tabs, not a mute indicator — each visible dot is a `<button role=\"tab\">` that calls `setActive`. There is no hover or pressed recolour (`--_pg-bold-hover` is declared per appearance and never consumed; there is no `:hover` / `:active` rule). Keyboard arrows change the page, they do not merely move focus, then focus follows the new active pill. In conveyor mode (`pageCount` > 5, `[data-conveyor]`) a page change slides the whole `.track` horizontally — `transform: translateX(var(--_pg-offset))` transitioned over `--_pg-duration` (`--Motion-Duration-L`, bumped to `--Motion-Duration-XL` while `[data-wrapping]`) with `--Motion-Easing-Transition-Moderate` — so the dot cluster conveys sideways under the fixed viewport rather than the active pill hopping between static dots. Pass `readOnly` when the dots only mirror a parent Carousel: the root becomes `role=\"status\"` with `aria-live=\"polite\"`, every button is `disabled` with `tabIndex={-1}`, and clicks / keys no-op. `Carousel.IndicatorList` does **not** pass `readOnly`.",
+    "press": [
+      "A click on a dot (including an edge/small one) selects that absolute index — distant taps are allowed, not only neighbours.",
+      "There is no pressed fill or tap-scale; the acknowledgement is the active pill morphing to `--PaginationDots-activeWidth` in `--{Role}-Bold`.",
+      "`readOnly` sets `disabled` on every button and `setActive` returns immediately, so taps do nothing."
+    ],
+    "focus": [
+      "Roving tabindex: only the active tab has `tabIndex={0}`; the others are `-1` and are reached by arrows, not Tab.",
+      "The halo is drawn on the visible `.dot` (circle or elongated pill), not on the tall `::before` hit area, so the ring hugs the shape instead of floating above it.",
+      "Two-layer halo: inner `--Stroke-XL` gap in `--Surface-Halo-Gap`, outer `--Focus-Outline` (spread `--Stroke-XL` + `--Focus-Outline-Width`).",
+      "Off-viewport conveyor dots are `aria-hidden` and never the tabbable one — the active dot is always in the viewport.",
+      "`readOnly` removes every tab from the tab order (`tabIndex={-1}`) and drops `role=\"tab\"` so the status root is not a tablist."
+    ],
+    "keyboard": [
+      "`ArrowRight` / `ArrowDown` step +1; `ArrowLeft` / `ArrowUp` step −1. Without `loop`, stepping clamps at the ends and does not move focus onto a stale neighbour.",
+      "`loop` wraps (last → 0, 0 → last). `Home` / `End` jump to first / last even in loop mode (they do not wrap).",
+      "After a key that actually changes the index, focus is moved onto the new active button so the halo follows the pill.",
+      "The handler is on the root and is omitted entirely when `readOnly`."
+    ],
+    "selected": [
+      "The active dot is an elongated pill: width `--PaginationDots-activeWidth` (default `--Spacing-4`), fill `--PaginationDots-colorActive` → `--{Role}-Bold`, `aria-selected=\"true\"` (or `aria-current=\"true\"` when `readOnly`).",
+      "Inactive regular dots use `--Neutral-Stroke-Low` on a page-like surface (resolved step `2500` or `100`). Inside any other `[data-surface]` step they switch to `--{Role}-Stroke-Low` so they stay tinted with the appearance role.",
+      "In a conveyor (`pageCount` > 5) the outermost visible slots shrink to `--PaginationDots-edgeSize` (`--Spacing-1`) to hint that more pages exist; off-viewport dots collapse to 0×0 so they slide in and out of the conveyor instead of pop-clipping at the edge."
+    ],
+    "touch": [
+      "Each tab's `::before` extends the hit area vertically by `--PaginationDots-hitArea` (`--Spacing-3`) only — not horizontally — so neighbouring 4px gaps never overlap and a fat-finger tap cannot skip a dot.",
+      "`cursor: pointer` is on the whole row (including the gaps) and `::before` inherits it, so the cursor does not flicker as you track along the cluster. `readOnly` / `:disabled` reset it to `default` and hide `::before`.",
+      "No hover fill means a tap cannot leave a stuck tint; the pill morph is the whole visual response."
+    ]
+  },
+  "importPath": "@jds4/oneui-react",
+  "figma": {
+    "componentKey": "jds-pagination-dots-v4"
+  },
+  "renderHints": {
+    "baseElement": "div",
+    "readsFromSurfaceContext": true
+  },
+  "a11y": {
+    "role": "tablist",
+    "minTouchTarget": 44,
+    "accessibleNameSource": "aria-label"
+  }
+}

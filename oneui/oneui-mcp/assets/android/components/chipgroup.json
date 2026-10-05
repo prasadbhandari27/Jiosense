@@ -1,0 +1,201 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "ChipGroup",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.247Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Public API contract for JdsChipGroup."
+  },
+  "composable": "JdsChipGroup",
+  "attributesClass": "JdsChipGroupAttributes",
+  "importPath": "com.jds.components.chipgroup",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.chipgroup.JdsChipGroup",
+    "attributes": "com.jds.components.chipgroup.JdsChipGroupAttributes",
+    "enums": {
+      "JdsChipSize": "com.jds.components.chip.JdsChipSize",
+      "JdsChipContainerType": "com.jds.components.chipgroup.JdsChipContainerType"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [
+      "chips"
+    ],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "chips",
+      "type": "List<JdsChipAttributes>",
+      "required": true,
+      "description": ""
+    },
+    {
+      "name": "selectedValues",
+      "type": "Set<String>?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "defaultSelectedValues",
+      "type": "Set<String>",
+      "required": false,
+      "defaultValue": "emptySet()",
+      "description": "non-null = controlled"
+    },
+    {
+      "name": "onSelectionChange",
+      "type": "(Set<String>) -> Unit",
+      "required": false,
+      "defaultValue": "{}",
+      "description": "uncontrolled seed"
+    },
+    {
+      "name": "multiple",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "maxSelections",
+      "type": "Int",
+      "required": false,
+      "defaultValue": "Int.MAX_VALUE",
+      "description": ""
+    },
+    {
+      "name": "required",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "only when multiple"
+    },
+    {
+      "name": "size",
+      "type": "JdsChipSize",
+      "required": false,
+      "defaultValue": "JdsChipSize.M",
+      "enumValues": [
+        "S",
+        "M",
+        "L"
+      ],
+      "description": ""
+    },
+    {
+      "name": "containerType",
+      "type": "JdsChipContainerType",
+      "required": false,
+      "defaultValue": "JdsChipContainerType.Inline",
+      "enumValues": [
+        "Inline",
+        "Wrap"
+      ],
+      "description": ""
+    },
+    {
+      "name": "scrollable",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Only applied when containerType is JdsChipContainerType.Inline; ignored for JdsChipContainerType.Wrap."
+    },
+    {
+      "name": "disabled",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Inline only"
+    },
+    {
+      "name": "announceSelectionCount",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "When true, the group is a polite live region and announces `\"<label>, N selected\"`. If contentDescription is null/blank, label defaults to `\"Chip group\"` (OneUI-516)."
+    },
+    {
+      "name": "contentDescription",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "enums": {
+    "JdsChipSize": [
+      "S",
+      "M",
+      "L"
+    ],
+    "JdsChipContainerType": [
+      "Inline",
+      "Wrap"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.ChipGroup",
+    "type": "object",
+    "properties": {
+      "chips": {},
+      "selectedValues": {},
+      "defaultSelectedValues": {},
+      "onSelectionChange": {},
+      "multiple": {
+        "type": "boolean"
+      },
+      "maxSelections": {
+        "type": "integer"
+      },
+      "required": {
+        "type": "boolean"
+      },
+      "size": {
+        "enum": [
+          "S",
+          "M",
+          "L"
+        ],
+        "default": "JdsChipSize.M"
+      },
+      "containerType": {
+        "enum": [
+          "Inline",
+          "Wrap"
+        ],
+        "default": "JdsChipContainerType.Inline"
+      },
+      "scrollable": {
+        "type": "boolean"
+      },
+      "disabled": {
+        "type": "boolean"
+      },
+      "announceSelectionCount": {
+        "type": "boolean"
+      },
+      "contentDescription": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "chips"
+    ]
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "chipgroup"
+  ],
+  "importPathMaven": "com.jds:components"
+}

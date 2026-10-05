@@ -1,0 +1,225 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "TouchSlider",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.257Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Public configuration contract for JdsTouchSlider."
+  },
+  "composable": "JdsTouchSlider",
+  "attributesClass": "JdsTouchSliderAttributes",
+  "importPath": "com.jds.components.touchslider",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.touchslider.JdsTouchSlider",
+    "attributes": "com.jds.components.touchslider.JdsTouchSliderAttributes",
+    "enums": {
+      "Appearance": "com.jds.foundation.token.Appearance",
+      "JdsTouchSliderOrientation": "com.jds.components.touchslider.JdsTouchSliderOrientation",
+      "JdsTouchSliderProgressStyle": "com.jds.components.touchslider.JdsTouchSliderProgressStyle"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "value",
+      "type": "Float",
+      "required": false,
+      "defaultValue": "0f",
+      "description": ""
+    },
+    {
+      "name": "valueRange",
+      "type": "ClosedFloatingPointRange<Float>",
+      "required": false,
+      "defaultValue": "0f..100f",
+      "description": ""
+    },
+    {
+      "name": "onValueChange",
+      "type": "((Float) -> Unit)?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "onValueCommitted",
+      "type": "((Float) -> Unit)?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "step",
+      "type": "Float",
+      "required": false,
+      "defaultValue": "1f",
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "Appearance",
+      "required": false,
+      "defaultValue": "Appearance.Auto",
+      "enumValues": [
+        "Auto",
+        "Primary",
+        "Secondary",
+        "Sparkle",
+        "BrandBg",
+        "Neutral",
+        "Positive",
+        "Negative",
+        "Warning",
+        "Informative"
+      ],
+      "description": ""
+    },
+    {
+      "name": "orientation",
+      "type": "JdsTouchSliderOrientation",
+      "required": false,
+      "defaultValue": "JdsTouchSliderOrientation.Vertical",
+      "enumValues": [
+        "Horizontal",
+        "Vertical"
+      ],
+      "description": ""
+    },
+    {
+      "name": "progressStyle",
+      "type": "JdsTouchSliderProgressStyle",
+      "required": false,
+      "defaultValue": "JdsTouchSliderProgressStyle.Rounded",
+      "enumValues": [
+        "Rounded",
+        "Sharp"
+      ],
+      "description": ""
+    },
+    {
+      "name": "start",
+      "type": "JdsSlot?",
+      "required": false,
+      "defaultValue": "null",
+      "slot": true,
+      "slotTypes": [],
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "readOnly",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "contentDescription",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "start",
+      "types": []
+    }
+  ],
+  "enums": {
+    "Appearance": [
+      "Auto",
+      "Primary",
+      "Secondary",
+      "Sparkle",
+      "BrandBg",
+      "Neutral",
+      "Positive",
+      "Negative",
+      "Warning",
+      "Informative"
+    ],
+    "JdsTouchSliderOrientation": [
+      "Horizontal",
+      "Vertical"
+    ],
+    "JdsTouchSliderProgressStyle": [
+      "Rounded",
+      "Sharp"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.TouchSlider",
+    "type": "object",
+    "properties": {
+      "value": {},
+      "valueRange": {},
+      "onValueChange": {},
+      "onValueCommitted": {},
+      "step": {},
+      "appearance": {
+        "enum": [
+          "Auto",
+          "Primary",
+          "Secondary",
+          "Sparkle",
+          "BrandBg",
+          "Neutral",
+          "Positive",
+          "Negative",
+          "Warning",
+          "Informative"
+        ],
+        "default": "Appearance.Auto"
+      },
+      "orientation": {
+        "enum": [
+          "Horizontal",
+          "Vertical"
+        ],
+        "default": "JdsTouchSliderOrientation.Vertical"
+      },
+      "progressStyle": {
+        "enum": [
+          "Rounded",
+          "Sharp"
+        ],
+        "default": "JdsTouchSliderProgressStyle.Rounded"
+      },
+      "start": {},
+      "disabled": {
+        "type": "boolean"
+      },
+      "readOnly": {
+        "type": "boolean"
+      },
+      "contentDescription": {
+        "type": "string"
+      }
+    },
+    "required": []
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "touchslider"
+  ],
+  "importPathMaven": "com.jds:components"
+}

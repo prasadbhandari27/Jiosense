@@ -1,0 +1,275 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "AgentPulse",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Animated brand-coloured indicator that visualises the four canonical agent states (idle, listening, thinking, speaking) using the OneUI logo geometry. Recolours per brand and adapts on coloured surfaces.",
+    "taskContexts": [
+      "ai",
+      "agent",
+      "thinking",
+      "listening",
+      "speaking",
+      "lottie",
+      "animated",
+      "status",
+      "voice"
+    ],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "idle",
+        "useWhen": [
+          "Idle"
+        ]
+      },
+      {
+        "name": "listening",
+        "useWhen": [
+          "Listening"
+        ]
+      },
+      {
+        "name": "thinking",
+        "useWhen": [
+          "Thinking"
+        ]
+      },
+      {
+        "name": "speaking",
+        "useWhen": [
+          "Speaking"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "appearance",
+      "type": "'primary' | 'secondary' | 'sparkle' | 'auto' | 'neutral' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "description": "Multi-accent appearance role. Default: `secondary`."
+    },
+    {
+      "name": "aria-live",
+      "type": "'off' | 'polite' | 'assertive'",
+      "required": false,
+      "description": "Live region politeness for screen readers."
+    },
+    {
+      "name": "autoTransition",
+      "type": "boolean",
+      "required": false,
+      "description": "Skip the bridge animation between states."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "className property"
+    },
+    {
+      "name": "emphasis",
+      "type": "'tinted' | 'tintedA11y'",
+      "required": false,
+      "defaultValue": "tinted",
+      "description": "Tinted colour emphasis (Figma: Agent pulse is always tinted)."
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "required": false,
+      "description": "Override the auto-derived a11y label (e.g. \"Agent is thinking\")."
+    },
+    {
+      "name": "paused",
+      "type": "boolean",
+      "required": false,
+      "description": "Pause animation playback."
+    },
+    {
+      "name": "reducedMotionFallback",
+      "type": "'static' | 'pulse' | 'none'",
+      "required": false,
+      "description": "Reduced-motion fallback."
+    },
+    {
+      "name": "size",
+      "type": "'2' | '2.5' | '3' | '3.5' | '4' | '4.5' | '5' | '6' | '7' | '8' | '9' | '10' | '12' | '14' | '16' | '18' | '20' | '24' | '32' | '40' | 'sm' | 'md' | 'lg' | 'xl' | number",
+      "required": false,
+      "description": "Figma dimension-token size, legacy preset, or pixel override."
+    },
+    {
+      "name": "speed",
+      "type": "number",
+      "required": false,
+      "description": "Playback rate (1 = normal, 2 = double, 0.5 = half)."
+    },
+    {
+      "name": "state",
+      "type": "'idle' | 'listening' | 'thinking' | 'speaking'",
+      "required": false,
+      "description": "Visual state. Component plays the matching loop and auto-runs a bridge animation between states when one exists."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "style property"
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.agent-pulse",
+    "type": "object",
+    "properties": {
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. Default: `secondary`."
+      },
+      "aria-live": {
+        "description": "Live region politeness for screen readers."
+      },
+      "autoTransition": {
+        "type": "boolean",
+        "description": "Skip the bridge animation between states."
+      },
+      "className": {
+        "type": "string",
+        "description": "className property"
+      },
+      "emphasis": {
+        "enum": [
+          "tinted",
+          "tintedA11y"
+        ],
+        "description": "Tinted colour emphasis (Figma: Agent pulse is always tinted).",
+        "default": "tinted"
+      },
+      "label": {
+        "type": "string",
+        "description": "Override the auto-derived a11y label (e.g. \"Agent is thinking\")."
+      },
+      "paused": {
+        "type": "boolean",
+        "description": "Pause animation playback."
+      },
+      "reducedMotionFallback": {
+        "enum": [
+          "static",
+          "pulse",
+          "none"
+        ],
+        "description": "Reduced-motion fallback."
+      },
+      "size": {
+        "enum": [
+          "2",
+          "2.5",
+          "3",
+          "3.5",
+          "4",
+          "4.5",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "12",
+          "14",
+          "16",
+          "18",
+          "20",
+          "24",
+          "32",
+          "40"
+        ],
+        "description": "Figma dimension-token size, legacy preset, or pixel override."
+      },
+      "speed": {
+        "type": "number",
+        "description": "Playback rate (1 = normal, 2 = double, 0.5 = half)."
+      },
+      "state": {
+        "enum": [
+          "idle",
+          "listening",
+          "thinking",
+          "speaking"
+        ],
+        "description": "Visual state. Component plays the matching loop and auto-runs a bridge animation between states when one exists."
+      },
+      "style": {
+        "description": "style property"
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "agent-pulse-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { AgentPulse } from '@oneui/ui';\n\n<AgentPulse />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "agent-pulse"
+  ],
+  "interactionBehavior": {
+    "summary": "AgentPulse is presentational, not a control: no hover, press, or focus styles, no click handler, and no tab stop — `state` / `paused` are props, not gestures. It is a `role=\"status\"` live region (`aria-live` defaults to `polite`, overridable to `off` or `assertive`) named by `label` or the state default (`\"Agent is idle\"` / `listening` / `thinking` / `speaking`), with the same string repeated in a visually hidden node so the live region has text content. The SVG mark is `aria-hidden` and `focusable=\"false\"`. Listening and speaking audio only subscribe while the pulse is on-screen and not `paused`; an off-screen instance will not start playback. Inherit the parent's cursor — it does not set one. Twelve keyframes drive the visual states — `agentPulseIdle` / `-IdleSettle`, `agentPulseThinking`, the four `agentPulseTransitionInPill*` steps with their cluster in/out counterparts, and `agentPulseFade`. Under `prefers-reduced-motion: reduce` the `.pill` and `.cluster` animations are switched off with `!important` (and the `.fallbackPulse` SVG with them), so `state` still changes the appearance but nothing moves."
+  },
+  "importPath": "@jds4/oneui-react"
+}

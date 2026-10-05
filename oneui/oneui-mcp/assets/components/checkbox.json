@@ -1,0 +1,451 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Checkbox",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Binary selection control for forms and settings with tri-state (indeterminate) support.",
+    "taskContexts": [
+      "form-field",
+      "settings-toggle",
+      "multi-select-list",
+      "bulk-selection"
+    ],
+    "sentiments": [
+      "neutral",
+      "positive"
+    ]
+  },
+  "compositionRules": {
+    "requires": [
+      "label or aria-label"
+    ],
+    "allows": [
+      "indeterminate state",
+      "read-only mode"
+    ],
+    "forbids": [
+      "use as a toggle for non-boolean values"
+    ]
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "default",
+        "useWhen": [
+          "standard form checkbox"
+        ]
+      },
+      {
+        "name": "indeterminate",
+        "useWhen": [
+          "parent of partially-selected group"
+        ]
+      },
+      {
+        "name": "readOnly",
+        "useWhen": [
+          "display-only state, value visible but not editable"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": [
+      "Switch",
+      "Radio",
+      "CheckboxGroup"
+    ],
+    "groupsWith": [
+      "CheckboxGroup",
+      "FormField"
+    ]
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "appearance + accent dual-role"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [
+      "check",
+      "uncheck",
+      "indeterminate_set"
+    ],
+    "health": [
+      "a11y_violations",
+      "override_frequency"
+    ]
+  },
+  "props": [
+    {
+      "name": "accent",
+      "type": "'primary' | 'secondary' | 'sparkle'",
+      "required": false,
+      "description": "accent property"
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "description": "Appearance role — border, hover, and checked fill. `auto` → secondary stack."
+    },
+    {
+      "name": "aria-describedby",
+      "type": "string",
+      "required": false,
+      "description": "For composite fields — links to `Field.Description` etc."
+    },
+    {
+      "name": "aria-invalid",
+      "type": "boolean | 'true' | 'false'",
+      "required": false,
+      "description": "Invalid state for form validation (exposed on the checkbox control)."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label when there is no visible `label` (or when overriding the visible copy). Maps directly to `aria-label` on the underlying checkbox control. When using `CheckboxField`, the visible `Field.Label` provides association automatically — prefer that over `aria-label`."
+    },
+    {
+      "name": "checked",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the checkbox is checked (controlled)"
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "children property"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "Test automation id — forwarded to the checkbox control (`BaseCheckbox.Root`)."
+    },
+    {
+      "name": "defaultChecked",
+      "type": "boolean",
+      "required": false,
+      "description": "Default checked state (uncontrolled)"
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "required": false,
+      "description": "Supplementary copy below the label row. Maps to `aria-describedby` on the control."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the checkbox is disabled"
+    },
+    {
+      "name": "errorHighlight",
+      "type": "boolean",
+      "required": false,
+      "description": "Error-state chrome on the wrapper (from `CheckboxField` when invalid). Standalone `Checkbox` does not use `errorHighlight`; use `CheckboxField` for validation UX."
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "description": "HTML id attribute"
+    },
+    {
+      "name": "indeterminate",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the checkbox is in indeterminate state"
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "required": false,
+      "description": "Visible label beside the control. Maps to `aria-label` when the wrapper is a `div`."
+    },
+    {
+      "name": "labelWrapper",
+      "type": "'label' | 'div'",
+      "required": false,
+      "defaultValue": "label",
+      "description": "Outer wrapper element. Use `'div'` inside `CheckboxField` (with `Field.Label`) so the visible label is not nested inside a second `<label>`."
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "required": false,
+      "description": "Field name for form submission"
+    },
+    {
+      "name": "onCheckedChange",
+      "type": "(checked: boolean) => void",
+      "required": false,
+      "description": "Change handler"
+    },
+    {
+      "name": "parent",
+      "type": "boolean",
+      "required": false,
+      "description": "Marks this checkbox as the select-all parent of its `CheckboxGroup`. Base UI then DERIVES `checked` / `indeterminate` from the children — do not pass either prop yourself — and toggling it selects or clears the whole group. Requires `allValues` on the surrounding `<CheckboxGroup>`."
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the checkbox is read-only (visually distinct from disabled)"
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "required": false,
+      "description": "HTML required — form validation when unchecked"
+    },
+    {
+      "name": "size",
+      "type": "'s' | 'm' | 'l' | 'small' | 'medium' | 'large'",
+      "required": false,
+      "description": "Size preset. Default: 'm'"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "required": false,
+      "description": "Value used when inside a CheckboxGroup"
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.checkbox",
+    "type": "object",
+    "properties": {
+      "accent": {
+        "description": "accent property"
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Appearance role — border, hover, and checked fill. `auto` → secondary stack."
+      },
+      "aria-describedby": {
+        "type": "string",
+        "description": "For composite fields — links to `Field.Description` etc."
+      },
+      "aria-invalid": {
+        "description": "Invalid state for form validation (exposed on the checkbox control)."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label when there is no visible `label` (or when overriding the visible copy). Maps directly to `aria-label` on the underlying checkbox control. When using `CheckboxField`, the visible `Field.Label` provides association automatically — prefer that over `aria-label`."
+      },
+      "checked": {
+        "type": "boolean",
+        "description": "Whether the checkbox is checked (controlled)"
+      },
+      "children": {
+        "description": "children property"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "Test automation id — forwarded to the checkbox control (`BaseCheckbox.Root`)."
+      },
+      "defaultChecked": {
+        "type": "boolean",
+        "description": "Default checked state (uncontrolled)"
+      },
+      "description": {
+        "type": "string",
+        "description": "Supplementary copy below the label row. Maps to `aria-describedby` on the control."
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Whether the checkbox is disabled"
+      },
+      "errorHighlight": {
+        "type": "boolean",
+        "description": "Error-state chrome on the wrapper (from `CheckboxField` when invalid). Standalone `Checkbox` does not use `errorHighlight`; use `CheckboxField` for validation UX."
+      },
+      "id": {
+        "type": "string",
+        "description": "HTML id attribute"
+      },
+      "indeterminate": {
+        "type": "boolean",
+        "description": "Whether the checkbox is in indeterminate state"
+      },
+      "label": {
+        "type": "string",
+        "description": "Visible label beside the control. Maps to `aria-label` when the wrapper is a `div`."
+      },
+      "labelWrapper": {
+        "description": "Outer wrapper element. Use `'div'` inside `CheckboxField` (with `Field.Label`) so the visible label is not nested inside a second `<label>`.",
+        "default": "label"
+      },
+      "name": {
+        "type": "string",
+        "description": "Field name for form submission"
+      },
+      "onCheckedChange": {
+        "description": "Change handler"
+      },
+      "parent": {
+        "type": "boolean",
+        "description": "Marks this checkbox as the select-all parent of its `CheckboxGroup`. Base UI then DERIVES `checked` / `indeterminate` from the children — do not pass either prop yourself — and toggling it selects or clears the whole group. Requires `allValues` on the surrounding `<CheckboxGroup>`."
+      },
+      "readOnly": {
+        "type": "boolean",
+        "description": "Whether the checkbox is read-only (visually distinct from disabled)"
+      },
+      "required": {
+        "type": "boolean",
+        "description": "HTML required — form validation when unchecked"
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "Size preset. Default: 'm'"
+      },
+      "style": {
+        "description": "Inline styles"
+      },
+      "value": {
+        "type": "string",
+        "description": "Value used when inside a CheckboxGroup"
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "checkbox-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Checkbox } from '@oneui/ui';\n\n<Checkbox>Accept terms</Checkbox>"
+    },
+    {
+      "id": "checkbox-controlled",
+      "title": "Controlled",
+      "language": "tsx",
+      "code": "<Checkbox checked={isChecked} onCheckedChange={setIsChecked}>Option</Checkbox>"
+    },
+    {
+      "id": "checkbox-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Checkbox\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "checkbox"
+  ],
+  "interactionBehavior": {
+    "summary": "Checkbox scales UP on press (`--Motion-Tap-Scale-Up`, 7%), the opposite of Button's squash. Two claims usually surprise people. First, `Enter` does NOT toggle it — Base UI deliberately cancels the native button activation and forwards `Enter` to the form's default submitter, so only `Space` (on key-up) checks the box. Second, its focus ring is not `--Focus-Outline`: the outer ring is `--Informative-Bold`, per the Figma spec — the same selection-control pattern Radio, Switch and the slider knob share. The `appearance` prop colours the CHECKED fill only; the unchecked stroke and the unchecked hover/press tints come from the nearest `<Surface>` role, falling back to Neutral on a bare page.",
+    "hover": [
+      "Both hover rules are wrapped in `@media (hover: hover)`, so a touch tap never leaves a stuck tint behind.",
+      "UNCHECKED hover fills the box interior with `--{ParentSurfaceRole}-Hover` (Neutral by default) while the border stays at the unchecked stroke — so the box tints without committing to the brand colour.",
+      "CHECKED or INDETERMINATE hover steps both `background-color` and `border-color` to `--{Role}-Bold-Hover`, following the `appearance` prop.",
+      "The unchecked hover role is resolved at render time into `data-unchecked-appearance`: no `<Surface>` ancestor, or a Surface sitting at a palette extreme (step 100 or 2500), resolves to Neutral; any in-between step — including dark `default` around step 200 — inherits the Surface's role.",
+      "There is no hover styling on the label or description text, and no hover rule on the wrapper — only the box reacts."
+    ],
+    "press": [
+      "The box scales UP: `transform: scale(calc(1 + var(--_tap-scale) / 100))` with `--Motion-Tap-Scale-Up` at 7%. Button scales DOWN — Checkbox, Radio, and IconButton go the other way.",
+      "UNCHECKED press tints the interior to `--{ParentSurfaceRole}-Pressed`; CHECKED / INDETERMINATE press moves fill and border to `--{Role}-Bold-Pressed`.",
+      "Press is NOT `(hover: hover)`-guarded, so a finger tap gets the same tint and the same scale-up a mouse press does."
+    ],
+    "focus": [
+      "The halo is the standard two-layer shape — an inner `--Stroke-XL` gap ring in `--Surface-Halo-Gap` — but the OUTER ring is `--Informative-Bold` (falling back to `--Focus-Outline`), not the brand focus colour. Checkbox's focus ring therefore stays informative-blue even on a `negative` or `positive` checkbox.",
+      "`:focus` alone only clears the native outline; the visible indicator is `:focus-visible`, so clicking the label does not paint a ring.",
+      "The halo follows the box's own radius, which is per size (`--Shape-1` at `s`, `--Shape-1-5` at `m`, `--Shape-2` at `l`, all overridable via `--Checkbox-borderRadius`), and it is a `box-shadow` on the box only — the label and description are never ringed.",
+      "A `readOnly` checkbox is still focusable and nothing suppresses its `:focus-visible` rule, so it still shows the halo even though hover and press are dead."
+    ],
+    "keyboard": [
+      "`Space` toggles, and it fires on key-up — Base UI renders a `<span role=\"checkbox\">` (not a native button) alongside a hidden native input, so activation follows `role=\"button\"` key-up semantics.",
+      "`Enter` does NOT toggle. Base UI intercepts `Enter` on `keydown`, cancels the native activation, and instead clicks the enclosing form's default submit button — so `Enter` on a focused checkbox submits the form.",
+      "The default wrapper is a real `<label>` element around the control, so the label text and the description are part of the same hit target and clicking them toggles the box.",
+      "Passing `labelWrapper=\"div\"` or `labelAssociation=\"field\"` (what `CheckboxField` does) swaps the wrapper to a `<div>`, which deliberately breaks that implicit label association — the outer `Field.Label` provides it instead, and an `aria-label` is derived from `label` / `description`.",
+      "`disabled` sets the native disabled attribute plus `aria-disabled`, removing the control from the tab order; `readOnly` sets `aria-readonly` and keeps it in the tab order."
+    ],
+    "selected": [
+      "Checked and indeterminate share the same fill: `background-color` and `border-color` both go to `--{Role}-Bold`, with the glyph in `--{Role}-Bold-TintedA11y`. `appearance=\"auto\"` (the default) resolves to the `secondary` role for the whole stack.",
+      "The tick bursts inward rather than fading in: the indicator rests at `scale(--_cb-burst-scale)` — the box/icon ratio for that size, 1.333 at `s`, 1.25 at `m`, 1.333 at `l` — and animates to `scale(1)` on check, so at the start of the animation the glyph exactly fills the box with no clipping.",
+      "These transitions do not fire on mount (no value change), so a page of unchecked checkboxes loads silently with no flash of animating ticks.",
+      "The check and minus glyphs are BOTH always in the DOM, stacked absolutely. Unchecked parks both at `rotate(0deg)`/`opacity: 0` so the unchecked→checked and unchecked→indeterminate paths show no phantom rotation.",
+      "Checked ↔ indeterminate is the only path where rotation is visible: the tick rotates 0° → 45° while the minus rotates -45° → 0°, in lockstep.",
+      "Indeterminate is a controlled prop, not a third click state — a click dispatches on the hidden native input, so it always resolves to checked or unchecked."
+    ],
+    "disabled": [
+      "`disabled` dims the whole row — the wrapper carries `opacity: var(--Disabled-Opacity)`, so the label and description dim with the box — and sets `cursor: not-allowed` on the wrapper.",
+      "Here the `not-allowed` cursor IS observable, unlike on Button and Chip: the box takes `pointer-events: none`, so the label wrapper becomes the hit target and its own `cursor: not-allowed` is what the pointer shows.",
+      "`readOnly` is styled as a deliberately different state, not a dimmer one: no opacity reduction at all (`.wrapper[data-disabled]:not([data-readonly])` owns the dim), `cursor: default`, and `pointer-events: none` on the box.",
+      "A `readOnly` checked box fills with `--{Role}-High` instead of the brand `--{Role}-Bold`, and its glyph is recoloured to `--Surface-Halo-Gap` (the current surface colour) so it cannot flip light-on-light in dark mode. A `readOnly` unchecked box gets a `--{Role}-High` border, and its unchecked role is forced to Neutral.",
+      "`readOnly` is guarded in three places: `onCheckedChange` is not wired up, `pointer-events: none` on the box blocks pointer input, and `readOnly` is forwarded to `BaseCheckbox.Root` so Base UI's own guard returns early from both its click handler and the hidden input's `change`. Keyboard `Space` therefore cannot change the value either, controlled or uncontrolled. Base UI also emits `aria-readonly` itself, matching what the wrapper already sets."
+    ],
+    "touch": [
+      "Hover tints never apply on touch-only devices; the pressed tint plus the 7% scale-up are the entire response to a tap.",
+      "Growing on press is the right direction for a control this small — the box expands out from under the fingertip that is covering it.",
+      "Because the default wrapper is a `<label>`, the label and description text extend the touch target well beyond the 16/20/24px box; the control↔label gap stays a flat `--Spacing-1-5` at every size."
+    ]
+  },
+  "importPath": "@jds4/oneui-react",
+  "figma": {
+    "componentKey": "jds-checkbox-v4"
+  },
+  "renderHints": {
+    "baseElement": "div",
+    "readsFromSurfaceContext": true
+  },
+  "a11y": {
+    "role": "checkbox",
+    "minTouchTarget": 44,
+    "accessibleNameSource": "aria-label"
+  }
+}

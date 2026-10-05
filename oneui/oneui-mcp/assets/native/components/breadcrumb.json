@@ -1,0 +1,288 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Breadcrumb",
+  "generatedAt": "2026-08-26T06:20:09.507Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Hierarchical trail of parent links plus the current page. Items carry `id`/`label` with optional `href`/`onPress`/`renderLink`. Current item defaults to the last entry (`currentId` override). Optional count-based middle collapse via `overflow` + `maxItems` (min 3). `appearance` resolves colour roles against the parent <Surface> (no sparkle/brand-bg in the public union). `homeAsIcon` replaces the first label with a home IconButton. Truncation + Tooltip are opt-in (`truncate`/`tooltip`, default true)."
+  },
+  "compositionRules": {
+    "requires": [
+      "items"
+    ],
+    "allows": [],
+    "forbids": [],
+    "childKind": "leaf"
+  },
+  "props": [
+    {
+      "name": "items",
+      "type": "ReactNode",
+      "required": true,
+      "description": "Ordered trail items: `{ id, label, href?, onPress?, disabled?, renderLink? }`. Current page is plain text by default."
+    },
+    {
+      "name": "currentId",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Stable id of the current page item. Defaults to the final item."
+    },
+    {
+      "name": "size",
+      "type": "'s' | 'm'",
+      "required": false,
+      "defaultValue": "s",
+      "description": "Control and label size."
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'neutral' | 'primary' | 'secondary' | 'negative' | 'positive' | 'informative' | 'warning'",
+      "required": false,
+      "defaultValue": "primary",
+      "description": "Multi-accent role. Explicit non-'auto' wins; 'auto' inherits the nearest <Surface> role, falling back to 'neutral'."
+    },
+    {
+      "name": "homeAsIcon",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Render the first item as a home IconButton instead of a text link."
+    },
+    {
+      "name": "overflow",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Enable deterministic count-based middle collapse."
+    },
+    {
+      "name": "maxItems",
+      "type": "number",
+      "required": false,
+      "defaultValue": "5",
+      "description": "Total visible positions including the overflow trigger. Minimum 3."
+    },
+    {
+      "name": "maxWidthItem",
+      "type": "number",
+      "required": false,
+      "description": "Per-item truncation width in density pixels (default = Tooltip-Max-Width = Spacing-40 × 2)."
+    },
+    {
+      "name": "maxWidth",
+      "type": "number",
+      "required": false,
+      "description": "Optional maximum width for the whole trail."
+    },
+    {
+      "name": "truncate",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": "Clamp long labels to maxWidthItem."
+    },
+    {
+      "name": "tooltip",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": "Show a Tooltip only after a label is measured as clipped (trigger: click)."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "defaultValue": "Breadcrumb",
+      "description": "Localized navigation landmark label."
+    },
+    {
+      "name": "homeLabel",
+      "type": "string",
+      "required": false,
+      "defaultValue": "Home",
+      "description": "Accessible name for home-as-icon."
+    },
+    {
+      "name": "overflowLabel",
+      "type": "string",
+      "required": false,
+      "defaultValue": "Show hidden breadcrumb items",
+      "description": "Accessible name for the overflow trigger."
+    },
+    {
+      "name": "accessibilityHint",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "style",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Root layout style."
+    },
+    {
+      "name": "testID",
+      "type": "string",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.Breadcrumb",
+    "type": "object",
+    "properties": {
+      "items": {
+        "description": "Ordered trail items: `{ id, label, href?, onPress?, disabled?, renderLink? }`. Current page is plain text by default."
+      },
+      "currentId": {
+        "description": "Stable id of the current page item. Defaults to the final item."
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m"
+        ],
+        "default": "s",
+        "description": "Control and label size."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "neutral",
+          "primary",
+          "secondary",
+          "negative",
+          "positive",
+          "informative",
+          "warning"
+        ],
+        "default": "primary",
+        "description": "Multi-accent role. Explicit non-'auto' wins; 'auto' inherits the nearest <Surface> role, falling back to 'neutral'."
+      },
+      "homeAsIcon": {
+        "type": "boolean",
+        "default": false,
+        "description": "Render the first item as a home IconButton instead of a text link."
+      },
+      "overflow": {
+        "type": "boolean",
+        "default": false,
+        "description": "Enable deterministic count-based middle collapse."
+      },
+      "maxItems": {
+        "type": "number",
+        "default": 5,
+        "description": "Total visible positions including the overflow trigger. Minimum 3."
+      },
+      "maxWidthItem": {
+        "type": "number",
+        "description": "Per-item truncation width in density pixels (default = Tooltip-Max-Width = Spacing-40 × 2)."
+      },
+      "maxWidth": {
+        "type": "number",
+        "description": "Optional maximum width for the whole trail."
+      },
+      "truncate": {
+        "type": "boolean",
+        "default": true,
+        "description": "Clamp long labels to maxWidthItem."
+      },
+      "tooltip": {
+        "type": "boolean",
+        "default": true,
+        "description": "Show a Tooltip only after a label is measured as clipped (trigger: click)."
+      },
+      "aria-label": {
+        "type": "string",
+        "default": "Breadcrumb",
+        "description": "Localized navigation landmark label."
+      },
+      "homeLabel": {
+        "type": "string",
+        "default": "Home",
+        "description": "Accessible name for home-as-icon."
+      },
+      "overflowLabel": {
+        "type": "string",
+        "default": "Show hidden breadcrumb items",
+        "description": "Accessible name for the overflow trigger."
+      },
+      "accessibilityHint": {
+        "type": "string"
+      },
+      "style": {
+        "description": "Root layout style."
+      },
+      "testID": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "items"
+    ]
+  },
+  "tokens": {
+    "color": [
+      "neutral",
+      "primary",
+      "secondary",
+      "negative",
+      "positive",
+      "informative",
+      "warning"
+    ],
+    "typography": [
+      "label.S",
+      "label.M"
+    ],
+    "shape": [
+      "pill"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "header",
+    "accessibilityState": [
+      "selected",
+      "disabled",
+      "expanded"
+    ],
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [],
+    "honorsReduceMotion": false,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-breadcrumb-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "Breadcrumb"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Breadcrumb } from '@oneui/ui-native/components/Breadcrumb';\n\n<Breadcrumb />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "breadcrumb",
+    "navigation",
+    "breadcrumb",
+    "surface-aware",
+    "inherits-appearance"
+  ],
+  "importPath": "@oneui/ui-native/components/Breadcrumb"
+}

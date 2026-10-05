@@ -1,0 +1,230 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "RadioField",
+  "flutterExport": "OneUiRadioField",
+  "importPath": "package:ui_flutter/ui_flutter.dart",
+  "generatedAt": "2026-09-04T05:50:48.675Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "OneUiRadioField from the ui_flutter barrel. Use Surface context (OneUiSurface) for tinted backgrounds."
+  },
+  "props": [
+    {
+      "name": "children",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "label",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "description",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "infoIcon",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "infoIconSlot",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "infoIconAriaLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "fullWidth",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "error",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "feedback",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "dynamicTextSlot",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "dynamicText",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "helperButton",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onHelperPressed",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onHelperPress",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "invalid",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "required",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "value",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "defaultValue",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onValueChange",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "checked",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "defaultChecked",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onCheckedChange",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "singleOptionValue",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "name",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "readOnly",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "orientation",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "accessibilityHint",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "ariaDescribedBy",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "ariaHidden",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "id",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "testId",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "width",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    }
+  ]
+}

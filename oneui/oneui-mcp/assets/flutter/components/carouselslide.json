@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "CarouselSlide",
+  "flutterExport": "OneUiCarouselSlide",
+  "importPath": "package:ui_flutter/ui_flutter.dart",
+  "generatedAt": "2026-09-04T05:50:48.675Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "OneUiCarouselSlide from the ui_flutter barrel. Use Surface context (OneUiSurface) for tinted backgrounds."
+  },
+  "props": [
+    {
+      "name": "image",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "content",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "badgeRow",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "surface",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "testId",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "testID",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    }
+  ]
+}

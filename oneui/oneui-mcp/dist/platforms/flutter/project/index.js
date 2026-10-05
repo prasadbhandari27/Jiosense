@@ -1,0 +1,1 @@
+import{configureFlutterBrand as r,ensureFlutterBrand as e}from"../brand/configure.js";import{flutterAuthoringGuidance as t,flutterModeBFollowupGuidance as n,flutterProviderTag as o}from"./guidance.js";const a={providerName:"OneUiBrandProvider",providerTag:o,configureBrand:r,ensureBrand:e,authoringGuidance:t,repairLegacyGuidance:n};export{a as flutterProjectIntegration};

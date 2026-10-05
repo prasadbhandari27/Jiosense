@@ -1,0 +1,226 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Tooltip",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.257Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "JDS Tooltip Compose component."
+  },
+  "composable": "JdsTooltip",
+  "attributesClass": "JdsTooltipAttributes",
+  "importPath": "com.jds.components.tooltip",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.tooltip.JdsTooltip",
+    "attributes": "com.jds.components.tooltip.JdsTooltipAttributes",
+    "enums": {
+      "JdsTooltipPosition": "com.jds.components.tooltip.JdsTooltipPosition",
+      "JdsTooltipTrigger": "com.jds.components.tooltip.JdsTooltipTrigger"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [
+      "content"
+    ],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "content",
+      "type": "String",
+      "required": true,
+      "description": ""
+    },
+    {
+      "name": "position",
+      "type": "JdsTooltipPosition",
+      "required": false,
+      "defaultValue": "JdsTooltipPosition.Bottom",
+      "enumValues": [
+        "Top",
+        "TopStart",
+        "TopEnd",
+        "Bottom",
+        "BottomStart",
+        "BottomEnd",
+        "Left",
+        "LeftStart",
+        "LeftEnd",
+        "Right",
+        "RightStart",
+        "RightEnd"
+      ],
+      "description": ""
+    },
+    {
+      "name": "open",
+      "type": "Boolean?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "defaultOpen",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "onOpenChange",
+      "type": "((Boolean) -> Unit)?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "trigger",
+      "type": "JdsTooltipTrigger",
+      "required": false,
+      "defaultValue": "JdsTooltipTrigger.Click",
+      "enumValues": [
+        "Click",
+        "LongPress",
+        "Focus",
+        "Manual"
+      ],
+      "description": ""
+    },
+    {
+      "name": "tip",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": ""
+    },
+    {
+      "name": "sideOffset",
+      "type": "Dp?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "maxWidth",
+      "type": "Dp?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "delay",
+      "type": "Int",
+      "required": false,
+      "defaultValue": "200",
+      "description": "Figma `delay` — ms to wait before showing."
+    },
+    {
+      "name": "hideDelay",
+      "type": "Int",
+      "required": false,
+      "defaultValue": "0",
+      "description": "Figma `hideDelay` — ms to keep visible after a dismiss request."
+    }
+  ],
+  "slots": [],
+  "enums": {
+    "JdsTooltipPosition": [
+      "Top",
+      "TopStart",
+      "TopEnd",
+      "Bottom",
+      "BottomStart",
+      "BottomEnd",
+      "Left",
+      "LeftStart",
+      "LeftEnd",
+      "Right",
+      "RightStart",
+      "RightEnd"
+    ],
+    "JdsTooltipTrigger": [
+      "Click",
+      "LongPress",
+      "Focus",
+      "Manual"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.Tooltip",
+    "type": "object",
+    "properties": {
+      "content": {
+        "type": "string"
+      },
+      "position": {
+        "enum": [
+          "Top",
+          "TopStart",
+          "TopEnd",
+          "Bottom",
+          "BottomStart",
+          "BottomEnd",
+          "Left",
+          "LeftStart",
+          "LeftEnd",
+          "Right",
+          "RightStart",
+          "RightEnd"
+        ],
+        "default": "JdsTooltipPosition.Bottom"
+      },
+      "open": {
+        "type": "boolean"
+      },
+      "defaultOpen": {
+        "type": "boolean"
+      },
+      "onOpenChange": {},
+      "trigger": {
+        "enum": [
+          "Click",
+          "LongPress",
+          "Focus",
+          "Manual"
+        ],
+        "default": "JdsTooltipTrigger.Click"
+      },
+      "tip": {
+        "type": "boolean"
+      },
+      "sideOffset": {},
+      "maxWidth": {},
+      "disabled": {
+        "type": "boolean"
+      },
+      "delay": {
+        "type": "integer"
+      },
+      "hideDelay": {
+        "type": "integer"
+      }
+    },
+    "required": [
+      "content"
+    ]
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "tooltip"
+  ],
+  "importPathMaven": "com.jds:components"
+}

@@ -1,0 +1,1846 @@
+{
+  "schemaVersion": 1,
+  "sourceDocument": "JDS-to-OneUI-React-Web.md",
+  "sourceDate": "2026-08-11",
+  "scope": "react-web component presence + Figma rebuild guidance",
+  "libraries": {
+    "oneuiComponents": "eYJriZveeBwZDzGlCts22f",
+    "oneuiMicropatterns": "y4r5eCoZhqvPw1U1bm2qfw",
+    "legacyJdsTestlab": "SjyssHuM5x8fcnriezopvK",
+    "workingFile": "Ors8Y9cGtm1J1YelpT0I51"
+  },
+  "provenComponentKeys": {
+    "HeaderNative": "338ab37d457ef68112da7456510204e20fbe3dcf",
+    "WebHeader": "dd955b322bc0711b6146d173b026c0f504d86c84",
+    "Carousel": "7f78fc10c0dad50206c3f96f3d383fff22479711",
+    "PaginationDots": "c973b171fa4a95a0d6e1ba19000c972d0f7ea5a7",
+    "Badge": "47bd573590c23bfb20cf4b580a09fb2fca49068a",
+    "Button": "53fddb5a4ad3d013bedb2e066b0c6e422314915e",
+    "_ButtonNote": "CORRECTED 2026-08-17: 53fddb5a4ad3d013bedb2e066b0c6e422314915e is the real ❖ OneUI Components Button (verified via search_design_system + get_libraries, library key lk-591df3aa712480d79162be60e949bd96010101dd8d121ef35ab4f4dcc70a25cf5301bc6ce18c927d02a6393741baf482d7d3280b4c9ad67f01b097fc2eac4414). It is a COMPONENT_SET — use importComponentSetByKeyAsync (NOT importComponentByKeyAsync, which throws 'Component with key ... not found' on a set key and gets misdiagnosed as a dead key). Pick a variant by exact property match, e.g. ownerSet.children.find(c => c.name === 'size=L, attention=high, condensed=false, contained=true, fullWidth=true, start=false, end=false') — property names are size/attention/condensed/contained/fullWidth/start/end (lowercase), NOT 'Size=L, Emphasis=High' as previously assumed. WARNING: b6250bdba03c3edf4a5168f48ab0087f9ad0459a is a DIFFERENT Button component_set from Jio Testlab Library (same display name 'Button', same shape) — a prior session imported this key by mistake, producing 79 leftover Testlab-library button instances across the jds-to-oneui-figma rebuild row that visually looked fine but showed 'Jio Testlab Library' as their source in the Figma inspector. Never use b6250bdba03c3edf4a5168f48ab0087f9ad0459a. If this key ever appears to 404 again, re-verify with search_design_system(query:'Button') and check libraryName === '❖ OneUI Components' before accepting a replacement key — do not accept a same-named component from a different library.",
+    "Image": "cb46a4117a2e8a2c98b77c0fce2a3bba73484015",
+    "Avatar": "bb90202670397f390dbc12c0886d1e5ade3e7607",
+    "IconButton": "3237b074310605063533ac7e42ff67df808c4df0",
+    "BottomNavigation": "2094412785213ff475c6db0b5ae53fa23a123d41",
+    "BottomNav": "2094412785213ff475c6db0b5ae53fa23a123d41",
+    "LinearProgressIndicator": "5dc943af21c589d37708b4b6a8ed1aa8f4ba88cc",
+    "Chip": "87fe16ce70168fe186ae1457b4af782498f33d91",
+    "SegmentedControl": "38069aaee489161aeb00279c59263d8eab985dec",
+    "RadioField": "98305299df9d3696fc435e42afef3a3c5885466e",
+    "Switch": "6f43db33b4f01e8298decb192d9ae5eb756c5ab7",
+    "InputField": "c8eb437a6f54e92eaf5081955960854668814f95",
+    "SingleTextButton": "d1fc514db2e926d425b418c06ef9869e04faa458",
+    "Divider": "dc3779d38ff51e0cc095a8baf4cdb375f4820fbf",
+    "CheckboxField": "4d275aa4c7ed51b1422440891bbe7b19e4443aa0",
+    "IconContained": "0275e00809ec12dbd15539776251d051b231c06b",
+    "ListItem": "f8f3163c940defdd82799da71d5223d84bc69071",
+    "PaginationDots": "c973b171fa4a95a0d6e1ba19000c972d0f7ea5a7",
+    "Image": "cb46a4117a2e8a2c98b77c0fce2a3bba73484015",
+    "Divider": "dc3779d38ff51e0cc095a8baf4cdb375f4820fbf",
+    "_InputFieldNote": "CORRECTED 2026-08-17 (same bug class as _ButtonNote): the real ❖ OneUI Components InputField key is c8eb437a6f54e92eaf5081955960854668814f95 (COMPONENT_SET, use importComponentSetByKeyAsync, variant prop is lowercase `size` with options s/m/l only — Emphasis/State/ReadOnly/Disabled/[inherit appearance] do NOT exist as component properties on the real component; label text lives on a text node named 'Label' inside a 'Label + Required*' group, and the field value/placeholder lives on a text node named 'InputText'). WARNING: 0b5ed8e35b894c277d430918d7b8cae7e445737f is a DIFFERENT InputField component_set from Jio Testlab Library (identical display name 'InputField', identical variant-prop names Size/Emphasis/State/Read Only/Disabled/[inherit appearance] — this is what made it indistinguishable from real OneUI by name alone). Found 2026-08-17: 32 leftover Testlab-library InputField instances across the jds-to-oneui-figma rebuild row, all showing plausible variant names but sourced from 'Jio Testlab Library' in the Figma inspector. Fixed by swapping all 32 to c8eb437a6f54e92eaf5081955960854668814f95 size=m, preserving Label/InputText characters, x/y/width, and node.visible. Never use 0b5ed8e35b894c277d430918d7b8cae7e445737f. Also watch for a THIRD 'Input field' (lowercase, different key 9cd5ba96f921d48c1832454b28d5bc4660b1dfd2, 13 instances) still unresolved as of this note — re-verify via search_design_system before swapping.",
+    "HeaderNative_contextBar": "338ab37d457ef68112da7456510204e20fbe3dcf",
+    "_HeaderContextBarNote": "RESOLVED 2026-08-17 (closes _PendingLegacyGroups2026_08_17 item 1): the real HeaderNative COMPONENT_SET DOES expose a back+title composition — it was mis-investigated in the prior pass by reading root-level componentPropertyDefinitions only (which just shows divider/secondaryNav). The nested child instance named 'PrimaryNav' inside the HeaderNative root variant is ITSELF an instance of a separate nested COMPONENT_SET with a `type` variant option `contextBar` (options: homeBar/contextBar/searchBar). Recipe: 1) `defaultVariant.createInstance()` from set 338ab37d457ef68112da7456510204e20fbe3dcf (variant 'secondaryNav=false'). 2) `newHeader.findOne(n => n.name === 'PrimaryNav')` then call `.setProperties({ type: 'contextBar', expanded: 'false' })` directly on that NESTED instance (setProperties works on a nested instance node reference even though the property isn't exposed/exposed at the root level — just don't call it on a node reached via a stale root-instance boundary). 3) On the same navInstance, `.setProperties({ 'start#3473:1': true, 'avatar#3473:3': false, 'end#3473:4': false, 'secondaryText#4742:7': false, '↳ title#3473:0': <text> })` — `start` shows the leading back-chevron IconButton, `title` is a TEXT componentProperty (load font on the Title text node first). Fixed 9/9 legacy 'Header' (key 5d021f8e97fbf308cdea1eb23e678f579f69fd69) instances this way, preserving title text ('Add Institute/University' on 4 of them, empty on 5) and node.visible.",
+    "_ResolvedLegacyGroups2026_08_17b": "Follow-up pass closing out _PendingLegacyGroups2026_08_17 (all 9 items resolved/documented, re-audited row 351:14311 afterward — see counts below). (1) Header -> FIXED, see _HeaderContextBarNote (9/9). (2) lowercase 'Input field' key 9cd5ba96f921d48c1832454b28d5bc4660b1dfd2 (13 instances) -> CONFIRMED via search_design_system as a distinct remote component NOT matching any ❖ OneUI Components / OneUI Design Kit [BETA] / Jio Testlab Library entry returned by search (an untracked/unpublished-to-search remote lib); structurally a legacy underline-style field (Label + Input-row + Input-text + Icon-Area + Active-line, variant prop 'Variant'=Default/'Input field error') clearly NOT the real OneUI InputField (which has only `size` s/m/l and Label/InputText node names) — swapped all 13 to c8eb437a6f54e92eaf5081955960854668814f95 size=m, preserving Label/InputText characters (including empty ones), x/y/width, and node.visible (6 of 13 were already hidden overflow slots). (3) 'Action - Button' key 52083a4c13659db14fd33f859258d39d37ffb731 (12 instances) -> FIXED: 8 were a 'Selector' tab row (For you/Payments/Loyalty/Travel, one selected/tinted) -> swapped to real OneUI Chip (87fe16ce70168fe186ae1457b4af782498f33d91) `selected={true|false}, attention=medium, size=M, start=none, end=none`; 2 were a kebab/more-vertical icon-only affordance -> swapped to real OneUI IconButton (3237b074310605063533ac7e42ff67df808c4df0) `size=M, attention=low, shape=1:1, condensed=false, contained=false, fullWidth=false` with nested Icon instance-swapped to ic_more_vertical (fabdbcbf9202488650414f87de46457d9c2eb0db); 2 were a standalone 'View expired' text-link pill on a dark card list -> swapped to real OneUI Button (53fddb5a4ad3d013bedb2e066b0c6e422314915e) `size=S, attention=low, ...` per the Link->Button-attention=low convention already in this map. (4) '.DNA/Selector' key cab9dc53eb5e96a258ac033d14e7caae0f1bef2c (2 instances) -> RESOLVED as dead: both were `visible=false`, positioned at x=406 inside a 360-wide parent (off-canvas, non-rendering) — deleted rather than swapped (superseded remnants from the same 'Selector' tab row fixed in item 3). (5) 'JDSText'/'JDSText2'/'JDSIcon'/'JDSIcon2' -> PARTIALLY RESOLVED: of 39 JDSText/JDSText2 instances (single-purpose wrappers around exactly one child TEXT node named 'text'), 29 were NOT nested inside another instance's boundary and were safely `instance.detachInstance()`-ed to plain frame+TEXT nodes (matches the convention observed in already-correct '— OneUI' screens, e.g. Cloud_Collections, where text lives as plain TEXT children of real component instances, never wrapped in a generic Text/Icon component) — visually verified identical via screenshot. The remaining 10 JDSText + all remaining JDSIcon (2) / JDSIcon2 (5) instances are NESTED inside OTHER instances ('Menu items' key d89c1c311900009173208608db524badbc5a203f, and 'IconContained' key 14167aa216194df95c6f72e4db688d8225907c8e) whose own library/legitimacy was never verified in this pass — left untouched to avoid the documented risk of a nested detachInstance() implicitly detaching its parent instance boundary (see figma-use gotcha 'Parent instance was implicitly detached by a child detachInstance()'). Flagged for a follow-up: verify 'Menu items' library before touching its nested JDSText/JDSIcon2 children. (6) two 'Card' component-set keys (35f2646f88785bc63565b38e00b375e3d32032bb count 4, 569fe240db5a4f264eee31765de2dd0d69f10d0b count 2) + 'Texture / Metal' (ff700e625c1b3770414b47e47b76dfc69b6e6c05 count 6) -> LEFT AS-IS, documented: screenshotted — these render a literal stylized bank/credit-card mockup (e.g. 'SBI Credit', mastercard logo, metal-texture fill), not a generic layout Card. search_design_system('Card') found NO match in ❖ OneUI Components at all (only 'OneUI Design Kit [BETA]' key 4c13236775a7f9eb457d8adfc638d0042616366a and Jio Testlab Library key ebfd8368d6c17bd337e19c0943aa6ac19f8e937d, neither matching our on-canvas keys) — consistent with the jdscard component-map row status `release_gate` / designInFigma `❌ none`. No published OneUI Figma Card exists to swap to; correct action per rule 5 is leave + document, not invent. (7) 'Notification - Toast' (d7abc3ce5dd7b38ac5e636b55dedcd110eb9e949, 1 visible instance) -> FIXED: confirmed Core/JioComponents via search_design_system; swapped to real ❖ OneUI Components Toast (8d09a16b0d61c7a2b5f7cccf43c14a9260c20376) variant `type=positive, attention=high, actionsPlacement=bottom`, with `title#5143:3=false` + `actions#5143:0=false` and the legacy heading text moved into the `description` TEXT node ('Congratulations! Your account has been created successfully.'), preserving position (which happened to be off-canvas/clipped in the source, same as after the fix — not a regression). 'Notification' (5ea846e8327219f889b08fc8f7505d88045b928f, 7 instances) -> RESOLVED as dead: all 7 were `visible=false` leftover slots inside already-rebuilt '— OneUI' screens; deleted. 'IconContainedSemantic' (a2d33010db8241ca50575f26dd79d80b727de03b, 1) -> RESOLVED as dead: `visible=false`; deleted. 'IconButton Semantic' / 'Icon Semantic' (7e7e69a7575ecceb2ec46c7a026562ace1313abe / b348e1ffd9ba40fc6e99b20535cbb39ec50d5ff9, 1 each) -> LEFT AS-IS, documented: this is a visible small (55x58) green circular checkmark/success status indicator (ic_confirm icon). The real OneUI IconContained component set (0275e00809ec12dbd15539776251d051b231c06b) only exposes `Size` (XS/S/M/L/XL) and `attention` (high/medium) variant props — no positive/success semantic-color variant was found, so a faithful green-tint swap isn't achievable via a plain variant/key swap; would need a hand-composed Surface+Icon substitute. Left as a follow-up design question rather than guessing. (8) 'Story' (05ee5e6377293969ee896af2e7cfb7a3d94b3793, 15 instances) -> CONFIRMED and LEFT AS-IS: all 15 sit inside 3 wholly `visible=false` parent frames ('Frame 2147204659' x3) — dead, non-rendering legacy content, not third-party chrome that needs preserving and not live content that needs swapping; no action taken (correct to leave per rule 4d, now explicitly confirmed rather than assumed). Re-audited row 351:14311 after this pass: HeaderNative count 9 (was 0, now the real component), old 'Header' key count 0, lowercase 'Input field' key count 0 (OneUI InputField now 45 total), 'Action - Button' key count 0 (Chip now 48 total incl. pre-existing, IconButton 31 total, Button 83 total), '.DNA/Selector' key count 0, JDSText 0 top-level-safe / 10 nested remain, JDSText2 10 nested remain, 'Notification - Toast' key 0 (Toast 1), 'Notification' key 0, IconContainedSemantic 0."
+  },
+  "components": [
+    {
+      "jds": "jdsaccordion",
+      "oneui": "`Accordion`",
+      "figmaComponent": "Accordion",
+      "designInFigma": "\u2705 `Accordion`",
+      "development": "\ud83d\udfe1 In repo, not released",
+      "action": "\ud83d\ude80 **Dev: release gate**",
+      "status": "release_gate",
+      "notes": ""
+    },
+    {
+      "jds": "jdsaccordionheader",
+      "oneui": "`Accordion.Trigger`",
+      "figmaComponent": "Accordion",
+      "designInFigma": "\u2705 `AccordionItem`",
+      "development": "\ud83d\udfe1 In repo, not released",
+      "action": "\ud83d\ude80 **Dev: release gate**",
+      "status": "release_gate",
+      "notes": "Compound part"
+    },
+    {
+      "jds": "jdsaccordionitem",
+      "oneui": "`Accordion.Item`",
+      "figmaComponent": "Accordion",
+      "designInFigma": "\u2705 `AccordionItem`",
+      "development": "\ud83d\udfe1 In repo, not released",
+      "action": "\ud83d\ude80 **Dev: release gate**",
+      "status": "release_gate",
+      "notes": ""
+    },
+    {
+      "jds": "jdsalert",
+      "oneui": "`AlertDialog`",
+      "figmaComponent": "AlertDialog",
+      "designInFigma": "\u26a0\ufe0f `Toast` only",
+      "development": "\ud83d\udfe1 In repo, not released",
+      "action": "\ud83e\udd1d **Design: confirm** + release gate",
+      "status": "release_gate",
+      "notes": "OneUI `AlertDialog` is a blocking dialog. JDS `jdsalert` is an **inline alert/banner**. Inline variant not available"
+    },
+    {
+      "jds": "jdsavatar",
+      "oneui": "`Avatar`",
+      "figmaComponent": "Avatar",
+      "designInFigma": "\u2705 `Avatar`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdsbadge",
+      "oneui": "`Badge`",
+      "figmaComponent": "Badge",
+      "designInFigma": "\u2705 `Badge`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdsbottomnavigation",
+      "oneui": "`BottomNavigation`",
+      "figmaComponent": "BottomNavigation",
+      "designInFigma": "\u2705 `BottomNavigation`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdsbottomnavigationitem",
+      "oneui": "`BottomNavItem`",
+      "figmaComponent": "BottomNavItem",
+      "designInFigma": "\u2705 `BottomNavigation`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdsbottomsheet",
+      "oneui": "`BottomSheet`",
+      "figmaComponent": "BottomSheet",
+      "designInFigma": "\u2705 `BottomSheet`",
+      "development": "\ud83d\udfe1 In repo, not released",
+      "action": "\ud83d\ude80 **Dev: release gate**",
+      "status": "release_gate",
+      "notes": "Snap-point API differs"
+    },
+    {
+      "jds": "jdsbottomsheetinternal",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u2014",
+      "development": "\u274c No code",
+      "action": "\u2014 internal",
+      "status": "internal",
+      "notes": "Internal"
+    },
+    {
+      "jds": "jdsbreadcrumbitem",
+      "oneui": "`BreadcrumbItem`",
+      "figmaComponent": "BreadcrumbItem",
+      "designInFigma": "\u2705 `Breadcrumb`",
+      "development": "\ud83d\udfe1 In repo, not released",
+      "action": "\ud83d\ude80 **Dev: release gate**",
+      "status": "release_gate",
+      "notes": ""
+    },
+    {
+      "jds": "jdsbreadcrumbs",
+      "oneui": "`Breadcrumb`",
+      "figmaComponent": "Breadcrumb",
+      "designInFigma": "\u2705 `Breadcrumb`",
+      "development": "\ud83d\udfe1 In repo, not released",
+      "action": "\ud83d\ude80 **Dev: release gate**",
+      "status": "release_gate",
+      "notes": "Singular"
+    },
+    {
+      "jds": "jdsbutton",
+      "oneui": "`Button`",
+      "figmaComponent": "Button",
+      "designInFigma": "\u2705 `Button`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdsbuttongroup",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u274c none",
+      "development": "\u274c No code",
+      "action": "\ud83c\udfa8 **DESIGN: create** \u2192 build",
+      "status": "design_create",
+      "notes": "`ToggleGroup`/`ChipGroup` are *selection* groups, not an action-button group"
+    },
+    {
+      "jds": "jdscanvasareachart",
+      "oneui": "`datavis/AreaChart`",
+      "figmaComponent": "datavis",
+      "designInFigma": "\u274c none",
+      "development": "\ud83d\udcca `@oneui/datavis`",
+      "action": "Use `@oneui/datavis`",
+      "status": "datavis",
+      "notes": "Different package + API"
+    },
+    {
+      "jds": "jdscanvasbeeswarm",
+      "oneui": "`datavis/ClusteredBubbleChart`",
+      "figmaComponent": "datavis",
+      "designInFigma": "\u274c none",
+      "development": "\ud83d\udcca `@oneui/datavis`",
+      "action": "Use `@oneui/datavis`",
+      "status": "datavis",
+      "notes": "Approximate, not a true beeswarm"
+    },
+    {
+      "jds": "jdscanvascontainerone",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u274c none",
+      "development": "\u274c No code",
+      "action": "\ud83c\udfa8 **DESIGN: create** \u2192 build",
+      "status": "design_create",
+      "notes": "Canvas layout container"
+    },
+    {
+      "jds": "jdscanvascontainerthree",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u274c none",
+      "development": "\u274c No code",
+      "action": "\ud83c\udfa8 **DESIGN: create** \u2192 build",
+      "status": "design_create",
+      "notes": "Canvas layout container"
+    },
+    {
+      "jds": "jdscanvascontainertwo",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u274c none",
+      "development": "\u274c No code",
+      "action": "\ud83c\udfa8 **DESIGN: create** \u2192 build",
+      "status": "design_create",
+      "notes": "Canvas layout container"
+    },
+    {
+      "jds": "jdscanvasdonut",
+      "oneui": "`datavis/DonutChart`",
+      "figmaComponent": "datavis",
+      "designInFigma": "\u274c none",
+      "development": "\ud83d\udcca `@oneui/datavis`",
+      "action": "Use `@oneui/datavis`",
+      "status": "datavis",
+      "notes": ""
+    },
+    {
+      "jds": "jdscanvasgauge",
+      "oneui": "`datavis/AngularGaugeChart`",
+      "figmaComponent": "datavis",
+      "designInFigma": "\u274c none",
+      "development": "\ud83d\udcca `@oneui/datavis`",
+      "action": "Use `@oneui/datavis`",
+      "status": "datavis",
+      "notes": ""
+    },
+    {
+      "jds": "jdscanvaslinechart",
+      "oneui": "`datavis/LineChart`",
+      "figmaComponent": "datavis",
+      "designInFigma": "\u274c none",
+      "development": "\ud83d\udcca `@oneui/datavis`",
+      "action": "Use `@oneui/datavis`",
+      "status": "datavis",
+      "notes": ""
+    },
+    {
+      "jds": "jdscanvasscatter",
+      "oneui": "`datavis/ScatterPlotChart`",
+      "figmaComponent": "datavis",
+      "designInFigma": "\u274c none",
+      "development": "\ud83d\udcca `@oneui/datavis`",
+      "action": "Use `@oneui/datavis`",
+      "status": "datavis",
+      "notes": ""
+    },
+    {
+      "jds": "jdscard",
+      "oneui": "`Card`",
+      "figmaComponent": "Card",
+      "designInFigma": "\u274c none",
+      "development": "\ud83d\udfe1 In repo, not released",
+      "action": "\ud83c\udfa8 **Design: backfill** + release gate",
+      "status": "release_gate",
+      "notes": ""
+    },
+    {
+      "jds": "jdscarousel",
+      "oneui": "`Carousel`",
+      "figmaComponent": "Carousel",
+      "designInFigma": "\u2705 `Carousel`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdscarouselcontent",
+      "oneui": "`Carousel.SlideContent`",
+      "figmaComponent": "Carousel",
+      "designInFigma": "\u2705 `Carousel`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdscarouselindicator",
+      "oneui": "`CarouselIndicatorList` / `PaginationDots`",
+      "figmaComponent": "CarouselIndicatorList",
+      "designInFigma": "\u2705 `PaginationDots`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdscarouselindicatoritem",
+      "oneui": "`PaginationDots` dot descriptor",
+      "figmaComponent": "PaginationDots",
+      "designInFigma": "\u2705 `PaginationDots`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": "Now data-driven, not a child component"
+    },
+    {
+      "jds": "jdschart",
+      "oneui": "`datavis` chart roots",
+      "figmaComponent": "datavis",
+      "designInFigma": "\u274c none",
+      "development": "\ud83d\udcca `@oneui/datavis`",
+      "action": "Use `@oneui/datavis`",
+      "status": "datavis",
+      "notes": "Composition model differs"
+    },
+    {
+      "jds": "jdschartaxislabelitem",
+      "oneui": "`XAxis` / `YAxis` / `ChartAxisTick`",
+      "figmaComponent": "XAxis",
+      "designInFigma": "\u274c none",
+      "development": "\ud83d\udcca `@oneui/datavis`",
+      "action": "Use `@oneui/datavis`",
+      "status": "datavis",
+      "notes": ""
+    },
+    {
+      "jds": "jdschartbar",
+      "oneui": "`VerticalBarChart` / `HorizontalBarChart`",
+      "figmaComponent": "VerticalBarChart",
+      "designInFigma": "\u274c none",
+      "development": "\ud83d\udcca `@oneui/datavis`",
+      "action": "Use `@oneui/datavis`",
+      "status": "datavis",
+      "notes": ""
+    },
+    {
+      "jds": "jdschartbargroupitem",
+      "oneui": "`VerticalBarGroup`",
+      "figmaComponent": "VerticalBarGroup",
+      "designInFigma": "\u274c none",
+      "development": "\ud83d\udcca `@oneui/datavis`",
+      "action": "Use `@oneui/datavis`",
+      "status": "datavis",
+      "notes": ""
+    },
+    {
+      "jds": "jdschartbaritem",
+      "oneui": "`VerticalBar` / `HorizontalBar`",
+      "figmaComponent": "VerticalBar",
+      "designInFigma": "\u274c none",
+      "development": "\ud83d\udcca `@oneui/datavis`",
+      "action": "Use `@oneui/datavis`",
+      "status": "datavis",
+      "notes": ""
+    },
+    {
+      "jds": "jdschartdonut",
+      "oneui": "`DonutChart`",
+      "figmaComponent": "DonutChart",
+      "designInFigma": "\u274c none",
+      "development": "\ud83d\udcca `@oneui/datavis`",
+      "action": "Use `@oneui/datavis`",
+      "status": "datavis",
+      "notes": ""
+    },
+    {
+      "jds": "jdschartdonutitem",
+      "oneui": "`DonutPathGroup`",
+      "figmaComponent": "DonutPathGroup",
+      "designInFigma": "\u274c none",
+      "development": "\ud83d\udcca `@oneui/datavis`",
+      "action": "Use `@oneui/datavis`",
+      "status": "datavis",
+      "notes": "Not a 1:1 slice component"
+    },
+    {
+      "jds": "jdschartgroupitem",
+      "oneui": "`PathGroup`",
+      "figmaComponent": "PathGroup",
+      "designInFigma": "\u274c none",
+      "development": "\ud83d\udcca `@oneui/datavis`",
+      "action": "Use `@oneui/datavis`",
+      "status": "datavis",
+      "notes": ""
+    },
+    {
+      "jds": "jdschartitem",
+      "oneui": "`datavis` leaf marks",
+      "figmaComponent": "datavis",
+      "designInFigma": "\u274c none",
+      "development": "\ud83d\udcca `@oneui/datavis`",
+      "action": "Use `@oneui/datavis`",
+      "status": "datavis",
+      "notes": ""
+    },
+    {
+      "jds": "jdschartlegend",
+      "oneui": "`ChartLegend`",
+      "figmaComponent": "ChartLegend",
+      "designInFigma": "\u274c none",
+      "development": "\ud83d\udcca `@oneui/datavis`",
+      "action": "Use `@oneui/datavis`",
+      "status": "datavis",
+      "notes": ""
+    },
+    {
+      "jds": "jdschartlegenditem",
+      "oneui": "`ChartKey` / `InlineChartKey`",
+      "figmaComponent": "ChartKey",
+      "designInFigma": "\u274c none",
+      "development": "\ud83d\udcca `@oneui/datavis`",
+      "action": "Use `@oneui/datavis`",
+      "status": "datavis",
+      "notes": ""
+    },
+    {
+      "jds": "jdschartlollipopitem",
+      "oneui": "`LollipopBar`",
+      "figmaComponent": "LollipopBar",
+      "designInFigma": "\u274c none",
+      "development": "\ud83d\udcca `@oneui/datavis`",
+      "action": "Use `@oneui/datavis`",
+      "status": "datavis",
+      "notes": ""
+    },
+    {
+      "jds": "jdschartrangebaritem",
+      "oneui": "`HorizontalDumbbellBar`",
+      "figmaComponent": "HorizontalDumbbellBar",
+      "designInFigma": "\u274c none",
+      "development": "\ud83d\udcca `@oneui/datavis`",
+      "action": "Use `@oneui/datavis`",
+      "status": "datavis",
+      "notes": "Closest analogue; range-bar semantics need confirmation"
+    },
+    {
+      "jds": "jdschartstackbaritem",
+      "oneui": "`VerticalStackedBar`",
+      "figmaComponent": "VerticalStackedBar",
+      "designInFigma": "\u274c none",
+      "development": "\ud83d\udcca `@oneui/datavis`",
+      "action": "Use `@oneui/datavis`",
+      "status": "datavis",
+      "notes": ""
+    },
+    {
+      "jds": "jdscheckbox",
+      "oneui": "`Checkbox`",
+      "figmaComponent": "Checkbox",
+      "designInFigma": "\u2705 `Checkbox`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdscheckboxfield",
+      "oneui": "`CheckboxField`",
+      "figmaComponent": "CheckboxField",
+      "designInFigma": "\u2705 `CheckboxField`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdscheckboxgroup",
+      "oneui": "`CheckboxField` (composed)",
+      "figmaComponent": "CheckboxField",
+      "designInFigma": "\u2705 `CheckboxField`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": "Grouping via multiple `CheckboxField`; do **not** use `CheckboxGroup`"
+    },
+    {
+      "jds": "jdscheckboxindeterminate",
+      "oneui": "`Checkbox` indeterminate state",
+      "figmaComponent": "Checkbox",
+      "designInFigma": "\u2705 `Checkbox`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": "Collapsed into a state, not a component"
+    },
+    {
+      "jds": "jdschip",
+      "oneui": "`Chip`",
+      "figmaComponent": "Chip",
+      "designInFigma": "\u2705 `Chip`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdscircularprogressindicator",
+      "oneui": "`CircularProgressIndicator`",
+      "figmaComponent": "CircularProgressIndicator",
+      "designInFigma": "\u2705 `CircularProgressIndicator`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdscontainer",
+      "oneui": "`Container`",
+      "figmaComponent": "Container",
+      "designInFigma": "\u2796 n/a",
+      "development": "\u2705 Released",
+      "action": "None \u2014 tokens / layout props",
+      "status": "structural",
+      "notes": ""
+    },
+    {
+      "jds": "jdscontent",
+      "oneui": "`Container` / `Surface`",
+      "figmaComponent": "Container",
+      "designInFigma": "\u2796 n/a",
+      "development": "\u2705 Released",
+      "action": "None \u2014 tokens / layout props",
+      "status": "structural",
+      "notes": "No dedicated content-region wrapper"
+    },
+    {
+      "jds": "jdscounterbadge",
+      "oneui": "`CounterBadge`",
+      "figmaComponent": "CounterBadge",
+      "designInFigma": "\u2705 `CounterBadge`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdsdate",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u274c none",
+      "development": "\u274c No code",
+      "action": "\ud83c\udfa8 **DESIGN: create** \u2192 build",
+      "status": "design_create",
+      "notes": "**Date picker family missing**"
+    },
+    {
+      "jds": "jdsdatebutton",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u274c none",
+      "development": "\u274c No code",
+      "action": "\ud83c\udfa8 **DESIGN: create** \u2192 build",
+      "status": "design_create",
+      "notes": "Date family"
+    },
+    {
+      "jds": "jdsdatebuttonrow",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u274c none",
+      "development": "\u274c No code",
+      "action": "\ud83c\udfa8 **DESIGN: create** \u2192 build",
+      "status": "design_create",
+      "notes": "Date family"
+    },
+    {
+      "jds": "jdsdatecalendar",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u274c none",
+      "development": "\u274c No code",
+      "action": "\ud83c\udfa8 **DESIGN: create** \u2192 build",
+      "status": "design_create",
+      "notes": "Date family"
+    },
+    {
+      "jds": "jdsdatedayinitial",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u274c none",
+      "development": "\u274c No code",
+      "action": "\ud83c\udfa8 **DESIGN: create** \u2192 build",
+      "status": "design_create",
+      "notes": "Date family"
+    },
+    {
+      "jds": "jdsdateheader",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u274c none",
+      "development": "\u274c No code",
+      "action": "\ud83c\udfa8 **DESIGN: create** \u2192 build",
+      "status": "design_create",
+      "notes": "Date family"
+    },
+    {
+      "jds": "jdsdateminimalcalendar",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u274c none",
+      "development": "\u274c No code",
+      "action": "\ud83c\udfa8 **DESIGN: create** \u2192 build",
+      "status": "design_create",
+      "notes": "Date family"
+    },
+    {
+      "jds": "jdsdateminimalcalendarheader",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u274c none",
+      "development": "\u274c No code",
+      "action": "\ud83c\udfa8 **DESIGN: create** \u2192 build",
+      "status": "design_create",
+      "notes": "Date family"
+    },
+    {
+      "jds": "jdsdatemonthyearselector",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u274c none",
+      "development": "\u274c No code",
+      "action": "\ud83c\udfa8 **DESIGN: create** \u2192 build",
+      "status": "design_create",
+      "notes": "Date family"
+    },
+    {
+      "jds": "jdsdatepickersheet",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u274c none",
+      "development": "\u274c No code",
+      "action": "\ud83c\udfa8 **DESIGN: create** \u2192 build",
+      "status": "design_create",
+      "notes": "Date family"
+    },
+    {
+      "jds": "jdsdivider",
+      "oneui": "`Divider`",
+      "figmaComponent": "Divider",
+      "designInFigma": "\u2705 `Divider`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": "`Separator` also exists (semantic split)"
+    },
+    {
+      "jds": "jdsdropdownmenu",
+      "oneui": "`Menu`",
+      "figmaComponent": "Menu",
+      "designInFigma": "\u2705 `ContextMenu`",
+      "development": "\ud83d\udfe1 In repo, not released",
+      "action": "\ud83d\ude80 **Dev: release gate**",
+      "status": "release_gate",
+      "notes": ""
+    },
+    {
+      "jds": "jdsdropdownmenugroup",
+      "oneui": "`Menu.Group`",
+      "figmaComponent": "Menu",
+      "designInFigma": "\u2705 `ContextMenu`",
+      "development": "\ud83d\udfe1 In repo, not released",
+      "action": "\ud83d\ude80 **Dev: release gate**",
+      "status": "release_gate",
+      "notes": ""
+    },
+    {
+      "jds": "jdsdropdownmenuinternal",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u2014",
+      "development": "\u274c No code",
+      "action": "\u2014 internal",
+      "status": "internal",
+      "notes": "Internal"
+    },
+    {
+      "jds": "jdsdropdownmenuitem",
+      "oneui": "`Menu.Item`",
+      "figmaComponent": "Menu",
+      "designInFigma": "\u2705 `ContextMenu`",
+      "development": "\ud83d\udfe1 In repo, not released",
+      "action": "\ud83d\ude80 **Dev: release gate**",
+      "status": "release_gate",
+      "notes": ""
+    },
+    {
+      "jds": "jdsfab",
+      "oneui": "`FAB`",
+      "figmaComponent": "FAB",
+      "designInFigma": "\u274c none",
+      "development": "\ud83d\udfe1 In repo, not released",
+      "action": "\ud83c\udfa8 **Design: backfill** + release gate",
+      "status": "release_gate",
+      "notes": ""
+    },
+    {
+      "jds": "jdsfabinternal",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u274c none",
+      "development": "\u274c No code",
+      "action": "\u2014 internal",
+      "status": "internal",
+      "notes": "Internal"
+    },
+    {
+      "jds": "jdsfeedbackblock",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u274c none",
+      "development": "\u274c No code",
+      "action": "\ud83c\udfa8 **DESIGN: create** \u2192 build",
+      "status": "design_create",
+      "notes": "`InputFeedback` is field-level only; page-level empty/feedback block missing"
+    },
+    {
+      "jds": "jdsfieldset",
+      "oneui": "`Fieldset`",
+      "figmaComponent": "Fieldset",
+      "designInFigma": "\u274c none",
+      "development": "\ud83d\udfe1 In repo, not released",
+      "action": "\ud83c\udfa8 **Design: backfill** + release gate",
+      "status": "release_gate",
+      "notes": ""
+    },
+    {
+      "jds": "jdsfigure",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u2796 n/a",
+      "development": "\u274c No code",
+      "action": "None \u2014 tokens / layout props",
+      "status": "structural",
+      "notes": "Image + caption/credit composition"
+    },
+    {
+      "jds": "jdsfooter",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u274c none",
+      "development": "\u274c No code",
+      "action": "\ud83c\udfa8 **DESIGN: create** \u2192 build",
+      "status": "design_create",
+      "notes": "No site footer component"
+    },
+    {
+      "jds": "jdsform",
+      "oneui": "`Form`",
+      "figmaComponent": "Form",
+      "designInFigma": "\u274c none",
+      "development": "\ud83d\udfe1 In repo, not released",
+      "action": "\ud83c\udfa8 **Design: backfill** + release gate",
+      "status": "release_gate",
+      "notes": ""
+    },
+    {
+      "jds": "jdsheader",
+      "oneui": "`WebHeader`",
+      "figmaComponent": "WebHeader",
+      "designInFigma": "\u2705 `HeaderWeb` / `HeaderNative`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdsheadernavigation",
+      "oneui": "`WebHeader` PrimaryNav / `NavigationMenu`",
+      "figmaComponent": "WebHeader",
+      "designInFigma": "\u2705 `HeaderWeb` / `HeaderNative` nav rows",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdsheadernavigationitem",
+      "oneui": "`NavigationItem`",
+      "figmaComponent": "NavigationItem",
+      "designInFigma": "\u2705 `Header.Item`",
+      "development": "\ud83d\udfe1 In repo, not released",
+      "action": "\ud83d\ude80 **Dev: release gate**",
+      "status": "release_gate",
+      "notes": ""
+    },
+    {
+      "jds": "jdsicon",
+      "oneui": "`Icon`",
+      "figmaComponent": "Icon",
+      "designInFigma": "\u2705 `Icon`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": "Icon sets via `@oneui/icons-jio`"
+    },
+    {
+      "jds": "jdsiconbutton",
+      "oneui": "`IconButton`",
+      "figmaComponent": "IconButton",
+      "designInFigma": "\u2705 `IconButton`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdsiconcontained",
+      "oneui": "`IconContained`",
+      "figmaComponent": "IconContained",
+      "designInFigma": "\u2705 `IconContained`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdsimage",
+      "oneui": "`Image`",
+      "figmaComponent": "Image",
+      "designInFigma": "\u2705 `Image`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdsindicatorbadge",
+      "oneui": "`IndicatorBadge`",
+      "figmaComponent": "IndicatorBadge",
+      "designInFigma": "\u2705 `IndicatorBadge`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdsinput",
+      "oneui": "`Input`",
+      "figmaComponent": "Input",
+      "designInFigma": "\u2705 `Input`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdsinputcode",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u274c none",
+      "development": "\u274c No code",
+      "action": "\ud83c\udfa8 **DESIGN: create** \u2192 build",
+      "status": "design_create",
+      "notes": "OTP / code input"
+    },
+    {
+      "jds": "jdsinputcodeitem",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u274c none",
+      "development": "\u274c No code",
+      "action": "\ud83c\udfa8 **DESIGN: create** \u2192 build",
+      "status": "design_create",
+      "notes": "OTP cell"
+    },
+    {
+      "jds": "jdsinputdate",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u274c none",
+      "development": "\u274c No code",
+      "action": "\ud83c\udfa8 **DESIGN: create** \u2192 build",
+      "status": "design_create",
+      "notes": "Date text input"
+    },
+    {
+      "jds": "jdsinputdynamictext",
+      "oneui": "`InputDynamicText`",
+      "figmaComponent": "InputDynamicText",
+      "designInFigma": "\u26a0\ufe0f sub-rows inside `InputField` / `InputText` only",
+      "development": "\u2705 Released",
+      "action": "\ud83e\udd1d **Design: confirm substitute**",
+      "status": "design_confirm",
+      "notes": ""
+    },
+    {
+      "jds": "jdsinputfeedback",
+      "oneui": "`InputFeedback`",
+      "figmaComponent": "InputFeedback",
+      "designInFigma": "\u26a0\ufe0f sub-rows inside `InputField` / `InputText` only",
+      "development": "\u2705 Released",
+      "action": "\ud83e\udd1d **Design: confirm substitute**",
+      "status": "design_confirm",
+      "notes": ""
+    },
+    {
+      "jds": "jdsinputfield",
+      "oneui": "`InputField`",
+      "figmaComponent": "InputField",
+      "designInFigma": "\u2705 `InputField`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdsinputlabel",
+      "oneui": "`InputField` label slot",
+      "figmaComponent": "InputField",
+      "designInFigma": "\u2705 `InputField`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": "No standalone label component"
+    },
+    {
+      "jds": "jdsinputphonedropdown",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u274c none",
+      "development": "\u274c No code",
+      "action": "\ud83c\udfa8 **DESIGN: create** \u2192 build",
+      "status": "design_create",
+      "notes": "Country-code phone input"
+    },
+    {
+      "jds": "jdslayoutposition",
+      "oneui": "`Grid` / `Column`",
+      "figmaComponent": "Grid",
+      "designInFigma": "\u2796 n/a",
+      "development": "\ud83d\udfe1 In repo, not released",
+      "action": "None \u2014 tokens / layout props",
+      "status": "structural",
+      "notes": "Positional-layout helper has no direct analogue"
+    },
+    {
+      "jds": "jdslinearprogressindicator",
+      "oneui": "`LinearProgressIndicator`",
+      "figmaComponent": "LinearProgressIndicator",
+      "designInFigma": "\u2705 `LinearProgressIndicator`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdslink",
+      "oneui": "`Link`",
+      "figmaComponent": "Link",
+      "designInFigma": "\u274c none",
+      "development": "\ud83d\udfe1 In repo, not released",
+      "action": "\ud83c\udfa8 **Design: backfill** + release gate",
+      "status": "release_gate",
+      "notes": "For app text/link CTAs in Figma rebuilds prefer `Button` attention=low until Link ships. Never map long link copy to SingleTextButton (max 2 chars)."
+    },
+    {
+      "jds": "jdslist",
+      "oneui": "`ListItemGroup`",
+      "figmaComponent": "ListItemGroup",
+      "designInFigma": "\u2705 `ListItemGroup` + 5 domain variants",
+      "development": "\ud83d\udfe1 In repo, not released",
+      "action": "\ud83d\ude80 **Dev: release gate**",
+      "status": "release_gate",
+      "notes": ""
+    },
+    {
+      "jds": "jdslistitem",
+      "oneui": "`ListItem`",
+      "figmaComponent": "ListItem",
+      "designInFigma": "\u2705 `ListItem`",
+      "development": "\ud83d\udfe1 In repo, not released",
+      "action": "\ud83d\ude80 **Dev: release gate**",
+      "status": "release_gate",
+      "notes": ""
+    },
+    {
+      "jds": "jdsmediablock",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u274c none",
+      "development": "\u274c No code",
+      "action": "\ud83c\udfa8 **DESIGN: create** \u2192 build",
+      "status": "design_create",
+      "notes": "Media + text block"
+    },
+    {
+      "jds": "jdsmodal",
+      "oneui": "`Modal` / `Dialog`",
+      "figmaComponent": "Modal",
+      "designInFigma": "\u2705 `Modal`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": "Two OneUI components split the JDS surface"
+    },
+    {
+      "jds": "jdsmodalinternal",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u2014",
+      "development": "\u274c No code",
+      "action": "\u2014 internal",
+      "status": "internal",
+      "notes": "Internal"
+    },
+    {
+      "jds": "jdsmonthyearlist",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u274c none",
+      "development": "\u274c No code",
+      "action": "\ud83c\udfa8 **DESIGN: create** \u2192 build",
+      "status": "design_create",
+      "notes": "Date family"
+    },
+    {
+      "jds": "jdsmonthyearlistbutton",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u274c none",
+      "development": "\u274c No code",
+      "action": "\ud83c\udfa8 **DESIGN: create** \u2192 build",
+      "status": "design_create",
+      "notes": "Date family"
+    },
+    {
+      "jds": "jdsnotification",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u26a0\ufe0f `Toast` only",
+      "development": "\u274c No code",
+      "action": "\ud83c\udfa8 **Design: decide** \u2192 build",
+      "status": "design_decide",
+      "notes": "Persistent inline notification (\u2260 `Toast`)"
+    },
+    {
+      "jds": "jdsoverlay",
+      "oneui": "`Scrim`",
+      "figmaComponent": "Scrim",
+      "designInFigma": "\u2705 `Scrim`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdspagination",
+      "oneui": "`Pagination`",
+      "figmaComponent": "Pagination",
+      "designInFigma": "\u2705 `Pagination`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdspaginationbutton",
+      "oneui": "`PaginationItem`",
+      "figmaComponent": "PaginationItem",
+      "designInFigma": "\u2705 `PaginationItem`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdspaginationelipsis",
+      "oneui": "`Pagination` internal",
+      "figmaComponent": "Pagination",
+      "designInFigma": "\u2705 `PaginationItem`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": "Handled internally"
+    },
+    {
+      "jds": "jdspinfield",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u274c none",
+      "development": "\u274c No code",
+      "action": "\ud83c\udfa8 **DESIGN: create** \u2192 build",
+      "status": "design_create",
+      "notes": "PIN entry"
+    },
+    {
+      "jds": "jdspinfielditem",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u274c none",
+      "development": "\u274c No code",
+      "action": "\ud83c\udfa8 **DESIGN: create** \u2192 build",
+      "status": "design_create",
+      "notes": "PIN cell"
+    },
+    {
+      "jds": "jdsproductlogo",
+      "oneui": "`Logo`",
+      "figmaComponent": "Logo",
+      "designInFigma": "\u2705 `Logo` + `ProductLogo`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdsradio",
+      "oneui": "`Radio`",
+      "figmaComponent": "Radio",
+      "designInFigma": "\u2705 `Radio`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdsradiofield",
+      "oneui": "`RadioField`",
+      "figmaComponent": "RadioField",
+      "designInFigma": "\u2705 `RadioField`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdsradiofieldgroup",
+      "oneui": "`RadioField` (composed)",
+      "figmaComponent": "RadioField",
+      "designInFigma": "\u2705 `RadioField`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": "Grouping via multiple `RadioField`; do **not** use `RadioGroup`"
+    },
+    {
+      "jds": "jdsratingbar",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u274c none",
+      "development": "\u274c No code",
+      "action": "\ud83c\udfa8 **DESIGN: create** \u2192 build",
+      "status": "design_create",
+      "notes": "Rating"
+    },
+    {
+      "jds": "jdsratingbaritem",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u274c none",
+      "development": "\u274c No code",
+      "action": "\ud83c\udfa8 **DESIGN: create** \u2192 build",
+      "status": "design_create",
+      "notes": "Rating star/unit"
+    },
+    {
+      "jds": "jdsscrim",
+      "oneui": "`Scrim`",
+      "figmaComponent": "Scrim",
+      "designInFigma": "\u2705 `Scrim`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdssearchfield",
+      "oneui": "`Search`",
+      "figmaComponent": "Search",
+      "designInFigma": "\u2705 `Search`",
+      "development": "\ud83d\udfe1 In repo, not released",
+      "action": "\ud83d\ude80 **Dev: release gate**",
+      "status": "release_gate",
+      "notes": ""
+    },
+    {
+      "jds": "jdssearchresult",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u26a0\ufe0f `Search` + `SelectMenu/*.ListItemGroup` rows only",
+      "development": "\u274c No code",
+      "action": "\ud83c\udfa8 **Design: decide** \u2192 build",
+      "status": "design_decide",
+      "notes": "Search results/suggestions surface"
+    },
+    {
+      "jds": "jdssearchresultinternal",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u26a0\ufe0f `Search` + `SelectMenu/*.ListItemGroup` rows only",
+      "development": "\u274c No code",
+      "action": "\u2014 internal",
+      "status": "internal",
+      "notes": "Internal"
+    },
+    {
+      "jds": "jdssearchresultitem",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u26a0\ufe0f `Search` + `SelectMenu/*.ListItemGroup` rows only",
+      "development": "\u274c No code",
+      "action": "\ud83c\udfa8 **Design: decide** \u2192 build",
+      "status": "design_decide",
+      "notes": "Search result row"
+    },
+    {
+      "jds": "jdssearchresulttext",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u26a0\ufe0f `Search` + `SelectMenu/*.ListItemGroup` rows only",
+      "development": "\u274c No code",
+      "action": "\ud83c\udfa8 **Design: decide** \u2192 build",
+      "status": "design_decide",
+      "notes": "Match-highlight text"
+    },
+    {
+      "jds": "jdssearchtrigger",
+      "oneui": "`Search` trigger / `IconButton`",
+      "figmaComponent": "Search",
+      "designInFigma": "\u2705 `IconButton`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdsselect",
+      "oneui": "`Select`",
+      "figmaComponent": "Select",
+      "designInFigma": "\u2705 `Select` + `SelectMenu/*`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdsselectablecard",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u274c none",
+      "development": "\u274c No code",
+      "action": "\ud83c\udfa8 **DESIGN: create** \u2192 build",
+      "status": "design_create",
+      "notes": "`Card` + `SelectableButton` must be hand-composed"
+    },
+    {
+      "jds": "jdsselectablecardlist",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u274c none",
+      "development": "\u274c No code",
+      "action": "\ud83c\udfa8 **DESIGN: create** \u2192 build",
+      "status": "design_create",
+      "notes": ""
+    },
+    {
+      "jds": "jdsselectmenu",
+      "oneui": "`Select` menu / `Menu`",
+      "figmaComponent": "Select",
+      "designInFigma": "\u2705 `Select` + `SelectMenu/*`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": "Split across two components"
+    },
+    {
+      "jds": "jdsselectmenuinternal",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u2014",
+      "development": "\u274c No code",
+      "action": "\u2014 internal",
+      "status": "internal",
+      "notes": "Internal"
+    },
+    {
+      "jds": "jdsselectmenuitem",
+      "oneui": "`SelectOption`",
+      "figmaComponent": "SelectOption",
+      "designInFigma": "\u2705 `Select` + `SelectMenu/*`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": "Now data-driven"
+    },
+    {
+      "jds": "jdsselector",
+      "oneui": "`SegmentedControl` / `ToggleGroup`",
+      "figmaComponent": "SegmentedControl",
+      "designInFigma": "\u2705 `SegmentedControl`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdsselectorbutton",
+      "oneui": "`SelectableButton`",
+      "figmaComponent": "SelectableButton",
+      "designInFigma": "\u2705 `SelectableButton`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdsselectoritem",
+      "oneui": "`SegmentedControl.Item` / `ToggleGroup.Item`",
+      "figmaComponent": "SegmentedControl",
+      "designInFigma": "\u2705 `SegmentedControl`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdssheet",
+      "oneui": "`BottomSheet` / `SideSheet`",
+      "figmaComponent": "BottomSheet",
+      "designInFigma": "\u2705 `BottomSheet`",
+      "development": "\ud83d\udfe1 In repo, not released",
+      "action": "\ud83d\ude80 **Dev: release gate**",
+      "status": "release_gate",
+      "notes": ""
+    },
+    {
+      "jds": "jdssheetinternal",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u2014",
+      "development": "\u274c No code",
+      "action": "\u2014 internal",
+      "status": "internal",
+      "notes": "Internal"
+    },
+    {
+      "jds": "jdssidepanel",
+      "oneui": "`SideSheet` (`InlineSideSheet` / `OverlaySideSheet`)",
+      "figmaComponent": "SideSheet",
+      "designInFigma": "\u2705 `SideSheet`",
+      "development": "\ud83d\udfe1 In repo, not released",
+      "action": "\ud83d\ude80 **Dev: release gate**",
+      "status": "release_gate",
+      "notes": ""
+    },
+    {
+      "jds": "jdssidepanelinternal",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u2014",
+      "development": "\u274c No code",
+      "action": "\u2014 internal",
+      "status": "internal",
+      "notes": "Internal"
+    },
+    {
+      "jds": "jdsskeleton",
+      "oneui": "`Skeleton`",
+      "figmaComponent": "Skeleton",
+      "designInFigma": "\u274c none",
+      "development": "\u2705 Released",
+      "action": "\ud83c\udfa8 **Design: backfill** (code ships)",
+      "status": "design_backfill",
+      "notes": "+ `SkeletonGroup` / `SkeletonItem`"
+    },
+    {
+      "jds": "jdsslider",
+      "oneui": "`Slider`",
+      "figmaComponent": "Slider",
+      "designInFigma": "\u2705 `Slider`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": "`TouchSlider` for touch surfaces"
+    },
+    {
+      "jds": "jdsspacer",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u2796 n/a",
+      "development": "\u274c No code",
+      "action": "None \u2014 tokens / layout props",
+      "status": "structural",
+      "notes": "Spacing primitive"
+    },
+    {
+      "jds": "jdsspinner",
+      "oneui": "`Spinner`",
+      "figmaComponent": "Spinner",
+      "designInFigma": "\u2705 `Spinner`",
+      "development": "\ud83d\udfe1 In repo, not released",
+      "action": "\ud83d\ude80 **Dev: release gate**",
+      "status": "release_gate",
+      "notes": ""
+    },
+    {
+      "jds": "jdsstackedlist",
+      "oneui": "`ListItemGroup`",
+      "figmaComponent": "ListItemGroup",
+      "designInFigma": "\u26a0\ufe0f `ListItemGroup` (Micropatterns) only",
+      "development": "\ud83d\udfe1 In repo, not released",
+      "action": "\ud83e\udd1d **Design: confirm** + release gate",
+      "status": "release_gate",
+      "notes": "Stacked/elevated list variant needs confirmation"
+    },
+    {
+      "jds": "jdsstackedlistitem",
+      "oneui": "`ListItem`",
+      "figmaComponent": "ListItem",
+      "designInFigma": "\u26a0\ufe0f `ListItemGroup` (Micropatterns) only",
+      "development": "\ud83d\udfe1 In repo, not released",
+      "action": "\ud83e\udd1d **Design: confirm** + release gate",
+      "status": "release_gate",
+      "notes": ""
+    },
+    {
+      "jds": "jdsstepper",
+      "oneui": "`Stepper`",
+      "figmaComponent": "Stepper",
+      "designInFigma": "\u2705 `Stepper` + `Stepper field`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdssurface",
+      "oneui": "`Surface`",
+      "figmaComponent": "Surface",
+      "designInFigma": "\u2796 n/a",
+      "development": "\ud83d\udfe1 In repo, not released",
+      "action": "None \u2014 tokens / layout props",
+      "status": "structural",
+      "notes": ""
+    },
+    {
+      "jds": "jdsswitchbutton",
+      "oneui": "`Switch`",
+      "figmaComponent": "Switch",
+      "designInFigma": "\u2705 `Switch`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdstabs",
+      "oneui": "`Tabs`",
+      "figmaComponent": "Tabs",
+      "designInFigma": "\u2705 `TabGroup`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdstabsitem",
+      "oneui": "`TabItem`",
+      "figmaComponent": "TabItem",
+      "designInFigma": "\u2705 `TabGroup`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdstabsvertical",
+      "oneui": "`Tabs orientation=\"vertical\"`",
+      "figmaComponent": "Tabs orientation=\"vertical\"",
+      "designInFigma": "\u2705 `TabGroup`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": "Collapsed into a prop"
+    },
+    {
+      "jds": "jdstabsverticalitem",
+      "oneui": "`TabItem`",
+      "figmaComponent": "TabItem",
+      "designInFigma": "\u2705 `TabGroup`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdstag",
+      "oneui": "`Chip` / `Badge`",
+      "figmaComponent": "Chip",
+      "designInFigma": "\u26a0\ufe0f `Chip` only",
+      "development": "\u2705 Released",
+      "action": "\ud83e\udd1d **Design: confirm substitute**",
+      "status": "design_confirm",
+      "notes": "No `Tag`; Design must confirm which absorbs it"
+    },
+    {
+      "jds": "jdstext",
+      "oneui": "`Text`",
+      "figmaComponent": "Text",
+      "designInFigma": "\u2705 `Text`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdstextarea",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u26a0\ufe0f `InputText [internal]` only",
+      "development": "\u274c No code",
+      "action": "\ud83c\udfa8 **Design: decide** \u2192 build",
+      "status": "design_decide",
+      "notes": "**No multiline text input in OneUI web**"
+    },
+    {
+      "jds": "jdstextareafield",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u26a0\ufe0f `InputText [internal]` only",
+      "development": "\u274c No code",
+      "action": "\ud83c\udfa8 **Design: decide** \u2192 build",
+      "status": "design_decide",
+      "notes": ""
+    },
+    {
+      "jds": "jdstextnew",
+      "oneui": "`Text`",
+      "figmaComponent": "Text",
+      "designInFigma": "\u2705 `Text`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": "Both JDS text components converge on `Text`"
+    },
+    {
+      "jds": "jdstoast",
+      "oneui": "`Toast`",
+      "figmaComponent": "Toast",
+      "designInFigma": "\u2705 `Toast`",
+      "development": "\ud83d\udfe1 In repo, not released",
+      "action": "\ud83d\ude80 **Dev: release gate**",
+      "status": "release_gate",
+      "notes": "+ `ToastProvider` / `ToastViewport`"
+    },
+    {
+      "jds": "jdstoastinternal",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u2014",
+      "development": "\u274c No code",
+      "action": "\u2014 internal",
+      "status": "internal",
+      "notes": "Internal"
+    },
+    {
+      "jds": "jdstooltip",
+      "oneui": "`Tooltip`",
+      "figmaComponent": "Tooltip",
+      "designInFigma": "\u2705 `Tooltip`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    },
+    {
+      "jds": "jdstooltipinternal",
+      "oneui": null,
+      "figmaComponent": null,
+      "designInFigma": "\u2014",
+      "development": "\u274c No code",
+      "action": "\u2014 internal",
+      "status": "internal",
+      "notes": "Internal"
+    },
+    {
+      "jds": "jdstopnav",
+      "oneui": "`TopBar` / `WebHeader`",
+      "figmaComponent": "TopBar",
+      "designInFigma": "\u2705 `HeaderWeb` / `HeaderNative`",
+      "development": "\u2705 Released",
+      "action": "**Migrate** \u2014 rename + prop map",
+      "status": "migrate",
+      "notes": ""
+    }
+  ],
+  "byStatus": {
+    "release_gate": 25,
+    "migrate": 56,
+    "internal": 10,
+    "design_create": 29,
+    "datavis": 20,
+    "structural": 6,
+    "design_confirm": 3,
+    "design_decide": 6,
+    "design_backfill": 1
+  },
+  "screens": [
+    {
+      "id": "create-account-otp",
+      "sourceNodeId": "275:22028",
+      "sourceName": "360 x 941",
+      "title": "Create an account + OTP verification",
+      "platform": "mobile",
+      "width": 360,
+      "inventory": [
+        {
+          "jds": "jdsheader",
+          "role": "back header",
+          "oneui": "HeaderNative",
+          "status": "migrate"
+        },
+        {
+          "jds": "jdstext",
+          "role": "section titles + body",
+          "oneui": "Text (or free text with OneUI typography)",
+          "status": "migrate"
+        },
+        {
+          "jds": "jdsinputfield",
+          "role": "Password / Verify password",
+          "oneui": "InputField",
+          "status": "migrate"
+        },
+        {
+          "jds": "jdsinputcode",
+          "role": "OTP digits",
+          "oneui": null,
+          "status": "design_create",
+          "fallback": "Temporary 6-cell InputField row annotated [GAP: OTP]; do not invent a fake component set"
+        },
+        {
+          "jds": "jdslink / text CTA",
+          "role": "Resend OTP / Change number / Forgot / Skip / Sign Up",
+          "oneui": "Button",
+          "status": "migrate",
+          "notes": "attention=low (ghost). Never SingleTextButton — that component is max 2 characters only."
+        },
+        {
+          "jds": "jdscheckbox",
+          "role": "Get WhatsApp OTP (hidden in source shot)",
+          "oneui": "CheckboxField",
+          "status": "migrate"
+        },
+        {
+          "jds": "jdsbutton",
+          "role": "Create account CTA",
+          "oneui": "Button",
+          "status": "migrate"
+        }
+      ]
+    },
+    {
+      "id": "account-created-success",
+      "sourceNodeId": "275:22110",
+      "sourceName": "Verifying consent",
+      "title": "Congratulations \u2014 account created",
+      "platform": "mobile",
+      "width": 360,
+      "inventory": [
+        {
+          "jds": "jdsiconbutton / IconContained",
+          "role": "success check",
+          "oneui": "IconContained",
+          "status": "migrate"
+        },
+        {
+          "jds": "jdstext",
+          "role": "Congratulations + body",
+          "oneui": "Text",
+          "status": "migrate"
+        },
+        {
+          "jds": "jdsbutton",
+          "role": "Done CTA",
+          "oneui": "Button",
+          "status": "migrate"
+        }
+      ]
+    },
+    {
+      "id": "jio-cloud-home-first-time",
+      "sourceNodeId": "275:21719",
+      "sourceName": "MyJio_Cloud_First time User",
+      "title": "JioCloud home \u2014 first-time user",
+      "platform": "mobile",
+      "width": 360,
+      "inventory": [
+        {
+          "jds": "jdsheader",
+          "role": "product header + actions + avatar",
+          "oneui": "HeaderNative",
+          "status": "migrate"
+        },
+        {
+          "jds": "jdscarousel + jdsimage",
+          "role": "Memories hero",
+          "oneui": "Carousel + Image (or Surface + Image collage)",
+          "status": "migrate"
+        },
+        {
+          "jds": "jdscarouselindicator",
+          "role": "dots",
+          "oneui": "PaginationDots",
+          "status": "migrate"
+        },
+        {
+          "jds": "jdslist / jdslistitem",
+          "role": "Recents / Favourites / Shared / Offline / Private",
+          "oneui": "ListItem / ListItemGroup",
+          "status": "release_gate",
+          "fallback": "Compose IconContained + Title/Body text + Divider until ListItem is released"
+        },
+        {
+          "jds": "jdsdivider",
+          "role": "row separators",
+          "oneui": "Divider",
+          "status": "migrate"
+        },
+        {
+          "jds": "jdsbutton",
+          "role": "Learn more / Unlock / section CTAs",
+          "oneui": "Button",
+          "status": "migrate"
+        },
+        {
+          "jds": "jdsbottomnavigation",
+          "role": "Home Photos Audios Files Albums Menu",
+          "oneui": "BottomNavigation",
+          "status": "migrate"
+        },
+        {
+          "jds": "jdsavatar",
+          "role": "header avatar",
+          "oneui": "Avatar",
+          "status": "migrate"
+        },
+        {
+          "jds": "jdsiconbutton",
+          "role": "search / add / upload",
+          "oneui": "IconButton",
+          "status": "migrate"
+        }
+      ]
+    }
+  ],
+  "figmaRebuildRules": {
+    "placement": "Directly BELOW each source frame (same x; y = source.y + source.height + 80)",
+    "containerPlacement": "For a multi-screen container: sibling row `{container.name} — OneUI` at y = container.y + container.height + 120; shells sorted by source x",
+    "frameName": "{sourceName} \u2014 OneUI",
+    "width": 360,
+    "height": "HUG vertical auto-layout (container shells may stay FIXED 800 to match sources)",
+    "realComponentsOnly": true,
+    "noRawHexOnSurfaces": true,
+    "themeOnRoot": "Apply 13.1 Theme range + 13.2/13.3 brand Theme modes on the root frame",
+    "gaps": "When status is design_create, annotate a [GAP] frame and use documented fallback \u2014 never invent a published component",
+    "overlays": "DigiLocker pin/consent/upload coachmarks: rebuild visible overlay intent, not obscured background chrome",
+    "layoutParity": "Clone source frame into OneUI slot (same 360x800, padding, rhythm); do not freehand restack",
+    "imagesFromSource": "Preserve every IMAGE imageHash + vector/logo groups from the source frame"
+  },
+  "containerFlowExample": {
+    "workingFile": "Ors8Y9cGtm1J1YelpT0I51",
+    "sourceContainerId": "295:33010",
+    "oneuiContainerId": "351:14311",
+    "method": "clone-source-then-light-swap",
+    "screenCount": 24,
+    "lastRebuiltDate": "2026-08-17",
+    "note": "Prior recorded oneuiContainerId 303:14310 no longer exists in the file (stale/abandoned session) — this run created a fresh sibling row and rebuilt all 24 shells from scratch. Always check figma.currentPage.children for an existing `{container} — OneUI` frame by name before creating a new one — node IDs recorded here can go stale across sessions.",
+    "screens": [
+      { "role": "Splash", "sourceId": "295:28894", "oneuiId": "351:14312" },
+      { "role": "Welcome", "sourceId": "295:29048", "oneuiId": "351:14466" },
+      { "role": "Student signup mobile empty", "sourceId": "295:29090", "oneuiId": "351:14508" },
+      { "role": "Student signup mobile filled", "sourceId": "295:29755", "oneuiId": "351:15173", "gaps": ["TV_Tab/JDSButton pair in source has an orphaned main component (0 children, renders blank) — swapped for Button instances but exact original label text could not be recovered; annotated [GAP: source broken]"] },
+      { "role": "OTP verification", "sourceId": "295:30738", "oneuiId": "351:16156", "gaps": ["InputCode"] },
+      { "role": "Aadhaar options", "sourceId": "295:30697", "oneuiId": "351:16115" },
+      { "role": "DigiLocker Sign in", "sourceId": "295:29833", "oneuiId": "351:15251", "notes": "Clone preserves DigiLocker screenshots/images; .DNA/Selector + Action-Button DigiLocker chrome left as-is per rule 4d" },
+      { "role": "DigiLocker Sign in PIN", "sourceId": "295:29910", "oneuiId": "351:15328", "notes": "Same DigiLocker chrome note as Sign in" },
+      { "role": "DigiLocker consent", "sourceId": "295:29988", "oneuiId": "351:15406" },
+      { "role": "Identity DigiLocker docs", "sourceId": "295:30010", "oneuiId": "351:15428" },
+      { "role": "Aadhaar verified", "sourceId": "295:30791", "oneuiId": "351:16209" },
+      { "role": "Add Institute empty", "sourceId": "295:30843", "oneuiId": "351:16261" },
+      { "role": "Add Institute state", "sourceId": "295:30972", "oneuiId": "351:16390" },
+      { "role": "Add Institute city", "sourceId": "295:31101", "oneuiId": "351:16519" },
+      { "role": "Add Institute filled", "sourceId": "295:31230", "oneuiId": "351:16648" },
+      { "role": "Confirm details", "sourceId": "295:29606", "oneuiId": "351:15024" },
+      { "role": "Create account username empty", "sourceId": "295:29160", "oneuiId": "351:14578" },
+      { "role": "Create account username exists", "sourceId": "295:29464", "oneuiId": "351:14882" },
+      { "role": "Create account password+OTP", "sourceId": "295:29302", "oneuiId": "351:14720", "gaps": ["InputCode"] },
+      { "role": "Create account password filled", "sourceId": "295:31359", "oneuiId": "351:16777", "gaps": ["InputCode"] },
+      { "role": "Congratulations", "sourceId": "295:31611", "oneuiId": "351:17029" },
+      { "role": "JioCloud home success toast", "sourceId": "295:30046", "oneuiId": "351:15464" },
+      { "role": "Upload coachmark", "sourceId": "295:31441", "oneuiId": "351:16859" },
+      { "role": "JioCloud home storage promo", "sourceId": "295:30355", "oneuiId": "351:15773" }
+    ]
+  },
+  "rebuildExample": {
+    "workingFile": "Ors8Y9cGtm1J1YelpT0I51",
+    "sourceNodeIds": [
+      "275:22028",
+      "275:22110",
+      "275:21719"
+    ],
+    "oneuiNodeIds": [
+      "292:13002",
+      "292:13003",
+      "292:13004"
+    ],
+    "gaps": [
+      "OTP InputCode — temporary 6-cell fallback on Create account — OneUI"
+    ],
+    "containerRebuild": {
+      "sourceContainerId": "295:33010",
+      "oneuiContainerId": "351:14311",
+      "method": "clone-source-for-layout-and-images",
+      "lastRebuiltDate": "2026-08-17",
+      "gaps": [
+        "Deep JDS→OneUI instance swap deferred on image-heavy screens to protect layout (clone-first)",
+        "OTP InputCode still design_create when rebuilt from scratch",
+        "Splash is vector logo (no imageHash) — clone preserves vectors",
+        "SingleTextButton only for ≤2-character labels; text/link CTAs use Button attention=low",
+        "Several source JDSButton/JDSButton2/TV_Tab instances in this container (908/909/916 shells: nodes 295:29087, 295:29158, 295:29159, 295:29777, 295:29791, 295:29792, 295:29830-832) have 0 children in the Plugin API — their main component is orphaned/broken in the SOURCE file itself, not a clone artifact. They render blank (many are visible:false anyway). Swapped in real Button instances with best-effort inferred labels from get_screenshot; exact original copy could not be recovered. Flag to design for source cleanup.",
+        "DigiLocker Sign in / Sign in PIN screens (295:29833, 295:29910) use a third-party '.DNA/Selector' + 'Action - Button' component set that is NOT OneUI/JDS — left as-is per rule 4d (DigiLocker screenshot chrome), not counted as a JDS leftover.",
+        "jdsButton/JDSButton2/TV_Tab detection: filter on name plus `!n.id.includes(';')` when using findAllWithCriteria — nested instance-internal IDs (containing ';') double-count the same visual button and produce false positives."
+      ]
+    }
+  }
+}

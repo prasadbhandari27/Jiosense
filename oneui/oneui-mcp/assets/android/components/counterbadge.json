@@ -1,0 +1,222 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "CounterBadge",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.248Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "JDS CounterBadge Compose component."
+  },
+  "composable": "JdsCounterBadge",
+  "attributesClass": "JdsCounterBadgeAttributes",
+  "importPath": "com.jds.components.counterbadge",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.counterbadge.JdsCounterBadge",
+    "attributes": "com.jds.components.counterbadge.JdsCounterBadgeAttributes",
+    "enums": {
+      "JdsCounterBadgeSize": "com.jds.components.counterbadge.JdsCounterBadgeSize",
+      "JdsCounterBadgeAttention": "com.jds.components.counterbadge.JdsCounterBadgeAttention",
+      "JdsCounterBadgeVariant": "com.jds.components.counterbadge.JdsCounterBadgeVariant",
+      "Appearance": "com.jds.foundation.token.Appearance"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [
+      "value",
+      "contentDescription"
+    ],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "value",
+      "type": "Int",
+      "required": true,
+      "description": ""
+    },
+    {
+      "name": "max",
+      "type": "Int",
+      "required": false,
+      "defaultValue": "99",
+      "description": ""
+    },
+    {
+      "name": "showZero",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "JdsCounterBadgeSize",
+      "required": false,
+      "defaultValue": "JdsCounterBadgeSize.M",
+      "enumValues": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "description": ""
+    },
+    {
+      "name": "attention",
+      "type": "JdsCounterBadgeAttention?",
+      "required": false,
+      "defaultValue": "null",
+      "enumValues": [
+        "High",
+        "Medium",
+        "Low"
+      ],
+      "description": ""
+    },
+    {
+      "name": "variant",
+      "type": "JdsCounterBadgeVariant?",
+      "required": false,
+      "defaultValue": "null",
+      "enumValues": [
+        "Bold",
+        "Subtle",
+        "Ghost"
+      ],
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "Appearance",
+      "required": false,
+      "defaultValue": "Appearance.Auto",
+      "enumValues": [
+        "Auto",
+        "Primary",
+        "Secondary",
+        "Sparkle",
+        "BrandBg",
+        "Neutral",
+        "Positive",
+        "Negative",
+        "Warning",
+        "Informative"
+      ],
+      "description": ""
+    },
+    {
+      "name": "contentDescription",
+      "type": "String",
+      "required": true,
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "enums": {
+    "JdsCounterBadgeSize": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "JdsCounterBadgeAttention": [
+      "High",
+      "Medium",
+      "Low"
+    ],
+    "JdsCounterBadgeVariant": [
+      "Bold",
+      "Subtle",
+      "Ghost"
+    ],
+    "Appearance": [
+      "Auto",
+      "Primary",
+      "Secondary",
+      "Sparkle",
+      "BrandBg",
+      "Neutral",
+      "Positive",
+      "Negative",
+      "Warning",
+      "Informative"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.CounterBadge",
+    "type": "object",
+    "properties": {
+      "value": {
+        "type": "integer"
+      },
+      "max": {
+        "type": "integer"
+      },
+      "showZero": {
+        "type": "boolean"
+      },
+      "size": {
+        "enum": [
+          "XS",
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "default": "JdsCounterBadgeSize.M"
+      },
+      "attention": {
+        "enum": [
+          "High",
+          "Medium",
+          "Low"
+        ],
+        "default": "null"
+      },
+      "variant": {
+        "enum": [
+          "Bold",
+          "Subtle",
+          "Ghost"
+        ],
+        "default": "null"
+      },
+      "appearance": {
+        "enum": [
+          "Auto",
+          "Primary",
+          "Secondary",
+          "Sparkle",
+          "BrandBg",
+          "Neutral",
+          "Positive",
+          "Negative",
+          "Warning",
+          "Informative"
+        ],
+        "default": "Appearance.Auto"
+      },
+      "contentDescription": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "value",
+      "contentDescription"
+    ]
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "counterbadge"
+  ],
+  "importPathMaven": "com.jds:components"
+}

@@ -1,0 +1,335 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Slider",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.255Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Public configuration contract for JdsSlider."
+  },
+  "composable": "JdsSlider",
+  "attributesClass": "JdsSliderAttributes",
+  "importPath": "com.jds.components.slider",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.slider.JdsSlider",
+    "attributes": "com.jds.components.slider.JdsSliderAttributes",
+    "enums": {
+      "Appearance": "com.jds.foundation.token.Appearance",
+      "JdsSliderSize": "com.jds.components.slider.JdsSliderSize",
+      "JdsSliderOrientation": "com.jds.components.slider.JdsSliderOrientation",
+      "JdsSliderKnobStyle": "com.jds.components.slider.JdsSliderKnobStyle",
+      "JdsSliderTooltipMode": "com.jds.components.slider.JdsSliderTooltipMode"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "value",
+      "type": "List<Float>",
+      "required": false,
+      "defaultValue": "listOf(0f)",
+      "description": ""
+    },
+    {
+      "name": "valueRange",
+      "type": "ClosedFloatingPointRange<Float>",
+      "required": false,
+      "defaultValue": "0f..100f",
+      "description": ""
+    },
+    {
+      "name": "onValueChange",
+      "type": "((List<Float>) -> Unit)?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "onValueCommitted",
+      "type": "((List<Float>) -> Unit)?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "step",
+      "type": "Float",
+      "required": false,
+      "defaultValue": "1f",
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "Appearance",
+      "required": false,
+      "defaultValue": "Appearance.Auto",
+      "enumValues": [
+        "Auto",
+        "Primary",
+        "Secondary",
+        "Sparkle",
+        "BrandBg",
+        "Neutral",
+        "Positive",
+        "Negative",
+        "Warning",
+        "Informative"
+      ],
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "JdsSliderSize",
+      "required": false,
+      "defaultValue": "JdsSliderSize.M",
+      "enumValues": [
+        "S",
+        "M",
+        "L"
+      ],
+      "description": ""
+    },
+    {
+      "name": "orientation",
+      "type": "JdsSliderOrientation",
+      "required": false,
+      "defaultValue": "JdsSliderOrientation.Horizontal",
+      "enumValues": [
+        "Horizontal",
+        "Vertical"
+      ],
+      "description": ""
+    },
+    {
+      "name": "knobStyle",
+      "type": "JdsSliderKnobStyle",
+      "required": false,
+      "defaultValue": "JdsSliderKnobStyle.Outside",
+      "enumValues": [
+        "Inside",
+        "Outside"
+      ],
+      "description": ""
+    },
+    {
+      "name": "showTooltip",
+      "type": "JdsSliderTooltipMode",
+      "required": false,
+      "defaultValue": "JdsSliderTooltipMode.Auto",
+      "enumValues": [
+        "Auto",
+        "Always",
+        "Hidden"
+      ],
+      "description": ""
+    },
+    {
+      "name": "formatValue",
+      "type": "((Float, Int) -> String)?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "showSteps",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "stepLabels",
+      "type": "List<String>?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "snapToSteps",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": ""
+    },
+    {
+      "name": "start",
+      "type": "JdsSlot?",
+      "required": false,
+      "defaultValue": "null",
+      "slot": true,
+      "slotTypes": [],
+      "description": ""
+    },
+    {
+      "name": "end",
+      "type": "JdsSlot?",
+      "required": false,
+      "defaultValue": "null",
+      "slot": true,
+      "slotTypes": [],
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "readOnly",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "contentDescription",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "thumbDescriptions",
+      "type": "List<String>?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "start",
+      "types": []
+    },
+    {
+      "name": "end",
+      "types": []
+    }
+  ],
+  "enums": {
+    "Appearance": [
+      "Auto",
+      "Primary",
+      "Secondary",
+      "Sparkle",
+      "BrandBg",
+      "Neutral",
+      "Positive",
+      "Negative",
+      "Warning",
+      "Informative"
+    ],
+    "JdsSliderSize": [
+      "S",
+      "M",
+      "L"
+    ],
+    "JdsSliderOrientation": [
+      "Horizontal",
+      "Vertical"
+    ],
+    "JdsSliderKnobStyle": [
+      "Inside",
+      "Outside"
+    ],
+    "JdsSliderTooltipMode": [
+      "Auto",
+      "Always",
+      "Hidden"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.Slider",
+    "type": "object",
+    "properties": {
+      "value": {},
+      "valueRange": {},
+      "onValueChange": {},
+      "onValueCommitted": {},
+      "step": {},
+      "appearance": {
+        "enum": [
+          "Auto",
+          "Primary",
+          "Secondary",
+          "Sparkle",
+          "BrandBg",
+          "Neutral",
+          "Positive",
+          "Negative",
+          "Warning",
+          "Informative"
+        ],
+        "default": "Appearance.Auto"
+      },
+      "size": {
+        "enum": [
+          "S",
+          "M",
+          "L"
+        ],
+        "default": "JdsSliderSize.M"
+      },
+      "orientation": {
+        "enum": [
+          "Horizontal",
+          "Vertical"
+        ],
+        "default": "JdsSliderOrientation.Horizontal"
+      },
+      "knobStyle": {
+        "enum": [
+          "Inside",
+          "Outside"
+        ],
+        "default": "JdsSliderKnobStyle.Outside"
+      },
+      "showTooltip": {
+        "enum": [
+          "Auto",
+          "Always",
+          "Hidden"
+        ],
+        "default": "JdsSliderTooltipMode.Auto"
+      },
+      "formatValue": {},
+      "showSteps": {
+        "type": "boolean"
+      },
+      "stepLabels": {},
+      "snapToSteps": {
+        "type": "boolean"
+      },
+      "start": {},
+      "end": {},
+      "disabled": {
+        "type": "boolean"
+      },
+      "readOnly": {
+        "type": "boolean"
+      },
+      "contentDescription": {
+        "type": "string"
+      },
+      "thumbDescriptions": {}
+    },
+    "required": []
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "slider"
+  ],
+  "importPathMaven": "com.jds:components"
+}

@@ -1,0 +1,169 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "BottomNavigation",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.257Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "App-level bottom navigation bar."
+  },
+  "composable": "JdsBottomNavigation",
+  "importPath": "com.jds.components.bottomnav",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.bottomnav.JdsBottomNavigation",
+    "enums": {
+      "JdsBottomNavLabelType": "com.jds.components.bottomnavitem.JdsBottomNavLabelType",
+      "Appearance": "com.jds.foundation.token.Appearance"
+    }
+  },
+  "compositionRules": {
+    "childKind": "variadic",
+    "requires": [
+      "selectedValue",
+      "onValueChange",
+      "content"
+    ],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "selectedValue",
+      "type": "String?",
+      "required": true,
+      "description": ""
+    },
+    {
+      "name": "onValueChange",
+      "type": "(String) -> Unit",
+      "required": true,
+      "description": ""
+    },
+    {
+      "name": "labelType",
+      "type": "JdsBottomNavLabelType",
+      "required": false,
+      "defaultValue": "JdsBottomNavLabelType.OneLine",
+      "enumValues": [
+        "None",
+        "OneLine",
+        "TwoLine"
+      ],
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "Appearance",
+      "required": false,
+      "defaultValue": "Appearance.Primary",
+      "enumValues": [
+        "Auto",
+        "Primary",
+        "Secondary",
+        "Sparkle",
+        "BrandBg",
+        "Neutral",
+        "Positive",
+        "Negative",
+        "Warning",
+        "Informative"
+      ],
+      "description": ""
+    },
+    {
+      "name": "showDivider",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": ""
+    },
+    {
+      "name": "contentDescription",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "content",
+      "type": "@Composable RowScope.() -> Unit",
+      "required": true,
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "enums": {
+    "JdsBottomNavLabelType": [
+      "None",
+      "OneLine",
+      "TwoLine"
+    ],
+    "Appearance": [
+      "Auto",
+      "Primary",
+      "Secondary",
+      "Sparkle",
+      "BrandBg",
+      "Neutral",
+      "Positive",
+      "Negative",
+      "Warning",
+      "Informative"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.BottomNavigation",
+    "type": "object",
+    "properties": {
+      "selectedValue": {
+        "type": "string"
+      },
+      "onValueChange": {},
+      "labelType": {
+        "enum": [
+          "None",
+          "OneLine",
+          "TwoLine"
+        ],
+        "default": "JdsBottomNavLabelType.OneLine"
+      },
+      "appearance": {
+        "enum": [
+          "Auto",
+          "Primary",
+          "Secondary",
+          "Sparkle",
+          "BrandBg",
+          "Neutral",
+          "Positive",
+          "Negative",
+          "Warning",
+          "Informative"
+        ],
+        "default": "Appearance.Primary"
+      },
+      "showDivider": {
+        "type": "boolean"
+      },
+      "contentDescription": {
+        "type": "string"
+      },
+      "content": {}
+    },
+    "required": [
+      "selectedValue",
+      "onValueChange",
+      "content"
+    ]
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "bottomnavigation"
+  ],
+  "importPathMaven": "com.jds:components"
+}

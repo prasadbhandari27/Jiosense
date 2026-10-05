@@ -1,0 +1,114 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "HeaderNative",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.249Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Public API for JdsHeaderNative."
+  },
+  "composable": "JdsHeaderNative",
+  "attributesClass": "JdsHeaderNativeAttributes",
+  "importPath": "com.jds.components.headernative",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.headernative.JdsHeaderNative",
+    "attributes": "com.jds.components.headernative.JdsHeaderNativeAttributes"
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [
+      "primaryNav"
+    ],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "primaryNav",
+      "type": "JdsHeaderNativePrimaryNavAttributes",
+      "required": true,
+      "slot": true,
+      "slotTypes": [
+        "HeaderNativePrimaryNav"
+      ],
+      "description": ""
+    },
+    {
+      "name": "secondaryNav",
+      "type": "JdsHeaderNativeSecondaryNavAttributes?",
+      "required": false,
+      "defaultValue": "null",
+      "slot": true,
+      "slotTypes": [
+        "HeaderNativeSecondaryNav"
+      ],
+      "description": ""
+    },
+    {
+      "name": "divider",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "expanded",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "contentDescription",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "primaryNav",
+      "types": [
+        "HeaderNativePrimaryNav"
+      ]
+    },
+    {
+      "name": "secondaryNav",
+      "types": [
+        "HeaderNativeSecondaryNav"
+      ]
+    }
+  ],
+  "enums": {},
+  "propsSchema": {
+    "$id": "jds.kb.android.HeaderNative",
+    "type": "object",
+    "properties": {
+      "primaryNav": {},
+      "secondaryNav": {},
+      "divider": {
+        "type": "boolean"
+      },
+      "expanded": {
+        "type": "boolean"
+      },
+      "contentDescription": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "primaryNav"
+    ]
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "headernative"
+  ],
+  "importPathMaven": "com.jds:components"
+}

@@ -1,0 +1,293 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Stepper",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.256Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Public API contract for JdsStepper"
+  },
+  "composable": "JdsStepper",
+  "attributesClass": "JdsStepperAttributes",
+  "importPath": "com.jds.components.stepper",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.stepper.JdsStepper",
+    "attributes": "com.jds.components.stepper.JdsStepperAttributes",
+    "enums": {
+      "JdsStepperSize": "com.jds.components.stepper.JdsStepperSize",
+      "JdsStepperAttention": "com.jds.components.stepper.JdsStepperAttention",
+      "Appearance": "com.jds.foundation.token.Appearance",
+      "JdsStepperAccent": "com.jds.components.stepper.JdsStepperAccent",
+      "JdsStepperDirection": "com.jds.components.stepper.JdsStepperDirection"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "value",
+      "type": "Int?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "defaultValue",
+      "type": "Int",
+      "required": false,
+      "defaultValue": "0",
+      "description": ""
+    },
+    {
+      "name": "onValueChange",
+      "type": "((Int?) -> Unit)?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "min",
+      "type": "Int?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "max",
+      "type": "Int?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "step",
+      "type": "Int",
+      "required": false,
+      "defaultValue": "1",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "readOnly",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "JdsStepperSize",
+      "required": false,
+      "defaultValue": "JdsStepperSize.M",
+      "enumValues": [
+        "S",
+        "M",
+        "L"
+      ],
+      "description": ""
+    },
+    {
+      "name": "attention",
+      "type": "JdsStepperAttention",
+      "required": false,
+      "defaultValue": "JdsStepperAttention.Medium",
+      "enumValues": [
+        "High",
+        "Medium",
+        "Low"
+      ],
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "Appearance",
+      "required": false,
+      "defaultValue": "Appearance.Secondary",
+      "enumValues": [
+        "Auto",
+        "Primary",
+        "Secondary",
+        "Sparkle",
+        "BrandBg",
+        "Neutral",
+        "Positive",
+        "Negative",
+        "Warning",
+        "Informative"
+      ],
+      "description": ""
+    },
+    {
+      "name": "accent",
+      "type": "JdsStepperAccent?",
+      "required": false,
+      "defaultValue": "null",
+      "enumValues": [
+        "Primary",
+        "Secondary",
+        "Sparkle"
+      ],
+      "description": ""
+    },
+    {
+      "name": "condensed",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "direction",
+      "type": "JdsStepperDirection",
+      "required": false,
+      "defaultValue": "JdsStepperDirection.Ltr",
+      "enumValues": [
+        "Ltr",
+        "Rtl"
+      ],
+      "description": ""
+    },
+    {
+      "name": "contentDescription",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "enums": {
+    "JdsStepperSize": [
+      "S",
+      "M",
+      "L"
+    ],
+    "JdsStepperAttention": [
+      "High",
+      "Medium",
+      "Low"
+    ],
+    "Appearance": [
+      "Auto",
+      "Primary",
+      "Secondary",
+      "Sparkle",
+      "BrandBg",
+      "Neutral",
+      "Positive",
+      "Negative",
+      "Warning",
+      "Informative"
+    ],
+    "JdsStepperAccent": [
+      "Primary",
+      "Secondary",
+      "Sparkle"
+    ],
+    "JdsStepperDirection": [
+      "Ltr",
+      "Rtl"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.Stepper",
+    "type": "object",
+    "properties": {
+      "value": {
+        "type": "integer"
+      },
+      "defaultValue": {
+        "type": "integer"
+      },
+      "onValueChange": {},
+      "min": {
+        "type": "integer"
+      },
+      "max": {
+        "type": "integer"
+      },
+      "step": {
+        "type": "integer"
+      },
+      "disabled": {
+        "type": "boolean"
+      },
+      "readOnly": {
+        "type": "boolean"
+      },
+      "size": {
+        "enum": [
+          "S",
+          "M",
+          "L"
+        ],
+        "default": "JdsStepperSize.M"
+      },
+      "attention": {
+        "enum": [
+          "High",
+          "Medium",
+          "Low"
+        ],
+        "default": "JdsStepperAttention.Medium"
+      },
+      "appearance": {
+        "enum": [
+          "Auto",
+          "Primary",
+          "Secondary",
+          "Sparkle",
+          "BrandBg",
+          "Neutral",
+          "Positive",
+          "Negative",
+          "Warning",
+          "Informative"
+        ],
+        "default": "Appearance.Secondary"
+      },
+      "accent": {
+        "enum": [
+          "Primary",
+          "Secondary",
+          "Sparkle"
+        ],
+        "default": "null"
+      },
+      "condensed": {
+        "type": "boolean"
+      },
+      "direction": {
+        "enum": [
+          "Ltr",
+          "Rtl"
+        ],
+        "default": "JdsStepperDirection.Ltr"
+      },
+      "contentDescription": {
+        "type": "string"
+      }
+    },
+    "required": []
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "stepper"
+  ],
+  "importPathMaven": "com.jds:components"
+}

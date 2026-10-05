@@ -1,0 +1,219 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "BottomNavigation",
+  "generatedAt": "2026-08-26T06:20:09.452Z",
+  "machineReadable": true,
+  "status": "beta",
+  "intentAndPurpose": {
+    "intent": "Native bottom navigation bar for 2–5 BottomNavigationItems with controlled or uncontrolled selection. The app shell owns placement and safe-area handling."
+  },
+  "compositionRules": {
+    "requires": [
+      "aria-label"
+    ],
+    "allows": [],
+    "forbids": [],
+    "childKind": "variadic"
+  },
+  "props": [
+    {
+      "name": "labelType",
+      "type": "'none' | '1line' | '2line'",
+      "required": false,
+      "defaultValue": "1line",
+      "description": "Shared visible-label layout for every destination."
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "required": false,
+      "description": "Controlled current destination value."
+    },
+    {
+      "name": "defaultValue",
+      "type": "string",
+      "required": false,
+      "description": "Uncontrolled initial destination value."
+    },
+    {
+      "name": "onValueChange",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Called with the selected destination value."
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": ""
+    },
+    {
+      "name": "showDivider",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": ""
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": true,
+      "description": "Trimmed non-empty accessible name for the navigation container."
+    },
+    {
+      "name": "backgroundColor",
+      "type": "string",
+      "required": false,
+      "description": "[error] Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.BottomNavigation",
+    "type": "object",
+    "properties": {
+      "labelType": {
+        "enum": [
+          "none",
+          "1line",
+          "2line"
+        ],
+        "default": "1line",
+        "description": "Shared visible-label layout for every destination."
+      },
+      "value": {
+        "type": "string",
+        "description": "Controlled current destination value."
+      },
+      "defaultValue": {
+        "type": "string",
+        "description": "Uncontrolled initial destination value."
+      },
+      "onValueChange": {
+        "description": "Called with the selected destination value."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "default": "auto"
+      },
+      "showDivider": {
+        "type": "boolean",
+        "default": true
+      },
+      "aria-label": {
+        "type": "string",
+        "minLength": 1,
+        "description": "Trimmed non-empty accessible name for the navigation container."
+      },
+      "backgroundColor": {
+        "type": "string",
+        "not": {
+          "anyOf": [
+            {
+              "pattern": "^#"
+            },
+            {
+              "pattern": "^rgba?\\("
+            },
+            {
+              "pattern": "^hsla?\\("
+            },
+            {
+              "pattern": "^oklch\\("
+            },
+            {
+              "pattern": "^color-mix\\("
+            },
+            {
+              "enum": [
+                "transparent",
+                "inherit"
+              ]
+            }
+          ]
+        },
+        "x-jds-suggestion": "Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill.",
+        "x-jds-severity": "error"
+      }
+    },
+    "required": [
+      "aria-label"
+    ]
+  },
+  "tokens": {
+    "color": [
+      "neutral",
+      "primary",
+      "secondary",
+      "brand-bg"
+    ],
+    "surface": [
+      "default"
+    ],
+    "spacing": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "shape": [
+      "XS",
+      "S",
+      "M"
+    ],
+    "elevation": [],
+    "motion": [
+      "motion.duration.discreet.short",
+      "motion.easing.transition"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "tablist",
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [],
+    "honorsReduceMotion": false,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-bottomnav-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "BottomNavigation"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { BottomNavigation } from '@oneui/ui-native/components/BottomNavigation';\n\n<BottomNavigation />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "bottomnavigation",
+    "navigation",
+    "chassis",
+    "mobile-primary-nav"
+  ],
+  "importPath": "@oneui/ui-native/components/BottomNavigation"
+}

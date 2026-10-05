@@ -1,0 +1,273 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Tabs",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Accessible tabbed navigation on Base UI Tabs. Figma node 1:55592: inactive labels use content/low (`--Text-Low`), selected labels use content/high (`--Text-High`), accent is the indicator bar only (`--Primary-Tinted` / colour/content/tinted). Not TintedA11y on labels.",
+    "taskContexts": [],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [
+      "start",
+      "end"
+    ],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "horizontal",
+        "useWhen": [
+          "Horizontal"
+        ]
+      },
+      {
+        "name": "vertical",
+        "useWhen": [
+          "Vertical"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": true,
+      "description": "children property"
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "description": "Appearance forwarded to all child TabItems."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "className property"
+    },
+    {
+      "name": "defaultValue",
+      "type": "TabsValue",
+      "required": false,
+      "description": "defaultValue property"
+    },
+    {
+      "name": "onValueChange",
+      "type": "(value: TabsValue) => void",
+      "required": false,
+      "description": "onValueChange property"
+    },
+    {
+      "name": "orientation",
+      "type": "'horizontal' | 'vertical'",
+      "required": false,
+      "description": "orientation property"
+    },
+    {
+      "name": "size",
+      "type": "'s' | 'm' | 'l'",
+      "required": false,
+      "description": "Size forwarded to all child TabItems."
+    },
+    {
+      "name": "value",
+      "type": "TabsValue",
+      "required": false,
+      "description": "value property"
+    }
+  ],
+  "slots": [
+    {
+      "name": "start",
+      "types": [
+        "Icon",
+        "Avatar",
+        "CounterBadge",
+        "IndicatorBadge"
+      ],
+      "tokens": [
+        "slotGap"
+      ]
+    },
+    {
+      "name": "end",
+      "types": [
+        "Icon",
+        "Avatar",
+        "CounterBadge",
+        "IndicatorBadge"
+      ],
+      "tokens": [
+        "slotGap"
+      ]
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.tabs",
+    "type": "object",
+    "properties": {
+      "children": {
+        "description": "children property"
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Appearance forwarded to all child TabItems."
+      },
+      "className": {
+        "type": "string",
+        "description": "className property"
+      },
+      "defaultValue": {
+        "description": "defaultValue property"
+      },
+      "onValueChange": {
+        "description": "onValueChange property"
+      },
+      "orientation": {
+        "enum": [
+          "horizontal",
+          "vertical"
+        ],
+        "description": "orientation property"
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "Size forwarded to all child TabItems."
+      },
+      "value": {
+        "description": "value property"
+      }
+    },
+    "required": [
+      "children"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "tabs-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Tabs } from '@oneui/ui';\n\n<Tabs />"
+    },
+    {
+      "id": "tabs-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Tabs\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "tabs"
+  ],
+  "interactionBehavior": {
+    "summary": "Tabs are Base UI tabs with OneUI chrome on top: hover and press recolour the label and slots only — the state-layer stay transparent in every state, and the selected bar is a single list-level indicator that slides between tabs rather than a per-tab underline. Default activation is manual: arrow keys move focus without changing the selected tab; `Enter` / `Space` commit. Pass `activateOnFocus` to make arrows select immediately.",
+    "hover": [
+      "Only an unselected tab changes on hover: the label steps to `--Neutral-High` (overridable via `--Tabs-colorHover`) and the start / end slots step to `--Neutral-Tinted`.",
+      "The padded state-layer stays `transparent` — there is no hover fill and the selected indicator does not appear under an unselected tab.",
+      "Wrapped in `@media (hover: hover)`, so a touch tap never leaves a stuck hover colour behind.",
+      "Selected tabs (`[data-active]`) and disabled tabs are excluded from every hover rule, so the selected label already at `--Neutral-High` does not flicker."
+    ],
+    "press": [
+      "An unselected press drops the label and both slots to `--Neutral-Low` (overridable via `--Tabs-colorPressed` / `--Tabs-iconColorPressed`).",
+      "Press is NOT `(hover: hover)`-guarded, so a touch tap gets the same colour drop a mouse press does.",
+      "The start-slot icon scales UP to `1.14` while the tab is held — the label and end slot do not move. This selector does not exclude `[data-active]`, so a selected tab with a start icon still grows on press. This is opposite to Button, which scales the whole control DOWN.",
+      "Selected tabs are excluded from press colour (`:not([data-active])`), so the already-active label does not drop to `--Neutral-Low`."
+    ],
+    "focus": [
+      "Keyboard focus draws the two-layer halo on the inner state-layer, not the tab button: an inner `--Stroke-XL` gap ring in `--Surface-Halo-Gap` plus an outer `--Focus-Outline` ring, so it stays legible inside a tinted `<Surface>`.",
+      "`:focus` on the tab only clears the native outline; the visible ring is `:focus-visible`, so a mouse click does not paint it.",
+      "The panel uses a simpler `outline` in `--Focus-Outline` at `--Focus-Outline-Width` when it is itself `:focus-visible` — it does not use the two-layer halo."
+    ],
+    "keyboard": [
+      "Default `activateOnFocus={false}`: `ArrowRight` / `ArrowLeft` (horizontal) or `ArrowDown` / `ArrowUp` (vertical) move focus only — the previously selected tab stays selected until `Enter` or `Space`.",
+      "`activateOnFocus` flips that: the same arrows both move focus and select immediately (Base UI automatic activation).",
+      "`Home` / `End` jump focus to the first / last tab. `loopFocus` defaults to `true`, so arrows wrap at the ends.",
+      "Disabled tabs stay in the arrow path: Base UI Tabs marks them `aria-disabled` with `focusableWhenDisabled`, and the list passes an empty `disabledIndices` array, so arrows land on them. They still refuse `Enter` / `Space` / click.",
+      "A value change also smooth-scrolls the selected tab into the overflowing list viewport, without using `scrollIntoView` (that would scroll ancestor pages)."
+    ],
+    "selected": [
+      "The selected tab's label is `--Neutral-High` and its start / end slots switch to `--{Role}-Tinted` — label stays Neutral; only the icon takes the appearance role.",
+      "Font weight stays `--Label-FontWeight-Medium` when selected, so the row does not shift as tabs activate.",
+      "The selected bar is a list-level indicator in `--{Role}-Tinted` (overridable via `--Tabs-indicatorColor`). It tracks Base UI's `--active-tab-*` vars and is inset by the state-layer padding so it underlines the content, not the padded tab.",
+      "Horizontal: a bottom bar of `--Stroke-XL` thickness. Vertical: a left bar whose height is centred in the active tab.",
+      "Selected is exposed as `aria-selected` and `[data-active]` by Base UI."
+    ],
+    "disabled": [
+      "A disabled tab dims to `--Disabled-Opacity` and recolours the label to `--Primary-Low`.",
+      "Base UI keeps it `aria-disabled` rather than natively `disabled`, so it remains focusable and `cursor: not-allowed` on the tab is actually observable — unlike Button, there is no `pointer-events: none`.",
+      "Hover and press colour, and the start-slot press scale, are all suppressed via `:not([data-disabled])`.",
+      "Click, `Enter`, and `Space` do not activate it; tests confirm `aria-selected` stays `false`."
+    ],
+    "touch": [
+      "On touch-only devices the hover colour never applies; the pressed `--Neutral-Low` label plus the start-slot scale-up are the entire tap response.",
+      "Pointer-move hover tracking is not used — unlike SegmentedControl, Tabs has no sliding hover pill."
+    ]
+  },
+  "importPath": "@jds4/oneui-react",
+  "figma": {
+    "componentKey": "jds-tabs-v4"
+  },
+  "renderHints": {
+    "baseElement": "div",
+    "readsFromSurfaceContext": true
+  },
+  "a11y": {
+    "role": "tablist",
+    "minTouchTarget": 44,
+    "accessibleNameSource": "aria-label"
+  }
+}

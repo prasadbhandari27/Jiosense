@@ -1,0 +1,651 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "WebHeader",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Figma HeaderWeb root. Composes PrimaryNav and an optional SecondaryNav on a neutral default Surface; the root owns the two divider defaults.",
+    "taskContexts": [
+      "header",
+      "navigation",
+      "responsive",
+      "web",
+      "compound"
+    ],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [
+      "children"
+    ],
+    "allows": [
+      "start",
+      "end"
+    ],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "primary-only",
+        "useWhen": [
+          "Primary only"
+        ]
+      },
+      {
+        "name": "primary-secondary",
+        "useWhen": [
+          "Primary + Secondary"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": true,
+      "description": "PrimaryNav + SecondaryNav children"
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible name for the banner landmark. Only apply when this `WebHeader` is the top-level page banner (i.e. a direct child of `<body>`, not nested inside another sectioning element). Pass a short descriptor such as \"Main site header\" when the default implicit banner name is not descriptive enough. Note: do NOT set this when the header is rendered inside a `<section>`, `<article>`, `<main>`, `<nav>`, or `<aside>` — nesting strips the implicit `banner` role and `aria-label` becomes a prohibited attribute on the now role-less `<header>`."
+    },
+    {
+      "name": "aria-labelledby",
+      "type": "string",
+      "required": false,
+      "description": "IDREF of a visible element that labels the banner landmark."
+    },
+    {
+      "name": "breakpoint",
+      "type": "'S' | 'M' | 'L'",
+      "required": false,
+      "description": "Override breakpoint (auto-detected by default)"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "dividerPrimaryNav",
+      "type": "boolean",
+      "required": false,
+      "description": "Show the divider below PrimaryNav. Figma default: false."
+    },
+    {
+      "name": "dividerSecondaryNav",
+      "type": "boolean",
+      "required": false,
+      "description": "Show the divider below SecondaryNav. Figma default: true."
+    },
+    {
+      "name": "secondaryNav",
+      "type": "boolean",
+      "required": false,
+      "description": "Show the secondary navigation row. Figma default: true."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    },
+    {
+      "name": "variant",
+      "type": "'default' | 'transparent' | 'glass' | 'hidden' | 'stickyHidden'",
+      "required": false,
+      "description": "Header variant controlling position and background"
+    }
+  ],
+  "slots": [
+    {
+      "name": "children",
+      "types": [
+        "PrimaryNav",
+        "SecondaryNav"
+      ],
+      "tokens": []
+    },
+    {
+      "name": "start",
+      "types": [
+        "Icon",
+        "Avatar",
+        "CounterBadge",
+        "IndicatorBadge"
+      ],
+      "tokens": []
+    },
+    {
+      "name": "end",
+      "types": [
+        "Button",
+        "IconButton",
+        "Icon",
+        "Avatar",
+        "CounterBadge",
+        "IndicatorBadge"
+      ],
+      "tokens": []
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.web-header",
+    "type": "object",
+    "properties": {
+      "children": {
+        "description": "PrimaryNav + SecondaryNav children"
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible name for the banner landmark. Only apply when this `WebHeader` is the top-level page banner (i.e. a direct child of `<body>`, not nested inside another sectioning element). Pass a short descriptor such as \"Main site header\" when the default implicit banner name is not descriptive enough. Note: do NOT set this when the header is rendered inside a `<section>`, `<article>`, `<main>`, `<nav>`, or `<aside>` — nesting strips the implicit `banner` role and `aria-label` becomes a prohibited attribute on the now role-less `<header>`."
+      },
+      "aria-labelledby": {
+        "type": "string",
+        "description": "IDREF of a visible element that labels the banner landmark."
+      },
+      "breakpoint": {
+        "enum": [
+          "S",
+          "M",
+          "L"
+        ],
+        "description": "Override breakpoint (auto-detected by default)"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "dividerPrimaryNav": {
+        "type": "boolean",
+        "description": "Show the divider below PrimaryNav. Figma default: false."
+      },
+      "dividerSecondaryNav": {
+        "type": "boolean",
+        "description": "Show the divider below SecondaryNav. Figma default: true."
+      },
+      "secondaryNav": {
+        "type": "boolean",
+        "description": "Show the secondary navigation row. Figma default: true."
+      },
+      "style": {
+        "description": "Inline styles"
+      },
+      "variant": {
+        "enum": [
+          "default",
+          "transparent",
+          "glass",
+          "hidden",
+          "stickyHidden"
+        ],
+        "description": "Header variant controlling position and background"
+      }
+    },
+    "required": [
+      "children"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "web-header-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { WebHeader } from '@oneui/ui';\n\n<WebHeader>\n  <WebHeader.PrimaryNav />\n</WebHeader>"
+    },
+    {
+      "id": "web-header-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"WebHeader\",\n  \"decisions\": [\n    \"Item Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "web-header"
+  ],
+  "importPath": "@jds4/oneui-react",
+  "figma": {
+    "mainComponentKeys": [
+      "dd955b322bc0711b6146d173b026c0f504d86c84"
+    ],
+    "codeConnect": {
+      "componentKey": "dd955b322bc0711b6146d173b026c0f504d86c84",
+      "nodeId": "1:36304"
+    }
+  },
+  "familyApi": {
+    "PrimaryNav": {
+      "props": [
+        {
+          "name": "type",
+          "type": "'homeBar' | 'contextBar' | 'searchBar'",
+          "defaultValue": "homeBar"
+        },
+        {
+          "name": "middle",
+          "type": "'none' | 'fluid' | 'centered' | 'centred'",
+          "defaultValue": "fluid"
+        },
+        {
+          "name": "searchInput",
+          "type": "'none' | 'middle' | 'end'",
+          "defaultValue": "none"
+        },
+        {
+          "name": "startActions",
+          "type": "boolean",
+          "defaultValue": true
+        },
+        {
+          "name": "showMenuButton",
+          "type": "boolean"
+        },
+        {
+          "name": "primaryNavItems",
+          "type": "boolean",
+          "defaultValue": true
+        },
+        {
+          "name": "divider",
+          "type": "boolean",
+          "defaultValue": true
+        },
+        {
+          "name": "showAvatar",
+          "type": "boolean",
+          "defaultValue": true
+        },
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "logo",
+          "type": "ReactNode"
+        },
+        {
+          "name": "searchPlaceholder",
+          "type": "string"
+        },
+        {
+          "name": "searchValue",
+          "type": "string"
+        },
+        {
+          "name": "onSearchChange",
+          "type": "(value: string) => void"
+        },
+        {
+          "name": "onSearchSubmit",
+          "type": "(value: string) => void"
+        },
+        {
+          "name": "searchAriaLabel",
+          "type": "string"
+        },
+        {
+          "name": "searchAriaLabelledBy",
+          "type": "string"
+        },
+        {
+          "name": "end",
+          "type": "ReactNode"
+        },
+        {
+          "name": "avatar",
+          "type": "ReactNode"
+        },
+        {
+          "name": "activeValue",
+          "type": "string"
+        },
+        {
+          "name": "onActiveValueChange",
+          "type": "(value: string) => void"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode"
+        },
+        {
+          "name": "onDrawerOpenChange",
+          "type": "(open: boolean) => void"
+        },
+        {
+          "name": "aria-label",
+          "type": "string"
+        },
+        {
+          "name": "aria-labelledby",
+          "type": "string"
+        },
+        {
+          "name": "className",
+          "type": "string"
+        }
+      ],
+      "propsSchema": {
+        "properties": {
+          "type": {
+            "enum": [
+              "homeBar",
+              "contextBar",
+              "searchBar"
+            ]
+          },
+          "middle": {
+            "enum": [
+              "none",
+              "fluid",
+              "centered",
+              "centred"
+            ]
+          },
+          "searchInput": {
+            "enum": [
+              "none",
+              "middle",
+              "end"
+            ]
+          }
+        }
+      },
+      "slots": [
+        {
+          "name": "logo",
+          "types": [
+            "Logo"
+          ]
+        },
+        {
+          "name": "end",
+          "types": [
+            "IconButton"
+          ]
+        },
+        {
+          "name": "avatar",
+          "types": [
+            "Avatar"
+          ]
+        },
+        {
+          "name": "children",
+          "types": [
+            "HeaderItem"
+          ]
+        }
+      ],
+      "compositionRules": {
+        "allows": [
+          "Logo",
+          "IconButton",
+          "Avatar",
+          "HeaderItem"
+        ],
+        "requires": [],
+        "forbids": []
+      }
+    },
+    "SecondaryNav": {
+      "props": [
+        {
+          "name": "type",
+          "type": "'navStart' | 'navMiddle' | 'marketing'",
+          "defaultValue": "navStart"
+        },
+        {
+          "name": "secondaryNavItems",
+          "type": "boolean",
+          "defaultValue": true
+        },
+        {
+          "name": "attention",
+          "type": "'low' | 'medium' | 'high'",
+          "defaultValue": "high"
+        },
+        {
+          "name": "divider",
+          "type": "boolean"
+        },
+        {
+          "name": "subheader",
+          "type": "string"
+        },
+        {
+          "name": "end",
+          "type": "ReactNode"
+        },
+        {
+          "name": "activeValue",
+          "type": "string"
+        },
+        {
+          "name": "onActiveValueChange",
+          "type": "(value: string) => void"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode"
+        },
+        {
+          "name": "aria-label",
+          "type": "string"
+        },
+        {
+          "name": "aria-labelledby",
+          "type": "string"
+        },
+        {
+          "name": "className",
+          "type": "string"
+        }
+      ],
+      "propsSchema": {
+        "properties": {
+          "type": {
+            "enum": [
+              "navStart",
+              "navMiddle",
+              "marketing"
+            ]
+          },
+          "attention": {
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          }
+        }
+      },
+      "slots": [
+        {
+          "name": "children",
+          "types": [
+            "HeaderItem"
+          ]
+        },
+        {
+          "name": "end",
+          "types": [
+            "Button",
+            "IconButton"
+          ]
+        }
+      ],
+      "compositionRules": {
+        "allows": [
+          "HeaderItem",
+          "Button",
+          "IconButton"
+        ],
+        "requires": [],
+        "forbids": []
+      }
+    },
+    "HeaderItem": {
+      "props": [
+        {
+          "name": "value",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "active",
+          "type": "boolean"
+        },
+        {
+          "name": "attention",
+          "type": "'low' | 'medium' | 'high'",
+          "defaultValue": "low"
+        },
+        {
+          "name": "start",
+          "type": "ReactNode"
+        },
+        {
+          "name": "startSize",
+          "type": "'none' | 'S' | 'M'",
+          "defaultValue": "none"
+        },
+        {
+          "name": "end",
+          "type": "ReactNode"
+        },
+        {
+          "name": "endSize",
+          "type": "'none' | 'S' | 'M'",
+          "defaultValue": "none"
+        },
+        {
+          "name": "visuallyAlignToStart",
+          "type": "boolean"
+        },
+        {
+          "name": "href",
+          "type": "string"
+        },
+        {
+          "name": "onClick",
+          "type": "(event: MouseEvent<HTMLElement>) => void"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true
+        },
+        {
+          "name": "className",
+          "type": "string"
+        },
+        {
+          "name": "itemRef",
+          "type": "(el: HTMLElement | null) => void"
+        }
+      ],
+      "propsSchema": {
+        "properties": {
+          "attention": {
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "startSize": {
+            "enum": [
+              "none",
+              "S",
+              "M"
+            ]
+          },
+          "endSize": {
+            "enum": [
+              "none",
+              "S",
+              "M"
+            ]
+          }
+        }
+      },
+      "slots": [
+        {
+          "name": "start",
+          "types": [
+            "Icon",
+            "Avatar",
+            "CounterBadge",
+            "IndicatorBadge"
+          ]
+        },
+        {
+          "name": "end",
+          "types": [
+            "Icon",
+            "Avatar",
+            "CounterBadge",
+            "IndicatorBadge"
+          ]
+        },
+        {
+          "name": "children",
+          "types": [
+            "Text"
+          ]
+        }
+      ],
+      "compositionRules": {
+        "allows": [
+          "Icon",
+          "Avatar",
+          "CounterBadge",
+          "IndicatorBadge",
+          "Text"
+        ],
+        "requires": [
+          "Text"
+        ],
+        "forbids": []
+      }
+    }
+  }
+}

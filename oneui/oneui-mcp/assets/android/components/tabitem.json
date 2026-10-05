@@ -1,0 +1,215 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "TabItem",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.256Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Public API contract for JdsTabItem."
+  },
+  "composable": "JdsTabItem",
+  "attributesClass": "JdsTabItemAttributes",
+  "importPath": "com.jds.components.tabitem",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.tabitem.JdsTabItem",
+    "attributes": "com.jds.components.tabitem.JdsTabItemAttributes",
+    "enums": {
+      "JdsTabsSize": "com.jds.components.tabs.JdsTabsSize",
+      "Appearance": "com.jds.foundation.token.Appearance",
+      "JdsTabsOrientation": "com.jds.components.tabs.JdsTabsOrientation"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [
+      "value"
+    ],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "value",
+      "type": "String",
+      "required": true,
+      "description": ""
+    },
+    {
+      "name": "label",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "start",
+      "type": "JdsSlot?",
+      "required": false,
+      "defaultValue": "null",
+      "slot": true,
+      "slotTypes": [],
+      "description": ""
+    },
+    {
+      "name": "end",
+      "type": "JdsSlot?",
+      "required": false,
+      "defaultValue": "null",
+      "slot": true,
+      "slotTypes": [],
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "JdsTabsSize?",
+      "required": false,
+      "defaultValue": "null",
+      "enumValues": [
+        "S",
+        "M",
+        "L"
+      ],
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "Appearance?",
+      "required": false,
+      "defaultValue": "null",
+      "enumValues": [
+        "Auto",
+        "Primary",
+        "Secondary",
+        "Sparkle",
+        "BrandBg",
+        "Neutral",
+        "Positive",
+        "Negative",
+        "Warning",
+        "Informative"
+      ],
+      "description": "Inherits container context when null"
+    },
+    {
+      "name": "orientation",
+      "type": "JdsTabsOrientation?",
+      "required": false,
+      "defaultValue": "null",
+      "enumValues": [
+        "Horizontal",
+        "Vertical"
+      ],
+      "description": "Inherits container context when null"
+    },
+    {
+      "name": "contentDescription",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": "Inherits container context when null"
+    }
+  ],
+  "slots": [
+    {
+      "name": "start",
+      "types": []
+    },
+    {
+      "name": "end",
+      "types": []
+    }
+  ],
+  "enums": {
+    "JdsTabsSize": [
+      "S",
+      "M",
+      "L"
+    ],
+    "Appearance": [
+      "Auto",
+      "Primary",
+      "Secondary",
+      "Sparkle",
+      "BrandBg",
+      "Neutral",
+      "Positive",
+      "Negative",
+      "Warning",
+      "Informative"
+    ],
+    "JdsTabsOrientation": [
+      "Horizontal",
+      "Vertical"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.TabItem",
+    "type": "object",
+    "properties": {
+      "value": {
+        "type": "string"
+      },
+      "label": {
+        "type": "string"
+      },
+      "disabled": {
+        "type": "boolean"
+      },
+      "start": {},
+      "end": {},
+      "size": {
+        "enum": [
+          "S",
+          "M",
+          "L"
+        ],
+        "default": "null"
+      },
+      "appearance": {
+        "enum": [
+          "Auto",
+          "Primary",
+          "Secondary",
+          "Sparkle",
+          "BrandBg",
+          "Neutral",
+          "Positive",
+          "Negative",
+          "Warning",
+          "Informative"
+        ],
+        "default": "null"
+      },
+      "orientation": {
+        "enum": [
+          "Horizontal",
+          "Vertical"
+        ],
+        "default": "null"
+      },
+      "contentDescription": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "value"
+    ]
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "tabitem"
+  ],
+  "importPathMaven": "com.jds:components"
+}

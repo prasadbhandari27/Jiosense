@@ -1,0 +1,278 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Select",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.254Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Host attributes for JdsSelect."
+  },
+  "composable": "JdsSelect",
+  "attributesClass": "JdsSelectAttributes",
+  "importPath": "com.jds.components.select",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.select.JdsSelect",
+    "attributes": "com.jds.components.select.JdsSelectAttributes",
+    "enums": {
+      "JdsSelectMenuType": "com.jds.components.selectmenu.JdsSelectMenuType",
+      "JdsSelectMenuSize": "com.jds.components.selectmenu.JdsSelectMenuSize",
+      "JdsSelectMenuAlignment": "com.jds.components.selectmenu.JdsSelectMenuAlignment",
+      "JdsSelectMenuDirection": "com.jds.components.selectmenu.JdsSelectMenuDirection"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [
+      "options",
+      "open",
+      "onOpenChange"
+    ],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "options",
+      "type": "List<JdsSelectOption>",
+      "required": true,
+      "description": ""
+    },
+    {
+      "name": "sections",
+      "type": "List<JdsSelectSection>",
+      "required": false,
+      "defaultValue": "emptyList()",
+      "description": ""
+    },
+    {
+      "name": "menuType",
+      "type": "JdsSelectMenuType",
+      "required": false,
+      "defaultValue": "JdsSelectMenuType.SingleSelect",
+      "enumValues": [
+        "SingleSelect",
+        "MultiSelect",
+        "Actions"
+      ],
+      "description": ""
+    },
+    {
+      "name": "menuSize",
+      "type": "JdsSelectMenuSize",
+      "required": false,
+      "defaultValue": "JdsSelectMenuSize.M",
+      "enumValues": [
+        "S",
+        "M",
+        "L",
+        "Fill"
+      ],
+      "description": ""
+    },
+    {
+      "name": "menuAlignment",
+      "type": "JdsSelectMenuAlignment",
+      "required": false,
+      "defaultValue": "JdsSelectMenuAlignment.Start",
+      "enumValues": [
+        "Start",
+        "Middle",
+        "End",
+        "Fill"
+      ],
+      "description": ""
+    },
+    {
+      "name": "menuDirection",
+      "type": "JdsSelectMenuDirection",
+      "required": false,
+      "defaultValue": "JdsSelectMenuDirection.Below",
+      "enumValues": [
+        "Below",
+        "Above",
+        "AlignWithTrigger"
+      ],
+      "description": "Includes JdsSelectMenuDirection.AlignWithTrigger — required in v1."
+    },
+    {
+      "name": "open",
+      "type": "Boolean",
+      "required": true,
+      "description": "Material-style controlled visibility."
+    },
+    {
+      "name": "onOpenChange",
+      "type": "(Boolean) -> Unit",
+      "required": true,
+      "description": ""
+    },
+    {
+      "name": "value",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "onValueChange",
+      "type": "((String) -> Unit)?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "values",
+      "type": "List<String>",
+      "required": false,
+      "defaultValue": "emptyList()",
+      "description": ""
+    },
+    {
+      "name": "onValuesChange",
+      "type": "((List<String>) -> Unit)?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "onAction",
+      "type": "((String) -> Unit)?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "showSearch",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "searchPlaceholder",
+      "type": "String",
+      "required": false,
+      "defaultValue": "\"Search\"",
+      "description": ""
+    },
+    {
+      "name": "noResultsMessage",
+      "type": "String",
+      "required": false,
+      "defaultValue": "\"No results found\"",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "enums": {
+    "JdsSelectMenuType": [
+      "SingleSelect",
+      "MultiSelect",
+      "Actions"
+    ],
+    "JdsSelectMenuSize": [
+      "S",
+      "M",
+      "L",
+      "Fill"
+    ],
+    "JdsSelectMenuAlignment": [
+      "Start",
+      "Middle",
+      "End",
+      "Fill"
+    ],
+    "JdsSelectMenuDirection": [
+      "Below",
+      "Above",
+      "AlignWithTrigger"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.Select",
+    "type": "object",
+    "properties": {
+      "options": {},
+      "sections": {},
+      "menuType": {
+        "enum": [
+          "SingleSelect",
+          "MultiSelect",
+          "Actions"
+        ],
+        "default": "JdsSelectMenuType.SingleSelect"
+      },
+      "menuSize": {
+        "enum": [
+          "S",
+          "M",
+          "L",
+          "Fill"
+        ],
+        "default": "JdsSelectMenuSize.M"
+      },
+      "menuAlignment": {
+        "enum": [
+          "Start",
+          "Middle",
+          "End",
+          "Fill"
+        ],
+        "default": "JdsSelectMenuAlignment.Start"
+      },
+      "menuDirection": {
+        "enum": [
+          "Below",
+          "Above",
+          "AlignWithTrigger"
+        ],
+        "default": "JdsSelectMenuDirection.Below"
+      },
+      "open": {
+        "type": "boolean"
+      },
+      "onOpenChange": {},
+      "value": {
+        "type": "string"
+      },
+      "onValueChange": {},
+      "values": {},
+      "onValuesChange": {},
+      "onAction": {},
+      "showSearch": {
+        "type": "boolean"
+      },
+      "searchPlaceholder": {
+        "type": "string"
+      },
+      "noResultsMessage": {
+        "type": "string"
+      },
+      "disabled": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "options",
+      "open",
+      "onOpenChange"
+    ]
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "select"
+  ],
+  "importPathMaven": "com.jds:components"
+}

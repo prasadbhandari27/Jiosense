@@ -1,0 +1,147 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "InputDynamicText",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.251Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Public API contract for JdsInputDynamicText."
+  },
+  "composable": "JdsInputDynamicText",
+  "attributesClass": "JdsInputDynamicTextAttributes",
+  "importPath": "com.jds.components.inputdynamictext",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.inputdynamictext.JdsInputDynamicText",
+    "attributes": "com.jds.components.inputdynamictext.JdsInputDynamicTextAttributes",
+    "enums": {
+      "JdsInputDynamicTextSize": "com.jds.components.inputdynamictext.JdsInputDynamicTextSize",
+      "JdsInputDynamicTextLiveRegion": "com.jds.components.inputdynamictext.JdsInputDynamicTextLiveRegion"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "content",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": "Leading paragraph (e.g. character count). Rendered only when non-blank."
+    },
+    {
+      "name": "end",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": "Trailing button label. Rendered as a JdsButton only when non-blank."
+    },
+    {
+      "name": "size",
+      "type": "JdsInputDynamicTextSize",
+      "required": false,
+      "defaultValue": "JdsInputDynamicTextSize.M",
+      "enumValues": [
+        "S",
+        "M",
+        "L"
+      ],
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Dims content (Text-Medium → Text-Low) and is forwarded to the trailing JdsButton."
+    },
+    {
+      "name": "liveRegion",
+      "type": "JdsInputDynamicTextLiveRegion",
+      "required": false,
+      "defaultValue": "JdsInputDynamicTextLiveRegion.Polite",
+      "enumValues": [
+        "Off",
+        "Polite",
+        "Assertive"
+      ],
+      "description": "Announcement mode for the content node. Default JdsInputDynamicTextLiveRegion.Polite."
+    },
+    {
+      "name": "onEndClick",
+      "type": "(() -> Unit)?",
+      "required": false,
+      "defaultValue": "null",
+      "description": "Trailing button click handler."
+    },
+    {
+      "name": "endContentDescription",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": "Accessible-name override for the trailing button; null = button label read by default."
+    }
+  ],
+  "slots": [],
+  "enums": {
+    "JdsInputDynamicTextSize": [
+      "S",
+      "M",
+      "L"
+    ],
+    "JdsInputDynamicTextLiveRegion": [
+      "Off",
+      "Polite",
+      "Assertive"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.InputDynamicText",
+    "type": "object",
+    "properties": {
+      "content": {
+        "type": "string"
+      },
+      "end": {
+        "type": "string"
+      },
+      "size": {
+        "enum": [
+          "S",
+          "M",
+          "L"
+        ],
+        "default": "JdsInputDynamicTextSize.M"
+      },
+      "disabled": {
+        "type": "boolean"
+      },
+      "liveRegion": {
+        "enum": [
+          "Off",
+          "Polite",
+          "Assertive"
+        ],
+        "default": "JdsInputDynamicTextLiveRegion.Polite"
+      },
+      "onEndClick": {},
+      "endContentDescription": {
+        "type": "string"
+      }
+    },
+    "required": []
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "inputdynamictext"
+  ],
+  "importPathMaven": "com.jds:components"
+}

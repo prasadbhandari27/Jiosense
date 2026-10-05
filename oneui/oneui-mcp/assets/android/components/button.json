@@ -1,0 +1,298 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Button",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.246Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Public API contract for JdsButton."
+  },
+  "composable": "JdsButton",
+  "attributesClass": "JdsButtonAttributes",
+  "importPath": "com.jds.components.button",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.button.JdsButton",
+    "attributes": "com.jds.components.button.JdsButtonAttributes",
+    "enums": {
+      "JdsButtonAttention": "com.jds.components.button.JdsButtonAttention",
+      "JdsButtonVariant": "com.jds.components.button.JdsButtonVariant",
+      "JdsButtonSize": "com.jds.components.button.JdsButtonSize",
+      "Appearance": "com.jds.foundation.token.Appearance"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [
+      "onClick",
+      "text"
+    ],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "onClick",
+      "type": "() -> Unit",
+      "required": true,
+      "description": ""
+    },
+    {
+      "name": "text",
+      "type": "String",
+      "required": true,
+      "description": ""
+    },
+    {
+      "name": "attention",
+      "type": "JdsButtonAttention",
+      "required": false,
+      "defaultValue": "JdsButtonAttention.High",
+      "enumValues": [
+        "High",
+        "Medium",
+        "Low"
+      ],
+      "description": ""
+    },
+    {
+      "name": "variant",
+      "type": "JdsButtonVariant?",
+      "required": false,
+      "defaultValue": "null",
+      "enumValues": [
+        "Bold",
+        "Subtle",
+        "Ghost"
+      ],
+      "description": "When set, takes precedence over attention for variant resolution."
+    },
+    {
+      "name": "size",
+      "type": "JdsButtonSize",
+      "required": false,
+      "defaultValue": "JdsButtonSize.M",
+      "enumValues": [
+        "XS",
+        "S",
+        "M",
+        "L"
+      ],
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "Appearance",
+      "required": false,
+      "defaultValue": "Appearance.Auto",
+      "enumValues": [
+        "Auto",
+        "Primary",
+        "Secondary",
+        "Sparkle",
+        "BrandBg",
+        "Neutral",
+        "Positive",
+        "Negative",
+        "Warning",
+        "Informative"
+      ],
+      "description": ""
+    },
+    {
+      "name": "contained",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": ""
+    },
+    {
+      "name": "condensed",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "fullWidth",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "start",
+      "type": "JdsSlot",
+      "required": false,
+      "defaultValue": "JdsSlot.None",
+      "slot": true,
+      "slotTypes": [
+        "Icon",
+        "CircularProgressIndicator"
+      ],
+      "description": "Leading slot — pass JdsIconAttributes or JdsCircularProgressIndicatorAttributes."
+    },
+    {
+      "name": "end",
+      "type": "JdsSlot",
+      "required": false,
+      "defaultValue": "JdsSlot.None",
+      "slot": true,
+      "slotTypes": [
+        "Icon",
+        "CircularProgressIndicator"
+      ],
+      "description": "Trailing slot — pass JdsIconAttributes or JdsCircularProgressIndicatorAttributes."
+    },
+    {
+      "name": "contentDescription",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "start",
+      "types": [
+        "Icon",
+        "CircularProgressIndicator"
+      ]
+    },
+    {
+      "name": "end",
+      "types": [
+        "Icon",
+        "CircularProgressIndicator"
+      ]
+    }
+  ],
+  "enums": {
+    "JdsButtonAttention": [
+      "High",
+      "Medium",
+      "Low"
+    ],
+    "JdsButtonVariant": [
+      "Bold",
+      "Subtle",
+      "Ghost"
+    ],
+    "JdsButtonSize": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "Appearance": [
+      "Auto",
+      "Primary",
+      "Secondary",
+      "Sparkle",
+      "BrandBg",
+      "Neutral",
+      "Positive",
+      "Negative",
+      "Warning",
+      "Informative"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.Button",
+    "type": "object",
+    "properties": {
+      "onClick": {},
+      "text": {
+        "type": "string"
+      },
+      "attention": {
+        "enum": [
+          "High",
+          "Medium",
+          "Low"
+        ],
+        "default": "JdsButtonAttention.High"
+      },
+      "variant": {
+        "enum": [
+          "Bold",
+          "Subtle",
+          "Ghost"
+        ],
+        "default": "null"
+      },
+      "size": {
+        "enum": [
+          "XS",
+          "S",
+          "M",
+          "L"
+        ],
+        "default": "JdsButtonSize.M"
+      },
+      "appearance": {
+        "enum": [
+          "Auto",
+          "Primary",
+          "Secondary",
+          "Sparkle",
+          "BrandBg",
+          "Neutral",
+          "Positive",
+          "Negative",
+          "Warning",
+          "Informative"
+        ],
+        "default": "Appearance.Auto"
+      },
+      "contained": {
+        "type": "boolean"
+      },
+      "condensed": {
+        "type": "boolean"
+      },
+      "fullWidth": {
+        "type": "boolean"
+      },
+      "disabled": {
+        "type": "boolean"
+      },
+      "loading": {
+        "type": "boolean"
+      },
+      "start": {},
+      "end": {},
+      "contentDescription": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "onClick",
+      "text"
+    ]
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "button"
+  ],
+  "importPathMaven": "com.jds:components"
+}

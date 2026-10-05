@@ -1,0 +1,374 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "IconButton",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Trigger compact single actions with icon-only affordance.",
+    "taskContexts": [
+      "toolbar-action",
+      "inline-compact-action",
+      "navigation-control"
+    ],
+    "sentiments": [
+      "neutral",
+      "positive",
+      "warning"
+    ]
+  },
+  "compositionRules": {
+    "requires": [
+      "icon",
+      "aria-label"
+    ],
+    "allows": [
+      "loading spinner"
+    ],
+    "forbids": [
+      "text-only content"
+    ]
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "bold",
+        "useWhen": [
+          "primary compact action"
+        ]
+      },
+      {
+        "name": "subtle",
+        "useWhen": [
+          "secondary compact action"
+        ]
+      },
+      {
+        "name": "ghost",
+        "useWhen": [
+          "minimal chrome action"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": [
+      "Button",
+      "Toggle"
+    ]
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware"
+    ],
+    "mode": [
+      "light",
+      "dark"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [
+      "click"
+    ],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": true,
+      "description": "Required accessibility label (icon-only buttons must have this)"
+    },
+    {
+      "name": "icon",
+      "type": "'add' | 'remove' | 'close' | 'edit' | 'delete' | 'copy' | 'save' | 'refresh' | 'download' | 'upload' | 'share' | 'link' | 'unlink' | 'cart' | 'helloJio' | 'favourite' | 'rewind' | 'forward' | 'menu' | 'search' | 'home' | 'settings' | 'arrowLeft' | 'arrowRight' | 'arrowUp' | 'arrowDown' | 'chevronLeft' | 'chevronRight' | 'chevronUp' | 'chevronDown' | 'externalLink' | 'firstPage' | 'lastPage' /** Single-step back / forward (Jio: `IcBack` / `IcNext` — distinct from chevrons). */ | 'back' | 'next' | 'check' | 'checkCircle' | 'warning' | 'error' | 'info' | 'help' | 'loading' | 'play' | 'pause' | 'stop' | 'volumeOn' | 'volumeOff' | 'microphone' | 'image' | 'video' | 'user' | 'users' | 'userAdd' | 'userRemove' | 'logout' | 'eye' | 'eyeOff' | 'lock' | 'unlock' | 'star' | 'starFilled' | 'heart' | 'heartFilled' | 'bookmark' | 'bookmarkFilled' | 'filter' | 'sort' | 'grid' | 'list' | 'moreHorizontal' | 'moreVertical' | 'mail' | 'phone' | 'chat' | 'notification' | 'file' | 'folder' | 'document' | 'calendar' | 'clock' | 'location' | 'sun' | 'moon' | 'palette' | 'brand' | 'layers' | 'components' | 'canvas' | 'create' | 'sparkles' | 'analytics' | 'globe' | 'smartphone' | 'tablet' | 'monitor' | 'tv' | 'printer' | 'billboard' | 'bus' | (string & {}) | IconComponent | ReactElement",
+      "required": true,
+      "description": "Semantic name, pack id (`IcCarSide`), icon component, or React element"
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "description": "Multi-accent appearance role. 'auto' resolves to 'primary'."
+    },
+    {
+      "name": "aria-expanded",
+      "type": "boolean",
+      "required": false,
+      "description": "Expanded state when the icon button controls collapsible content."
+    },
+    {
+      "name": "attention",
+      "type": "'high' | 'medium' | 'low'",
+      "required": false,
+      "description": "Emphasis level — high (bold fill), medium (subtle fill), low (ghost). Default high."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS class name"
+    },
+    {
+      "name": "condensed",
+      "type": "boolean",
+      "required": false,
+      "description": "Condensed mode: reduces container size while keeping same icon size"
+    },
+    {
+      "name": "contained",
+      "type": "boolean",
+      "required": false,
+      "description": "When true (default), renders a contained icon chip with background and sized container. When false, renders icon only — no background, border, or fixed chip size. `condensed`, `fullWidth`, and `layout=\"3:2\"` only apply when `contained={true}`."
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "Test ID for testing"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Disabled state"
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "required": false,
+      "description": "Stretch to fill container width (maintains height). Only when contained=true."
+    },
+    {
+      "name": "layout",
+      "type": "'1:1' | '3:2'",
+      "required": false,
+      "description": "Shape layout: '1:1' (square, default) or '3:2' (wide rectangle)"
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "required": false,
+      "description": "Loading state — shows circular progress indicator"
+    },
+    {
+      "name": "onClick",
+      "type": "MouseEventHandler<HTMLButtonElement>",
+      "required": false,
+      "description": "Web-only alias for onPress"
+    },
+    {
+      "name": "onPress",
+      "type": "() => void",
+      "required": false,
+      "description": "Press/click handler"
+    },
+    {
+      "name": "size",
+      "type": "4 | 6 | 8 | 10 | 12 | 14 | '2xs' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'small' | 'medium' | 'large'",
+      "required": false,
+      "description": "Button size — dimension step number or t-shirt alias. Default: 10 (M)."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.icon-button",
+    "type": "object",
+    "properties": {
+      "aria-label": {
+        "type": "string",
+        "description": "Required accessibility label (icon-only buttons must have this)"
+      },
+      "icon": {
+        "description": "Semantic name, pack id (`IcCarSide`), icon component, or React element"
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. 'auto' resolves to 'primary'."
+      },
+      "aria-expanded": {
+        "type": "boolean",
+        "description": "Expanded state when the icon button controls collapsible content."
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "description": "Emphasis level — high (bold fill), medium (subtle fill), low (ghost). Default high."
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional CSS class name"
+      },
+      "condensed": {
+        "type": "boolean",
+        "description": "Condensed mode: reduces container size while keeping same icon size"
+      },
+      "contained": {
+        "type": "boolean",
+        "description": "When true (default), renders a contained icon chip with background and sized container. When false, renders icon only — no background, border, or fixed chip size. `condensed`, `fullWidth`, and `layout=\"3:2\"` only apply when `contained={true}`."
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "Test ID for testing"
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Disabled state"
+      },
+      "fullWidth": {
+        "type": "boolean",
+        "description": "Stretch to fill container width (maintains height). Only when contained=true."
+      },
+      "layout": {
+        "enum": [
+          "1:1",
+          "3:2"
+        ],
+        "description": "Shape layout: '1:1' (square, default) or '3:2' (wide rectangle)"
+      },
+      "loading": {
+        "type": "boolean",
+        "description": "Loading state — shows circular progress indicator"
+      },
+      "onClick": {
+        "description": "Web-only alias for onPress"
+      },
+      "onPress": {
+        "description": "Press/click handler"
+      },
+      "size": {
+        "enum": [
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          "2xs",
+          "xs",
+          "s",
+          "m",
+          "l",
+          "xl"
+        ],
+        "description": "Button size — dimension step number or t-shirt alias. Default: 10 (M)."
+      },
+      "style": {
+        "description": "Inline styles"
+      }
+    },
+    "required": [
+      "aria-label",
+      "icon"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "icon-button-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { IconButton } from '@oneui/ui';\n\n<IconButton icon=\"add\" aria-label=\"Add item\" />"
+    },
+    {
+      "id": "icon-button-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"IconButton\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "icon-button"
+  ],
+  "interactionBehavior": {
+    "summary": "IconButton scales UP on press — `scale(1 + tapScale/100)` with `--Motion-Tap-Scale-Up` at 7% by default — which is the opposite direction to Button's squash, and the two sit side by side in toolbars, so expect them to move apart on tap. The fill steps through hover and pressed tokens for the resolved attention level, and focus draws the two-layer halo on top of the variant's inset border. The biggest surprise is `contained={false}`: an uncontained icon button has NO fill and NO colour change on hover or press — the tap-scale and the focus halo are its entire feedback. `loading` implies disabled: the icon is swapped for a spinner and the whole button dims.",
+    "hover": [
+      "The fill steps to the hover token for the resolved attention level: `--{Role}-Bold-Hover` at `attention=\"high\"`, `--{Role}-Subtle-Hover` at `medium`, `--{Role}-Hover` at `low`.",
+      "Wrapped in `@media (hover: hover)`, so a touch tap never leaves a stuck hover fill behind.",
+      "Every hover rule is qualified with `:not(.disabled)` and `:not([data-contained='false'])` — a disabled or uncontained button never takes a hover fill.",
+      "With `contained={false}` the background is pinned to `transparent` on hover and the icon colour resolves to exactly the same token as at rest, so by default there is no visible hover change at all. A brand can opt back in per attention level via `--IconButton-uncontainedIconColor-{high|medium|low}-hover`.",
+      "A `::before` overlay carries an optional state layer (`--IconButton-stateLayer-{variant}-hover`) that composes over the solid fill. It defaults to `transparent`, so out of the box the solid role-state fill is the whole hover effect.",
+      "The theme editor can force this state statically with a `[data-force-state='hover']` ancestor, which mirrors the same declarations outside the `(hover: hover)` guard."
+    ],
+    "press": [
+      "The fill deepens to the pressed token — `--{Role}-Bold-Pressed`, `--{Role}-Subtle-Pressed`, or `--{Role}-Pressed` by attention level.",
+      "The whole button scales UP on press: `scale(calc(1 + var(--_tap-direction) * var(--_tap-scale) / 100))` with `--_tap-direction: 1`. This is the opposite of Button, which scales DOWN, and matches Checkbox and Radio instead.",
+      "Tap scale is shape-aware: 7% for the default square and condensed shapes (`--Motion-Tap-Scale-Up`), 3% for `layout=\"3:2\"` (`--Motion-Tap-Scale-Default`), and 1% when `fullWidth` (`--Motion-Tap-Scale-FullWidth`) — a wide button growing 7% would read as the layout shifting.",
+      "The scale rule is NOT `(hover: hover)`-guarded and NOT excluded for `contained={false}`, so an uncontained icon button still grows on tap even though its colours do not change.",
+      "The pressed fill rules, unlike the scale, are excluded for `[data-contained='false']` — the background stays transparent."
+    ],
+    "focus": [
+      "Keyboard focus draws the two-layer halo: an inner `--Stroke-XL` gap ring in `--Surface-Halo-Gap` plus an outer ring at `calc(--Stroke-XL + --Focus-Outline-Width)` in `--Focus-Outline`, so the indicator survives a tinted `<Surface>`.",
+      "The halo shares the `box-shadow` property with the variant's border, so the focus rule re-declares `inset 0 0 0 var(--_ib-bw) var(--_ib-bc)` first — the inset border is preserved rather than replaced while focused.",
+      "`:focus` alone only clears the native outline; the visible ring is `:focus-visible`, so a mouse click does not paint it.",
+      "Ring width and colour are brand-overridable via `--IconButton-focusOutlineWidth` and `--IconButton-focusOutlineColor`.",
+      "With `contained={false}` the button sets `border-radius: 0` and hugs the icon, so the halo is a tight square ring around the glyph rather than a rounded ring."
+    ],
+    "keyboard": [
+      "Renders Base UI `Button`, which is a native `<button>`, so `Enter` and `Space` both activate it with no custom key handling.",
+      "`aria-label` is required by the type signature; if it is missing or blank a dev-mode `console.warn` fires and a label is derived from the icon name (`IcCarSide` → \"Car side\"), so the button never ships nameless.",
+      "Disabled and loading buttons are removed from the tab order — the native `disabled` attribute is applied, and `aria-disabled` / `aria-busy` are mirrored for assistive tech.",
+      "`aria-expanded` is passed straight through, which is what you want when the icon button toggles a menu or panel; it has no visual effect."
+    ],
+    "loading": [
+      "`loading` implies disabled — the shared resolver computes `isDisabled = disabled || loading` — so the native `disabled` attribute is set and `onPress` / `onClick` stops firing. You do not need to pass both.",
+      "`aria-busy=\"true\"` and `data-loading` are set; the icon is REPLACED in the tree by a `CircularProgressIndicator` (not hidden with opacity, as Button does), wrapped in `aria-hidden`.",
+      "The spinner size is mapped from the button's own step (4→2XS … 14→XL), and a contained button has a fixed container size, so it does not resize when loading toggles.",
+      "A loading button dims to `--Loading-Opacity` (falling back to `--Disabled-Opacity`) and takes `pointer-events: none`, so hover and press visuals are inert."
+    ],
+    "disabled": [
+      "Dims to `--Disabled-Opacity` (brand-overridable via `--IconButton-disabledOpacity`) and sets `cursor: not-allowed` plus `pointer-events: none`.",
+      "Because the element is natively `disabled` AND has `pointer-events: none`, the `not-allowed` cursor is not observable — the pointer shows the parent's cursor. This is a known, accepted system-wide gap; do not wrap the button in a host element to work around it (see docs/design/disabled-states.md).",
+      "All hover and pressed fill rules, and the tap-scale rule, are qualified with `:not(.disabled)`, so a disabled icon button is completely inert."
+    ],
+    "touch": [
+      "Hover fills never apply on touch-only devices; the pressed fill plus the 7% scale-up are the entire response to a tap.",
+      "The scale-up direction is deliberate for small controls — the button grows out from under the fingertip, so the feedback is visible around a finger that is covering the glyph.",
+      "Visual size follows the Figma spec per step and is NOT padded up to a 44px touch target in CSS; hitting the mobile minimum is a size-selection decision, not something the component enforces."
+    ]
+  },
+  "importPath": "@jds4/oneui-react",
+  "figma": {
+    "componentKey": "jds-icon-button-v4"
+  },
+  "renderHints": {
+    "baseElement": "button",
+    "readsFromSurfaceContext": true
+  },
+  "a11y": {
+    "role": "button",
+    "minTouchTarget": 44,
+    "accessibleNameSource": "aria-label"
+  }
+}

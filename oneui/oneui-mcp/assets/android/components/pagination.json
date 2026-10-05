@@ -1,0 +1,247 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Pagination",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.252Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "JDS Pagination Compose component."
+  },
+  "composable": "JdsPagination",
+  "attributesClass": "JdsPaginationAttributes",
+  "importPath": "com.jds.components.pagination",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.pagination.JdsPagination",
+    "attributes": "com.jds.components.pagination.JdsPaginationAttributes",
+    "enums": {
+      "JdsPaginationAttention": "com.jds.components.pagination.JdsPaginationAttention",
+      "JdsPaginationSize": "com.jds.components.pagination.JdsPaginationSize",
+      "Appearance": "com.jds.foundation.token.Appearance"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [
+      "totalPages"
+    ],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "totalPages",
+      "type": "Int",
+      "required": true,
+      "description": ""
+    },
+    {
+      "name": "page",
+      "type": "Int?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "defaultPage",
+      "type": "Int",
+      "required": false,
+      "defaultValue": "1",
+      "description": ""
+    },
+    {
+      "name": "onPageChange",
+      "type": "((Int) -> Unit)?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "siblingCount",
+      "type": "Int",
+      "required": false,
+      "defaultValue": "1",
+      "description": ""
+    },
+    {
+      "name": "boundaryCount",
+      "type": "Int",
+      "required": false,
+      "defaultValue": "1",
+      "description": ""
+    },
+    {
+      "name": "showPrevNext",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": ""
+    },
+    {
+      "name": "showFirstLast",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "attention",
+      "type": "JdsPaginationAttention",
+      "required": false,
+      "defaultValue": "JdsPaginationAttention.Medium",
+      "enumValues": [
+        "High",
+        "Medium",
+        "Low"
+      ],
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "JdsPaginationSize",
+      "required": false,
+      "defaultValue": "JdsPaginationSize.M",
+      "enumValues": [
+        "S",
+        "M",
+        "L"
+      ],
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "Appearance",
+      "required": false,
+      "defaultValue": "Appearance.Auto",
+      "enumValues": [
+        "Auto",
+        "Primary",
+        "Secondary",
+        "Sparkle",
+        "BrandBg",
+        "Neutral",
+        "Positive",
+        "Negative",
+        "Warning",
+        "Informative"
+      ],
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "type": "String",
+      "required": false,
+      "defaultValue": "\"Pagination\"",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "enums": {
+    "JdsPaginationAttention": [
+      "High",
+      "Medium",
+      "Low"
+    ],
+    "JdsPaginationSize": [
+      "S",
+      "M",
+      "L"
+    ],
+    "Appearance": [
+      "Auto",
+      "Primary",
+      "Secondary",
+      "Sparkle",
+      "BrandBg",
+      "Neutral",
+      "Positive",
+      "Negative",
+      "Warning",
+      "Informative"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.Pagination",
+    "type": "object",
+    "properties": {
+      "totalPages": {
+        "type": "integer"
+      },
+      "page": {
+        "type": "integer"
+      },
+      "defaultPage": {
+        "type": "integer"
+      },
+      "onPageChange": {},
+      "siblingCount": {
+        "type": "integer"
+      },
+      "boundaryCount": {
+        "type": "integer"
+      },
+      "showPrevNext": {
+        "type": "boolean"
+      },
+      "showFirstLast": {
+        "type": "boolean"
+      },
+      "disabled": {
+        "type": "boolean"
+      },
+      "attention": {
+        "enum": [
+          "High",
+          "Medium",
+          "Low"
+        ],
+        "default": "JdsPaginationAttention.Medium"
+      },
+      "size": {
+        "enum": [
+          "S",
+          "M",
+          "L"
+        ],
+        "default": "JdsPaginationSize.M"
+      },
+      "appearance": {
+        "enum": [
+          "Auto",
+          "Primary",
+          "Secondary",
+          "Sparkle",
+          "BrandBg",
+          "Neutral",
+          "Positive",
+          "Negative",
+          "Warning",
+          "Informative"
+        ],
+        "default": "Appearance.Auto"
+      },
+      "ariaLabel": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "totalPages"
+    ]
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "pagination"
+  ],
+  "importPathMaven": "com.jds:components"
+}

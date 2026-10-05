@@ -1,0 +1,637 @@
+[
+  {
+    "name": "AgentPulse",
+    "slug": "agentpulse",
+    "intent": "Public API for JdsAgentPulse.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "agentpulse"
+    ]
+  },
+  {
+    "name": "Avatar",
+    "slug": "avatar",
+    "intent": "JDS Avatar Compose component.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "avatar"
+    ]
+  },
+  {
+    "name": "Badge",
+    "slug": "badge",
+    "intent": "JDS Badge Compose component.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "badge"
+    ]
+  },
+  {
+    "name": "BottomNavigation",
+    "slug": "bottomnavigation",
+    "intent": "App-level bottom navigation bar.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "bottomnavigation"
+    ]
+  },
+  {
+    "name": "BottomNavItem",
+    "slug": "bottomnavitem",
+    "intent": "Public API contract for JdsBottomNavItem — one attributes data class per the attributes-class convention; enums live in this file.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "bottomnavitem"
+    ]
+  },
+  {
+    "name": "Button",
+    "slug": "button",
+    "intent": "Public API contract for JdsButton.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "button"
+    ]
+  },
+  {
+    "name": "Carousel",
+    "slug": "carousel",
+    "intent": "Public API for JdsCarousel.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "carousel"
+    ]
+  },
+  {
+    "name": "Checkbox",
+    "slug": "checkbox",
+    "intent": "Public API contract for JdsCheckbox.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "checkbox"
+    ]
+  },
+  {
+    "name": "CheckboxField",
+    "slug": "checkboxfield",
+    "intent": "Public API contract for JdsCheckboxField.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "checkboxfield"
+    ]
+  },
+  {
+    "name": "Chip",
+    "slug": "chip",
+    "intent": "Public API contract for JdsChip.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "chip"
+    ]
+  },
+  {
+    "name": "ChipGroup",
+    "slug": "chipgroup",
+    "intent": "Public API contract for JdsChipGroup.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "chipgroup"
+    ]
+  },
+  {
+    "name": "CircularProgressIndicator",
+    "slug": "circularprogressindicator",
+    "intent": "Public API contract for JdsCircularProgressIndicator.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "circularprogressindicator"
+    ]
+  },
+  {
+    "name": "CounterBadge",
+    "slug": "counterbadge",
+    "intent": "JDS CounterBadge Compose component.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "counterbadge"
+    ]
+  },
+  {
+    "name": "Divider",
+    "slug": "divider",
+    "intent": "JDS Divider Compose component.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "divider"
+    ]
+  },
+  {
+    "name": "HeaderItem",
+    "slug": "headeritem",
+    "intent": "Public API for JdsHeaderItem.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "headeritem"
+    ]
+  },
+  {
+    "name": "HeaderNative",
+    "slug": "headernative",
+    "intent": "Public API for JdsHeaderNative.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "headernative"
+    ]
+  },
+  {
+    "name": "HeaderNativePrimaryNav",
+    "slug": "headernativeprimarynav",
+    "intent": "Public API for JdsHeaderNativePrimaryNav.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "headernativeprimarynav"
+    ]
+  },
+  {
+    "name": "HeaderNativeSecondaryNav",
+    "slug": "headernativesecondarynav",
+    "intent": "Public API for JdsHeaderNativeSecondaryNav.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "headernativesecondarynav"
+    ]
+  },
+  {
+    "name": "Icon",
+    "slug": "icon",
+    "intent": "Public API contract for JdsIcon: enums, slot role, and composable props.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "icon"
+    ]
+  },
+  {
+    "name": "IconButton",
+    "slug": "iconbutton",
+    "intent": "Public API contract for JdsIconButton — an icon-only interactive button.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "iconbutton"
+    ]
+  },
+  {
+    "name": "IconContained",
+    "slug": "iconcontained",
+    "intent": "Public API contract for JdsIconContained.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "iconcontained"
+    ]
+  },
+  {
+    "name": "Image",
+    "slug": "image",
+    "intent": "JDS Image Compose component.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "image"
+    ]
+  },
+  {
+    "name": "IndicatorBadge",
+    "slug": "indicatorbadge",
+    "intent": "Public API contract for JdsIndicatorBadge.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "indicatorbadge"
+    ]
+  },
+  {
+    "name": "Input",
+    "slug": "input",
+    "intent": "Full public API for JdsInput.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "input"
+    ]
+  },
+  {
+    "name": "InputDynamicText",
+    "slug": "inputdynamictext",
+    "intent": "Public API contract for JdsInputDynamicText.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "inputdynamictext"
+    ]
+  },
+  {
+    "name": "InputFeedback",
+    "slug": "inputfeedback",
+    "intent": "Public API contract for JdsInputFeedback.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "inputfeedback"
+    ]
+  },
+  {
+    "name": "InputField",
+    "slug": "inputfield",
+    "intent": "Public API for JdsInputField.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "inputfield"
+    ]
+  },
+  {
+    "name": "LinearProgressIndicator",
+    "slug": "linearprogressindicator",
+    "intent": "Public API contract for JdsLinearProgressIndicator.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "linearprogressindicator"
+    ]
+  },
+  {
+    "name": "Logo",
+    "slug": "logo",
+    "intent": "JDS Logo Compose component.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "logo"
+    ]
+  },
+  {
+    "name": "Modal",
+    "slug": "modal",
+    "intent": "Public API contract for JdsModal.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "modal"
+    ]
+  },
+  {
+    "name": "Pagination",
+    "slug": "pagination",
+    "intent": "JDS Pagination Compose component.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "pagination"
+    ]
+  },
+  {
+    "name": "PaginationDots",
+    "slug": "paginationdots",
+    "intent": "Public API contract for JdsPaginationDots.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "paginationdots"
+    ]
+  },
+  {
+    "name": "PaginationItem",
+    "slug": "paginationitem",
+    "intent": "Public API contract for JdsPaginationItem.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "paginationitem"
+    ]
+  },
+  {
+    "name": "Radio",
+    "slug": "radio",
+    "intent": "Public API contract for JdsRadio.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "radio"
+    ]
+  },
+  {
+    "name": "RadioField",
+    "slug": "radiofield",
+    "intent": "Public API contract for JdsRadioField.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "radiofield"
+    ]
+  },
+  {
+    "name": "Scrim",
+    "slug": "scrim",
+    "intent": "Public API contract for JdsScrim.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "scrim"
+    ]
+  },
+  {
+    "name": "SegmentedControl",
+    "slug": "segmentedcontrol",
+    "intent": "Attributes for the parent JdsSegmentedControl container.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "segmentedcontrol"
+    ]
+  },
+  {
+    "name": "Select",
+    "slug": "select",
+    "intent": "Host attributes for JdsSelect.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "select"
+    ]
+  },
+  {
+    "name": "SelectableButton",
+    "slug": "selectablebutton",
+    "intent": "Public API contract for JdsSelectableButton.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "selectablebutton"
+    ]
+  },
+  {
+    "name": "SelectableIconButton",
+    "slug": "selectableiconbutton",
+    "intent": "JDS SelectableIconButton Compose component.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "selectableiconbutton"
+    ]
+  },
+  {
+    "name": "SelectableSingleTextButton",
+    "slug": "selectablesingletextbutton",
+    "intent": "Public API contract for JdsSelectableSingleTextButton.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "selectablesingletextbutton"
+    ]
+  },
+  {
+    "name": "SelectMenu",
+    "slug": "selectmenu",
+    "intent": "JDS SelectMenu Compose component.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "selectmenu"
+    ]
+  },
+  {
+    "name": "SingleTextButton",
+    "slug": "singletextbutton",
+    "intent": "Public API contract for JdsSingleTextButton.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "singletextbutton"
+    ]
+  },
+  {
+    "name": "Skeleton",
+    "slug": "skeleton",
+    "intent": "Attributes for configuring a JdsSkeleton loading placeholder.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "skeleton"
+    ]
+  },
+  {
+    "name": "Slider",
+    "slug": "slider",
+    "intent": "Public configuration contract for JdsSlider.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "slider"
+    ]
+  },
+  {
+    "name": "Spinner",
+    "slug": "spinner",
+    "intent": "Figma Spinner maps to indeterminate JdsCircularProgressIndicator.",
+    "tags": [
+      "machine-readable",
+      "android",
+      "compose",
+      "spinner"
+    ]
+  },
+  {
+    "name": "Stepper",
+    "slug": "stepper",
+    "intent": "Public API contract for JdsStepper",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "stepper"
+    ]
+  },
+  {
+    "name": "Switch",
+    "slug": "switch",
+    "intent": "Public API contract for JdsSwitch.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "switch"
+    ]
+  },
+  {
+    "name": "TabItem",
+    "slug": "tabitem",
+    "intent": "Public API contract for JdsTabItem.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "tabitem"
+    ]
+  },
+  {
+    "name": "Tabs",
+    "slug": "tabs",
+    "intent": "Public API contract for JdsTabs.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "tabs"
+    ]
+  },
+  {
+    "name": "Text",
+    "slug": "text",
+    "intent": "JDS Text Compose component.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "text"
+    ]
+  },
+  {
+    "name": "Tooltip",
+    "slug": "tooltip",
+    "intent": "JDS Tooltip Compose component.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "tooltip"
+    ]
+  },
+  {
+    "name": "TouchSlider",
+    "slug": "touchslider",
+    "intent": "Public configuration contract for JdsTouchSlider.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "android",
+      "compose",
+      "touchslider"
+    ]
+  }
+]

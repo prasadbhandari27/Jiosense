@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "TooltipProvider",
+  "flutterExport": "OneUiTooltipProvider",
+  "importPath": "package:ui_flutter/ui_flutter.dart",
+  "generatedAt": "2026-09-04T05:50:48.675Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "OneUiTooltipProvider from the ui_flutter barrel. Use Surface context (OneUiSurface) for tinted backgrounds."
+  },
+  "props": [
+    {
+      "name": "delay",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "closeDelay",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    }
+  ]
+}

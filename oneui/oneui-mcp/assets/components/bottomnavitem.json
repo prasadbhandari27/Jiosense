@@ -1,0 +1,321 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "BottomNavItem",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "One button or link destination inside BottomNavigation. The parent normally owns the singular current value; explicit active remains a standalone and compatibility escape hatch.",
+    "taskContexts": [
+      "navigation",
+      "bottom-navigation",
+      "destination",
+      "link",
+      "button"
+    ],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [
+      "icon"
+    ],
+    "allows": [
+      "activeIcon"
+    ],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "1line",
+        "useWhen": [
+          "1 Line"
+        ]
+      },
+      {
+        "name": "2line",
+        "useWhen": [
+          "2 Lines"
+        ]
+      },
+      {
+        "name": "none",
+        "useWhen": [
+          "Icon only"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "icon",
+      "type": "'add' | 'remove' | 'close' | 'edit' | 'delete' | 'copy' | 'save' | 'refresh' | 'download' | 'upload' | 'share' | 'link' | 'unlink' | 'cart' | 'helloJio' | 'favourite' | 'rewind' | 'forward' | 'menu' | 'search' | 'home' | 'settings' | 'arrowLeft' | 'arrowRight' | 'arrowUp' | 'arrowDown' | 'chevronLeft' | 'chevronRight' | 'chevronUp' | 'chevronDown' | 'externalLink' | 'firstPage' | 'lastPage' /** Single-step back / forward (Jio: `IcBack` / `IcNext` — distinct from chevrons). */ | 'back' | 'next' | 'check' | 'checkCircle' | 'warning' | 'error' | 'info' | 'help' | 'loading' | 'play' | 'pause' | 'stop' | 'volumeOn' | 'volumeOff' | 'microphone' | 'image' | 'video' | 'user' | 'users' | 'userAdd' | 'userRemove' | 'logout' | 'eye' | 'eyeOff' | 'lock' | 'unlock' | 'star' | 'starFilled' | 'heart' | 'heartFilled' | 'bookmark' | 'bookmarkFilled' | 'filter' | 'sort' | 'grid' | 'list' | 'moreHorizontal' | 'moreVertical' | 'mail' | 'phone' | 'chat' | 'notification' | 'file' | 'folder' | 'document' | 'calendar' | 'clock' | 'location' | 'sun' | 'moon' | 'palette' | 'brand' | 'layers' | 'components' | 'canvas' | 'create' | 'sparkles' | 'analytics' | 'globe' | 'smartphone' | 'tablet' | 'monitor' | 'tv' | 'printer' | 'billboard' | 'bus' | (string & {}) | IconComponent | ReactElement",
+      "required": true,
+      "description": "Required semantic icon name or Icon element. Labelled layouts render it at 20; icon-only renders it at 24 in the reference mode."
+    },
+    {
+      "name": "active",
+      "type": "boolean",
+      "required": false,
+      "description": "Compatibility/standalone current-state override. Figma item sets default active=On; inside a parent with value/defaultValue, parent selection stays authoritative and singular."
+    },
+    {
+      "name": "activeIcon",
+      "type": "'add' | 'remove' | 'close' | 'edit' | 'delete' | 'copy' | 'save' | 'refresh' | 'download' | 'upload' | 'share' | 'link' | 'unlink' | 'cart' | 'helloJio' | 'favourite' | 'rewind' | 'forward' | 'menu' | 'search' | 'home' | 'settings' | 'arrowLeft' | 'arrowRight' | 'arrowUp' | 'arrowDown' | 'chevronLeft' | 'chevronRight' | 'chevronUp' | 'chevronDown' | 'externalLink' | 'firstPage' | 'lastPage' /** Single-step back / forward (Jio: `IcBack` / `IcNext` — distinct from chevrons). */ | 'back' | 'next' | 'check' | 'checkCircle' | 'warning' | 'error' | 'info' | 'help' | 'loading' | 'play' | 'pause' | 'stop' | 'volumeOn' | 'volumeOff' | 'microphone' | 'image' | 'video' | 'user' | 'users' | 'userAdd' | 'userRemove' | 'logout' | 'eye' | 'eyeOff' | 'lock' | 'unlock' | 'star' | 'starFilled' | 'heart' | 'heartFilled' | 'bookmark' | 'bookmarkFilled' | 'filter' | 'sort' | 'grid' | 'list' | 'moreHorizontal' | 'moreVertical' | 'mail' | 'phone' | 'chat' | 'notification' | 'file' | 'folder' | 'document' | 'calendar' | 'clock' | 'location' | 'sun' | 'moon' | 'palette' | 'brand' | 'layers' | 'components' | 'canvas' | 'create' | 'sparkles' | 'analytics' | 'globe' | 'smartphone' | 'tablet' | 'monitor' | 'tv' | 'printer' | 'billboard' | 'bus' | (string & {}) | IconComponent | ReactElement",
+      "required": false,
+      "description": "Optional icon substituted while this destination is current."
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": "Optional item-level appearance override; otherwise inherits the parent."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible name override. Required for icon-only items when label cannot supply a non-empty name."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS class name."
+    },
+    {
+      "name": "data-force-state",
+      "type": "'focus'",
+      "required": false,
+      "description": "Storybook / QA: force the focus halo without keyboard navigation."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": false,
+      "description": "Remove the item from activation and composite keyboard focus."
+    },
+    {
+      "name": "href",
+      "type": "string",
+      "required": false,
+      "description": "Destination URL. When present the item renders as an anchor; otherwise it renders as a button."
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "required": false,
+      "description": "Visible text for 1line/2line layouts. In none layout it may provide the accessible name without rendering."
+    },
+    {
+      "name": "labelType",
+      "type": "'none' | '1line' | '2line'",
+      "required": false,
+      "description": "Optional per-item compatibility override of the parent label layout."
+    },
+    {
+      "name": "onClick",
+      "type": "(e: MouseEvent<HTMLElement>) => void",
+      "required": false,
+      "description": "Click handler called before an unprevented parent value change."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles."
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "required": false,
+      "description": "Destination identity used by the parent selection model. Supply a unique, non-empty value for every item in a selectable BottomNavigation."
+    }
+  ],
+  "slots": [
+    {
+      "name": "icon",
+      "types": [
+        "SemanticIconName",
+        "Icon"
+      ],
+      "tokens": []
+    },
+    {
+      "name": "activeIcon",
+      "types": [
+        "SemanticIconName",
+        "Icon"
+      ],
+      "tokens": []
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.bottom-nav-item",
+    "type": "object",
+    "properties": {
+      "icon": {
+        "description": "Required semantic icon name or Icon element. Labelled layouts render it at 20; icon-only renders it at 24 in the reference mode."
+      },
+      "active": {
+        "type": "boolean",
+        "description": "Compatibility/standalone current-state override. Figma item sets default active=On; inside a parent with value/defaultValue, parent selection stays authoritative and singular."
+      },
+      "activeIcon": {
+        "description": "Optional icon substituted while this destination is current."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Optional item-level appearance override; otherwise inherits the parent.",
+        "default": "auto"
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible name override. Required for icon-only items when label cannot supply a non-empty name."
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional CSS class name."
+      },
+      "data-force-state": {
+        "description": "Storybook / QA: force the focus halo without keyboard navigation."
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Remove the item from activation and composite keyboard focus.",
+        "default": false
+      },
+      "href": {
+        "type": "string",
+        "description": "Destination URL. When present the item renders as an anchor; otherwise it renders as a button."
+      },
+      "label": {
+        "type": "string",
+        "description": "Visible text for 1line/2line layouts. In none layout it may provide the accessible name without rendering."
+      },
+      "labelType": {
+        "enum": [
+          "1line",
+          "2line",
+          "none"
+        ],
+        "description": "Optional per-item compatibility override of the parent label layout."
+      },
+      "onClick": {
+        "description": "Click handler called before an unprevented parent value change."
+      },
+      "style": {
+        "description": "Inline styles."
+      },
+      "value": {
+        "type": "string",
+        "description": "Destination identity used by the parent selection model. Supply a unique, non-empty value for every item in a selectable BottomNavigation."
+      }
+    },
+    "required": [
+      "icon"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "bottom-nav-item-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { BottomNavigation, BottomNavItem } from '@oneui/ui';\n\n<BottomNavigation aria-label=\"Primary navigation\" defaultValue=\"home\">\n  <BottomNavItem value=\"home\" icon=\"home\" label=\"Home\" />\n  <BottomNavItem value=\"search\" icon=\"search\" label=\"Search\" />\n</BottomNavigation>"
+    },
+    {
+      "id": "bottom-nav-item-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"BottomNavItem\",\n  \"decisions\": [\n    \"Label layout\",\n    \"Item state-layer shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "bottom-nav-item"
+  ],
+  "interactionBehavior": {
+    "summary": "The whole equal-width column is the affordance: `.itemInner` has `pointer-events: none`, so taps land on the outer `<button>` or `<a>` rather than the icon or label. Hover and press tint that inner pill — not the full column — with the surrounding Surface's `--Hover` / `--Pressed`, independent of the item's accent role. Active is a current-route state (`aria-current=\"page\"`), not a hover: the label steps to `--{Role}-High`, the icon to `--{Role}-TintedA11y`, and an optional `activeIcon` swaps in, with no selected fill. Press also scales the icon UP (`--Motion-Tap-Scale-Up`, 14%), the opposite of Button.",
+    "hover": [
+      "Pointer hover fills only the inner pill (`.itemInner`) with `--BottomNavItem-backgroundColor-hover` → `--_bn-hover`, which is the Surface-injected `--{SurfaceRole}-Hover` (Neutral on a page canvas) — not `--{Role}-Hover` of the item's own appearance.",
+      "Label and icon colours do not change on hover; truncation also stays put — selected / focus / hover must not expand a 1-line ellipsis.",
+      "Wrapped in `@media (hover: hover)` and `:not([data-disabled])`, so a touch tap never leaves a stuck pill fill."
+    ],
+    "press": [
+      "Holding the item fills the same inner pill with `--BottomNavItem-backgroundColor-pressed` → `--_bn-pressed` (the Surface role's `--Pressed`). This is NOT `(hover: hover)`-guarded, so a tap gets the fill immediately.",
+      "The icon slot scales UP: `scale(1 + var(--Motion-Tap-Scale-Up, 14) / 100)`. The label does not move. This is the same direction as Checkbox / Radio, opposite Button.",
+      "Inside a BottomNavigation, `onClick` fires first; `onValueChange` then runs unless `preventDefault` was called. `disabled` short-circuits both."
+    ],
+    "focus": [
+      "Keyboard focus draws the two-layer halo on the inner pill, not the outer column: `--Stroke-XL` gap in `--Surface-Halo-Gap` plus an outer `--Focus-Outline` ring, so it stays legible inside a tinted `<Surface>`.",
+      "`:focus` on the item only clears the native outline; the ring is `:focus-visible`, so a mouse click does not paint it.",
+      "Inside BottomNavigation, Base UI Toolbar gives only one item `tabIndex={0}` at a time; the others are `-1` and are reached by arrows, not Tab."
+    ],
+    "keyboard": [
+      "Without `href`, the item is a `<button>` (or Base UI `Toolbar.Button`), so `Enter` and `Space` both activate it and update the parent's `value`. Tests confirm each key fires `onValueChange` exactly once.",
+      "With `href`, it is a `Toolbar.Link` (`<a>`); `Enter` follows the destination. Arrow / `Home` / `End` behaviour is owned by the parent BottomNavigation toolbar, not this item.",
+      "A standalone BottomNavItem (no BottomNavigation toolbar) is a native `<button>` or `<a>` with no arrow handler — sequential Tab only.",
+      "Disabled items are removed from the toolbar tab order (`focusableWhenDisabled={false}`). A disabled href item keeps `role=\"link\"` and `aria-disabled` but omits `href` and is `tabIndex={-1}`."
+    ],
+    "selected": [
+      "Active is `aria-current=\"page\"` plus `[data-active]`. It is a current-route marker, not a hover/press fill — `.item[data-active]` sets no background.",
+      "The label steps to `--{Role}-High` (via `--_bn-label-active`). The icon steps to `--{Role}-TintedA11y` (via `--_bn-icon-active`) and `Icon` emphasis flips from `low` to `tintedA11y`. On `appearance=\"neutral\"`, TintedA11y would match inactive Low, so the active icon uses `--{Role}-High` instead and tracks the label.",
+      "If `activeIcon` is passed, that glyph replaces `icon` while active (filled-vs-outline convention). Font weight stays `--Label-FontWeight-Medium` in both states, so the row does not shift.",
+      "Parent `value` wins over this item's `active` prop whenever BottomNavigation has a selection."
+    ],
+    "disabled": [
+      "`[data-disabled]` dims the item to `--Disabled-Opacity`, sets `cursor: not-allowed` and `pointer-events: none`, and suppresses hover fill, pressed fill, and the icon scale-up.",
+      "A disabled button is natively `disabled`. A disabled href item is still an `<a>` with `role=\"link\"` and `aria-disabled=\"true\"` but no `href`, so it cannot navigate.",
+      "Because `pointer-events: none` is set, the `not-allowed` cursor is not observable — the pointer shows the parent's cursor. This is the known system-wide gap (docs/design/disabled-states.md)."
+    ],
+    "touch": [
+      "On touch-only devices the hover pill never applies; the pressed inner fill plus the 14% icon scale-up are the entire tap response.",
+      "`.itemInner` cannot intercept the tap (`pointer-events: none`), so the hit target is the full column at `--Spacing-14` (icon-only), `--Spacing-16` (1-line), or `--Spacing-18` (2-line)."
+    ]
+  },
+  "importPath": "@jds4/oneui-react"
+}

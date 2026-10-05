@@ -1,0 +1,176 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Slider",
+  "flutterExport": "OneUiSlider",
+  "importPath": "package:ui_flutter/ui_flutter.dart",
+  "generatedAt": "2026-09-04T05:50:48.675Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "OneUiSlider from the ui_flutter barrel. Use Surface context (OneUiSurface) for tinted backgrounds."
+  },
+  "props": [
+    {
+      "name": "value",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "defaultValue",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onValueChange",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onValueCommitted",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "min",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "max",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "step",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "largeStep",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "minStepsBetweenValues",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "orientation",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "knobStyle",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "showTooltip",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "formatValue",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "showSteps",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "stepLabels",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "snapToSteps",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "start",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "end",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "readOnly",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "semanticsLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "semanticsLabels",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "ariaLabels",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "testId",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    }
+  ]
+}

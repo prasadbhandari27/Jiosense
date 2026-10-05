@@ -1,0 +1,284 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "SegmentedControl",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.254Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Attributes for the parent JdsSegmentedControl container."
+  },
+  "composable": "JdsSegmentedControl",
+  "attributesClass": "JdsSegmentedControlAttributes",
+  "importPath": "com.jds.components.segmentedcontrol",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.segmentedcontrol.JdsSegmentedControl",
+    "attributes": "com.jds.components.segmentedcontrol.JdsSegmentedControlAttributes",
+    "enums": {
+      "JdsSegmentedControlSize": "com.jds.components.segmentedcontrol.JdsSegmentedControlSize",
+      "JdsSegmentedControlAttention": "com.jds.components.segmentedcontrol.JdsSegmentedControlAttention",
+      "Appearance": "com.jds.foundation.token.Appearance",
+      "JdsSegmentedControlShape": "com.jds.components.segmentedcontrol.JdsSegmentedControlShape",
+      "JdsSegmentedControlTrackEmphasis": "com.jds.components.segmentedcontrol.JdsSegmentedControlTrackEmphasis",
+      "JdsSegmentedControlType": "com.jds.components.segmentedcontrol.JdsSegmentedControlType"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "size",
+      "type": "JdsSegmentedControlSize",
+      "required": false,
+      "defaultValue": "JdsSegmentedControlSize.M",
+      "enumValues": [
+        "S",
+        "M",
+        "L"
+      ],
+      "description": ""
+    },
+    {
+      "name": "attention",
+      "type": "JdsSegmentedControlAttention",
+      "required": false,
+      "defaultValue": "JdsSegmentedControlAttention.High",
+      "enumValues": [
+        "High",
+        "Medium",
+        "Low"
+      ],
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "Appearance",
+      "required": false,
+      "defaultValue": "Appearance.Primary",
+      "enumValues": [
+        "Auto",
+        "Primary",
+        "Secondary",
+        "Sparkle",
+        "BrandBg",
+        "Neutral",
+        "Positive",
+        "Negative",
+        "Warning",
+        "Informative"
+      ],
+      "description": ""
+    },
+    {
+      "name": "shape",
+      "type": "JdsSegmentedControlShape",
+      "required": false,
+      "defaultValue": "JdsSegmentedControlShape.Pill",
+      "enumValues": [
+        "Pill",
+        "Rectangular"
+      ],
+      "description": ""
+    },
+    {
+      "name": "trackEmphasis",
+      "type": "JdsSegmentedControlTrackEmphasis",
+      "required": false,
+      "defaultValue": "JdsSegmentedControlTrackEmphasis.High",
+      "enumValues": [
+        "High",
+        "Medium",
+        "Low"
+      ],
+      "description": ""
+    },
+    {
+      "name": "type",
+      "type": "JdsSegmentedControlType",
+      "required": false,
+      "defaultValue": "JdsSegmentedControlType.Text",
+      "enumValues": [
+        "Text",
+        "Icon"
+      ],
+      "description": ""
+    },
+    {
+      "name": "equalWidth",
+      "type": "Boolean?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "selectedValue",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "defaultSelectedValue",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "onSelectionChange",
+      "type": "(String) -> Unit",
+      "required": false,
+      "defaultValue": "{}",
+      "description": ""
+    },
+    {
+      "name": "items",
+      "type": "List<JdsSegmentedControlItemAttributes>",
+      "required": false,
+      "defaultValue": "emptyList()",
+      "description": ""
+    },
+    {
+      "name": "contentDescription",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "enums": {
+    "JdsSegmentedControlSize": [
+      "S",
+      "M",
+      "L"
+    ],
+    "JdsSegmentedControlAttention": [
+      "High",
+      "Medium",
+      "Low"
+    ],
+    "Appearance": [
+      "Auto",
+      "Primary",
+      "Secondary",
+      "Sparkle",
+      "BrandBg",
+      "Neutral",
+      "Positive",
+      "Negative",
+      "Warning",
+      "Informative"
+    ],
+    "JdsSegmentedControlShape": [
+      "Pill",
+      "Rectangular"
+    ],
+    "JdsSegmentedControlTrackEmphasis": [
+      "High",
+      "Medium",
+      "Low"
+    ],
+    "JdsSegmentedControlType": [
+      "Text",
+      "Icon"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.SegmentedControl",
+    "type": "object",
+    "properties": {
+      "size": {
+        "enum": [
+          "S",
+          "M",
+          "L"
+        ],
+        "default": "JdsSegmentedControlSize.M"
+      },
+      "attention": {
+        "enum": [
+          "High",
+          "Medium",
+          "Low"
+        ],
+        "default": "JdsSegmentedControlAttention.High"
+      },
+      "appearance": {
+        "enum": [
+          "Auto",
+          "Primary",
+          "Secondary",
+          "Sparkle",
+          "BrandBg",
+          "Neutral",
+          "Positive",
+          "Negative",
+          "Warning",
+          "Informative"
+        ],
+        "default": "Appearance.Primary"
+      },
+      "shape": {
+        "enum": [
+          "Pill",
+          "Rectangular"
+        ],
+        "default": "JdsSegmentedControlShape.Pill"
+      },
+      "trackEmphasis": {
+        "enum": [
+          "High",
+          "Medium",
+          "Low"
+        ],
+        "default": "JdsSegmentedControlTrackEmphasis.High"
+      },
+      "type": {
+        "enum": [
+          "Text",
+          "Icon"
+        ],
+        "default": "JdsSegmentedControlType.Text"
+      },
+      "equalWidth": {
+        "type": "boolean"
+      },
+      "disabled": {
+        "type": "boolean"
+      },
+      "selectedValue": {
+        "type": "string"
+      },
+      "defaultSelectedValue": {
+        "type": "string"
+      },
+      "onSelectionChange": {},
+      "items": {},
+      "contentDescription": {
+        "type": "string"
+      }
+    },
+    "required": []
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "segmentedcontrol"
+  ],
+  "importPathMaven": "com.jds:components"
+}

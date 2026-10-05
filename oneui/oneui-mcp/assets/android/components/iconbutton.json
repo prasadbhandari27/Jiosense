@@ -1,0 +1,270 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "IconButton",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.250Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Public API contract for JdsIconButton — an icon-only interactive button."
+  },
+  "composable": "JdsIconButton",
+  "attributesClass": "JdsIconButtonAttributes",
+  "importPath": "com.jds.components.iconbutton",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.iconbutton.JdsIconButton",
+    "attributes": "com.jds.components.iconbutton.JdsIconButtonAttributes",
+    "enums": {
+      "JdsIconButtonAttention": "com.jds.components.iconbutton.JdsIconButtonAttention",
+      "JdsIconButtonSize": "com.jds.components.iconbutton.JdsIconButtonSize",
+      "Appearance": "com.jds.foundation.token.Appearance",
+      "JdsIconButtonShape": "com.jds.components.iconbutton.JdsIconButtonShape"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [
+      "onClick",
+      "icon",
+      "contentDescription"
+    ],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "onClick",
+      "type": "() -> Unit",
+      "required": true,
+      "description": ""
+    },
+    {
+      "name": "icon",
+      "type": "JdsIconAttributes",
+      "required": true,
+      "slot": true,
+      "slotTypes": [
+        "Icon"
+      ],
+      "description": "Icon glyph. Component forces `contentDescription = null` and overrides `size` internally."
+    },
+    {
+      "name": "contentDescription",
+      "type": "String",
+      "required": true,
+      "description": "REQUIRED non-blank a11y label — lives on the button semantics node."
+    },
+    {
+      "name": "attention",
+      "type": "JdsIconButtonAttention",
+      "required": false,
+      "defaultValue": "JdsIconButtonAttention.High",
+      "enumValues": [
+        "High",
+        "Medium",
+        "Low"
+      ],
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "JdsIconButtonSize",
+      "required": false,
+      "defaultValue": "JdsIconButtonSize.M",
+      "enumValues": [
+        "XS2",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "Appearance",
+      "required": false,
+      "defaultValue": "Appearance.Auto",
+      "enumValues": [
+        "Auto",
+        "Primary",
+        "Secondary",
+        "Sparkle",
+        "BrandBg",
+        "Neutral",
+        "Positive",
+        "Negative",
+        "Warning",
+        "Informative"
+      ],
+      "description": ""
+    },
+    {
+      "name": "contained",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": "`false` = bare icon, no container fill. condensed/shape/fullWidth have no effect."
+    },
+    {
+      "name": "condensed",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "`true` → uses condensedContainerSize token. No effect when contained is false."
+    },
+    {
+      "name": "shape",
+      "type": "JdsIconButtonShape?",
+      "required": false,
+      "defaultValue": "JdsIconButtonShape._1_1",
+      "enumValues": [
+        "_1_1",
+        "_3_2"
+      ],
+      "description": "`_3_2` → aspectRatio(1.5f). `null` = no effect. No effect when contained is false."
+    },
+    {
+      "name": "fullWidth",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "`true` → fillMaxWidth() internally. No effect when contained is false."
+    },
+    {
+      "name": "enabled",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Replaces the icon with a JdsCircularProgressIndicator; suppresses onClick."
+    }
+  ],
+  "slots": [
+    {
+      "name": "icon",
+      "types": [
+        "Icon"
+      ]
+    }
+  ],
+  "enums": {
+    "JdsIconButtonAttention": [
+      "High",
+      "Medium",
+      "Low"
+    ],
+    "JdsIconButtonSize": [
+      "XS2",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "Appearance": [
+      "Auto",
+      "Primary",
+      "Secondary",
+      "Sparkle",
+      "BrandBg",
+      "Neutral",
+      "Positive",
+      "Negative",
+      "Warning",
+      "Informative"
+    ],
+    "JdsIconButtonShape": [
+      "_1_1",
+      "_3_2"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.IconButton",
+    "type": "object",
+    "properties": {
+      "onClick": {},
+      "icon": {},
+      "contentDescription": {
+        "type": "string"
+      },
+      "attention": {
+        "enum": [
+          "High",
+          "Medium",
+          "Low"
+        ],
+        "default": "JdsIconButtonAttention.High"
+      },
+      "size": {
+        "enum": [
+          "XS2",
+          "XS",
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "default": "JdsIconButtonSize.M"
+      },
+      "appearance": {
+        "enum": [
+          "Auto",
+          "Primary",
+          "Secondary",
+          "Sparkle",
+          "BrandBg",
+          "Neutral",
+          "Positive",
+          "Negative",
+          "Warning",
+          "Informative"
+        ],
+        "default": "Appearance.Auto"
+      },
+      "contained": {
+        "type": "boolean"
+      },
+      "condensed": {
+        "type": "boolean"
+      },
+      "shape": {
+        "enum": [
+          "_1_1",
+          "_3_2"
+        ],
+        "default": "JdsIconButtonShape._1_1"
+      },
+      "fullWidth": {
+        "type": "boolean"
+      },
+      "enabled": {
+        "type": "boolean"
+      },
+      "loading": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "onClick",
+      "icon",
+      "contentDescription"
+    ]
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "iconbutton"
+  ],
+  "importPathMaven": "com.jds:components"
+}

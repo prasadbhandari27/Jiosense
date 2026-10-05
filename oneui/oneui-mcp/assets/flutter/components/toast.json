@@ -1,0 +1,133 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Toast",
+  "flutterExport": "OneUiToast",
+  "importPath": "package:ui_flutter/ui_flutter.dart",
+  "generatedAt": "2026-09-04T05:50:48.675Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Toast card is display-only. Imperative toasts: OneUiToastProvider + OneUiToastScope.of(context).add."
+  },
+  "compositionRules": {
+    "forbids": [
+      "OneUiToastScope.of without OneUiToastProvider ancestor"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "title": "Enqueue",
+      "code": "OneUiToastScope.of(context).add(\n  title: 'Plan updated',\n  type: OneUiToastType.positive,\n);"
+    }
+  ],
+  "props": [
+    {
+      "name": "title",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "description",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "type",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "attention",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "priority",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "start",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "showStart",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "actions",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "actionsPlacement",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "progress",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "progressIndeterminate",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "helpText",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "dismissible",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onDismiss",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "semanticsLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "testId",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "maxWidth",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "minWidth",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    }
+  ]
+}

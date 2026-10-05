@@ -1,0 +1,183 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "IndicatorBadge",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Non-interactive status/presence indicator dot. Supports multi-accent appearance roles and five sizes.",
+    "taskContexts": [],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "bold",
+        "useWhen": [
+          "Default"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "description": "Multi-accent appearance role. Figma public set; `brand-bg` is a code-only extension. `'auto'` resolves to surface appearance, else slot parent, else `'primary'`. Default: `'auto'`."
+    },
+    {
+      "name": "aria-hidden",
+      "type": "boolean | 'true' | 'false'",
+      "required": false,
+      "description": "Hide from assistive technology when the parent already exposes the status."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label describing the indicator status. Required for meaningful status; omit when `aria-hidden` (decorative, parent names the status)."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name (code-only; not a Figma component property)"
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "Test automation id — forwarded to the root `<span role=\"status\">`."
+    },
+    {
+      "name": "size",
+      "type": "'xs' | 's' | 'm' | 'l' | 'xl'",
+      "required": false,
+      "description": "IndicatorBadge size. Default: 'm'. Figma: xs | s | m | l | xl."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles (code-only; not a Figma component property)"
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.indicator-badge",
+    "type": "object",
+    "properties": {
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. Figma public set; `brand-bg` is a code-only extension. `'auto'` resolves to surface appearance, else slot parent, else `'primary'`. Default: `'auto'`."
+      },
+      "aria-hidden": {
+        "description": "Hide from assistive technology when the parent already exposes the status."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label describing the indicator status. Required for meaningful status; omit when `aria-hidden` (decorative, parent names the status)."
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name (code-only; not a Figma component property)"
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "Test automation id — forwarded to the root `<span role=\"status\">`."
+      },
+      "size": {
+        "enum": [
+          "xs",
+          "s",
+          "m",
+          "l",
+          "xl"
+        ],
+        "description": "IndicatorBadge size. Default: 'm'. Figma: xs | s | m | l | xl."
+      },
+      "style": {
+        "description": "Inline styles (code-only; not a Figma component property)"
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "indicator-badge-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { IndicatorBadge } from '@oneui/ui';\n\n<IndicatorBadge />"
+    },
+    {
+      "id": "indicator-badge-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"IndicatorBadge\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "indicator-badge"
+  ],
+  "importPath": "@jds4/oneui-react",
+  "figma": {
+    "componentKey": "jds-indicator-badge-v4"
+  },
+  "renderHints": {
+    "baseElement": "img",
+    "readsFromSurfaceContext": true
+  },
+  "a11y": {
+    "role": "img",
+    "minTouchTarget": 44,
+    "accessibleNameSource": "aria-label"
+  }
+}

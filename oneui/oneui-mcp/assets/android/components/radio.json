@@ -1,0 +1,201 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Radio",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.253Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Public API contract for JdsRadio."
+  },
+  "composable": "JdsRadio",
+  "attributesClass": "JdsRadioAttributes",
+  "importPath": "com.jds.components.radio",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.radio.JdsRadio",
+    "attributes": "com.jds.components.radio.JdsRadioAttributes",
+    "enums": {
+      "JdsRadioSize": "com.jds.components.radio.JdsRadioSize",
+      "Appearance": "com.jds.foundation.token.Appearance"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [
+      "value"
+    ],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "value",
+      "type": "String",
+      "required": true,
+      "description": "Group identity key. Compared by a future JdsRadioField; never written to semantics."
+    },
+    {
+      "name": "selected",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "onSelectedChange",
+      "type": "((String) -> Unit)?",
+      "required": false,
+      "defaultValue": "null",
+      "description": "Invoked with value on click. Ignored when disabled/readOnly."
+    },
+    {
+      "name": "label",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "description",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "JdsRadioSize",
+      "required": false,
+      "defaultValue": "JdsRadioSize.M",
+      "enumValues": [
+        "S",
+        "M",
+        "L"
+      ],
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "Appearance",
+      "required": false,
+      "defaultValue": "Appearance.Secondary",
+      "enumValues": [
+        "Auto",
+        "Primary",
+        "Secondary",
+        "Sparkle",
+        "BrandBg",
+        "Neutral",
+        "Positive",
+        "Negative",
+        "Warning",
+        "Informative"
+      ],
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "readOnly",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "contentDescription",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "enums": {
+    "JdsRadioSize": [
+      "S",
+      "M",
+      "L"
+    ],
+    "Appearance": [
+      "Auto",
+      "Primary",
+      "Secondary",
+      "Sparkle",
+      "BrandBg",
+      "Neutral",
+      "Positive",
+      "Negative",
+      "Warning",
+      "Informative"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.Radio",
+    "type": "object",
+    "properties": {
+      "value": {
+        "type": "string"
+      },
+      "selected": {
+        "type": "boolean"
+      },
+      "onSelectedChange": {},
+      "label": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "size": {
+        "enum": [
+          "S",
+          "M",
+          "L"
+        ],
+        "default": "JdsRadioSize.M"
+      },
+      "appearance": {
+        "enum": [
+          "Auto",
+          "Primary",
+          "Secondary",
+          "Sparkle",
+          "BrandBg",
+          "Neutral",
+          "Positive",
+          "Negative",
+          "Warning",
+          "Informative"
+        ],
+        "default": "Appearance.Secondary"
+      },
+      "disabled": {
+        "type": "boolean"
+      },
+      "readOnly": {
+        "type": "boolean"
+      },
+      "contentDescription": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "value"
+    ]
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "radio"
+  ],
+  "importPathMaven": "com.jds:components"
+}

@@ -1,0 +1,294 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "BottomNavigation",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Primary mobile-app navigation landmark for 2–5 top-level destinations. Product code supplies BottomNavItem children; the parent owns one controlled or uncontrolled current value and renders a horizontal Base UI toolbar inside <nav>.",
+    "taskContexts": [
+      "navigation",
+      "bottom-navigation",
+      "bottom-bar",
+      "mobile",
+      "top-level-destinations"
+    ],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [
+      "children"
+    ],
+    "allows": [],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "1line",
+        "useWhen": [
+          "1 Line"
+        ]
+      },
+      {
+        "name": "2line",
+        "useWhen": [
+          "2 Lines"
+        ]
+      },
+      {
+        "name": "none",
+        "useWhen": [
+          "Icon only"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": true,
+      "description": "Accessible name for the <nav> landmark."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": true,
+      "description": "Two to five <BottomNavItem> children. Transparent Fragment nesting is supported; the Figma `items` axis describes the flattened item count and is intentionally not a React prop."
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": "Role for active icon tint and interaction states. auto inherits the nearest Surface appearance, then falls back to primary."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS class name."
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "Test id forwarded to the root <nav>."
+    },
+    {
+      "name": "defaultValue",
+      "type": "string",
+      "required": false,
+      "description": "Initial current destination for uncontrolled navigation."
+    },
+    {
+      "name": "labelType",
+      "type": "'none' | '1line' | '2line'",
+      "required": false,
+      "defaultValue": "1line",
+      "description": "Label layout shared by the items. Compatibility mapping: Figma 1Line / 2Line / none → React 1line / 2line / none."
+    },
+    {
+      "name": "onValueChange",
+      "type": "(value: string) => void",
+      "required": false,
+      "description": "Called with the activated item value."
+    },
+    {
+      "name": "showDivider",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": true,
+      "description": "Show the decorative horizontal Divider at the top edge (size S, low emphasis)."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles."
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "required": false,
+      "description": "Controlled current destination value. Matching is singular and authoritative over item-level active compatibility props."
+    }
+  ],
+  "slots": [
+    {
+      "name": "children",
+      "types": [
+        "BottomNavItem"
+      ],
+      "tokens": []
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.bottom-navigation",
+    "type": "object",
+    "properties": {
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible name for the <nav> landmark."
+      },
+      "children": {
+        "description": "Two to five <BottomNavItem> children. Transparent Fragment nesting is supported; the Figma `items` axis describes the flattened item count and is intentionally not a React prop."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Role for active icon tint and interaction states. auto inherits the nearest Surface appearance, then falls back to primary.",
+        "default": "auto"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional CSS class name."
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "Test id forwarded to the root <nav>."
+      },
+      "defaultValue": {
+        "type": "string",
+        "description": "Initial current destination for uncontrolled navigation."
+      },
+      "labelType": {
+        "enum": [
+          "1line",
+          "2line",
+          "none"
+        ],
+        "description": "Label layout shared by the items. Compatibility mapping: Figma 1Line / 2Line / none → React 1line / 2line / none.",
+        "default": "1line"
+      },
+      "onValueChange": {
+        "description": "Called with the activated item value."
+      },
+      "showDivider": {
+        "type": "boolean",
+        "description": "Show the decorative horizontal Divider at the top edge (size S, low emphasis).",
+        "default": true
+      },
+      "style": {
+        "description": "Inline styles."
+      },
+      "value": {
+        "type": "string",
+        "description": "Controlled current destination value. Matching is singular and authoritative over item-level active compatibility props."
+      }
+    },
+    "required": [
+      "aria-label",
+      "children"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "bottom-navigation-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { BottomNavigation, BottomNavItem } from '@oneui/ui';\n\n<BottomNavigation aria-label=\"Primary navigation\" defaultValue=\"home\">\n  <BottomNavItem value=\"home\" icon=\"home\" label=\"Home\" />\n  <BottomNavItem value=\"search\" icon=\"search\" label=\"Search\" />\n</BottomNavigation>"
+    },
+    {
+      "id": "bottom-navigation-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"BottomNavigation\",\n  \"decisions\": [\n    \"Label layout\",\n    \"Item state-layer shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "bottom-navigation"
+  ],
+  "interactionBehavior": {
+    "summary": "BottomNavigation is a Base UI Toolbar inside a `<nav>` landmark, not a set of independent tab stops: only one item is in the tab order at a time, arrows rove, and `Home` / `End` jump to the ends. Selection is singular — parent `value` / `defaultValue` wins over any item `active` prop, and `aria-current=\"page\"` is applied to exactly one item. Hover and press fills are injected by this container from the surrounding Surface's tint (`--{SurfaceRole}-Hover` / `--Pressed`), not from the nav's own accent role, so a primary-accent bar on a page canvas still gets a Neutral state layer.",
+    "hover": [
+      "The container does not paint a bar-level hover. It only supplies `--_bn-state-hover` on the `<nav>` from the nearest Surface's appearance and step — Neutral on a page-like canvas, the Surface role on a tinted ancestor — so child items can tint without following the nav accent.",
+      "Dark `default` (~200) is treated as a real tinted step, not a page canvas, so the state layer stays in that Surface role rather than flipping to Neutral.",
+      "Item hover fills themselves live on BottomNavItem and are `(hover: hover)`-guarded there."
+    ],
+    "press": [
+      "Same split as hover: the `<nav>` injects `--_bn-state-pressed` from the surrounding Surface role; the pressed fill and icon scale-up are painted by BottomNavItem.",
+      "The decorative top Divider is `pointer-events: none` and absolutely overlaid, so it never steals the press from the equal-width item columns underneath."
+    ],
+    "focus": [
+      "The `<nav>` itself is not focusable. Keyboard focus lands on one BottomNavItem at a time via Base UI Toolbar's roving `tabIndex`.",
+      "The two-layer halo is painted by BottomNavItem on its inner pill, not on this landmark."
+    ],
+    "keyboard": [
+      "Base UI Toolbar owns `ArrowLeft` / `ArrowRight` (logical in RTL), wrapping (`loopFocus`), disabled-item skipping, and roving `tabIndex`. Arrows move focus only — they do not change the active item.",
+      "`Home` / `End` are OneUI, not Base UI: a keydown on the toolbar jumps focus to the first / last enabled `[data-bottom-navigation-item]` and `preventDefault`s. They also do not select.",
+      "The roving tab stop seeds on the active enabled item; if that item is `disabled`, it falls back to the first enabled item rather than trapping Tab on a dead control.",
+      "`Enter` / `Space` activate the focused item (button or link) and then update `value`. Disabled items are skipped by arrows and are not tabbable (`focusableWhenDisabled={false}`).",
+      "Non-`BottomNavItem` children are omitted from the toolbar entirely, so they never enter the arrow path."
+    ],
+    "selected": [
+      "Exactly one item is current. Parent `value` / `defaultValue` is authoritative; item-level `active` is only read when the parent has no selection, and even then the first `active` item wins.",
+      "The current item is `aria-current=\"page\"` plus `[data-active]` and `[data-composite-item-active]`. Duplicate `value`s still resolve to the first match, so `aria-current` stays singular.",
+      "Active styling (label `--{Role}-High`, icon `--{Role}-TintedA11y`, optional `activeIcon` swap) is painted by BottomNavItem — this container has no selected fill of its own."
+    ],
+    "touch": [
+      "Each item is `flex: 1` across the bar, so the hit target is the whole equal-width column (height `--Spacing-14` / `--Spacing-16` / `--Spacing-18` by `labelType`), not the icon glyph.",
+      "Item hover fills are `(hover: hover)`-guarded on BottomNavItem; a tap's response is the pressed inner-pill fill plus the icon scale-up."
+    ]
+  },
+  "importPath": "@jds4/oneui-react",
+  "figma": {
+    "componentKey": "jds-bottomnav-v4",
+    "codeConnect": {
+      "componentKey": "2094412785213ff475c6db0b5ae53fa23a123d41",
+      "nodeId": "2:13446"
+    }
+  },
+  "renderHints": {
+    "baseElement": "nav",
+    "readsFromSurfaceContext": true
+  },
+  "a11y": {
+    "role": "navigation",
+    "minTouchTarget": 44,
+    "accessibleNameSource": "aria-label"
+  }
+}

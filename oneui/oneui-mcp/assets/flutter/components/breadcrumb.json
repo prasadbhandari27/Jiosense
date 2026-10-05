@@ -1,0 +1,104 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Breadcrumb",
+  "flutterExport": "OneUiBreadcrumb",
+  "importPath": "package:ui_flutter/ui_flutter.dart",
+  "generatedAt": "2026-09-04T05:50:48.675Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "OneUiBreadcrumb from the ui_flutter barrel. Use Surface context (OneUiSurface) for tinted backgrounds."
+  },
+  "props": [
+    {
+      "name": "items",
+      "required": true,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "currentId",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "homeAsIcon",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "overflow",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "maxItems",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "maxWidthItem",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "maxWidth",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "truncate",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "tooltip",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "homeLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "overflowLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "instanceKey",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "LinearProgressIndicatorLayout",
+  "flutterExport": "OneUiLinearProgressIndicatorLayout",
+  "importPath": "package:ui_flutter/ui_flutter.dart",
+  "generatedAt": "2026-09-04T05:50:48.675Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "OneUiLinearProgressIndicatorLayout from the ui_flutter barrel. Use Surface context (OneUiSurface) for tinted backgrounds."
+  },
+  "props": [
+    {
+      "name": "layout",
+      "required": true,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "colors",
+      "required": true,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "isIndeterminate",
+      "required": true,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "indeterminateTranslateFactor",
+      "required": true,
+      "type": "unknown",
+      "description": ""
+    }
+  ]
+}

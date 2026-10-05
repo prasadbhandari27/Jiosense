@@ -1,0 +1,275 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Divider",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Visual separator between sections, list items, or content groups.",
+    "taskContexts": [
+      "section-separation",
+      "list-item-separation",
+      "content-grouping"
+    ],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [
+      "orientation context"
+    ],
+    "allows": [
+      "label or icon slot",
+      "round caps"
+    ],
+    "forbids": [
+      "interactive content",
+      "non-separator use"
+    ]
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "low attention",
+        "useWhen": [
+          "subtle content separation (default)"
+        ]
+      },
+      {
+        "name": "medium attention",
+        "useWhen": [
+          "prominent section boundary"
+        ]
+      },
+      {
+        "name": "high attention",
+        "useWhen": [
+          "strong separator between major sections"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": [
+      "ContentBlock",
+      "List"
+    ]
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware"
+    ],
+    "mode": [
+      "light",
+      "dark"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "description": "Multi-accent role. 'auto' inherits the nearest Surface appearance, then falls back to neutral."
+    },
+    {
+      "name": "aria-hidden",
+      "type": "boolean",
+      "required": false,
+      "description": "Hide the separator from assistive technology when it is purely decorative."
+    },
+    {
+      "name": "attention",
+      "type": "'high' | 'medium' | 'low'",
+      "required": false,
+      "description": "Prominence level — drives stroke tier and centre Icon/Text emphasis. Default: 'low'"
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Centre content — plain string/number (auto-wrapped in Label XS Medium `<Text />`), `<Icon />`, or `<Text />`. Divider merges `appearance` / `attention` onto `Icon` / `Text` when those props are unset on the child. Omit for a bare separator. Figma `slot` mapping (no React `slot` prop): - omit / empty → `none` - `<Icon />` → `icon` - string / `<Text />` → `label`"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "contentAlign",
+      "type": "'center' | 'start' | 'end'",
+      "required": false,
+      "description": "Position of the centre content. Default: 'center'"
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "Test automation id — forwarded to the root separator element only."
+    },
+    {
+      "name": "orientation",
+      "type": "'horizontal' | 'vertical'",
+      "required": false,
+      "description": "Component orientation. Default: 'horizontal'"
+    },
+    {
+      "name": "roundCaps",
+      "type": "boolean",
+      "required": false,
+      "description": "Rounded stroke ends. Default: false"
+    },
+    {
+      "name": "size",
+      "type": "'s' | 'm' | 'l'",
+      "required": false,
+      "description": "Stroke width of the divider. Default: 'm'"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    }
+  ],
+  "slots": [
+    {
+      "name": "children",
+      "types": [
+        "ReactNode",
+        "Icon",
+        "Text"
+      ],
+      "tokens": []
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.divider",
+    "type": "object",
+    "properties": {
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent role. 'auto' inherits the nearest Surface appearance, then falls back to neutral."
+      },
+      "aria-hidden": {
+        "type": "boolean",
+        "description": "Hide the separator from assistive technology when it is purely decorative."
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "description": "Prominence level — drives stroke tier and centre Icon/Text emphasis. Default: 'low'"
+      },
+      "children": {
+        "description": "Centre content — plain string/number (auto-wrapped in Label XS Medium `<Text />`), `<Icon />`, or `<Text />`. Divider merges `appearance` / `attention` onto `Icon` / `Text` when those props are unset on the child. Omit for a bare separator. Figma `slot` mapping (no React `slot` prop): - omit / empty → `none` - `<Icon />` → `icon` - string / `<Text />` → `label`"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "contentAlign": {
+        "enum": [
+          "center",
+          "start",
+          "end"
+        ],
+        "description": "Position of the centre content. Default: 'center'"
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "Test automation id — forwarded to the root separator element only."
+      },
+      "orientation": {
+        "enum": [
+          "horizontal",
+          "vertical"
+        ],
+        "description": "Component orientation. Default: 'horizontal'"
+      },
+      "roundCaps": {
+        "type": "boolean",
+        "description": "Rounded stroke ends. Default: false"
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "Stroke width of the divider. Default: 'm'"
+      },
+      "style": {
+        "description": "Inline styles"
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "divider-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Divider } from '@oneui/ui';\n\n<Divider />"
+    },
+    {
+      "id": "divider-with-text",
+      "title": "With Text",
+      "language": "tsx",
+      "code": "import { Divider } from '@oneui/ui';\n\n<Divider>Or</Divider>"
+    },
+    {
+      "id": "divider-vertical",
+      "title": "Vertical",
+      "language": "tsx",
+      "code": "<Divider orientation=\"vertical\" />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "divider"
+  ],
+  "interactionBehavior": {
+    "summary": "Divider is a presentational separator (`role=\"separator\"` via Base UI, or a `role=\"separator\"` div when it has centre content). It has no hover, press, or focus styles, is not in the tab order, and does not handle keys. Colour comes from attention × appearance tokens on the stroke (and centre text/icon); those do not change on pointer or keyboard. Do not wrap it in a button — put actions beside it."
+  },
+  "importPath": "@jds4/oneui-react",
+  "figma": {
+    "componentKey": "jds-divider-v4"
+  },
+  "renderHints": {
+    "baseElement": "div",
+    "readsFromSurfaceContext": true
+  },
+  "a11y": {
+    "role": null,
+    "minTouchTarget": 44,
+    "accessibleNameSource": "children"
+  }
+}

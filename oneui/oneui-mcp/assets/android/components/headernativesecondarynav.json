@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "HeaderNativeSecondaryNav",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.249Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Public API for JdsHeaderNativeSecondaryNav."
+  },
+  "composable": "JdsHeaderNativeSecondaryNav",
+  "attributesClass": "JdsHeaderNativeSecondaryNavAttributes",
+  "importPath": "com.jds.components.headernativesecondarynav",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.headernativesecondarynav.JdsHeaderNativeSecondaryNav",
+    "attributes": "com.jds.components.headernativesecondarynav.JdsHeaderNativeSecondaryNavAttributes"
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "items",
+      "type": "List<JdsHeaderItemAttributes>",
+      "required": false,
+      "defaultValue": "emptyList()",
+      "description": ""
+    },
+    {
+      "name": "contentDescription",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "enums": {},
+  "propsSchema": {
+    "$id": "jds.kb.android.HeaderNativeSecondaryNav",
+    "type": "object",
+    "properties": {
+      "items": {},
+      "contentDescription": {
+        "type": "string"
+      }
+    },
+    "required": []
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "headernativesecondarynav"
+  ],
+  "importPathMaven": "com.jds:components"
+}

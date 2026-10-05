@@ -1,0 +1,1 @@
+function m(o){const s=o.needsIconImport&&!o.uiImports.includes("Icon")?[...o.uiImports,"Icon"].sort():[...o.uiImports],r=[];s.length>0&&r.push(`import { ${s.join(", ")} } from '${o.runtimePackage}';`),r.push(`import '${o.runtimePackage}/styles';`);for(const[t,e]of o.imageImports)r.push(`import ${e} from '${t}';`);return{lines:r,allUiImports:s}}export{m as buildReactImportLines};

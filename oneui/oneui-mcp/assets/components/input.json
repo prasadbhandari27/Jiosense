@@ -1,0 +1,213 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Input",
+  "machineReadable": true,
+  "authoring": "React-owned metadata for the released low-level Input export",
+  "intentAndPurpose": {
+    "intent": "Low-level single-line text entry control. Use standalone only when a visible label, helper text, and validation chrome are not required; otherwise use InputField.",
+    "taskContexts": [
+      "inline-search",
+      "compact-form-field",
+      "toolbar-input",
+      "composed-into-inputfield"
+    ],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [
+      "an accessible name through aria-label or an owning InputField label"
+    ],
+    "allows": [
+      "start",
+      "start2",
+      "end2",
+      "end"
+    ],
+    "forbids": [
+      "multi-line content",
+      "standalone validation chrome"
+    ]
+  },
+  "interactionBehavior": {
+    "summary": "Input's focus indicator is NOT the system focus halo. Focus promotes the container's border to `--Stroke-XL` in the role's Tinted colour with `outline: none`, and it is keyed off `:focus-within` rather than `:focus-visible` — so a mouse click paints exactly the same indicator a keyboard focus does. A padding-compensation variable absorbs the extra border width so the field does not shift when it gains focus. There is also no filled state: `data-filled` / `data-dirty` / `data-touched` are never styled, so only the value vs placeholder text colour distinguishes an empty field from a typed one.",
+    "hover": [
+      "The container background tints on hover, guarded by `@media (hover: hover)` so a touch tap leaves no stuck fill.",
+      "Every hover rule is qualified `:not(:focus-within)`, so hover never fights the focus stroke once the field is focused.",
+      "A read-only field re-asserts its own resting background on hover instead of tinting, so it does not look actionable.",
+      "Hover is suppressed while `[data-disabled]`."
+    ],
+    "focus": [
+      "No focus halo. The container border grows to `--Stroke-XL` in the role's Tinted colour and the native outline is removed.",
+      "Keyed off `:focus-within`, not `:focus-visible` — clicking with a mouse shows the same stroke as tabbing in.",
+      "Geometry is invariant: an idle padding-adjust variable drops to 0 as the border thickens, so the field and its content do not move.",
+      "At `attention=\"high\"` a transparent XL border is pre-reserved at rest for the same reason.",
+      "Focusing anywhere inside — including a slot button — lights the whole container, because the trigger is `:focus-within`."
+    ],
+    "keyboard": [
+      "The control is a real `<input>`, so all native text-editing keys, caret movement, and selection behave normally; key handlers you pass are forwarded verbatim.",
+      "Interactive `end` / `end2` slot content stays in the tab order (`pointer-events: auto`), so a trailing clear or reveal button is its own tab stop after the field."
+    ],
+    "selected": [
+      "There is NO filled/dirty state: `data-filled`, `data-dirty` and `data-touched` are never styled. Only the value vs placeholder text colour differs.",
+      "Invalid state OUTRANKS focus — the error stroke is re-asserted under `:focus-within`, so focusing an invalid field does not hide the error colour.",
+      "An invalid field keeps `--Stroke-XL` even at rest, so it stays visibly flagged when unfocused.",
+      "Read-only repaints rather than dims: at medium attention it becomes a filled `--Neutral-Minimal` with a transparent stroke; at high attention it goes ghost with `--Neutral-Stroke-Low`. The caret is `cursor: default`."
+    ],
+    "disabled": [
+      "The container dims to `--Disabled-Opacity` (overridable via `--Input-disabledOpacity`) and sets `user-select: none`.",
+      "`cursor: not-allowed` IS observable here, unlike most disabled controls: the cursor sits on the container, which stays hit-testable, and only the inner control and the start/end slot groups take `pointer-events: none`.",
+      "Hover tinting is suppressed, so a disabled field never reacts to the pointer."
+    ],
+    "touch": [
+      "Hover tinting never applies on touch-only devices; the focus stroke is the entire response to a tap.",
+      "Sizes XS (24px) and S (32px) are BELOW the 44px minimum touch target — pick M (40px) or L (48px) for touch-primary surfaces, or extend the hit area yourself."
+    ]
+  },
+  "props": [
+    {
+      "name": "size",
+      "type": "6 | 8 | 10 | 12 | 'xs' | 's' | 'm' | 'l' | 'small' | 'medium' | 'large'",
+      "required": false,
+      "defaultValue": "10 (M)"
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto"
+    },
+    {
+      "name": "shape",
+      "type": "'default' | 'pill'",
+      "required": false
+    },
+    {
+      "name": "attention",
+      "type": "'medium' | 'high'",
+      "required": false,
+      "defaultValue": "medium"
+    },
+    {
+      "name": "alignment",
+      "type": "'start' | 'center'",
+      "required": false,
+      "defaultValue": "start"
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": true
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "defaultValue",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "onChange",
+      "type": "(value: string) => void",
+      "required": false
+    },
+    {
+      "name": "placeholder",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "type",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "start",
+      "type": "ReactNode",
+      "required": false
+    },
+    {
+      "name": "start2",
+      "type": "ReactNode",
+      "required": false
+    },
+    {
+      "name": "end2",
+      "type": "ReactNode",
+      "required": false
+    },
+    {
+      "name": "end",
+      "type": "ReactNode",
+      "required": false
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false
+    }
+  ],
+  "slots": [
+    "start",
+    "start2",
+    "end2",
+    "end"
+  ],
+  "propsSchema": {
+    "$id": "Input",
+    "type": "object",
+    "properties": {
+      "aria-label": {},
+      "size": {},
+      "appearance": {},
+      "shape": {},
+      "attention": {},
+      "alignment": {},
+      "fullWidth": {},
+      "value": {},
+      "defaultValue": {},
+      "onChange": {},
+      "onBlur": {},
+      "onFocus": {},
+      "onKeyDown": {},
+      "placeholder": {},
+      "type": {},
+      "name": {},
+      "id": {},
+      "disabled": {},
+      "readOnly": {},
+      "required": {},
+      "autoComplete": {},
+      "autoFocus": {},
+      "maxLength": {},
+      "start": {},
+      "start2": {},
+      "end2": {},
+      "end": {},
+      "className": {},
+      "style": {},
+      "data-testid": {}
+    }
+  },
+  "tags": [
+    "input",
+    "form",
+    "text",
+    "field"
+  ],
+  "importPath": "@jds4/oneui-react",
+  "renderHints": {
+    "baseElement": "input",
+    "readsFromSurfaceContext": true
+  },
+  "a11y": {
+    "role": null,
+    "minTouchTarget": 44,
+    "accessibleNameSource": "aria-label"
+  }
+}

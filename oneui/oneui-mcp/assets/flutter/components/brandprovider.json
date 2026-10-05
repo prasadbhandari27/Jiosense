@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "BrandProvider",
+  "flutterExport": "OneUiBrandProvider",
+  "importPath": "package:ui_flutter/ui_flutter.dart",
+  "generatedAt": "2026-09-04T05:50:48.675Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "OneUiBrandProvider from the ui_flutter barrel. Use Surface context (OneUiSurface) for tinted backgrounds."
+  },
+  "props": [
+    {
+      "name": "child",
+      "required": true,
+      "type": "Widget",
+      "description": ""
+    },
+    {
+      "name": "mode",
+      "required": false,
+      "type": "'light' | 'dark'",
+      "description": ""
+    }
+  ]
+}

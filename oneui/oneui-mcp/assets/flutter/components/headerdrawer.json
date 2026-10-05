@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "HeaderDrawer",
+  "flutterExport": "OneUiHeaderDrawer",
+  "importPath": "package:ui_flutter/ui_flutter.dart",
+  "generatedAt": "2026-09-04T05:50:48.675Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "OneUiHeaderDrawer from the ui_flutter barrel. Use Surface context (OneUiSurface) for tinted backgrounds."
+  },
+  "props": [
+    {
+      "name": "open",
+      "required": true,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onOpenChange",
+      "required": true,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "navigation",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "logo",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onNavigate",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "semanticsLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "backSemanticsLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "closeSemanticsLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "testId",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    }
+  ]
+}

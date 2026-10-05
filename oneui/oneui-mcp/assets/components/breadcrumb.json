@@ -1,0 +1,321 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Breadcrumb",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Ordered hierarchy navigation with semantic links, plain-text current page, optional home icon, count-based overflow menu, and measurement-gated truncation tooltips.",
+    "taskContexts": [
+      "breadcrumb",
+      "navigation",
+      "hierarchy",
+      "overflow"
+    ],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "auto",
+        "useWhen": [
+          "Auto"
+        ]
+      },
+      {
+        "name": "primary",
+        "useWhen": [
+          "Primary"
+        ]
+      },
+      {
+        "name": "neutral",
+        "useWhen": [
+          "Neutral"
+        ]
+      },
+      {
+        "name": "secondary",
+        "useWhen": [
+          "Secondary"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "items",
+      "type": "readonly BreadcrumbItem[]",
+      "required": true,
+      "description": "items property"
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'neutral' | 'primary' | 'secondary' | 'negative' | 'positive' | 'informative' | 'warning'",
+      "required": false,
+      "description": "appearance property"
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Localized navigation landmark label."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "className property"
+    },
+    {
+      "name": "currentId",
+      "type": "Key",
+      "required": false,
+      "description": "Defaults to the final item."
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "data-testid property"
+    },
+    {
+      "name": "homeAsIcon",
+      "type": "boolean",
+      "required": false,
+      "description": "homeAsIcon property"
+    },
+    {
+      "name": "homeLabel",
+      "type": "string",
+      "required": false,
+      "description": "Localized accessible name for home-as-icon."
+    },
+    {
+      "name": "maxItems",
+      "type": "number",
+      "required": false,
+      "description": "Total visible positions, including the overflow trigger. Minimum 3."
+    },
+    {
+      "name": "maxWidth",
+      "type": "string",
+      "required": false,
+      "description": "Optional validated maximum width for the whole trail."
+    },
+    {
+      "name": "maxWidthItem",
+      "type": "string",
+      "required": false,
+      "description": "Validated CSS length; defaults to the existing 320px tooltip-width token."
+    },
+    {
+      "name": "overflow",
+      "type": "boolean",
+      "required": false,
+      "description": "Enable deterministic count-based middle collapse."
+    },
+    {
+      "name": "overflowLabel",
+      "type": "string",
+      "required": false,
+      "description": "Localized accessible name for the overflow trigger."
+    },
+    {
+      "name": "size",
+      "type": "'s' | 'm'",
+      "required": false,
+      "description": "size property"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "style property"
+    },
+    {
+      "name": "tooltip",
+      "type": "boolean",
+      "required": false,
+      "description": "Show a Tooltip only after a rendered label is measured as clipped."
+    },
+    {
+      "name": "truncate",
+      "type": "boolean",
+      "required": false,
+      "description": "truncate property"
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.breadcrumb",
+    "type": "object",
+    "properties": {
+      "items": {
+        "description": "items property"
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "neutral",
+          "primary",
+          "secondary",
+          "negative",
+          "positive",
+          "informative",
+          "warning"
+        ],
+        "description": "appearance property"
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Localized navigation landmark label."
+      },
+      "className": {
+        "type": "string",
+        "description": "className property"
+      },
+      "currentId": {
+        "description": "Defaults to the final item."
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "data-testid property"
+      },
+      "homeAsIcon": {
+        "type": "boolean",
+        "description": "homeAsIcon property"
+      },
+      "homeLabel": {
+        "type": "string",
+        "description": "Localized accessible name for home-as-icon."
+      },
+      "maxItems": {
+        "type": "number",
+        "description": "Total visible positions, including the overflow trigger. Minimum 3."
+      },
+      "maxWidth": {
+        "type": "string",
+        "description": "Optional validated maximum width for the whole trail."
+      },
+      "maxWidthItem": {
+        "type": "string",
+        "description": "Validated CSS length; defaults to the existing 320px tooltip-width token."
+      },
+      "overflow": {
+        "type": "boolean",
+        "description": "Enable deterministic count-based middle collapse."
+      },
+      "overflowLabel": {
+        "type": "string",
+        "description": "Localized accessible name for the overflow trigger."
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m"
+        ],
+        "description": "size property"
+      },
+      "style": {
+        "description": "style property"
+      },
+      "tooltip": {
+        "type": "boolean",
+        "description": "Show a Tooltip only after a rendered label is measured as clipped."
+      },
+      "truncate": {
+        "type": "boolean",
+        "description": "truncate property"
+      }
+    },
+    "required": [
+      "items"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "breadcrumb-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Breadcrumb } from '@oneui/ui';\n\n<Breadcrumb items={[\n  { id: 'home', label: 'Home', href: '/' },\n  { id: 'current', label: 'Current page' },\n]} />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "breadcrumb"
+  ],
+  "interactionBehavior": {
+    "summary": "Breadcrumb is a `<nav>` / `<ol>` trail of sequential Tab stops, not an arrow-key composite. The current crumb (default: the last item, or `currentId`) is a plain `<span aria-current=\"page\">` — never a link, even if that item also has `href`. Parent crumbs are OneUI Links at `--{Role}-Low`; hover does not recolour or underline them. Overflow is count-based and SSR-stable: with `overflow` and more items than `maxItems` (minimum 3, including the trigger), middle ancestors collapse into a Menu behind an IconButton, while the first and current crumbs always stay visible.",
+    "hover": [
+      "Parent Links keep `--{Role}-Low` and `text-decoration: none` on hover — colour does not step up and no underline appears, matching Figma's low-attention text button. Wrapped in `@media (hover: hover)`.",
+      "A truncated label (`truncate` + measured `scrollWidth > clientWidth`) mounts a Tooltip with `trigger=\"hover\"` (Base UI also shows it on keyboard focus). The tooltip is the disclosure; the string itself never expands.",
+      "The current crumb has `cursor: default` and no hover rule. The home-as-icon control has no hover fill of its own (press is opacity-only)."
+    ],
+    "press": [
+      "A parent Link that is not `aria-disabled` drops to `--Pressed-Opacity` while held. The current span does not.",
+      "The home-as-icon `<a>` uses the same pressed opacity. Click never toggles an expanded-label state — tests confirm `data-expanded` is not introduced and `onPress` still fires.",
+      "Overflow hidden items are Menu.Items (links when they have `href`); choosing one fires that item's `onPress` and follows the href."
+    ],
+    "focus": [
+      "Parent Links and the home-as-icon control draw the two-layer halo: `--Stroke-XL` gap in `--Surface-Halo-Gap` plus an outer `--Focus-Outline` ring (spread `calc(var(--Stroke-XL) + var(--Focus-Outline-Width))`).",
+      "`:focus` only clears the native outline; the ring is `:focus-visible`.",
+      "The current crumb is a non-focusable span. Separators are `aria-hidden` presentation chevrons and are not in the tab order. Overflow is an IconButton, so it uses IconButton's own halo."
+    ],
+    "keyboard": [
+      "Sequential Tab through each parent Link (and the home-as-icon `<a>` when `homeAsIcon`), then the overflow IconButton when collapsed. There is no arrow-key roving along the trail.",
+      "`Enter` / `Space` on the overflow trigger open the Menu of hidden ancestors (IconButton + Menu). Menu keyboard behaviour is Menu's once open.",
+      "Home-as-icon never nests an IconButton inside the link — a single focusable `<a>` (or a `role=\"img\"` span when that crumb is current) holds the glyph, so Tab does not land twice."
+    ],
+    "selected": [
+      "The current crumb is `aria-current=\"page\"` on a `<span class=\"current\">` in `--{Role}-High`, `cursor: default`. `currentId` defaults to the last item. An item with `href` that is current still renders as this non-link span.",
+      "Parent crumbs stay `--{Role}-Low` Links. Hierarchy is colour, not weight — both ends use `--Label-FontWeight-High`.",
+      "With `overflow`, collapse is count-only: `maxItems` includes the `moreHorizontal` trigger, the first and current indices are invariant, and remaining visible slots favour the deepest ancestors. Hidden items keep source order inside the Menu."
+    ],
+    "disabled": [
+      "An item's `disabled` is forwarded to the parent `Link` and to overflow `Menu.Item`. The pressed-opacity rule excludes `[aria-disabled=\"true\"]`.",
+      "Disabled does not turn a current crumb into a link or skip it — current is still the non-interactive span. Breadcrumb CSS has no additional disabled dimming of its own."
+    ],
+    "touch": [
+      "Parent-link hover colour never applies on touch-only devices (there is no colour change anyway); the tap response is the pressed opacity plus navigation.",
+      "Clicking a truncated label navigates — it does not expand the ellipsis. Use the overflow IconButton to reach collapsed ancestors."
+    ]
+  },
+  "importPath": "@jds4/oneui-react"
+}

@@ -1,0 +1,358 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Switch",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Immediate binary toggle — state takes effect on change without a submit action.",
+    "taskContexts": [
+      "settings-toggle",
+      "feature-flag",
+      "live-preference"
+    ],
+    "sentiments": [
+      "neutral",
+      "positive"
+    ]
+  },
+  "compositionRules": {
+    "requires": [
+      "label or aria-label"
+    ],
+    "allows": [
+      "read-only mode",
+      "accent override"
+    ],
+    "forbids": [
+      "use in forms requiring explicit submit",
+      "replace with Checkbox for non-immediate effects"
+    ]
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "default",
+        "useWhen": [
+          "immediate on/off setting"
+        ]
+      },
+      {
+        "name": "readOnly",
+        "useWhen": [
+          "display-only permission or system setting"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": [
+      "Checkbox",
+      "Radio"
+    ],
+    "degradesTo": [
+      "Checkbox"
+    ]
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "appearance + accent dual-role"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [
+      "toggle_on",
+      "toggle_off"
+    ],
+    "health": [
+      "a11y_violations",
+      "adoption_rate"
+    ]
+  },
+  "props": [
+    {
+      "name": "accent",
+      "type": "'primary' | 'secondary' | 'sparkle'",
+      "required": false,
+      "description": "Accent override for selected fill color (code-only; not a Figma component property). When set, overrides the fill from appearance while keeping appearance's border/context. When not set, fill follows appearance role."
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "description": "Multi-accent appearance role. Interactive checked: explicit role wins; 'auto'/unset resolves to secondary. Interactive unchecked: ignores this prop and uses nearest Surface appearance, then neutral. ReadOnly: neutral in both visual states. Figma API list: auto | neutral | primary | secondary | negative | positive | informative | warning. Extra OneUI roles (`sparkle`, `brand-bg`) remain supported."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label for switches without a text child."
+    },
+    {
+      "name": "aria-labelledby",
+      "type": "string",
+      "required": false,
+      "description": "ID of an element that labels the switch."
+    },
+    {
+      "name": "checked",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the switch is on (controlled). Figma component property: `checked` (matrix chrome may say `selected`)."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Label text"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "Stable anchor for QA / e2e — forwarded to the root switch control only (not the label wrapper)."
+    },
+    {
+      "name": "defaultChecked",
+      "type": "boolean",
+      "required": false,
+      "description": "Default state (uncontrolled)"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the switch is disabled (non-interactive, dimmed). Figma API table mislabels this row as `loading` with a disabled description — the component set has no loading variant; use `disabled`."
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "description": "HTML id attribute"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "required": false,
+      "description": "Field name for form submission"
+    },
+    {
+      "name": "onCheckedChange",
+      "type": "(checked: boolean) => void",
+      "required": false,
+      "description": "Change handler — fires with the next checked value"
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the switch is read-only (visually distinct from disabled; remains focusable)"
+    },
+    {
+      "name": "size",
+      "type": "'s' | 'm' | 'l'",
+      "required": false,
+      "description": "Size preset. Default: 'm'"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.switch",
+    "type": "object",
+    "properties": {
+      "accent": {
+        "description": "Accent override for selected fill color (code-only; not a Figma component property). When set, overrides the fill from appearance while keeping appearance's border/context. When not set, fill follows appearance role."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. Interactive checked: explicit role wins; 'auto'/unset resolves to secondary. Interactive unchecked: ignores this prop and uses nearest Surface appearance, then neutral. ReadOnly: neutral in both visual states. Figma API list: auto | neutral | primary | secondary | negative | positive | informative | warning. Extra OneUI roles (`sparkle`, `brand-bg`) remain supported."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label for switches without a text child."
+      },
+      "aria-labelledby": {
+        "type": "string",
+        "description": "ID of an element that labels the switch."
+      },
+      "checked": {
+        "type": "boolean",
+        "description": "Whether the switch is on (controlled). Figma component property: `checked` (matrix chrome may say `selected`)."
+      },
+      "children": {
+        "description": "Label text"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "Stable anchor for QA / e2e — forwarded to the root switch control only (not the label wrapper)."
+      },
+      "defaultChecked": {
+        "type": "boolean",
+        "description": "Default state (uncontrolled)"
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Whether the switch is disabled (non-interactive, dimmed). Figma API table mislabels this row as `loading` with a disabled description — the component set has no loading variant; use `disabled`."
+      },
+      "id": {
+        "type": "string",
+        "description": "HTML id attribute"
+      },
+      "name": {
+        "type": "string",
+        "description": "Field name for form submission"
+      },
+      "onCheckedChange": {
+        "description": "Change handler — fires with the next checked value"
+      },
+      "readOnly": {
+        "type": "boolean",
+        "description": "Whether the switch is read-only (visually distinct from disabled; remains focusable)"
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "Size preset. Default: 'm'"
+      },
+      "style": {
+        "description": "Inline styles"
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "switch-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Switch } from '@oneui/ui';\n\n<Switch>Enable notifications</Switch>"
+    },
+    {
+      "id": "switch-controlled",
+      "title": "Controlled",
+      "language": "tsx",
+      "code": "<Switch checked={isOn} onCheckedChange={setIsOn}>Dark mode</Switch>"
+    },
+    {
+      "id": "switch-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Switch\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "switch"
+  ],
+  "interactionBehavior": {
+    "summary": "The track carries the colour and the knob carries the movement, and the two are kept on separate CSS channels so they never fight: the knob's `translateX` lives on the thumb element while its press-scale lives on the thumb's `::before` pseudo-element. Travel distance is derived live in CSS from `trackWidth − knobSize − 2 × padding` rather than being a standalone token, so it stays correct however the switch is themed or ramped. Two things surprise people. First, the unchecked track ignores the `appearance` prop entirely — it follows the nearest `<Surface>`'s role, and Neutral on the bare page or at the palette extremes — while only the checked track follows `appearance`. Second, although the unchecked track rests on the role's `Moderate` step, hovering jumps it to `Subtle-Hover`, because the system has no hover/pressed token for `Moderate`. `readOnly` is a wholly different look from `disabled`: it stays focusable and repaints as a transparent, outlined track with a smaller ink-coloured dot.",
+    "hover": [
+      "Unchecked, the track fills with `--{Role}-Subtle-Hover`; checked, it fills with `--{Role}-Bold-Hover`.",
+      "The unchecked track rests on the role's `Moderate` emphasis but hovers to its `Subtle-Hover` — a different emphasis family. `Moderate` has no hover or pressed token in the system, so the nearest darkened solid surface state is reused.",
+      "The knob is deliberately re-pinned on hover: explicit rules re-assert its fill (`--Surface-Default` unchecked, `--{Role}-Bold-TintedA11y` checked) so it can never inherit the track's hover tint.",
+      "Every hover rule sits inside `@media (hover: hover)`, so a touch tap leaves no stuck tint behind.",
+      "Every hover rule is also qualified `:not([data-readonly])`, so a read-only switch is completely inert under the pointer.",
+      "Hover changes the fill only — the track never grows, and the knob does not move."
+    ],
+    "press": [
+      "The knob scales UP to `--Switch-thumbPressScale` (1.07 by default). Note the direction: the knob grows, unlike Button which squashes down.",
+      "The scale is applied through the `scale` property on the knob's `::before` layer while `translateX` stays on the knob itself, so the press squash and the slide compose cleanly instead of overwriting one another.",
+      "The track deepens to `--{Role}-Subtle-Pressed` when unchecked, `--{Role}-Bold-Pressed` when checked.",
+      "The track itself never scales — only the knob does.",
+      "Press is not `(hover: hover)`-guarded, so touch gets the same feedback; it IS `:not([data-readonly])`-guarded, so a read-only switch gets none of it."
+    ],
+    "focus": [
+      "Keyboard focus draws the standard two-layer halo on the track: an inner `--Stroke-XL` gap ring in `--Surface-Halo-Gap` plus an outer ring at `calc(--Stroke-XL + --Focus-Outline-Width)`, so it stays legible inside a tinted `<Surface>`.",
+      "The outer ring colour is ALWAYS `--Informative-Bold`, never the appearance role — a `positive` or `negative` switch still focuses informative-blue, per the Figma focus-ring spec.",
+      "`:focus-visible` only; `.switch:focus` merely clears the native outline, so a mouse click paints no ring. A global `[data-force-state=\"focus\"]` ancestor hook forces it on for previews.",
+      "Unlike hover and press, focus is NOT excluded for `readOnly`: the CSS section comment says read-only has \"no hover/focus/pressed states\", but the halo selector carries no `:not([data-readonly])` and read-only keeps `tabindex=\"0\"` — so a read-only switch does show the focus ring.",
+      "`box-shadow` is in no transition list, so the halo snaps on and off rather than fading."
+    ],
+    "keyboard": [
+      "Base UI renders a `<span role=\"switch\">`, not a native `<button>`, and synthesises activation through its button helper: `Enter` activates on keydown and `Space` on keyup, matching native button convention.",
+      "Form submission is carried by a hidden `<input type=\"checkbox\">` rendered alongside the span, so `name` still round-trips through a form.",
+      "`disabled` sets `aria-disabled=\"true\"` and `tabindex=\"-1\"` — removed from the tab order but still announced. It does NOT use a native `disabled` attribute.",
+      "`readOnly` sets `aria-readonly=\"true\"`, does not set `aria-disabled`, and keeps `tabindex=\"0\"` — so it stays reachable by `Tab`, unlike disabled.",
+      "The control is wrapped in a `<label>`, so clicking the label text toggles the switch too.",
+      "Switch adds no keyboard shortcuts of its own beyond the primitive's activation keys."
+    ],
+    "selected": [
+      "Checked fills the track with `--{Role}-Bold` and paints the knob `--{Role}-Bold-TintedA11y`; unchecked fills the track with the surface-resolved `Moderate` and pins the knob to `--Surface-Default` (white).",
+      "Which role fills the CHECKED track comes from `appearance` (`auto` or unset resolves to `secondary`). The UNCHECKED track deliberately ignores `appearance` and uses the nearest `<Surface>`'s role, falling back to Neutral on the bare page and at the palette extremes (surface steps 2500 and 100).",
+      "The knob's travel is computed in CSS from the live geometry — `trackWidth − knobSize − 2 × padding` — never from a separate `travel` token, so the knob keeps landing exactly at the far padding edge under any theme or size ramp.",
+      "Under `[dir=\"rtl\"]` the travel sign flips via `--_sw-inline-sign: -1`, so the knob slides right-to-left.",
+      "`accent` (primary / secondary / sparkle) overrides ONLY the checked fill and leaves the appearance role's context colours alone — `appearance=\"neutral\" accent=\"sparkle\"` gives a grey context with a purple fill. `readOnly` drops any accent.",
+      "The Figma matrix chrome sometimes labels the boolean `selected`; there is no `selected` prop in React — use `checked` / `defaultChecked`."
+    ],
+    "disabled": [
+      "`disabled` dims the whole `<label>` row to `--Disabled-Opacity`, sets `cursor: not-allowed` on that wrapper, and puts `pointer-events: none` on the track.",
+      "Here the `not-allowed` cursor IS observable: the track is `pointer-events: none`, so the pointer falls through to the `<label>` wrapper, which declares `not-allowed` and keeps its pointer events. This is unlike a natively `disabled` control (see docs/design/disabled-states.md).",
+      "`readOnly` is a different look, not a dim. The wrapper gets `data-readonly` and is explicitly excluded from the opacity rule, the cursor stays `default`, and the track repaints as transparent with a `--Stroke-M` outline in `--Text-High`, padding bumped from `--Spacing-0-5` to `--Spacing-1`, and a knob two f-steps smaller filled with the role's `Bold` ink.",
+      "The read-only knob is painted through the thumb's `::before` fill channel, not `background-color` on the thumb — setting the latter is hidden behind the opaque pseudo-element, which is why the dot used to always render white.",
+      "`readOnly` also forces both the checked and unchecked state roles to `neutral`.",
+      "Figma's API table has a row labelled `loading` that actually describes disabled behaviour; the component set has no loading variant and React exposes no `loading` prop — use `disabled`."
+    ],
+    "touch": [
+      "Hover tints never apply on touch-only devices; the pressed track tint plus the knob's +7% growth are the entire tap response.",
+      "The track is only `--Spacing-7` / `--Spacing-9` / `--Spacing-10` wide (28 / 36 / 40px) at sizes S / M / L, and its height is just knob + 2 × padding — well under the 44px mobile minimum.",
+      "The `<label>` wrapper extends the hit area across the label text, but nothing pads the row to 44px; add your own spacing when you need the mobile touch-target minimum."
+    ]
+  },
+  "importPath": "@jds4/oneui-react",
+  "figma": {
+    "componentKey": "jds-switch-v4"
+  },
+  "renderHints": {
+    "baseElement": "div",
+    "readsFromSurfaceContext": true
+  },
+  "a11y": {
+    "role": "switch",
+    "minTouchTarget": 44,
+    "accessibleNameSource": "children"
+  }
+}

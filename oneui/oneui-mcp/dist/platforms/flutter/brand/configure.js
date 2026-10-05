@@ -1,0 +1,1 @@
+import{ensureBrandSubBrand as u}from"../../../lib/brandsConfig.js";function s(r,n,t){return u(r,n,t)}function a(r,n,t){const e=s(r,n,t);return[e.ok?e.changed?`\u2705 ${e.message}`:e.message:`\u26A0\uFE0F ${e.message}`]}export{a as configureFlutterBrand,s as ensureFlutterBrand};

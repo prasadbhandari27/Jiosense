@@ -1,0 +1,861 @@
+[
+  {
+    "name": "Accordion",
+    "slug": "accordion",
+    "intent": "Vertically stacked, collapsible content sections. `attention` (high/medium/low) drives visual weight — high → bold fill, medium → subtle/tinted fill (default), low → ghost/transparent with item separators. `appearance` resolves the multi-accent colour role. `size` (s/m/l or numeric f-step) and `attention`/`appearance`/`fullWidth` apply to all items via the root but can be overridden per `AccordionItem`. `multiOpen` allows more than one item open at once (default: single-open). `fullWidth` removes horizontal padding and shows dividers, only applies when attention is low. Items accept `start`/`end` slots and an optional `headerDivider` (subtle variant only, shown while expanded).",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "accordion",
+      "layout",
+      "disclosure",
+      "collapsible",
+      "surface-aware"
+    ]
+  },
+  {
+    "name": "AgentPulse",
+    "slug": "agentpulse",
+    "intent": "Animated AI-agent presence indicator. Plays a looping animation per state (idle / listening / thinking / speaking) and auto-runs a bridge animation between states. Recolours to the active appearance role, with `emphasis` selecting the content-token shade (tinted by default; also high / medium / low / tintedA11y). Honours reduce-motion via a configurable fallback. Announces state changes through a live region.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "agentpulse",
+      "ai",
+      "agent",
+      "animation",
+      "presence",
+      "status"
+    ]
+  },
+  {
+    "name": "Avatar",
+    "slug": "avatar",
+    "intent": "User representation — image, icon, or initials. Attention drives the fill (high → bold surface, medium → subtle tint, low → transparent), with t-shirt sizing and multi-accent appearance. The icon/fallback slot supplies colour + size via ComponentSlotIconContext — pass a JDS <Icon>, never a raw SVG with its own fill.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "avatar",
+      "display",
+      "avatar",
+      "media",
+      "inherits-appearance"
+    ]
+  },
+  {
+    "name": "Badge",
+    "slug": "badge",
+    "intent": "Non-interactive status / notification chip. Three variants resolved against the current <Surface> via useSurfaceTokens — bold (filled), subtle (tinted), ghost (transparent + hairline). Optional start/end slots for icon / avatar / sub-badge. `attention` is the Figma alias (high→bold, medium→subtle, low→ghost).",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "badge",
+      "display",
+      "status",
+      "notification",
+      "surface-aware",
+      "inherits-appearance"
+    ]
+  },
+  {
+    "name": "BottomNavigation",
+    "slug": "bottomnavigation",
+    "intent": "Native bottom navigation bar for 2–5 BottomNavigationItems with controlled or uncontrolled selection. The app shell owns placement and safe-area handling.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "bottomnavigation",
+      "navigation",
+      "chassis",
+      "mobile-primary-nav"
+    ]
+  },
+  {
+    "name": "BottomNavigationItem",
+    "slug": "bottomnavigationitem",
+    "intent": "Single native destination inside BottomNavigation. Required icon glyph + optional label and activeIcon; the parent selection value is authoritative.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "bottomnavigationitem",
+      "navigation",
+      "chassis"
+    ]
+  },
+  {
+    "name": "BottomSheet",
+    "slug": "bottomsheet",
+    "intent": "Bottom-anchored overlay sheet with semantic snap points (collapsed, halfExpanded, fullyExpanded, custom), drag handle, header/footer chrome, and scroll/drag arbitration. Supports fullView immersive layout, dismissible backdrop/back/swipe, and multi-accent appearance on an elevated surface.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "bottomsheet",
+      "overlay",
+      "sheet",
+      "drawer",
+      "snap",
+      "surface-aware"
+    ]
+  },
+  {
+    "name": "Breadcrumb",
+    "slug": "breadcrumb",
+    "intent": "Hierarchical trail of parent links plus the current page. Items carry `id`/`label` with optional `href`/`onPress`/`renderLink`. Current item defaults to the last entry (`currentId` override). Optional count-based middle collapse via `overflow` + `maxItems` (min 3). `appearance` resolves colour roles against the parent <Surface> (no sparkle/brand-bg in the public union). `homeAsIcon` replaces the first label with a home IconButton. Truncation + Tooltip are opt-in (`truncate`/`tooltip`, default true).",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "breadcrumb",
+      "navigation",
+      "breadcrumb",
+      "surface-aware",
+      "inherits-appearance"
+    ]
+  },
+  {
+    "name": "Button",
+    "slug": "button",
+    "intent": "Primary call-to-action. Attention high/medium/low maps to bold/subtle/ghost fill, 9 multi-accent appearances + auto, sizes 6/8/10/12 (t-shirt aliases xs/s/m/l accepted). Adapts on coloured surfaces via the parent <Surface> cascade.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "button",
+      "cta",
+      "action",
+      "interactive"
+    ]
+  },
+  {
+    "name": "Carousel",
+    "slug": "carousel",
+    "intent": "Compound carousel micropattern. Root manages paging (ScrollView-based, mirrors web Embla API), optional loop, autoplay, and a shared image aspect ratio / height across slides. Slides (`Carousel.Item`) each resolve their own surface context and may host image, headline/body text, badges, and a button group. Controls (prev/next/play, pagination dots, selection rail) are presence-driven — they render wherever the matching subcomponent is placed as a child.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "carousel",
+      "media",
+      "carousel",
+      "compound",
+      "surface-aware",
+      "paging"
+    ]
+  },
+  {
+    "name": "CarouselControls",
+    "slug": "carouselcontrols",
+    "intent": "Carousel controls row — dots + optional prev/next/play buttons, placed below the rail or floating onMedia.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "carouselcontrols",
+      "carousel",
+      "compound"
+    ]
+  },
+  {
+    "name": "CarouselIndicatorList",
+    "slug": "carouselindicatorlist",
+    "intent": "Pagination dots for the enclosing Carousel — reads slide count/selection from context.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "carouselindicatorlist",
+      "carousel",
+      "pagination"
+    ]
+  },
+  {
+    "name": "CarouselItem",
+    "slug": "carouselitem",
+    "intent": "A single carousel slide. `surface` (e.g. \"bold\") sets the slide-level Surface context for its content.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "carouselitem",
+      "carousel",
+      "compound",
+      "surface-aware"
+    ]
+  },
+  {
+    "name": "CarouselItemBadgeRow",
+    "slug": "carouselitembadgerow",
+    "intent": "Corner-pinned badge/action row on a slide.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "carouselitembadgerow",
+      "carousel",
+      "compound"
+    ]
+  },
+  {
+    "name": "CarouselRail",
+    "slug": "carouselrail",
+    "intent": "Carousel scroll track. Composes CarouselItem slides only.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "carouselrail",
+      "carousel",
+      "compound"
+    ]
+  },
+  {
+    "name": "CarouselSlideContent",
+    "slug": "carouselslidecontent",
+    "intent": "Slide text/CTA overlay block — headline/body copy and an optional CarouselSlideButtonGroup.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "carouselslidecontent",
+      "carousel",
+      "compound",
+      "surface-aware"
+    ]
+  },
+  {
+    "name": "CarouselSlideImage",
+    "slug": "carouselslideimage",
+    "intent": "A slide's media. `scrim=true` overlays the default bottom-fade Scrim; pass a ScrimProps object to customize.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "carouselslideimage",
+      "carousel",
+      "media"
+    ]
+  },
+  {
+    "name": "Checkbox",
+    "slug": "checkbox",
+    "intent": "Selection control with tri-state support (selected / indeterminate / unselected). `appearance` drives both unchecked border and checked fill via the parent <Surface>; auto resolves to the secondary stack. Read-only is distinct from disabled. For multi-option label stacks use CheckboxField.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "checkbox",
+      "form",
+      "selection",
+      "control",
+      "surface-aware"
+    ]
+  },
+  {
+    "name": "CheckboxField",
+    "slug": "checkboxfield",
+    "intent": "Field shell around Checkbox. Single mode = one integrated checkbox + label/description/feedback; multi-option mode = a fieldset of <Checkbox> children driven by groupValue/onGroupValueChange. Adds required asterisk, info-icon slot, error/feedback and dynamic-text rows.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "checkboxfield",
+      "form",
+      "field",
+      "selection",
+      "composition"
+    ]
+  },
+  {
+    "name": "Chip",
+    "slug": "chip",
+    "intent": "Interactive selection / filter pill. Three surface-resolved emphasis levels (high / medium / low) inheritable from a parent <ChipGroup>. `attention` drives the visual (high→bold, medium→subtle, low→ghost). Selectable (toggle) with optional start/end slots. appearance=\"auto\" → secondary; pill-shaped.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "chip",
+      "selection",
+      "filter",
+      "interactive",
+      "surface-aware",
+      "inherits-appearance"
+    ]
+  },
+  {
+    "name": "ChipGroup",
+    "slug": "chipgroup",
+    "intent": "Selection container + context provider for <Chip> children. Pushes size/attention/appearance/disabled down; owns single (default) or multiple selection with maxSelections + required constraints. Controlled via value/onValueChange. Container is a11y-transparent so child Chips stay focusable.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "chipgroup",
+      "selection",
+      "filter",
+      "group",
+      "composition"
+    ]
+  },
+  {
+    "name": "CircularProgressIndicator",
+    "slug": "circularprogressindicator",
+    "intent": "Circular progress ring. Determinate (arc ∝ value) or indeterminate (spin). Ten t-shirt sizes (2XS…5XL); optional centre content — auto percentage (text, L+ only) or a JDS <Icon>. appearance=\"auto\" → primary. Honours reduce-motion.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "circularprogressindicator",
+      "feedback",
+      "progress",
+      "circular",
+      "surface-aware"
+    ]
+  },
+  {
+    "name": "Container",
+    "slug": "container",
+    "intent": "The one public layout wrapper — constrains children width via variant (fluid / fixed / full-bleed) + maxWidth, plus the shared token-resolved flex-layout props (direction/gap/padding*/align/justify/wrap/flex). ALSO establishes a surface-context boundary internally: `mode` defaults to 'ghost' (transparent, same step as parent — no visual change from plain layout use), or pass mode=\"bold\"/\"subtle\"/etc. + appearance to make this Container a real colour region, exactly like the old <Surface> component (now internal-only, not part of the public API). a11y-transparent.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "container",
+      "layout",
+      "container",
+      "structural",
+      "surface",
+      "chassis"
+    ]
+  },
+  {
+    "name": "CounterBadge",
+    "slug": "counterbadge",
+    "intent": "Numeric count badge (e.g. notification count). Overflows to `${max}+` (default 99); hidden at 0 unless showZero. Three surface-resolved emphasis levels via `attention`. `appearance` inherits from a slot-owning parent (Badge/Button) when not set, else primary. Announces via a polite live region.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "counterbadge",
+      "display",
+      "status",
+      "notification",
+      "count",
+      "surface-aware"
+    ]
+  },
+  {
+    "name": "Divider",
+    "slug": "divider",
+    "intent": "Horizontal or vertical separator with an optional inline label (string) or JDS <Icon>. Stroke weight scales with size; attention sets the stroke emphasis. Decorative line is aria-hidden; wrapper is role=\"separator\". appearance=\"auto\" → neutral.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "divider",
+      "layout",
+      "separator",
+      "surface-aware"
+    ]
+  },
+  {
+    "name": "HeaderItem",
+    "slug": "headeritem",
+    "intent": "A single SecondaryNav tab (Figma Header.Item). Renders a text label with optional start/end icon slots; `active` selects the current tab.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "headeritem",
+      "navigation",
+      "header",
+      "tab",
+      "compound"
+    ]
+  },
+  {
+    "name": "HeaderNative",
+    "slug": "headernative",
+    "intent": "App-shell header micropattern. Root renders a PrimaryNav chrome row (homeBar/contextBar/searchBar) and an optional SecondaryNav row of HeaderItem tabs, plus an optional bottom divider. `expanded` switches to a two-row layout with a Headline/L title on row two.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "headernative",
+      "navigation",
+      "header",
+      "app-shell",
+      "compound",
+      "surface-aware"
+    ]
+  },
+  {
+    "name": "Icon",
+    "slug": "icon",
+    "intent": "Semantic icon. Resolves the `icon` glyph (semantic name, ReactElement, or JDS icon component reference) and inherits colour from the parent text/content token via `appearance` + `emphasis`. Never accept raw hex colours.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "icon",
+      "icon",
+      "chassis"
+    ]
+  },
+  {
+    "name": "IconButton",
+    "slug": "iconbutton",
+    "intent": "Icon-only call-to-action sharing the Button family state model. Attention high/medium/low maps to bold/subtle/ghost, 9 appearances + auto, six dimension step sizes (4/6/8/10/12/14). `aria-label` is mandatory — it is the sole accessible name. Adapts on coloured surfaces via the parent <Surface> cascade.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "iconbutton",
+      "cta",
+      "action",
+      "interactive",
+      "icon-only"
+    ]
+  },
+  {
+    "name": "IconContained",
+    "slug": "iconcontained",
+    "intent": "Non-interactive icon in a tinted container (role=\"image\"). attention high = bold fill, medium = subtle tint, resolved against the parent <Surface>. Five sizes (xs…xl), 9 appearances. Pass a JDS <Icon> / glyph component for `icon`. Use IconButton for an interactive version.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "iconcontained",
+      "display",
+      "icon",
+      "media",
+      "surface-aware"
+    ]
+  },
+  {
+    "name": "Image",
+    "slug": "image",
+    "intent": "Responsive image with aspect-ratio presets, fit modes, and an optional interactive (tappable, state-layer) mode. `src` + `alt` required; alt is the accessible name. `fit` wins over `objectFit`. Falls back to `fallback` node or `fallbackSrc` on error.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "image",
+      "display",
+      "media",
+      "image",
+      "surface-aware"
+    ]
+  },
+  {
+    "name": "IndicatorBadge",
+    "slug": "indicatorbadge",
+    "intent": "Contentless status dot (\"unread\" affordance). Five sizes. `appearance` inherits from a slot-owning parent (Badge/Button) when unset, else primary; fills from the bold surface. Hidden from assistive tech unless `aria-label` is set. Use CounterBadge for a count.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "indicatorbadge",
+      "display",
+      "status",
+      "indicator",
+      "surface-aware"
+    ]
+  },
+  {
+    "name": "Input",
+    "slug": "input",
+    "intent": "Labelled text input. Pairs a single-line field with structured label / helper / error text rendered via Text role tokens.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "input",
+      "input",
+      "form",
+      "chassis"
+    ]
+  },
+  {
+    "name": "InputDynamicText",
+    "slug": "inputdynamictext",
+    "intent": "Helper row under an input — leading copy (e.g. char counter) + optional trailing low-attention condensed Button. Hides when both empty. Leading copy supports a live region for dynamic updates. Three sizes (s/m/l).",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "inputdynamictext",
+      "form",
+      "helper",
+      "input"
+    ]
+  },
+  {
+    "name": "InputFeedback",
+    "slug": "inputfeedback",
+    "intent": "Validation / feedback row under an input. variant = semantic role, attention = low(text)/medium(tint)/high(fill), size s/m/l. Negative announces as assertive alert; others as polite status. customIcon overrides the variant-default icon. Empty message renders nothing.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "inputfeedback",
+      "form",
+      "feedback",
+      "validation",
+      "surface-aware"
+    ]
+  },
+  {
+    "name": "InputField",
+    "slug": "inputfield",
+    "intent": "Full text-input field stack: label/description header + bordered Input + optional feedback + dynamic-text rows. Owns the label (not delegated). appearance=\"auto\" → secondary; attention medium=outlined / high=filled; shape default|pill. Root View is decorative — the inner Input carries focus + a11y.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "inputfield",
+      "form",
+      "field",
+      "input",
+      "composition"
+    ]
+  },
+  {
+    "name": "ListItem",
+    "slug": "listitem",
+    "intent": "Surface-aware list row with optional decorative start/end slots and structured title/support content or a custom content node. Four sizes, full-width/rounded layouts, condensed spacing, divider control, and idle/medium/high selection emphasis. `appearance=\"auto\"` inherits a supported parent Surface appearance. Add `onPress` or `onClick` to make the complete row one accessible button.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "listitem",
+      "list",
+      "row",
+      "display",
+      "navigation",
+      "interactive",
+      "surface-aware"
+    ]
+  },
+  {
+    "name": "Logo",
+    "slug": "logo",
+    "intent": "Brand mark / full logo. Content from children (svg node) / svgContent (string) / src (image). `alt` required — meaningful = image|button role, empty = decorative (hidden). Optional interactive (tappable) mode. Five sizes + custom.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "logo",
+      "display",
+      "brand",
+      "media",
+      "surface-aware"
+    ]
+  },
+  {
+    "name": "Modal",
+    "slug": "modal",
+    "intent": "A popup dialog that demands user attention and interaction.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "modal",
+      "overlay",
+      "dialog",
+      "popup"
+    ]
+  },
+  {
+    "name": "Pagination",
+    "slug": "pagination",
+    "intent": "Numbered page navigator. Renders numbered chips with sibling/boundary-driven ellipsis collapsing, plus optional prev/next and first/last IconButton navigation. Controlled (`page`) or uncontrolled (`defaultPage`). Selected chip variant resolves from `attention` (high → bold, medium → subtle, low → outlined ghost).",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "pagination",
+      "navigation",
+      "pagination",
+      "surface-aware"
+    ]
+  },
+  {
+    "name": "PaginationDots",
+    "slug": "paginationdots",
+    "intent": "Carousel / page position indicator. Count-driven (renders `count` dots, not children) with a sliding max-5 window and three dot states (active / regular / edge). Controlled or uncontrolled active index; optional loop. readOnly → progressbar, otherwise tablist of tappable dots.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "paginationdots",
+      "navigation",
+      "pagination",
+      "indicator",
+      "surface-aware"
+    ]
+  },
+  {
+    "name": "PrimaryNav",
+    "slug": "primarynav",
+    "intent": "HeaderNative chrome row — logo/back (startSlot), optional title/search, end actions (endSlot), optional avatar (avatarSlot). No children slot.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "primarynav",
+      "navigation",
+      "header",
+      "app-shell",
+      "compound"
+    ]
+  },
+  {
+    "name": "Progress",
+    "slug": "progress",
+    "intent": "Linear progress bar. Determinate when `value` is set (exposes accessibilityValue); indeterminate (busy, animated) when `value` is omitted. Three sizes (small / medium / large). Honours reduce-motion. No appearance prop — single-role fill over a subtle rail.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "progress",
+      "feedback",
+      "progress",
+      "surface-aware"
+    ]
+  },
+  {
+    "name": "Radio",
+    "slug": "radio",
+    "intent": "Single-selection control (leaf). Controlled via `checked` / uncontrolled via `defaultChecked`; mutual exclusion is owned by the parent (RadioField). `appearance=\"auto\"` → secondary stack; dot + ring resolve against the parent <Surface>.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "radio",
+      "form",
+      "selection",
+      "control",
+      "surface-aware"
+    ]
+  },
+  {
+    "name": "RadioField",
+    "slug": "radiofield",
+    "intent": "Field shell around Radio that OWNS single-selection. Integrated-single / multi-option (RadioGroup) / plain-option modes by children count. Drive multi mode with value/onValueChange. Adds header, required asterisk, info-icon slot, error/feedback and dynamic-text rows, orientation.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "radiofield",
+      "form",
+      "field",
+      "selection",
+      "composition"
+    ]
+  },
+  {
+    "name": "Scrim",
+    "slug": "scrim",
+    "intent": "A layout fade or overlay tint used to improve legibility of content resting on images or complex backgrounds.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "scrim",
+      "layout",
+      "overlay",
+      "background"
+    ]
+  },
+  {
+    "name": "SecondaryNav",
+    "slug": "secondarynav",
+    "intent": "HeaderNative tab row — a set of HeaderItem tabs. Rendered only when HeaderNative.secondaryNav is true.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "secondarynav",
+      "navigation",
+      "header",
+      "tabs",
+      "compound"
+    ]
+  },
+  {
+    "name": "SegmentedControl",
+    "slug": "segmentedcontrol",
+    "intent": "Single-select segmented control. Compound API: root manages selection state (controlled via `value` or uncontrolled via `defaultValue`) and track paint; `SegmentedControl.Item` renders each segment with optional icon/CounterBadge slots. `attention` drives selected-segment prominence (bold/subtle), `trackEmphasis` drives the track container prominence, `shape` is pill or rectangular, `type` is text or icon-only.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "segmentedcontrol",
+      "navigation",
+      "selection",
+      "compound",
+      "surface-aware"
+    ]
+  },
+  {
+    "name": "Select",
+    "slug": "select",
+    "intent": "Selection control: a trigger (input / button / iconButton) that opens an anchored dropdown menu. Single-select (check on the chosen row), multi-select (checkbox + optional secondary text), or actions. Optional search header and titled sections. Menu opens below / above / aligned with the trigger. Reuses Input/Button/IconButton + Checkbox; adapts on coloured surfaces via the parent <Surface>.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "select",
+      "form",
+      "selection",
+      "dropdown",
+      "menu",
+      "interactive"
+    ]
+  },
+  {
+    "name": "SelectableButton",
+    "slug": "selectablebutton",
+    "intent": "Toggle button with a persistent selected state. The unselected state is always a muted ghost; `attention` (high/medium/low) drives the selected-state prominence (bold/subtle/ghost-with-border). Supports icon `start`/`end` slots, `contained` (pill container vs inline text/icon), `condensed`, `fullWidth`, `disabled`, and `loading` (busy) states. Controlled via `selected`/`onSelectedChange` or uncontrolled via `defaultSelected` (defaults to true).",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "selectablebutton",
+      "action",
+      "button",
+      "toggle",
+      "selection",
+      "surface-aware",
+      "inherits-appearance"
+    ]
+  },
+  {
+    "name": "SelectableIconButton",
+    "slug": "selectableiconbutton",
+    "intent": "Icon-only toggle button (like / favourite pattern). Toggle sibling of IconButton. The unselected state is always a muted ghost; `attention` (high/medium/low) drives the selected-state prominence (bold fill / subtle fill / ghost-with-accent-border). Supports 6 sizes, `1:1`/`2:3` shape, `condensed`, `contained`, `fullWidth`, `disabled`, and `loading` (busy, non-disabled). Controlled via `selected`/`onSelectedChange` or uncontrolled via `defaultSelected`. `aria-label` is required.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "selectableiconbutton",
+      "action",
+      "icon-button",
+      "toggle",
+      "selection",
+      "surface-aware",
+      "inherits-appearance"
+    ]
+  },
+  {
+    "name": "SelectableSingleTextButton",
+    "slug": "selectablesingletextbutton",
+    "intent": "Circular toggle button carrying a max-2-character label (e.g. \"Ag\", \"En\", \"12\"). Toggle sibling of SingleTextButton. The unselected state is always a muted ghost; `attention` (high/medium/low) drives the selected-state prominence (bold/subtle/ghost-with-border). Supports `condensed`, `fullWidth`, `disabled`, and `loading` (busy, non-disabled). Controlled via `selected`/`onSelectedChange` or uncontrolled via `defaultSelected`.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "selectablesingletextbutton",
+      "action",
+      "button",
+      "toggle",
+      "selection",
+      "circular",
+      "surface-aware",
+      "inherits-appearance"
+    ]
+  },
+  {
+    "name": "SingleTextButton",
+    "slug": "singletextbutton",
+    "intent": "Circular single-text action button (max 2 characters). `attention` (high/medium/low) drives the full visual via surface-resolved bold/subtle/ghost variants. Supports `condensed` and `fullWidth` layout, `loading` (busy, non-disabled) and `disabled` states. Not a toggle — use IconButton/Chip for selection state.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "singletextbutton",
+      "action",
+      "button",
+      "circular",
+      "surface-aware",
+      "inherits-appearance"
+    ]
+  },
+  {
+    "name": "Skeleton",
+    "slug": "skeleton",
+    "intent": "Loading-placeholder primitives. `SkeletonItem` resolves size from explicit width/height, else infers it from children (measured, not painted), else a token fallback box (never 0×0). `SkeletonGroup` wraps SkeletonItem children and staggers each one's shimmer automatically (delay = index × Motion-Offset-L). Single fixed shimmer (colour change), static under reduce-motion. The item is decorative (aria-hidden); the group is the announced loading region.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "skeleton",
+      "feedback",
+      "loading",
+      "placeholder",
+      "skeleton",
+      "shimmer",
+      "surface-aware"
+    ]
+  },
+  {
+    "name": "Slider",
+    "slug": "slider",
+    "intent": "Draggable value slider — single thumb (number) or range (number[]). Optional tick marks, tooltip, and leading/trailing icon slots.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "slider",
+      "form",
+      "input",
+      "slider"
+    ]
+  },
+  {
+    "name": "Stepper",
+    "slug": "stepper",
+    "intent": "Numeric stepper — a value display with decrement/increment controls. `attention` (high/medium/low) drives visual weight; `appearance` resolves colour tokens (auto → nearest <Surface> role, else secondary), with an optional `accent` override for the high-attention fill. Supports min/max clamping, `step`, `shiftMultiplier` (long-press large step), `condensed`, `direction` (ltr/rtl), and `disabled`/`readOnly`/`error`/`required` states. Custom `start`/`end` controls are IconButton-only.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "stepper",
+      "input",
+      "numeric",
+      "stepper",
+      "form",
+      "surface-aware",
+      "inherits-appearance"
+    ]
+  },
+  {
+    "name": "Switch",
+    "slug": "switch",
+    "intent": "A toggle switch for binary states.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "switch",
+      "form",
+      "input",
+      "toggle"
+    ]
+  },
+  {
+    "name": "Tabs",
+    "slug": "tabs",
+    "intent": "A set of tabbed content sections.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "tabs",
+      "navigation",
+      "tabs"
+    ]
+  },
+  {
+    "name": "Text",
+    "slug": "text",
+    "intent": "Typographic primitive. Reads --{Role}-{Size}-FontSize / LineHeight / FontWeight via useTypographyTokens. Every text element in OneUI must be authored through this component, not a raw <Text>.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "text",
+      "typography",
+      "chassis"
+    ]
+  },
+  {
+    "name": "Toast",
+    "slug": "toast",
+    "intent": "Transient feedback toast with semantic type (default/loading/positive/negative/warning/info), visual attention (high/medium/low), announcement priority, optional leading visual, up to two actions, progress, and dismiss. Use ToastProvider + ToastViewport with createToastManager / useToastManager for managed stacks; display-only Toast renders a single static toast.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "toast",
+      "feedback",
+      "status",
+      "overlay",
+      "toast",
+      "surface-aware"
+    ]
+  },
+  {
+    "name": "Tooltip",
+    "slug": "tooltip",
+    "intent": "A brief, contextual popup that displays when hovering or focusing an element.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "tooltip",
+      "overlay",
+      "popup",
+      "hint"
+    ]
+  },
+  {
+    "name": "TouchSlider",
+    "slug": "touchslider",
+    "intent": "An adjustable slider control.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "touchslider",
+      "form",
+      "input",
+      "slider"
+    ]
+  }
+]

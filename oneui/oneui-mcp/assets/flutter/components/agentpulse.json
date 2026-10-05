@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "AgentPulse",
+  "flutterExport": "OneUiAgentPulse",
+  "importPath": "package:ui_flutter/ui_flutter.dart",
+  "generatedAt": "2026-09-04T05:50:48.675Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "OneUiAgentPulse from the ui_flutter barrel. Use Surface context (OneUiSurface) for tinted backgrounds."
+  },
+  "props": [
+    {
+      "name": "state",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "emphasis",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "sizePx",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "amplitude",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "autoTransition",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "paused",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "reducedMotionFallback",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "label",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "ariaLive",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "ariaHidden",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "testId",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    }
+  ]
+}

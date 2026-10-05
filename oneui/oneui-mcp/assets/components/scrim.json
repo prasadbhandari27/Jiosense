@@ -1,0 +1,343 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Scrim",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Non-interactive overlay for media legibility (directional gradient) or modal backdrops (uniform fill). Matches the position, size, attention, variant, and overlay blur axes from Figma.",
+    "taskContexts": [
+      "overlay",
+      "gradient",
+      "backdrop",
+      "media",
+      "legibility"
+    ],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "gradient",
+        "useWhen": [
+          "Gradient"
+        ]
+      },
+      {
+        "name": "overlay",
+        "useWhen": [
+          "Overlay"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "attention",
+      "type": "'low' | 'medium' | 'high'",
+      "required": false,
+      "description": "attention property"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "className property"
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "data-testid property"
+    },
+    {
+      "name": "overlayBlurSize",
+      "type": "'none' | 's' | 'm' | 'l'",
+      "required": false,
+      "defaultValue": "none",
+      "description": "Background blur strength."
+    },
+    {
+      "name": "position",
+      "type": "'bottom' | 'left' | 'top' | 'right' | 'center'",
+      "required": false,
+      "defaultValue": "bottom",
+      "description": "Which edge to anchor the fade to."
+    },
+    {
+      "name": "size",
+      "type": "'xs' | 's' | 'm' | 'l' | 'xl' | 'full'",
+      "required": false,
+      "defaultValue": "s",
+      "description": "How far the fade extends from the edge."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "style property"
+    },
+    {
+      "name": "variant",
+      "type": "'gradient' | 'overlay'",
+      "required": false,
+      "description": "variant property"
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.scrim",
+    "type": "object",
+    "properties": {
+      "attention": {
+        "enum": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "description": "attention property"
+      },
+      "className": {
+        "type": "string",
+        "description": "className property"
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "data-testid property"
+      },
+      "overlayBlurSize": {
+        "enum": [
+          "none",
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "Background blur strength.",
+        "default": "none"
+      },
+      "position": {
+        "enum": [
+          "bottom",
+          "left",
+          "top",
+          "right",
+          "center"
+        ],
+        "description": "Which edge to anchor the fade to.",
+        "default": "bottom"
+      },
+      "size": {
+        "enum": [
+          "xs",
+          "s",
+          "m",
+          "l",
+          "xl",
+          "full"
+        ],
+        "description": "How far the fade extends from the edge.",
+        "default": "s"
+      },
+      "style": {
+        "description": "style property"
+      },
+      "variant": {
+        "enum": [
+          "gradient",
+          "overlay"
+        ],
+        "description": "variant property"
+      }
+    },
+    "oneOf": [
+      {
+        "type": "object",
+        "properties": {
+          "variant": {
+            "enum": [
+              "gradient",
+              "overlay"
+            ],
+            "description": "variant property",
+            "const": "gradient"
+          },
+          "position": {
+            "enum": [
+              "bottom",
+              "left",
+              "top",
+              "right"
+            ],
+            "description": "Which edge to anchor the fade to.",
+            "default": "bottom"
+          },
+          "size": {
+            "enum": [
+              "xs",
+              "s",
+              "m",
+              "l",
+              "xl"
+            ],
+            "description": "How far the fade extends from the edge.",
+            "default": "s"
+          },
+          "attention": {
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "description": "attention property"
+          },
+          "className": {
+            "type": "string",
+            "description": "className property"
+          },
+          "style": {
+            "description": "style property"
+          },
+          "data-testid": {
+            "type": "string",
+            "description": "data-testid property"
+          },
+          "overlayBlurSize": false
+        }
+      },
+      {
+        "type": "object",
+        "properties": {
+          "variant": {
+            "enum": [
+              "gradient",
+              "overlay"
+            ],
+            "description": "variant property",
+            "const": "overlay"
+          },
+          "position": {
+            "enum": [
+              "center"
+            ],
+            "description": "Which edge to anchor the fade to.",
+            "default": "center"
+          },
+          "size": {
+            "enum": [
+              "full"
+            ],
+            "description": "How far the fade extends from the edge.",
+            "default": "full"
+          },
+          "attention": {
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "description": "attention property"
+          },
+          "className": {
+            "type": "string",
+            "description": "className property"
+          },
+          "style": {
+            "description": "style property"
+          },
+          "data-testid": {
+            "type": "string",
+            "description": "data-testid property"
+          },
+          "overlayBlurSize": {
+            "enum": [
+              "none",
+              "s",
+              "m",
+              "l"
+            ],
+            "description": "Background blur strength.",
+            "default": "none"
+          }
+        },
+        "required": [
+          "variant"
+        ]
+      }
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "scrim-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Scrim } from '@oneui/ui';\n\n<Scrim />"
+    },
+    {
+      "id": "scrim-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Scrim\",\n  \"decisions\": []\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "scrim"
+  ],
+  "interactionBehavior": {
+    "summary": "A purely decorative layer, not a click-to-dismiss target. It is `aria-hidden` with `pointer-events: none`, so every press, hover, and focus falls through to whatever sits underneath. Dialog, Modal, BottomSheet, and OverlaySideSheet paint their own `--Scrim` backdrops; those backdrops are what dismiss overlays. This component never registers a click handler.",
+    "press": [
+      "Clicks and taps pass through. There is no `onClick`, no dismiss callback, and no cursor change.",
+      "Use it over media or behind content that must stay interactive. Do not use it as a Modal-style outside-press surface."
+    ]
+  },
+  "importPath": "@jds4/oneui-react",
+  "figma": {
+    "codeConnect": {
+      "componentKey": "b04310b1098c67c2d604359bb8cdcd418e5064f8",
+      "nodeId": "4301:4782"
+    }
+  },
+  "renderHints": {
+    "baseElement": "div",
+    "readsFromSurfaceContext": true
+  },
+  "a11y": {
+    "role": "presentation",
+    "accessibleNameSource": "none"
+  }
+}

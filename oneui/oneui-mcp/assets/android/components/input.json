@@ -1,0 +1,390 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Input",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.251Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Full public API for JdsInput."
+  },
+  "composable": "JdsInput",
+  "attributesClass": "JdsInputAttributes",
+  "importPath": "com.jds.components.input",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.input.JdsInput",
+    "attributes": "com.jds.components.input.JdsInputAttributes",
+    "enums": {
+      "JdsInputSize": "com.jds.components.input.JdsInputSize",
+      "JdsInputAttention": "com.jds.components.input.JdsInputAttention",
+      "Appearance": "com.jds.foundation.token.Appearance",
+      "JdsInputShape": "com.jds.components.input.JdsInputShape"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [
+      "value",
+      "onValueChange"
+    ],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "value",
+      "type": "String",
+      "required": true,
+      "description": ""
+    },
+    {
+      "name": "onValueChange",
+      "type": "(String) -> Unit",
+      "required": true,
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "JdsInputSize",
+      "required": false,
+      "defaultValue": "JdsInputSize.M",
+      "enumValues": [
+        "XS",
+        "S",
+        "M",
+        "L"
+      ],
+      "description": ""
+    },
+    {
+      "name": "attention",
+      "type": "JdsInputAttention",
+      "required": false,
+      "defaultValue": "JdsInputAttention.Medium",
+      "enumValues": [
+        "Medium",
+        "High"
+      ],
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "Appearance",
+      "required": false,
+      "defaultValue": "Appearance.Auto",
+      "enumValues": [
+        "Auto",
+        "Primary",
+        "Secondary",
+        "Sparkle",
+        "BrandBg",
+        "Neutral",
+        "Positive",
+        "Negative",
+        "Warning",
+        "Informative"
+      ],
+      "description": ""
+    },
+    {
+      "name": "shape",
+      "type": "JdsInputShape",
+      "required": false,
+      "defaultValue": "JdsInputShape.Default",
+      "enumValues": [
+        "Default",
+        "Pill"
+      ],
+      "description": ""
+    },
+    {
+      "name": "placeholder",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "start",
+      "type": "JdsSlot?",
+      "required": false,
+      "defaultValue": "null",
+      "slot": true,
+      "slotTypes": [
+        "Icon",
+        "IconButton",
+        "Avatar",
+        "Image",
+        "Text"
+      ],
+      "description": "start: Icon | IconButton | Avatar | Image | Text"
+    },
+    {
+      "name": "start2",
+      "type": "JdsTextAttributes?",
+      "required": false,
+      "defaultValue": "null",
+      "slot": true,
+      "slotTypes": [
+        "Text"
+      ],
+      "description": "start2: Text only — prefix/currency/country-code label"
+    },
+    {
+      "name": "end",
+      "type": "JdsSlot?",
+      "required": false,
+      "defaultValue": "null",
+      "slot": true,
+      "slotTypes": [
+        "Icon",
+        "IconButton",
+        "Text"
+      ],
+      "description": "end: Icon | IconButton | Text"
+    },
+    {
+      "name": "end2",
+      "type": "JdsSlot?",
+      "required": false,
+      "defaultValue": "null",
+      "slot": true,
+      "slotTypes": [
+        "Icon",
+        "IconButton",
+        "Text"
+      ],
+      "description": "end2: Icon | IconButton | Text"
+    },
+    {
+      "name": "disabled",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "readOnly",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "required",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "active",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Force focus/active border chrome (Stroke-XL + appearance Tinted). Used by Select when the menu is open — mirrors Figma `state=active`."
+    },
+    {
+      "name": "error",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": "Non-null: draws error border AND sets error() semantics on BasicTextField."
+    },
+    {
+      "name": "keyboardType",
+      "type": "KeyboardType",
+      "required": false,
+      "defaultValue": "KeyboardType.Text",
+      "description": ""
+    },
+    {
+      "name": "imeAction",
+      "type": "ImeAction",
+      "required": false,
+      "defaultValue": "ImeAction.Default",
+      "description": ""
+    },
+    {
+      "name": "visualTransformation",
+      "type": "VisualTransformation",
+      "required": false,
+      "defaultValue": "VisualTransformation.None",
+      "description": ""
+    },
+    {
+      "name": "keyboardActions",
+      "type": "KeyboardActions",
+      "required": false,
+      "defaultValue": "KeyboardActions.Default",
+      "description": ""
+    },
+    {
+      "name": "contentDescription",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": "Standalone usage: supply the accessible field name (replaces a visible label)."
+    },
+    {
+      "name": "onClick",
+      "type": "(() -> Unit)?",
+      "required": false,
+      "defaultValue": "null",
+      "description": "Optional click handler for trigger/dropdown/picker field presentation."
+    }
+  ],
+  "slots": [
+    {
+      "name": "start",
+      "types": [
+        "Icon",
+        "IconButton",
+        "Avatar",
+        "Image",
+        "Text"
+      ]
+    },
+    {
+      "name": "start2",
+      "types": [
+        "Text"
+      ]
+    },
+    {
+      "name": "end",
+      "types": [
+        "Icon",
+        "IconButton",
+        "Text"
+      ]
+    },
+    {
+      "name": "end2",
+      "types": [
+        "Icon",
+        "IconButton",
+        "Text"
+      ]
+    }
+  ],
+  "enums": {
+    "JdsInputSize": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "JdsInputAttention": [
+      "Medium",
+      "High"
+    ],
+    "Appearance": [
+      "Auto",
+      "Primary",
+      "Secondary",
+      "Sparkle",
+      "BrandBg",
+      "Neutral",
+      "Positive",
+      "Negative",
+      "Warning",
+      "Informative"
+    ],
+    "JdsInputShape": [
+      "Default",
+      "Pill"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.Input",
+    "type": "object",
+    "properties": {
+      "value": {
+        "type": "string"
+      },
+      "onValueChange": {},
+      "size": {
+        "enum": [
+          "XS",
+          "S",
+          "M",
+          "L"
+        ],
+        "default": "JdsInputSize.M"
+      },
+      "attention": {
+        "enum": [
+          "Medium",
+          "High"
+        ],
+        "default": "JdsInputAttention.Medium"
+      },
+      "appearance": {
+        "enum": [
+          "Auto",
+          "Primary",
+          "Secondary",
+          "Sparkle",
+          "BrandBg",
+          "Neutral",
+          "Positive",
+          "Negative",
+          "Warning",
+          "Informative"
+        ],
+        "default": "Appearance.Auto"
+      },
+      "shape": {
+        "enum": [
+          "Default",
+          "Pill"
+        ],
+        "default": "JdsInputShape.Default"
+      },
+      "placeholder": {
+        "type": "string"
+      },
+      "start": {},
+      "start2": {},
+      "end": {},
+      "end2": {},
+      "disabled": {
+        "type": "boolean"
+      },
+      "readOnly": {
+        "type": "boolean"
+      },
+      "required": {
+        "type": "boolean"
+      },
+      "active": {
+        "type": "boolean"
+      },
+      "error": {
+        "type": "string"
+      },
+      "keyboardType": {},
+      "imeAction": {},
+      "visualTransformation": {},
+      "keyboardActions": {},
+      "contentDescription": {
+        "type": "string"
+      },
+      "onClick": {}
+    },
+    "required": [
+      "value",
+      "onValueChange"
+    ]
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "input"
+  ],
+  "importPathMaven": "com.jds:components"
+}

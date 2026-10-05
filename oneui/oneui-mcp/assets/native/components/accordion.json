@@ -1,0 +1,227 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Accordion",
+  "generatedAt": "2026-08-26T06:20:09.511Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Vertically stacked, collapsible content sections. `attention` (high/medium/low) drives visual weight — high → bold fill, medium → subtle/tinted fill (default), low → ghost/transparent with item separators. `appearance` resolves the multi-accent colour role. `size` (s/m/l or numeric f-step) and `attention`/`appearance`/`fullWidth` apply to all items via the root but can be overridden per `AccordionItem`. `multiOpen` allows more than one item open at once (default: single-open). `fullWidth` removes horizontal padding and shows dividers, only applies when attention is low. Items accept `start`/`end` slots and an optional `headerDivider` (subtle variant only, shown while expanded)."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "variadic"
+  },
+  "props": [
+    {
+      "name": "value",
+      "type": "array",
+      "required": false,
+      "description": "Controlled open item values."
+    },
+    {
+      "name": "defaultValue",
+      "type": "array",
+      "required": false,
+      "description": "Uncontrolled initial open item values."
+    },
+    {
+      "name": "onValueChange",
+      "type": "ReactNode",
+      "required": false,
+      "description": "(value: string[]) => void — called when open items change."
+    },
+    {
+      "name": "multiOpen",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Allow more than one item open at once."
+    },
+    {
+      "name": "size",
+      "type": "ReactNode",
+      "required": false,
+      "defaultValue": "m",
+      "description": "'s' | 'm' | 'l' | 8 | 10 | 12 — t-shirt alias or numeric f-step."
+    },
+    {
+      "name": "attention",
+      "type": "'high' | 'medium' | 'low'",
+      "required": false,
+      "defaultValue": "medium",
+      "description": "Controls visual weight (Figma high/medium/low) — high: bold fill, medium: subtle/tinted fill, low: ghost/transparent with separators."
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": ""
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Removes horizontal padding and shows dividers. Only applies when attention is 'low'."
+    },
+    {
+      "name": "style",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Inline native styles on the root wrapper."
+    },
+    {
+      "name": "testID",
+      "type": "string",
+      "required": false,
+      "description": "React Native test identifier."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.Accordion",
+    "type": "object",
+    "properties": {
+      "value": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Controlled open item values."
+      },
+      "defaultValue": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Uncontrolled initial open item values."
+      },
+      "onValueChange": {
+        "description": "(value: string[]) => void — called when open items change."
+      },
+      "multiOpen": {
+        "type": "boolean",
+        "default": false,
+        "description": "Allow more than one item open at once."
+      },
+      "size": {
+        "description": "'s' | 'm' | 'l' | 8 | 10 | 12 — t-shirt alias or numeric f-step.",
+        "default": "m"
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "default": "medium",
+        "description": "Controls visual weight (Figma high/medium/low) — high: bold fill, medium: subtle/tinted fill, low: ghost/transparent with separators."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "default": "auto"
+      },
+      "fullWidth": {
+        "type": "boolean",
+        "default": false,
+        "description": "Removes horizontal padding and shows dividers. Only applies when attention is 'low'."
+      },
+      "style": {
+        "description": "Inline native styles on the root wrapper."
+      },
+      "testID": {
+        "type": "string",
+        "description": "React Native test identifier."
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "neutral",
+      "sparkle",
+      "brand-bg",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ],
+    "surface": [
+      "bold",
+      "subtle",
+      "ghost"
+    ],
+    "typography": [
+      "label.S",
+      "label.M",
+      "label.L",
+      "body.S",
+      "body.M",
+      "body.L"
+    ],
+    "shape": [
+      "S",
+      "M",
+      "L"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "button",
+    "accessibilityState": [
+      "expanded",
+      "disabled"
+    ],
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [
+      "press"
+    ],
+    "honorsReduceMotion": true,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-accordion-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "Accordion"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Accordion } from '@oneui/ui-native/components/Accordion';\n\n<Accordion />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "accordion",
+    "layout",
+    "disclosure",
+    "collapsible",
+    "surface-aware"
+  ],
+  "importPath": "@oneui/ui-native/components/Accordion"
+}

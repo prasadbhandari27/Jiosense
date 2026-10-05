@@ -1,0 +1,236 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Chip",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.247Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Public API contract for JdsChip."
+  },
+  "composable": "JdsChip",
+  "attributesClass": "JdsChipAttributes",
+  "importPath": "com.jds.components.chip",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.chip.JdsChip",
+    "attributes": "com.jds.components.chip.JdsChipAttributes",
+    "enums": {
+      "JdsChipAttention": "com.jds.components.chip.JdsChipAttention",
+      "JdsChipSize": "com.jds.components.chip.JdsChipSize",
+      "Appearance": "com.jds.foundation.token.Appearance"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [
+      "onSelectedChange"
+    ],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "label",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "selected",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "onSelectedChange",
+      "type": "(Boolean) -> Unit",
+      "required": true,
+      "description": ""
+    },
+    {
+      "name": "attention",
+      "type": "JdsChipAttention",
+      "required": false,
+      "defaultValue": "JdsChipAttention.HIGH",
+      "enumValues": [
+        "HIGH",
+        "MEDIUM",
+        "LOW"
+      ],
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "JdsChipSize",
+      "required": false,
+      "defaultValue": "JdsChipSize.M",
+      "enumValues": [
+        "S",
+        "M",
+        "L"
+      ],
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "Appearance",
+      "required": false,
+      "defaultValue": "Appearance.Secondary",
+      "enumValues": [
+        "Auto",
+        "Primary",
+        "Secondary",
+        "Sparkle",
+        "BrandBg",
+        "Neutral",
+        "Positive",
+        "Negative",
+        "Warning",
+        "Informative"
+      ],
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "start",
+      "type": "JdsSlot?",
+      "required": false,
+      "defaultValue": "null",
+      "slot": true,
+      "slotTypes": [],
+      "description": ""
+    },
+    {
+      "name": "end",
+      "type": "JdsSlot?",
+      "required": false,
+      "defaultValue": "null",
+      "slot": true,
+      "slotTypes": [],
+      "description": ""
+    },
+    {
+      "name": "contentDescription",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "value",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": "Optional value for a future ChipGroup; ignored by the standalone chip."
+    }
+  ],
+  "slots": [
+    {
+      "name": "start",
+      "types": []
+    },
+    {
+      "name": "end",
+      "types": []
+    }
+  ],
+  "enums": {
+    "JdsChipAttention": [
+      "HIGH",
+      "MEDIUM",
+      "LOW"
+    ],
+    "JdsChipSize": [
+      "S",
+      "M",
+      "L"
+    ],
+    "Appearance": [
+      "Auto",
+      "Primary",
+      "Secondary",
+      "Sparkle",
+      "BrandBg",
+      "Neutral",
+      "Positive",
+      "Negative",
+      "Warning",
+      "Informative"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.Chip",
+    "type": "object",
+    "properties": {
+      "label": {
+        "type": "string"
+      },
+      "selected": {
+        "type": "boolean"
+      },
+      "onSelectedChange": {},
+      "attention": {
+        "enum": [
+          "HIGH",
+          "MEDIUM",
+          "LOW"
+        ],
+        "default": "JdsChipAttention.HIGH"
+      },
+      "size": {
+        "enum": [
+          "S",
+          "M",
+          "L"
+        ],
+        "default": "JdsChipSize.M"
+      },
+      "appearance": {
+        "enum": [
+          "Auto",
+          "Primary",
+          "Secondary",
+          "Sparkle",
+          "BrandBg",
+          "Neutral",
+          "Positive",
+          "Negative",
+          "Warning",
+          "Informative"
+        ],
+        "default": "Appearance.Secondary"
+      },
+      "disabled": {
+        "type": "boolean"
+      },
+      "start": {},
+      "end": {},
+      "contentDescription": {
+        "type": "string"
+      },
+      "value": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "onSelectedChange"
+    ]
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "chip"
+  ],
+  "importPathMaven": "com.jds:components"
+}

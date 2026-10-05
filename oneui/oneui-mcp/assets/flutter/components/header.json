@@ -1,0 +1,344 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Header",
+  "flutterExport": "OneUiHeader",
+  "importPath": "package:ui_flutter/ui_flutter.dart",
+  "generatedAt": "2026-09-04T05:50:48.675Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "OneUiHeader from the ui_flutter barrel. Use Surface context (OneUiSurface) for tinted backgrounds."
+  },
+  "props": [
+    {
+      "name": "layout",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "type",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "expanded",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "divider",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "start",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "end",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "avatar",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "secondaryText",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "searchInput",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "searchInputPosition",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "middle",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "showPrimaryNavItems",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "primaryNavItems",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "showMenuButton",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onMenuOpen",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "breakpoint",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "logo",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "secondaryTextValue",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onBack",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "backSemanticsLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "endActions",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "endActionsType",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "avatarWidget",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "searchPlaceholder",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "searchValue",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onSearchChanged",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onSearchSubmit",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onSearchMic",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onSearchFilter",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onSearchOpen",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "searchTriggerSemanticsLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "secondaryNav",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "secondaryNavType",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "showSecondaryNavItems",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "secondaryNavSubheader",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "secondaryNavEndActions",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "navItems",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "navActiveValue",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "navDefaultActiveValue",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onNavActiveValueChange",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "navAttention",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "primaryNavAttention",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "secondaryNavAttention",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "secondaryNavAlignFirstToStart",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "primaryNavActiveValue",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "primaryNavDefaultActiveValue",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onPrimaryNavActiveValueChange",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "loopNavFocus",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "semanticsLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "navSemanticsLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "primaryNavSemanticsLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "testId",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    }
+  ]
+}

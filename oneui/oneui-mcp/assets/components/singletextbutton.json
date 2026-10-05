@@ -1,0 +1,307 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "SingleTextButton",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Circular single-text action button (max 2 characters, e.g. \"Ag\", \"En\"). Attention level drives the visual: high=bold fill, medium=subtle fill, low=ghost. 3 sizes (S/M/L). Shape customisable per brand.",
+    "taskContexts": [],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "high",
+        "useWhen": [
+          "High"
+        ]
+      },
+      {
+        "name": "medium",
+        "useWhen": [
+          "Medium"
+        ]
+      },
+      {
+        "name": "low",
+        "useWhen": [
+          "Low"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": true,
+      "description": "Text label content — max 2 characters (e.g. \"Ag\", \"En\", \"A\", \"12\"). This component renders as a circular button; longer text breaks the shape. Text exceeding 2 characters will be truncated in development with a warning."
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative' | 'tertiary' | 'quaternary'",
+      "required": false,
+      "description": "Multi-accent appearance role. 'auto' resolves to 'primary'. Default: 'auto'."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label for screen readers (optional — children text is visible)."
+    },
+    {
+      "name": "attention",
+      "type": "'high' | 'medium' | 'low'",
+      "required": false,
+      "description": "Attention level — drives the visual variant. high → bold fill (solid accent bg, on-bold-high text) medium → subtle fill (tinted bg, accent text) low → ghost (transparent bg, accent text) Default: 'high'."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name."
+    },
+    {
+      "name": "condensed",
+      "type": "boolean",
+      "required": false,
+      "description": "Condensed mode: shrinks the circular hit box and steps typography down one Label rung (S→XS, M→S, L→M). Spinner size stays tied to `size`."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the button is disabled."
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "required": false,
+      "description": "Stretch to fill container width — overrides circular shape."
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "required": false,
+      "description": "Loading state — shows circular progress indicator replacing the text label. Disables interaction while loading."
+    },
+    {
+      "name": "onClick",
+      "type": "() => void",
+      "required": false,
+      "description": "Web-only alias for onPress."
+    },
+    {
+      "name": "onPress",
+      "type": "() => void",
+      "required": false,
+      "description": "onPress property"
+    },
+    {
+      "name": "size",
+      "type": "'s' | 'm' | 'l'",
+      "required": false,
+      "description": "Button size. Default: 'm'. S/M/L only (no XS)."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles."
+    },
+    {
+      "name": "type",
+      "type": "'button' | 'submit' | 'reset'",
+      "required": false,
+      "description": "HTML button type attribute."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.single-text-button",
+    "type": "object",
+    "properties": {
+      "children": {
+        "description": "Text label content — max 2 characters (e.g. \"Ag\", \"En\", \"A\", \"12\"). This component renders as a circular button; longer text breaks the shape. Text exceeding 2 characters will be truncated in development with a warning."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "tertiary",
+          "quaternary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. 'auto' resolves to 'primary'. Default: 'auto'."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label for screen readers (optional — children text is visible)."
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "description": "Attention level — drives the visual variant. high → bold fill (solid accent bg, on-bold-high text) medium → subtle fill (tinted bg, accent text) low → ghost (transparent bg, accent text) Default: 'high'."
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name."
+      },
+      "condensed": {
+        "type": "boolean",
+        "description": "Condensed mode: shrinks the circular hit box and steps typography down one Label rung (S→XS, M→S, L→M). Spinner size stays tied to `size`."
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Whether the button is disabled."
+      },
+      "fullWidth": {
+        "type": "boolean",
+        "description": "Stretch to fill container width — overrides circular shape."
+      },
+      "loading": {
+        "type": "boolean",
+        "description": "Loading state — shows circular progress indicator replacing the text label. Disables interaction while loading."
+      },
+      "onClick": {
+        "description": "Web-only alias for onPress."
+      },
+      "onPress": {
+        "description": "onPress property"
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "Button size. Default: 'm'. S/M/L only (no XS)."
+      },
+      "style": {
+        "description": "Inline styles."
+      },
+      "type": {
+        "description": "HTML button type attribute."
+      }
+    },
+    "required": [
+      "children"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "single-text-button-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { SingleTextButton } from '@oneui/ui';\n\n<SingleTextButton />"
+    },
+    {
+      "id": "single-text-button-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"SingleTextButton\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "single-text-button"
+  ],
+  "interactionBehavior": {
+    "summary": "SingleTextButton is an action button, not a toggle — there is no selected state. It scales UP on press (`--Motion-Tap-Scale-Up`, 7%), the opposite direction to Button's squash and the same as IconButton, while the fill steps to a hover/pressed token for the resolved attention level. `loading` implies disabled and REPLACES the 1–2 character label with a spinner (the letters leave the tree). `type` defaults to `\"button\"`, unlike Button and LinkButton which inherit native `submit`.",
+    "hover": [
+      "The fill steps to the hover token for the resolved attention level: `--{Role}-Bold-Hover` at `attention=\"high\"`, `--{Role}-Subtle-Hover` at `medium`, `--{Role}-Hover` at `low`.",
+      "Only the background changes; the label colour stays put.",
+      "A brand material (gradient) fill at `attention=\"high\"` keeps `--{Role}-Material-Fill` on hover, because swapping a flat colour over a gradient reads as a glitch.",
+      "Wrapped in `@media (hover: hover)` and qualified with `:not([data-disabled])`, so a touch tap never leaves a stuck fill and disabled/loading never hover."
+    ],
+    "press": [
+      "The fill deepens to `--{Role}-Bold-Pressed`, `--{Role}-Subtle-Pressed`, or `--{Role}-Pressed` by attention level. High-attention material fills stay on `--{Role}-Material-Fill`.",
+      "The whole button scales UP: `scale(calc(1 + var(--_tap-direction) * var(--_tap-scale) / 100))` with `--Motion-Tap-Scale-Up` at 7% and `--_tap-direction: 1`. Button scales DOWN; this matches IconButton instead.",
+      "`fullWidth` does NOT reduce the tap-scale — unlike Button, there is no `--Motion-Tap-Scale-FullWidth` remap, so a stretched circular-turned-pill still grows 7%.",
+      "Press is NOT `(hover: hover)`-guarded, so a finger tap gets the fill and the scale-up."
+    ],
+    "focus": [
+      "Keyboard focus draws the two-layer halo: an inner `--Stroke-XL` gap ring in `--Surface-Halo-Gap` plus an outer `--Focus-Outline` ring, so it survives a tinted `<Surface>`.",
+      "`:focus` alone only clears the native outline; the visible ring is `:focus-visible`, so a mouse click does not paint it.",
+      "The halo follows `--SingleTextButton-borderRadius` (default `--Shape-Pill`)."
+    ],
+    "keyboard": [
+      "Renders a native `<button>`, so `Enter` and `Space` both activate it — `Enter` is covered by a unit test.",
+      "`type` defaults to `\"button\"` (`type={typeProp ?? 'button'}`), so it will not submit an enclosing form unless you pass `type=\"submit\"`.",
+      "Disabled and loading buttons are removed from the tab order because the native `disabled` attribute is applied."
+    ],
+    "loading": [
+      "`loading` implies disabled — `isDisabled = disabled || loading` — so the native `disabled` attribute is set and `onClick` / `onPress` stop firing.",
+      "`aria-busy=\"true\"` and `data-loading` are set.",
+      "The label is REPLACED in the tree by a `CircularProgressIndicator` (ternary, not `opacity: 0`), so the accessible name falls back to `aria-label` if you passed one — the letters themselves are gone.",
+      "The spinner stroke is forced to `currentColor` and the track is transparent, so on `attention=\"high\"` the arc stays readable against `--{Role}-Bold` instead of painting the same purple-on-purple.",
+      "The whole button dims to `--Loading-Opacity` and takes `pointer-events: none`."
+    ],
+    "disabled": [
+      "Dims to `--Disabled-Opacity` and sets `cursor: not-allowed` plus `pointer-events: none` on both `[data-disabled]` and `:disabled`.",
+      "Because the element is natively `disabled` AND has `pointer-events: none`, the `not-allowed` cursor is not observable — the pointer shows the parent's cursor. Known, accepted system-wide gap (see docs/design/disabled-states.md).",
+      "Hover and press fills, and the tap-scale, are all qualified with `:not([data-disabled])`."
+    ],
+    "touch": [
+      "Hover fills never apply on touch-only devices; the pressed fill plus the 7% scale-up are the entire response to a tap.",
+      "Growing on press is the right direction for a control this small — the circle expands out from under the fingertip that is covering the letters."
+    ]
+  },
+  "importPath": "@jds4/oneui-react",
+  "renderHints": {
+    "baseElement": "button",
+    "readsFromSurfaceContext": true
+  },
+  "a11y": {
+    "role": "button",
+    "minTouchTarget": 44,
+    "accessibleNameSource": "children"
+  }
+}

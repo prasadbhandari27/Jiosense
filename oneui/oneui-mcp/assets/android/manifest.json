@@ -1,0 +1,12 @@
+{
+  "snapshotVersion": "1.0.0",
+  "generatedAt": "2026-07-28T10:09:58.265Z",
+  "source": {
+    "library": "jds_mobile/android/components",
+    "path": "/Users/virat.shukla/Developer/new_setup/jds_mobile/android/components/src/commonMain/kotlin/com/jds/components"
+  },
+  "schemaVersion": "1.0.0",
+  "counts": {
+    "components": 52
+  }
+}

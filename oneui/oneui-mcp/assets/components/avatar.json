@@ -1,0 +1,332 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Avatar",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Display a user or entity representation as image, icon, or text initials.",
+    "taskContexts": [
+      "user-profile",
+      "contact-list",
+      "comment-attribution",
+      "navigation-header"
+    ],
+    "sentiments": [
+      "neutral",
+      "positive"
+    ]
+  },
+  "compositionRules": {
+    "requires": [
+      "alt text for accessibility"
+    ],
+    "allows": [
+      "image src",
+      "icon element",
+      "text initials via alt"
+    ],
+    "forbids": [
+      "interactive content within avatar"
+    ]
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "image",
+        "useWhen": [
+          "user has a profile photo"
+        ]
+      },
+      {
+        "name": "icon",
+        "useWhen": [
+          "generic entity or placeholder representation"
+        ]
+      },
+      {
+        "name": "text",
+        "useWhen": [
+          "no image available, display initials"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": [
+      "IconContained",
+      "Image"
+    ]
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [
+      "impression"
+    ],
+    "health": [
+      "a11y_violations",
+      "image_load_failure_rate"
+    ]
+  },
+  "props": [
+    {
+      "name": "alt",
+      "type": "string",
+      "required": false,
+      "description": "Alt text / name used for accessibility and initials extraction"
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "description": "Multi-accent appearance role. 'auto' resolves to 'primary'."
+    },
+    {
+      "name": "attention",
+      "type": "'high' | 'medium' | 'low'",
+      "required": false,
+      "description": "Attention level — High (filled), Medium (tinted), Low (transparent). Default: 'high'"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "content",
+      "type": "'image' | 'icon' | 'text'",
+      "required": false,
+      "description": "Display content: image, icon, or text (initials). Aligns with Figma property `content`."
+    },
+    {
+      "name": "customSize",
+      "type": "number",
+      "required": false,
+      "description": "Custom diameter in pixels when `size='custom'`. Defaults to 60 to match the Figma custom specimen (node 31:134)."
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "Test automation id — forwarded to the root element."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Disabled state"
+    },
+    {
+      "name": "fallback",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Custom fallback content when image fails or for icon/text content"
+    },
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Icon element (when content is icon)"
+    },
+    {
+      "name": "onClick",
+      "type": "() => void",
+      "required": false,
+      "description": "Web alias for `onPress`."
+    },
+    {
+      "name": "onPress",
+      "type": "() => void",
+      "required": false,
+      "description": "Click handler — when set, the avatar renders as an interactive Base UI button."
+    },
+    {
+      "name": "size",
+      "type": "'2xs' | 'xs' | 's' | 'm' | 'l' | 'xl' | '2xl' | 'custom'",
+      "required": false,
+      "description": "Size preset. Default: 'm'"
+    },
+    {
+      "name": "src",
+      "type": "string",
+      "required": false,
+      "description": "Image source URL (when content is image)"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.avatar",
+    "type": "object",
+    "properties": {
+      "alt": {
+        "type": "string",
+        "description": "Alt text / name used for accessibility and initials extraction"
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. 'auto' resolves to 'primary'."
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "description": "Attention level — High (filled), Medium (tinted), Low (transparent). Default: 'high'"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "content": {
+        "enum": [
+          "image",
+          "icon",
+          "text"
+        ],
+        "description": "Display content: image, icon, or text (initials). Aligns with Figma property `content`."
+      },
+      "customSize": {
+        "type": "number",
+        "description": "Custom diameter in pixels when `size='custom'`. Defaults to 60 to match the Figma custom specimen (node 31:134)."
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "Test automation id — forwarded to the root element."
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Disabled state"
+      },
+      "fallback": {
+        "description": "Custom fallback content when image fails or for icon/text content"
+      },
+      "icon": {
+        "description": "Icon element (when content is icon)"
+      },
+      "onClick": {
+        "description": "Web alias for `onPress`."
+      },
+      "onPress": {
+        "description": "Click handler — when set, the avatar renders as an interactive Base UI button."
+      },
+      "size": {
+        "enum": [
+          "2xs",
+          "xs",
+          "s",
+          "m",
+          "l",
+          "xl",
+          "2xl",
+          "custom"
+        ],
+        "description": "Size preset. Default: 'm'"
+      },
+      "src": {
+        "type": "string",
+        "description": "Image source URL (when content is image)"
+      },
+      "style": {
+        "description": "Inline styles"
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "avatar-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Avatar } from '@oneui/ui';\n\n<Avatar src=\"/photo.jpg\" alt=\"Jane Doe\" />"
+    },
+    {
+      "id": "avatar-initials",
+      "title": "Text Initials",
+      "language": "tsx",
+      "code": "<Avatar content=\"text\" alt=\"Jane Doe\" />"
+    },
+    {
+      "id": "avatar-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Avatar\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "avatar"
+  ],
+  "interactionBehavior": {
+    "summary": "Avatar is presentational by default — a non-focusable `<span role=\"img\">` with no hover, press, or focus paint. Passing `onPress` or `onClick` is what flips it: the root becomes a Base UI `<button>`, `cursor: pointer` appears, and keyboard focus draws the two-layer halo. There is still no hover or pressed fill, and no tap-scale, so the only visual acknowledgement of a click is that native button activation (plus the halo if you tabbed there).",
+    "focus": [
+      "Only the interactive variant (`onPress` / `onClick` set) is focusable — it is a real `<button>`. The default `<span>` is not in the tab order.",
+      "Keyboard focus draws the two-layer halo: an inner `--Stroke-XL` gap ring in `--Surface-Halo-Gap` plus an outer `--Focus-Outline` ring (spread is `--Stroke-XL` + `--Focus-Outline-Width`), so it stays legible inside a tinted `<Surface>`.",
+      "`:focus` alone clears the native outline — the visible indicator is `:focus-visible` only, so a mouse click does not paint a ring."
+    ],
+    "keyboard": [
+      "The interactive variant is a native `<button type=\"button\">`, so `Enter` and `Space` both activate it with no custom key handling.",
+      "`handleActivate` no-ops when `disabled`, and the native `disabled` attribute is set, so the click / key handlers never fire.",
+      "A presentational Avatar (no `onPress` / `onClick`) cannot be focused or activated from the keyboard."
+    ],
+    "disabled": [
+      "Dims to `--Avatar-disabledOpacity` (falls back to `--Disabled-Opacity`) on both the presentational and interactive roots.",
+      "The CSS sets `cursor: not-allowed` but does **not** set `pointer-events: none` — the interactive variant is a native `<button disabled>`, which already blocks activation on its own.",
+      "On that native disabled button, browsers ignore `cursor`, so `not-allowed` is not actually observable; the pointer shows the parent's cursor. This is the known system-wide gap (see docs/design/disabled-states.md). The presentational `<span>` has no `pointer-events: none`, so `not-allowed` can show there.",
+      "There is no loading state, and `disabled` does not imply one."
+    ],
+    "touch": [
+      "There is no hover fill and no press fill or tap-scale, so a finger tap on an interactive Avatar has no painted acknowledgement — only the native button click.",
+      "The whole circular root is the hit target; there is no inner control to miss."
+    ]
+  },
+  "importPath": "@jds4/oneui-react",
+  "figma": {
+    "componentKey": "jds-avatar-v4"
+  },
+  "renderHints": {
+    "baseElement": "img",
+    "readsFromSurfaceContext": true
+  },
+  "a11y": {
+    "role": "img",
+    "minTouchTarget": 44,
+    "accessibleNameSource": "aria-label"
+  }
+}

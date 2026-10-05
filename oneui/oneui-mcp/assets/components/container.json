@@ -1,0 +1,601 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Container",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Page-width shell (`fluid` / `fixed` / `full-bleed`) and declarative layout root. On web the node is always `<Surface>` (default `surface=\"ghost\"`) so children get `[data-surface]` token context without an opaque page fill. Omit `layout` for normal block flow; set `layout` to `flex` or `grid` for token-backed flex/grid. Spacing props use spacing scale keys, not raw px.",
+    "taskContexts": [
+      "container",
+      "layout",
+      "wrapper",
+      "page-width",
+      "flex",
+      "grid",
+      "spacing",
+      "surface",
+      "a2ui"
+    ],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [
+      "children"
+    ],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "fluid",
+        "useWhen": [
+          "Fluid"
+        ]
+      },
+      {
+        "name": "fixed",
+        "useWhen": [
+          "Fixed"
+        ]
+      },
+      {
+        "name": "full-bleed",
+        "useWhen": [
+          "Full bleed"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "align",
+      "type": "'start' | 'center' | 'end' | 'stretch' | 'baseline'",
+      "required": false,
+      "description": "Maps to `align-items` when `layout` is `flex` or `grid`."
+    },
+    {
+      "name": "alignSelf",
+      "type": "'start' | 'center' | 'end' | 'stretch' | 'baseline'",
+      "required": false,
+      "description": "When this `Container` is a flex/grid item, maps to `align-self`."
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "description": "Multi-accent role for the root `<Surface>` — passed through as `appearance` (Surface defaults to `'auto'` when omitted)."
+    },
+    {
+      "name": "as",
+      "type": "ElementType",
+      "required": false,
+      "description": "as property"
+    },
+    {
+      "name": "basis",
+      "type": "'auto' | 'full' | 'fit' | 'min' | 'max' | '0' | '0-5' | '1' | '1-5' | '2' | '2-5' | '3' | '3-5' | '4' | '4-5' | '5' | '5-5' | '6' | '7' | '8' | '9' | '10' | '12' | '14' | '16' | '18' | '20' | '24' | '28' | '32' | '40' | 'margin' | 'gutter'",
+      "required": false,
+      "description": "`flex-basis` when `flex` is omitted."
+    },
+    {
+      "name": "bottom",
+      "type": "string",
+      "required": false,
+      "description": "bottom property"
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "children property"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "className property"
+    },
+    {
+      "name": "columnGap",
+      "type": "'0' | '0-5' | '1' | '1-5' | '2' | '2-5' | '3' | '3-5' | '4' | '4-5' | '5' | '5-5' | '6' | '7' | '8' | '9' | '10' | '12' | '14' | '16' | '18' | '20' | '24' | '28' | '32' | '40' | 'margin' | 'gutter'",
+      "required": false,
+      "description": "columnGap property"
+    },
+    {
+      "name": "columns",
+      "type": "ContainerColumns",
+      "required": false,
+      "description": "columns property"
+    },
+    {
+      "name": "direction",
+      "type": "'row' | 'column'",
+      "required": false,
+      "description": "direction property"
+    },
+    {
+      "name": "flex",
+      "type": "number | string",
+      "required": false,
+      "description": "Flex shorthand on the root (`flex`). When set, overrides `grow` / `shrink` / `basis` for that axis bundle — prefer either `flex` or the longhands, not both."
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "required": false,
+      "description": "Deprecated compatibility hint used by older/generated compositions. Consumed so it does not leak to the DOM as an unknown React prop."
+    },
+    {
+      "name": "gap",
+      "type": "'0' | '0-5' | '1' | '1-5' | '2' | '2-5' | '3' | '3-5' | '4' | '4-5' | '5' | '5-5' | '6' | '7' | '8' | '9' | '10' | '12' | '14' | '16' | '18' | '20' | '24' | '28' | '32' | '40' | 'margin' | 'gutter'",
+      "required": false,
+      "description": "gap property"
+    },
+    {
+      "name": "grow",
+      "type": "number",
+      "required": false,
+      "description": "`flex-grow` when `flex` is omitted."
+    },
+    {
+      "name": "height",
+      "type": "'auto' | 'full' | 'fit' | 'min' | 'max' | '0' | '0-5' | '1' | '1-5' | '2' | '2-5' | '3' | '3-5' | '4' | '4-5' | '5' | '5-5' | '6' | '7' | '8' | '9' | '10' | '12' | '14' | '16' | '18' | '20' | '24' | '28' | '32' | '40' | 'margin' | 'gutter'",
+      "required": false,
+      "description": "height property"
+    },
+    {
+      "name": "justify",
+      "type": "'start' | 'center' | 'end' | 'space-between' | 'space-around' | 'space-evenly' | 'stretch'",
+      "required": false,
+      "description": "justify property"
+    },
+    {
+      "name": "layout",
+      "type": "'flex' | 'grid'",
+      "required": false,
+      "description": "layout property"
+    },
+    {
+      "name": "left",
+      "type": "string",
+      "required": false,
+      "description": "left property"
+    },
+    {
+      "name": "maxHeight",
+      "type": "'auto' | 'full' | 'fit' | 'min' | 'max' | '0' | '0-5' | '1' | '1-5' | '2' | '2-5' | '3' | '3-5' | '4' | '4-5' | '5' | '5-5' | '6' | '7' | '8' | '9' | '10' | '12' | '14' | '16' | '18' | '20' | '24' | '28' | '32' | '40' | 'margin' | 'gutter'",
+      "required": false,
+      "description": "maxHeight property"
+    },
+    {
+      "name": "maxWidth",
+      "type": "string | number | 'auto' | 'full' | 'fit' | 'min' | 'max' | '0' | '0-5' | '1' | '1-5' | '2' | '2-5' | '3' | '3-5' | '4' | '4-5' | '5' | '5-5' | '6' | '7' | '8' | '9' | '10' | '12' | '14' | '16' | '18' | '20' | '24' | '28' | '32' | '40' | 'margin' | 'gutter'",
+      "required": false,
+      "description": "Viewport cap when `variant` is `fixed` (number or non-preset string), or CSS `max-width` / token preset on the element. See {@link resolveContainerMaxWidth}."
+    },
+    {
+      "name": "minHeight",
+      "type": "'auto' | 'full' | 'fit' | 'min' | 'max' | '0' | '0-5' | '1' | '1-5' | '2' | '2-5' | '3' | '3-5' | '4' | '4-5' | '5' | '5-5' | '6' | '7' | '8' | '9' | '10' | '12' | '14' | '16' | '18' | '20' | '24' | '28' | '32' | '40' | 'margin' | 'gutter'",
+      "required": false,
+      "description": "minHeight property"
+    },
+    {
+      "name": "minWidth",
+      "type": "'auto' | 'full' | 'fit' | 'min' | 'max' | '0' | '0-5' | '1' | '1-5' | '2' | '2-5' | '3' | '3-5' | '4' | '4-5' | '5' | '5-5' | '6' | '7' | '8' | '9' | '10' | '12' | '14' | '16' | '18' | '20' | '24' | '28' | '32' | '40' | 'margin' | 'gutter'",
+      "required": false,
+      "description": "minWidth property"
+    },
+    {
+      "name": "overflow",
+      "type": "'visible' | 'hidden' | 'clip' | 'scroll' | 'auto'",
+      "required": false,
+      "description": "overflow property"
+    },
+    {
+      "name": "padding",
+      "type": "'0' | '0-5' | '1' | '1-5' | '2' | '2-5' | '3' | '3-5' | '4' | '4-5' | '5' | '5-5' | '6' | '7' | '8' | '9' | '10' | '12' | '14' | '16' | '18' | '20' | '24' | '28' | '32' | '40' | 'margin' | 'gutter'",
+      "required": false,
+      "description": "padding property"
+    },
+    {
+      "name": "paddingBottom",
+      "type": "'0' | '0-5' | '1' | '1-5' | '2' | '2-5' | '3' | '3-5' | '4' | '4-5' | '5' | '5-5' | '6' | '7' | '8' | '9' | '10' | '12' | '14' | '16' | '18' | '20' | '24' | '28' | '32' | '40' | 'margin' | 'gutter'",
+      "required": false,
+      "description": "paddingBottom property"
+    },
+    {
+      "name": "paddingLeft",
+      "type": "'0' | '0-5' | '1' | '1-5' | '2' | '2-5' | '3' | '3-5' | '4' | '4-5' | '5' | '5-5' | '6' | '7' | '8' | '9' | '10' | '12' | '14' | '16' | '18' | '20' | '24' | '28' | '32' | '40' | 'margin' | 'gutter'",
+      "required": false,
+      "description": "paddingLeft property"
+    },
+    {
+      "name": "paddingRight",
+      "type": "'0' | '0-5' | '1' | '1-5' | '2' | '2-5' | '3' | '3-5' | '4' | '4-5' | '5' | '5-5' | '6' | '7' | '8' | '9' | '10' | '12' | '14' | '16' | '18' | '20' | '24' | '28' | '32' | '40' | 'margin' | 'gutter'",
+      "required": false,
+      "description": "paddingRight property"
+    },
+    {
+      "name": "paddingTop",
+      "type": "'0' | '0-5' | '1' | '1-5' | '2' | '2-5' | '3' | '3-5' | '4' | '4-5' | '5' | '5-5' | '6' | '7' | '8' | '9' | '10' | '12' | '14' | '16' | '18' | '20' | '24' | '28' | '32' | '40' | 'margin' | 'gutter'",
+      "required": false,
+      "description": "paddingTop property"
+    },
+    {
+      "name": "paddingX",
+      "type": "'0' | '0-5' | '1' | '1-5' | '2' | '2-5' | '3' | '3-5' | '4' | '4-5' | '5' | '5-5' | '6' | '7' | '8' | '9' | '10' | '12' | '14' | '16' | '18' | '20' | '24' | '28' | '32' | '40' | 'margin' | 'gutter'",
+      "required": false,
+      "description": "paddingX property"
+    },
+    {
+      "name": "paddingY",
+      "type": "'0' | '0-5' | '1' | '1-5' | '2' | '2-5' | '3' | '3-5' | '4' | '4-5' | '5' | '5-5' | '6' | '7' | '8' | '9' | '10' | '12' | '14' | '16' | '18' | '20' | '24' | '28' | '32' | '40' | 'margin' | 'gutter'",
+      "required": false,
+      "description": "paddingY property"
+    },
+    {
+      "name": "position",
+      "type": "'static' | 'relative' | 'absolute' | 'fixed' | 'sticky'",
+      "required": false,
+      "description": "position property"
+    },
+    {
+      "name": "right",
+      "type": "string",
+      "required": false,
+      "description": "right property"
+    },
+    {
+      "name": "rowGap",
+      "type": "'0' | '0-5' | '1' | '1-5' | '2' | '2-5' | '3' | '3-5' | '4' | '4-5' | '5' | '5-5' | '6' | '7' | '8' | '9' | '10' | '12' | '14' | '16' | '18' | '20' | '24' | '28' | '32' | '40' | 'margin' | 'gutter'",
+      "required": false,
+      "description": "rowGap property"
+    },
+    {
+      "name": "rows",
+      "type": "number",
+      "required": false,
+      "description": "rows property"
+    },
+    {
+      "name": "shrink",
+      "type": "number",
+      "required": false,
+      "description": "`flex-shrink` when `flex` is omitted."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "style property"
+    },
+    {
+      "name": "surface",
+      "type": "SurfaceToken",
+      "required": false,
+      "description": "Surface mode for the **root** element (always `<Surface>` on web). Defaults to `'ghost'` when omitted. Container layout classes and styles are applied on that same node (`data-surface` remapping for children). Native ignores `surface` / `appearance` today."
+    },
+    {
+      "name": "top",
+      "type": "string",
+      "required": false,
+      "description": "top property"
+    },
+    {
+      "name": "variant",
+      "type": "'fluid' | 'fixed' | 'full-bleed'",
+      "required": false,
+      "description": "Layout variant. - `fluid` (default): grows with viewport, always applies `--Grid-Margin`. - `fixed`: capped at `--Grid-MaxWidth` per breakpoint, centered. - `full-bleed`: no margin, no cap — edge-to-edge."
+    },
+    {
+      "name": "width",
+      "type": "'auto' | 'full' | 'fit' | 'min' | 'max' | '0' | '0-5' | '1' | '1-5' | '2' | '2-5' | '3' | '3-5' | '4' | '4-5' | '5' | '5-5' | '6' | '7' | '8' | '9' | '10' | '12' | '14' | '16' | '18' | '20' | '24' | '28' | '32' | '40' | 'margin' | 'gutter'",
+      "required": false,
+      "description": "width property"
+    },
+    {
+      "name": "wrap",
+      "type": "boolean",
+      "required": false,
+      "description": "wrap property"
+    },
+    {
+      "name": "zIndex",
+      "type": "number",
+      "required": false,
+      "description": "zIndex property"
+    }
+  ],
+  "slots": [
+    {
+      "name": "children",
+      "types": [],
+      "tokens": []
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.container",
+    "type": "object",
+    "properties": {
+      "align": {
+        "enum": [
+          "start",
+          "center",
+          "end",
+          "stretch",
+          "baseline"
+        ],
+        "description": "Maps to `align-items` when `layout` is `flex` or `grid`."
+      },
+      "alignSelf": {
+        "enum": [
+          "start",
+          "center",
+          "end",
+          "stretch",
+          "baseline"
+        ],
+        "description": "When this `Container` is a flex/grid item, maps to `align-self`."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent role for the root `<Surface>` — passed through as `appearance` (Surface defaults to `'auto'` when omitted)."
+      },
+      "as": {
+        "description": "as property"
+      },
+      "basis": {
+        "description": "`flex-basis` when `flex` is omitted."
+      },
+      "bottom": {
+        "type": "string",
+        "description": "bottom property"
+      },
+      "children": {
+        "description": "children property"
+      },
+      "className": {
+        "type": "string",
+        "description": "className property"
+      },
+      "columnGap": {
+        "description": "columnGap property"
+      },
+      "columns": {
+        "description": "columns property"
+      },
+      "direction": {
+        "enum": [
+          "row",
+          "column"
+        ],
+        "description": "direction property"
+      },
+      "flex": {
+        "description": "Flex shorthand on the root (`flex`). When set, overrides `grow` / `shrink` / `basis` for that axis bundle — prefer either `flex` or the longhands, not both."
+      },
+      "fullWidth": {
+        "type": "boolean",
+        "description": "Deprecated compatibility hint used by older/generated compositions. Consumed so it does not leak to the DOM as an unknown React prop."
+      },
+      "gap": {
+        "description": "gap property"
+      },
+      "grow": {
+        "type": "number",
+        "description": "`flex-grow` when `flex` is omitted."
+      },
+      "height": {
+        "description": "height property"
+      },
+      "justify": {
+        "enum": [
+          "start",
+          "center",
+          "end",
+          "space-between",
+          "space-around",
+          "space-evenly",
+          "stretch"
+        ],
+        "description": "justify property"
+      },
+      "layout": {
+        "enum": [
+          "flex",
+          "grid"
+        ],
+        "description": "layout property"
+      },
+      "left": {
+        "type": "string",
+        "description": "left property"
+      },
+      "maxHeight": {
+        "description": "maxHeight property"
+      },
+      "maxWidth": {
+        "description": "Viewport cap when `variant` is `fixed` (number or non-preset string), or CSS `max-width` / token preset on the element. See {@link resolveContainerMaxWidth}."
+      },
+      "minHeight": {
+        "description": "minHeight property"
+      },
+      "minWidth": {
+        "description": "minWidth property"
+      },
+      "overflow": {
+        "enum": [
+          "visible",
+          "hidden",
+          "clip",
+          "scroll",
+          "auto"
+        ],
+        "description": "overflow property"
+      },
+      "padding": {
+        "description": "padding property"
+      },
+      "paddingBottom": {
+        "description": "paddingBottom property"
+      },
+      "paddingLeft": {
+        "description": "paddingLeft property"
+      },
+      "paddingRight": {
+        "description": "paddingRight property"
+      },
+      "paddingTop": {
+        "description": "paddingTop property"
+      },
+      "paddingX": {
+        "description": "paddingX property"
+      },
+      "paddingY": {
+        "description": "paddingY property"
+      },
+      "position": {
+        "enum": [
+          "static",
+          "relative",
+          "absolute",
+          "fixed",
+          "sticky"
+        ],
+        "description": "position property"
+      },
+      "right": {
+        "type": "string",
+        "description": "right property"
+      },
+      "rowGap": {
+        "description": "rowGap property"
+      },
+      "rows": {
+        "type": "number",
+        "description": "rows property"
+      },
+      "shrink": {
+        "type": "number",
+        "description": "`flex-shrink` when `flex` is omitted."
+      },
+      "style": {
+        "description": "style property"
+      },
+      "surface": {
+        "enum": [
+          "default",
+          "ghost",
+          "minimal",
+          "subtle",
+          "moderate",
+          "bold",
+          "elevated"
+        ],
+        "description": "Surface mode for the **root** element (always `<Surface>` on web). Defaults to `'ghost'` when omitted. Container layout classes and styles are applied on that same node (`data-surface` remapping for children). Native ignores `surface` / `appearance` today."
+      },
+      "top": {
+        "type": "string",
+        "description": "top property"
+      },
+      "variant": {
+        "enum": [
+          "fluid",
+          "fixed",
+          "full-bleed"
+        ],
+        "description": "Layout variant. - `fluid` (default): grows with viewport, always applies `--Grid-Margin`. - `fixed`: capped at `--Grid-MaxWidth` per breakpoint, centered. - `full-bleed`: no margin, no cap — edge-to-edge."
+      },
+      "width": {
+        "description": "width property"
+      },
+      "wrap": {
+        "type": "boolean",
+        "description": "wrap property"
+      },
+      "zIndex": {
+        "type": "number",
+        "description": "zIndex property"
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "container-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Container } from '@oneui/ui';\n\n<Container />"
+    },
+    {
+      "id": "container-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Container\",\n  \"decisions\": [\n    \"Width behavior\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "container"
+  ],
+  "interactionBehavior": {
+    "summary": "Container is a layout primitive with no hover, press, focus, or keyboard behaviour of its own — it does not take focus and inherits the parent's cursor. Every Container is a `<Surface>` (default `mode=\"ghost\"`), so it always stamps `data-surface` and opts descendants into the token-remapping cascade even when you never pass `surface`. Pass `surface` / `appearance` to change that context (and the fill); pass `as` for the element. Interactivity has to come from children or from HTML attributes you forward yourself — Container does not add `tabIndex`, `cursor`, or a halo."
+  },
+  "importPath": "@jds4/oneui-react",
+  "figma": {
+    "componentKey": "jds-container-v4"
+  },
+  "renderHints": {
+    "baseElement": "div",
+    "readsFromSurfaceContext": false,
+    "providesSurfaceContext": true
+  },
+  "a11y": {
+    "role": null,
+    "minTouchTarget": 44,
+    "accessibleNameSource": "children"
+  }
+}

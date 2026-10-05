@@ -1,0 +1,365 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "SelectableButton",
+  "generatedAt": "2026-08-26T06:20:09.503Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Toggle button with a persistent selected state. The unselected state is always a muted ghost; `attention` (high/medium/low) drives the selected-state prominence (bold/subtle/ghost-with-border). Supports icon `start`/`end` slots, `contained` (pill container vs inline text/icon), `condensed`, `fullWidth`, `disabled`, and `loading` (busy) states. Controlled via `selected`/`onSelectedChange` or uncontrolled via `defaultSelected` (defaults to true)."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "leaf"
+  },
+  "props": [
+    {
+      "name": "selected",
+      "type": "boolean",
+      "required": false,
+      "description": "Controlled selected state (the toggle pressed state)."
+    },
+    {
+      "name": "defaultSelected",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": "Uncontrolled initial selected state (web parity: defaults to true)."
+    },
+    {
+      "name": "onSelectedChange",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Fires with the next boolean selected state."
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "required": false,
+      "description": "Value for a toggle group (parity — not wired to a native group yet)."
+    },
+    {
+      "name": "size",
+      "type": "'xs' | 's' | 'm' | 'l'",
+      "required": false,
+      "defaultValue": "m",
+      "description": ""
+    },
+    {
+      "name": "attention",
+      "type": "'high' | 'medium' | 'low'",
+      "required": false,
+      "defaultValue": "high",
+      "description": "Prominence of the SELECTED state: high→bold fill, medium→subtle fill, low→ghost with accent border. Unselected is always muted ghost."
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": "Multi-accent role. Explicit non-'auto' wins; otherwise inherits the nearest <Surface appearance>, falling back to 'primary'."
+    },
+    {
+      "name": "contained",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": "true → pill container with background/border/padding; false → inline text/icon only (condensed and fullWidth do not apply)."
+    },
+    {
+      "name": "condensed",
+      "type": "boolean",
+      "required": false,
+      "description": "Reduced height + horizontal padding. Only when `contained`."
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "required": false,
+      "description": "Stretch to fill container width. Only when `contained`."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Disables interaction and shows reduced opacity; marks the control busy."
+    },
+    {
+      "name": "start",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Content before the label (icon, etc.)."
+    },
+    {
+      "name": "end",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Content after the label (icon, etc.)."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Text label content."
+    },
+    {
+      "name": "onPress",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Native press callback — fired alongside the selected-state change."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label override — children text is visible so this is optional."
+    },
+    {
+      "name": "accessibilityHint",
+      "type": "string",
+      "required": false,
+      "description": "Describes the result of toggling (React Native)."
+    },
+    {
+      "name": "testID",
+      "type": "string",
+      "required": false,
+      "description": "React Native test identifier."
+    },
+    {
+      "name": "backgroundColor",
+      "type": "string",
+      "required": false,
+      "description": "[error] Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill."
+    },
+    {
+      "name": "style",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Layout style only. attention + appearance + the parent <Surface> drive bg / text — do not paint here. — [warn] SelectableButton colour is surface-resolved from `attention` + `appearance`. Don't set backgroundColor; wrap in <Surface> and it adapts automatically."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.SelectableButton",
+    "type": "object",
+    "properties": {
+      "selected": {
+        "type": "boolean",
+        "description": "Controlled selected state (the toggle pressed state)."
+      },
+      "defaultSelected": {
+        "type": "boolean",
+        "default": true,
+        "description": "Uncontrolled initial selected state (web parity: defaults to true)."
+      },
+      "onSelectedChange": {
+        "description": "Fires with the next boolean selected state."
+      },
+      "value": {
+        "type": "string",
+        "description": "Value for a toggle group (parity — not wired to a native group yet)."
+      },
+      "size": {
+        "enum": [
+          "xs",
+          "s",
+          "m",
+          "l"
+        ],
+        "default": "m"
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "default": "high",
+        "description": "Prominence of the SELECTED state: high→bold fill, medium→subtle fill, low→ghost with accent border. Unselected is always muted ghost."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "default": "auto",
+        "description": "Multi-accent role. Explicit non-'auto' wins; otherwise inherits the nearest <Surface appearance>, falling back to 'primary'."
+      },
+      "contained": {
+        "type": "boolean",
+        "default": true,
+        "description": "true → pill container with background/border/padding; false → inline text/icon only (condensed and fullWidth do not apply)."
+      },
+      "condensed": {
+        "type": "boolean",
+        "description": "Reduced height + horizontal padding. Only when `contained`."
+      },
+      "fullWidth": {
+        "type": "boolean",
+        "description": "Stretch to fill container width. Only when `contained`."
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false
+      },
+      "loading": {
+        "type": "boolean",
+        "default": false,
+        "description": "Disables interaction and shows reduced opacity; marks the control busy."
+      },
+      "start": {
+        "description": "Content before the label (icon, etc.)."
+      },
+      "end": {
+        "description": "Content after the label (icon, etc.)."
+      },
+      "children": {
+        "description": "Text label content."
+      },
+      "onPress": {
+        "description": "Native press callback — fired alongside the selected-state change."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label override — children text is visible so this is optional."
+      },
+      "accessibilityHint": {
+        "type": "string",
+        "description": "Describes the result of toggling (React Native)."
+      },
+      "testID": {
+        "type": "string",
+        "description": "React Native test identifier."
+      },
+      "backgroundColor": {
+        "type": "string",
+        "not": {
+          "anyOf": [
+            {
+              "pattern": "^#"
+            },
+            {
+              "pattern": "^rgba?\\("
+            },
+            {
+              "pattern": "^hsla?\\("
+            },
+            {
+              "pattern": "^oklch\\("
+            },
+            {
+              "pattern": "^color-mix\\("
+            },
+            {
+              "enum": [
+                "transparent",
+                "inherit"
+              ]
+            }
+          ]
+        },
+        "x-jds-suggestion": "Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill.",
+        "x-jds-severity": "error"
+      },
+      "style": {
+        "description": "Layout style only. attention + appearance + the parent <Surface> drive bg / text — do not paint here.",
+        "x-jds-suggestion": "SelectableButton colour is surface-resolved from `attention` + `appearance`. Don't set backgroundColor; wrap in <Surface> and it adapts automatically.",
+        "x-jds-severity": "warn"
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "neutral",
+      "sparkle",
+      "brand-bg",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ],
+    "surface": [
+      "bold",
+      "subtle",
+      "ghost"
+    ],
+    "typography": [
+      "label.S",
+      "label.M",
+      "label.L"
+    ],
+    "shape": [
+      "pill"
+    ],
+    "motion": [
+      "motion.duration.expressive.long"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "button",
+    "accessibilityState": [
+      "selected",
+      "disabled",
+      "busy"
+    ],
+    "accessibleNameSource": "children",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [
+      "press"
+    ],
+    "honorsReduceMotion": true,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-selectable-button-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "SelectableButton"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { SelectableButton } from '@oneui/ui-native/components/SelectableButton';\n\n<SelectableButton />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "selectablebutton",
+    "action",
+    "button",
+    "toggle",
+    "selection",
+    "surface-aware",
+    "inherits-appearance"
+  ],
+  "importPath": "@oneui/ui-native/components/SelectableButton"
+}

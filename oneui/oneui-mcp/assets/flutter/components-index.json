@@ -1,0 +1,742 @@
+[
+  {
+    "name": "Accordion",
+    "slug": "accordion",
+    "intent": "OneUiAccordion — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "accordion"
+    ]
+  },
+  {
+    "name": "AccordionItem",
+    "slug": "accordionitem",
+    "intent": "OneUiAccordionItem — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "accordionitem"
+    ]
+  },
+  {
+    "name": "AgentPulse",
+    "slug": "agentpulse",
+    "intent": "OneUiAgentPulse — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "agentpulse"
+    ]
+  },
+  {
+    "name": "Avatar",
+    "slug": "avatar",
+    "intent": "OneUiAvatar — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only. Initials via alt; image requires src; never fallback: OneUiText.",
+    "tags": [
+      "flutter",
+      "generated",
+      "avatar"
+    ]
+  },
+  {
+    "name": "Badge",
+    "slug": "badge",
+    "intent": "OneUiBadge — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "badge"
+    ]
+  },
+  {
+    "name": "BottomNavigation",
+    "slug": "bottomnavigation",
+    "intent": "OneUiBottomNavigation — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "bottomnavigation"
+    ]
+  },
+  {
+    "name": "BottomNavItem",
+    "slug": "bottomnavitem",
+    "intent": "OneUiBottomNavItem — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "bottomnavitem"
+    ]
+  },
+  {
+    "name": "BottomSheet",
+    "slug": "bottomsheet",
+    "intent": "OneUiBottomSheet — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "bottomsheet"
+    ]
+  },
+  {
+    "name": "BrandLogo",
+    "slug": "brandlogo",
+    "intent": "OneUiBrandLogo — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "brandlogo"
+    ]
+  },
+  {
+    "name": "BrandProvider",
+    "slug": "brandprovider",
+    "intent": "OneUiBrandProvider — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "brandprovider"
+    ]
+  },
+  {
+    "name": "Breadcrumb",
+    "slug": "breadcrumb",
+    "intent": "OneUiBreadcrumb — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "breadcrumb"
+    ]
+  },
+  {
+    "name": "Button",
+    "slug": "button",
+    "intent": "OneUiButton — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "button"
+    ]
+  },
+  {
+    "name": "CarouselItem",
+    "slug": "carouselitem",
+    "intent": "OneUiCarouselItem — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "carouselitem"
+    ]
+  },
+  {
+    "name": "CarouselPagination",
+    "slug": "carouselpagination",
+    "intent": "OneUiCarouselPagination — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "carouselpagination"
+    ]
+  },
+  {
+    "name": "CarouselRoot",
+    "slug": "carouselroot",
+    "intent": "OneUiCarouselRoot — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "carouselroot"
+    ]
+  },
+  {
+    "name": "CarouselSlide",
+    "slug": "carouselslide",
+    "intent": "OneUiCarouselSlide — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "carouselslide"
+    ]
+  },
+  {
+    "name": "Checkbox",
+    "slug": "checkbox",
+    "intent": "OneUiCheckbox — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "checkbox"
+    ]
+  },
+  {
+    "name": "CheckboxField",
+    "slug": "checkboxfield",
+    "intent": "OneUiCheckboxField — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "checkboxfield"
+    ]
+  },
+  {
+    "name": "CheckboxGroup",
+    "slug": "checkboxgroup",
+    "intent": "OneUiCheckboxGroup — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "checkboxgroup"
+    ]
+  },
+  {
+    "name": "Chip",
+    "slug": "chip",
+    "intent": "OneUiChip — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "chip"
+    ]
+  },
+  {
+    "name": "ChipGroup",
+    "slug": "chipgroup",
+    "intent": "OneUiChipGroup — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "chipgroup"
+    ]
+  },
+  {
+    "name": "CircularProgressIndicator",
+    "slug": "circularprogressindicator",
+    "intent": "OneUiCircularProgressIndicator — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only. Determinate value 0–100 by default.",
+    "tags": [
+      "flutter",
+      "generated",
+      "circularprogressindicator"
+    ]
+  },
+  {
+    "name": "CounterBadge",
+    "slug": "counterbadge",
+    "intent": "OneUiCounterBadge — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "counterbadge"
+    ]
+  },
+  {
+    "name": "Divider",
+    "slug": "divider",
+    "intent": "OneUiDivider — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "divider"
+    ]
+  },
+  {
+    "name": "Header",
+    "slug": "header",
+    "intent": "OneUiHeader — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "header"
+    ]
+  },
+  {
+    "name": "HeaderDrawer",
+    "slug": "headerdrawer",
+    "intent": "OneUiHeaderDrawer — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "headerdrawer"
+    ]
+  },
+  {
+    "name": "HeaderItem",
+    "slug": "headeritem",
+    "intent": "OneUiHeaderItem — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "headeritem"
+    ]
+  },
+  {
+    "name": "Icon",
+    "slug": "icon",
+    "intent": "OneUiIcon — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "icon"
+    ]
+  },
+  {
+    "name": "IconButton",
+    "slug": "iconbutton",
+    "intent": "OneUiIconButton — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "iconbutton"
+    ]
+  },
+  {
+    "name": "IconContained",
+    "slug": "iconcontained",
+    "intent": "OneUiIconContained — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "iconcontained"
+    ]
+  },
+  {
+    "name": "IconRemote",
+    "slug": "iconremote",
+    "intent": "OneUiIconRemote — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "iconremote"
+    ]
+  },
+  {
+    "name": "Image",
+    "slug": "image",
+    "intent": "OneUiImage — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only. Requires src + alt.",
+    "tags": [
+      "flutter",
+      "generated",
+      "image"
+    ]
+  },
+  {
+    "name": "IndicatorBadge",
+    "slug": "indicatorbadge",
+    "intent": "OneUiIndicatorBadge — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "indicatorbadge"
+    ]
+  },
+  {
+    "name": "InlineSideSheet",
+    "slug": "inlinesidesheet",
+    "intent": "OneUiInlineSideSheet — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "inlinesidesheet"
+    ]
+  },
+  {
+    "name": "Input",
+    "slug": "input",
+    "intent": "OneUiInput — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "input"
+    ]
+  },
+  {
+    "name": "InputDynamicText",
+    "slug": "inputdynamictext",
+    "intent": "OneUiInputDynamicText — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "inputdynamictext"
+    ]
+  },
+  {
+    "name": "InputFeedback",
+    "slug": "inputfeedback",
+    "intent": "OneUiInputFeedback — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "inputfeedback"
+    ]
+  },
+  {
+    "name": "InputField",
+    "slug": "inputfield",
+    "intent": "OneUiInputField — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "inputfield"
+    ]
+  },
+  {
+    "name": "LinearProgressIndicator",
+    "slug": "linearprogressindicator",
+    "intent": "OneUiLinearProgressIndicator — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only. Determinate value 0–100 by default, not 0–1.",
+    "tags": [
+      "flutter",
+      "generated",
+      "linearprogressindicator"
+    ]
+  },
+  {
+    "name": "LinearProgressIndicatorLayout",
+    "slug": "linearprogressindicatorlayout",
+    "intent": "OneUiLinearProgressIndicatorLayout — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "linearprogressindicatorlayout"
+    ]
+  },
+  {
+    "name": "ListItem",
+    "slug": "listitem",
+    "intent": "OneUiListItem — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "listitem"
+    ]
+  },
+  {
+    "name": "LoadingSpinner",
+    "slug": "loadingspinner",
+    "intent": "OneUiLoadingSpinner — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "loadingspinner"
+    ]
+  },
+  {
+    "name": "Logo",
+    "slug": "logo",
+    "intent": "OneUiLogo — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "logo"
+    ]
+  },
+  {
+    "name": "Modal",
+    "slug": "modal",
+    "intent": "OneUiModal — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "modal"
+    ]
+  },
+  {
+    "name": "OverlaySideSheet",
+    "slug": "overlaysidesheet",
+    "intent": "OneUiOverlaySideSheet — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "overlaysidesheet"
+    ]
+  },
+  {
+    "name": "Pagination",
+    "slug": "pagination",
+    "intent": "OneUiPagination — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "pagination"
+    ]
+  },
+  {
+    "name": "Radio",
+    "slug": "radio",
+    "intent": "OneUiRadio — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "radio"
+    ]
+  },
+  {
+    "name": "RadioField",
+    "slug": "radiofield",
+    "intent": "OneUiRadioField — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "radiofield"
+    ]
+  },
+  {
+    "name": "RadioGroup",
+    "slug": "radiogroup",
+    "intent": "OneUiRadioGroup — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "radiogroup"
+    ]
+  },
+  {
+    "name": "Scrim",
+    "slug": "scrim",
+    "intent": "OneUiScrim — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "scrim"
+    ]
+  },
+  {
+    "name": "SegmentedControl",
+    "slug": "segmentedcontrol",
+    "intent": "OneUiSegmentedControl — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "segmentedcontrol"
+    ]
+  },
+  {
+    "name": "SegmentedControlItem",
+    "slug": "segmentedcontrolitem",
+    "intent": "OneUiSegmentedControlItem — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "segmentedcontrolitem"
+    ]
+  },
+  {
+    "name": "Select",
+    "slug": "select",
+    "intent": "OneUiSelect — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "select"
+    ]
+  },
+  {
+    "name": "SelectableButton",
+    "slug": "selectablebutton",
+    "intent": "OneUiSelectableButton — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "selectablebutton"
+    ]
+  },
+  {
+    "name": "SelectableIconButton",
+    "slug": "selectableiconbutton",
+    "intent": "OneUiSelectableIconButton — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "selectableiconbutton"
+    ]
+  },
+  {
+    "name": "SelectableSingleTextButton",
+    "slug": "selectablesingletextbutton",
+    "intent": "OneUiSelectableSingleTextButton — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only. Label max 2 characters.",
+    "tags": [
+      "flutter",
+      "generated",
+      "selectablesingletextbutton"
+    ]
+  },
+  {
+    "name": "SingleTextButton",
+    "slug": "singletextbutton",
+    "intent": "OneUiSingleTextButton — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "singletextbutton"
+    ]
+  },
+  {
+    "name": "SkeletonGroup",
+    "slug": "skeletongroup",
+    "intent": "OneUiSkeletonGroup — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "skeletongroup"
+    ]
+  },
+  {
+    "name": "SkeletonItem",
+    "slug": "skeletonitem",
+    "intent": "OneUiSkeletonItem — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "skeletonitem"
+    ]
+  },
+  {
+    "name": "Slider",
+    "slug": "slider",
+    "intent": "OneUiSlider — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "slider"
+    ]
+  },
+  {
+    "name": "Spinner",
+    "slug": "spinner",
+    "intent": "OneUiSpinner — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "spinner"
+    ]
+  },
+  {
+    "name": "Stepper",
+    "slug": "stepper",
+    "intent": "OneUiStepper — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "stepper"
+    ]
+  },
+  {
+    "name": "Surface",
+    "slug": "surface",
+    "intent": "OneUiSurface — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "surface"
+    ]
+  },
+  {
+    "name": "Switch",
+    "slug": "switch",
+    "intent": "OneUiSwitch — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "switch"
+    ]
+  },
+  {
+    "name": "TabGroup",
+    "slug": "tabgroup",
+    "intent": "OneUiTabGroup — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "tabgroup"
+    ]
+  },
+  {
+    "name": "TabItem",
+    "slug": "tabitem",
+    "intent": "OneUiTabItem — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "tabitem"
+    ]
+  },
+  {
+    "name": "TabPanel",
+    "slug": "tabpanel",
+    "intent": "OneUiTabPanel — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "tabpanel"
+    ]
+  },
+  {
+    "name": "TabsList",
+    "slug": "tabslist",
+    "intent": "OneUiTabsList — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "tabslist"
+    ]
+  },
+  {
+    "name": "TabsRoot",
+    "slug": "tabsroot",
+    "intent": "OneUiTabsRoot — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "tabsroot"
+    ]
+  },
+  {
+    "name": "Text",
+    "slug": "text",
+    "intent": "OneUiText — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "text"
+    ]
+  },
+  {
+    "name": "Toast",
+    "slug": "toast",
+    "intent": "OneUiToast — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only. Card vs toaster: use OneUiToastProvider + Scope.add.",
+    "tags": [
+      "flutter",
+      "generated",
+      "toast"
+    ]
+  },
+  {
+    "name": "Tooltip",
+    "slug": "tooltip",
+    "intent": "OneUiTooltip — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "tooltip"
+    ]
+  },
+  {
+    "name": "TooltipProvider",
+    "slug": "tooltipprovider",
+    "intent": "OneUiTooltipProvider — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "tooltipprovider"
+    ]
+  },
+  {
+    "name": "TouchSlider",
+    "slug": "touchslider",
+    "intent": "OneUiTouchSlider — One UI Flutter widget. Import from package:ui_flutter/ui_flutter.dart only.",
+    "tags": [
+      "flutter",
+      "generated",
+      "touchslider"
+    ]
+  }
+]

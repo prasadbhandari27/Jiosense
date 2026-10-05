@@ -1,0 +1,401 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "SelectableIconButton",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Icon-only toggle button for compact binary selection with configurable shape layout.",
+    "taskContexts": [
+      "toolbar-toggle",
+      "icon-filter",
+      "compact-option-selection",
+      "grid-view-toggle"
+    ],
+    "sentiments": [
+      "neutral",
+      "positive"
+    ]
+  },
+  "compositionRules": {
+    "requires": [
+      "icon prop",
+      "aria-label (required — icon-only)"
+    ],
+    "allows": [
+      "condensed mode",
+      "3:2 layout variant",
+      "loading state"
+    ],
+    "forbids": [
+      "text content (use SelectableButton instead)",
+      "missing aria-label"
+    ]
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "high attention",
+        "useWhen": [
+          "selected state needs bold fill emphasis"
+        ]
+      },
+      {
+        "name": "medium attention",
+        "useWhen": [
+          "selected state with subtle tinted fill"
+        ]
+      },
+      {
+        "name": "low attention",
+        "useWhen": [
+          "selected state with ghost appearance and accent border"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": [
+      "SelectableButton",
+      "SelectableSingleTextButton",
+      "IconButton",
+      "Toggle",
+      "ToggleGroup"
+    ],
+    "groupsWith": [
+      "ToggleGroup"
+    ]
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [
+      "select",
+      "deselect"
+    ],
+    "health": [
+      "a11y_violations",
+      "adoption_rate"
+    ]
+  },
+  "props": [
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": true,
+      "description": "Required accessibility label (icon-only buttons must have this)"
+    },
+    {
+      "name": "icon",
+      "type": "'add' | 'remove' | 'close' | 'edit' | 'delete' | 'copy' | 'save' | 'refresh' | 'download' | 'upload' | 'share' | 'link' | 'unlink' | 'cart' | 'helloJio' | 'favourite' | 'rewind' | 'forward' | 'menu' | 'search' | 'home' | 'settings' | 'arrowLeft' | 'arrowRight' | 'arrowUp' | 'arrowDown' | 'chevronLeft' | 'chevronRight' | 'chevronUp' | 'chevronDown' | 'externalLink' | 'firstPage' | 'lastPage' /** Single-step back / forward (Jio: `IcBack` / `IcNext` — distinct from chevrons). */ | 'back' | 'next' | 'check' | 'checkCircle' | 'warning' | 'error' | 'info' | 'help' | 'loading' | 'play' | 'pause' | 'stop' | 'volumeOn' | 'volumeOff' | 'microphone' | 'image' | 'video' | 'user' | 'users' | 'userAdd' | 'userRemove' | 'logout' | 'eye' | 'eyeOff' | 'lock' | 'unlock' | 'star' | 'starFilled' | 'heart' | 'heartFilled' | 'bookmark' | 'bookmarkFilled' | 'filter' | 'sort' | 'grid' | 'list' | 'moreHorizontal' | 'moreVertical' | 'mail' | 'phone' | 'chat' | 'notification' | 'file' | 'folder' | 'document' | 'calendar' | 'clock' | 'location' | 'sun' | 'moon' | 'palette' | 'brand' | 'layers' | 'components' | 'canvas' | 'create' | 'sparkles' | 'analytics' | 'globe' | 'smartphone' | 'tablet' | 'monitor' | 'tv' | 'printer' | 'billboard' | 'bus' | (string & {}) | IconComponent | ReactElement",
+      "required": true,
+      "description": "icon property"
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "description": "Multi-accent appearance role. 'auto' resolves to 'primary'."
+    },
+    {
+      "name": "attention",
+      "type": "'high' | 'medium' | 'low'",
+      "required": false,
+      "description": "Attention level — determines the visual prominence of the SELECTED state. high → bold fill; medium → subtle fill; low → ghost with accent border. The UNSELECTED state is always muted ghost regardless of attention. Default: 'high'."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS class name"
+    },
+    {
+      "name": "condensed",
+      "type": "boolean",
+      "required": false,
+      "description": "Condensed mode: reduces container size while keeping same icon size"
+    },
+    {
+      "name": "contained",
+      "type": "boolean",
+      "required": false,
+      "description": "When true (default), renders a contained icon button with background, border, and sized container. When false, renders just the icon without container — no background, border, or fixed size. condensed and fullWidth do not apply when contained=false."
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "Test ID for testing"
+    },
+    {
+      "name": "defaultSelected",
+      "type": "boolean",
+      "required": false,
+      "description": "Default selected state (uncontrolled)."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the button is disabled."
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "required": false,
+      "description": "Stretch to fill container width. Only applies when contained=true."
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "required": false,
+      "description": "Loading state — shows circular progress indicator"
+    },
+    {
+      "name": "onSelectedChange",
+      "type": "(selected: boolean) => void",
+      "required": false,
+      "description": "Called when selected state changes."
+    },
+    {
+      "name": "selected",
+      "type": "boolean",
+      "required": false,
+      "description": "Selected state (controlled). Maps to Toggle pressed."
+    },
+    {
+      "name": "shape",
+      "type": "'1:1' | '3:2'",
+      "required": false,
+      "description": "Shape proportion: '1:1' (square, default) or '3:2' (wide rectangle)"
+    },
+    {
+      "name": "size",
+      "type": "4 | 6 | 8 | 10 | 12 | 14 | '2xs' | 'xs' | 's' | 'm' | 'l' | 'xl'",
+      "required": false,
+      "description": "Button size — dimension step number or t-shirt alias. Default: 10 (M)."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "required": false,
+      "description": "Value for use within ToggleGroup."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.selectable-icon-button",
+    "type": "object",
+    "properties": {
+      "aria-label": {
+        "type": "string",
+        "description": "Required accessibility label (icon-only buttons must have this)"
+      },
+      "icon": {
+        "description": "icon property"
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. 'auto' resolves to 'primary'."
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "description": "Attention level — determines the visual prominence of the SELECTED state. high → bold fill; medium → subtle fill; low → ghost with accent border. The UNSELECTED state is always muted ghost regardless of attention. Default: 'high'."
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional CSS class name"
+      },
+      "condensed": {
+        "type": "boolean",
+        "description": "Condensed mode: reduces container size while keeping same icon size"
+      },
+      "contained": {
+        "type": "boolean",
+        "description": "When true (default), renders a contained icon button with background, border, and sized container. When false, renders just the icon without container — no background, border, or fixed size. condensed and fullWidth do not apply when contained=false."
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "Test ID for testing"
+      },
+      "defaultSelected": {
+        "type": "boolean",
+        "description": "Default selected state (uncontrolled)."
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Whether the button is disabled."
+      },
+      "fullWidth": {
+        "type": "boolean",
+        "description": "Stretch to fill container width. Only applies when contained=true."
+      },
+      "loading": {
+        "type": "boolean",
+        "description": "Loading state — shows circular progress indicator"
+      },
+      "onSelectedChange": {
+        "description": "Called when selected state changes."
+      },
+      "selected": {
+        "type": "boolean",
+        "description": "Selected state (controlled). Maps to Toggle pressed."
+      },
+      "shape": {
+        "enum": [
+          "1:1",
+          "3:2"
+        ],
+        "description": "Shape proportion: '1:1' (square, default) or '3:2' (wide rectangle)"
+      },
+      "size": {
+        "enum": [
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          "2xs",
+          "xs",
+          "s",
+          "m",
+          "l",
+          "xl"
+        ],
+        "description": "Button size — dimension step number or t-shirt alias. Default: 10 (M)."
+      },
+      "style": {
+        "description": "Inline styles"
+      },
+      "value": {
+        "type": "string",
+        "description": "Value for use within ToggleGroup."
+      }
+    },
+    "required": [
+      "aria-label",
+      "icon"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "selectableiconbutton-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { SelectableIconButton } from '@oneui/ui';\n\n<SelectableIconButton icon=\"star\" aria-label=\"Favourite\" />"
+    },
+    {
+      "id": "selectableiconbutton-controlled",
+      "title": "Controlled",
+      "language": "tsx",
+      "code": "<SelectableIconButton icon=\"bookmark\" selected={isSaved} onSelectedChange={setIsSaved} aria-label=\"Save\" />"
+    },
+    {
+      "id": "selectable-icon-button-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"SelectableIconButton\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "selectable-icon-button"
+  ],
+  "interactionBehavior": {
+    "summary": "SelectableIconButton is a Base UI Toggle, so every click flips `aria-pressed`, and it starts UNSELECTED (`defaultSelected` is unset). Attention colours the SELECTED look only; unselected is always a muted ghost. It scales UP on press (`--Motion-Tap-Scale-Up`, 7%) — the opposite direction to SelectableButton's squash — with NO pressed fill token. `contained={false}` strips the container so hover fills never apply and even the uncontained hover rule only re-asserts `background-color: transparent`. `aria-label` is required. `loading` implies disabled: the icon goes to `opacity: 0` and a centred spinner takes over without the button changing size.",
+    "hover": [
+      "Every hover rule is wrapped in `@media (hover: hover)` and excluded for `[data-disabled]`.",
+      "UNSELECTED contained tints the transparent rest fill to `--{Role}-Hover`.",
+      "SELECTED contained high steps to `--{Role}-Bold-Hover` (or keeps `--{Role}-Material-Fill`); selected medium steps to `--{Role}-Subtle-Hover`; selected low ADDS a `--{Role}-Hover` fill over the rest transparent-plus-accent-hairline.",
+      "`contained={false}` hover rules exist but only pin `background-color: transparent` — they do not shift the icon colour — so an uncontained selectable is visually inert on hover.",
+      "Icon colour never changes on hover for the contained button either; only the background does."
+    ],
+    "press": [
+      "The whole button scales UP: `scale(calc(1 + var(--_tap-direction) * var(--_tap-scale) / 100))` with `--Motion-Tap-Scale-Up` at 7% and `--_tap-direction: 1`. SelectableButton scales DOWN; this matches IconButton, Checkbox, and Radio instead.",
+      "`fullWidth` stretches the box but does NOT remap the tap-scale — unlike IconButton, there is no `--Motion-Tap-Scale-FullWidth` override, so a wide selectable icon button still grows 7%.",
+      "There is no `:active` fill, border, or icon-colour rule — the scale-up is the entire pressed look.",
+      "The scale is NOT `(hover: hover)`-guarded and is NOT excluded for `contained={false}`, so an uncontained icon still grows on tap even though its colours do not change."
+    ],
+    "focus": [
+      "Keyboard focus draws the two-layer halo: an inner `--Stroke-XL` gap ring in `--Surface-Halo-Gap` plus an outer ring at `calc(--Stroke-XL + --Focus-Outline-Width)` in `--Focus-Outline` (brand-overridable via `--SelectableIconButton-focusOutlineWidth` / `--SelectableIconButton-focusOutlineColor`).",
+      "`:focus` alone only clears the native outline; the visible ring is `:focus-visible`.",
+      "With `contained={false}` the button sets `border-radius: 0` and hugs the glyph, so the halo is a tight square around the icon rather than a pill ring."
+    ],
+    "keyboard": [
+      "Base UI Toggle renders a native `<button aria-pressed>`, so `Enter` and `Space` both toggle — both paths are covered by tests.",
+      "`aria-label` is required by the type signature; a missing label fires a dev-mode `console.warn`.",
+      "Controlled via `selected` / `onSelectedChange`; uncontrolled via `defaultSelected` (unset → unselected). Pass `value` when nesting inside a ToggleGroup.",
+      "Disabled and loading are natively `disabled`, so they are out of the tab order."
+    ],
+    "selected": [
+      "Selected maps to Base UI Toggle's `pressed`, exposed as `aria-pressed` and matched in CSS with `[data-pressed]`.",
+      "It defaults to unselected in uncontrolled mode.",
+      "`attention` colours the SELECTED contained look only: high → `--{Role}-Bold` fill with `--{Role}-Bold-High` icon and a transparent border; medium → `--{Role}-Subtle` fill with `--{Role}-TintedA11y` icon; low → transparent fill with a `--{Role}-Bold` hairline and accent icon. Unselected is always transparent + `--{Role}-Medium-Text` icon + `--{Role}-Stroke-Low` hairline, ignoring attention.",
+      "`contained={false}` never paints a pill. Counter-intuitive: uncontained selected high colours the icon with `--{Role}-Bold` (the fill token), not `--{Role}-Bold-High`; selected medium/low use `--{Role}-High`. Uncontained unselected high uses `--{Role}-High`."
+    ],
+    "loading": [
+      "`loading` implies disabled — `isDisabled = disabled || loading` — so the native `disabled` attribute is set and `onSelectedChange` stops firing.",
+      "`aria-busy=\"true\"` and `data-loading` are set; the `.loading` class is applied.",
+      "The icon goes to `opacity: 0` rather than leaving the tree, which keeps the box size stable. The spinner is absolutely positioned across the button so it sits centred over the hidden glyph."
+    ],
+    "disabled": [
+      "`data-disabled` dims to `--Disabled-Opacity` (brand-overridable via `--SelectableIconButton-disabledOpacity`) and sets `cursor: not-allowed` plus `pointer-events: none`.",
+      "Because the element is natively `disabled` AND has `pointer-events: none`, the `not-allowed` cursor is not observable — the pointer shows the parent's cursor. Known, accepted system-wide gap (see docs/design/disabled-states.md).",
+      "Hover fills and the tap-scale are qualified with `:not([data-disabled])`. Disabling does not clear the selected styling — it only dims it."
+    ],
+    "touch": [
+      "Hover fills never apply on touch-only devices; the 7% scale-up is the entire visual response to a tap, because there is no pressed fill.",
+      "Growing on press is deliberate for a small glyph control — the button expands out from under the fingertip that is covering the icon."
+    ]
+  },
+  "importPath": "@jds4/oneui-react",
+  "renderHints": {
+    "baseElement": "button",
+    "readsFromSurfaceContext": true
+  },
+  "a11y": {
+    "role": "button",
+    "minTouchTarget": 44,
+    "accessibleNameSource": "aria-label"
+  }
+}

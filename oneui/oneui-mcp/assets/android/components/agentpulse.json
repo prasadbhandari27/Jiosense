@@ -1,0 +1,247 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "AgentPulse",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.243Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Public API for JdsAgentPulse."
+  },
+  "composable": "JdsAgentPulse",
+  "attributesClass": "JdsAgentPulseAttributes",
+  "importPath": "com.jds.components.agentpulse",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.agentpulse.JdsAgentPulse",
+    "attributes": "com.jds.components.agentpulse.JdsAgentPulseAttributes",
+    "enums": {
+      "JdsAgentPulseState": "com.jds.components.agentpulse.JdsAgentPulseState",
+      "Appearance": "com.jds.foundation.token.Appearance",
+      "JdsAgentPulseEmphasis": "com.jds.components.agentpulse.JdsAgentPulseEmphasis",
+      "JdsAgentPulseSize": "com.jds.components.agentpulse.JdsAgentPulseSize",
+      "JdsAgentPulseReducedMotionFallback": "com.jds.components.agentpulse.JdsAgentPulseReducedMotionFallback"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "state",
+      "type": "JdsAgentPulseState",
+      "required": false,
+      "defaultValue": "JdsAgentPulseState.Idle",
+      "enumValues": [
+        "Idle",
+        "Listening",
+        "Thinking",
+        "Speaking"
+      ],
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "Appearance",
+      "required": false,
+      "defaultValue": "Appearance.Secondary",
+      "enumValues": [
+        "Auto",
+        "Primary",
+        "Secondary",
+        "Sparkle",
+        "BrandBg",
+        "Neutral",
+        "Positive",
+        "Negative",
+        "Warning",
+        "Informative"
+      ],
+      "description": ""
+    },
+    {
+      "name": "emphasis",
+      "type": "JdsAgentPulseEmphasis",
+      "required": false,
+      "defaultValue": "JdsAgentPulseEmphasis.Tinted",
+      "enumValues": [
+        "Tinted",
+        "TintedA11y"
+      ],
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "JdsAgentPulseSize",
+      "required": false,
+      "defaultValue": "JdsAgentPulseSize.Md",
+      "enumValues": [
+        "Sm",
+        "Md",
+        "Lg",
+        "Xl"
+      ],
+      "description": ""
+    },
+    {
+      "name": "autoTransition",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": ""
+    },
+    {
+      "name": "paused",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "reducedMotionFallback",
+      "type": "JdsAgentPulseReducedMotionFallback",
+      "required": false,
+      "defaultValue": "JdsAgentPulseReducedMotionFallback.Static",
+      "enumValues": [
+        "Static",
+        "Pulse",
+        "None"
+      ],
+      "description": ""
+    },
+    {
+      "name": "label",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "listeningLevels",
+      "type": "FloatArray?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "speakingAmplitude",
+      "type": "Float?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "enums": {
+    "JdsAgentPulseState": [
+      "Idle",
+      "Listening",
+      "Thinking",
+      "Speaking"
+    ],
+    "Appearance": [
+      "Auto",
+      "Primary",
+      "Secondary",
+      "Sparkle",
+      "BrandBg",
+      "Neutral",
+      "Positive",
+      "Negative",
+      "Warning",
+      "Informative"
+    ],
+    "JdsAgentPulseEmphasis": [
+      "Tinted",
+      "TintedA11y"
+    ],
+    "JdsAgentPulseSize": [
+      "Sm",
+      "Md",
+      "Lg",
+      "Xl"
+    ],
+    "JdsAgentPulseReducedMotionFallback": [
+      "Static",
+      "Pulse",
+      "None"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.AgentPulse",
+    "type": "object",
+    "properties": {
+      "state": {
+        "enum": [
+          "Idle",
+          "Listening",
+          "Thinking",
+          "Speaking"
+        ],
+        "default": "JdsAgentPulseState.Idle"
+      },
+      "appearance": {
+        "enum": [
+          "Auto",
+          "Primary",
+          "Secondary",
+          "Sparkle",
+          "BrandBg",
+          "Neutral",
+          "Positive",
+          "Negative",
+          "Warning",
+          "Informative"
+        ],
+        "default": "Appearance.Secondary"
+      },
+      "emphasis": {
+        "enum": [
+          "Tinted",
+          "TintedA11y"
+        ],
+        "default": "JdsAgentPulseEmphasis.Tinted"
+      },
+      "size": {
+        "enum": [
+          "Sm",
+          "Md",
+          "Lg",
+          "Xl"
+        ],
+        "default": "JdsAgentPulseSize.Md"
+      },
+      "autoTransition": {
+        "type": "boolean"
+      },
+      "paused": {
+        "type": "boolean"
+      },
+      "reducedMotionFallback": {
+        "enum": [
+          "Static",
+          "Pulse",
+          "None"
+        ],
+        "default": "JdsAgentPulseReducedMotionFallback.Static"
+      },
+      "label": {
+        "type": "string"
+      },
+      "listeningLevels": {},
+      "speakingAmplitude": {}
+    },
+    "required": []
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "agentpulse"
+  ],
+  "importPathMaven": "com.jds:components"
+}

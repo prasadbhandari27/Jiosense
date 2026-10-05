@@ -1,0 +1,179 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "LinearProgressIndicator",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.252Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Public API contract for JdsLinearProgressIndicator."
+  },
+  "composable": "JdsLinearProgressIndicator",
+  "attributesClass": "JdsLinearProgressIndicatorAttributes",
+  "importPath": "com.jds.components.linearprogressindicator",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.linearprogressindicator.JdsLinearProgressIndicator",
+    "attributes": "com.jds.components.linearprogressindicator.JdsLinearProgressIndicatorAttributes",
+    "enums": {
+      "JdsLinearProgressIndicatorVariant": "com.jds.components.linearprogressindicator.JdsLinearProgressIndicatorVariant",
+      "JdsLinearProgressIndicatorSize": "com.jds.components.linearprogressindicator.JdsLinearProgressIndicatorSize",
+      "Appearance": "com.jds.foundation.token.Appearance"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "contentDescription",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "variant",
+      "type": "JdsLinearProgressIndicatorVariant",
+      "required": false,
+      "defaultValue": "JdsLinearProgressIndicatorVariant.Determinate",
+      "enumValues": [
+        "Determinate",
+        "Indeterminate"
+      ],
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "JdsLinearProgressIndicatorSize",
+      "required": false,
+      "defaultValue": "JdsLinearProgressIndicatorSize.M",
+      "enumValues": [
+        "S",
+        "M",
+        "L"
+      ],
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "Appearance",
+      "required": false,
+      "defaultValue": "Appearance.Auto",
+      "enumValues": [
+        "Auto",
+        "Primary",
+        "Secondary",
+        "Sparkle",
+        "BrandBg",
+        "Neutral",
+        "Positive",
+        "Negative",
+        "Warning",
+        "Informative"
+      ],
+      "description": ""
+    },
+    {
+      "name": "roundCaps",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": ""
+    },
+    {
+      "name": "value",
+      "type": "Float?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "valueRange",
+      "type": "ClosedFloatingPointRange<Float>",
+      "required": false,
+      "defaultValue": "0f..100f",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "enums": {
+    "JdsLinearProgressIndicatorVariant": [
+      "Determinate",
+      "Indeterminate"
+    ],
+    "JdsLinearProgressIndicatorSize": [
+      "S",
+      "M",
+      "L"
+    ],
+    "Appearance": [
+      "Auto",
+      "Primary",
+      "Secondary",
+      "Sparkle",
+      "BrandBg",
+      "Neutral",
+      "Positive",
+      "Negative",
+      "Warning",
+      "Informative"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.LinearProgressIndicator",
+    "type": "object",
+    "properties": {
+      "contentDescription": {
+        "type": "string"
+      },
+      "variant": {
+        "enum": [
+          "Determinate",
+          "Indeterminate"
+        ],
+        "default": "JdsLinearProgressIndicatorVariant.Determinate"
+      },
+      "size": {
+        "enum": [
+          "S",
+          "M",
+          "L"
+        ],
+        "default": "JdsLinearProgressIndicatorSize.M"
+      },
+      "appearance": {
+        "enum": [
+          "Auto",
+          "Primary",
+          "Secondary",
+          "Sparkle",
+          "BrandBg",
+          "Neutral",
+          "Positive",
+          "Negative",
+          "Warning",
+          "Informative"
+        ],
+        "default": "Appearance.Auto"
+      },
+      "roundCaps": {
+        "type": "boolean"
+      },
+      "value": {},
+      "valueRange": {}
+    },
+    "required": []
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "linearprogressindicator"
+  ],
+  "importPathMaven": "com.jds:components"
+}

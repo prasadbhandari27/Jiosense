@@ -1,0 +1,209 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "HeaderItem",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.248Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Public API for JdsHeaderItem."
+  },
+  "composable": "JdsHeaderItem",
+  "attributesClass": "JdsHeaderItemAttributes",
+  "importPath": "com.jds.components.headeritem",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.headeritem.JdsHeaderItem",
+    "attributes": "com.jds.components.headeritem.JdsHeaderItemAttributes",
+    "enums": {
+      "JdsHeaderItemAttention": "com.jds.components.headeritem.JdsHeaderItemAttention",
+      "JdsHeaderItemSlotSize": "com.jds.components.headeritem.JdsHeaderItemSlotSize"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [
+      "label"
+    ],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "label",
+      "type": "String",
+      "required": true,
+      "description": ""
+    },
+    {
+      "name": "active",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "attention",
+      "type": "JdsHeaderItemAttention",
+      "required": false,
+      "defaultValue": "JdsHeaderItemAttention.Medium",
+      "enumValues": [
+        "High",
+        "Medium",
+        "Low"
+      ],
+      "description": ""
+    },
+    {
+      "name": "start",
+      "type": "JdsSlot?",
+      "required": false,
+      "defaultValue": "null",
+      "slot": true,
+      "slotTypes": [],
+      "description": ""
+    },
+    {
+      "name": "end",
+      "type": "JdsSlot?",
+      "required": false,
+      "defaultValue": "null",
+      "slot": true,
+      "slotTypes": [],
+      "description": ""
+    },
+    {
+      "name": "startSize",
+      "type": "JdsHeaderItemSlotSize",
+      "required": false,
+      "defaultValue": "JdsHeaderItemSlotSize.M",
+      "enumValues": [
+        "None",
+        "S",
+        "M"
+      ],
+      "description": ""
+    },
+    {
+      "name": "endSize",
+      "type": "JdsHeaderItemSlotSize",
+      "required": false,
+      "defaultValue": "JdsHeaderItemSlotSize.M",
+      "enumValues": [
+        "None",
+        "S",
+        "M"
+      ],
+      "description": ""
+    },
+    {
+      "name": "visuallyAlignToStart",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "onClick",
+      "type": "(() -> Unit)?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "contentDescription",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "start",
+      "types": []
+    },
+    {
+      "name": "end",
+      "types": []
+    }
+  ],
+  "enums": {
+    "JdsHeaderItemAttention": [
+      "High",
+      "Medium",
+      "Low"
+    ],
+    "JdsHeaderItemSlotSize": [
+      "None",
+      "S",
+      "M"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.HeaderItem",
+    "type": "object",
+    "properties": {
+      "label": {
+        "type": "string"
+      },
+      "active": {
+        "type": "boolean"
+      },
+      "attention": {
+        "enum": [
+          "High",
+          "Medium",
+          "Low"
+        ],
+        "default": "JdsHeaderItemAttention.Medium"
+      },
+      "start": {},
+      "end": {},
+      "startSize": {
+        "enum": [
+          "None",
+          "S",
+          "M"
+        ],
+        "default": "JdsHeaderItemSlotSize.M"
+      },
+      "endSize": {
+        "enum": [
+          "None",
+          "S",
+          "M"
+        ],
+        "default": "JdsHeaderItemSlotSize.M"
+      },
+      "visuallyAlignToStart": {
+        "type": "boolean"
+      },
+      "disabled": {
+        "type": "boolean"
+      },
+      "onClick": {},
+      "contentDescription": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "label"
+    ]
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "headeritem"
+  ],
+  "importPathMaven": "com.jds:components"
+}

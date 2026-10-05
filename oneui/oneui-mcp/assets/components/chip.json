@@ -1,0 +1,386 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Chip",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Compact interactive label for filtering, tagging, or selecting values.",
+    "taskContexts": [
+      "filter-selection",
+      "tag-display",
+      "multi-select",
+      "categorisation"
+    ],
+    "sentiments": [
+      "neutral",
+      "positive",
+      "informative"
+    ]
+  },
+  "compositionRules": {
+    "requires": [
+      "label text or aria-label"
+    ],
+    "allows": [
+      "start slot (icon, avatar, badge)",
+      "end slot (icon, counter)"
+    ],
+    "forbids": [
+      "multi-line text content"
+    ]
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "bold",
+        "useWhen": [
+          "selected/active state in filter groups"
+        ]
+      },
+      {
+        "name": "subtle",
+        "useWhen": [
+          "suggested or pre-selected options"
+        ]
+      },
+      {
+        "name": "ghost",
+        "useWhen": [
+          "unselected filter options (default)"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": [
+      "ChipGroup",
+      "Button",
+      "Badge"
+    ],
+    "groupsWith": [
+      "ChipGroup"
+    ]
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [
+      "select",
+      "deselect"
+    ],
+    "health": [
+      "adoption_rate",
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "description": "Multi-accent appearance role. 'auto' resolves to 'secondary'."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label for screen readers"
+    },
+    {
+      "name": "attention",
+      "type": "'high' | 'medium' | 'low'",
+      "required": false,
+      "description": "Emphasis level — high (filled when selected), medium (tinted when selected), low (outlined). Default: 'high'."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Text label content"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "QA / automation hook on the root toggle button"
+    },
+    {
+      "name": "defaultSelected",
+      "type": "boolean",
+      "required": false,
+      "description": "Default selected state (uncontrolled). Defaults to true."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the chip is disabled."
+    },
+    {
+      "name": "end",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Content to render after the label (Icon, Avatar, CounterBadge, IndicatorBadge)"
+    },
+    {
+      "name": "onSelectedChange",
+      "type": "(selected: boolean, eventDetails?: unknown) => void",
+      "required": false,
+      "description": "Called when selected state changes."
+    },
+    {
+      "name": "selected",
+      "type": "boolean",
+      "required": false,
+      "description": "Selected state (controlled). Maps to Toggle pressed."
+    },
+    {
+      "name": "size",
+      "type": "'s' | 'm' | 'l'",
+      "required": false,
+      "description": "Chip size. Default: 'm'."
+    },
+    {
+      "name": "start",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Content to render before the label (Icon, Avatar, CounterBadge, IndicatorBadge)"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "required": false,
+      "description": "Value for use within ToggleGroup."
+    }
+  ],
+  "slots": [
+    {
+      "name": "start",
+      "types": [
+        "Icon",
+        "Avatar",
+        "CounterBadge",
+        "IndicatorBadge"
+      ],
+      "tokens": [
+        "gap",
+        "affordancePaddingHorizontal",
+        "badgePaddingHorizontal",
+        "paddingHorizontalCompact"
+      ]
+    },
+    {
+      "name": "end",
+      "types": [
+        "Icon",
+        "Avatar",
+        "CounterBadge",
+        "IndicatorBadge"
+      ],
+      "tokens": [
+        "gap",
+        "affordancePaddingHorizontal",
+        "badgePaddingHorizontal",
+        "paddingHorizontalCompact"
+      ]
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.chip",
+    "type": "object",
+    "properties": {
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. 'auto' resolves to 'secondary'."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label for screen readers"
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "description": "Emphasis level — high (filled when selected), medium (tinted when selected), low (outlined). Default: 'high'."
+      },
+      "children": {
+        "description": "Text label content"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "QA / automation hook on the root toggle button"
+      },
+      "defaultSelected": {
+        "type": "boolean",
+        "description": "Default selected state (uncontrolled). Defaults to true."
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Whether the chip is disabled."
+      },
+      "end": {
+        "description": "Content to render after the label (Icon, Avatar, CounterBadge, IndicatorBadge)"
+      },
+      "onSelectedChange": {
+        "description": "Called when selected state changes."
+      },
+      "selected": {
+        "type": "boolean",
+        "description": "Selected state (controlled). Maps to Toggle pressed."
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "Chip size. Default: 'm'."
+      },
+      "start": {
+        "description": "Content to render before the label (Icon, Avatar, CounterBadge, IndicatorBadge)"
+      },
+      "style": {
+        "description": "Inline styles"
+      },
+      "value": {
+        "type": "string",
+        "description": "Value for use within ToggleGroup."
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "chip-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Chip } from '@oneui/ui';\n\n<Chip>Label</Chip>"
+    },
+    {
+      "id": "chip-selected",
+      "title": "Selectable Chip",
+      "language": "tsx",
+      "code": "<Chip attention=\"high\" selected>Active Filter</Chip>"
+    },
+    {
+      "id": "chip-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Chip\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "chip"
+  ],
+  "interactionBehavior": {
+    "summary": "Chip is a Base UI Toggle, so every click flips a selected state — and it starts SELECTED unless you pass `defaultSelected={false}` or a controlled `selected`. Selection, not attention, is what drives the colour: `attention` only decides how the selected state looks (filled / tinted / outlined). The counter-intuitive part is the unselected chrome — its stroke and its hover/pressed tints come from the nearest `<Surface>` role via `data-unselected-appearance`, NOT from the chip's own `appearance` prop, and they fall back to Neutral on a bare page. Chip has no press-scale at all: feedback is entirely fill, stroke, and text colour.",
+    "hover": [
+      "Every hover rule is wrapped in `@media (hover: hover)`, so a touch tap never leaves a stuck hover fill behind.",
+      "UNSELECTED (any attention level) picks up the same tint: `--{ParentSurfaceRole}-Hover`, resolved through `data-unselected-appearance` — so an `appearance=\"negative\"` chip that is not selected still hovers Neutral on a plain page, and inherits the surrounding Surface's role inside a tinted one.",
+      "SELECTED at `attention=\"high\"` steps the fill and the border to `--{Role}-Bold-Hover`; at `medium` the fill steps to `--{Role}-Subtle-Hover`.",
+      "SELECTED at `attention=\"low\"` is the odd one: its rest state is transparent with an accent hairline, so hover ADDS a fill of `--{Role}-Subtle` rather than deepening an existing one.",
+      "Label and icon colours never change on hover — only background, and (for selected high) the border.",
+      "A chip whose role carries a metallic material keeps `--{Role}-Material-Fill` on hover, because swapping a flat colour in over a gradient reads as a glitch.",
+      "Hover is suppressed by `:not([data-disabled])`."
+    ],
+    "press": [
+      "Press is NOT `(hover: hover)`-guarded, so a touch tap gets the same immediate fill feedback a mouse press does.",
+      "UNSELECTED presses to `--{ParentSurfaceRole}-Pressed` — again the Surface-derived role, not the chip's `appearance`.",
+      "SELECTED presses to `--{Role}-Bold-Pressed` (high, fill + border) or `--{Role}-Subtle-Pressed` (medium); selected low goes to `--{Role}-Subtle-Hover`, one step past its hover fill.",
+      "The chip does NOT scale, translate, or move on press — there is no `transform` anywhere in Chip's CSS, unlike Button (scales down) and IconButton (scales up)."
+    ],
+    "focus": [
+      "Keyboard focus draws the standard two-layer halo: an inner `--Stroke-XL` gap ring in `--Surface-Halo-Gap` plus an outer ring at `calc(--Stroke-XL + --Focus-Outline-Width)` in `--Focus-Outline`, so it stays legible inside a tinted `<Surface>`.",
+      "The ring follows the pill radius (`--Chip-borderRadius`, default `--Shape-Pill`), and ornament radii if the brand sets them.",
+      "`:focus` alone only clears the native outline; the visible ring is `:focus-visible`, so a mouse click selects the chip without painting a halo.",
+      "The halo is a `box-shadow`, and the chip's own edge is a real `border`, so focusing never disturbs the outline of a `medium` chip."
+    ],
+    "keyboard": [
+      "Base UI Toggle renders a native `<button aria-pressed>`, so `Enter` and `Space` both toggle selection — both paths are covered by tests.",
+      "Inside a `ChipGroup` the chips become a Base UI ToggleGroup composite: arrow keys rove focus between chips (one tab stop for the whole group), `loopFocus` defaults to true so focus wraps, and `orientation` defaults to horizontal.",
+      "`ChipGroup`'s `required` and `maxSelections` constraints are enforced in the group's change handler, so a keystroke that would drop below the minimum or exceed the maximum is simply ignored — the chip does not visibly toggle.",
+      "A disabled chip is natively `disabled`, so it is out of the tab order and cannot hold roving focus."
+    ],
+    "selected": [
+      "Selected maps to Base UI Toggle's `pressed`, exposed as `aria-pressed` and matched in CSS with `[data-pressed]`.",
+      "It defaults to TRUE in uncontrolled mode (`defaultSelected ?? true`) — a bare `<Chip>Filter</Chip>` renders already selected. Pass `defaultSelected={false}` for a filter row that starts empty.",
+      "`appearance` colours the SELECTED look only: high → `--{Role}-Bold` fill with `--{Role}-Bold-High` text; medium → `--{Role}-Subtle` fill, `--{Role}-High` text and the border goes transparent; low → transparent fill with a `--{Role}-Tinted` hairline. `appearance=\"auto\"` (the default) resolves to `secondary`, or to the parent Surface's role.",
+      "Unselected is deliberately neutral chrome: high → `--{ParentSurfaceRole}-Minimal` fill, medium → transparent plus a `--{ParentSurfaceRole}-Stroke-Medium` hairline, low → fully transparent; all three keep `--Text-High` labels.",
+      "A selected high/medium chip publishes `data-surface=\"bold\"` / `\"subtle\"` onto its `start` and `end` slot wrappers, so an Avatar inside re-resolves as a real nested surface on top of the chip fill.",
+      "`CounterBadge` and `IndicatorBadge` children are auto-wrapped in a `data-context-boundary` span so they keep their own semantic colour instead of inheriting the chip's surface — red stays red on a selected chip.",
+      "Selecting a high-attention chip also switches slot icons from `--{Role}-Tinted` to `--{Role}-Bold-Tinted`."
+    ],
+    "disabled": [
+      "`disabled` on the chip emits `data-disabled`, which dims it to `--Disabled-Opacity` and sets `cursor: not-allowed` plus `pointer-events: none`. Setting `disabled` on the `ChipGroup` instead propagates through Base UI's group context and natively disables each toggle.",
+      "Because the underlying button is natively `disabled` AND has `pointer-events: none`, the `not-allowed` cursor is not observable — the pointer shows the parent's cursor. Known, accepted system-wide gap (see docs/design/disabled-states.md).",
+      "Every hover and pressed rule is qualified with `:not([data-disabled])`, so a disabled chip is visually inert in both selected and unselected states.",
+      "The disabled chip keeps whatever selected styling it had — disabling does not clear or grey out the selection, it only dims it."
+    ],
+    "touch": [
+      "On touch-only devices the hover fills never apply; the pressed fill is the entire visual response to a tap, since there is no press-scale.",
+      "The whole chip is the hit target — label, `start`, and `end` slots are all inside the toggle button, and slot content is not separately clickable.",
+      "Chip heights and paddings come from the layout matrix per size and slot combination, so the touch target grows with `size=\"l\"` rather than with a CSS min-height."
+    ]
+  },
+  "importPath": "@jds4/oneui-react",
+  "figma": {
+    "componentKey": "jds-chip-v4"
+  },
+  "renderHints": {
+    "baseElement": "button",
+    "readsFromSurfaceContext": true
+  },
+  "a11y": {
+    "role": "button",
+    "minTouchTarget": 44,
+    "accessibleNameSource": "children"
+  }
+}

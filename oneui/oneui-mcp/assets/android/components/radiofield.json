@@ -1,0 +1,296 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "RadioField",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.253Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Public API contract for JdsRadioField."
+  },
+  "composable": "JdsRadioField",
+  "attributesClass": "JdsRadioFieldAttributes",
+  "importPath": "com.jds.components.radiofield",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.radiofield.JdsRadioField",
+    "attributes": "com.jds.components.radiofield.JdsRadioFieldAttributes",
+    "enums": {
+      "JdsRadioSize": "com.jds.components.radio.JdsRadioSize",
+      "Appearance": "com.jds.foundation.token.Appearance",
+      "JdsRadioOrientation": "com.jds.components.radiofield.JdsRadioOrientation"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "label",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": "Field-level content (rendered via JdsInputLabel)"
+    },
+    {
+      "name": "description",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "required",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "infoIcon",
+      "type": "JdsSlot?",
+      "required": false,
+      "defaultValue": "null",
+      "slot": true,
+      "slotTypes": [],
+      "description": ""
+    },
+    {
+      "name": "feedback",
+      "type": "JdsSlot?",
+      "required": false,
+      "defaultValue": "null",
+      "slot": true,
+      "slotTypes": [],
+      "description": "Feedback slot (below description / below options)"
+    },
+    {
+      "name": "checked",
+      "type": "Boolean?",
+      "required": false,
+      "defaultValue": "null",
+      "description": "Integrated single mode (options == null/empty)"
+    },
+    {
+      "name": "onCheckedChange",
+      "type": "((Boolean) -> Unit)?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "options",
+      "type": "List<JdsRadioAttributes>?",
+      "required": false,
+      "defaultValue": "null",
+      "description": "Multi-option mode (options.size >= 1)"
+    },
+    {
+      "name": "value",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "onValueChange",
+      "type": "((String) -> Unit)?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "JdsRadioSize",
+      "required": false,
+      "defaultValue": "JdsRadioSize.M",
+      "enumValues": [
+        "S",
+        "M",
+        "L"
+      ],
+      "description": "Shared control props (propagated to all options in multi-option mode)"
+    },
+    {
+      "name": "appearance",
+      "type": "Appearance",
+      "required": false,
+      "defaultValue": "Appearance.Secondary",
+      "enumValues": [
+        "Auto",
+        "Primary",
+        "Secondary",
+        "Sparkle",
+        "BrandBg",
+        "Neutral",
+        "Positive",
+        "Negative",
+        "Warning",
+        "Informative"
+      ],
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "readOnly",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "orientation",
+      "type": "JdsRadioOrientation",
+      "required": false,
+      "defaultValue": "JdsRadioOrientation.Vertical",
+      "enumValues": [
+        "Vertical",
+        "Horizontal"
+      ],
+      "description": "Layout"
+    },
+    {
+      "name": "fullWidth",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "invalid",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Validation / accessibility"
+    },
+    {
+      "name": "contentDescription",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "infoIcon",
+      "types": []
+    },
+    {
+      "name": "feedback",
+      "types": []
+    }
+  ],
+  "enums": {
+    "JdsRadioSize": [
+      "S",
+      "M",
+      "L"
+    ],
+    "Appearance": [
+      "Auto",
+      "Primary",
+      "Secondary",
+      "Sparkle",
+      "BrandBg",
+      "Neutral",
+      "Positive",
+      "Negative",
+      "Warning",
+      "Informative"
+    ],
+    "JdsRadioOrientation": [
+      "Vertical",
+      "Horizontal"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.RadioField",
+    "type": "object",
+    "properties": {
+      "label": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "required": {
+        "type": "boolean"
+      },
+      "infoIcon": {},
+      "feedback": {},
+      "checked": {
+        "type": "boolean"
+      },
+      "onCheckedChange": {},
+      "options": {},
+      "value": {
+        "type": "string"
+      },
+      "onValueChange": {},
+      "size": {
+        "enum": [
+          "S",
+          "M",
+          "L"
+        ],
+        "default": "JdsRadioSize.M"
+      },
+      "appearance": {
+        "enum": [
+          "Auto",
+          "Primary",
+          "Secondary",
+          "Sparkle",
+          "BrandBg",
+          "Neutral",
+          "Positive",
+          "Negative",
+          "Warning",
+          "Informative"
+        ],
+        "default": "Appearance.Secondary"
+      },
+      "disabled": {
+        "type": "boolean"
+      },
+      "readOnly": {
+        "type": "boolean"
+      },
+      "orientation": {
+        "enum": [
+          "Vertical",
+          "Horizontal"
+        ],
+        "default": "JdsRadioOrientation.Vertical"
+      },
+      "fullWidth": {
+        "type": "boolean"
+      },
+      "invalid": {
+        "type": "boolean"
+      },
+      "contentDescription": {
+        "type": "string"
+      }
+    },
+    "required": []
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "radiofield"
+  ],
+  "importPathMaven": "com.jds:components"
+}

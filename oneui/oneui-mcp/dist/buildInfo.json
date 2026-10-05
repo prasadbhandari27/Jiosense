@@ -1,0 +1,16 @@
+{
+  "builtAt": "2026-09-11T00:38:27+02:00",
+  "gitSha": "115f86bc8",
+  "gitDirty": true,
+  "srcHash": "5d9bc2964ffb1da555800ade420df025e6302d4792dc893b8b9e9c6945616734",
+  "snapshotVersion": "0.1.0",
+  "webComponentCount": 49,
+  "nativeSnapshotVersion": "1.0.0",
+  "nativeComponentCount": 62,
+  "assistProtocolVersions": {
+    "region": 1,
+    "bundle": 1,
+    "compositionPlan": 1,
+    "verifier": "1.0.0"
+  }
+}

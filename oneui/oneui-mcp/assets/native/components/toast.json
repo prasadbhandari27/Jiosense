@@ -1,0 +1,308 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Toast",
+  "generatedAt": "2026-08-26T06:20:09.513Z",
+  "machineReadable": true,
+  "status": "alpha",
+  "intentAndPurpose": {
+    "intent": "Transient feedback toast with semantic type (default/loading/positive/negative/warning/info), visual attention (high/medium/low), announcement priority, optional leading visual, up to two actions, progress, and dismiss. Use ToastProvider + ToastViewport with createToastManager / useToastManager for managed stacks; display-only Toast renders a single static toast."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "fixed-slots"
+  },
+  "props": [
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Primary message. A description-only toast is valid."
+    },
+    {
+      "name": "description",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Supporting message under the title."
+    },
+    {
+      "name": "helperText",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Tertiary helper copy at the bottom of the toast (below progress when present)."
+    },
+    {
+      "name": "type",
+      "type": "'default' | 'loading' | 'positive' | 'negative' | 'warning' | 'info'",
+      "required": false,
+      "defaultValue": "default",
+      "description": "Figma semantic/visual type. Appearance role is derived from type."
+    },
+    {
+      "name": "attention",
+      "type": "'high' | 'medium' | 'low'",
+      "required": false,
+      "defaultValue": "high",
+      "description": "Visual prominence only (surface mode: bold / subtle / elevated)."
+    },
+    {
+      "name": "priority",
+      "type": "'low' | 'high'",
+      "required": false,
+      "defaultValue": "low",
+      "description": "Announcement urgency (maps to accessibilityLiveRegion / role)."
+    },
+    {
+      "name": "start",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Leading visual. Pass false to hide the type-derived default visual."
+    },
+    {
+      "name": "actions",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Up to two action nodes, or structured { label, onPress, closeOnPress?, disabled? } descriptors."
+    },
+    {
+      "name": "actionsPlacement",
+      "type": "'bottom' | 'end'",
+      "required": false,
+      "defaultValue": "end",
+      "description": "Whether actions sit beside or below the text."
+    },
+    {
+      "name": "progress",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Optional determinate percentage (0–100) or \"indeterminate\"."
+    },
+    {
+      "name": "dismissible",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": "Whether the dismiss control is visible."
+    },
+    {
+      "name": "timeout",
+      "type": "number",
+      "required": false,
+      "defaultValue": "3000",
+      "description": "Auto-dismiss timeout when published through a manager. Zero is persistent."
+    },
+    {
+      "name": "onDismiss",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Display-only Toast callback. Managed ToastItem instances close through their manager."
+    },
+    {
+      "name": "style",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Inline native styles on the root wrapper."
+    },
+    {
+      "name": "testID",
+      "type": "string",
+      "required": false,
+      "description": "React Native test identifier."
+    },
+    {
+      "name": "accessibilityHint",
+      "type": "string",
+      "required": false,
+      "description": "Hint describing the toast action outcome."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible name override; otherwise derived from title/description/helperText."
+    },
+    {
+      "name": "aria-live",
+      "type": "'off' | 'polite' | 'assertive'",
+      "required": false,
+      "description": "Live-region override; defaults from priority."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.Toast",
+    "type": "object",
+    "properties": {
+      "title": {
+        "description": "Primary message. A description-only toast is valid."
+      },
+      "description": {
+        "description": "Supporting message under the title."
+      },
+      "helperText": {
+        "description": "Tertiary helper copy at the bottom of the toast (below progress when present)."
+      },
+      "type": {
+        "enum": [
+          "default",
+          "loading",
+          "positive",
+          "negative",
+          "warning",
+          "info"
+        ],
+        "default": "default",
+        "description": "Figma semantic/visual type. Appearance role is derived from type."
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "default": "high",
+        "description": "Visual prominence only (surface mode: bold / subtle / elevated)."
+      },
+      "priority": {
+        "enum": [
+          "low",
+          "high"
+        ],
+        "default": "low",
+        "description": "Announcement urgency (maps to accessibilityLiveRegion / role)."
+      },
+      "start": {
+        "description": "Leading visual. Pass false to hide the type-derived default visual."
+      },
+      "actions": {
+        "description": "Up to two action nodes, or structured { label, onPress, closeOnPress?, disabled? } descriptors."
+      },
+      "actionsPlacement": {
+        "enum": [
+          "bottom",
+          "end"
+        ],
+        "default": "end",
+        "description": "Whether actions sit beside or below the text."
+      },
+      "progress": {
+        "description": "Optional determinate percentage (0–100) or \"indeterminate\"."
+      },
+      "dismissible": {
+        "type": "boolean",
+        "default": true,
+        "description": "Whether the dismiss control is visible."
+      },
+      "timeout": {
+        "type": "number",
+        "default": 3000,
+        "description": "Auto-dismiss timeout when published through a manager. Zero is persistent."
+      },
+      "onDismiss": {
+        "description": "Display-only Toast callback. Managed ToastItem instances close through their manager."
+      },
+      "style": {
+        "description": "Inline native styles on the root wrapper."
+      },
+      "testID": {
+        "type": "string",
+        "description": "React Native test identifier."
+      },
+      "accessibilityHint": {
+        "type": "string",
+        "description": "Hint describing the toast action outcome."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible name override; otherwise derived from title/description/helperText."
+      },
+      "aria-live": {
+        "enum": [
+          "off",
+          "polite",
+          "assertive"
+        ],
+        "description": "Live-region override; defaults from priority."
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "neutral",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ],
+    "surface": [
+      "bold",
+      "subtle",
+      "elevated"
+    ],
+    "typography": [
+      "body.S",
+      "body.XS",
+      "label.S"
+    ],
+    "spacing": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "shape": [
+      "S",
+      "M"
+    ],
+    "motion": [
+      "motion.duration.expressive.medium",
+      "motion.easing.entrance"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "summary",
+    "accessibilityState": [],
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [
+      "mount"
+    ],
+    "honorsReduceMotion": true,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-toast-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "Toast"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Toast } from '@oneui/ui-native/components/Toast';\n\n<Toast />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "toast",
+    "feedback",
+    "status",
+    "overlay",
+    "toast",
+    "surface-aware"
+  ],
+  "importPath": "@oneui/ui-native/components/Toast"
+}

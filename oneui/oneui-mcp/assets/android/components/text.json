@@ -1,0 +1,312 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Text",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.256Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "JDS Text Compose component."
+  },
+  "composable": "JdsText",
+  "attributesClass": "JdsTextAttributes",
+  "importPath": "com.jds.components.text",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.text.JdsText",
+    "attributes": "com.jds.components.text.JdsTextAttributes",
+    "enums": {
+      "JdsTextVariant": "com.jds.components.text.JdsTextVariant",
+      "JdsTextSize": "com.jds.components.text.JdsTextSize",
+      "JdsTextWeight": "com.jds.components.text.JdsTextWeight",
+      "JdsTextAttention": "com.jds.components.text.JdsTextAttention",
+      "Appearance": "com.jds.foundation.token.Appearance",
+      "JdsTextAlign": "com.jds.components.text.JdsTextAlign"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "text",
+      "type": "String",
+      "required": false,
+      "defaultValue": "\"\"",
+      "description": ""
+    },
+    {
+      "name": "variant",
+      "type": "JdsTextVariant",
+      "required": false,
+      "defaultValue": "JdsTextVariant.Body",
+      "enumValues": [
+        "Display",
+        "Headline",
+        "Title",
+        "Body",
+        "Label",
+        "Code"
+      ],
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "JdsTextSize",
+      "required": false,
+      "defaultValue": "JdsTextSize.M",
+      "enumValues": [
+        "ThreeXs",
+        "TwoXs",
+        "Xs",
+        "S",
+        "M",
+        "L",
+        "Xl",
+        "TwoXl"
+      ],
+      "description": ""
+    },
+    {
+      "name": "weight",
+      "type": "JdsTextWeight",
+      "required": false,
+      "defaultValue": "JdsTextWeight.High",
+      "enumValues": [
+        "High",
+        "Medium",
+        "Low"
+      ],
+      "description": ""
+    },
+    {
+      "name": "attention",
+      "type": "JdsTextAttention",
+      "required": false,
+      "defaultValue": "JdsTextAttention.None",
+      "enumValues": [
+        "None",
+        "High",
+        "Medium",
+        "Low",
+        "TintedA11y"
+      ],
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "Appearance",
+      "required": false,
+      "defaultValue": "Appearance.Auto",
+      "enumValues": [
+        "Auto",
+        "Primary",
+        "Secondary",
+        "Sparkle",
+        "BrandBg",
+        "Neutral",
+        "Positive",
+        "Negative",
+        "Warning",
+        "Informative"
+      ],
+      "description": ""
+    },
+    {
+      "name": "italic",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "underline",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "strikethrough",
+      "type": "Boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "textAlign",
+      "type": "JdsTextAlign?",
+      "required": false,
+      "defaultValue": "null",
+      "enumValues": [
+        "Left",
+        "Center",
+        "Right"
+      ],
+      "description": ""
+    },
+    {
+      "name": "maxLines",
+      "type": "Int?",
+      "required": false,
+      "defaultValue": "null",
+      "description": ""
+    },
+    {
+      "name": "links",
+      "type": "List<JdsTextLinkSpan>",
+      "required": false,
+      "defaultValue": "emptyList()",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "enums": {
+    "JdsTextVariant": [
+      "Display",
+      "Headline",
+      "Title",
+      "Body",
+      "Label",
+      "Code"
+    ],
+    "JdsTextSize": [
+      "ThreeXs",
+      "TwoXs",
+      "Xs",
+      "S",
+      "M",
+      "L",
+      "Xl",
+      "TwoXl"
+    ],
+    "JdsTextWeight": [
+      "High",
+      "Medium",
+      "Low"
+    ],
+    "JdsTextAttention": [
+      "None",
+      "High",
+      "Medium",
+      "Low",
+      "TintedA11y"
+    ],
+    "Appearance": [
+      "Auto",
+      "Primary",
+      "Secondary",
+      "Sparkle",
+      "BrandBg",
+      "Neutral",
+      "Positive",
+      "Negative",
+      "Warning",
+      "Informative"
+    ],
+    "JdsTextAlign": [
+      "Left",
+      "Center",
+      "Right"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.Text",
+    "type": "object",
+    "properties": {
+      "text": {
+        "type": "string"
+      },
+      "variant": {
+        "enum": [
+          "Display",
+          "Headline",
+          "Title",
+          "Body",
+          "Label",
+          "Code"
+        ],
+        "default": "JdsTextVariant.Body"
+      },
+      "size": {
+        "enum": [
+          "ThreeXs",
+          "TwoXs",
+          "Xs",
+          "S",
+          "M",
+          "L",
+          "Xl",
+          "TwoXl"
+        ],
+        "default": "JdsTextSize.M"
+      },
+      "weight": {
+        "enum": [
+          "High",
+          "Medium",
+          "Low"
+        ],
+        "default": "JdsTextWeight.High"
+      },
+      "attention": {
+        "enum": [
+          "None",
+          "High",
+          "Medium",
+          "Low",
+          "TintedA11y"
+        ],
+        "default": "JdsTextAttention.None"
+      },
+      "appearance": {
+        "enum": [
+          "Auto",
+          "Primary",
+          "Secondary",
+          "Sparkle",
+          "BrandBg",
+          "Neutral",
+          "Positive",
+          "Negative",
+          "Warning",
+          "Informative"
+        ],
+        "default": "Appearance.Auto"
+      },
+      "italic": {
+        "type": "boolean"
+      },
+      "underline": {
+        "type": "boolean"
+      },
+      "strikethrough": {
+        "type": "boolean"
+      },
+      "textAlign": {
+        "enum": [
+          "Left",
+          "Center",
+          "Right"
+        ],
+        "default": "null"
+      },
+      "maxLines": {
+        "type": "integer"
+      },
+      "links": {}
+    },
+    "required": []
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "text"
+  ],
+  "importPathMaven": "com.jds:components"
+}

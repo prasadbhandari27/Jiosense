@@ -1,0 +1,508 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Image",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Display an image with aspect ratio presets, loading states, and optional interactive overlay.",
+    "taskContexts": [
+      "content-image",
+      "product-photo",
+      "thumbnail",
+      "hero-banner",
+      "gallery-item"
+    ],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [
+      "src (required)",
+      "alt text (required)"
+    ],
+    "allows": [
+      "aspect ratio preset",
+      "interactive mode with click handler",
+      "custom fallback on error"
+    ],
+    "forbids": [
+      "decorative images without alt=\"\"",
+      "interactive mode without aria-label"
+    ]
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "static",
+        "useWhen": [
+          "display-only image content"
+        ]
+      },
+      {
+        "name": "interactive",
+        "useWhen": [
+          "clickable image with state layer and focus ring"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": [
+      "Avatar",
+      "Logo"
+    ]
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [
+      "click",
+      "impression"
+    ],
+    "health": [
+      "a11y_violations",
+      "image_load_failure_rate"
+    ]
+  },
+  "props": [
+    {
+      "name": "alt",
+      "type": "string",
+      "required": true,
+      "description": "Accessible alt text (required)"
+    },
+    {
+      "name": "src",
+      "type": "string",
+      "required": true,
+      "description": "Image source URL (required)"
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label for interactive images"
+    },
+    {
+      "name": "aspectRatio",
+      "type": "'auto' | '1:1' | '1:2' | '2:1' | '2:3' | '3:2' | '3:4' | '4:3' | '9:16' | '16:9' | '9:21' | '21:9'",
+      "required": false,
+      "description": "Aspect ratio preset. Default: 'auto'"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "crossOrigin",
+      "type": "'anonymous' | 'use-credentials'",
+      "required": false,
+      "description": "CORS mode for the image request"
+    },
+    {
+      "name": "decoding",
+      "type": "'auto' | 'sync' | 'async'",
+      "required": false,
+      "description": "Decode hint for the browser"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Reduces opacity. Default: false"
+    },
+    {
+      "name": "draggable",
+      "type": "boolean",
+      "required": false,
+      "description": "Native drag behavior"
+    },
+    {
+      "name": "fallback",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Custom error fallback content (wins over `fallbackSrc`)"
+    },
+    {
+      "name": "fallbackSrc",
+      "type": "string",
+      "required": false,
+      "description": "Fallback image URL when `src` fails and `fallback` is not set"
+    },
+    {
+      "name": "fit",
+      "type": "'cover' | 'contain' | 'fill' | 'none' | 'scale-down' | 'inherit' | 'initial' | 'revert' | 'revert-layer' | 'unset'",
+      "required": false,
+      "description": "Figma-aligned alias for `objectFit`. If both `fit` and `objectFit` are set, `fit` wins."
+    },
+    {
+      "name": "height",
+      "type": "string | number",
+      "required": false,
+      "description": "Container height"
+    },
+    {
+      "name": "interactive",
+      "type": "boolean",
+      "required": false,
+      "description": "When true: pointer cursor, focus ring, and clickable. No hover overlay. Default: false"
+    },
+    {
+      "name": "loading",
+      "type": "'auto' | 'lazy' | 'eager' | 'error' | 'empty'",
+      "required": false,
+      "description": "Browser native loading strategy. Default: 'lazy'"
+    },
+    {
+      "name": "lottieAttributes",
+      "type": "ImageLottieAttributes",
+      "required": false,
+      "description": "Optional Lottie/host payload — web: `data-oneui-lottie` JSON on root"
+    },
+    {
+      "name": "lowResolutionImage",
+      "type": "boolean",
+      "required": false,
+      "description": "Figma `lowResolutionImage` — applies a soft blur to simulate a low-res asset. Default: false."
+    },
+    {
+      "name": "objectFit",
+      "type": "'cover' | 'contain' | 'fill' | 'none' | 'scale-down' | 'inherit' | 'initial' | 'revert' | 'revert-layer' | 'unset'",
+      "required": false,
+      "description": "CSS object-fit for the image. Default: 'cover'"
+    },
+    {
+      "name": "objectPosition",
+      "type": "string",
+      "required": false,
+      "description": "CSS object-position. Default: 'center'"
+    },
+    {
+      "name": "onClick",
+      "type": "() => void",
+      "required": false,
+      "description": "Web alias for onPress"
+    },
+    {
+      "name": "onError",
+      "type": "() => void",
+      "required": false,
+      "description": "Image error callback"
+    },
+    {
+      "name": "onLoad",
+      "type": "() => void",
+      "required": false,
+      "description": "Image loaded callback"
+    },
+    {
+      "name": "onPress",
+      "type": "() => void",
+      "required": false,
+      "description": "Click handler (interactive only)"
+    },
+    {
+      "name": "orientation",
+      "type": "'landscape' | 'portrait'",
+      "required": false,
+      "description": "Figma `orientation`. `portrait` inverts non-`auto` aspect ratios (e.g. `16:9` + portrait → `9:16`). Default: `'landscape'`."
+    },
+    {
+      "name": "scrim",
+      "type": "boolean | ScrimProps",
+      "required": false,
+      "description": "Figma `scrim` — overlay for on-image text legibility. `true` uses the default bottom gradient (`variant=\"gradient\"`, `position=\"bottom\"`, `size=\"s\"`, `attention=\"medium\"`). Pass {@link ScrimProps} to customize. Default: false."
+    },
+    {
+      "name": "sizes",
+      "type": "string",
+      "required": false,
+      "description": "Hint for `srcSet` selection (HTML `sizes`)"
+    },
+    {
+      "name": "srcSet",
+      "type": "string",
+      "required": false,
+      "description": "Responsive image sources (HTML `srcSet`)"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    },
+    {
+      "name": "testID",
+      "type": "string",
+      "required": false,
+      "description": "Test id — forwarded as `data-testid` on the web root element."
+    },
+    {
+      "name": "width",
+      "type": "string | number",
+      "required": false,
+      "description": "Container width"
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.image",
+    "type": "object",
+    "properties": {
+      "alt": {
+        "type": "string",
+        "description": "Accessible alt text (required)"
+      },
+      "src": {
+        "type": "string",
+        "description": "Image source URL (required)"
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label for interactive images"
+      },
+      "aspectRatio": {
+        "enum": [
+          "auto",
+          "1:1",
+          "1:2",
+          "2:1",
+          "2:3",
+          "3:2",
+          "3:4",
+          "4:3",
+          "9:16",
+          "16:9",
+          "9:21",
+          "21:9"
+        ],
+        "description": "Aspect ratio preset. Default: 'auto'"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "crossOrigin": {
+        "enum": [
+          "anonymous",
+          "use-credentials"
+        ],
+        "description": "CORS mode for the image request"
+      },
+      "decoding": {
+        "enum": [
+          "auto",
+          "sync",
+          "async"
+        ],
+        "description": "Decode hint for the browser"
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Reduces opacity. Default: false"
+      },
+      "draggable": {
+        "type": "boolean",
+        "description": "Native drag behavior"
+      },
+      "fallback": {
+        "description": "Custom error fallback content (wins over `fallbackSrc`)"
+      },
+      "fallbackSrc": {
+        "type": "string",
+        "description": "Fallback image URL when `src` fails and `fallback` is not set"
+      },
+      "fit": {
+        "enum": [
+          "cover",
+          "contain",
+          "fill",
+          "none",
+          "scale-down",
+          "inherit",
+          "initial",
+          "revert",
+          "revert-layer",
+          "unset"
+        ],
+        "description": "Figma-aligned alias for `objectFit`. If both `fit` and `objectFit` are set, `fit` wins."
+      },
+      "height": {
+        "description": "Container height"
+      },
+      "interactive": {
+        "type": "boolean",
+        "description": "When true: pointer cursor, focus ring, and clickable. No hover overlay. Default: false"
+      },
+      "loading": {
+        "enum": [
+          "auto",
+          "lazy",
+          "eager",
+          "error",
+          "empty"
+        ],
+        "description": "Browser native loading strategy. Default: 'lazy'"
+      },
+      "lottieAttributes": {
+        "description": "Optional Lottie/host payload — web: `data-oneui-lottie` JSON on root"
+      },
+      "lowResolutionImage": {
+        "type": "boolean",
+        "description": "Figma `lowResolutionImage` — applies a soft blur to simulate a low-res asset. Default: false."
+      },
+      "objectFit": {
+        "enum": [
+          "cover",
+          "contain",
+          "fill",
+          "none",
+          "scale-down",
+          "inherit",
+          "initial",
+          "revert",
+          "revert-layer",
+          "unset"
+        ],
+        "description": "CSS object-fit for the image. Default: 'cover'"
+      },
+      "objectPosition": {
+        "type": "string",
+        "description": "CSS object-position. Default: 'center'"
+      },
+      "onClick": {
+        "description": "Web alias for onPress"
+      },
+      "onError": {
+        "description": "Image error callback"
+      },
+      "onLoad": {
+        "description": "Image loaded callback"
+      },
+      "onPress": {
+        "description": "Click handler (interactive only)"
+      },
+      "orientation": {
+        "enum": [
+          "landscape",
+          "portrait"
+        ],
+        "description": "Figma `orientation`. `portrait` inverts non-`auto` aspect ratios (e.g. `16:9` + portrait → `9:16`). Default: `'landscape'`."
+      },
+      "scrim": {
+        "description": "Figma `scrim` — overlay for on-image text legibility. `true` uses the default bottom gradient (`variant=\"gradient\"`, `position=\"bottom\"`, `size=\"s\"`, `attention=\"medium\"`). Pass {@link ScrimProps} to customize. Default: false."
+      },
+      "sizes": {
+        "type": "string",
+        "description": "Hint for `srcSet` selection (HTML `sizes`)"
+      },
+      "srcSet": {
+        "type": "string",
+        "description": "Responsive image sources (HTML `srcSet`)"
+      },
+      "style": {
+        "description": "Inline styles"
+      },
+      "testID": {
+        "type": "string",
+        "description": "Test id — forwarded as `data-testid` on the web root element."
+      },
+      "width": {
+        "description": "Container width"
+      }
+    },
+    "required": [
+      "alt",
+      "src"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "image-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Image } from '@oneui/ui';\n\n<Image src=\"/photo.jpg\" alt=\"Product shot\" />"
+    },
+    {
+      "id": "image-aspect-ratio",
+      "title": "With Aspect Ratio",
+      "language": "tsx",
+      "code": "<Image src=\"/banner.jpg\" alt=\"Hero banner\" aspectRatio=\"16:9\" />"
+    },
+    {
+      "id": "image-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Image\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "image"
+  ],
+  "interactionBehavior": {
+    "summary": "Image is a presentational `<div role=\"img\">` until you pass `interactive={true}` — `onPress` / `onClick` alone do **not** flip it, unlike Avatar. The interactive root is still a `<div>`, with `role=\"button\"` and `tabIndex={0}`, pointer cursor, and a focus halo. Figma forbids a hover or pressed overlay, so `:hover` and `:active` are implemented as explicit no-ops (transparent fill, no shadow, no filter). `loading` is the native `<img loading>` strategy (`lazy` / `eager`), not a spinner state.",
+    "hover": [
+      "Only when `interactive`: `cursor: pointer`. Fill, shadow, filter, and opacity are forced to stay put (`transparent` / `none` / `1`) inside `@media (hover: hover)` — there is no hover paint, by design.",
+      "The non-interactive root has no hover rule."
+    ],
+    "press": [
+      "`:active` is the same explicit no-op as hover: no fill, shadow, filter, or opacity change, and no tap-scale.",
+      "A click still fires `onPress` / `onClick` when `interactive` and not `disabled`."
+    ],
+    "focus": [
+      "Only `interactive` is focusable (`tabIndex={0}`). `interactive` + `disabled` sets `tabIndex={-1}` and `aria-disabled`.",
+      "Keyboard focus draws the two-layer halo: an inner `--Stroke-XL` gap ring in `--Surface-Halo-Gap` plus an outer ring in `--Image-focusOutlineColor` (falls back to `--Focus-Outline`), with spread `--Stroke-XL` + `--Image-focusOutlineWidth` (`--Focus-Outline-Width`).",
+      "`:focus` clears the native outline; `:focus:not(:focus-visible)` also clears `box-shadow`, so a mouse click does not leave a ring."
+    ],
+    "keyboard": [
+      "`Enter` and `Space` on the interactive root both call `onPress` / `onClick`. `Space` is handled on key-down with `preventDefault()` — it does not wait for key-up the way a native `<button>` does.",
+      "Handlers no-op when `disabled` or when `interactive` is false.",
+      "`aria-label` wins over `alt` as the accessible name of the interactive root."
+    ],
+    "disabled": [
+      "Dims to `--Image-disabledOpacity` (`--Disabled-Opacity`) and sets `pointer-events: none` on both variants.",
+      "There is no `cursor: not-allowed`, so with `pointer-events: none` the pointer shows the parent's cursor (the known system-wide gap; see docs/design/disabled-states.md).",
+      "Interactive + disabled: `aria-disabled=\"true\"`, `tabIndex={-1}`, and `onPress` / `onClick` / key handlers do not fire."
+    ],
+    "touch": [
+      "No hover overlay and no pressed overlay, so a tap's only feedback is the click itself (and the halo only if focus was already visible).",
+      "`-webkit-tap-highlight-color: transparent` on the interactive root suppresses the iOS grey tap flash.",
+      "A `scrim` overlay is `pointer-events: none`, so it never steals the tap."
+    ]
+  },
+  "importPath": "@jds4/oneui-react",
+  "figma": {
+    "componentKey": "jds-image-v4"
+  },
+  "renderHints": {
+    "baseElement": "img",
+    "readsFromSurfaceContext": true
+  },
+  "a11y": {
+    "role": "img",
+    "minTouchTarget": 44,
+    "accessibleNameSource": "aria-label"
+  }
+}

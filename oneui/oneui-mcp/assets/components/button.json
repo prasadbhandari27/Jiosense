@@ -1,0 +1,480 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Button",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Trigger a single user action with clear emphasis and accessible states.",
+    "taskContexts": [
+      "form-submission",
+      "destructive-action",
+      "navigation",
+      "inline-action"
+    ],
+    "sentiments": [
+      "positive",
+      "warning",
+      "destructive"
+    ]
+  },
+  "compositionRules": {
+    "requires": [
+      "label or aria-label",
+      "interactive button root"
+    ],
+    "allows": [
+      "leftIcon",
+      "rightIcon",
+      "loading spinner"
+    ],
+    "forbids": [
+      "table content",
+      "image-only content without aria-label"
+    ]
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "bold",
+        "useWhen": [
+          "single primary action per view",
+          "high emphasis CTA"
+        ],
+        "pairWith": [
+          "secondary action as subtle or ghost"
+        ]
+      },
+      {
+        "name": "subtle",
+        "useWhen": [
+          "secondary action with visible affordance"
+        ]
+      },
+      {
+        "name": "ghost",
+        "useWhen": [
+          "low-attention inline action",
+          "toolbar-like controls"
+        ],
+        "avoidWhen": [
+          "primary action in dense workflows"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": [
+      "IconButton",
+      "ToggleButton"
+    ],
+    "escalatesTo": [
+      "Dialog",
+      "ConfirmationDialog"
+    ],
+    "degradesTo": [
+      "TextLink"
+    ],
+    "groupsWith": [
+      "ButtonGroup",
+      "Toolbar"
+    ]
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile",
+      "web"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [
+      "click",
+      "impression",
+      "abandonment"
+    ],
+    "health": [
+      "adoption_rate",
+      "override_frequency",
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": "Multi-accent appearance role. 'auto' resolves to 'primary'."
+    },
+    {
+      "name": "attention",
+      "type": "'high' | 'medium' | 'low'",
+      "required": false,
+      "defaultValue": "high",
+      "description": "Emphasis level — high (bold fill), medium (subtle/tinted fill), low (ghost, text-only). Drives the visual treatment; the component derives the internal variant + `data-variant` from this."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "condensed",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Condensed mode: reduces height and horizontal padding while keeping the same typography. Use for dense layouts, inline actions, and compact UI areas. NOT the same as using a smaller size. Only applies when `contained={true}`."
+    },
+    {
+      "name": "contained",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": "Whether the button renders in its contained form (filled pill with a state-layer wrapper) or its uncontained form (transparent, underlined, text-link style). Mirrors the Figma `Contained` variant property on the Button component set. Props that only make sense for the contained form (`condensed`, `fullWidth`, `decoration`) are ignored when `contained={false}`."
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "Test selector passthrough"
+    },
+    {
+      "name": "decoration",
+      "type": "DecorationConfig | null",
+      "required": false,
+      "description": "Direct decoration config — overrides DecorationContext. Use in Storybook stories or tests where context may not propagate."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "disabled property"
+    },
+    {
+      "name": "end",
+      "type": "'add' | 'remove' | 'close' | 'edit' | 'delete' | 'copy' | 'save' | 'refresh' | 'download' | 'upload' | 'share' | 'link' | 'unlink' | 'cart' | 'helloJio' | 'favourite' | 'rewind' | 'forward' | 'menu' | 'search' | 'home' | 'settings' | 'arrowLeft' | 'arrowRight' | 'arrowUp' | 'arrowDown' | 'chevronLeft' | 'chevronRight' | 'chevronUp' | 'chevronDown' | 'externalLink' | 'firstPage' | 'lastPage' /** Single-step back / forward (Jio: `IcBack` / `IcNext` — distinct from chevrons). */ | 'back' | 'next' | 'check' | 'checkCircle' | 'warning' | 'error' | 'info' | 'help' | 'loading' | 'play' | 'pause' | 'stop' | 'volumeOn' | 'volumeOff' | 'microphone' | 'image' | 'video' | 'user' | 'users' | 'userAdd' | 'userRemove' | 'logout' | 'eye' | 'eyeOff' | 'lock' | 'unlock' | 'star' | 'starFilled' | 'heart' | 'heartFilled' | 'bookmark' | 'bookmarkFilled' | 'filter' | 'sort' | 'grid' | 'list' | 'moreHorizontal' | 'moreVertical' | 'mail' | 'phone' | 'chat' | 'notification' | 'file' | 'folder' | 'document' | 'calendar' | 'clock' | 'location' | 'sun' | 'moon' | 'palette' | 'brand' | 'layers' | 'components' | 'canvas' | 'create' | 'sparkles' | 'analytics' | 'globe' | 'smartphone' | 'tablet' | 'monitor' | 'tv' | 'printer' | 'billboard' | 'bus' | ReactNode",
+      "required": false,
+      "description": "Content after the label. Pass a semantic icon name (string) for automatic color-inheriting icon rendering, or any ReactNode for custom content."
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Stretch to fill container width."
+    },
+    {
+      "name": "leftIcon",
+      "type": "'add' | 'remove' | 'close' | 'edit' | 'delete' | 'copy' | 'save' | 'refresh' | 'download' | 'upload' | 'share' | 'link' | 'unlink' | 'cart' | 'helloJio' | 'favourite' | 'rewind' | 'forward' | 'menu' | 'search' | 'home' | 'settings' | 'arrowLeft' | 'arrowRight' | 'arrowUp' | 'arrowDown' | 'chevronLeft' | 'chevronRight' | 'chevronUp' | 'chevronDown' | 'externalLink' | 'firstPage' | 'lastPage' /** Single-step back / forward (Jio: `IcBack` / `IcNext` — distinct from chevrons). */ | 'back' | 'next' | 'check' | 'checkCircle' | 'warning' | 'error' | 'info' | 'help' | 'loading' | 'play' | 'pause' | 'stop' | 'volumeOn' | 'volumeOff' | 'microphone' | 'image' | 'video' | 'user' | 'users' | 'userAdd' | 'userRemove' | 'logout' | 'eye' | 'eyeOff' | 'lock' | 'unlock' | 'star' | 'starFilled' | 'heart' | 'heartFilled' | 'bookmark' | 'bookmarkFilled' | 'filter' | 'sort' | 'grid' | 'list' | 'moreHorizontal' | 'moreVertical' | 'mail' | 'phone' | 'chat' | 'notification' | 'file' | 'folder' | 'document' | 'calendar' | 'clock' | 'location' | 'sun' | 'moon' | 'palette' | 'brand' | 'layers' | 'components' | 'canvas' | 'create' | 'sparkles' | 'analytics' | 'globe' | 'smartphone' | 'tablet' | 'monitor' | 'tv' | 'printer' | 'billboard' | 'bus' | (string & {}) | IconComponent | ReactElement",
+      "required": false,
+      "description": "leftIcon property"
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "loading property"
+    },
+    {
+      "name": "onClick",
+      "type": "ComponentPropsWithoutRef<'button'>['onClick']",
+      "required": false,
+      "description": "Web-only alias for onPress"
+    },
+    {
+      "name": "onPress",
+      "type": "() => void",
+      "required": false,
+      "description": "onPress property"
+    },
+    {
+      "name": "rightIcon",
+      "type": "'add' | 'remove' | 'close' | 'edit' | 'delete' | 'copy' | 'save' | 'refresh' | 'download' | 'upload' | 'share' | 'link' | 'unlink' | 'cart' | 'helloJio' | 'favourite' | 'rewind' | 'forward' | 'menu' | 'search' | 'home' | 'settings' | 'arrowLeft' | 'arrowRight' | 'arrowUp' | 'arrowDown' | 'chevronLeft' | 'chevronRight' | 'chevronUp' | 'chevronDown' | 'externalLink' | 'firstPage' | 'lastPage' /** Single-step back / forward (Jio: `IcBack` / `IcNext` — distinct from chevrons). */ | 'back' | 'next' | 'check' | 'checkCircle' | 'warning' | 'error' | 'info' | 'help' | 'loading' | 'play' | 'pause' | 'stop' | 'volumeOn' | 'volumeOff' | 'microphone' | 'image' | 'video' | 'user' | 'users' | 'userAdd' | 'userRemove' | 'logout' | 'eye' | 'eyeOff' | 'lock' | 'unlock' | 'star' | 'starFilled' | 'heart' | 'heartFilled' | 'bookmark' | 'bookmarkFilled' | 'filter' | 'sort' | 'grid' | 'list' | 'moreHorizontal' | 'moreVertical' | 'mail' | 'phone' | 'chat' | 'notification' | 'file' | 'folder' | 'document' | 'calendar' | 'clock' | 'location' | 'sun' | 'moon' | 'palette' | 'brand' | 'layers' | 'components' | 'canvas' | 'create' | 'sparkles' | 'analytics' | 'globe' | 'smartphone' | 'tablet' | 'monitor' | 'tv' | 'printer' | 'billboard' | 'bus' | (string & {}) | IconComponent | ReactElement",
+      "required": false,
+      "description": "rightIcon property"
+    },
+    {
+      "name": "size",
+      "type": "6 | 8 | 10 | 12 | 'xs' | 's' | 'm' | 'l' | 'small' | 'medium' | 'large' | 7 | 14 | 16 | '2xs' | 'xl' | '2xl'",
+      "required": false,
+      "defaultValue": "10",
+      "description": "Button size — dimension step number or t-shirt alias."
+    },
+    {
+      "name": "start",
+      "type": "'add' | 'remove' | 'close' | 'edit' | 'delete' | 'copy' | 'save' | 'refresh' | 'download' | 'upload' | 'share' | 'link' | 'unlink' | 'cart' | 'helloJio' | 'favourite' | 'rewind' | 'forward' | 'menu' | 'search' | 'home' | 'settings' | 'arrowLeft' | 'arrowRight' | 'arrowUp' | 'arrowDown' | 'chevronLeft' | 'chevronRight' | 'chevronUp' | 'chevronDown' | 'externalLink' | 'firstPage' | 'lastPage' /** Single-step back / forward (Jio: `IcBack` / `IcNext` — distinct from chevrons). */ | 'back' | 'next' | 'check' | 'checkCircle' | 'warning' | 'error' | 'info' | 'help' | 'loading' | 'play' | 'pause' | 'stop' | 'volumeOn' | 'volumeOff' | 'microphone' | 'image' | 'video' | 'user' | 'users' | 'userAdd' | 'userRemove' | 'logout' | 'eye' | 'eyeOff' | 'lock' | 'unlock' | 'star' | 'starFilled' | 'heart' | 'heartFilled' | 'bookmark' | 'bookmarkFilled' | 'filter' | 'sort' | 'grid' | 'list' | 'moreHorizontal' | 'moreVertical' | 'mail' | 'phone' | 'chat' | 'notification' | 'file' | 'folder' | 'document' | 'calendar' | 'clock' | 'location' | 'sun' | 'moon' | 'palette' | 'brand' | 'layers' | 'components' | 'canvas' | 'create' | 'sparkles' | 'analytics' | 'globe' | 'smartphone' | 'tablet' | 'monitor' | 'tv' | 'printer' | 'billboard' | 'bus' | ReactNode",
+      "required": false,
+      "description": "Content before the label. Pass a semantic icon name (string) for automatic color-inheriting icon rendering, or any ReactNode for custom content."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    },
+    {
+      "name": "type",
+      "type": "'button' | 'submit' | 'reset'",
+      "required": false,
+      "description": "HTML button type attribute"
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label override. Button always has a visible text label; for label-less icon buttons use <IconButton>."
+    }
+  ],
+  "slots": [
+    {
+      "name": "start",
+      "types": [
+        "icon",
+        "avatar",
+        "badge",
+        "custom"
+      ],
+      "tokens": [
+        "iconSizeStart",
+        "iconGapStart"
+      ]
+    },
+    {
+      "name": "end",
+      "types": [
+        "icon",
+        "chevron",
+        "badge",
+        "custom"
+      ],
+      "tokens": [
+        "iconSizeEnd",
+        "iconGapEnd"
+      ]
+    },
+    {
+      "name": "loading",
+      "types": [
+        "spinner"
+      ],
+      "tokens": [
+        "disabledOpacity",
+        "transitionDuration"
+      ]
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.button",
+    "type": "object",
+    "properties": {
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. 'auto' resolves to 'primary'.",
+        "default": "auto"
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "description": "Emphasis level — high (bold fill), medium (subtle/tinted fill), low (ghost, text-only). Drives the visual treatment; the component derives the internal variant + `data-variant` from this.",
+        "default": "high"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "condensed": {
+        "type": "boolean",
+        "description": "Condensed mode: reduces height and horizontal padding while keeping the same typography. Use for dense layouts, inline actions, and compact UI areas. NOT the same as using a smaller size. Only applies when `contained={true}`.",
+        "default": "false"
+      },
+      "contained": {
+        "type": "boolean",
+        "description": "Whether the button renders in its contained form (filled pill with a state-layer wrapper) or its uncontained form (transparent, underlined, text-link style). Mirrors the Figma `Contained` variant property on the Button component set. Props that only make sense for the contained form (`condensed`, `fullWidth`, `decoration`) are ignored when `contained={false}`.",
+        "default": "true"
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "Test selector passthrough"
+      },
+      "decoration": {
+        "description": "Direct decoration config — overrides DecorationContext. Use in Storybook stories or tests where context may not propagate."
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "disabled property",
+        "default": "false"
+      },
+      "end": {
+        "description": "Content after the label. Pass a semantic icon name (string) for automatic color-inheriting icon rendering, or any ReactNode for custom content."
+      },
+      "fullWidth": {
+        "type": "boolean",
+        "description": "Stretch to fill container width.",
+        "default": "false"
+      },
+      "leftIcon": {
+        "description": "leftIcon property"
+      },
+      "loading": {
+        "type": "boolean",
+        "description": "loading property",
+        "default": "false"
+      },
+      "onClick": {
+        "description": "Web-only alias for onPress"
+      },
+      "onPress": {
+        "description": "onPress property"
+      },
+      "rightIcon": {
+        "description": "rightIcon property"
+      },
+      "size": {
+        "enum": [
+          "xs",
+          "s",
+          "m",
+          "l",
+          6,
+          8,
+          10,
+          12
+        ],
+        "description": "Button size — dimension step number or t-shirt alias.",
+        "default": "10"
+      },
+      "start": {
+        "description": "Content before the label. Pass a semantic icon name (string) for automatic color-inheriting icon rendering, or any ReactNode for custom content."
+      },
+      "style": {
+        "description": "Inline styles"
+      },
+      "type": {
+        "enum": [
+          "button",
+          "submit",
+          "reset"
+        ],
+        "description": "HTML button type attribute"
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label override. Button always has a visible text label; for label-less icon buttons use <IconButton>."
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Button } from '@oneui/ui';\n\n<Button>Click me</Button>"
+    },
+    {
+      "id": "variants",
+      "title": "Variants",
+      "language": "tsx",
+      "code": "<Button variant=\"bold\">Primary</Button>\n<Button variant=\"subtle\">Secondary</Button>\n<Button variant=\"ghost\">Tertiary</Button>"
+    },
+    {
+      "id": "button-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Button\",\n  \"decisions\": [\n    \"Shape\",\n    \"Text case\",\n    \"Horizontal padding\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "button"
+  ],
+  "interactionBehavior": {
+    "summary": "Button responds on three channels at once: the fill steps to a hover/pressed token, the whole button scales DOWN slightly on press, and focus draws a two-layer halo that survives tinted surfaces. Press scale is size-aware — small buttons squash more than large ones, and full-width buttons barely move. `loading` implies disabled: the click handler stops firing, the label goes transparent but stays in the accessibility tree, and a centred spinner takes over without the button changing size.",
+    "hover": [
+      "The fill steps to the hover token for the resolved attention level: `--{Role}-Bold-Hover` at `attention=\"high\"`, `--{Role}-Subtle-Hover` at `medium`, `--{Role}-Hover` at `low`.",
+      "Border colour, text colour, and the solid stroke colour each have their own hover channel, so a brand can recolour the outline on hover without touching the fill.",
+      "Wrapped in `@media (hover: hover)`, so a touch tap never leaves a stuck hover fill behind.",
+      "Never applies while `disabled` or `loading` — every hover rule is qualified with `:not(.disabled)`.",
+      "Buttons with a brand material (gradient) fill deliberately keep the fill stable on hover; the feedback comes from the tap-scale and decoration channels instead, because a flat colour swap over a gradient reads as a glitch."
+    ],
+    "press": [
+      "The fill deepens to the pressed token — `--{Role}-Bold-Pressed`, `--{Role}-Subtle-Pressed`, or `--{Role}-Pressed` by attention level.",
+      "The entire button scales DOWN on press: `scale(1 - tapScale/100)`. Note this is opposite to Checkbox and Radio, whose state layers scale UP on press.",
+      "Tap scale is size-aware: 7% at size XS (`--Motion-Tap-Scale-XS`), 3% for S through XL (`--Motion-Tap-Scale-Default`), and only 1% when `fullWidth` (`--Motion-Tap-Scale-FullWidth`) — a wide button moving 3% would read as the whole page shifting.",
+      "Press applies on touch as well as pointer; it is not `(hover: hover)`-guarded.",
+      "A brand can disable the squash entirely by setting the tap-scale token to 0, as Stepper does."
+    ],
+    "focus": [
+      "Keyboard focus draws the two-layer halo: an inner `--Stroke-XL` gap ring in `--Surface-Halo-Gap` plus an outer ring in `--Focus-Outline`, so the indicator stays visible when the button sits inside a tinted `<Surface>`.",
+      "`:focus` alone clears the native outline — the visible indicator is `:focus-visible` only, so mouse clicks do not paint a ring.",
+      "Ring width and colour are brand-overridable via `--Button-focusOutlineWidth` and `--Button-focusOutlineColor`.",
+      "Ornament-decorated buttons cannot use a rectangular box-shadow ring, so they drop the box-shadow and dilate their own masked silhouette with an SVG `feMorphology` filter (`#oneui-btn-focus-ring`) — the halo then follows the pointed caps exactly instead of boxing them.",
+      "Decorated ghost buttons instead recolour their decoration strokes to the focus colour, since there is no fill to ring."
+    ],
+    "keyboard": [
+      "Renders a native `<button>`, so `Enter` and `Space` both activate it with no custom key handling — and `Space` fires on key-up, `Enter` on key-down, per platform convention.",
+      "`type` defaults to the native `submit` behaviour inside a form unless you pass `type=\"button\"` — a common source of accidental form submits.",
+      "Disabled and loading buttons are removed from the tab order because the native `disabled` attribute is applied (not `aria-disabled`)."
+    ],
+    "loading": [
+      "`loading` implies disabled — internally `isDisabled = disabled || loading` — so the native `disabled` attribute is set and `onClick` / `onPress` stops firing. You do not need to pass both.",
+      "`aria-busy=\"true\"` is set so assistive tech announces the pending state.",
+      "The start slot, label, and end slot go to `opacity: 0` rather than `display: none`, which keeps their boxes in layout — the button does not resize or reflow when loading toggles — and keeps the label in the accessibility tree so the button still has a name.",
+      "The spinner is absolutely positioned across the button's box, so it lands centred over the hidden content regardless of label length.",
+      "`pointer-events: none` is applied, so hover and press visuals are inert while loading."
+    ],
+    "disabled": [
+      "Dims to `--Disabled-Opacity` (brand-overridable via `--Button-disabledOpacity`) and sets `cursor: not-allowed` plus `pointer-events: none`.",
+      "Because `pointer-events: none` is set on a natively disabled button, the `not-allowed` cursor is not actually observable — the pointer shows the parent's cursor. This is a known, accepted system-wide gap; do NOT wrap the button in a host element to work around it (see docs/design/disabled-states.md).",
+      "All hover and press rules are suppressed via `:not(.disabled)`, so a disabled button is visually inert."
+    ],
+    "touch": [
+      "Hover fills never apply on touch-only devices; the pressed fill plus the tap-scale squash are the entire response to a tap.",
+      "Size XS carries the largest tap scale (7%) precisely because it is the hardest target to confirm visually at a glance on a phone."
+    ]
+  },
+  "importPath": "@jds4/oneui-react",
+  "figma": {
+    "componentKey": "jds-button-v4"
+  },
+  "renderHints": {
+    "baseElement": "button",
+    "readsFromSurfaceContext": true
+  },
+  "a11y": {
+    "role": "button",
+    "minTouchTarget": 44,
+    "accessibleNameSource": "children"
+  }
+}

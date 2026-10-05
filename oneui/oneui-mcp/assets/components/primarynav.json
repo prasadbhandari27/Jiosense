@@ -1,0 +1,433 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "PrimaryNav",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Primary HeaderWeb row. Figma publishes homeBar, contextBar, and searchBar types with fluid or centered middle content.",
+    "taskContexts": [
+      "header",
+      "navigation",
+      "primary-nav",
+      "search"
+    ],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [
+      "logo",
+      "children",
+      "end",
+      "avatar"
+    ],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "homeBar",
+        "useWhen": [
+          "Home bar"
+        ]
+      },
+      {
+        "name": "contextBar",
+        "useWhen": [
+          "Context bar"
+        ]
+      },
+      {
+        "name": "searchBar",
+        "useWhen": [
+          "Search bar"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "activeValue",
+      "type": "string",
+      "required": false,
+      "description": "Active nav item value — used to position the sliding indicator"
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible name for the primary navigation landmark. Defaults to \"Primary navigation\". Override when rendering multiple `PrimaryNav` instances on the same page so each `<nav>` is uniquely labelled."
+    },
+    {
+      "name": "aria-labelledby",
+      "type": "string",
+      "required": false,
+      "description": "IDREF of a visible element that labels the navigation landmark."
+    },
+    {
+      "name": "avatar",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Avatar element for far-end"
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Nav items for middle section (HeaderItem components)"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "divider",
+      "type": "boolean",
+      "required": false,
+      "description": "Show/hide bottom divider. Default: true"
+    },
+    {
+      "name": "end",
+      "type": "ReactNode",
+      "required": false,
+      "description": "End slot content (icon actions before avatar)"
+    },
+    {
+      "name": "logo",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Logo element for start slot"
+    },
+    {
+      "name": "middle",
+      "type": "/** * Collapses the middle region entirely (`display: none`). Code-only * extension — the Figma set exposes just `fluid | centered` and models an * empty middle by omitting its content. Retained because contextBar-style * headers need an explicit way to reclaim the space. */ | 'none' | 'fluid' | 'centered' /** @deprecated Use the Figma-canonical `centered` spelling. */ | 'centred'",
+      "required": false,
+      "description": "Middle section layout: fluid (fills space) or centered (absolute center)"
+    },
+    {
+      "name": "onActiveValueChange",
+      "type": "(value: string) => void",
+      "required": false,
+      "description": "Called when a child Header.Item becomes active."
+    },
+    {
+      "name": "onDrawerOpenChange",
+      "type": "(open: boolean) => void",
+      "required": false,
+      "description": "Called when mobile drawer state changes"
+    },
+    {
+      "name": "onSearchChange",
+      "type": "(value: string) => void",
+      "required": false,
+      "description": "Called when search value changes"
+    },
+    {
+      "name": "onSearchSubmit",
+      "type": "(value: string) => void",
+      "required": false,
+      "description": "Called when search is submitted"
+    },
+    {
+      "name": "onVoiceSearch",
+      "type": "() => void",
+      "required": false,
+      "description": "Called when the trailing voice-search action is pressed."
+    },
+    {
+      "name": "primaryNavItems",
+      "type": "boolean",
+      "required": false,
+      "description": "Show/hide nav items in middle section. Default: true"
+    },
+    {
+      "name": "searchAriaLabel",
+      "type": "string",
+      "required": false,
+      "description": "Accessible name for the embedded search landmark. Forwarded to the `SearchInput`'s `aria-label`. Defaults to \"Site search\". Override when multiple search landmarks exist on the same page."
+    },
+    {
+      "name": "searchAriaLabelledBy",
+      "type": "string",
+      "required": false,
+      "description": "Forwarded to the embedded `SearchInput`'s `aria-labelledby`."
+    },
+    {
+      "name": "searchInput",
+      "type": "'none' | 'middle' | 'end'",
+      "required": false,
+      "description": "Where search input appears: none (hidden), middle (with nav items), end (in actions area)"
+    },
+    {
+      "name": "searchPlaceholder",
+      "type": "string",
+      "required": false,
+      "description": "Search placeholder text"
+    },
+    {
+      "name": "searchValue",
+      "type": "string",
+      "required": false,
+      "description": "Search value (controlled)"
+    },
+    {
+      "name": "showAvatar",
+      "type": "boolean",
+      "required": false,
+      "description": "Show/hide avatar. Default: true"
+    },
+    {
+      "name": "showMenuButton",
+      "type": "boolean",
+      "required": false,
+      "description": "Show hamburger menu icon button in the leading chrome section."
+    },
+    {
+      "name": "startActions",
+      "type": "boolean",
+      "required": false,
+      "description": "Show the leading actions section. Figma default: true."
+    },
+    {
+      "name": "title",
+      "type": "string",
+      "required": false,
+      "description": "Context-bar title rendered after the leading action."
+    },
+    {
+      "name": "type",
+      "type": "'homeBar' | 'contextBar' | 'searchBar'",
+      "required": false,
+      "description": "Bar type: homeBar (nav items), contextBar (simpler), searchBar (search-focused)"
+    }
+  ],
+  "slots": [
+    {
+      "name": "logo",
+      "types": [
+        "Logo"
+      ],
+      "tokens": []
+    },
+    {
+      "name": "children",
+      "types": [
+        "HeaderItem"
+      ],
+      "tokens": []
+    },
+    {
+      "name": "end",
+      "types": [
+        "Button",
+        "IconButton"
+      ],
+      "tokens": []
+    },
+    {
+      "name": "avatar",
+      "types": [
+        "Avatar"
+      ],
+      "tokens": []
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.primary-nav",
+    "type": "object",
+    "properties": {
+      "activeValue": {
+        "type": "string",
+        "description": "Active nav item value — used to position the sliding indicator"
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible name for the primary navigation landmark. Defaults to \"Primary navigation\". Override when rendering multiple `PrimaryNav` instances on the same page so each `<nav>` is uniquely labelled."
+      },
+      "aria-labelledby": {
+        "type": "string",
+        "description": "IDREF of a visible element that labels the navigation landmark."
+      },
+      "avatar": {
+        "description": "Avatar element for far-end"
+      },
+      "children": {
+        "description": "Nav items for middle section (HeaderItem components)"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "divider": {
+        "type": "boolean",
+        "description": "Show/hide bottom divider. Default: true"
+      },
+      "end": {
+        "description": "End slot content (icon actions before avatar)"
+      },
+      "logo": {
+        "description": "Logo element for start slot"
+      },
+      "middle": {
+        "enum": [
+          "fluid",
+          "centered",
+          "none"
+        ],
+        "description": "Middle section layout: fluid (fills space) or centered (absolute center)"
+      },
+      "onActiveValueChange": {
+        "description": "Called when a child Header.Item becomes active."
+      },
+      "onDrawerOpenChange": {
+        "description": "Called when mobile drawer state changes"
+      },
+      "onSearchChange": {
+        "description": "Called when search value changes"
+      },
+      "onSearchSubmit": {
+        "description": "Called when search is submitted"
+      },
+      "onVoiceSearch": {
+        "description": "Called when the trailing voice-search action is pressed."
+      },
+      "primaryNavItems": {
+        "type": "boolean",
+        "description": "Show/hide nav items in middle section. Default: true"
+      },
+      "searchAriaLabel": {
+        "type": "string",
+        "description": "Accessible name for the embedded search landmark. Forwarded to the `SearchInput`'s `aria-label`. Defaults to \"Site search\". Override when multiple search landmarks exist on the same page."
+      },
+      "searchAriaLabelledBy": {
+        "type": "string",
+        "description": "Forwarded to the embedded `SearchInput`'s `aria-labelledby`."
+      },
+      "searchInput": {
+        "enum": [
+          "none",
+          "middle",
+          "end"
+        ],
+        "description": "Where search input appears: none (hidden), middle (with nav items), end (in actions area)"
+      },
+      "searchPlaceholder": {
+        "type": "string",
+        "description": "Search placeholder text"
+      },
+      "searchValue": {
+        "type": "string",
+        "description": "Search value (controlled)"
+      },
+      "showAvatar": {
+        "type": "boolean",
+        "description": "Show/hide avatar. Default: true"
+      },
+      "showMenuButton": {
+        "type": "boolean",
+        "description": "Show hamburger menu icon button in the leading chrome section."
+      },
+      "startActions": {
+        "type": "boolean",
+        "description": "Show the leading actions section. Figma default: true."
+      },
+      "title": {
+        "type": "string",
+        "description": "Context-bar title rendered after the leading action."
+      },
+      "type": {
+        "enum": [
+          "homeBar",
+          "contextBar",
+          "searchBar"
+        ],
+        "description": "Bar type: homeBar (nav items), contextBar (simpler), searchBar (search-focused)"
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "primary-nav-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { PrimaryNav } from '@oneui/ui';\n\n<PrimaryNav />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "primary-nav"
+  ],
+  "interactionBehavior": {
+    "summary": "PrimaryNav is a `<nav>` landmark whose items are ordinary sequential Tab stops — there is no arrow-key roving. Child HeaderItems default to `attention=\"low\"` (this row does not pass an attention into selection context), so the current item is high-emphasis text only, not a pill. On mobile/tablet (`data-breakpoint` S or M) the hamburger IconButton is the way into the drawer; the middle item row is `display: none` at S, and search is hidden until L.",
+    "hover": [
+      "The row itself has no hover fill. Child HeaderItems own pointer chrome — and at this row's default `attention=\"low\"` that chrome is a text-colour shift, not a background (see HeaderItem).",
+      "The leading control is an IconButton (`icon=\"menu\"`, `attention=\"low\"`, `appearance=\"neutral\"`), so its hover is IconButton's ghost treatment, `(hover: hover)`-guarded."
+    ],
+    "press": [
+      "Clicking a child HeaderItem calls `onActiveValueChange` with that item's `value` unless the item `preventDefault`s.",
+      "The hamburger IconButton calls `onDrawerOpenChange(true)` — the header's own setter when nested, or the PrimaryNav prop when provided — and is a no-op unless a `WebHeader.Drawer` (or a consumer) actually reads that state."
+    ],
+    "focus": [
+      "The `<nav>` is not focusable. Tab order is sequential through the hamburger (when shown), each HeaderItem, the search field (when shown), and the `end` / avatar slots.",
+      "There is no roving `tabIndex` — every HeaderItem stays in the tab order at once, unlike BottomNavigation."
+    ],
+    "keyboard": [
+      "No arrow-key handler. `Enter` / `Space` activate whichever HeaderItem or IconButton is focused, using those primitives' own keys.",
+      "Search is the shared `<Search>` (`clearable={false}`); `Enter` in the field fires `onSearchSubmit`.",
+      "Responsive CSS is scoped to a `.webHeader[data-breakpoint]` ancestor, so a standalone PrimaryNav (no WebHeader) keeps the middle row and hamburger visible regardless of viewport."
+    ],
+    "selected": [
+      "`activeValue` / `onActiveValueChange` on this row drive child HeaderItems through `HeaderSelectionContext`. An item's explicit `active={false}` still wins over a matching parent `activeValue`.",
+      "Because this row does not pass `attention`, children resolve to `attention=\"low\"`: the current item is `aria-current=\"page\"` with `--Neutral-High` text and neither a pill nor the medium underline.",
+      "That is the opposite of SecondaryNav, whose default `attention=\"high\"` paints a `--Primary-Subtle` pill on the current item."
+    ],
+    "touch": [
+      "At breakpoint S the middle HeaderItems are not in the layout (`display: none`), so they are not a touch target; the hamburger is the navigation affordance and opens `WebHeader.Drawer`.",
+      "At M the middle items return and the hamburger stays visible. Search remains hidden until L (`≥ 991px`)."
+    ]
+  },
+  "importPath": "@jds4/oneui-react",
+  "figma": {
+    "componentSetKeys": [
+      "7ba77e9eac8b8b11e8878fa099c93228f49b16ce"
+    ],
+    "codeConnect": {
+      "componentKey": "7ba77e9eac8b8b11e8878fa099c93228f49b16ce",
+      "nodeId": "1:35907"
+    }
+  }
+}

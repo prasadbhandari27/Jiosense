@@ -1,0 +1,519 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Modal",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Focused overlay with structured header/body/footer layout and scroll management. The modal popup is role-neutral; per-role styling is applied to the slot children (footer buttons, headerStart, body content).",
+    "taskContexts": [
+      "overlay",
+      "dialog",
+      "modal",
+      "popup",
+      "sheet",
+      "confirmation"
+    ],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [
+      "children"
+    ],
+    "allows": [
+      "headerStart",
+      "footerStart",
+      "footerEnd"
+    ],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "s",
+        "useWhen": [
+          "Small"
+        ]
+      },
+      {
+        "name": "m",
+        "useWhen": [
+          "Medium"
+        ]
+      },
+      {
+        "name": "l",
+        "useWhen": [
+          "Large"
+        ]
+      },
+      {
+        "name": "fullWidth",
+        "useWhen": [
+          "Full Width"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": true,
+      "description": "Modal body content"
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible name for the dialog. Required when `header={false}` or `showTitle={false}` — without it, screen readers announce an unnamed dialog (WCAG 2.1 AA 4.1.2 violation). When the title is visible, Modal wires `aria-labelledby` to <Dialog.Title> and this is optional."
+    },
+    {
+      "name": "aria-labelledby",
+      "type": "string",
+      "required": false,
+      "description": "Optional id of an element labelling the dialog. Mutually exclusive with `aria-label`. Takes precedence over Modal's generated Title link."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "container",
+      "type": "HTMLElement | null",
+      "required": false,
+      "description": "Portal target for the backdrop + popup. Defaults to `document.body`. Pass a bounded element (with a containing block, e.g. `transform`) to render the modal inside it instead of over the whole viewport."
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "Test id forwarded to the dialog popup"
+    },
+    {
+      "name": "defaultOpen",
+      "type": "boolean",
+      "required": false,
+      "description": "Default open state (uncontrolled)"
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "required": false,
+      "description": "Modal description text"
+    },
+    {
+      "name": "dismissible",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": "Whether Escape/outside press can dismiss the modal. Explicit close controls and controlled parent state changes still work."
+    },
+    {
+      "name": "dividerBottomScrollPosition",
+      "type": "'start' | 'middle' | 'end'",
+      "required": false,
+      "defaultValue": "middle",
+      "description": "Scroll threshold through which the bottom divider remains visible when `dividerBottomVisibility=\"onScroll\"`."
+    },
+    {
+      "name": "dividerBottomVisibility",
+      "type": "'none' | 'onScroll' | 'always'",
+      "required": false,
+      "defaultValue": "none",
+      "description": "Bottom divider visibility behaviour."
+    },
+    {
+      "name": "dividerTopScrollPosition",
+      "type": "'start' | 'middle' | 'end'",
+      "required": false,
+      "defaultValue": "middle",
+      "description": "Scroll threshold at which the top divider appears when `dividerTopVisibility=\"onScroll\"`."
+    },
+    {
+      "name": "dividerTopVisibility",
+      "type": "'none' | 'onScroll' | 'always'",
+      "required": false,
+      "defaultValue": "none",
+      "description": "Top divider visibility behaviour."
+    },
+    {
+      "name": "footer",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": "Whether to show the footer section."
+    },
+    {
+      "name": "footerEnd",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Footer content (typically action buttons)"
+    },
+    {
+      "name": "footerOrientation",
+      "type": "'horizontal' | 'vertical'",
+      "required": false,
+      "defaultValue": "horizontal",
+      "description": "Footer button orientation."
+    },
+    {
+      "name": "footerStart",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Content for the footer start slot"
+    },
+    {
+      "name": "header",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": "Whether to show the header section."
+    },
+    {
+      "name": "headerAlign",
+      "type": "'left' | 'center'",
+      "required": false,
+      "defaultValue": "left",
+      "description": "Header content alignment."
+    },
+    {
+      "name": "headerStart",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Content for the header start slot. Renders before the title. Per RFC 0001: presence/absence of the ReactNode is the visibility gate — no enum discriminator needed."
+    },
+    {
+      "name": "maxHeight",
+      "type": "CSSProperties['maxHeight']",
+      "required": false,
+      "description": "Optional maximum height for the popup. When omitted, the responsive size-specific Figma preset is used."
+    },
+    {
+      "name": "modal",
+      "type": "boolean | 'trap-focus'",
+      "required": false,
+      "description": "Dialog modality. `true` (default) traps focus, locks page scroll, and makes outside elements inert. `false` keeps only pointer behaviour (no scroll-lock/ inert); `'trap-focus'` traps focus without the rest. Mirrors Base UI's `Dialog.Root` `modal`. Use `false` to render an open modal inside a bounded container (e.g. a preview) without covering the page."
+    },
+    {
+      "name": "onOpenChange",
+      "type": "(open: boolean, details: ModalOpenChangeDetails) => void",
+      "required": false,
+      "description": "Called when the modal opens or closes. The `details.reason` arg lets you distinguish dismiss triggers (Escape vs outside-press vs close button) and inspect the underlying Base UI event/trigger details."
+    },
+    {
+      "name": "open",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the modal is open (controlled)"
+    },
+    {
+      "name": "showDescription",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": "Whether to show the description."
+    },
+    {
+      "name": "showTitle",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": "Whether to show the title."
+    },
+    {
+      "name": "size",
+      "type": "'s' | 'm' | 'l' | 'fullWidth' | 'S' | 'M' | 'L' | 'FullWidth'",
+      "required": false,
+      "defaultValue": "s",
+      "description": "Modal size preset. Deprecated uppercase aliases (`S`, `M`, `L`, `FullWidth`) normalize to their canonical lowercase equivalents."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    },
+    {
+      "name": "title",
+      "type": "string",
+      "required": false,
+      "description": "Modal title text"
+    }
+  ],
+  "slots": [
+    {
+      "name": "headerStart",
+      "types": [
+        "Icon",
+        "Badge"
+      ],
+      "tokens": []
+    },
+    {
+      "name": "children",
+      "types": [
+        "any"
+      ],
+      "tokens": []
+    },
+    {
+      "name": "footerStart",
+      "types": [
+        "any"
+      ],
+      "tokens": []
+    },
+    {
+      "name": "footerEnd",
+      "types": [
+        "Button"
+      ],
+      "tokens": []
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.modal",
+    "type": "object",
+    "properties": {
+      "children": {
+        "description": "Modal body content"
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible name for the dialog. Required when `header={false}` or `showTitle={false}` — without it, screen readers announce an unnamed dialog (WCAG 2.1 AA 4.1.2 violation). When the title is visible, Modal wires `aria-labelledby` to <Dialog.Title> and this is optional."
+      },
+      "aria-labelledby": {
+        "type": "string",
+        "description": "Optional id of an element labelling the dialog. Mutually exclusive with `aria-label`. Takes precedence over Modal's generated Title link."
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "container": {
+        "description": "Portal target for the backdrop + popup. Defaults to `document.body`. Pass a bounded element (with a containing block, e.g. `transform`) to render the modal inside it instead of over the whole viewport."
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "Test id forwarded to the dialog popup"
+      },
+      "defaultOpen": {
+        "type": "boolean",
+        "description": "Default open state (uncontrolled)"
+      },
+      "description": {
+        "type": "string",
+        "description": "Modal description text"
+      },
+      "dismissible": {
+        "type": "boolean",
+        "description": "Whether Escape/outside press can dismiss the modal. Explicit close controls and controlled parent state changes still work.",
+        "default": "true"
+      },
+      "dividerBottomScrollPosition": {
+        "enum": [
+          "start",
+          "middle",
+          "end"
+        ],
+        "description": "Scroll threshold through which the bottom divider remains visible when `dividerBottomVisibility=\"onScroll\"`.",
+        "default": "middle"
+      },
+      "dividerBottomVisibility": {
+        "enum": [
+          "none",
+          "onScroll",
+          "always"
+        ],
+        "description": "Bottom divider visibility behaviour.",
+        "default": "none"
+      },
+      "dividerTopScrollPosition": {
+        "enum": [
+          "start",
+          "middle",
+          "end"
+        ],
+        "description": "Scroll threshold at which the top divider appears when `dividerTopVisibility=\"onScroll\"`.",
+        "default": "middle"
+      },
+      "dividerTopVisibility": {
+        "enum": [
+          "none",
+          "onScroll",
+          "always"
+        ],
+        "description": "Top divider visibility behaviour.",
+        "default": "none"
+      },
+      "footer": {
+        "type": "boolean",
+        "description": "Whether to show the footer section.",
+        "default": "true"
+      },
+      "footerEnd": {
+        "description": "Footer content (typically action buttons)"
+      },
+      "footerOrientation": {
+        "enum": [
+          "horizontal",
+          "vertical"
+        ],
+        "description": "Footer button orientation.",
+        "default": "horizontal"
+      },
+      "footerStart": {
+        "description": "Content for the footer start slot"
+      },
+      "header": {
+        "type": "boolean",
+        "description": "Whether to show the header section.",
+        "default": "true"
+      },
+      "headerAlign": {
+        "enum": [
+          "left",
+          "center"
+        ],
+        "description": "Header content alignment.",
+        "default": "left"
+      },
+      "headerStart": {
+        "description": "Content for the header start slot. Renders before the title. Per RFC 0001: presence/absence of the ReactNode is the visibility gate — no enum discriminator needed."
+      },
+      "maxHeight": {
+        "description": "Optional maximum height for the popup. When omitted, the responsive size-specific Figma preset is used."
+      },
+      "modal": {
+        "description": "Dialog modality. `true` (default) traps focus, locks page scroll, and makes outside elements inert. `false` keeps only pointer behaviour (no scroll-lock/ inert); `'trap-focus'` traps focus without the rest. Mirrors Base UI's `Dialog.Root` `modal`. Use `false` to render an open modal inside a bounded container (e.g. a preview) without covering the page."
+      },
+      "onOpenChange": {
+        "description": "Called when the modal opens or closes. The `details.reason` arg lets you distinguish dismiss triggers (Escape vs outside-press vs close button) and inspect the underlying Base UI event/trigger details."
+      },
+      "open": {
+        "type": "boolean",
+        "description": "Whether the modal is open (controlled)"
+      },
+      "showDescription": {
+        "type": "boolean",
+        "description": "Whether to show the description.",
+        "default": "true"
+      },
+      "showTitle": {
+        "type": "boolean",
+        "description": "Whether to show the title.",
+        "default": "true"
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l",
+          "fullWidth"
+        ],
+        "description": "Modal size preset. Deprecated uppercase aliases (`S`, `M`, `L`, `FullWidth`) normalize to their canonical lowercase equivalents.",
+        "default": "s"
+      },
+      "style": {
+        "description": "Inline styles"
+      },
+      "title": {
+        "type": "string",
+        "description": "Modal title text"
+      }
+    },
+    "required": [
+      "children"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "modal-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Modal } from '@oneui/ui';\n\n<Modal title=\"Modal title\">\n  Modal body content\n</Modal>"
+    },
+    {
+      "id": "modal-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Modal\",\n  \"decisions\": [\n    \"Shape\",\n    \"Internal padding\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "modal"
+  ],
+  "interactionBehavior": {
+    "summary": "Canonical OneUI modal: a structured header / scrollable body / footer over a `--Scrim` backdrop. Default `modal={true}` traps focus, locks page scroll, and inerts the rest of the page. `dismissible` (default true) is stricter than Dialog — it blocks Escape, outside-press, and focus-out together, while the header close `IconButton` still always works. The close control lives in the header, so `header={false}` also removes that button. On open/close the backdrop fades its `opacity` while the popup fades and scales — from `scale(0.9)` up to rest — together: opening runs `--Motion-Duration-L` / `--Motion-Easing-Entrance-Moderate`, closing the faster `--Motion-Duration-M` / `--Motion-Easing-Exit-Moderate`. `prefers-reduced-motion` drops the scale and keeps an opacity-only fade on Subtle tokens.",
+    "press": [
+      "A press on the `--Scrim` backdrop closes the modal (`reason: \"outside-press\"`) when `dismissible` is true.",
+      "`dismissible={false}` sets `disablePointerDismissal` and cancels `outside-press`, `escape-key`, and `focus-out`. The header close control still fires `reason: \"close-press\"`.",
+      "The close control is an `IconButton` (`attention=\"low\"`, `appearance=\"neutral\"`, `aria-label=\"Close\"`), so its press fill comes from IconButton, not Modal CSS.",
+      "The popup itself has no press-scale or press-fill; only slotted actions and the close IconButton respond."
+    ],
+    "focus": [
+      "Default `modal={true}` traps focus, locks document scroll, and mounts Base UI's internal inert layer over the page. `modal={false}` keeps pointer behaviour without scroll-lock or inert; `modal=\"trap-focus\"` traps focus without the rest.",
+      "Initial focus follows Base UI: first tabbable descendant, or the popup itself on a touch open (to keep the virtual keyboard closed). Closing restores focus to the trigger unless you pass `finalFocus`.",
+      "The scrollable body is `tabIndex={0}` so keyboard users can focus it and scroll without a nested interactive child.",
+      "Body `:focus-visible` is a single inset `--Focus-Outline` ring, not the two-layer halo. The close IconButton uses IconButton's inner `--Surface-Halo-Gap` + outer `--Focus-Outline` halo.",
+      "Mouse clicks do not paint the body ring — it is `:focus-visible` only."
+    ],
+    "keyboard": [
+      "`Escape` closes with `reason: \"escape-key\"` when `dismissible` is true, and is cancelled (no `onOpenChange`) when `dismissible={false}`.",
+      "`Tab` cycles inside the trap. The body is a tab stop so overflowing content can be scrolled from the keyboard.",
+      "There is no OneUI arrow-key handling inside the modal."
+    ]
+  },
+  "importPath": "@jds4/oneui-react",
+  "figma": {
+    "componentKey": "jds-modal-v4",
+    "codeConnect": {
+      "componentKey": "68ece008da5c518c2385a63ba5490250b8769c9f",
+      "nodeId": "7565:6221"
+    }
+  },
+  "renderHints": {
+    "baseElement": "div",
+    "readsFromSurfaceContext": true
+  },
+  "a11y": {
+    "role": null,
+    "minTouchTarget": 44,
+    "accessibleNameSource": "children"
+  }
+}

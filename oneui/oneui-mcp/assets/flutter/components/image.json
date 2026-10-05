@@ -1,0 +1,170 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Image",
+  "flutterExport": "OneUiImage",
+  "importPath": "package:ui_flutter/ui_flutter.dart",
+  "generatedAt": "2026-09-04T05:50:48.675Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Raster/SVG image. Requires src + alt. Not a decorative Container. Import barrel only."
+  },
+  "compositionRules": {
+    "forbids": [
+      "OneUiImage without src",
+      "using IconRemote as a photo"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "title": "Remote image",
+      "code": "OneUiImage(src: 'https://example.com/hero.jpg', alt: 'Plan hero')"
+    }
+  ],
+  "props": [
+    {
+      "name": "src",
+      "required": true,
+      "type": "String",
+      "description": "Required. HTTPS or vendored asset path."
+    },
+    {
+      "name": "alt",
+      "required": true,
+      "type": "String",
+      "description": "Required accessible name."
+    },
+    {
+      "name": "altText",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "aspectRatio",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "orientation",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "interactive",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "scrim",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "lowResolutionImage",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "fit",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "objectFit",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "objectPosition",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "width",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "height",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onPress",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onClick",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onLoad",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onError",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "fallback",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "fallbackSrc",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "testId",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "borderRadiusToken",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    }
+  ]
+}

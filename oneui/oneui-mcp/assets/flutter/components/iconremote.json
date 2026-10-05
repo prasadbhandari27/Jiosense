@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "IconRemote",
+  "flutterExport": "OneUiIconRemote",
+  "importPath": "package:ui_flutter/ui_flutter.dart",
+  "generatedAt": "2026-09-04T05:50:48.675Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "OneUiIconRemote from the ui_flutter barrel. Use Surface context (OneUiSurface) for tinted backgrounds."
+  },
+  "props": [
+    {
+      "name": "src",
+      "required": true,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "required": true,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "color",
+      "required": true,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "tintRaster",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onError",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "onLoad",
+      "required": false,
+      "type": "unknown",
+      "description": ""
+    }
+  ]
+}

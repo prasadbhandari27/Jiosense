@@ -1,0 +1,3149 @@
+{
+  "schemaVersion": 1,
+  "source": "figma-api",
+  "library": {
+    "fileKey": "eYJriZveeBwZDzGlCts22f",
+    "name": "OneUI Components + Micropatterns",
+    "version": "2026-09-09",
+    "acquiredAt": "2026-09-09T10:07:05.044Z"
+  },
+  "entries": [
+    {
+      "contractId": "flutter:Accordion",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "ce64b373e534d18438b3e9f6c62b6d1e5b423bf0",
+      "componentName": "Accordion",
+      "componentSetName": "Accordion",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Accordion",
+          "Accordion"
+        ],
+        "pageName": "     ↳ Accordion"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:AccordionItem",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "3655c2bfde52e9f6f70166b22597c519deb958a5",
+      "componentName": "AccordionItem",
+      "componentSetName": "AccordionItem",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "AccordionItem",
+          "AccordionItem"
+        ],
+        "pageName": "     ↳ Accordion"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:AgentPulse",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "fe0217eed9dfe9e972fb43910483f14355ab229a",
+      "componentName": "AgentPulse (icon)",
+      "componentSetName": "AgentPulse (icon)",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "AgentPulse",
+          "AgentPulse"
+        ],
+        "pageName": "Agent Pulse"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:Avatar",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "bb90202670397f390dbc12c0886d1e5ade3e7607",
+      "componentName": "Avatar",
+      "componentSetName": "Avatar",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Avatar",
+          "Avatar"
+        ],
+        "pageName": "     ↳ Avatar"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:Badge",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "47bd573590c23bfb20cf4b580a09fb2fca49068a",
+      "componentName": "Badge",
+      "componentSetName": "Badge",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Badge",
+          "Badge"
+        ],
+        "pageName": "     ↳ Badge"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:BottomNavigation",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "2094412785213ff475c6db0b5ae53fa23a123d41",
+      "componentName": "BottomNav",
+      "componentSetName": "BottomNav",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "BottomNavigation",
+          "BottomNavigation"
+        ],
+        "pageName": "🟢     ↳ BottomNav"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:BottomNavItem",
+      "platform": "flutter",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "flutter:BottomSheet",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "bd5ce0adb90932ed4cf79b46300a0c152f8ea3bc",
+      "componentName": "BottomSheet",
+      "componentSetName": "BottomSheet",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "BottomSheet",
+          "BottomSheet"
+        ],
+        "pageName": "     ↳ Bottom Sheet"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:BrandLogo",
+      "platform": "flutter",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "flutter:BrandProvider",
+      "platform": "flutter",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "flutter:Breadcrumb",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "f734b7800a835769f0cc7867e67d64e57a3e9944",
+      "componentName": "Breadcrumb",
+      "componentSetName": "Breadcrumb",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Breadcrumb",
+          "Breadcrumb"
+        ],
+        "pageName": "     ↳ Breadcrumbs"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:Button",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "53fddb5a4ad3d013bedb2e066b0c6e422314915e",
+      "componentName": "Button",
+      "componentSetName": "Button",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Button",
+          "Button"
+        ],
+        "pageName": "     ↳ Buttons"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:CarouselItem",
+      "platform": "flutter",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "flutter:CarouselPagination",
+      "platform": "flutter",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "flutter:CarouselRoot",
+      "platform": "flutter",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "flutter:CarouselSlide",
+      "platform": "flutter",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "flutter:Checkbox",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "e533191c687025b57538365be53807da4763f81d",
+      "componentName": "Checkbox",
+      "componentSetName": "Checkbox",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Checkbox",
+          "Checkbox"
+        ],
+        "pageName": "     ↳ Checkbox"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:CheckboxField",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "4d275aa4c7ed51b1422440891bbe7b19e4443aa0",
+      "componentName": "CheckboxField",
+      "componentSetName": "CheckboxField",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "CheckboxField",
+          "CheckboxField"
+        ],
+        "pageName": "     ↳ Checkbox"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:CheckboxGroup",
+      "platform": "flutter",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "flutter:Chip",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "87fe16ce70168fe186ae1457b4af782498f33d91",
+      "componentName": "Chip",
+      "componentSetName": "Chip",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Chip",
+          "Chip"
+        ],
+        "pageName": "     ↳ Chip"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:ChipGroup",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "4a345494e4c72df932aa320d468ea9ea14c3e56a",
+      "componentName": "ChipGroup",
+      "componentSetName": "ChipGroup",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "ChipGroup",
+          "ChipGroup"
+        ],
+        "pageName": "     ↳ ChipGroup"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:CircularProgressIndicator",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "ff297201c8b69e2676b13fd1b668b548b91eb926",
+      "componentName": "CircularProgressIndicator",
+      "componentSetName": "CircularProgressIndicator",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "CircularProgressIndicator",
+          "CircularProgressIndicator"
+        ],
+        "pageName": "     ↳ CircularProgressIndicator"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:CounterBadge",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "31daa6202ba60c627fbe4fd81e3e1ea5f5b17e0d",
+      "componentName": "CounterBadge",
+      "componentSetName": "CounterBadge",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "CounterBadge",
+          "CounterBadge"
+        ],
+        "pageName": "     ↳ Badge"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:Divider",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "dc3779d38ff51e0cc095a8baf4cdb375f4820fbf",
+      "componentName": "Divider",
+      "componentSetName": "Divider",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Divider",
+          "Divider"
+        ],
+        "pageName": "     ↳ Divider"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:Header",
+      "platform": "flutter",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "flutter:HeaderDrawer",
+      "platform": "flutter",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "flutter:HeaderItem",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "mainComponentKey": "5938730c7e191d59c2a7e67af55ee79d2eedf63b",
+      "componentName": "Header.Item",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "HeaderItem",
+          "HeaderItem"
+        ],
+        "pageName": "🟢     ↳ Header"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:Icon",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "fc90d12842f342f08e9818468f670fa7e4a0088e",
+      "componentName": "Icon",
+      "componentSetName": "Icon",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Icon",
+          "Icon"
+        ],
+        "pageName": "     ↳ Icons"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:IconButton",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "3237b074310605063533ac7e42ff67df808c4df0",
+      "componentName": "IconButton",
+      "componentSetName": "IconButton",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "IconButton",
+          "IconButton"
+        ],
+        "pageName": "     ↳ Buttons"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:IconContained",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "0275e00809ec12dbd15539776251d051b231c06b",
+      "componentName": "IconContained",
+      "componentSetName": "IconContained",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "IconContained",
+          "IconContained"
+        ],
+        "pageName": "     ↳ Icons"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:IconRemote",
+      "platform": "flutter",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "flutter:Image",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "cb46a4117a2e8a2c98b77c0fce2a3bba73484015",
+      "componentName": "Image",
+      "componentSetName": "Image",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Image",
+          "Image"
+        ],
+        "pageName": "     ↳ Image"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:IndicatorBadge",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "0f0b731bebb66e90ff930bb19868250b5f3f75d1",
+      "componentName": "IndicatorBadge",
+      "componentSetName": "IndicatorBadge",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "IndicatorBadge",
+          "IndicatorBadge"
+        ],
+        "pageName": "     ↳ Badge"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:InlineSideSheet",
+      "platform": "flutter",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "flutter:Input",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "4a56457dfb3b98e3714070f17c2ed7a6ebe57f2d",
+      "componentName": "Input",
+      "componentSetName": "Input",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Input",
+          "Input"
+        ],
+        "pageName": "     ↳ Input"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:InputDynamicText",
+      "platform": "flutter",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "flutter:InputFeedback",
+      "platform": "flutter",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "flutter:InputField",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "c8eb437a6f54e92eaf5081955960854668814f95",
+      "componentName": "InputField",
+      "componentSetName": "InputField",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "InputField",
+          "InputField"
+        ],
+        "pageName": "     ↳ InputField"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:LinearProgressIndicator",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "5dc943af21c589d37708b4b6a8ed1aa8f4ba88cc",
+      "componentName": "LinearProgressIndicator",
+      "componentSetName": "LinearProgressIndicator",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "LinearProgressIndicator",
+          "LinearProgressIndicator"
+        ],
+        "pageName": "     ↳ LinearProgressIndicator"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:LinearProgressIndicatorLayout",
+      "platform": "flutter",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "flutter:ListItem",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "f8f3163c940defdd82799da71d5223d84bc69071",
+      "componentName": "ListItem",
+      "componentSetName": "ListItem",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "ListItem",
+          "ListItem"
+        ],
+        "pageName": "🟢     ↳ ListItem"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:LoadingSpinner",
+      "platform": "flutter",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "flutter:Logo",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "9166d48018fbea3846c15ae8966b362ad7a7319f",
+      "componentName": "Logo",
+      "componentSetName": "Logo",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Logo",
+          "Logo"
+        ],
+        "pageName": "     ↳ Logo"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:Modal",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "mainComponentKey": "68ece008da5c518c2385a63ba5490250b8769c9f",
+      "componentName": "Modal",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Modal",
+          "Modal"
+        ],
+        "pageName": "     ↳ Modal"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:OverlaySideSheet",
+      "platform": "flutter",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "flutter:Pagination",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "858af1f9dad2c1de36b8642ecf9526f8ff344074",
+      "componentName": "Pagination",
+      "componentSetName": "Pagination",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Pagination",
+          "Pagination"
+        ],
+        "pageName": "     ↳ Pagination"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:Radio",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "19bb59d00c5dc08ca39864869f3322142258ea50",
+      "componentName": "Radio",
+      "componentSetName": "Radio",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Radio",
+          "Radio"
+        ],
+        "pageName": "     ↳ Radio"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:RadioField",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "98305299df9d3696fc435e42afef3a3c5885466e",
+      "componentName": "RadioField",
+      "componentSetName": "RadioField",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "RadioField",
+          "RadioField"
+        ],
+        "pageName": "     ↳ Radio"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:RadioGroup",
+      "platform": "flutter",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "flutter:Scrim",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "b04310b1098c67c2d604359bb8cdcd418e5064f8",
+      "componentName": "Scrim",
+      "componentSetName": "Scrim",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Scrim",
+          "Scrim"
+        ],
+        "pageName": "     ↳ Scrim"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:SegmentedControl",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "38069aaee489161aeb00279c59263d8eab985dec",
+      "componentName": "Segmented control",
+      "componentSetName": "Segmented control",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "SegmentedControl",
+          "SegmentedControl"
+        ],
+        "pageName": "     ↳ Segmented control"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:SegmentedControlItem",
+      "platform": "flutter",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "flutter:Select",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "2647f0dfb5b3b340b1e66a0ec58163628d5c1bea",
+      "componentName": "Select",
+      "componentSetName": "Select",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Select",
+          "Select"
+        ],
+        "pageName": "🟢     ↳ Select"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:SelectableButton",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "ab89a5daa608dd94c4e54a33e8ddd93739357afe",
+      "componentName": "SelectableButton",
+      "componentSetName": "SelectableButton",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "SelectableButton",
+          "SelectableButton"
+        ],
+        "pageName": "     ↳ SelectableButtons"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:SelectableIconButton",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "163d305a730e736d0382d5373b47c12f66290b3c",
+      "componentName": "SelectableIconButton",
+      "componentSetName": "SelectableIconButton",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "SelectableIconButton",
+          "SelectableIconButton"
+        ],
+        "pageName": "     ↳ SelectableButtons"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:SelectableSingleTextButton",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "92e9f4ee91a0f6429fff02c5599b0a2f98e6a3d1",
+      "componentName": "SelectableSingleTextButton",
+      "componentSetName": "SelectableSingleTextButton",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "SelectableSingleTextButton",
+          "SelectableSingleTextButton"
+        ],
+        "pageName": "     ↳ SelectableButtons"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:SingleTextButton",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "d1fc514db2e926d425b418c06ef9869e04faa458",
+      "componentName": "SingleTextButton",
+      "componentSetName": "SingleTextButton",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "SingleTextButton",
+          "SingleTextButton"
+        ],
+        "pageName": "     ↳ Buttons"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:SkeletonGroup",
+      "platform": "flutter",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "flutter:SkeletonItem",
+      "platform": "flutter",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "flutter:Slider",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "062da6b16c003df9e60f739600ab99c9b6afec08",
+      "componentName": "Slider",
+      "componentSetName": "Slider",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Slider",
+          "Slider"
+        ],
+        "pageName": "    ↳ Slider"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:Spinner",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "c7bd800b049a42fc30a4d566129a0140891ba5bc",
+      "componentName": "Spinner",
+      "componentSetName": "Spinner",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Spinner",
+          "Spinner"
+        ],
+        "pageName": "     ↳ Spinner"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:Stepper",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "4ace626a77b25508df7e9c9ef1af9b670578a69d",
+      "componentName": "Stepper",
+      "componentSetName": "Stepper",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Stepper",
+          "Stepper"
+        ],
+        "pageName": "    ↳ Stepper"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:Surface",
+      "platform": "flutter",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "flutter:Switch",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "6f43db33b4f01e8298decb192d9ae5eb756c5ab7",
+      "componentName": "Switch",
+      "componentSetName": "Switch",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Switch",
+          "Switch"
+        ],
+        "pageName": "    ↳ Switch"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:TabGroup",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "03f1f07e59fcfab106e64c13fbd25e2fec192812",
+      "componentName": "TabGroup",
+      "componentSetName": "TabGroup",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "TabGroup",
+          "TabGroup"
+        ],
+        "pageName": "🟢     ↳ TabGroup"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:TabItem",
+      "platform": "flutter",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "flutter:TabPanel",
+      "platform": "flutter",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "flutter:TabsList",
+      "platform": "flutter",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "flutter:TabsRoot",
+      "platform": "flutter",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "flutter:Text",
+      "platform": "flutter",
+      "status": "AMBIGUOUS",
+      "opacitySafe": false,
+      "exclusionReason": "multiple exact-name candidates: eddf6a533565069de234482816bea6c4c7de1d90,f06aa15d4216c57217495516bf3d3a467ab75fdf",
+      "associationEvidence": {
+        "candidateCount": 2,
+        "candidateKeys": [
+          "eddf6a533565069de234482816bea6c4c7de1d90",
+          "f06aa15d4216c57217495516bf3d3a467ab75fdf"
+        ]
+      }
+    },
+    {
+      "contractId": "flutter:Toast",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "8d09a16b0d61c7a2b5f7cccf43c14a9260c20376",
+      "componentName": "Toast",
+      "componentSetName": "Toast",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Toast",
+          "Toast"
+        ],
+        "pageName": "     ↳ Toast"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:Tooltip",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "c389626d25f75f12d1a4f1838a61c3349624583b",
+      "componentName": "Tooltip",
+      "componentSetName": "Tooltip",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Tooltip",
+          "Tooltip"
+        ],
+        "pageName": "     ↳ Tooltip"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "flutter:TooltipProvider",
+      "platform": "flutter",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "flutter:TouchSlider",
+      "platform": "flutter",
+      "status": "MATCHED",
+      "componentSetKey": "56fcdb4c36de2d7a5c5b2ea2132b50be23668824",
+      "componentName": "TouchSlider",
+      "componentSetName": "TouchSlider",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "TouchSlider",
+          "TouchSlider"
+        ],
+        "pageName": "    ↳ Slider"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:AgentPulse",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "fe0217eed9dfe9e972fb43910483f14355ab229a",
+      "componentName": "AgentPulse (icon)",
+      "componentSetName": "AgentPulse (icon)",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "AgentPulse",
+          "AgentPulse"
+        ],
+        "pageName": "Agent Pulse"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:Avatar",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "bb90202670397f390dbc12c0886d1e5ade3e7607",
+      "componentName": "Avatar",
+      "componentSetName": "Avatar",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Avatar",
+          "Avatar"
+        ],
+        "pageName": "     ↳ Avatar"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:Badge",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "47bd573590c23bfb20cf4b580a09fb2fca49068a",
+      "componentName": "Badge",
+      "componentSetName": "Badge",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Badge",
+          "Badge"
+        ],
+        "pageName": "     ↳ Badge"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:BottomNavigation",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "2094412785213ff475c6db0b5ae53fa23a123d41",
+      "componentName": "BottomNav",
+      "componentSetName": "BottomNav",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "BottomNavigation",
+          "BottomNavigation"
+        ],
+        "pageName": "🟢     ↳ BottomNav"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:BottomNavItem",
+      "platform": "react",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "react:Breadcrumb",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "f734b7800a835769f0cc7867e67d64e57a3e9944",
+      "componentName": "Breadcrumb",
+      "componentSetName": "Breadcrumb",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Breadcrumb",
+          "Breadcrumb"
+        ],
+        "pageName": "     ↳ Breadcrumbs"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:Button",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "53fddb5a4ad3d013bedb2e066b0c6e422314915e",
+      "componentName": "Button",
+      "componentSetName": "Button",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Button",
+          "Button"
+        ],
+        "pageName": "     ↳ Buttons"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:Carousel",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "7f78fc10c0dad50206c3f96f3d383fff22479711",
+      "componentName": "Carousel",
+      "componentSetName": "Carousel",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Carousel",
+          "Carousel"
+        ],
+        "pageName": "🟢     ↳ Carousel"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:Checkbox",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "e533191c687025b57538365be53807da4763f81d",
+      "componentName": "Checkbox",
+      "componentSetName": "Checkbox",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Checkbox",
+          "Checkbox"
+        ],
+        "pageName": "     ↳ Checkbox"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:CheckboxField",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "4d275aa4c7ed51b1422440891bbe7b19e4443aa0",
+      "componentName": "CheckboxField",
+      "componentSetName": "CheckboxField",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "CheckboxField",
+          "CheckboxField"
+        ],
+        "pageName": "     ↳ Checkbox"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:Chip",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "87fe16ce70168fe186ae1457b4af782498f33d91",
+      "componentName": "Chip",
+      "componentSetName": "Chip",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Chip",
+          "Chip"
+        ],
+        "pageName": "     ↳ Chip"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:ChipGroup",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "4a345494e4c72df932aa320d468ea9ea14c3e56a",
+      "componentName": "ChipGroup",
+      "componentSetName": "ChipGroup",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "ChipGroup",
+          "ChipGroup"
+        ],
+        "pageName": "     ↳ ChipGroup"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:CircularProgressIndicator",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "ff297201c8b69e2676b13fd1b668b548b91eb926",
+      "componentName": "CircularProgressIndicator",
+      "componentSetName": "CircularProgressIndicator",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "CircularProgressIndicator",
+          "CircularProgressIndicator"
+        ],
+        "pageName": "     ↳ CircularProgressIndicator"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:Container",
+      "platform": "react",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "react:CounterBadge",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "31daa6202ba60c627fbe4fd81e3e1ea5f5b17e0d",
+      "componentName": "CounterBadge",
+      "componentSetName": "CounterBadge",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "CounterBadge",
+          "CounterBadge"
+        ],
+        "pageName": "     ↳ Badge"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:Divider",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "dc3779d38ff51e0cc095a8baf4cdb375f4820fbf",
+      "componentName": "Divider",
+      "componentSetName": "Divider",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Divider",
+          "Divider"
+        ],
+        "pageName": "     ↳ Divider"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:HeaderItem",
+      "platform": "react",
+      "status": "MATCHED",
+      "mainComponentKey": "5938730c7e191d59c2a7e67af55ee79d2eedf63b",
+      "componentName": "Header.Item",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "HeaderItem",
+          "HeaderItem"
+        ],
+        "pageName": "🟢     ↳ Header"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:Icon",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "fc90d12842f342f08e9818468f670fa7e4a0088e",
+      "componentName": "Icon",
+      "componentSetName": "Icon",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Icon",
+          "Icon"
+        ],
+        "pageName": "     ↳ Icons"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:IconButton",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "3237b074310605063533ac7e42ff67df808c4df0",
+      "componentName": "IconButton",
+      "componentSetName": "IconButton",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "IconButton",
+          "IconButton"
+        ],
+        "pageName": "     ↳ Buttons"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:IconContained",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "0275e00809ec12dbd15539776251d051b231c06b",
+      "componentName": "IconContained",
+      "componentSetName": "IconContained",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "IconContained",
+          "IconContained"
+        ],
+        "pageName": "     ↳ Icons"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:Image",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "cb46a4117a2e8a2c98b77c0fce2a3bba73484015",
+      "componentName": "Image",
+      "componentSetName": "Image",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Image",
+          "Image"
+        ],
+        "pageName": "     ↳ Image"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:IndicatorBadge",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "0f0b731bebb66e90ff930bb19868250b5f3f75d1",
+      "componentName": "IndicatorBadge",
+      "componentSetName": "IndicatorBadge",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "IndicatorBadge",
+          "IndicatorBadge"
+        ],
+        "pageName": "     ↳ Badge"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:Input",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "4a56457dfb3b98e3714070f17c2ed7a6ebe57f2d",
+      "componentName": "Input",
+      "componentSetName": "Input",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Input",
+          "Input"
+        ],
+        "pageName": "     ↳ Input"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:InputField",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "c8eb437a6f54e92eaf5081955960854668814f95",
+      "componentName": "InputField",
+      "componentSetName": "InputField",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "InputField",
+          "InputField"
+        ],
+        "pageName": "     ↳ InputField"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:LinearProgressIndicator",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "5dc943af21c589d37708b4b6a8ed1aa8f4ba88cc",
+      "componentName": "LinearProgressIndicator",
+      "componentSetName": "LinearProgressIndicator",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "LinearProgressIndicator",
+          "LinearProgressIndicator"
+        ],
+        "pageName": "     ↳ LinearProgressIndicator"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:Logo",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "9166d48018fbea3846c15ae8966b362ad7a7319f",
+      "componentName": "Logo",
+      "componentSetName": "Logo",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Logo",
+          "Logo"
+        ],
+        "pageName": "     ↳ Logo"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:Modal",
+      "platform": "react",
+      "status": "MATCHED",
+      "mainComponentKey": "68ece008da5c518c2385a63ba5490250b8769c9f",
+      "componentName": "Modal",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Modal",
+          "Modal"
+        ],
+        "pageName": "     ↳ Modal"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:Pagination",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "858af1f9dad2c1de36b8642ecf9526f8ff344074",
+      "componentName": "Pagination",
+      "componentSetName": "Pagination",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Pagination",
+          "Pagination"
+        ],
+        "pageName": "     ↳ Pagination"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:PaginationDots",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "c973b171fa4a95a0d6e1ba19000c972d0f7ea5a7",
+      "componentName": "PaginationDots",
+      "componentSetName": "PaginationDots",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "PaginationDots",
+          "PaginationDots"
+        ],
+        "pageName": "     ↳ PaginationDots"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:PrimaryNav",
+      "platform": "react",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "react:Radio",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "19bb59d00c5dc08ca39864869f3322142258ea50",
+      "componentName": "Radio",
+      "componentSetName": "Radio",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Radio",
+          "Radio"
+        ],
+        "pageName": "     ↳ Radio"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:RadioField",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "98305299df9d3696fc435e42afef3a3c5885466e",
+      "componentName": "RadioField",
+      "componentSetName": "RadioField",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "RadioField",
+          "RadioField"
+        ],
+        "pageName": "     ↳ Radio"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:Scrim",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "b04310b1098c67c2d604359bb8cdcd418e5064f8",
+      "componentName": "Scrim",
+      "componentSetName": "Scrim",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Scrim",
+          "Scrim"
+        ],
+        "pageName": "     ↳ Scrim"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:SegmentedControl",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "38069aaee489161aeb00279c59263d8eab985dec",
+      "componentName": "Segmented control",
+      "componentSetName": "Segmented control",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "SegmentedControl",
+          "SegmentedControl"
+        ],
+        "pageName": "     ↳ Segmented control"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:Select",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "2647f0dfb5b3b340b1e66a0ec58163628d5c1bea",
+      "componentName": "Select",
+      "componentSetName": "Select",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Select",
+          "Select"
+        ],
+        "pageName": "🟢     ↳ Select"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:SelectableButton",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "ab89a5daa608dd94c4e54a33e8ddd93739357afe",
+      "componentName": "SelectableButton",
+      "componentSetName": "SelectableButton",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "SelectableButton",
+          "SelectableButton"
+        ],
+        "pageName": "     ↳ SelectableButtons"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:SelectableIconButton",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "163d305a730e736d0382d5373b47c12f66290b3c",
+      "componentName": "SelectableIconButton",
+      "componentSetName": "SelectableIconButton",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "SelectableIconButton",
+          "SelectableIconButton"
+        ],
+        "pageName": "     ↳ SelectableButtons"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:SelectableSingleTextButton",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "92e9f4ee91a0f6429fff02c5599b0a2f98e6a3d1",
+      "componentName": "SelectableSingleTextButton",
+      "componentSetName": "SelectableSingleTextButton",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "SelectableSingleTextButton",
+          "SelectableSingleTextButton"
+        ],
+        "pageName": "     ↳ SelectableButtons"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:SingleTextButton",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "d1fc514db2e926d425b418c06ef9869e04faa458",
+      "componentName": "SingleTextButton",
+      "componentSetName": "SingleTextButton",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "SingleTextButton",
+          "SingleTextButton"
+        ],
+        "pageName": "     ↳ Buttons"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:Skeleton",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "1249ff9aba960477e02338b8f13f0939cfbf0340",
+      "componentName": "Skeleton",
+      "componentSetName": "Skeleton",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Skeleton",
+          "Skeleton"
+        ],
+        "pageName": "Skeleton"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:Slider",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "062da6b16c003df9e60f739600ab99c9b6afec08",
+      "componentName": "Slider",
+      "componentSetName": "Slider",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Slider",
+          "Slider"
+        ],
+        "pageName": "    ↳ Slider"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:Stepper",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "4ace626a77b25508df7e9c9ef1af9b670578a69d",
+      "componentName": "Stepper",
+      "componentSetName": "Stepper",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Stepper",
+          "Stepper"
+        ],
+        "pageName": "    ↳ Stepper"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:Surface",
+      "platform": "react",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "react:Switch",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "6f43db33b4f01e8298decb192d9ae5eb756c5ab7",
+      "componentName": "Switch",
+      "componentSetName": "Switch",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Switch",
+          "Switch"
+        ],
+        "pageName": "    ↳ Switch"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:Tabs",
+      "platform": "react",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "react:Text",
+      "platform": "react",
+      "status": "AMBIGUOUS",
+      "opacitySafe": false,
+      "exclusionReason": "multiple exact-name candidates: eddf6a533565069de234482816bea6c4c7de1d90,f06aa15d4216c57217495516bf3d3a467ab75fdf",
+      "associationEvidence": {
+        "candidateCount": 2,
+        "candidateKeys": [
+          "eddf6a533565069de234482816bea6c4c7de1d90",
+          "f06aa15d4216c57217495516bf3d3a467ab75fdf"
+        ]
+      }
+    },
+    {
+      "contractId": "react:Toast",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "8d09a16b0d61c7a2b5f7cccf43c14a9260c20376",
+      "componentName": "Toast",
+      "componentSetName": "Toast",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Toast",
+          "Toast"
+        ],
+        "pageName": "     ↳ Toast"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:Tooltip",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "c389626d25f75f12d1a4f1838a61c3349624583b",
+      "componentName": "Tooltip",
+      "componentSetName": "Tooltip",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Tooltip",
+          "Tooltip"
+        ],
+        "pageName": "     ↳ Tooltip"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:TouchSlider",
+      "platform": "react",
+      "status": "MATCHED",
+      "componentSetKey": "56fcdb4c36de2d7a5c5b2ea2132b50be23668824",
+      "componentName": "TouchSlider",
+      "componentSetName": "TouchSlider",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "TouchSlider",
+          "TouchSlider"
+        ],
+        "pageName": "    ↳ Slider"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "react:WebHeader",
+      "platform": "react",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "reactnative:Accordion",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "ce64b373e534d18438b3e9f6c62b6d1e5b423bf0",
+      "componentName": "Accordion",
+      "componentSetName": "Accordion",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Accordion",
+          "Accordion"
+        ],
+        "pageName": "     ↳ Accordion"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:AgentPulse",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "fe0217eed9dfe9e972fb43910483f14355ab229a",
+      "componentName": "AgentPulse (icon)",
+      "componentSetName": "AgentPulse (icon)",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "AgentPulse",
+          "AgentPulse"
+        ],
+        "pageName": "Agent Pulse"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:Avatar",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "bb90202670397f390dbc12c0886d1e5ade3e7607",
+      "componentName": "Avatar",
+      "componentSetName": "Avatar",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Avatar",
+          "Avatar"
+        ],
+        "pageName": "     ↳ Avatar"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:Badge",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "47bd573590c23bfb20cf4b580a09fb2fca49068a",
+      "componentName": "Badge",
+      "componentSetName": "Badge",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Badge",
+          "Badge"
+        ],
+        "pageName": "     ↳ Badge"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:BottomNavigation",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "2094412785213ff475c6db0b5ae53fa23a123d41",
+      "componentName": "BottomNav",
+      "componentSetName": "BottomNav",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "BottomNavigation",
+          "BottomNavigation"
+        ],
+        "pageName": "🟢     ↳ BottomNav"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:BottomNavigationItem",
+      "platform": "reactnative",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "reactnative:BottomSheet",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "bd5ce0adb90932ed4cf79b46300a0c152f8ea3bc",
+      "componentName": "BottomSheet",
+      "componentSetName": "BottomSheet",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "BottomSheet",
+          "BottomSheet"
+        ],
+        "pageName": "     ↳ Bottom Sheet"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:Breadcrumb",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "f734b7800a835769f0cc7867e67d64e57a3e9944",
+      "componentName": "Breadcrumb",
+      "componentSetName": "Breadcrumb",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Breadcrumb",
+          "Breadcrumb"
+        ],
+        "pageName": "     ↳ Breadcrumbs"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:Button",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "53fddb5a4ad3d013bedb2e066b0c6e422314915e",
+      "componentName": "Button",
+      "componentSetName": "Button",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Button",
+          "Button"
+        ],
+        "pageName": "     ↳ Buttons"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:Carousel",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "7f78fc10c0dad50206c3f96f3d383fff22479711",
+      "componentName": "Carousel",
+      "componentSetName": "Carousel",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Carousel",
+          "Carousel"
+        ],
+        "pageName": "🟢     ↳ Carousel"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:CarouselControls",
+      "platform": "reactnative",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "reactnative:CarouselIndicatorList",
+      "platform": "reactnative",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "reactnative:CarouselItem",
+      "platform": "reactnative",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "reactnative:CarouselItemBadgeRow",
+      "platform": "reactnative",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "reactnative:CarouselRail",
+      "platform": "reactnative",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "reactnative:CarouselSlideContent",
+      "platform": "reactnative",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "reactnative:CarouselSlideImage",
+      "platform": "reactnative",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "reactnative:Checkbox",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "e533191c687025b57538365be53807da4763f81d",
+      "componentName": "Checkbox",
+      "componentSetName": "Checkbox",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Checkbox",
+          "Checkbox"
+        ],
+        "pageName": "     ↳ Checkbox"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:CheckboxField",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "4d275aa4c7ed51b1422440891bbe7b19e4443aa0",
+      "componentName": "CheckboxField",
+      "componentSetName": "CheckboxField",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "CheckboxField",
+          "CheckboxField"
+        ],
+        "pageName": "     ↳ Checkbox"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:Chip",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "87fe16ce70168fe186ae1457b4af782498f33d91",
+      "componentName": "Chip",
+      "componentSetName": "Chip",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Chip",
+          "Chip"
+        ],
+        "pageName": "     ↳ Chip"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:ChipGroup",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "4a345494e4c72df932aa320d468ea9ea14c3e56a",
+      "componentName": "ChipGroup",
+      "componentSetName": "ChipGroup",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "ChipGroup",
+          "ChipGroup"
+        ],
+        "pageName": "     ↳ ChipGroup"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:CircularProgressIndicator",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "ff297201c8b69e2676b13fd1b668b548b91eb926",
+      "componentName": "CircularProgressIndicator",
+      "componentSetName": "CircularProgressIndicator",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "CircularProgressIndicator",
+          "CircularProgressIndicator"
+        ],
+        "pageName": "     ↳ CircularProgressIndicator"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:Container",
+      "platform": "reactnative",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "reactnative:CounterBadge",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "31daa6202ba60c627fbe4fd81e3e1ea5f5b17e0d",
+      "componentName": "CounterBadge",
+      "componentSetName": "CounterBadge",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "CounterBadge",
+          "CounterBadge"
+        ],
+        "pageName": "     ↳ Badge"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:Divider",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "dc3779d38ff51e0cc095a8baf4cdb375f4820fbf",
+      "componentName": "Divider",
+      "componentSetName": "Divider",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Divider",
+          "Divider"
+        ],
+        "pageName": "     ↳ Divider"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:HeaderItem",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "mainComponentKey": "5938730c7e191d59c2a7e67af55ee79d2eedf63b",
+      "componentName": "Header.Item",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "HeaderItem",
+          "HeaderItem"
+        ],
+        "pageName": "🟢     ↳ Header"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:HeaderNative",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "338ab37d457ef68112da7456510204e20fbe3dcf",
+      "componentName": "HeaderNative",
+      "componentSetName": "HeaderNative",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "HeaderNative",
+          "HeaderNative"
+        ],
+        "pageName": "🟢     ↳ Header"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:Icon",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "fc90d12842f342f08e9818468f670fa7e4a0088e",
+      "componentName": "Icon",
+      "componentSetName": "Icon",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Icon",
+          "Icon"
+        ],
+        "pageName": "     ↳ Icons"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:IconButton",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "3237b074310605063533ac7e42ff67df808c4df0",
+      "componentName": "IconButton",
+      "componentSetName": "IconButton",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "IconButton",
+          "IconButton"
+        ],
+        "pageName": "     ↳ Buttons"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:IconContained",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "0275e00809ec12dbd15539776251d051b231c06b",
+      "componentName": "IconContained",
+      "componentSetName": "IconContained",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "IconContained",
+          "IconContained"
+        ],
+        "pageName": "     ↳ Icons"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:Image",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "cb46a4117a2e8a2c98b77c0fce2a3bba73484015",
+      "componentName": "Image",
+      "componentSetName": "Image",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Image",
+          "Image"
+        ],
+        "pageName": "     ↳ Image"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:IndicatorBadge",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "0f0b731bebb66e90ff930bb19868250b5f3f75d1",
+      "componentName": "IndicatorBadge",
+      "componentSetName": "IndicatorBadge",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "IndicatorBadge",
+          "IndicatorBadge"
+        ],
+        "pageName": "     ↳ Badge"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:Input",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "4a56457dfb3b98e3714070f17c2ed7a6ebe57f2d",
+      "componentName": "Input",
+      "componentSetName": "Input",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Input",
+          "Input"
+        ],
+        "pageName": "     ↳ Input"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:InputDynamicText",
+      "platform": "reactnative",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "reactnative:InputFeedback",
+      "platform": "reactnative",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "reactnative:InputField",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "c8eb437a6f54e92eaf5081955960854668814f95",
+      "componentName": "InputField",
+      "componentSetName": "InputField",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "InputField",
+          "InputField"
+        ],
+        "pageName": "     ↳ InputField"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:ListItem",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "f8f3163c940defdd82799da71d5223d84bc69071",
+      "componentName": "ListItem",
+      "componentSetName": "ListItem",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "ListItem",
+          "ListItem"
+        ],
+        "pageName": "🟢     ↳ ListItem"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:Logo",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "9166d48018fbea3846c15ae8966b362ad7a7319f",
+      "componentName": "Logo",
+      "componentSetName": "Logo",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Logo",
+          "Logo"
+        ],
+        "pageName": "     ↳ Logo"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:Modal",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "mainComponentKey": "68ece008da5c518c2385a63ba5490250b8769c9f",
+      "componentName": "Modal",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Modal",
+          "Modal"
+        ],
+        "pageName": "     ↳ Modal"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:Pagination",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "858af1f9dad2c1de36b8642ecf9526f8ff344074",
+      "componentName": "Pagination",
+      "componentSetName": "Pagination",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Pagination",
+          "Pagination"
+        ],
+        "pageName": "     ↳ Pagination"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:PaginationDots",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "c973b171fa4a95a0d6e1ba19000c972d0f7ea5a7",
+      "componentName": "PaginationDots",
+      "componentSetName": "PaginationDots",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "PaginationDots",
+          "PaginationDots"
+        ],
+        "pageName": "     ↳ PaginationDots"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:PrimaryNav",
+      "platform": "reactnative",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "reactnative:Progress",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "5dc943af21c589d37708b4b6a8ed1aa8f4ba88cc",
+      "componentName": "LinearProgressIndicator",
+      "componentSetName": "LinearProgressIndicator",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Progress",
+          "Progress"
+        ],
+        "pageName": "     ↳ LinearProgressIndicator"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:Radio",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "19bb59d00c5dc08ca39864869f3322142258ea50",
+      "componentName": "Radio",
+      "componentSetName": "Radio",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Radio",
+          "Radio"
+        ],
+        "pageName": "     ↳ Radio"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:RadioField",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "98305299df9d3696fc435e42afef3a3c5885466e",
+      "componentName": "RadioField",
+      "componentSetName": "RadioField",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "RadioField",
+          "RadioField"
+        ],
+        "pageName": "     ↳ Radio"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:Scrim",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "b04310b1098c67c2d604359bb8cdcd418e5064f8",
+      "componentName": "Scrim",
+      "componentSetName": "Scrim",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Scrim",
+          "Scrim"
+        ],
+        "pageName": "     ↳ Scrim"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:SecondaryNav",
+      "platform": "reactnative",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "reactnative:SegmentedControl",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "38069aaee489161aeb00279c59263d8eab985dec",
+      "componentName": "Segmented control",
+      "componentSetName": "Segmented control",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "SegmentedControl",
+          "SegmentedControl"
+        ],
+        "pageName": "     ↳ Segmented control"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:Select",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "2647f0dfb5b3b340b1e66a0ec58163628d5c1bea",
+      "componentName": "Select",
+      "componentSetName": "Select",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Select",
+          "Select"
+        ],
+        "pageName": "🟢     ↳ Select"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:SelectableButton",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "ab89a5daa608dd94c4e54a33e8ddd93739357afe",
+      "componentName": "SelectableButton",
+      "componentSetName": "SelectableButton",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "SelectableButton",
+          "SelectableButton"
+        ],
+        "pageName": "     ↳ SelectableButtons"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:SelectableIconButton",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "163d305a730e736d0382d5373b47c12f66290b3c",
+      "componentName": "SelectableIconButton",
+      "componentSetName": "SelectableIconButton",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "SelectableIconButton",
+          "SelectableIconButton"
+        ],
+        "pageName": "     ↳ SelectableButtons"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:SelectableSingleTextButton",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "92e9f4ee91a0f6429fff02c5599b0a2f98e6a3d1",
+      "componentName": "SelectableSingleTextButton",
+      "componentSetName": "SelectableSingleTextButton",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "SelectableSingleTextButton",
+          "SelectableSingleTextButton"
+        ],
+        "pageName": "     ↳ SelectableButtons"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:SingleTextButton",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "d1fc514db2e926d425b418c06ef9869e04faa458",
+      "componentName": "SingleTextButton",
+      "componentSetName": "SingleTextButton",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "SingleTextButton",
+          "SingleTextButton"
+        ],
+        "pageName": "     ↳ Buttons"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:Skeleton",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "1249ff9aba960477e02338b8f13f0939cfbf0340",
+      "componentName": "Skeleton",
+      "componentSetName": "Skeleton",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Skeleton",
+          "Skeleton"
+        ],
+        "pageName": "Skeleton"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:Slider",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "062da6b16c003df9e60f739600ab99c9b6afec08",
+      "componentName": "Slider",
+      "componentSetName": "Slider",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Slider",
+          "Slider"
+        ],
+        "pageName": "    ↳ Slider"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:Stepper",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "4ace626a77b25508df7e9c9ef1af9b670578a69d",
+      "componentName": "Stepper",
+      "componentSetName": "Stepper",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Stepper",
+          "Stepper"
+        ],
+        "pageName": "    ↳ Stepper"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:Switch",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "6f43db33b4f01e8298decb192d9ae5eb756c5ab7",
+      "componentName": "Switch",
+      "componentSetName": "Switch",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Switch",
+          "Switch"
+        ],
+        "pageName": "    ↳ Switch"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:Tabs",
+      "platform": "reactnative",
+      "status": "PENDING_EXTERNAL_EVIDENCE",
+      "opacitySafe": false,
+      "exclusionReason": "absent from supplied published-library snapshot",
+      "associationEvidence": {
+        "candidateCount": 0,
+        "candidateKeys": []
+      }
+    },
+    {
+      "contractId": "reactnative:Text",
+      "platform": "reactnative",
+      "status": "AMBIGUOUS",
+      "opacitySafe": false,
+      "exclusionReason": "multiple exact-name candidates: eddf6a533565069de234482816bea6c4c7de1d90,f06aa15d4216c57217495516bf3d3a467ab75fdf",
+      "associationEvidence": {
+        "candidateCount": 2,
+        "candidateKeys": [
+          "eddf6a533565069de234482816bea6c4c7de1d90",
+          "f06aa15d4216c57217495516bf3d3a467ab75fdf"
+        ]
+      }
+    },
+    {
+      "contractId": "reactnative:Toast",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "8d09a16b0d61c7a2b5f7cccf43c14a9260c20376",
+      "componentName": "Toast",
+      "componentSetName": "Toast",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Toast",
+          "Toast"
+        ],
+        "pageName": "     ↳ Toast"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:Tooltip",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "c389626d25f75f12d1a4f1838a61c3349624583b",
+      "componentName": "Tooltip",
+      "componentSetName": "Tooltip",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "Tooltip",
+          "Tooltip"
+        ],
+        "pageName": "     ↳ Tooltip"
+      },
+      "opacitySafe": false
+    },
+    {
+      "contractId": "reactnative:TouchSlider",
+      "platform": "reactnative",
+      "status": "MATCHED",
+      "componentSetKey": "56fcdb4c36de2d7a5c5b2ea2132b50be23668824",
+      "componentName": "TouchSlider",
+      "componentSetName": "TouchSlider",
+      "libraryFileKey": "eYJriZveeBwZDzGlCts22f",
+      "libraryVersion": "2026-09-09",
+      "associationMethod": "API_KEY_WITH_UNIQUE_EXACT_NAME_CANDIDATE",
+      "associationEvidence": {
+        "exactCandidateNames": [
+          "TouchSlider",
+          "TouchSlider"
+        ],
+        "pageName": "    ↳ Slider"
+      },
+      "opacitySafe": false
+    }
+  ]
+}

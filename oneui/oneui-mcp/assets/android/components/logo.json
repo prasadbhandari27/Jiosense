@@ -1,0 +1,111 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Logo",
+  "platform": "android",
+  "generatedAt": "2026-07-28T10:09:58.252Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "JDS Logo Compose component."
+  },
+  "composable": "JdsLogo",
+  "attributesClass": "JdsLogoAttributes",
+  "importPath": "com.jds.components.logo",
+  "runtimePackage": "com.jds:components",
+  "imports": {
+    "composable": "com.jds.components.logo.JdsLogo",
+    "attributes": "com.jds.components.logo.JdsLogoAttributes",
+    "enums": {
+      "JdsLogoSize": "com.jds.components.logo.JdsLogoSize"
+    }
+  },
+  "compositionRules": {
+    "childKind": "leaf",
+    "requires": [
+      "content"
+    ],
+    "allows": [],
+    "forbids": []
+  },
+  "props": [
+    {
+      "name": "content",
+      "type": "JdsLogoContent",
+      "required": true,
+      "description": "Pre-colored icon (Vector) or remote URL (Remote). NO colorFilter applied in either mode."
+    },
+    {
+      "name": "contentDescription",
+      "type": "String?",
+      "required": false,
+      "defaultValue": "null",
+      "description": "Compose convention: null/blank = decorative (hideFromAccessibility). Non-null = Role.Image + contentDescription."
+    },
+    {
+      "name": "size",
+      "type": "JdsLogoSize",
+      "required": false,
+      "defaultValue": "JdsLogoSize.M",
+      "enumValues": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "Custom"
+      ],
+      "description": "Container size. Custom = Modifier.fillMaxSize() (parent-constrained)."
+    },
+    {
+      "name": "onClick",
+      "type": "(() -> Unit)?",
+      "required": false,
+      "defaultValue": "null",
+      "description": "Tappable click handler."
+    }
+  ],
+  "slots": [],
+  "enums": {
+    "JdsLogoSize": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "Custom"
+    ]
+  },
+  "propsSchema": {
+    "$id": "jds.kb.android.Logo",
+    "type": "object",
+    "properties": {
+      "content": {},
+      "contentDescription": {
+        "type": "string"
+      },
+      "size": {
+        "enum": [
+          "XS",
+          "S",
+          "M",
+          "L",
+          "XL",
+          "Custom"
+        ],
+        "default": "JdsLogoSize.M"
+      },
+      "onClick": {}
+    },
+    "required": [
+      "content"
+    ]
+  },
+  "tags": [
+    "machine-readable",
+    "generated",
+    "android",
+    "compose",
+    "logo"
+  ],
+  "importPathMaven": "com.jds:components"
+}
