@@ -2,7 +2,7 @@
 <html lang="en" data-brand="jio" data-mode="light">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="theme-color" content="#FFFFFF">
 <title>JioSense — OneUI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -554,10 +554,19 @@ html,body{margin:0;padding:0}
 body{
   font-family:var(--Typography-Font-Primary);color:var(--ink);background:var(--Device-Stage);
   -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  overscroll-behavior:none;
 }
+/* ── Native-app feel: no tap flash, no text selection, no callout menus ── */
+*,-webkit-scrollbar{-webkit-tap-highlight-color:transparent}
+html,body,button,input,select,textarea{
+  -webkit-touch-callout:none;
+  -webkit-user-select:none;
+  user-select:none;
+}
+input,textarea{-webkit-user-select:text;user-select:text}
 button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
 a{text-decoration:none;color:inherit}
-img{display:block;max-width:100%}
+img{display:block;max-width:100%;-webkit-user-drag:none;-webkit-touch-callout:none}
 input{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:var(--r-2)}
 h1,h2,h3,p{margin:0}
