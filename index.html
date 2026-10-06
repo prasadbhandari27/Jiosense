@@ -5746,6 +5746,39 @@ h1,h2,h3,p{margin:0}
         </span>
       </div>
 
+      <!-- Event timeline — recorded up to when camera was turned off -->
+      <div class="ev-tl" data-ev-tl="off">
+        <div class="ev-tl-hours">
+          <span>12 am</span><span>6 am</span><span>12 pm</span><span style="color:#8e8e93">▲ Off 2:30 pm</span><span>6 pm</span>
+        </div>
+        <div class="ev-tl-track">
+          <div class="ev-tl-past" style="width:60.4%;background:rgba(142,142,147,.2)"></div>
+          <button class="ev-dot-btn" style="left:38.5%;--ev-dot-color:#3478F6"
+            data-ev-img="assets/livingroom-cam1.png"
+            data-ev-title="Arun left for work"
+            data-ev-sub="Detected at main door · 9:15 am"
+            onclick="evDotTap(this)">
+            <span class="ev-dot-inner" style="background:#3478F6"></span>
+          </button>
+          <button class="ev-dot-btn" style="left:54.2%;--ev-dot-color:#FF9500"
+            data-ev-img="assets/livingroom-cam1.png"
+            data-ev-title="Bruno resting near sofa"
+            data-ev-sub="Settled in usual spot · 12:30 pm"
+            onclick="evDotTap(this)">
+            <span class="ev-dot-inner" style="background:#FF9500"></span>
+          </button>
+          <div class="ev-tl-now" style="left:60.4%;background:#8e8e93"></div>
+        </div>
+        <div class="ev-clip-card" data-ev-preview hidden>
+          <div class="ev-clip-thumb"><img data-ev-prev-img src="" alt=""></div>
+          <div style="flex:1;min-width:0">
+            <p data-ev-prev-title style="margin:0 0 2px;font-size:13px;font-weight:700;color:var(--ink)"></p>
+            <p data-ev-prev-sub style="margin:0;font-size:12px;color:var(--ink-label)"></p>
+          </div>
+          <button type="button" style="background:#8e8e93;color:#fff;border:none;border-radius:20px;padding:6px 14px;font-size:13px;font-weight:700;cursor:pointer;flex-shrink:0">Play</button>
+        </div>
+      </div>
+
       <div style="padding:0 16px 100px;display:flex;flex-direction:column;gap:0">
 
         <!-- Status row -->
@@ -5854,6 +5887,46 @@ h1,h2,h3,p{margin:0}
         <span style="position:absolute;top:12px;right:12px;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);border-radius:20px;padding:3px 10px">
           <span style="font-size:10px;font-weight:600;color:rgba(255,255,255,.7)">Offline 14 min</span>
         </span>
+      </div>
+
+      <!-- Event timeline — recorded up to when camera went offline -->
+      <div class="ev-tl" data-ev-tl="offline">
+        <div class="ev-tl-hours">
+          <span>12 am</span><span>6 am</span><span>12 pm</span><span style="color:#FF3B30">▲ Offline 3:24 pm</span><span>6 pm</span>
+        </div>
+        <div class="ev-tl-track">
+          <div class="ev-tl-past" style="width:64.2%;background:rgba(255,59,48,.15)"></div>
+          <button class="ev-dot-btn" style="left:34.7%;--ev-dot-color:#3478F6"
+            data-ev-img="assets/livingroom-cam2.png"
+            data-ev-title="Priya in living room"
+            data-ev-sub="Walking through · 8:20 am"
+            onclick="evDotTap(this)">
+            <span class="ev-dot-inner" style="background:#3478F6"></span>
+          </button>
+          <button class="ev-dot-btn" style="left:42.5%;--ev-dot-color:#FF9500"
+            data-ev-img="assets/livingroom-cam2.png"
+            data-ev-title="Brief disconnection"
+            data-ev-sub="Reconnected after 45 sec · 10:12 am · 1st of 3 today"
+            onclick="evDotTap(this)">
+            <span class="ev-dot-inner" style="background:#FF9500"></span>
+          </button>
+          <button class="ev-dot-btn" style="left:59.4%;--ev-dot-color:#FF9500"
+            data-ev-img="assets/livingroom-cam2.png"
+            data-ev-title="Bruno resting near sofa"
+            data-ev-sub="Last clear sighting · 2:15 pm"
+            onclick="evDotTap(this)">
+            <span class="ev-dot-inner" style="background:#FF9500"></span>
+          </button>
+          <div class="ev-tl-now" style="left:64.2%;background:#FF3B30"></div>
+        </div>
+        <div class="ev-clip-card" data-ev-preview hidden>
+          <div class="ev-clip-thumb"><img data-ev-prev-img src="" alt=""></div>
+          <div style="flex:1;min-width:0">
+            <p data-ev-prev-title style="margin:0 0 2px;font-size:13px;font-weight:700;color:var(--ink)"></p>
+            <p data-ev-prev-sub style="margin:0;font-size:12px;color:var(--ink-label)"></p>
+          </div>
+          <button type="button" style="background:#FF3B30;color:#fff;border:none;border-radius:20px;padding:6px 14px;font-size:13px;font-weight:700;cursor:pointer;flex-shrink:0">Play</button>
+        </div>
       </div>
 
       <div style="padding:0 16px 100px;display:flex;flex-direction:column;gap:0">
