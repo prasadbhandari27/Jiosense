@@ -3855,12 +3855,19 @@ h1,h2,h3,p{margin:0}
            confirmDoorTile() hides it once the tile resolves to
            confirmed; it isn't re-shown by primeCamRoom() since the
            door never goes back to warn once confirmed. -->
-      <div class="oneui-Surface" data-surface="subtle" data-ob-door-warning style="--Surface-Fill-Subtle:var(--Warning-Subtle);border-radius:var(--r-3);margin-top:var(--Spacing-4)">
-        <div class="oneui-Container" data-direction="row" data-align="start" data-gap="2" data-padding="3">
-          <span class="oneui-Icon" data-size="sm" data-appearance="warning" data-emphasis="tintedA11y" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M12 9v5M12 17.5v.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M10.3 3.9 2.5 18A2 2 0 0 0 4.3 21h15.4a2 2 0 0 0 1.7-3L13.6 3.9a2 2 0 0 0-3.3 0Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
-          </span>
-          <p class="oneui-Text" data-variant="body" data-size="S" data-appearance="warning" data-attention="tintedA11y">Main door is partially visible. Adjust the camera angle so it's fully in frame.</p>
+      <div class="oneui-Surface" data-surface="subtle" data-ob-door-warning style="--Surface-Fill-Subtle:var(--Warning-Subtle);border-radius:var(--r-3);margin-top:var(--Spacing-4);overflow:hidden">
+        <div style="padding:var(--Spacing-3) var(--Spacing-4) var(--Spacing-2)">
+          <div style="display:flex;align-items:center;gap:var(--Spacing-2);margin-bottom:var(--Spacing-1-5)">
+            <span class="oneui-Icon" data-size="sm" data-appearance="warning" data-emphasis="tintedA11y" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 9v5M12 17.5v.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M10.3 3.9 2.5 18A2 2 0 0 0 4.3 21h15.4a2 2 0 0 0 1.7-3L13.6 3.9a2 2 0 0 0-3.3 0Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="oneui-Text" data-variant="label" data-size="S" data-appearance="warning" data-attention="tintedA11y" style="font-weight:700">Main door partially in frame</span>
+          </div>
+          <p class="oneui-Text" data-variant="body" data-size="S" style="color:var(--ink-2);line-height:1.5;margin-bottom:var(--Spacing-3)">JioSense may miss people entering or leaving. Widen the camera angle so the full door frame is visible — this helps catch delivery drops, late-night exits, and unwanted entries.</p>
+          <button type="button" style="display:inline-flex;align-items:center;gap:6px;background:var(--Warning-Subtle-pressed,rgba(255,160,0,.18));border:1.5px solid var(--Warning-Border,rgba(200,120,0,.35));border-radius:var(--r-pill);padding:8px 16px;font-size:13px;font-weight:700;color:var(--Warning-Ink,#8a5000);cursor:pointer" onclick="alert('Opening Tapo camera app…')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 10l4.553-2.07A1 1 0 0 1 21 8.845v6.31a1 1 0 0 1-1.447.914L15 14M3 8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            Adjust angle in camera app
+          </button>
         </div>
       </div>
       </div>
