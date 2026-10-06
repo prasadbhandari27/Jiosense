@@ -1642,6 +1642,20 @@ h1,h2,h3,p{margin:0}
 @keyframes liveblink{0%,100%{opacity:1}50%{opacity:.4}}
 @keyframes motionpulse{0%,100%{box-shadow:0 0 0 2.5px #FF9500,0 0 0 0 rgba(255,149,0,.4)}60%{box-shadow:0 0 0 2.5px #FF9500,0 0 0 8px rgba(255,149,0,0)}}
 @keyframes motionbadge{0%,100%{opacity:1}50%{opacity:.5}}
+/* ── Event timeline ── */
+.ev-tl{background:var(--surface);padding:12px 16px 14px;border-bottom:1px solid var(--ink-divider,#e5e5ea)}
+.ev-tl-hours{display:flex;justify-content:space-between;margin-bottom:10px}
+.ev-tl-hours span{font-size:10px;font-weight:600;color:var(--ink-label)}
+.ev-tl-track{position:relative;height:3px;background:var(--ink-divider,#e5e5ea);border-radius:2px;margin:0 6px 0}
+.ev-tl-past{position:absolute;left:0;top:0;bottom:0;border-radius:2px}
+.ev-tl-now{position:absolute;top:50%;transform:translate(-50%,-50%);width:11px;height:11px;border-radius:50%;border:2.5px solid var(--surface);pointer-events:none}
+.ev-dot-btn{position:absolute;top:50%;transform:translate(-50%,-50%);padding:8px;background:transparent;border:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.ev-dot-inner{display:block;width:10px;height:10px;border-radius:50%;border:2.5px solid var(--surface);transition:transform .15s}
+.ev-dot-btn.is-active .ev-dot-inner{transform:scale(1.35);box-shadow:0 0 0 2px var(--ev-dot-color,#3478F6)}
+.ev-clip-card{margin-top:12px;background:var(--surface-raised,#f2f2f7);border-radius:12px;padding:10px 12px;display:flex;align-items:center;gap:10px}
+.ev-clip-card[hidden]{display:none}
+.ev-clip-thumb{width:62px;height:44px;border-radius:8px;overflow:hidden;flex-shrink:0;background:#1a1a2e}
+.ev-clip-thumb img{width:100%;height:100%;object-fit:cover;display:block}
 .quickreply{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
 .quickreply button{padding:8px 14px;border-radius:var(--r-pill);background:var(--surface);border:1.4px solid var(--Neutral-Stroke-Low);font-size:12px;font-weight:700}
 
@@ -5361,6 +5375,47 @@ h1,h2,h3,p{margin:0}
         </span>
       </div>
 
+      <!-- ── Event timeline ─────────────────────────────── -->
+      <!-- Full-day bar (0–1440 min). Now = 8:14 am = 34.3%.
+           Dots: Rohan 3:12am=13.3%  Priya+Aarav 5:58am=24.9% -->
+      <div class="ev-tl" data-ev-tl="live">
+        <div class="ev-tl-hours">
+          <span>12 am</span><span>6 am</span><span style="color:#34C759">▲ Now</span><span>12 pm</span><span>6 pm</span>
+        </div>
+        <div class="ev-tl-track">
+          <!-- past fill -->
+          <div class="ev-tl-past" style="width:34.3%;background:rgba(52,199,89,.25)"></div>
+          <!-- event dots -->
+          <button class="ev-dot-btn" style="left:13.3%;--ev-dot-color:#AF52DE"
+            data-ev-img="assets/nursery.png"
+            data-ev-title="Rohan checked in"
+            data-ev-sub="Adjusted Aarav's position · 3:12 am"
+            data-ev-tl-id="live"
+            onclick="evDotTap(this)">
+            <span class="ev-dot-inner" style="background:#AF52DE"></span>
+          </button>
+          <button class="ev-dot-btn" style="left:24.9%;--ev-dot-color:#3478F6"
+            data-ev-img="assets/nursery.png"
+            data-ev-title="Priya put Aarav to sleep"
+            data-ev-sub="After 6:00 am feed · Aarav sleeping since · 5:58 am"
+            data-ev-tl-id="live"
+            onclick="evDotTap(this)">
+            <span class="ev-dot-inner" style="background:#3478F6"></span>
+          </button>
+          <!-- Now cursor -->
+          <div class="ev-tl-now" style="left:34.3%;background:#34C759"></div>
+        </div>
+        <!-- Clip preview card (hidden until a dot is tapped) -->
+        <div class="ev-clip-card" data-ev-preview hidden>
+          <div class="ev-clip-thumb"><img data-ev-prev-img src="" alt=""></div>
+          <div style="flex:1;min-width:0">
+            <p data-ev-prev-title style="font-size:13px;font-weight:700;color:var(--ink);margin:0 0 2px"></p>
+            <p data-ev-prev-sub style="font-size:11px;color:var(--ink-label);margin:0"></p>
+          </div>
+          <button type="button" style="flex-shrink:0;background:#3478F6;color:#fff;border:none;border-radius:20px;padding:6px 14px;font-size:12px;font-weight:700;cursor:pointer" data-open="camera-detail" data-cam="Nursery Cam">Play</button>
+        </div>
+      </div>
+
       <div style="padding:0 16px 100px;display:flex;flex-direction:column;gap:0">
 
         <!-- Status row -->
@@ -5505,6 +5560,47 @@ h1,h2,h3,p{margin:0}
         <span style="position:absolute;bottom:0;left:0;right:0;padding:28px 12px 10px;background:linear-gradient(to top,rgba(0,0,0,.72),transparent)">
           <span style="font-size:14px;font-weight:800;color:#fff">Front Porch</span>
         </span>
+      </div>
+
+      <!-- ── Event timeline ─────────────────────────────── -->
+      <!-- Full-day bar. Now = 8:14 am = 34.3%.
+           Dots: unfamiliar 7:52am=32.8%  current motion 8:12am=34.2% -->
+      <div class="ev-tl" data-ev-tl="motion">
+        <div class="ev-tl-hours">
+          <span>12 am</span><span>6 am</span><span style="color:#FF9500">▲ Now</span><span>12 pm</span><span>6 pm</span>
+        </div>
+        <div class="ev-tl-track">
+          <!-- past fill -->
+          <div class="ev-tl-past" style="width:34.3%;background:rgba(255,149,0,.2)"></div>
+          <!-- event dots -->
+          <button class="ev-dot-btn" style="left:32.8%;--ev-dot-color:#FF3B30"
+            data-ev-img="assets/frontporch.png"
+            data-ev-title="Unfamiliar visitor · 1st appearance"
+            data-ev-sub="Did not ring bell · left after 40 sec · 7:52 am"
+            data-ev-tl-id="motion"
+            onclick="evDotTap(this)">
+            <span class="ev-dot-inner" style="background:#FF3B30"></span>
+          </button>
+          <button class="ev-dot-btn" style="left:34.2%;--ev-dot-color:#FF9500"
+            data-ev-img="assets/frontporch.png"
+            data-ev-title="Motion detected · still in frame"
+            data-ev-sub="Adult male · no bell · 2 min 14 sec · 8:12 am"
+            data-ev-tl-id="motion"
+            onclick="evDotTap(this)">
+            <span class="ev-dot-inner" style="background:#FF9500;animation:liveblink 1.4s infinite"></span>
+          </button>
+          <!-- Now cursor -->
+          <div class="ev-tl-now" style="left:34.3%;background:#FF9500"></div>
+        </div>
+        <!-- Clip preview card -->
+        <div class="ev-clip-card" data-ev-preview hidden>
+          <div class="ev-clip-thumb"><img data-ev-prev-img src="" alt=""></div>
+          <div style="flex:1;min-width:0">
+            <p data-ev-prev-title style="font-size:13px;font-weight:700;color:var(--ink);margin:0 0 2px"></p>
+            <p data-ev-prev-sub style="font-size:11px;color:var(--ink-label);margin:0"></p>
+          </div>
+          <button type="button" style="flex-shrink:0;background:#FF9500;color:#fff;border:none;border-radius:20px;padding:6px 14px;font-size:12px;font-weight:700;cursor:pointer" data-open="camera-detail" data-cam="Front Porch">Play</button>
+        </div>
       </div>
 
       <div style="padding:0 16px 100px;display:flex;flex-direction:column;gap:0">
@@ -12006,6 +12102,22 @@ window.addEventListener('error', function(e){
 <script>
 if('serviceWorker' in navigator){
   navigator.serviceWorker.register('sw.js');
+}
+
+/* ── Event-timeline dot interaction ── */
+function evDotTap(btn){
+  var tl   = btn.closest('[data-ev-tl]');
+  var preview = tl.querySelector('[data-ev-preview]');
+  var wasActive = btn.classList.contains('is-active');
+  /* deactivate all dots in this timeline */
+  tl.querySelectorAll('.ev-dot-btn').forEach(function(b){ b.classList.remove('is-active'); });
+  if(wasActive){ preview.hidden = true; return; }
+  /* activate tapped dot */
+  btn.classList.add('is-active');
+  preview.querySelector('[data-ev-prev-img]').src   = btn.dataset.evImg;
+  preview.querySelector('[data-ev-prev-title]').textContent = btn.dataset.evTitle;
+  preview.querySelector('[data-ev-prev-sub]').textContent   = btn.dataset.evSub;
+  preview.hidden = false;
 }
 </script>
 <script>
