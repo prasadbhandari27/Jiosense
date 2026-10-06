@@ -7054,25 +7054,6 @@ window.addEventListener('error', function(e){
     });
   }
 
-  function injectFacecard(member){
-    var list = document.querySelector('[data-sp-list]');
-    var emptyMsg = document.querySelector('[data-sp-empty]');
-    if(!list) return;
-    if(emptyMsg) emptyMsg.style.display = 'none';
-    var initials = member.name ? member.name.charAt(0).toUpperCase() : '?';
-    var label = member.relation || member.role || '';
-    var sub = (label ? label + ' · ' : '') + 'added just now';
-    var phInner = member.photo
-      ? '<span class="ph-wrap"><span class="ph has-photo"><span>' + initials + '</span><img src="' + member.photo + '" alt="" onerror="this.style.display=\'none\'"></span><span class="home-dot"></span></span>'
-      : '<span class="ph-wrap"><span class="ph"><span>' + initials + '</span></span><span class="home-dot"></span></span>';
-    var card = document.createElement('div');
-    card.className = 'facecard';
-    card.innerHTML = phInner +
-      '<div class="txt"><div class="t">' + (member.name || 'Member') + '</div><div class="s">' + sub + '</div></div>' +
-      '<label class="toggle"><input type="checkbox" checked><span class="track"></span><span class="knob"></span></label>';
-    list.appendChild(card);
-  }
-
   /* ── Splash carousel controller ────────────────────────────────────
      Three-slide horizontal carousel that runs before onboarding.
      Next advances the slide; on the last slide the CTA label flips
@@ -11852,6 +11833,26 @@ window.addEventListener('error', function(e){
       '<span style="font-size:12px;font-weight:600;color:var(--ink);line-height:1.2">' + (member.name || (member.type === 'staff' ? member.role.split('/')[0].trim() : 'Member')) + '</span>' +
       '<span style="font-size:10px;color:var(--ink-label);line-height:1.2">' + (member.relation || member.role || '') + '</span>';
     grid.appendChild(btn);
+  }
+
+  /* Inject facecard into Recognized people list */
+  function injectFacecard(member){
+    var list = document.querySelector('[data-sp-list]');
+    var emptyMsg = document.querySelector('[data-sp-empty]');
+    if(!list) return;
+    if(emptyMsg) emptyMsg.style.display = 'none';
+    var initials = member.name ? member.name.charAt(0).toUpperCase() : '?';
+    var label = member.relation || member.role || '';
+    var sub = (label ? label + ' · ' : '') + 'added just now';
+    var phInner = member.photo
+      ? '<span class="ph-wrap"><span class="ph has-photo"><span>' + initials + '</span><img src="' + member.photo + '" alt="" onerror="this.style.display=\'none\'"></span><span class="home-dot"></span></span>'
+      : '<span class="ph-wrap"><span class="ph"><span>' + initials + '</span></span><span class="home-dot"></span></span>';
+    var card = document.createElement('div');
+    card.className = 'facecard';
+    card.innerHTML = phInner +
+      '<div class="txt"><div class="t">' + (member.name || 'Member') + '</div><div class="s">' + sub + '</div></div>' +
+      '<label class="toggle"><input type="checkbox" checked><span class="track"></span><span class="knob"></span></label>';
+    list.appendChild(card);
   }
 
   /* Button wiring */
