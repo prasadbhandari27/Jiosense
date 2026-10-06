@@ -3962,7 +3962,7 @@ h1,h2,h3,p{margin:0}
            above it when nobody has help. -->
 
       <div class="oneui-Container" data-gap="3">
-        <p class="ob-section-label">Who's home</p>
+        <p class="ob-section-label">Family members</p>
         <div class="hh-counters">
           <div class="hh-count-row">
             <span class="hcr-ico" data-adults-icon aria-hidden="true"><svg viewBox="0 0 56 56" fill="none" aria-hidden="true"><path d="M23.3333 25.666C25.41 25.666 27.4401 25.0502 29.1668 23.8965C30.8935 22.7427 32.2394 21.1028 33.0341 19.1842C33.8288 17.2656 34.0367 15.1544 33.6316 13.1176C33.2264 11.0808 32.2264 9.20985 30.758 7.7414C29.2895 6.27295 27.4186 5.27292 25.3818 4.86777C23.345 4.46263 21.2338 4.67057 19.3152 5.46529C17.3965 6.26001 15.7567 7.60582 14.6029 9.33253C13.4492 11.0592 12.8333 13.0893 12.8333 15.166C12.8395 17.9489 13.9477 20.616 15.9155 22.5838C17.8833 24.5516 20.5505 25.6599 23.3333 25.666V25.666ZM42 27.9994C43.3845 27.9994 44.7379 27.5888 45.889 26.8196C47.0401 26.0505 47.9373 24.9572 48.4672 23.6781C48.997 22.3991 49.1356 20.9916 48.8655 19.6337C48.5954 18.2759 47.9287 17.0286 46.9498 16.0496C45.9708 15.0706 44.7235 14.404 43.3656 14.1339C42.0078 13.8638 40.6003 14.0024 39.3212 14.5322C38.0421 15.062 36.9489 15.9592 36.1797 17.1104C35.4106 18.2615 35 19.6149 35 20.9994C35 22.8559 35.7375 24.6363 37.0503 25.9491C38.363 27.2619 40.1435 27.9994 42 27.9994ZM42 30.3327C39.7072 30.3188 37.4896 31.1494 35.77 32.666C33.0784 30.2612 29.7474 28.6884 26.1802 28.1379C22.613 27.5874 18.9628 28.0828 15.6714 29.5643C12.3801 31.0458 9.58885 33.4497 7.63569 36.485C5.68253 39.5202 4.65123 43.0567 4.66667 46.666C4.66667 47.9037 5.15834 49.0907 6.03351 49.9658C6.90868 50.841 8.09566 51.3327 9.33334 51.3327H37.3333C38.571 51.3327 39.758 50.841 40.6332 49.9658C41.5083 49.0907 42 47.9037 42 46.666C41.9929 45.8857 41.9383 45.1064 41.8367 44.3327H46.6667C47.9043 44.3327 49.0913 43.841 49.9665 42.9658C50.8417 42.0907 51.3333 40.9037 51.3333 39.666C51.3333 37.1907 50.35 34.8167 48.5997 33.0664C46.8493 31.316 44.4754 30.3327 42 30.3327V30.3327Z" fill="currentColor"/></svg></span>
@@ -11278,6 +11278,9 @@ window.addEventListener('error', function(e){
         apRelation = rel;
         if(apRelLabel) apRelLabel.textContent = rel;
         if(apRelBtn){ apRelBtn.classList.add('is-set'); }
+        /* Hide name input for "Other" — no individual name needed */
+        var nameField = apName && apName.closest('.field');
+        if(nameField) nameField.hidden = (rel === 'Other');
         closeRelSheet();
       });
       apRelList.appendChild(btn);
@@ -11312,6 +11315,8 @@ window.addEventListener('error', function(e){
     if(apCircle) apCircle.classList.remove('has-photo');
     /* Name reset */
     if(apName) apName.value = '';
+    var nameField = apName && apName.closest('.field');
+    if(nameField) nameField.hidden = false;
     /* Family vs staff fields */
     var isFamily = item.type === 'family';
     if(apRelField) apRelField.hidden = !isFamily;
