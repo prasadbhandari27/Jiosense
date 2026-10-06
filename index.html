@@ -1690,12 +1690,12 @@ h1,h2,h3,p{margin:0}
 .tl-hour-row{display:flex;position:absolute;top:8px;left:0;right:0;pointer-events:none}
 .tl-hour-tick{flex:1;text-align:center;font-size:10px;color:#8e8e93;font-weight:500}
 .tl-block-row{position:absolute;left:0;right:0;bottom:8px;height:38px}
-.tl-block{position:absolute;height:100%;border-radius:4px}
+.tl-block{position:absolute;height:100%;border-radius:4px;cursor:pointer;transition:opacity .15s}
 .tl-ph{position:absolute;top:0;bottom:0;width:2px;z-index:3;transform:translateX(-50%)}
 .tl-ph::before{content:attr(data-time);position:absolute;top:-24px;left:50%;transform:translateX(-50%);background:#fff;border:1px solid #d1d1d6;border-radius:6px;padding:2px 8px;font-size:11px;font-weight:700;white-space:nowrap;box-shadow:0 1px 3px rgba(0,0,0,.1);color:#111}
 .tl-ev-list{padding-bottom:100px}
 .tl-ev-hdr{padding:14px 16px 8px;margin:0;font-size:13px;font-weight:600;color:#8e8e93}
-.tl-ev-row{display:flex;align-items:center;gap:12px;padding:10px 16px;border-bottom:1px solid #f2f2f7}
+.tl-ev-row{display:flex;align-items:center;gap:12px;padding:10px 16px;border-bottom:1px solid #f2f2f7;cursor:pointer}
 .tl-ev-row.is-sel{background:#EEF3FF;margin:2px 8px;border-radius:10px;border-bottom:none}
 .tl-ev-thumb{width:104px;height:64px;border-radius:8px;overflow:hidden;flex-shrink:0;position:relative;background:#d1d1d6}
 .tl-ev-thumb img{width:100%;height:100%;object-fit:cover;display:block}
@@ -5426,13 +5426,9 @@ h1,h2,h3,p{margin:0}
 
       <!-- ── Playback timeline ── -->
       <div class="tl-datebar">
-        <button class="tl-nav-btn">‹</button>
+        <button class="tl-nav-btn" onclick="tlDateNav(this,-1)">‹</button>
         <span class="tl-date-label">Today, 6 Oct</span>
-        <button class="tl-nav-btn">›</button>
-        <div class="tl-store-grp">
-          <button class="tl-store-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></button>
-          <button class="tl-store-btn sel"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button>
-        </div>
+        <button class="tl-nav-btn" onclick="tlDateNav(this,1)">›</button>
       </div>
       <!-- 12AM–12PM window; Rohan 3:12AM=26%, Priya 5:58AM=49.5%, now 8:14AM=68.5% -->
       <div class="tl-scrub">
@@ -5447,29 +5443,29 @@ h1,h2,h3,p{margin:0}
             <span class="tl-hour-tick">12PM</span>
           </div>
           <div class="tl-block-row">
-            <div class="tl-block" style="left:26%;width:2.5%;background:#AF52DE"></div>
-            <div class="tl-block" style="left:49.5%;width:2.5%;background:#3478F6"></div>
+            <div class="tl-block" data-ev-id="live-ev1" data-ev-time="3:12 AM" style="left:26%;width:2.5%;background:#AF52DE" onclick="tlBlockTap(this)"></div>
+            <div class="tl-block" data-ev-id="live-ev2" data-ev-time="5:58 AM" style="left:49.5%;width:2.5%;background:#3478F6" onclick="tlBlockTap(this)"></div>
           </div>
           <div class="tl-ph" data-time="8:14 AM" style="left:68.5%;background:#34C759"></div>
         </div>
       </div>
       <div class="tl-ev-list">
         <p class="tl-ev-hdr">Detected Events (2)</p>
-        <div class="tl-ev-row">
+        <div class="tl-ev-row" data-ev-id="live-ev2" data-ev-time="5:58 AM" onclick="tlRowTap(this)">
           <div class="tl-ev-thumb"><img src="assets/nursery.png" alt=""><span class="tl-ev-dur">03:00</span></div>
           <div class="tl-ev-meta">
             <p class="tl-ev-time">5:58:00 AM</p>
             <p class="tl-ev-sub"><span style="font-size:15px;line-height:1">🌙</span> Priya put Aarav to sleep</p>
           </div>
-          <button class="tl-ev-btn">⋮</button>
+          <button class="tl-ev-btn" onclick="event.stopPropagation()">⋮</button>
         </div>
-        <div class="tl-ev-row">
+        <div class="tl-ev-row" data-ev-id="live-ev1" data-ev-time="3:12 AM" onclick="tlRowTap(this)">
           <div class="tl-ev-thumb"><img src="assets/nursery.png" alt=""><span class="tl-ev-dur">03:00</span></div>
           <div class="tl-ev-meta">
             <p class="tl-ev-time">3:12:00 AM</p>
             <p class="tl-ev-sub"><span style="font-size:15px;line-height:1">🚶</span> Rohan checked in</p>
           </div>
-          <button class="tl-ev-btn">⋮</button>
+          <button class="tl-ev-btn" onclick="event.stopPropagation()">⋮</button>
         </div>
       </div>
     </main>
@@ -5517,13 +5513,9 @@ h1,h2,h3,p{margin:0}
 
       <!-- ── Playback timeline ── -->
       <div class="tl-datebar">
-        <button class="tl-nav-btn">‹</button>
+        <button class="tl-nav-btn" onclick="tlDateNav(this,-1)">‹</button>
         <span class="tl-date-label">Today, 6 Oct</span>
-        <button class="tl-nav-btn">›</button>
-        <div class="tl-store-grp">
-          <button class="tl-store-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></button>
-          <button class="tl-store-btn sel"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button>
-        </div>
+        <button class="tl-nav-btn" onclick="tlDateNav(this,1)">›</button>
       </div>
       <!-- 6AM–12PM window; visitor 7:52AM=31%, active motion 8:12AM=36.7%, now 8:14AM=37.2% -->
       <div class="tl-scrub">
@@ -5538,29 +5530,29 @@ h1,h2,h3,p{margin:0}
             <span class="tl-hour-tick">12PM</span>
           </div>
           <div class="tl-block-row">
-            <div class="tl-block" style="left:31%;width:2%;background:#FF3B30"></div>
-            <div class="tl-block" style="left:36.5%;width:4%;background:#FF9500"></div>
+            <div class="tl-block" data-ev-id="mot-ev2" data-ev-time="7:52 AM" style="left:31%;width:2%;background:#FF3B30" onclick="tlBlockTap(this)"></div>
+            <div class="tl-block" data-ev-id="mot-ev1" data-ev-time="8:12 AM" style="left:36.5%;width:4%;background:#FF9500" onclick="tlBlockTap(this)"></div>
           </div>
           <div class="tl-ph" data-time="8:14 AM" style="left:37.2%;background:#FF9500"></div>
         </div>
       </div>
       <div class="tl-ev-list">
         <p class="tl-ev-hdr">Detected Events (2)</p>
-        <div class="tl-ev-row is-sel">
+        <div class="tl-ev-row is-sel" data-ev-id="mot-ev1" data-ev-time="8:12 AM" onclick="tlRowTap(this)">
           <div class="tl-ev-thumb"><img src="assets/frontporch.png" alt=""><span class="tl-ev-dur" style="background:rgba(255,149,0,.9)">Live</span></div>
           <div class="tl-ev-meta">
             <p class="tl-ev-time">8:12:00 AM</p>
             <p class="tl-ev-sub"><span style="font-size:15px;line-height:1">🏃</span> Motion detected · active</p>
           </div>
-          <button class="tl-ev-btn">⋮</button>
+          <button class="tl-ev-btn" onclick="event.stopPropagation()">⋮</button>
         </div>
-        <div class="tl-ev-row">
+        <div class="tl-ev-row" data-ev-id="mot-ev2" data-ev-time="7:52 AM" onclick="tlRowTap(this)">
           <div class="tl-ev-thumb"><img src="assets/frontporch.png" alt=""><span class="tl-ev-dur">03:00</span></div>
           <div class="tl-ev-meta">
             <p class="tl-ev-time">7:52:00 AM</p>
             <p class="tl-ev-sub"><span style="font-size:15px;line-height:1">🏃</span> Unfamiliar visitor · 1st appearance</p>
           </div>
-          <button class="tl-ev-btn">⋮</button>
+          <button class="tl-ev-btn" onclick="event.stopPropagation()">⋮</button>
         </div>
         <div style="padding:14px 16px;display:flex;gap:10px">
           <button type="button" style="flex:1;background:#FF9500;color:#fff;border:none;border-radius:var(--r-pill,100px);padding:14px;font-size:14px;font-weight:700;cursor:pointer">Identify</button>
@@ -5606,13 +5598,9 @@ h1,h2,h3,p{margin:0}
 
       <!-- ── Playback timeline ── -->
       <div class="tl-datebar">
-        <button class="tl-nav-btn">‹</button>
+        <button class="tl-nav-btn" onclick="tlDateNav(this,-1)">‹</button>
         <span class="tl-date-label">Today, 6 Oct</span>
-        <button class="tl-nav-btn">›</button>
-        <div class="tl-store-grp">
-          <button class="tl-store-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></button>
-          <button class="tl-store-btn sel"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button>
-        </div>
+        <button class="tl-nav-btn" onclick="tlDateNav(this,1)">›</button>
       </div>
       <!-- 8AM–4PM window; Arun 9:15AM=15.6%, Bruno 12:30PM=56.3%, off@2:30PM=81.3% -->
       <div class="tl-scrub">
@@ -5625,29 +5613,29 @@ h1,h2,h3,p{margin:0}
             <span class="tl-hour-tick">4PM</span>
           </div>
           <div class="tl-block-row">
-            <div class="tl-block" style="left:15.5%;width:2%;background:#3478F6"></div>
-            <div class="tl-block" style="left:56%;width:2%;background:#FF9500"></div>
+            <div class="tl-block" data-ev-id="off-ev2" data-ev-time="9:15 AM" style="left:15.5%;width:2%;background:#3478F6" onclick="tlBlockTap(this)"></div>
+            <div class="tl-block" data-ev-id="off-ev1" data-ev-time="12:30 PM" style="left:56%;width:2%;background:#FF9500" onclick="tlBlockTap(this)"></div>
           </div>
           <div class="tl-ph" data-time="2:30 PM" style="left:81.3%;background:#8e8e93"></div>
         </div>
       </div>
       <div class="tl-ev-list">
         <p class="tl-ev-hdr">Recorded Events (2)</p>
-        <div class="tl-ev-row">
+        <div class="tl-ev-row" data-ev-id="off-ev1" data-ev-time="12:30 PM" onclick="tlRowTap(this)">
           <div class="tl-ev-thumb"><img src="assets/livingroom-cam1.png" alt=""><span class="tl-ev-dur">03:00</span></div>
           <div class="tl-ev-meta">
             <p class="tl-ev-time">12:30:00 PM</p>
             <p class="tl-ev-sub"><span style="font-size:15px;line-height:1">🐾</span> Bruno resting near sofa</p>
           </div>
-          <button class="tl-ev-btn">⋮</button>
+          <button class="tl-ev-btn" onclick="event.stopPropagation()">⋮</button>
         </div>
-        <div class="tl-ev-row">
+        <div class="tl-ev-row" data-ev-id="off-ev2" data-ev-time="9:15 AM" onclick="tlRowTap(this)">
           <div class="tl-ev-thumb"><img src="assets/livingroom-cam1.png" alt=""><span class="tl-ev-dur">03:00</span></div>
           <div class="tl-ev-meta">
             <p class="tl-ev-time">9:15:00 AM</p>
             <p class="tl-ev-sub"><span style="font-size:15px;line-height:1">🚶</span> Arun left for work</p>
           </div>
-          <button class="tl-ev-btn">⋮</button>
+          <button class="tl-ev-btn" onclick="event.stopPropagation()">⋮</button>
         </div>
         <div style="padding:14px 16px">
           <button type="button" style="width:100%;background:#3478F6;color:#fff;border:none;border-radius:var(--r-pill,100px);padding:16px;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px">
@@ -5691,13 +5679,9 @@ h1,h2,h3,p{margin:0}
 
       <!-- ── Playback timeline ── -->
       <div class="tl-datebar">
-        <button class="tl-nav-btn">‹</button>
+        <button class="tl-nav-btn" onclick="tlDateNav(this,-1)">‹</button>
         <span class="tl-date-label">Today, 6 Oct</span>
-        <button class="tl-nav-btn">›</button>
-        <div class="tl-store-grp">
-          <button class="tl-store-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></button>
-          <button class="tl-store-btn sel"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button>
-        </div>
+        <button class="tl-nav-btn" onclick="tlDateNav(this,1)">›</button>
       </div>
       <!-- 8AM–4PM window; Priya 8:20AM=4.2%, drop 10:12AM=27.5%, Bruno 2:15PM=78.1%, offline@3:24PM=92.5% -->
       <div class="tl-scrub">
@@ -5710,38 +5694,38 @@ h1,h2,h3,p{margin:0}
             <span class="tl-hour-tick">4PM</span>
           </div>
           <div class="tl-block-row">
-            <div class="tl-block" style="left:4%;width:2%;background:#3478F6"></div>
-            <div class="tl-block" style="left:27%;width:1.5%;background:#FF9500"></div>
-            <div class="tl-block" style="left:78%;width:2%;background:#FF9500"></div>
+            <div class="tl-block" data-ev-id="ofl-ev3" data-ev-time="8:20 AM" style="left:4%;width:2%;background:#3478F6" onclick="tlBlockTap(this)"></div>
+            <div class="tl-block" data-ev-id="ofl-ev2" data-ev-time="10:12 AM" style="left:27%;width:1.5%;background:#FF9500" onclick="tlBlockTap(this)"></div>
+            <div class="tl-block" data-ev-id="ofl-ev1" data-ev-time="2:15 PM" style="left:78%;width:2%;background:#FF9500" onclick="tlBlockTap(this)"></div>
           </div>
           <div class="tl-ph" data-time="3:24 PM" style="left:92%;background:#FF3B30"></div>
         </div>
       </div>
       <div class="tl-ev-list">
         <p class="tl-ev-hdr">Detected Events (3)</p>
-        <div class="tl-ev-row">
+        <div class="tl-ev-row" data-ev-id="ofl-ev1" data-ev-time="2:15 PM" onclick="tlRowTap(this)">
           <div class="tl-ev-thumb"><img src="assets/livingroom-cam2.png" alt=""><span class="tl-ev-dur">03:00</span></div>
           <div class="tl-ev-meta">
             <p class="tl-ev-time">2:15:00 PM</p>
             <p class="tl-ev-sub"><span style="font-size:15px;line-height:1">🐾</span> Bruno resting near sofa</p>
           </div>
-          <button class="tl-ev-btn">⋮</button>
+          <button class="tl-ev-btn" onclick="event.stopPropagation()">⋮</button>
         </div>
-        <div class="tl-ev-row">
+        <div class="tl-ev-row" data-ev-id="ofl-ev2" data-ev-time="10:12 AM" onclick="tlRowTap(this)">
           <div class="tl-ev-thumb"><img src="assets/livingroom-cam2.png" alt=""><span class="tl-ev-dur">03:00</span></div>
           <div class="tl-ev-meta">
             <p class="tl-ev-time">10:12:00 AM</p>
             <p class="tl-ev-sub"><span style="font-size:15px;line-height:1">⚡</span> Brief disconnection · 45 sec</p>
           </div>
-          <button class="tl-ev-btn">⋮</button>
+          <button class="tl-ev-btn" onclick="event.stopPropagation()">⋮</button>
         </div>
-        <div class="tl-ev-row">
+        <div class="tl-ev-row" data-ev-id="ofl-ev3" data-ev-time="8:20 AM" onclick="tlRowTap(this)">
           <div class="tl-ev-thumb"><img src="assets/livingroom-cam2.png" alt=""><span class="tl-ev-dur">03:00</span></div>
           <div class="tl-ev-meta">
             <p class="tl-ev-time">8:20:00 AM</p>
             <p class="tl-ev-sub"><span style="font-size:15px;line-height:1">🚶</span> Priya in living room</p>
           </div>
-          <button class="tl-ev-btn">⋮</button>
+          <button class="tl-ev-btn" onclick="event.stopPropagation()">⋮</button>
         </div>
         <div style="padding:14px 16px;display:flex;flex-direction:column;gap:10px">
           <button type="button" style="width:100%;background:#3478F6;color:#fff;border:none;border-radius:var(--r-pill,100px);padding:15px;font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px">
@@ -11927,15 +11911,85 @@ function evDotTap(btn){
   var tl   = btn.closest('[data-ev-tl]');
   var preview = tl.querySelector('[data-ev-preview]');
   var wasActive = btn.classList.contains('is-active');
-  /* deactivate all dots in this timeline */
   tl.querySelectorAll('.ev-dot-btn').forEach(function(b){ b.classList.remove('is-active'); });
   if(wasActive){ preview.hidden = true; return; }
-  /* activate tapped dot */
   btn.classList.add('is-active');
   preview.querySelector('[data-ev-prev-img]').src   = btn.dataset.evImg;
   preview.querySelector('[data-ev-prev-title]').textContent = btn.dataset.evTitle;
   preview.querySelector('[data-ev-prev-sub]').textContent   = btn.dataset.evSub;
   preview.hidden = false;
+}
+
+/* ── Tapo-style timeline interactions ── */
+function tlBlockTap(blockEl){
+  var section = blockEl.closest('[data-screen]');
+  var evId = blockEl.dataset.evId;
+  /* deselect all rows */
+  section.querySelectorAll('.tl-ev-row').forEach(function(r){ r.classList.remove('is-sel'); });
+  /* select matching row */
+  var row = section.querySelector('.tl-ev-row[data-ev-id="'+evId+'"]');
+  if(row){
+    row.classList.add('is-sel');
+    row.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
+  /* move playhead */
+  var ph = section.querySelector('.tl-ph');
+  if(ph && blockEl.dataset.evTime){
+    ph.setAttribute('data-time', blockEl.dataset.evTime);
+    ph.style.left = blockEl.style.left;
+  }
+}
+
+function tlRowTap(rowEl){
+  var section = rowEl.closest('[data-screen]');
+  var evId = rowEl.dataset.evId;
+  /* deselect all rows */
+  section.querySelectorAll('.tl-ev-row').forEach(function(r){ r.classList.remove('is-sel'); });
+  rowEl.classList.add('is-sel');
+  /* move playhead to matching block */
+  var block = section.querySelector('.tl-block[data-ev-id="'+evId+'"]');
+  var ph = section.querySelector('.tl-ph');
+  if(block && ph){
+    ph.style.left = block.style.left;
+    if(rowEl.dataset.evTime) ph.setAttribute('data-time', rowEl.dataset.evTime);
+  }
+  /* open clip playback */
+  if(window.__routerOpen) window.__routerOpen('camera-detail');
+}
+
+var _tlDateOffsets = {};
+function tlDateNav(btn, dir){
+  var bar = btn.closest('.tl-datebar');
+  var label = bar.querySelector('.tl-date-label');
+  var key = bar.closest('[data-screen]').dataset.screen;
+  if(!_tlDateOffsets[key]) _tlDateOffsets[key] = 0;
+  var next = _tlDateOffsets[key] + dir;
+  if(next > 0) return; /* no future dates */
+  _tlDateOffsets[key] = next;
+  var d = new Date(2026,9,6); /* Oct 6 2026 */
+  d.setDate(d.getDate() + next);
+  var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  if(next === 0){
+    label.textContent = 'Today, 6 Oct';
+  } else if(next === -1){
+    label.textContent = 'Yesterday, 5 Oct';
+  } else {
+    label.textContent = d.getDate()+' '+months[d.getMonth()]+' 2026';
+  }
+  /* grey out event blocks and hide list for past dates */
+  var section = bar.closest('[data-screen]');
+  var evList = section.querySelector('.tl-ev-list');
+  if(next < 0 && evList){
+    var hdr = evList.querySelector('.tl-ev-hdr');
+    if(hdr && !evList.dataset.origHdr) evList.dataset.origHdr = hdr.textContent;
+    /* dim blocks */
+    section.querySelectorAll('.tl-block').forEach(function(b){ b.style.opacity = next < 0 ? '0.2' : ''; });
+    if(next === 0 && hdr && evList.dataset.origHdr) hdr.textContent = evList.dataset.origHdr;
+  } else if(evList){
+    section.querySelectorAll('.tl-block').forEach(function(b){ b.style.opacity = ''; });
+    var hdr = evList.querySelector('.tl-ev-hdr');
+    if(hdr && evList.dataset.origHdr) hdr.textContent = evList.dataset.origHdr;
+  }
 }
 </script>
 <script>
