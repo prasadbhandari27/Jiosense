@@ -1657,36 +1657,27 @@ h1,h2,h3,p{margin:0}
 .ev-clip-thumb{width:62px;height:44px;border-radius:8px;overflow:hidden;flex-shrink:0;background:#1a1a2e}
 .ev-clip-thumb img{width:100%;height:100%;object-fit:cover;display:block}
 
-/* ── Camera detail: full dark + Google Home timeline ── */
-[data-screen^="cam-detail"],[data-screen^="cam-detail"] .scroll{background:#000}
-[data-screen^="cam-detail"] .statusbar{background:#000;color:rgba(255,255,255,.55)}
-[data-screen^="cam-detail"] .appbar{background:#000;border-bottom-color:#1c1c1e}
-[data-screen^="cam-detail"] .appbar h1,[data-screen^="cam-detail"] .appbar button{color:#fff}
-[data-screen^="cam-detail"] .cam-foot{background:#000;border-top-color:#1c1c1e}
-[data-screen^="cam-detail"] .ctrl span{color:rgba(255,255,255,.65)}
-[data-screen^="cam-detail"] .circ{background:#1c1c1e;color:#fff;box-shadow:none}
-[data-screen^="cam-detail"] .circ.rec{background:#FF3B30}
-/* Timeline overrides */
-[data-screen^="cam-detail"] .ev-tl{background:#000;padding:10px 16px 10px;border-bottom:none}
+/* ── Camera detail: Google Home timeline (light mode) ── */
+[data-screen^="cam-detail"] .ev-tl{background:var(--surface);padding:10px 16px 10px;border-bottom:1px solid var(--ink-divider,#e5e5ea)}
 [data-screen^="cam-detail"] .ev-tl-hours{margin-bottom:10px}
-[data-screen^="cam-detail"] .ev-tl-hours span{font-size:11px;font-weight:500;color:rgba(255,255,255,.45)}
-[data-screen^="cam-detail"] .ev-tl-track{flex:1;height:60px;background:#1c1c1e;border-radius:10px;margin:0}
-[data-screen^="cam-detail"] .ev-tl-past{border-radius:10px 0 0 10px;background:rgba(255,255,255,.06)!important}
+[data-screen^="cam-detail"] .ev-tl-hours span{font-size:11px;font-weight:500;color:var(--ink-label)}
+[data-screen^="cam-detail"] .ev-tl-track{flex:1;height:60px;background:#e5e5ea;border-radius:10px;margin:0}
+[data-screen^="cam-detail"] .ev-tl-past{border-radius:10px 0 0 10px;background:rgba(0,0,0,.06)!important}
 [data-screen^="cam-detail"] .ev-dot-btn{top:50%;transform:translate(-50%,-50%);padding:4px 14px}
 [data-screen^="cam-detail"] .ev-dot-inner{width:3px;height:34px;border-radius:2px;border:none}
-[data-screen^="cam-detail"] .ev-dot-btn.is-active .ev-dot-inner{transform:scaleY(1.15);box-shadow:0 0 0 2px rgba(255,255,255,.2)}
+[data-screen^="cam-detail"] .ev-dot-btn.is-active .ev-dot-inner{transform:scaleY(1.15);box-shadow:0 0 0 2px rgba(0,0,0,.12)}
 [data-screen^="cam-detail"] .ev-tl-now{top:0!important;bottom:0!important;height:auto!important;width:2px!important;border-radius:1px!important;transform:translateX(-50%)!important;border:none!important}
 [data-screen^="cam-detail"] .ev-tl-now::before{content:'';position:absolute;top:-5px;left:50%;transform:translateX(-50%);width:10px;height:10px;background:inherit;border-radius:50%}
-[data-screen^="cam-detail"] .ev-clip-card{background:#1c1c1e;margin-top:10px;border-radius:10px}
+[data-screen^="cam-detail"] .ev-clip-card{background:var(--surface-raised,#f2f2f7);margin-top:10px;border-radius:10px}
 [data-screen^="cam-detail"] .ev-clip-card[hidden]{display:none}
-[data-screen^="cam-detail"] [data-ev-prev-title]{color:#fff!important}
-[data-screen^="cam-detail"] [data-ev-prev-sub]{color:rgba(255,255,255,.55)!important}
+[data-screen^="cam-detail"] [data-ev-prev-title]{color:var(--ink)!important}
+[data-screen^="cam-detail"] [data-ev-prev-sub]{color:var(--ink-label)!important}
 /* Timeline body layout */
 .ev-tl-body{display:flex;gap:8px}
 .ev-tl-clipcol{width:52px;display:flex;flex-direction:column;gap:4px;flex-shrink:0}
-.ev-tl-clipthumb{flex:1;border-radius:6px;overflow:hidden;background:#1c1c1e;min-height:28px}
-.ev-tl-clipthumb img{width:100%;height:100%;object-fit:cover;display:block;opacity:.7}
-.ev-tl-tick{position:absolute;top:0;bottom:0;width:1px;background:rgba(255,255,255,.07);pointer-events:none}
+.ev-tl-clipthumb{flex:1;border-radius:6px;overflow:hidden;background:#d1d1d6;min-height:28px}
+.ev-tl-clipthumb img{width:100%;height:100%;object-fit:cover;display:block}
+.ev-tl-tick{position:absolute;top:0;bottom:0;width:1px;background:rgba(0,0,0,.07);pointer-events:none}
 
 .quickreply{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
 .quickreply button{padding:8px 14px;border-radius:var(--r-pill);background:var(--surface);border:1.4px solid var(--Neutral-Stroke-Low);font-size:12px;font-weight:700}
@@ -5412,7 +5403,7 @@ h1,h2,h3,p{margin:0}
            Dots: Rohan 3:12am=13.3%  Priya+Aarav 5:58am=24.9% -->
       <div class="ev-tl" data-ev-tl="live">
         <div class="ev-tl-hours">
-          <span style="color:#fff!important;font-weight:700;font-size:12px!important">Today</span>
+          <span style="font-weight:700;font-size:12px;color:var(--ink)">Today</span>
           <span>8:14 AM</span>
         </div>
         <div class="ev-tl-body">
@@ -5458,19 +5449,19 @@ h1,h2,h3,p{margin:0}
         <!-- Status -->
         <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
           <div>
-            <p style="font-size:17px;font-weight:800;color:#fff;margin:0 0 3px">Aarav is sleeping</p>
-            <p style="font-size:13px;color:rgba(255,255,255,.5);margin:0">Quiet today · last activity 3 hours ago</p>
+            <p style="font-size:17px;font-weight:800;color:var(--ink);margin:0 0 3px">Aarav is sleeping</p>
+            <p style="font-size:13px;color:var(--ink-label);margin:0">Quiet today · last activity 3 hours ago</p>
           </div>
-          <span style="display:flex;align-items:center;gap:5px;background:rgba(52,199,89,.18);border-radius:20px;padding:5px 10px;flex-shrink:0">
+          <span style="display:flex;align-items:center;gap:5px;background:#edfaf2;border-radius:20px;padding:5px 10px;flex-shrink:0">
             <span style="width:7px;height:7px;border-radius:50%;background:#34C759;animation:liveblink 2s infinite;flex-shrink:0"></span>
-            <span style="font-size:12px;font-weight:700;color:#34C759">All clear</span>
+            <span style="font-size:12px;font-weight:700;color:#1a8a3a">All clear</span>
           </span>
         </div>
 
         <!-- AI one-liner -->
-        <div style="background:#1c1c1e;border-radius:14px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start">
+        <div style="background:linear-gradient(135deg,#f0f4ff,#f5f0ff);border-radius:14px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start">
           <span style="font-size:16px;flex-shrink:0">✨</span>
-          <p style="font-size:13px;color:rgba(255,255,255,.8);line-height:1.5;margin:0">Sleeping since 6:00 am · no unusual movements · expected wake <strong style="color:#fff">~8:30–9:00 am</strong></p>
+          <p style="font-size:13px;color:var(--ink);line-height:1.5;margin:0">Sleeping since 6:00 am · no unusual movements · expected wake <strong>~8:30–9:00 am</strong></p>
         </div>
 
       </div>
@@ -5522,7 +5513,7 @@ h1,h2,h3,p{margin:0}
            Dots: unfamiliar 7:52am=32.8%  current motion 8:12am=34.2% -->
       <div class="ev-tl" data-ev-tl="motion">
         <div class="ev-tl-hours">
-          <span style="color:#fff!important;font-weight:700;font-size:12px!important">Today</span>
+          <span style="font-weight:700;font-size:12px;color:var(--ink)">Today</span>
           <span>8:14 AM</span>
         </div>
         <div class="ev-tl-body">
@@ -5568,19 +5559,19 @@ h1,h2,h3,p{margin:0}
         <!-- Status -->
         <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
           <div>
-            <p style="font-size:17px;font-weight:800;color:#fff;margin:0 0 3px">Unfamiliar person</p>
-            <p style="font-size:13px;color:rgba(255,255,255,.5);margin:0">2 min 14 sec · no bell · 2nd appearance today</p>
+            <p style="font-size:17px;font-weight:800;color:var(--ink);margin:0 0 3px">Unfamiliar person</p>
+            <p style="font-size:13px;color:var(--ink-label);margin:0">2 min 14 sec · no bell · 2nd appearance today</p>
           </div>
-          <span style="display:flex;align-items:center;gap:5px;background:rgba(255,149,0,.18);border-radius:20px;padding:5px 10px;flex-shrink:0">
+          <span style="display:flex;align-items:center;gap:5px;background:#fff8ed;border-radius:20px;padding:5px 10px;flex-shrink:0">
             <span style="width:7px;height:7px;border-radius:50%;background:#FF9500;animation:liveblink 1.4s infinite;flex-shrink:0"></span>
-            <span style="font-size:12px;font-weight:700;color:#FF9500">Active</span>
+            <span style="font-size:12px;font-weight:700;color:#b36000">Active</span>
           </span>
         </div>
 
         <!-- AI one-liner -->
-        <div style="background:#1c1c1e;border-radius:14px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start">
+        <div style="background:linear-gradient(135deg,#fff8f0,#fff4e8);border-radius:14px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start">
           <span style="font-size:16px;flex-shrink:0">✨</span>
-          <p style="font-size:13px;color:rgba(255,255,255,.8);line-height:1.5;margin:0">Adult male, no bell. Same visitor seen at <strong style="color:#fff">7:52 am</strong> — left after 40 sec. Not in your household list.</p>
+          <p style="font-size:13px;color:var(--ink);line-height:1.5;margin:0">Adult male, no bell. Same visitor seen at <strong>7:52 am</strong> — left after 40 sec. Not in your household list.</p>
         </div>
 
         <!-- Actions -->
@@ -5630,8 +5621,8 @@ h1,h2,h3,p{margin:0}
       <!-- Event timeline — recorded up to when camera was turned off -->
       <div class="ev-tl" data-ev-tl="off">
         <div class="ev-tl-hours">
-          <span style="color:#fff!important;font-weight:700;font-size:12px!important">Today</span>
-          <span style="color:#8e8e93!important">Off since 2:30 PM</span>
+          <span style="font-weight:700;font-size:12px;color:var(--ink)">Today</span>
+          <span style="color:#8e8e93">Off since 2:30 PM</span>
         </div>
         <div class="ev-tl-body">
           <div class="ev-tl-track">
@@ -5674,14 +5665,14 @@ h1,h2,h3,p{margin:0}
 
         <!-- Status -->
         <div>
-          <p style="font-size:17px;font-weight:800;color:#fff;margin:0 0 3px">Camera is off</p>
-          <p style="font-size:13px;color:rgba(255,255,255,.5);margin:0">Turned off 45 min ago · 2:30 pm · Alerts paused</p>
+          <p style="font-size:17px;font-weight:800;color:var(--ink);margin:0 0 3px">Camera is off</p>
+          <p style="font-size:13px;color:var(--ink-label);margin:0">Turned off 45 min ago · 2:30 pm · Alerts paused</p>
         </div>
 
         <!-- AI one-liner -->
-        <div style="background:#1c1c1e;border-radius:14px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start">
+        <div style="background:linear-gradient(135deg,#f5f5f5,#ebebeb);border-radius:14px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start">
           <span style="font-size:16px;flex-shrink:0">✨</span>
-          <p style="font-size:13px;color:rgba(255,255,255,.8);line-height:1.5;margin:0">Turned off by you at 2:30 pm. Bruno was resting near the sofa.</p>
+          <p style="font-size:13px;color:var(--ink);line-height:1.5;margin:0">Turned off by you at 2:30 pm. Bruno was resting near the sofa.</p>
         </div>
 
         <!-- CTA -->
@@ -5727,8 +5718,8 @@ h1,h2,h3,p{margin:0}
       <!-- Event timeline — recorded up to when camera went offline -->
       <div class="ev-tl" data-ev-tl="offline">
         <div class="ev-tl-hours">
-          <span style="color:#fff!important;font-weight:700;font-size:12px!important">Today</span>
-          <span style="color:#FF3B30!important">Offline since 3:24 PM</span>
+          <span style="font-weight:700;font-size:12px;color:var(--ink)">Today</span>
+          <span style="color:#FF3B30">Offline since 3:24 PM</span>
         </div>
         <div class="ev-tl-body">
           <div class="ev-tl-track">
@@ -5778,14 +5769,14 @@ h1,h2,h3,p{margin:0}
 
         <!-- Status -->
         <div>
-          <p style="font-size:17px;font-weight:800;color:#fff;margin:0 0 3px">Camera offline · 14 min</p>
-          <p style="font-size:13px;color:rgba(255,255,255,.5);margin:0">Connection lost at 3:24 pm · retrying every 30 sec</p>
+          <p style="font-size:17px;font-weight:800;color:var(--ink);margin:0 0 3px">Camera offline · 14 min</p>
+          <p style="font-size:13px;color:var(--ink-label);margin:0">Connection lost at 3:24 pm · retrying every 30 sec</p>
         </div>
 
         <!-- AI one-liner -->
-        <div style="background:#1c1c1e;border-radius:14px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start">
+        <div style="background:linear-gradient(135deg,#fff5f5,#ffeaea);border-radius:14px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start">
           <span style="font-size:16px;flex-shrink:0">✨</span>
-          <p style="font-size:13px;color:rgba(255,255,255,.8);line-height:1.5;margin:0">Likely weak Wi-Fi — signal dropped <strong style="color:#fff">Good → Poor</strong> at 3:22 pm. 3rd disconnection today.</p>
+          <p style="font-size:13px;color:var(--ink);line-height:1.5;margin:0">Likely weak Wi-Fi — signal dropped <strong>Good → Poor</strong> at 3:22 pm. 3rd disconnection today.</p>
         </div>
 
         <!-- Actions -->
@@ -5793,7 +5784,7 @@ h1,h2,h3,p{margin:0}
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M1 1l22 22M16.72 11.06A10.94 10.94 0 0 1 19 12.55M5 12.55a10.94 10.94 0 0 1 5.17-2.8M10.71 5.05A16 16 0 0 1 22.56 9M1.42 9a15.91 15.91 0 0 1 4.7-2.88M12 20h.01" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           Try to Reconnect
         </button>
-        <button type="button" style="width:100%;background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.3);border-radius:var(--r-pill,100px);padding:14px;font-size:14px;font-weight:600;cursor:pointer">
+        <button type="button" style="width:100%;background:transparent;color:var(--accent,#3478F6);border:1.5px solid var(--accent,#3478F6);border-radius:var(--r-pill,100px);padding:14px;font-size:14px;font-weight:600;cursor:pointer">
           Check Wi-Fi signal strength
         </button>
 
