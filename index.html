@@ -5331,6 +5331,224 @@ h1,h2,h3,p{margin:0}
     </div>
   </section>
 
+  <!-- ============================================================ CAMERA DETAIL — POWERED OFF ============================================================ -->
+  <section class="screen" data-screen="cam-detail-off">
+    <div class="statusbar" aria-hidden="true"><span data-clock>08:14</span></div>
+    <header class="appbar">
+      <button class="back" data-back aria-label="Back"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="m15 5-7 7 7 7" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <h1>Living Room · Cam 1</h1>
+      <span class="spacer"></span>
+    </header>
+    <main class="scroll">
+
+      <!-- Dark thumbnail header -->
+      <div style="position:relative;background:#111;overflow:hidden;aspect-ratio:16/9">
+        <img src="assets/livingroom-cam1.png" alt="" style="width:100%;height:100%;object-fit:cover;opacity:.1;filter:grayscale(1);display:block">
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px">
+          <span style="width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.1);display:grid;place-items:center">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 2v10M6.35 4.65a9 9 0 1 0 11.3 0" stroke="rgba(255,255,255,.6)" stroke-width="2" stroke-linecap="round"/></svg>
+          </span>
+          <span style="font-size:13px;font-weight:600;color:rgba(255,255,255,.5)">Camera off</span>
+        </div>
+        <!-- Off badge -->
+        <span style="position:absolute;top:12px;left:12px;display:flex;align-items:center;gap:4px;background:rgba(255,255,255,.14);border-radius:20px;padding:3px 8px 3px 6px">
+          <span style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.4);flex-shrink:0"></span>
+          <span style="font-size:10px;font-weight:700;color:rgba(255,255,255,.7);letter-spacing:.04em">Off</span>
+        </span>
+      </div>
+
+      <div style="padding:0 16px 100px;display:flex;flex-direction:column;gap:0">
+
+        <!-- Status row -->
+        <div style="padding:16px 0 14px;border-bottom:1px solid var(--ink-divider,#e5e5ea)">
+          <p style="font-size:17px;font-weight:800;color:var(--ink);margin:0 0 4px">Camera is off</p>
+          <p style="font-size:13px;color:var(--ink-label);margin:0">Turned off 45 min ago · 2:30 pm today · Alerts paused</p>
+        </div>
+
+        <!-- AI summary -->
+        <div style="margin:16px 0;background:linear-gradient(135deg,#f0f4ff,#f5f0ff);border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start">
+          <span style="font-size:18px;flex-shrink:0">✨</span>
+          <p style="font-size:13px;color:var(--ink);line-height:1.6;margin:0">You turned this camera off at <strong>2:30 pm</strong>. The TV was on and Bruno was resting near the sofa at that time. Motion detection and face recognition are paused for this room.</p>
+        </div>
+
+        <!-- Who turned it off -->
+        <div style="border-radius:14px;background:var(--surface-raised,#f7f7f7);overflow:hidden;margin-bottom:16px">
+          <p style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-label);padding:12px 14px 6px;margin:0">Turned off by</p>
+          <div style="padding:0 14px 14px;display:flex;align-items:center;gap:12px">
+            <span style="width:38px;height:38px;border-radius:50%;background:#3478F6;display:grid;place-items:center;flex-shrink:0">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#fff" stroke-width="1.8"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </span>
+            <div>
+              <p style="font-size:14px;font-weight:700;color:var(--ink);margin:0 0 2px">You (Prasad)</p>
+              <p style="font-size:12px;color:var(--ink-label);margin:0">Via JioSense app · 2:30 pm today</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Last recorded event -->
+        <div style="border-radius:14px;background:var(--surface-raised,#f7f7f7);overflow:hidden;margin-bottom:16px">
+          <p style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-label);padding:12px 14px 6px;margin:0">Last recorded event</p>
+          <div style="padding:0 14px 14px;display:flex;align-items:center;gap:12px">
+            <div style="width:60px;height:44px;border-radius:8px;overflow:hidden;flex-shrink:0;background:#1a2a1a">
+              <img src="assets/livingroom-cam1.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block">
+            </div>
+            <div style="flex:1;min-width:0">
+              <p style="font-size:13px;font-weight:700;color:var(--ink);margin:0 0 2px">Bruno napping near sofa</p>
+              <p style="font-size:12px;color:var(--ink-label);margin:0">2:28 pm · 2 min before camera was turned off</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- What you're missing -->
+        <div style="border-radius:14px;background:var(--surface-raised,#f7f7f7);overflow:hidden;margin-bottom:16px">
+          <p style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-label);padding:12px 14px 6px;margin:0">What JioSense can't see right now</p>
+          <div style="padding:0 14px 14px;display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;align-items:flex-start;gap:10px">
+              <span style="width:6px;height:6px;border-radius:50%;background:var(--ink-divider,#ccc);flex-shrink:0;margin-top:5px"></span>
+              <p style="font-size:13px;color:var(--ink);margin:0;line-height:1.5">Main area of the living room including the TV and main entrance</p>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:10px">
+              <span style="width:6px;height:6px;border-radius:50%;background:var(--ink-divider,#ccc);flex-shrink:0;margin-top:5px"></span>
+              <p style="font-size:13px;color:var(--ink);margin:0;line-height:1.5">Bruno's usual resting spot — JioSense can't tell if he's moved since 2:28 pm</p>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:10px">
+              <span style="width:6px;height:6px;border-radius:50%;background:var(--ink-divider,#ccc);flex-shrink:0;margin-top:5px"></span>
+              <p style="font-size:13px;color:var(--ink);margin:0;line-height:1.5">Family members entering or leaving the room won't be tracked</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Schedule -->
+        <div style="border-radius:14px;border:1.5px solid var(--ink-divider,#e5e5ea);padding:14px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;gap:8px">
+          <div>
+            <p style="font-size:14px;font-weight:700;color:var(--ink);margin:0 0 2px">Schedule to turn on</p>
+            <p style="font-size:12px;color:var(--ink-label);margin:0">Set a time for JioSense to restart this camera automatically</p>
+          </div>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;color:var(--accent,#3478F6)"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+
+        <!-- Primary CTA -->
+        <button type="button" style="width:100%;background:#3478F6;color:#fff;border:none;border-radius:var(--r-pill,100px);padding:16px;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2v10M6.35 4.65a9 9 0 1 0 11.3 0" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+          Turn Camera On
+        </button>
+
+      </div>
+    </main>
+  </section>
+
+  <!-- ============================================================ CAMERA DETAIL — OFFLINE ============================================================ -->
+  <section class="screen" data-screen="cam-detail-offline">
+    <div class="statusbar" aria-hidden="true"><span data-clock>08:14</span></div>
+    <header class="appbar">
+      <button class="back" data-back aria-label="Back"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="m15 5-7 7 7 7" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <h1>Living Room · Cam 2</h1>
+      <span class="spacer"></span>
+    </header>
+    <main class="scroll">
+
+      <!-- Dark thumbnail header -->
+      <div style="position:relative;background:#0d0d0d;overflow:hidden;aspect-ratio:16/9">
+        <img src="assets/livingroom-cam2.png" alt="" style="width:100%;height:100%;object-fit:cover;opacity:.08;filter:grayscale(1);display:block">
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px">
+          <span style="width:52px;height:52px;border-radius:50%;background:rgba(255,59,48,.18);display:grid;place-items:center">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M1 1l22 22M16.72 11.06A10.94 10.94 0 0 1 19 12.55M5 12.55a10.94 10.94 0 0 1 5.17-2.8M10.71 5.05A16 16 0 0 1 22.56 9M1.42 9a15.91 15.91 0 0 1 4.7-2.88M12 20h.01" stroke="rgba(255,80,80,.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span style="font-size:13px;font-weight:600;color:rgba(255,80,80,.7)">Connection lost</span>
+        </div>
+        <!-- Offline badge -->
+        <span style="position:absolute;top:12px;left:12px;display:flex;align-items:center;gap:4px;background:rgba(0,0,0,.65);backdrop-filter:blur(4px);border-radius:20px;padding:3px 8px 3px 6px">
+          <span style="width:6px;height:6px;border-radius:50%;background:#FF3B30;flex-shrink:0;animation:liveblink 1.6s infinite"></span>
+          <span style="font-size:10px;font-weight:700;color:#FF3B30;letter-spacing:.04em">Offline</span>
+        </span>
+        <!-- Duration chip -->
+        <span style="position:absolute;top:12px;right:12px;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);border-radius:20px;padding:3px 10px">
+          <span style="font-size:10px;font-weight:600;color:rgba(255,255,255,.7)">Offline 14 min</span>
+        </span>
+      </div>
+
+      <div style="padding:0 16px 100px;display:flex;flex-direction:column;gap:0">
+
+        <!-- Status row -->
+        <div style="padding:16px 0 14px;border-bottom:1px solid var(--ink-divider,#e5e5ea)">
+          <p style="font-size:17px;font-weight:800;color:var(--ink);margin:0 0 4px">Not working <span style="color:#FF3B30">·</span> Camera offline</p>
+          <p style="font-size:13px;color:var(--ink-label);margin:0">Connection lost at 3:24 pm · JioSense is retrying every 30 sec</p>
+        </div>
+
+        <!-- AI diagnosis -->
+        <div style="margin:16px 0;background:linear-gradient(135deg,#fff5f5,#fff0f0);border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start">
+          <span style="font-size:18px;flex-shrink:0">✨</span>
+          <div>
+            <p style="font-size:13px;font-weight:700;color:var(--ink);margin:0 0 4px">Likely cause: Weak Wi-Fi signal</p>
+            <p style="font-size:13px;color:var(--ink);line-height:1.6;margin:0">Signal strength in this area dropped from <strong>Good → Poor</strong> at 3:22 pm — 2 minutes before the camera went offline. This is the third disconnection today, which is more than usual.</p>
+          </div>
+        </div>
+
+        <!-- Connection health today -->
+        <div style="border-radius:14px;background:var(--surface-raised,#f7f7f7);overflow:hidden;margin-bottom:16px">
+          <p style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-label);padding:12px 14px 6px;margin:0">Connection health today</p>
+          <div style="padding:0 14px 14px;display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <p style="font-size:13px;color:var(--ink);margin:0">Disconnections</p>
+              <p style="font-size:13px;font-weight:700;color:#FF3B30;margin:0">3 times ↑ more than usual</p>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <p style="font-size:13px;color:var(--ink);margin:0">Successfully reconnected</p>
+              <p style="font-size:13px;font-weight:700;color:var(--ink);margin:0">2 times</p>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <p style="font-size:13px;color:var(--ink);margin:0">Current outage duration</p>
+              <p style="font-size:13px;font-weight:700;color:#FF3B30;margin:0">14 min (longest today)</p>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <p style="font-size:13px;color:var(--ink);margin:0">Uptime today</p>
+              <p style="font-size:13px;font-weight:700;color:var(--ink);margin:0">94%</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- What you missed -->
+        <div style="border-radius:14px;background:var(--surface-raised,#f7f7f7);overflow:hidden;margin-bottom:16px">
+          <p style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-label);padding:12px 14px 6px;margin:0">What you may have missed</p>
+          <div style="padding:0 14px 14px">
+            <p style="font-size:13px;color:var(--ink);line-height:1.6;margin:0 0 8px">No events were recorded between <strong>3:24 pm and now</strong>. Based on prior patterns, Bruno is likely still resting in the living room — but JioSense can't confirm this while the camera is offline.</p>
+            <p style="font-size:12px;color:var(--ink-label);margin:0">Other cameras in the home remain active and will still detect any unusual activity near the front door or nursery.</p>
+          </div>
+        </div>
+
+        <!-- Last recorded event -->
+        <div style="border-radius:14px;background:var(--surface-raised,#f7f7f7);overflow:hidden;margin-bottom:16px">
+          <p style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-label);padding:12px 14px 6px;margin:0">Last recorded event</p>
+          <div style="padding:0 14px 14px;display:flex;align-items:center;gap:12px">
+            <div style="width:60px;height:44px;border-radius:8px;overflow:hidden;flex-shrink:0;background:#1a2a1a">
+              <img src="assets/livingroom-cam2.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block">
+            </div>
+            <div style="flex:1;min-width:0">
+              <p style="font-size:13px;font-weight:700;color:var(--ink);margin:0 0 2px">Bruno napping near sofa</p>
+              <p style="font-size:12px;color:var(--ink-label);margin:0">3:22 pm · 2 min before connection was lost</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI tip -->
+        <div style="border-radius:14px;border:1.5px solid var(--ink-divider,#e5e5ea);padding:14px;margin-bottom:20px;display:flex;gap:12px;align-items:flex-start">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;margin-top:1px;color:var(--accent,#3478F6)"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <p style="font-size:13px;color:var(--ink);line-height:1.6;margin:0">Moving your router closer or adding a Wi-Fi extender near the living room can help reduce future outages for this camera.</p>
+        </div>
+
+        <!-- Primary CTA -->
+        <button type="button" style="width:100%;background:#3478F6;color:#fff;border:none;border-radius:var(--r-pill,100px);padding:16px;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:12px">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M1 1l22 22M16.72 11.06A10.94 10.94 0 0 1 19 12.55M5 12.55a10.94 10.94 0 0 1 5.17-2.8M10.71 5.05A16 16 0 0 1 22.56 9M1.42 9a15.91 15.91 0 0 1 4.7-2.88M12 20h.01" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Try to Reconnect
+        </button>
+        <button type="button" style="width:100%;background:transparent;color:var(--accent,#3478F6);border:1.5px solid var(--accent,#3478F6);border-radius:var(--r-pill,100px);padding:14px;font-size:15px;font-weight:600;cursor:pointer">
+          Check Wi-Fi signal strength
+        </button>
+
+      </div>
+    </main>
+  </section>
+
   <!-- ============================================================ TIMELINE / ACTIVITY VIEW ============================================================ -->
   <section class="screen" data-screen="timeline">
     <div class="statusbar" aria-hidden="true"><span data-clock>08:14</span></div>
@@ -5936,7 +6154,7 @@ h1,h2,h3,p{margin:0}
           </button>
 
           <!-- ── STATE: POWERED OFF ── Living Room · Camera 1 ────────── -->
-          <button type="button" class="cam" data-open="camera-detail" data-cam="Living Room"
+          <button type="button" class="cam" data-open="cam-detail-off"
             style="background:var(--surface);border-radius:14px;box-shadow:var(--Shadow-2);overflow:hidden;padding:0;border:none;cursor:pointer;font-family:inherit;text-align:left;width:100%">
             <span class="thumb" style="display:block;position:relative;overflow:hidden;background:#111">
               <!-- Dimmed still -->
@@ -5965,7 +6183,7 @@ h1,h2,h3,p{margin:0}
           </button>
 
           <!-- ── STATE: OFFLINE / NOT WORKING ── Living Room · Camera 2 ─ -->
-          <button type="button" class="cam" data-open="camera-detail" data-cam="Living Room"
+          <button type="button" class="cam" data-open="cam-detail-offline"
             style="background:var(--surface);border-radius:14px;box-shadow:var(--Shadow-2);overflow:hidden;padding:0;border:none;cursor:pointer;font-family:inherit;text-align:left;width:100%">
             <span class="thumb" style="display:block;position:relative;overflow:hidden;background:#0d0d0d">
               <!-- Very faint greyed still -->
