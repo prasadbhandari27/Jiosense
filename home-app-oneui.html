@@ -5142,19 +5142,12 @@ h1,h2,h3,p{margin:0}
   <!-- Recognized people -->
   <section class="screen" data-screen="settings-people">
     <div class="statusbar" aria-hidden="true"><span data-clock>08:14</span></div>
-    <header class="appbar"><button class="back" data-back aria-label="Back"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="m15 5-7 7 7 7" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><h1>Recognized people</h1><span class="spacer"></span><button type="button" class="btn ghost sm" data-bulk-toggle>Select</button></header>
+    <header class="appbar"><button class="back" data-back aria-label="Back"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="m15 5-7 7 7 7" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><h1>Recognized people</h1><span class="spacer"></span><button type="button" class="btn ghost sm" data-sp-add>+ Add</button></header>
     <main class="scroll">
-      <div class="facecard"><input type="checkbox" class="bulk-check hidden" style="width:18px;height:18px;accent-color:var(--accent)"><span class="ph-wrap"><span class="ph has-photo"><span>P</span><img src="assets/people/priya-portrait.jpg" alt="" onerror="this.style.display='none'"></span><span class="home-dot"></span></span><div class="txt"><div class="t">Priya</div><div class="s">Wife · Notify me · updated today</div></div><label class="toggle"><input type="checkbox" checked><span class="track"></span><span class="knob"></span></label></div>
-      <div class="facecard"><input type="checkbox" class="bulk-check hidden" style="width:18px;height:18px;accent-color:var(--accent)"><span class="ph-wrap"><span class="ph has-photo"><span>A</span><img src="assets/people/arun.jpg" alt="" onerror="this.style.display='none'"></span><span class="home-dot"></span></span><div class="txt"><div class="t">Arun</div><div class="s">Son · Notify me · updated today</div></div><label class="toggle"><input type="checkbox" checked><span class="track"></span><span class="knob"></span></label></div>
-      <div class="facecard"><input type="checkbox" class="bulk-check hidden" style="width:18px;height:18px;accent-color:var(--accent)"><span class="ph"><span>R</span></span><div class="txt"><div class="t">Rhea</div><div class="s">Daughter · Notify me · updated 2 days ago</div></div><label class="toggle"><input type="checkbox" checked><span class="track"></span><span class="knob"></span></label></div>
-      <div class="facecard"><input type="checkbox" class="bulk-check hidden" style="width:18px;height:18px;accent-color:var(--accent)"><span class="ph has-photo"><span>A</span><img src="assets/people/aparna.jpg" alt="" onerror="this.style.display='none'"></span><div class="txt"><div class="t">Aparna</div><div class="s">Mother · Notify me · updated 3 days ago</div></div><label class="toggle"><input type="checkbox" checked><span class="track"></span><span class="knob"></span></label></div>
-      <div class="facecard"><input type="checkbox" class="bulk-check hidden" style="width:18px;height:18px;accent-color:var(--accent)"><span class="ph has-photo"><span>R</span><img src="assets/people/rohan.jpg" alt="" onerror="this.style.display='none'"></span><div class="txt"><div class="t">Rohan</div><div class="s">Father · Notify me · updated 3 days ago</div></div><label class="toggle"><input type="checkbox" checked><span class="track"></span><span class="knob"></span></label></div>
-      <div class="facecard"><input type="checkbox" class="bulk-check hidden" style="width:18px;height:18px;accent-color:var(--accent)"><span class="ph"><span>L</span></span><div class="txt"><div class="t">Lakshmi</div><div class="s">Maid · Alerts off · updated 5 days ago</div></div><label class="toggle"><input type="checkbox"><span class="track"></span><span class="knob"></span></label></div>
-      <div class="facecard"><input type="checkbox" class="bulk-check hidden" style="width:18px;height:18px;accent-color:var(--accent)"><span class="ph"><span>S</span></span><div class="txt"><div class="t">Sunil</div><div class="s">Driver · Alerts off · updated 5 days ago</div></div><label class="toggle"><input type="checkbox"><span class="track"></span><span class="knob"></span></label></div>
-      <div class="facecard"><input type="checkbox" class="bulk-check hidden" style="width:18px;height:18px;accent-color:var(--accent)"><span class="ph-wrap"><span class="ph has-photo"><span>B</span><img src="assets/people/bruno.jpg" alt="" onerror="this.style.display='none'"></span><span class="home-dot"></span></span><div class="txt"><div class="t">Bruno</div><div class="s">Dog · Notify me · updated today</div></div><label class="toggle"><input type="checkbox" checked><span class="track"></span><span class="knob"></span></label></div>
-      <div class="facecard"><input type="checkbox" class="bulk-check hidden" style="width:18px;height:18px;accent-color:var(--accent)"><span class="ph">?</span><div class="txt"><div class="t">Someone new</div><div class="s">Seen 3× this week</div></div><button type="button" class="btn sm ghost">Label</button></div>
+      <div data-sp-list></div>
+      <p data-sp-empty style="text-align:center;color:var(--ink-label);font-size:14px;padding:48px 24px 0">No people added yet.<br>Tap + Add to get started.</p>
+      <div class="facecard" style="margin-top:16px"><span class="ph">?</span><div class="txt"><div class="t">Someone new</div><div class="s">Seen 3× this week</div></div><button type="button" class="btn sm ghost">Label</button></div>
       <button type="button" class="btn ghost sm" style="margin-top:14px">Improve recognition from your corrections</button>
-      <button type="button" class="btn danger sm hidden" style="margin-top:10px;width:100%" data-bulk-delete>Delete selected</button>
     </main>
   </section>
 
@@ -7053,16 +7046,31 @@ window.addEventListener('error', function(e){
     });
   }
 
-  /* ── Recognized people: bulk select / delete ──────────────────────── */
-  var bulkOn = false;
-  var bulkBtn = document.querySelector('[data-bulk-toggle]');
-  if(bulkBtn){
-    bulkBtn.addEventListener('click', function(){
-      bulkOn = !bulkOn;
-      bulkBtn.textContent = bulkOn ? 'Done' : 'Select';
-      document.querySelectorAll('.bulk-check').forEach(function(c){ c.classList.toggle('hidden', !bulkOn); });
-      document.querySelector('[data-bulk-delete]').classList.toggle('hidden', !bulkOn);
+  /* ── Recognized people: Add button ──────────────────────────────── */
+  var spAddBtn = document.querySelector('[data-sp-add]');
+  if(spAddBtn){
+    spAddBtn.addEventListener('click', function(){
+      if(typeof window.__routerOpen === 'function') window.__routerOpen('add-person');
     });
+  }
+
+  function injectFacecard(member){
+    var list = document.querySelector('[data-sp-list]');
+    var emptyMsg = document.querySelector('[data-sp-empty]');
+    if(!list) return;
+    if(emptyMsg) emptyMsg.style.display = 'none';
+    var initials = member.name ? member.name.charAt(0).toUpperCase() : '?';
+    var label = member.relation || member.role || '';
+    var sub = (label ? label + ' · ' : '') + 'added just now';
+    var phInner = member.photo
+      ? '<span class="ph-wrap"><span class="ph has-photo"><span>' + initials + '</span><img src="' + member.photo + '" alt="" onerror="this.style.display=\'none\'"></span><span class="home-dot"></span></span>'
+      : '<span class="ph-wrap"><span class="ph"><span>' + initials + '</span></span><span class="home-dot"></span></span>';
+    var card = document.createElement('div');
+    card.className = 'facecard';
+    card.innerHTML = phInner +
+      '<div class="txt"><div class="t">' + (member.name || 'Member') + '</div><div class="s">' + sub + '</div></div>' +
+      '<label class="toggle"><input type="checkbox" checked><span class="track"></span><span class="knob"></span></label>';
+    list.appendChild(card);
   }
 
   /* ── Splash carousel controller ────────────────────────────────────
@@ -11788,6 +11796,7 @@ window.addEventListener('error', function(e){
     };
     addedMembers.push(member);
     injectMemberAvatar(member);
+    injectFacecard(member);
     advanceQueue();
   }
 
