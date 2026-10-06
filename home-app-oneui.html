@@ -4628,43 +4628,58 @@ h1,h2,h3,p{margin:0}
         </div>
       </div>
 
-      <!-- ══ Insights · title lives INSIDE the card, matching Right now
-           and Daily digest so the three read as one system. The floating
-           section headline that used to sit above the Surface is gone —
-           the card carries its own title row with a chevron, then the
-           observation row (icon + title + subtext) below it. -->
+      <!-- ══ Daily digest (Evening catch-up) · Surface mode=elevated ══ -->
       <div class="oneui-Container" data-padding-x="6">
         <div class="oneui-Surface oneui-enter" data-surface="elevated" style="animation-delay:160ms">
           <div class="oneui-Container" data-padding="6" data-gap="4">
-            <!-- Title row — mirrors Daily digest and Right now: title on
-                 the left, chevron on the right hinting the card is
-                 tappable and leads somewhere. -->
+
+            <!-- Title row: "Daily digest" + date chip -->
             <div class="oneui-Container" data-direction="row" data-align="center" data-gap="2" data-width="full">
-              <span class="oneui-Container" data-grow="1" data-align="start">
-                <span class="oneui-Text" data-variant="title" data-size="M" data-weight="high" data-appearance="neutral">Insights</span>
+              <span class="oneui-Container" data-grow="1" data-align="start" data-gap="0-5">
+                <span class="oneui-Text" data-variant="title" data-size="M" data-weight="high" data-appearance="neutral">Daily digest</span>
+                <span class="oneui-Text" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low">Today, 6 Oct</span>
               </span>
-              <span class="oneui-Icon" data-size="sm" data-appearance="neutral" data-emphasis="low" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </span>
+              <!-- Date chip -->
+              <button type="button" style="display:inline-flex;align-items:center;gap:4px;padding:5px 10px 5px 8px;border:1px solid var(--Neutral-Stroke-Low,#e5e5ea);border-radius:99px;background:var(--surface,#fff);font-size:12px;font-weight:600;color:var(--Text-Medium,#555);cursor:pointer;font-family:inherit">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.9"/><path d="M3 9h18M8 2v4M16 2v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                6 Oct
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
             </div>
 
-            <!-- The observation itself. Same row anatomy as the Right now
-                 rows (icon avatar + title + subtext), so a user's eye
-                 jumps between the two lists without re-learning
-                 anything. -->
-            <button type="button" class="oneui-Container oneui-press" data-direction="row" data-align="center" data-gap="3" data-padding-y="2" data-width="full"
-                    data-open="camera-detail" data-cam="Bedroom"
-                    aria-label="Aarav slept 6 hours 20 minutes last night, 20 minutes more than usual. Open the Bedroom live view">
-              <span class="oneui-Avatar" data-content="icon" data-size="s" data-appearance="primary" data-attention="medium">
-                <span class="oneui-Icon" data-size="sm" data-appearance="primary" data-emphasis="high" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none"><path d="M20.5 14.2A8.5 8.5 0 1 1 9.8 3.5a7 7 0 0 0 10.7 10.7Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg>
-                </span>
-              </span>
-              <span class="oneui-Container" data-gap="0-5" data-grow="1">
-                <span class="oneui-Text" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Aarav slept 6 hrs 20 min last night</span>
-                <span class="oneui-Text" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low" data-max-lines="1">20 min more than usual, a pretty good night</span>
-              </span>
+            <!-- House narrative -->
+            <p style="font-size:14px;line-height:1.65;color:var(--ink,#111);margin:0">
+              A calm day at home.
+              <span style="text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px;cursor:pointer">Priya</span> was home all day.
+              <span style="text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px;cursor:pointer">Arun</span> arrived from school at <strong>2:00 pm</strong> and studied for 2 hours.
+              <span style="text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px;cursor:pointer">Lakshmi</span> arrived at <strong>8:45 am</strong> and left at <strong>12:00 pm</strong>.
+            </p>
+
+            <!-- Activity strips -->
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <button type="button" data-tab="daily-digest" style="display:flex;align-items:center;gap:10px;width:100%;min-height:42px;padding:9px 12px;border:1px solid var(--Neutral-Stroke-Low,#e5e5ea);border-radius:10px;background:var(--surface,#fff);font-size:13px;color:var(--Text-Medium,#555);text-align:left;cursor:pointer;font-family:inherit">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;color:var(--Text-Low,#8e8e93)" aria-hidden="true"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.9"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>
+                <span style="flex:1"><strong style="color:var(--ink,#111);font-weight:700">Morning</strong> · 3 arrivals, quiet until noon</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;color:var(--Text-Low,#8e8e93)" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <button type="button" data-tab="daily-digest" style="display:flex;align-items:center;gap:10px;width:100%;min-height:42px;padding:9px 12px;border:1px solid var(--Neutral-Stroke-Low,#e5e5ea);border-radius:10px;background:var(--surface,#fff);font-size:13px;color:var(--Text-Medium,#555);text-align:left;cursor:pointer;font-family:inherit">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;color:var(--Text-Low,#8e8e93)" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 1 1 9.8 3.5a7 7 0 0 0 10.7 10.7Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg>
+                <span style="flex:1"><strong style="color:var(--ink,#111);font-weight:700">Evening</strong> · Arun studied, family dinner</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;color:var(--Text-Low,#8e8e93)" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <button type="button" data-open="settings-people" style="display:flex;align-items:center;gap:10px;width:100%;min-height:42px;padding:9px 12px;border:1px solid var(--Neutral-Stroke-Low,#e5e5ea);border-radius:10px;background:var(--surface,#fff);font-size:13px;color:var(--Text-Medium,#555);text-align:left;cursor:pointer;font-family:inherit">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;color:var(--Text-Low,#8e8e93)" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="1.9"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>
+                <span style="flex:1"><strong style="color:var(--ink,#111);font-weight:700">Your people</strong> · 3 seen today</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;color:var(--Text-Low,#8e8e93)" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+
+            <!-- View full digest -->
+            <button type="button" class="oneui-press" data-tab="daily-digest" style="display:flex;align-items:center;justify-content:space-between;width:100%;padding:4px 0 0;border:0;border-top:1px solid var(--Neutral-Stroke-Low,#e5e5ea);background:none;cursor:pointer;font-family:inherit;padding-top:10px">
+              <span class="oneui-Text" data-variant="label" data-size="S" data-weight="high" data-appearance="primary">View full digest</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
+
           </div>
         </div>
       </div>
@@ -4755,44 +4770,6 @@ h1,h2,h3,p{margin:0}
               </button>
             </div>
           </div>
-        </div>
-      </div>
-
-      <!-- ══ Daily digest · Surface mode=elevated ══ -->
-      <div class="oneui-Container" data-padding-x="6" data-padding-y="2">
-        <div class="oneui-Surface oneui-enter" data-surface="elevated" style="animation-delay:280ms">
-          <button type="button" class="oneui-Container oneui-press" data-gap="4" data-padding="6" data-align="start" data-width="full" data-tab="daily-digest"
-                    aria-label="Daily digest, yesterday 17 Sep. A calm, full day at home. 2 items. View full digest">
-            <span class="oneui-Container" data-direction="row" data-align="center" data-gap="2" data-width="full">
-              <span class="oneui-Container" data-grow="1" data-align="start" data-gap="0-5">
-                <span class="oneui-Text" data-variant="title" data-size="M" data-weight="high" data-appearance="neutral">Daily digest</span>
-                <span class="oneui-Text" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low" data-max-lines="1">Yesterday, 17 Sep</span>
-              </span>
-              <span class="oneui-Icon" data-size="sm" data-appearance="neutral" data-emphasis="low" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </span>
-            </span>
-
-            <span class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium">A calm, full day at home.</span>
-
-            <!-- Bullets are now day-stories, one per person — bookended by
-                 arrival/wake and departure/sleep times, with the events in
-                 between kept as short verbs to stay scannable. Times use the
-                 nested-Text bold pattern from the previous version so the
-                 clock values still stand out from prose. -->
-            <span class="oneui-Container" data-gap="2">
-              <span class="oneui-Container" data-direction="row" data-gap="2">
-                <span class="oneui-marker" aria-hidden="true"></span>
-                <span class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium" data-grow="1">Maid arrived at <span class="oneui-Text" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">8:45 am</span>, cleaned the house, spent time with Priya and left at <span class="oneui-Text" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">12:00 pm</span></span>
-              </span>
-              <span class="oneui-Container" data-direction="row" data-gap="2">
-                <span class="oneui-marker" aria-hidden="true"></span>
-                <span class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium" data-grow="1">Aarav woke up at <span class="oneui-Text" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">9:30 am</span>, had food, went to play, watched TV, studied for 2 hours, spent time with Priya and slept at <span class="oneui-Text" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">10:00 pm</span></span>
-              </span>
-            </span>
-
-            <span class="oneui-Text" data-variant="label" data-size="S" data-weight="high" data-appearance="primary">View full digest</span>
-          </button>
         </div>
       </div>
 
