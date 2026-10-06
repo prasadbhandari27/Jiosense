@@ -7253,7 +7253,7 @@ window.addEventListener('error', function(e){
          the whole counter grid (and this list) is hidden regardless
          of what "Other" was last set to. */
       var n = state.household.helpersOn ? state.household.staff.other : 0;
-      otherStaffWrap.hidden = !(n > 0);
+      otherStaffWrap.hidden = true;
       var names = state.household.staffOtherNames;
       names.length = n;
       for(var i = 0; i < n; i++){ if(!names[i]) names[i] = ''; }
