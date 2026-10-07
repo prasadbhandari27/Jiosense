@@ -11461,6 +11461,21 @@ window.addEventListener('error', function(e){
   var nudge = document.querySelector('[data-member-nudge]');
   var addedMembers = []; /* {photo, name, relation, type, role} */
 
+  /* Hydrate from localStorage so members survive a fresh page load (Maze Mission 2) */
+  (function(){
+    try{
+      var saved = localStorage.getItem('jiosense_members');
+      if(!saved) return;
+      var list = JSON.parse(saved);
+      if(!Array.isArray(list) || list.length === 0) return;
+      list.forEach(function(member){
+        addedMembers.push(member);
+        injectMemberAvatar(member);
+        injectFacecard(member);
+      });
+    }catch(e){}
+  })();
+
   function totalQueueLength(){
     /* Count from onboarding state if available */
     if(typeof window.__obState !== 'undefined'){
@@ -11652,6 +11667,7 @@ window.addEventListener('error', function(e){
       role: item.label
     };
     addedMembers.push(member);
+    try{ localStorage.setItem('jiosense_members', JSON.stringify(addedMembers)); }catch(e){}
     injectMemberAvatar(member);
     injectFacecard(member);
     advanceQueue();
