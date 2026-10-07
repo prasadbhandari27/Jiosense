@@ -1680,21 +1680,33 @@ h1,h2,h3,p{margin:0}
 .ev-tl-clipthumb{flex:1;border-radius:6px;overflow:hidden;background:#d1d1d6;min-height:28px}
 .ev-tl-clipthumb img{width:100%;height:100%;object-fit:cover;display:block}
 .ev-tl-tick{position:absolute;top:0;bottom:0;width:1px;background:rgba(0,0,0,.07);pointer-events:none}
-/* ── Tapo-style playback timeline (light) ── */
-.tl-datebar{display:flex;align-items:center;gap:4px;padding:10px 16px;border-bottom:1px solid var(--ink-divider,#e5e5ea);background:var(--surface,#fff)}
-.tl-nav-btn{background:none;border:none;font-size:22px;color:var(--ink-label,#8e8e93);cursor:pointer;padding:2px 8px;line-height:1;flex-shrink:0}
-.tl-date-label{font-size:15px;font-weight:600;color:var(--ink,#111)}
-.tl-store-grp{display:flex;gap:2px;background:#f0f0f5;border-radius:8px;padding:2px;margin-left:auto}
-.tl-store-btn{background:none;border:none;width:36px;height:28px;border-radius:6px;cursor:pointer;color:var(--ink-label,#8e8e93);display:grid;place-items:center}
-.tl-store-btn.sel{background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.12);color:var(--ink,#111)}
-.tl-scrub{background:#f2f2f7;border-bottom:1px solid var(--ink-divider,#e5e5ea)}
-.tl-scrub-inner{position:relative;height:80px}
-.tl-hour-row{display:flex;position:absolute;top:8px;left:0;right:0;pointer-events:none}
-.tl-hour-tick{flex:1;text-align:center;font-size:10px;color:#8e8e93;font-weight:500}
-.tl-block-row{position:absolute;left:0;right:0;bottom:8px;height:38px}
-.tl-block{position:absolute;height:100%;border-radius:4px;cursor:pointer;transition:opacity .15s}
-.tl-ph{position:absolute;top:0;bottom:0;width:2px;z-index:3;transform:translateX(-50%)}
-.tl-ph::before{content:attr(data-time);position:absolute;top:-24px;left:50%;transform:translateX(-50%);background:#fff;border:1px solid #d1d1d6;border-radius:6px;padding:2px 8px;font-size:11px;font-weight:700;white-space:nowrap;box-shadow:0 1px 3px rgba(0,0,0,.1);color:#111}
+/* ── Qubo-style playback timeline ── */
+.tl-datebar{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--ink-divider,#e5e5ea);background:var(--surface,#fff)}
+.tl-date-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px 6px 10px;background:#EEF3FF;border:1.5px solid #3478F6;border-radius:99px;font-size:13px;font-weight:700;color:#3478F6;cursor:pointer;font-family:inherit;flex-shrink:0}
+.tl-date-label{font-size:13px;font-weight:700;color:#3478F6}
+.tl-store-grp{display:flex;gap:6px;margin-left:auto}
+.tl-store-btn{width:34px;height:34px;border-radius:8px;border:1px solid var(--ink-divider,#e5e5ea);background:var(--surface,#fff);cursor:pointer;color:var(--ink-label,#8e8e93);display:grid;place-items:center;flex-shrink:0}
+.tl-store-btn.sel{background:#EEF3FF;color:#3478F6;border-color:#3478F6}
+/* Ruler strip */
+.tl-scrub{position:relative;background:var(--surface,#fff);border-bottom:1px solid var(--ink-divider,#e5e5ea);overflow:hidden;height:76px}
+/* Fixed center playhead */
+.tl-scrub::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;background:#3478F6;transform:translateX(-50%);z-index:4;pointer-events:none}
+.tl-scrub-inner{position:relative;height:76px}
+/* Top tick marks (minor every ~4px) via background image */
+.tl-ruler-bg{position:absolute;top:0;left:0;right:0;height:16px;pointer-events:none;background:repeating-linear-gradient(90deg,transparent,transparent 11px,rgba(0,0,0,.08) 11px,rgba(0,0,0,.08) 12px)}
+/* Hour tick marks on top edge */
+.tl-hour-row{display:flex;position:absolute;bottom:6px;left:0;right:0;pointer-events:none}
+.tl-hour-tick{flex:1;text-align:center;font-size:10px;color:#8e8e93;font-weight:500;position:relative}
+.tl-hour-tick::before{content:'';position:absolute;top:-20px;left:50%;width:1px;height:12px;background:#d1d1d6;transform:translateX(-50%)}
+/* Baseline track line */
+.tl-track-line{position:absolute;left:0;right:0;top:50%;height:2px;background:#e5e5ea;transform:translateY(-4px);pointer-events:none}
+/* Event blobs */
+.tl-block-row{position:absolute;left:0;right:0;top:50%;transform:translateY(-10px);height:20px}
+.tl-block{position:absolute;height:100%;border-radius:99px;cursor:pointer;transition:opacity .15s;min-width:8px}
+/* Playhead bubble */
+.tl-ph{position:absolute;top:0;bottom:0;width:0;z-index:3;transform:translateX(-50%)}
+.tl-ph::after{content:attr(data-time);position:absolute;top:6px;left:50%;transform:translateX(-50%);background:#3478F6;color:#fff;border-radius:6px;padding:2px 8px;font-size:10px;font-weight:800;white-space:nowrap}
+/* Events list */
 .tl-ev-list{padding-bottom:100px}
 .tl-ev-hdr{padding:14px 16px 8px;margin:0;font-size:13px;font-weight:600;color:#8e8e93}
 .tl-ev-row{display:flex;align-items:center;gap:12px;padding:10px 16px;border-bottom:1px solid #f2f2f7;cursor:pointer}
@@ -5398,27 +5410,35 @@ h1,h2,h3,p{margin:0}
 
       <!-- ── Playback timeline ── -->
       <div class="tl-datebar">
-        <button class="tl-nav-btn" onclick="tlDateNav(this,-1)">‹</button>
-        <span class="tl-date-label">Today, 6 Oct</span>
-        <button class="tl-nav-btn" onclick="tlDateNav(this,1)">›</button>
+        <button type="button" class="tl-date-chip" onclick="tlDateNav(this,0)">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/><path d="M3 9h18M8 2v4M16 2v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <span class="tl-date-label">Today, 7 Oct</span>
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="tl-store-grp">
+          <button type="button" class="tl-store-btn sel" aria-label="Camera view"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M23 7l-7 5 7 5V7z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><rect x="1" y="5" width="15" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/></svg></button>
+          <button type="button" class="tl-store-btn" aria-label="Calendar view"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M3 9h18M8 2v4M16 2v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+        </div>
       </div>
       <!-- 12AM–12PM window; Rohan 3:12AM=26%, Priya 5:58AM=49.5%, now 8:14AM=68.5% -->
       <div class="tl-scrub">
         <div class="tl-scrub-inner">
+          <div class="tl-ruler-bg"></div>
+          <div class="tl-track-line"></div>
           <div class="tl-hour-row">
-            <span class="tl-hour-tick">12AM</span>
-            <span class="tl-hour-tick">2AM</span>
-            <span class="tl-hour-tick">4AM</span>
-            <span class="tl-hour-tick">6AM</span>
-            <span class="tl-hour-tick">8AM</span>
-            <span class="tl-hour-tick">10AM</span>
-            <span class="tl-hour-tick">12PM</span>
+            <span class="tl-hour-tick">12:00</span>
+            <span class="tl-hour-tick">2:00</span>
+            <span class="tl-hour-tick">4:00</span>
+            <span class="tl-hour-tick">6:00</span>
+            <span class="tl-hour-tick">8:00</span>
+            <span class="tl-hour-tick">10:00</span>
+            <span class="tl-hour-tick">12:00</span>
           </div>
           <div class="tl-block-row">
-            <div class="tl-block" data-ev-id="live-ev1" data-ev-time="3:12 AM" style="left:26%;width:2.5%;background:#AF52DE" onclick="tlBlockTap(this)"></div>
-            <div class="tl-block" data-ev-id="live-ev2" data-ev-time="5:58 AM" style="left:49.5%;width:2.5%;background:#3478F6" onclick="tlBlockTap(this)"></div>
+            <div class="tl-block" data-ev-id="live-ev1" data-ev-time="3:12 AM" style="left:26%;width:3%;background:#AF52DE" onclick="tlBlockTap(this)"></div>
+            <div class="tl-block" data-ev-id="live-ev2" data-ev-time="5:58 AM" style="left:49.5%;width:3%;background:#3478F6" onclick="tlBlockTap(this)"></div>
           </div>
-          <div class="tl-ph" data-time="8:14 AM" style="left:68.5%;background:#34C759"></div>
+          <div class="tl-ph" data-time="8:14" style="left:68.5%"></div>
         </div>
       </div>
       <div class="tl-ev-list">
@@ -5485,27 +5505,35 @@ h1,h2,h3,p{margin:0}
 
       <!-- ── Playback timeline ── -->
       <div class="tl-datebar">
-        <button class="tl-nav-btn" onclick="tlDateNav(this,-1)">‹</button>
-        <span class="tl-date-label">Today, 6 Oct</span>
-        <button class="tl-nav-btn" onclick="tlDateNav(this,1)">›</button>
+        <button type="button" class="tl-date-chip" onclick="tlDateNav(this,0)">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/><path d="M3 9h18M8 2v4M16 2v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <span class="tl-date-label">Today, 7 Oct</span>
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="tl-store-grp">
+          <button type="button" class="tl-store-btn sel" aria-label="Camera view"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M23 7l-7 5 7 5V7z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><rect x="1" y="5" width="15" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/></svg></button>
+          <button type="button" class="tl-store-btn" aria-label="Calendar view"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M3 9h18M8 2v4M16 2v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+        </div>
       </div>
       <!-- 6AM–12PM window; visitor 7:52AM=31%, active motion 8:12AM=36.7%, now 8:14AM=37.2% -->
       <div class="tl-scrub">
         <div class="tl-scrub-inner">
+          <div class="tl-ruler-bg"></div>
+          <div class="tl-track-line"></div>
           <div class="tl-hour-row">
-            <span class="tl-hour-tick">6AM</span>
-            <span class="tl-hour-tick">7AM</span>
-            <span class="tl-hour-tick">8AM</span>
-            <span class="tl-hour-tick">9AM</span>
-            <span class="tl-hour-tick">10AM</span>
-            <span class="tl-hour-tick">11AM</span>
-            <span class="tl-hour-tick">12PM</span>
+            <span class="tl-hour-tick">6:00</span>
+            <span class="tl-hour-tick">7:00</span>
+            <span class="tl-hour-tick">8:00</span>
+            <span class="tl-hour-tick">9:00</span>
+            <span class="tl-hour-tick">10:00</span>
+            <span class="tl-hour-tick">11:00</span>
+            <span class="tl-hour-tick">12:00</span>
           </div>
           <div class="tl-block-row">
-            <div class="tl-block" data-ev-id="mot-ev2" data-ev-time="7:52 AM" style="left:31%;width:2%;background:#FF3B30" onclick="tlBlockTap(this)"></div>
-            <div class="tl-block" data-ev-id="mot-ev1" data-ev-time="8:12 AM" style="left:36.5%;width:4%;background:#FF9500" onclick="tlBlockTap(this)"></div>
+            <div class="tl-block" data-ev-id="mot-ev2" data-ev-time="7:52 AM" style="left:31%;width:3%;background:#FF3B30" onclick="tlBlockTap(this)"></div>
+            <div class="tl-block" data-ev-id="mot-ev1" data-ev-time="8:12 AM" style="left:36.5%;width:5%;background:#FF9500" onclick="tlBlockTap(this)"></div>
           </div>
-          <div class="tl-ph" data-time="8:14 AM" style="left:37.2%;background:#FF9500"></div>
+          <div class="tl-ph" data-time="8:14" style="left:37.2%"></div>
         </div>
       </div>
       <div class="tl-ev-list">
@@ -5570,25 +5598,33 @@ h1,h2,h3,p{margin:0}
 
       <!-- ── Playback timeline ── -->
       <div class="tl-datebar">
-        <button class="tl-nav-btn" onclick="tlDateNav(this,-1)">‹</button>
-        <span class="tl-date-label">Today, 6 Oct</span>
-        <button class="tl-nav-btn" onclick="tlDateNav(this,1)">›</button>
+        <button type="button" class="tl-date-chip" onclick="tlDateNav(this,0)">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/><path d="M3 9h18M8 2v4M16 2v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <span class="tl-date-label">Today, 7 Oct</span>
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="tl-store-grp">
+          <button type="button" class="tl-store-btn sel" aria-label="Camera view"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M23 7l-7 5 7 5V7z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><rect x="1" y="5" width="15" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/></svg></button>
+          <button type="button" class="tl-store-btn" aria-label="Calendar view"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M3 9h18M8 2v4M16 2v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+        </div>
       </div>
       <!-- 8AM–4PM window; Arun 9:15AM=15.6%, Bruno 12:30PM=56.3%, off@2:30PM=81.3% -->
       <div class="tl-scrub">
         <div class="tl-scrub-inner">
+          <div class="tl-ruler-bg"></div>
+          <div class="tl-track-line"></div>
           <div class="tl-hour-row">
-            <span class="tl-hour-tick">8AM</span>
-            <span class="tl-hour-tick">10AM</span>
-            <span class="tl-hour-tick">12PM</span>
-            <span class="tl-hour-tick">2PM</span>
-            <span class="tl-hour-tick">4PM</span>
+            <span class="tl-hour-tick">8:00</span>
+            <span class="tl-hour-tick">10:00</span>
+            <span class="tl-hour-tick">12:00</span>
+            <span class="tl-hour-tick">14:00</span>
+            <span class="tl-hour-tick">16:00</span>
           </div>
           <div class="tl-block-row">
-            <div class="tl-block" data-ev-id="off-ev2" data-ev-time="9:15 AM" style="left:15.5%;width:2%;background:#3478F6" onclick="tlBlockTap(this)"></div>
-            <div class="tl-block" data-ev-id="off-ev1" data-ev-time="12:30 PM" style="left:56%;width:2%;background:#FF9500" onclick="tlBlockTap(this)"></div>
+            <div class="tl-block" data-ev-id="off-ev2" data-ev-time="9:15 AM" style="left:15.5%;width:3%;background:#3478F6" onclick="tlBlockTap(this)"></div>
+            <div class="tl-block" data-ev-id="off-ev1" data-ev-time="12:30 PM" style="left:56%;width:3%;background:#FF9500" onclick="tlBlockTap(this)"></div>
           </div>
-          <div class="tl-ph" data-time="2:30 PM" style="left:81.3%;background:#8e8e93"></div>
+          <div class="tl-ph" data-time="14:30" style="left:81.3%"></div>
         </div>
       </div>
       <div class="tl-ev-list">
@@ -5651,26 +5687,34 @@ h1,h2,h3,p{margin:0}
 
       <!-- ── Playback timeline ── -->
       <div class="tl-datebar">
-        <button class="tl-nav-btn" onclick="tlDateNav(this,-1)">‹</button>
-        <span class="tl-date-label">Today, 6 Oct</span>
-        <button class="tl-nav-btn" onclick="tlDateNav(this,1)">›</button>
+        <button type="button" class="tl-date-chip" onclick="tlDateNav(this,0)">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/><path d="M3 9h18M8 2v4M16 2v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <span class="tl-date-label">Today, 7 Oct</span>
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="tl-store-grp">
+          <button type="button" class="tl-store-btn sel" aria-label="Camera view"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M23 7l-7 5 7 5V7z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><rect x="1" y="5" width="15" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/></svg></button>
+          <button type="button" class="tl-store-btn" aria-label="Calendar view"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M3 9h18M8 2v4M16 2v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+        </div>
       </div>
       <!-- 8AM–4PM window; Priya 8:20AM=4.2%, drop 10:12AM=27.5%, Bruno 2:15PM=78.1%, offline@3:24PM=92.5% -->
       <div class="tl-scrub">
         <div class="tl-scrub-inner">
+          <div class="tl-ruler-bg"></div>
+          <div class="tl-track-line"></div>
           <div class="tl-hour-row">
-            <span class="tl-hour-tick">8AM</span>
-            <span class="tl-hour-tick">10AM</span>
-            <span class="tl-hour-tick">12PM</span>
-            <span class="tl-hour-tick">2PM</span>
-            <span class="tl-hour-tick">4PM</span>
+            <span class="tl-hour-tick">8:00</span>
+            <span class="tl-hour-tick">10:00</span>
+            <span class="tl-hour-tick">12:00</span>
+            <span class="tl-hour-tick">14:00</span>
+            <span class="tl-hour-tick">16:00</span>
           </div>
           <div class="tl-block-row">
-            <div class="tl-block" data-ev-id="ofl-ev3" data-ev-time="8:20 AM" style="left:4%;width:2%;background:#3478F6" onclick="tlBlockTap(this)"></div>
-            <div class="tl-block" data-ev-id="ofl-ev2" data-ev-time="10:12 AM" style="left:27%;width:1.5%;background:#FF9500" onclick="tlBlockTap(this)"></div>
-            <div class="tl-block" data-ev-id="ofl-ev1" data-ev-time="2:15 PM" style="left:78%;width:2%;background:#FF9500" onclick="tlBlockTap(this)"></div>
+            <div class="tl-block" data-ev-id="ofl-ev3" data-ev-time="8:20 AM" style="left:4%;width:3%;background:#3478F6" onclick="tlBlockTap(this)"></div>
+            <div class="tl-block" data-ev-id="ofl-ev2" data-ev-time="10:12 AM" style="left:27%;width:3%;background:#FF9500" onclick="tlBlockTap(this)"></div>
+            <div class="tl-block" data-ev-id="ofl-ev1" data-ev-time="2:15 PM" style="left:78%;width:3%;background:#FF9500" onclick="tlBlockTap(this)"></div>
           </div>
-          <div class="tl-ph" data-time="3:24 PM" style="left:92%;background:#FF3B30"></div>
+          <div class="tl-ph" data-time="15:24" style="left:92%"></div>
         </div>
       </div>
       <div class="tl-ev-list">
