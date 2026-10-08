@@ -2532,15 +2532,8 @@ h1,h2,h3,p{margin:0}
    auto-advances (see primeLoading() in the onboarding controller). */
 [data-screen="ob-loading"]{background:#fff}
 [data-screen="ob-loading"] .statusbar{background:#fff}
-.ob-loading-main{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:24px;padding:0 32px;position:relative;z-index:2}
-.ob-login-link{position:absolute;top:0;right:0;padding:16px 20px;font-size:15px;font-weight:500;color:#220071;background:none;border:none;cursor:pointer;font-family:inherit;z-index:10}
-.ob-star-field{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-.ob-star{position:absolute;width:5px;height:5px;border-radius:50%;background:rgba(34,0,113,.18);animation:ob-twinkle 3.5s ease-in-out infinite}
-@keyframes ob-twinkle{0%,100%{opacity:.15;transform:scale(.7)}50%{opacity:1;transform:scale(1.3)}}
+.ob-loading-main{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;text-align:center;gap:10px;padding:0 32px 72px;position:relative;z-index:2}
 .ob-wave-canvas{position:absolute;inset:0;z-index:1;pointer-events:none;width:100%;height:100%}
-.ob-center-pill{width:62px;height:62px;background:#E4E0EE;border-radius:50%;display:grid;place-items:center;position:relative;z-index:3;box-shadow:0 4px 20px rgba(34,0,113,.18)}
-.ob-center-pill-dot{width:18px;height:18px;border-radius:50%;background:#220071;animation:ob-icon-dot 1.8s ease-in-out infinite;transform-origin:center}
-@keyframes ob-icon-scan{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 .ob-loading-title{font-size:22px;font-weight:700;color:#000;margin:0;transition:opacity .3s}
 .ob-loading-sub{font-size:14px;font-weight:400;color:rgba(0,0,0,.5);margin:0;line-height:1.5;max-width:280px}
 .ob-problem-sheet{position:absolute;bottom:0;left:0;right:0;background:#fff;border-radius:20px 20px 0 0;padding:20px 24px 40px;transform:translateY(100%);transition:transform .45s cubic-bezier(.34,1.56,.64,1);box-shadow:0 -2px 20px rgba(0,0,0,.12)}
@@ -3832,32 +3825,7 @@ h1,h2,h3,p{margin:0}
   <section class="screen" data-screen="ob-loading" style="overflow:hidden">
     <div class="statusbar" aria-hidden="true"><span data-clock>08:14</span></div>
     <canvas id="ob-wave-canvas" class="ob-wave-canvas" aria-hidden="true"></canvas>
-    <!-- Twinkling particles -->
-    <div class="ob-star-field" aria-hidden="true">
-      <span class="ob-star" style="left:8%;top:14%;animation-delay:0s"></span>
-      <span class="ob-star" style="left:22%;top:8%;animation-delay:.3s"></span>
-      <span class="ob-star" style="left:68%;top:11%;animation-delay:.6s"></span>
-      <span class="ob-star" style="left:85%;top:19%;animation-delay:.9s"></span>
-      <span class="ob-star" style="left:12%;top:33%;animation-delay:1.2s"></span>
-      <span class="ob-star" style="left:79%;top:36%;animation-delay:1.5s"></span>
-      <span class="ob-star" style="left:5%;top:54%;animation-delay:.2s"></span>
-      <span class="ob-star" style="left:91%;top:50%;animation-delay:.8s"></span>
-      <span class="ob-star" style="left:15%;top:68%;animation-delay:1.1s"></span>
-      <span class="ob-star" style="left:83%;top:64%;animation-delay:.4s"></span>
-      <span class="ob-star" style="left:9%;top:80%;animation-delay:1.7s"></span>
-      <span class="ob-star" style="left:76%;top:78%;animation-delay:.5s"></span>
-      <span class="ob-star" style="left:30%;top:88%;animation-delay:1.3s"></span>
-      <span class="ob-star" style="left:55%;top:86%;animation-delay:.7s"></span>
-      <span class="ob-star" style="left:45%;top:5%;animation-delay:1.0s"></span>
-      <span class="ob-star" style="left:60%;top:28%;animation-delay:1.6s"></span>
-      <span class="ob-star" style="left:26%;top:57%;animation-delay:.1s"></span>
-      <span class="ob-star" style="left:70%;top:71%;animation-delay:1.4s"></span>
-    </div>
-    <!-- Centered content -->
     <main class="ob-loading-main">
-      <div class="ob-center-pill" aria-hidden="true">
-        <div class="ob-center-pill-dot"></div>
-      </div>
       <div style="display:flex;flex-direction:column;gap:8px">
         <h1 class="ob-loading-title" id="ob-loading-title">Looking for camera</h1>
         <p class="ob-loading-sub">Make sure it is connected to the power outlet, blinking and your phone is close to it.</p>
@@ -12309,52 +12277,107 @@ function tlDateNav(btn, dir){
 })();
 </script>
 <script>
-/* ob-loading wave animation — dense dotted ellipses with perspective */
-(function obWave(){
+/* ob-loading — particle network animation (hub + drifting nodes + dynamic lines) */
+(function obNetwork(){
   var canvas = document.getElementById('ob-wave-canvas');
   if(!canvas) return;
   var ctx = canvas.getContext('2d');
-  var phase = 0, raf;
-  var spacing = 12;   /* px between rings */
-  var speed   = 0.18; /* px advance per frame — slow, calm */
-  var yRatio  = 0.30; /* vertical squeeze for perspective */
+  var W, H, cx, cy, nodes = [], dpr = 1;
+  var N = 26;           /* total nodes incl. center */
+  var LINK  = 140;      /* px threshold for drawing a line */
+  var SPEED = 0.45;     /* max drift speed */
+  var R = [34,0,113];   /* purple */
 
   function setup(){
-    var dpr = window.devicePixelRatio || 1;
-    var w = canvas.clientWidth || 375;
-    var h = canvas.clientHeight || 667;
-    canvas.width  = w * dpr;
-    canvas.height = h * dpr;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    dpr = window.devicePixelRatio || 1;
+    W = canvas.clientWidth  || 375;
+    H = canvas.clientHeight || 667;
+    canvas.width  = W * dpr;
+    canvas.height = H * dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    cx = W / 2;
+    cy = H * 0.40;
+    initNodes();
+  }
+
+  function rand(min,max){ return min + Math.random()*(max-min); }
+
+  var MAXBY; /* bottom boundary for nodes — above text */
+
+  function initNodes(){
+    nodes = [];
+    MAXBY = H * 0.66;
+    /* center hub — fixed */
+    nodes.push({x:cx, y:cy, vx:0, vy:0, r:7, hub:true});
+    /* inner ring — start within link distance of hub */
+    for(var i=0;i<9;i++){
+      var a = (i/9)*Math.PI*2;
+      var d = rand(50,105);
+      nodes.push({
+        x: Math.max(12,Math.min(W-12, cx+Math.cos(a)*d)),
+        y: Math.max(12,Math.min(MAXBY, cy+Math.sin(a)*d*0.8)),
+        vx:rand(-SPEED,SPEED)*0.55, vy:rand(-SPEED,SPEED)*0.55,
+        r:rand(3,5), hub:false
+      });
+    }
+    /* outer scattered nodes — within safe zone */
+    for(var i=0;i<N-10;i++){
+      nodes.push({
+        x: rand(12, W-12), y: rand(12, MAXBY),
+        vx:rand(-SPEED,SPEED), vy:rand(-SPEED,SPEED),
+        r:rand(2,3.5), hub:false
+      });
+    }
   }
 
   function draw(){
-    var w  = canvas.clientWidth  || 375;
-    var h  = canvas.clientHeight || 667;
-    var cx = w / 2;
-    var cy = h * 0.42; /* source point — sits at the center pill */
-    var maxRx = w * 1.2;
-    var n  = Math.ceil(maxRx / spacing) + 1;
+    ctx.clearRect(0,0,W,H);
+    ctx.setLineDash([]);
+    MAXBY = H * 0.66;
 
-    ctx.clearRect(0, 0, w, h);
-    phase = (phase + speed) % spacing;
-
-    for(var i = 0; i < n; i++){
-      var rx = phase + i * spacing;
-      if(rx <= 0 || rx > maxRx) continue;
-      var t  = rx / maxRx;
-      var op = Math.pow(1 - t, 1.6) * 0.55;
-      if(op < 0.007) continue;
-      var ry = rx * yRatio;
-
-      ctx.beginPath();
-      ctx.strokeStyle = 'rgba(34,0,113,' + op.toFixed(3) + ')';
-      ctx.lineWidth = 1;
-      ctx.setLineDash([1.5, 2.5]);
-      ctx.ellipse(cx, cy, rx, ry, 0, 0, Math.PI * 2);
-      ctx.stroke();
+    /* move */
+    for(var i=1;i<nodes.length;i++){
+      var n=nodes[i];
+      n.x+=n.vx; n.y+=n.vy;
+      if(n.x<12){n.vx+=0.06;} if(n.x>W-12){n.vx-=0.06;}
+      if(n.y<12){n.vy+=0.06;} if(n.y>MAXBY){n.vy-=0.10; n.y=Math.min(n.y,MAXBY);}
+      var sp=Math.hypot(n.vx,n.vy);
+      if(sp>SPEED){n.vx*=SPEED/sp;n.vy*=SPEED/sp;}
     }
-    raf = requestAnimationFrame(draw);
+
+    /* lines */
+    for(var i=0;i<nodes.length;i++){
+      for(var j=i+1;j<nodes.length;j++){
+        var a=nodes[i],b=nodes[j];
+        var d=Math.hypot(a.x-b.x,a.y-b.y);
+        if(d<LINK){
+          var op=(1-d/LINK)*0.5;
+          ctx.beginPath();
+          ctx.strokeStyle='rgba('+R+','+op.toFixed(2)+')';
+          ctx.lineWidth=0.9;
+          ctx.moveTo(a.x,a.y);
+          ctx.lineTo(b.x,b.y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    /* nodes */
+    for(var i=0;i<nodes.length;i++){
+      var n=nodes[i];
+      /* soft glow halo */
+      ctx.beginPath();
+      ctx.arc(n.x,n.y,n.r*2.4,0,Math.PI*2);
+      ctx.fillStyle='rgba('+R+',0.08)';
+      ctx.fill();
+      /* solid dot */
+      ctx.beginPath();
+      ctx.arc(n.x,n.y,n.r,0,Math.PI*2);
+      ctx.fillStyle=n.hub?'rgba('+R+',1)':'rgba('+R+',0.80)';
+      ctx.fill();
+    }
+
+    requestAnimationFrame(draw);
   }
 
   setup();
