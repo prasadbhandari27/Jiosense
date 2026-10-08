@@ -7669,11 +7669,7 @@ window.addEventListener('error', function(e){
       loadingTimer2 = setTimeout(function(){
         if(sheet) sheet.classList.add('is-up');
       }, 4000);
-      // Phase 4: Navigate to ob-camselect at 6.5s (simulated find)
-      loadingTimer3 = setTimeout(function(){
-        if(sheet) sheet.classList.remove('is-up');
-        openScreen('ob-camselect');
-      }, 6500);
+      // No auto-advance — user must tap Yes or No on the problem sheet
       // Problem sheet buttons
       var closeBtn = document.getElementById('ob-problem-close');
       var yesBtn = document.getElementById('ob-ps-yes');
@@ -7698,9 +7694,6 @@ window.addEventListener('error', function(e){
         loadingTimer2 = setTimeout(function(){
           if(sheet) sheet.classList.add('is-up');
         }, 5500);
-        loadingTimer3 = setTimeout(function(){
-          dismissSheet(); openScreen('ob-camselect');
-        }, 8000);
       };
     }
 
