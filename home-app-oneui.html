@@ -1614,12 +1614,22 @@ h1,h2,h3,p{margin:0}
 [data-screen="my-home"] .statusbar{background:#f2f2f7}
 [data-screen="my-home"] .cctv-scroll{background:#f2f2f7;padding-bottom:80px;padding-top:12px;padding-inline:0}
 .cctv-home-hdr{display:flex;align-items:center;justify-content:space-between;padding:16px}
-.cctv-loc{display:flex;align-items:center;gap:10px}
+.cctv-loc{display:flex;align-items:center;gap:4px}
 .cctv-loc-pin{width:24px;height:24px;display:grid;place-items:center;flex-shrink:0}
 .cctv-loc-label{display:block;font-size:11px;font-weight:500;color:rgba(0,0,0,.45);line-height:1.3}
 .cctv-loc-name{display:flex;align-items:center;gap:4px;background:none;border:none;padding:0;font-size:19px;font-weight:700;color:#000;cursor:pointer;font-family:inherit}
-.cctv-avatar-btn{width:32px;height:32px;border-radius:50%;overflow:hidden;border:none;background:rgba(52,120,246,.12);display:grid;place-items:center;flex-shrink:0;font-size:13px;font-weight:800;color:#3478F6;cursor:pointer;padding:0;font-family:inherit}
-.cctv-people-pill{display:flex;align-items:center;gap:10px;background:#fff;border-radius:50px;padding:8px 12px 8px 8px;margin:0 16px 16px;box-shadow:0 2px 12px rgba(0,0,0,.08);cursor:pointer}
+.cctv-avatar-btn{width:32px;height:32px;border-radius:50%;overflow:hidden;border:none;background:rgba(34,0,113,.12);display:grid;place-items:center;flex-shrink:0;font-size:13px;font-weight:800;color:#220071;cursor:pointer;padding:0;font-family:inherit}
+.cctv-notif-carousel{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;padding:4px 16px 16px 16px;scrollbar-width:none;-webkit-overflow-scrolling:touch;scroll-padding-left:16px}
+.cctv-notif-carousel::-webkit-scrollbar{display:none}
+.cctv-notif-card{flex-shrink:0;width:280px;background:#fff;border:none;border-radius:16px;padding:14px;scroll-snap-align:start;position:relative;box-shadow:0 2px 12px rgba(0,0,0,.08)}
+.cctv-notif-icon{width:30px;height:30px;background:#E4E0EE;border-radius:8px;display:grid;place-items:center;flex-shrink:0}
+.cctv-notif-hdr{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.cctv-notif-titles{flex:1}
+.cctv-notif-title{font-size:15px;font-weight:700;color:#000;margin:0 0 2px}
+.cctv-notif-body{font-size:13px;font-weight:400;color:rgba(0,0,0,.55);margin:0 0 12px;line-height:1.4}
+.cctv-notif-close{position:absolute;top:12px;right:12px;background:none;border:none;padding:2px;cursor:pointer;color:rgba(0,0,0,.4);display:grid;place-items:center}
+.cctv-notif-btn{display:inline-block;background:#220071;color:#fff;font-size:13px;font-weight:700;border:none;border-radius:20px;padding:8px 18px;cursor:pointer;font-family:inherit}
+.cctv-people-pill{display:flex;align-items:center;gap:10px;background:#fff;border-radius:50px;padding:8px 14px 8px 8px;margin:0 16px 16px;box-shadow:0 2px 12px rgba(0,0,0,.08);cursor:pointer}
 .cctv-av-group{display:flex;flex-shrink:0}
 .cctv-av{width:36px;height:36px;border-radius:50%;border:2px solid #fff;overflow:hidden;flex-shrink:0}
 .cctv-av+.cctv-av{margin-left:-10px}
@@ -2520,19 +2530,31 @@ h1,h2,h3,p{margin:0}
    user straight into a camera list with no transition. No back arrow
    or footer: it isn't a step the user drives, just a beat that
    auto-advances (see primeLoading() in the onboarding controller). */
-.ob-loading-main{
-  height:100%;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;text-align:center;gap:var(--Spacing-4);
-  padding:0 var(--Spacing-8);
-}
-.ob-loading-spinner{
-  display:block;width:44px;height:44px;margin-bottom:var(--Spacing-2);
-  border-radius:50%;
-  border:3.5px solid var(--field-bg);
-  border-top-color:var(--accent);
-  animation:ob-loading-spin .8s linear infinite;
-}
-@keyframes ob-loading-spin{ to{ transform:rotate(360deg); } }
+[data-screen="ob-loading"]{background:#fff}
+[data-screen="ob-loading"] .statusbar{background:#fff}
+.ob-loading-main{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:24px;padding:0 32px;position:relative;z-index:2}
+.ob-login-link{position:absolute;top:0;right:0;padding:16px 20px;font-size:15px;font-weight:500;color:#220071;background:none;border:none;cursor:pointer;font-family:inherit;z-index:10}
+.ob-star-field{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.ob-star{position:absolute;width:5px;height:5px;border-radius:50%;background:rgba(34,0,113,.18);animation:ob-twinkle 2s ease-in-out infinite}
+@keyframes ob-twinkle{0%,100%{opacity:.15;transform:scale(.7)}50%{opacity:1;transform:scale(1.3)}}
+.ob-radar{position:relative;width:260px;height:260px;flex-shrink:0;display:grid;place-items:center}
+.ob-radar-ring{position:absolute;border-radius:50%;border:2px solid rgba(34,0,113,.12);animation:ob-ripple 2.4s ease-out infinite}
+.ob-radar-ring:nth-child(1){width:70px;height:70px;animation-delay:0s}
+.ob-radar-ring:nth-child(2){width:120px;height:120px;animation-delay:.6s}
+.ob-radar-ring:nth-child(3){width:180px;height:180px;animation-delay:1.2s}
+.ob-radar-ring:nth-child(4){width:240px;height:240px;animation-delay:1.8s}
+@keyframes ob-ripple{0%{opacity:.7;transform:scale(.3)}100%{opacity:0;transform:scale(1)}}
+.ob-radar-center{width:56px;height:56px;background:#E4E0EE;border-radius:50%;display:grid;place-items:center;position:relative;z-index:2;box-shadow:0 4px 16px rgba(34,0,113,.15)}
+.ob-loading-title{font-size:22px;font-weight:700;color:#000;margin:0;transition:opacity .3s}
+.ob-loading-sub{font-size:14px;font-weight:400;color:rgba(0,0,0,.5);margin:0;line-height:1.5;max-width:280px}
+.ob-problem-sheet{position:absolute;bottom:0;left:0;right:0;background:rgba(246,244,252,.97);backdrop-filter:blur(12px);border-radius:20px 20px 0 0;padding:20px 24px 40px;transform:translateY(100%);transition:transform .45s cubic-bezier(.34,1.56,.64,1);box-shadow:0 -4px 24px rgba(34,0,113,.08)}
+.ob-problem-sheet.is-up{transform:translateY(0)}
+.ob-problem-label{font-size:11px;font-weight:600;color:rgba(0,0,0,.4);text-transform:uppercase;letter-spacing:.6px;margin:0 0 6px;text-align:center}
+.ob-problem-q{font-size:18px;font-weight:700;color:#000;margin:0 0 18px;text-align:center}
+.ob-problem-close{position:absolute;top:14px;right:14px;width:28px;height:28px;border-radius:50%;background:rgba(0,0,0,.08);border:none;cursor:pointer;display:grid;place-items:center;color:rgba(0,0,0,.5);font-size:16px;padding:0;line-height:1;font-family:inherit}
+.ob-problem-btns{display:flex;gap:10px}
+.ob-problem-btn{flex:1;padding:14px;border-radius:12px;background:rgba(34,0,113,.1);border:none;font-size:15px;font-weight:600;color:#220071;cursor:pointer;font-family:inherit;transition:background .15s}
+.ob-problem-btn:active{background:rgba(34,0,113,.18)}
 
 /* ── Home-setup hero illustration ─────────────────────────────────────
    Photo tile at the top of Step 1 — a warm family portrait sets
@@ -3809,15 +3831,56 @@ h1,h2,h3,p{margin:0}
        does (camera discovery), so the copy previews that. Not part of
        OB_FLOW: no step number, no Back, no Continue — primeLoading()
        auto-advances it into ob-camselect after a short simulated scan. -->
-  <section class="screen" data-screen="ob-loading">
+  <section class="screen" data-screen="ob-loading" style="overflow:hidden">
     <div class="statusbar" aria-hidden="true"><span data-clock>08:14</span></div>
+    <button class="ob-login-link" type="button">Log in</button>
+    <!-- Twinkling particles -->
+    <div class="ob-star-field" aria-hidden="true">
+      <span class="ob-star" style="left:8%;top:14%;animation-delay:0s"></span>
+      <span class="ob-star" style="left:22%;top:8%;animation-delay:.3s"></span>
+      <span class="ob-star" style="left:68%;top:11%;animation-delay:.6s"></span>
+      <span class="ob-star" style="left:85%;top:19%;animation-delay:.9s"></span>
+      <span class="ob-star" style="left:12%;top:33%;animation-delay:1.2s"></span>
+      <span class="ob-star" style="left:79%;top:36%;animation-delay:1.5s"></span>
+      <span class="ob-star" style="left:5%;top:54%;animation-delay:.2s"></span>
+      <span class="ob-star" style="left:91%;top:50%;animation-delay:.8s"></span>
+      <span class="ob-star" style="left:15%;top:68%;animation-delay:1.1s"></span>
+      <span class="ob-star" style="left:83%;top:64%;animation-delay:.4s"></span>
+      <span class="ob-star" style="left:9%;top:80%;animation-delay:1.7s"></span>
+      <span class="ob-star" style="left:76%;top:78%;animation-delay:.5s"></span>
+      <span class="ob-star" style="left:30%;top:88%;animation-delay:1.3s"></span>
+      <span class="ob-star" style="left:55%;top:86%;animation-delay:.7s"></span>
+      <span class="ob-star" style="left:45%;top:5%;animation-delay:1.0s"></span>
+      <span class="ob-star" style="left:60%;top:28%;animation-delay:1.6s"></span>
+      <span class="ob-star" style="left:26%;top:57%;animation-delay:.1s"></span>
+      <span class="ob-star" style="left:70%;top:71%;animation-delay:1.4s"></span>
+    </div>
+    <!-- Centered content -->
     <main class="ob-loading-main">
-      <span class="ob-loading-spinner" aria-hidden="true"></span>
-      <div class="oneui-Container" data-gap="1">
-        <h1 class="oneui-Text" data-variant="headline" data-size="S" data-weight="high" data-appearance="neutral" data-text-align="center">Looking for cameras on your network</h1>
-        <p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium" data-text-align="center">Setting up JioSense for your home — this only takes a moment.</p>
+      <div class="ob-radar" aria-hidden="true">
+        <div class="ob-radar-ring"></div>
+        <div class="ob-radar-ring"></div>
+        <div class="ob-radar-ring"></div>
+        <div class="ob-radar-ring"></div>
+        <div class="ob-radar-center">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#220071" stroke-width="2"/><path d="M16.5 16.5L21 21" stroke="#220071" stroke-width="2" stroke-linecap="round"/><path d="M11 8.5v1M11 12h.01" stroke="#220071" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <h1 class="ob-loading-title" id="ob-loading-title">Looking for camera</h1>
+        <p class="ob-loading-sub">Make sure it is connected to the power outlet, blinking and your phone is close to it.</p>
       </div>
     </main>
+    <!-- Problem-solving bottom sheet -->
+    <div class="ob-problem-sheet" id="ob-problem-sheet" role="dialog" aria-modal="true">
+      <button class="ob-problem-close" id="ob-problem-close" aria-label="Dismiss">×</button>
+      <p class="ob-problem-label">Problem solving</p>
+      <h2 class="ob-problem-q">Is camera plugged in?</h2>
+      <div class="ob-problem-btns">
+        <button class="ob-problem-btn" id="ob-ps-yes" type="button">Yes</button>
+        <button class="ob-problem-btn" id="ob-ps-no" type="button">No</button>
+      </div>
+    </div>
   </section>
 
   <!-- STEP 1 · Camera select — multi-camera picker.
@@ -6364,7 +6427,7 @@ h1,h2,h3,p{margin:0}
     <header class="cctv-home-hdr">
       <div class="cctv-loc">
         <div class="cctv-loc-pin">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" fill="#3478F6"/></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" fill="#220071"/></svg>
         </div>
         <div class="cctv-loc-text">
           <button class="cctv-loc-name" aria-label="Change location">
@@ -6376,13 +6439,64 @@ h1,h2,h3,p{margin:0}
       <button type="button" class="cctv-avatar-btn" aria-label="Profile">P</button>
     </header>
     <main class="scroll cctv-scroll">
+      <!-- ── Notification carousel ── -->
+      <div class="cctv-notif-carousel">
+        <!-- Card 1 -->
+        <div class="cctv-notif-card">
+          <button class="cctv-notif-close" aria-label="Dismiss">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          </button>
+          <div class="cctv-notif-hdr">
+            <div class="cctv-notif-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#220071" stroke-width="2"/><path d="M12 8v4M12 16h.01" stroke="#220071" stroke-width="2.2" stroke-linecap="round"/></svg>
+            </div>
+            <div class="cctv-notif-titles">
+              <p class="cctv-notif-title">Motion Detected</p>
+            </div>
+          </div>
+          <p class="cctv-notif-body">Unusual activity spotted at the Front Porch camera at 08:12 AM.</p>
+          <button class="cctv-notif-btn">View Footage</button>
+        </div>
+        <!-- Card 2 -->
+        <div class="cctv-notif-card">
+          <button class="cctv-notif-close" aria-label="Dismiss">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          </button>
+          <div class="cctv-notif-hdr">
+            <div class="cctv-notif-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#220071" stroke-width="2"/><path d="M12 8v4M12 16h.01" stroke="#220071" stroke-width="2.2" stroke-linecap="round"/></svg>
+            </div>
+            <div class="cctv-notif-titles">
+              <p class="cctv-notif-title">Camera Offline</p>
+            </div>
+          </div>
+          <p class="cctv-notif-body">Living Room Cam 1 went offline. Check your network connection.</p>
+          <button class="cctv-notif-btn">Troubleshoot</button>
+        </div>
+        <!-- Card 3 -->
+        <div class="cctv-notif-card">
+          <button class="cctv-notif-close" aria-label="Dismiss">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          </button>
+          <div class="cctv-notif-hdr">
+            <div class="cctv-notif-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#220071" stroke-width="2"/><path d="M12 8v4M12 16h.01" stroke="#220071" stroke-width="2.2" stroke-linecap="round"/></svg>
+            </div>
+            <div class="cctv-notif-titles">
+              <p class="cctv-notif-title">Storage Almost Full</p>
+            </div>
+          </div>
+          <p class="cctv-notif-body">Your cloud storage is 90% full. Upgrade your plan to keep recording.</p>
+          <button class="cctv-notif-btn">Upgrade Now</button>
+        </div>
+      </div>
       <!-- ── People at home pill ── -->
       <div class="cctv-people-pill">
         <div class="cctv-av-group">
-          <div class="cctv-av" style="background:#F5A623;display:grid;place-items:center;font-size:13px;font-weight:700;color:#fff">A</div>
-          <div class="cctv-av" style="background:#E91E8C;display:grid;place-items:center;font-size:13px;font-weight:700;color:#fff">R</div>
-          <div class="cctv-av" style="background:#1CA693;display:grid;place-items:center;font-size:13px;font-weight:700;color:#fff">M</div>
-          <div class="cctv-av" style="background:#7B61FF;display:grid;place-items:center;font-size:13px;font-weight:700;color:#fff">S</div>
+          <div class="cctv-av" style="background:#E4E0EE;display:grid;place-items:center;font-size:13px;font-weight:700;color:#220071">A</div>
+          <div class="cctv-av" style="background:#E4E0EE;display:grid;place-items:center;font-size:13px;font-weight:700;color:#220071">R</div>
+          <div class="cctv-av" style="background:#E4E0EE;display:grid;place-items:center;font-size:13px;font-weight:700;color:#220071">M</div>
+          <div class="cctv-av" style="background:#E4E0EE;display:grid;place-items:center;font-size:13px;font-weight:700;color:#220071">S</div>
         </div>
         <div class="cctv-people-sep"></div>
         <span class="cctv-people-text"><strong>5 people</strong> are in the home</span>
@@ -7539,10 +7653,39 @@ window.addEventListener('error', function(e){
        opens ob-camselect directly. Re-arms on every entry, same as
        primeCamRoom, so revisiting via Back-then-forward replays it
        instead of leaving a stale timer. */
-    var loadingTimer = null;
+    var loadingTimer = null, loadingTimer2 = null, loadingTimer3 = null;
     function primeLoading(){
-      if(loadingTimer) clearTimeout(loadingTimer);
-      loadingTimer = setTimeout(function(){ openScreen('ob-camselect'); }, 1800);
+      // Reset state
+      [loadingTimer, loadingTimer2, loadingTimer3].forEach(function(t){ if(t) clearTimeout(t); });
+      var title = document.getElementById('ob-loading-title');
+      var sheet = document.getElementById('ob-problem-sheet');
+      if(title) title.textContent = 'Looking for camera';
+      if(sheet) sheet.classList.remove('is-up');
+      // Phase 2: "Still looking..." at 2.8s
+      loadingTimer = setTimeout(function(){
+        if(title){ title.style.opacity='0'; setTimeout(function(){ title.textContent='Still looking…'; title.style.opacity='1'; }, 200); }
+      }, 2800);
+      // Phase 3: Problem sheet slides up at 4s
+      loadingTimer2 = setTimeout(function(){
+        if(sheet) sheet.classList.add('is-up');
+      }, 4000);
+      // Phase 4: Navigate to ob-camselect at 6.5s (simulated find)
+      loadingTimer3 = setTimeout(function(){
+        if(sheet) sheet.classList.remove('is-up');
+        openScreen('ob-camselect');
+      }, 6500);
+      // Problem sheet buttons
+      var closeBtn = document.getElementById('ob-problem-close');
+      var yesBtn = document.getElementById('ob-ps-yes');
+      var noBtn = document.getElementById('ob-ps-no');
+      function dismissSheet(){ if(sheet) sheet.classList.remove('is-up'); }
+      if(closeBtn) closeBtn.onclick = dismissSheet;
+      if(noBtn) noBtn.onclick = dismissSheet;
+      if(yesBtn) yesBtn.onclick = function(){
+        dismissSheet();
+        clearTimeout(loadingTimer3);
+        loadingTimer3 = setTimeout(function(){ openScreen('ob-camselect'); }, 1000);
+      };
     }
 
     /* ── ob-cam-room staged reveal ─────────────────────────────────────
