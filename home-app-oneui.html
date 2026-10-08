@@ -2535,19 +2535,19 @@ h1,h2,h3,p{margin:0}
 .ob-loading-main{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:24px;padding:0 32px;position:relative;z-index:2}
 .ob-login-link{position:absolute;top:0;right:0;padding:16px 20px;font-size:15px;font-weight:500;color:#220071;background:none;border:none;cursor:pointer;font-family:inherit;z-index:10}
 .ob-star-field{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-.ob-star{position:absolute;width:5px;height:5px;border-radius:50%;background:rgba(34,0,113,.18);animation:ob-twinkle 2s ease-in-out infinite}
+.ob-star{position:absolute;width:5px;height:5px;border-radius:50%;background:rgba(34,0,113,.18);animation:ob-twinkle 3.5s ease-in-out infinite}
 @keyframes ob-twinkle{0%,100%{opacity:.15;transform:scale(.7)}50%{opacity:1;transform:scale(1.3)}}
 .ob-radar{position:relative;width:260px;height:260px;flex-shrink:0;display:grid;place-items:center}
-.ob-radar-ring{position:absolute;border-radius:50%;border:2px solid rgba(34,0,113,.12);animation:ob-ripple 2.4s ease-out infinite}
+.ob-radar-ring{position:absolute;border-radius:50%;border:2px solid rgba(34,0,113,.12);animation:ob-ripple 4s ease-out infinite}
 .ob-radar-ring:nth-child(1){width:70px;height:70px;animation-delay:0s}
-.ob-radar-ring:nth-child(2){width:120px;height:120px;animation-delay:.6s}
-.ob-radar-ring:nth-child(3){width:180px;height:180px;animation-delay:1.2s}
-.ob-radar-ring:nth-child(4){width:240px;height:240px;animation-delay:1.8s}
+.ob-radar-ring:nth-child(2){width:120px;height:120px;animation-delay:1s}
+.ob-radar-ring:nth-child(3){width:180px;height:180px;animation-delay:2s}
+.ob-radar-ring:nth-child(4){width:240px;height:240px;animation-delay:3s}
 @keyframes ob-ripple{0%{opacity:.7;transform:scale(.3)}100%{opacity:0;transform:scale(1)}}
 .ob-radar-center{width:56px;height:56px;background:#E4E0EE;border-radius:50%;display:grid;place-items:center;position:relative;z-index:2;box-shadow:0 4px 16px rgba(34,0,113,.15)}
 .ob-loading-title{font-size:22px;font-weight:700;color:#000;margin:0;transition:opacity .3s}
 .ob-loading-sub{font-size:14px;font-weight:400;color:rgba(0,0,0,.5);margin:0;line-height:1.5;max-width:280px}
-.ob-problem-sheet{position:absolute;bottom:0;left:0;right:0;background:rgba(246,244,252,.97);backdrop-filter:blur(12px);border-radius:20px 20px 0 0;padding:20px 24px 40px;transform:translateY(100%);transition:transform .45s cubic-bezier(.34,1.56,.64,1);box-shadow:0 -4px 24px rgba(34,0,113,.08)}
+.ob-problem-sheet{position:absolute;bottom:0;left:0;right:0;background:#fff;border-radius:20px 20px 0 0;padding:20px 24px 40px;transform:translateY(100%);transition:transform .45s cubic-bezier(.34,1.56,.64,1);box-shadow:0 -2px 20px rgba(0,0,0,.12)}
 .ob-problem-sheet.is-up{transform:translateY(0)}
 .ob-problem-label{font-size:11px;font-weight:600;color:rgba(0,0,0,.4);text-transform:uppercase;letter-spacing:.6px;margin:0 0 6px;text-align:center}
 .ob-problem-q{font-size:18px;font-weight:700;color:#000;margin:0 0 18px;text-align:center}
@@ -7680,11 +7680,27 @@ window.addEventListener('error', function(e){
       var noBtn = document.getElementById('ob-ps-no');
       function dismissSheet(){ if(sheet) sheet.classList.remove('is-up'); }
       if(closeBtn) closeBtn.onclick = dismissSheet;
-      if(noBtn) noBtn.onclick = dismissSheet;
+      // Yes → go to Step 1 immediately
       if(yesBtn) yesBtn.onclick = function(){
+        [loadingTimer, loadingTimer2, loadingTimer3].forEach(function(t){ clearTimeout(t); });
         dismissSheet();
-        clearTimeout(loadingTimer3);
-        loadingTimer3 = setTimeout(function(){ openScreen('ob-camselect'); }, 1000);
+        openScreen('ob-camselect');
+      };
+      // No → dismiss sheet and restart from "Looking for camera"
+      if(noBtn) noBtn.onclick = function(){
+        [loadingTimer, loadingTimer2, loadingTimer3].forEach(function(t){ clearTimeout(t); });
+        dismissSheet();
+        if(title){ title.style.opacity='0'; setTimeout(function(){ title.textContent='Looking for camera'; title.style.opacity='1'; }, 200); }
+        // Restart phase timers
+        loadingTimer = setTimeout(function(){
+          if(title){ title.style.opacity='0'; setTimeout(function(){ title.textContent='Still looking…'; title.style.opacity='1'; }, 200); }
+        }, 4000);
+        loadingTimer2 = setTimeout(function(){
+          if(sheet) sheet.classList.add('is-up');
+        }, 5500);
+        loadingTimer3 = setTimeout(function(){
+          dismissSheet(); openScreen('ob-camselect');
+        }, 8000);
       };
     }
 
