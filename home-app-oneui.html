@@ -2544,7 +2544,10 @@ h1,h2,h3,p{margin:0}
 .ob-radar-ring:nth-child(3){width:180px;height:180px;animation-delay:2s}
 .ob-radar-ring:nth-child(4){width:240px;height:240px;animation-delay:3s}
 @keyframes ob-ripple{0%{opacity:.7;transform:scale(.3)}100%{opacity:0;transform:scale(1)}}
-.ob-radar-center{width:56px;height:56px;background:#E4E0EE;border-radius:50%;display:grid;place-items:center;position:relative;z-index:2;box-shadow:0 4px 16px rgba(34,0,113,.15)}
+.ob-radar-center{width:56px;height:56px;background:#E4E0EE;border-radius:50%;display:grid;place-items:center;position:relative;z-index:2;box-shadow:0 4px 16px rgba(34,0,113,.15);overflow:hidden}
+.ob-sweep-bg{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,transparent 0deg,transparent 278deg,rgba(34,0,113,.1) 315deg,rgba(34,0,113,.42) 360deg);animation:ob-icon-scan 2s linear infinite;transform-origin:center}
+.ob-sweep-line{position:absolute;top:0;left:calc(50% - .8px);width:1.6px;height:50%;background:linear-gradient(to bottom,rgba(34,0,113,.95) 0%,rgba(34,0,113,.15) 100%);transform-origin:bottom center;animation:ob-icon-scan 2s linear infinite}
+.ob-sweep-dot{position:relative;z-index:3;width:6px;height:6px;border-radius:50%;background:#220071;flex-shrink:0;animation:ob-icon-dot 1.6s ease-in-out infinite;transform-origin:center}
 .ob-loading-title{font-size:22px;font-weight:700;color:#000;margin:0;transition:opacity .3s}
 .ob-loading-sub{font-size:14px;font-weight:400;color:rgba(0,0,0,.5);margin:0;line-height:1.5;max-width:280px}
 .ob-problem-sheet{position:absolute;bottom:0;left:0;right:0;background:#fff;border-radius:20px 20px 0 0;padding:20px 24px 40px;transform:translateY(100%);transition:transform .45s cubic-bezier(.34,1.56,.64,1);box-shadow:0 -2px 20px rgba(0,0,0,.12)}
@@ -3863,17 +3866,10 @@ h1,h2,h3,p{margin:0}
         <div class="ob-radar-ring"></div>
         <div class="ob-radar-ring"></div>
         <div class="ob-radar-ring"></div>
-        <div class="ob-radar-center">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" style="overflow:visible">
-            <defs><clipPath id="ob-lens-clip"><circle cx="11" cy="11" r="6.2"/></clipPath></defs>
-            <circle cx="11" cy="11" r="7" stroke="#220071" stroke-width="2"/>
-            <path d="M16.5 16.5L21 21" stroke="#220071" stroke-width="2" stroke-linecap="round"/>
-            <g clip-path="url(#ob-lens-clip)" style="transform-origin:11px 11px;animation:ob-icon-scan 2.2s linear infinite">
-              <path d="M11 11 L11 4.8 A6.2 6.2 0 0 1 17.2 11 Z" fill="rgba(34,0,113,0.18)"/>
-              <line x1="11" y1="11" x2="11" y2="4.8" stroke="#220071" stroke-width="1.4" stroke-linecap="round" opacity="0.85"/>
-            </g>
-            <circle cx="11" cy="11" r="1.6" fill="#220071" style="transform-origin:11px 11px;animation:ob-icon-dot 1.6s ease-in-out infinite"/>
-          </svg>
+        <div class="ob-radar-center" aria-hidden="true">
+          <div class="ob-sweep-bg"></div>
+          <div class="ob-sweep-line"></div>
+          <div class="ob-sweep-dot"></div>
         </div>
       </div>
       <div style="display:flex;flex-direction:column;gap:8px">
