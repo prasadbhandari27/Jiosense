@@ -1605,14 +1605,52 @@ h1,h2,h3,p{margin:0}
 /* ── Camera grid (Cameras tab) ───────────────────────────────────────────── */
 .camgrid{display:flex;flex-direction:column;gap:10px;margin-top:var(--Spacing-3)}
 .camgrid .cam{display:block;flex:none;width:100%}
-/* Three up, same tile as v1's dashboard rail: at 360px that is ~99px across,
-   so no camera in the house needs a swipe to be seen. */
 .camgrid .cam .thumb{width:100%;height:168px}
 .camgrid .cam .room-summary{display:block;margin-top:6px;font-size:12px;line-height:17px;color:var(--ink-label);padding:0 2px}
-.cam-tally{
-  display:flex;align-items:center;gap:var(--Spacing-2);margin-top:var(--Spacing-2);
-  font-size:12px;line-height:16px;color:var(--ink-label);
-}
+.cam-tally{display:flex;align-items:center;gap:var(--Spacing-2);margin-top:var(--Spacing-2);font-size:12px;line-height:16px;color:var(--ink-label)}
+
+/* ── CCTV Home dark redesign ── */
+[data-screen="my-home"]{background:#13131f}
+[data-screen="my-home"] .statusbar{background:#13131f;color:#fff}
+[data-screen="my-home"] .cctv-scroll{background:#13131f;padding-bottom:96px}
+.cctv-home-hdr{display:flex;align-items:center;justify-content:space-between;padding:10px 16px 8px;background:#13131f}
+.cctv-loc{display:flex;align-items:center;gap:10px}
+.cctv-loc-pin{width:36px;height:36px;border-radius:50%;background:#3478F6;display:grid;place-items:center;flex-shrink:0}
+.cctv-loc-label{display:block;font-size:11px;font-weight:500;color:rgba(255,255,255,.5);line-height:1.2}
+.cctv-loc-name{display:flex;align-items:center;gap:4px;background:none;border:none;padding:0;font-size:15px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit}
+.cctv-avatar-btn{width:40px;height:40px;border-radius:50%;overflow:hidden;border:2px solid rgba(255,255,255,.15);background:#2a2a3e;display:grid;place-items:center;flex-shrink:0;font-size:15px;font-weight:800;color:#fff;cursor:pointer;padding:0;font-family:inherit}
+.cctv-page-title{font-size:30px;font-weight:900;color:#fff;padding:8px 16px 18px;margin:0;letter-spacing:-.3px}
+.cctv-room{margin-bottom:24px;padding:0 16px}
+.cctv-room-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.cctv-room-name{font-size:17px;font-weight:800;color:#fff;margin:0 0 3px}
+.cctv-room-meta{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:rgba(255,255,255,.5);margin:0}
+.cctv-dot{width:7px;height:7px;border-radius:50%;display:inline-block;flex-shrink:0}
+.cctv-dot.green{background:#34C759}
+.cctv-dot.amber{background:#FF9500;animation:liveblink 1.4s infinite}
+.cctv-dot.grey{background:rgba(255,255,255,.3)}
+.cctv-room-arrow{background:rgba(255,255,255,.08);border:none;border-radius:50%;width:30px;height:30px;display:grid;place-items:center;color:rgba(255,255,255,.6);cursor:pointer;font-size:16px;font-weight:700;flex-shrink:0}
+.cctv-cam-lg{display:block;position:relative;width:100%;border-radius:16px;overflow:hidden;border:none;padding:0;cursor:pointer;background:#1e1e2e;margin-bottom:8px;aspect-ratio:16/9}
+.cctv-cam-lg img,.cctv-cam-lg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.cctv-cam-sm{display:block;position:relative;width:100%;border-radius:14px;overflow:hidden;border:none;padding:0;cursor:pointer;background:#1e1e2e;aspect-ratio:16/9}
+.cctv-cam-sm img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.cctv-sub-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.cctv-cam-name{position:absolute;top:10px;left:12px;font-size:12px;font-weight:700;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.7)}
+.cctv-cam-badge{position:absolute;top:10px;right:10px;display:flex;align-items:center;gap:5px;background:rgba(30,30,30,.85);backdrop-filter:blur(6px);border-radius:20px;padding:3px 9px 3px 7px;font-size:11px;font-weight:700;color:#fff}
+.cctv-cam-badge .bdot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.cctv-cam-badge .bdot.live{background:#FF3B30;animation:liveblink 2s infinite}
+.cctv-cam-badge .bdot.motion{background:#FF9500;animation:liveblink 1.4s infinite}
+.cctv-cam-badge .bdot.off{background:rgba(255,255,255,.35)}
+.cctv-cam-badge .bdot.offline{background:#FF3B30;animation:liveblink 1.6s infinite}
+.cctv-cam-time{position:absolute;bottom:10px;left:12px;display:flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:rgba(255,255,255,.8)}
+.cctv-cam-gradient{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.5) 0%,transparent 50%)}
+/* dark overlay for off/offline cams */
+.cctv-cam-off-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+/* tabbar dark + FAB */
+[data-screen="my-home"] ~ .tabbar,.tabbar.cctv-nav{background:#1c1c2e;border-top:1px solid rgba(255,255,255,.07)}
+[data-screen="my-home"] ~ .tabbar .tab,.tabbar.cctv-nav .tab{color:rgba(255,255,255,.45)}
+[data-screen="my-home"] ~ .tabbar .tab.is-active,.tabbar.cctv-nav .tab.is-active{color:#3478F6}
+.cctv-fab{position:fixed;bottom:72px;left:50%;transform:translateX(-50%);width:56px;height:56px;border-radius:50%;background:#3478F6;border:none;display:grid;place-items:center;cursor:pointer;box-shadow:0 4px 20px rgba(52,120,246,.5);z-index:200;font-size:26px;font-weight:300;color:#fff;line-height:1}
+.cctv-fab:active{background:#2868d6}
 .cam-tally i{width:7px;height:7px;border-radius:50%;background:var(--good);flex:0 0 auto}
 .cam-tally i.down{background:var(--alert-red)}
 
@@ -6319,236 +6357,154 @@ h1,h2,h3,p{margin:0}
   <!-- ============================================================ CAMERAS TAB ============================================================ -->
   <section class="screen" data-screen="my-home">
     <div class="statusbar" aria-hidden="true"><span data-clock>08:14</span></div>
-    <header class="appbar" style="padding-bottom:0">
-      <div style="flex:1;min-width:0">
-        <h1 class="oneui-Text" data-variant="headline" data-size="S" data-weight="high" data-appearance="neutral" style="margin:0" data-home-title>Sharma Residence</h1>
+    <!-- CCTV-style header: location + avatar -->
+    <header class="cctv-home-hdr">
+      <div class="cctv-loc">
+        <div class="cctv-loc-pin">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z" fill="#fff"/></svg>
+        </div>
+        <div class="cctv-loc-text">
+          <span class="cctv-loc-label">Your Home</span>
+          <button class="cctv-loc-name" aria-label="Change location">
+            <span data-home-title>Sharma Residence</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
       </div>
-      <button type="button" class="oneui-IconButton" data-size="s" data-contained="false" aria-label="Search">
-        <span class="oneui-Icon" data-size="sm" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m16.5 16.5 3.5 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-      </button>
-      <div style="width:36px;height:36px;border-radius:50%;background:var(--field-bg);display:grid;place-items:center;font-size:14px;font-weight:800;color:var(--ink-label)">P</div>
+      <button type="button" class="cctv-avatar-btn" aria-label="Profile">P</button>
     </header>
-    <main class="scroll">
+    <main class="scroll cctv-scroll">
 
-      <!-- Date + location -->
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--Spacing-4)">
-        <span class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="low" data-today-date>Wednesday, 1 Oct</span>
-        <button type="button" id="mode-chip" class="btn ghost sm" style="display:inline-flex;align-items:center;gap:5px" aria-haspopup="dialog" aria-expanded="false">
-          <span id="mode-chip-dot" style="width:8px;height:8px;border-radius:50%;background:#34c759;flex-shrink:0"></span>
-          <span id="mode-chip-label">Active</span>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <!-- Page title -->
+      <h1 class="cctv-page-title">Home CCTV</h1>
+
+      <!-- ── Room: Nursery ── -->
+      <div class="cctv-room">
+        <div class="cctv-room-hdr">
+          <div>
+            <p class="cctv-room-name">Nursery</p>
+            <p class="cctv-room-meta"><span class="cctv-dot green"></span> 1 Camera</p>
+          </div>
+          <button type="button" class="cctv-room-arrow" data-open="cam-detail-live">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <!-- Featured large cam — Live -->
+        <button type="button" class="cctv-cam-lg" data-open="cam-detail-live" aria-label="Nursery Cam 1 · Live">
+          <img src="assets/nursery.png" alt="">
+          <video src="assets/nursery-clip.mp4" poster="assets/nursery.png" autoplay muted playsinline loop preload="metadata" onerror="this.style.display='none'" aria-hidden="true"></video>
+          <div class="cctv-cam-gradient"></div>
+          <span class="cctv-cam-name">Cam 1</span>
+          <span class="cctv-cam-badge"><span class="bdot live"></span> Live</span>
+          <span class="cctv-cam-time">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            08:14 AM
+          </span>
         </button>
       </div>
 
-      <!-- Notification deck — stacked cards. The Add-member nudge sits on top when pending. -->
-      <div class="notif-carousel" data-notif-carousel>
-        <div class="notif-track" data-notif-track>
-
-          <!-- Slide 1: Add member nudge -->
-          <div class="notif-slide" data-member-nudge style="background:linear-gradient(135deg,#eef3ff 0%,#f5f0ff 100%);border-radius:var(--r-3,14px)">
-            <button type="button" class="notif-close" data-notif-close aria-label="Dismiss">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
-            </button>
-            <div style="padding:16px 16px 14px;display:flex;gap:14px;align-items:flex-start">
-              <div style="width:44px;height:44px;border-radius:50%;background:#3478F6;display:grid;place-items:center;flex-shrink:0">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="4" stroke="#fff" stroke-width="1.8"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/><path d="M19 8v6M22 11h-6" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>
-              </div>
-              <div style="flex:1;min-width:0;padding-right:28px">
-                <p style="font-size:15px;font-weight:700;color:#1a1a2e;margin-bottom:3px;line-height:1.2" data-nudge-title>Add member details</p>
-                <p style="font-size:13px;color:#555;line-height:1.4;margin-bottom:12px" data-nudge-sub>Help JioSense recognise everyone at home</p>
-                <button type="button" style="background:#3478F6;color:#fff;border:none;border-radius:var(--r-pill,100px);padding:9px 20px;font-size:13px;font-weight:700;cursor:pointer" data-open="add-person" data-nudge-add>Add members</button>
-              </div>
-            </div>
+      <!-- ── Room: Front Porch ── -->
+      <div class="cctv-room">
+        <div class="cctv-room-hdr">
+          <div>
+            <p class="cctv-room-name">Front Porch</p>
+            <p class="cctv-room-meta"><span class="cctv-dot amber"></span> 1 Camera</p>
           </div>
-
-          <!-- Slide 2: Notifications off -->
-          <div class="notif-slide" style="background:linear-gradient(135deg,#fff8ed 0%,#fff3e0 100%);border-radius:var(--r-3,14px)">
-            <button type="button" class="notif-close" data-notif-close aria-label="Dismiss">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
-            </button>
-            <div style="padding:16px 16px 14px;display:flex;gap:14px;align-items:flex-start">
-              <div style="width:44px;height:44px;border-radius:50%;background:#FF9500;display:grid;place-items:center;flex-shrink:0">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 5l14 14M9.17 4.17A6 6 0 0 1 18 10v3M3.27 8.27A6 6 0 0 0 6 10v3l-2 2v1h13M13 17v1a2 2 0 0 1-4 0v-1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <div style="flex:1;min-width:0;padding-right:28px">
-                <p style="font-size:15px;font-weight:700;color:#1a1a2e;margin-bottom:3px;line-height:1.2">Notifications are off</p>
-                <p style="font-size:13px;color:#555;line-height:1.4;margin-bottom:12px">You won't be alerted when something happens at home</p>
-                <button type="button" style="background:#FF9500;color:#fff;border:none;border-radius:var(--r-pill,100px);padding:9px 20px;font-size:13px;font-weight:700;cursor:pointer">Turn on</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Slide 3: WhatsApp -->
-          <div class="notif-slide" style="background:linear-gradient(135deg,#edfff4 0%,#e6fff0 100%);border-radius:var(--r-3,14px)">
-            <button type="button" class="notif-close" data-notif-close aria-label="Dismiss">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
-            </button>
-            <div style="padding:16px 16px 14px;display:flex;gap:14px;align-items:flex-start">
-              <div style="width:44px;height:44px;border-radius:50%;background:#25D366;display:grid;place-items:center;flex-shrink:0">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <div style="flex:1;min-width:0;padding-right:28px">
-                <p style="font-size:15px;font-weight:700;color:#1a1a2e;margin-bottom:3px;line-height:1.2">Get alerts on WhatsApp</p>
-                <p style="font-size:13px;color:#555;line-height:1.4;margin-bottom:12px">Receive real-time camera alerts directly on WhatsApp</p>
-                <button type="button" style="background:#25D366;color:#fff;border:none;border-radius:var(--r-pill,100px);padding:9px 20px;font-size:13px;font-weight:700;cursor:pointer">Set up</button>
-              </div>
-            </div>
-          </div>
-
+          <button type="button" class="cctv-room-arrow" data-open="cam-detail-motion">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
         </div>
-        <div class="notif-dots" data-notif-dots></div>
+        <!-- Featured large cam — Motion -->
+        <button type="button" class="cctv-cam-lg" data-open="cam-detail-motion" aria-label="Front Porch Cam 1 · Motion">
+          <img src="assets/frontporch.png" alt="">
+          <div class="cctv-cam-gradient"></div>
+          <span class="cctv-cam-name">Cam 1</span>
+          <span class="cctv-cam-badge"><span class="bdot motion"></span> Motion</span>
+          <span class="cctv-cam-time">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            08:12 AM
+          </span>
+        </button>
       </div>
 
-      <!-- People & Pets — hidden until first member is added -->
-      <section class="section" data-people-section style="margin-top:0;display:none">
-        <div class="head" style="margin-bottom:12px">
-          <h2 data-people-title>People &amp; Pets</h2>
-          <button type="button" class="all-link" data-open="settings-people">Manage<svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <!-- ── Room: Living Room (2 cams) ── -->
+      <div class="cctv-room">
+        <div class="cctv-room-hdr">
+          <div>
+            <p class="cctv-room-name">Living Room</p>
+            <p class="cctv-room-meta"><span class="cctv-dot grey"></span> 2 Cameras</p>
+          </div>
+          <button type="button" class="cctv-room-arrow" data-open="cam-detail-off">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
         </div>
-        <!-- Avatar grid — populated by injectMemberAvatar() as members are added -->
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px 8px" data-people-grid></div>
-
-
-      </section>
-
-      <!-- Your rooms -->
-      <section class="section">
-        <div class="head">
-          <h2>Your rooms</h2>
-          <button type="button" class="all-link" data-open="settings-camera">+ Add<svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <!-- Featured large cam — Off -->
+        <button type="button" class="cctv-cam-lg" data-open="cam-detail-off" aria-label="Living Room Cam 1 · Off">
+          <img src="assets/livingroom-cam1.png" alt="" style="opacity:.1;filter:grayscale(1)">
+          <div class="cctv-cam-off-overlay">
+            <span style="width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.1);display:grid;place-items:center">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2v10M6.35 4.65a9 9 0 1 0 11.3 0" stroke="rgba(255,255,255,.6)" stroke-width="2" stroke-linecap="round"/></svg>
+            </span>
+            <span style="font-size:11px;font-weight:600;color:rgba(255,255,255,.4)">Camera off</span>
+          </div>
+          <span class="cctv-cam-name">Cam 1</span>
+          <span class="cctv-cam-badge"><span class="bdot off"></span> Off</span>
+          <span class="cctv-cam-time">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            14:30 PM
+          </span>
+        </button>
+        <!-- Sub-camera grid — Offline -->
+        <div class="cctv-sub-grid">
+          <button type="button" class="cctv-cam-sm" data-open="cam-detail-offline" aria-label="Living Room Cam 2 · Offline">
+            <img src="assets/livingroom-cam2.png" alt="" style="opacity:.08;filter:grayscale(1)">
+            <div class="cctv-cam-off-overlay">
+              <span style="width:36px;height:36px;border-radius:50%;background:rgba(255,59,48,.18);display:grid;place-items:center">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M1 1l22 22M16.72 11.06A10.94 10.94 0 0 1 19 12.55M5 12.55a10.94 10.94 0 0 1 5.17-2.8M10.71 5.05A16 16 0 0 1 22.56 9M1.42 9a15.91 15.91 0 0 1 4.7-2.88M12 20h.01" stroke="rgba(255,80,80,.7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+            <span class="cctv-cam-name">Cam 2</span>
+            <span class="cctv-cam-badge" style="font-size:10px;padding:2px 7px 2px 6px"><span class="bdot offline"></span> Offline</span>
+            <span class="cctv-cam-time" style="font-size:10px">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              15:24 PM
+            </span>
+          </button>
         </div>
-        <p class="cam-tally" data-cams-tally>
-          9 cameras · 7 live · 1 offline · 1 off
-        </p>
-        <div class="camgrid" data-cams-grid>
+      </div>
 
-          <!-- ── STATE: LIVE ── Nursery Cam ────────────────────────── -->
-          <button type="button" class="cam" data-open="cam-detail-live"
-            style="background:var(--surface);border-radius:14px;box-shadow:var(--Shadow-2);overflow:hidden;padding:0;border:none;cursor:pointer;font-family:inherit;text-align:left;width:100%">
-            <span class="thumb" style="display:block;position:relative;overflow:hidden;background:linear-gradient(160deg,#1a1a2e,#16213e,#0f3460)">
-              <img src="assets/nursery.png" alt="Nursery Cam" onerror="this.style.display='none'">
-              <video src="assets/nursery-clip.mp4" poster="assets/nursery.png"
-                     autoplay muted playsinline loop preload="metadata" aria-hidden="true"
-                     onerror="this.style.display='none'"
-                     style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></video>
-              <!-- Live badge -->
-              <span style="position:absolute;top:10px;left:10px;display:flex;align-items:center;gap:4px;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);border-radius:20px;padding:3px 8px 3px 6px">
-                <span style="width:6px;height:6px;border-radius:50%;background:#34C759;animation:liveblink 2s infinite;flex-shrink:0"></span>
-                <span style="font-size:10px;font-weight:700;color:#fff;letter-spacing:.04em">Live</span>
-              </span>
-              <span style="position:absolute;bottom:0;left:0;right:0;padding:28px 12px 10px;background:linear-gradient(to top,rgba(0,0,0,.72),transparent)">
-                <span style="font-size:14px;font-weight:800;color:#fff">Nursery Cam</span>
-              </span>
-            </span>
-            <span style="display:block;padding:10px 12px 12px;font-size:12px;line-height:17px;color:var(--ink-label)">
-              <span style="font-weight:700;color:var(--ink)">Quiet today</span> · last activity 3 hours ago · no one home since 6:00 am
-            </span>
-          </button>
-
-          <!-- ── STATE: MOTION DETECTED ── Front Porch ─────────────── -->
-          <button type="button" class="cam" data-open="cam-detail-motion"
-            style="background:var(--surface);border-radius:14px;box-shadow:var(--Shadow-2);overflow:hidden;padding:0;border:none;cursor:pointer;font-family:inherit;text-align:left;width:100%">
-            <span class="thumb" style="display:block;position:relative;overflow:hidden;background:linear-gradient(160deg,#1b2838,#2a475e,#1b2a38)">
-              <img src="assets/frontporch.png" alt="Front Porch" onerror="this.style.display='none'">
-              <!-- Motion badge — same glass style as Live, amber dot instead of green -->
-              <span style="position:absolute;top:10px;left:10px;display:flex;align-items:center;gap:4px;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);border-radius:20px;padding:3px 8px 3px 6px">
-                <span style="width:6px;height:6px;border-radius:50%;background:#FF9500;animation:liveblink 1.4s infinite;flex-shrink:0"></span>
-                <span style="font-size:10px;font-weight:700;color:#fff;letter-spacing:.04em">Motion</span>
-              </span>
-              <span style="position:absolute;bottom:0;left:0;right:0;padding:28px 12px 10px;background:linear-gradient(to top,rgba(0,0,0,.72),transparent)">
-                <span style="font-size:14px;font-weight:800;color:#fff">Front Porch</span>
-              </span>
-            </span>
-            <span style="display:block;padding:10px 12px 12px;font-size:12px;line-height:17px;color:var(--ink-label)">
-              <span style="font-weight:700;color:#FF9500">Person detected · 2 min ago</span> · 11 events today
-            </span>
-          </button>
-
-          <!-- ── STATE: POWERED OFF ── Living Room · Camera 1 ────────── -->
-          <button type="button" class="cam" data-open="cam-detail-off"
-            style="background:var(--surface);border-radius:14px;box-shadow:var(--Shadow-2);overflow:hidden;padding:0;border:none;cursor:pointer;font-family:inherit;text-align:left;width:100%">
-            <span class="thumb" style="display:block;position:relative;overflow:hidden;background:#111">
-              <!-- Dimmed still -->
-              <img src="assets/livingroom-cam1.png" alt="Living Room — Camera 1" style="opacity:.12;filter:grayscale(1)" onerror="this.style.display='none'">
-              <!-- Centred power icon -->
-              <span style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px">
-                <span style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.1);display:grid;place-items:center">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M12 2v10M6.35 4.65a9 9 0 1 0 11.3 0" stroke="rgba(255,255,255,.7)" stroke-width="2" stroke-linecap="round"/>
-                  </svg>
-                </span>
-                <span style="font-size:11px;font-weight:600;color:rgba(255,255,255,.5)">Camera off</span>
-              </span>
-              <!-- Off badge -->
-              <span style="position:absolute;top:10px;left:10px;display:flex;align-items:center;gap:4px;background:rgba(255,255,255,.14);border-radius:20px;padding:3px 8px 3px 6px">
-                <span style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.4);flex-shrink:0"></span>
-                <span style="font-size:10px;font-weight:700;color:rgba(255,255,255,.7);letter-spacing:.04em">Off</span>
-              </span>
-              <span style="position:absolute;bottom:0;left:0;right:0;padding:28px 12px 10px;background:linear-gradient(to top,rgba(0,0,0,.72),transparent)">
-                <span style="font-size:14px;font-weight:800;color:rgba(255,255,255,.6)">Living Room · Camera 1</span>
-              </span>
-            </span>
-            <span style="display:block;padding:10px 12px 12px;font-size:12px;line-height:17px;color:var(--ink-label)">
-              Turned off by you · <span style="color:var(--accent,#3478F6);font-weight:600">Turn on</span>
-            </span>
-          </button>
-
-          <!-- ── STATE: OFFLINE / NOT WORKING ── Living Room · Camera 2 ─ -->
-          <button type="button" class="cam" data-open="cam-detail-offline"
-            style="background:var(--surface);border-radius:14px;box-shadow:var(--Shadow-2);overflow:hidden;padding:0;border:none;cursor:pointer;font-family:inherit;text-align:left;width:100%">
-            <span class="thumb" style="display:block;position:relative;overflow:hidden;background:#0d0d0d">
-              <!-- Very faint greyed still -->
-              <img src="assets/livingroom-cam2.png" alt="Living Room — Camera 2" style="opacity:.08;filter:grayscale(1)" onerror="this.style.display='none'">
-              <!-- Centred wifi-off icon -->
-              <span style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px">
-                <span style="width:44px;height:44px;border-radius:50%;background:rgba(255,59,48,.15);display:grid;place-items:center">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M1 1l22 22M16.72 11.06A10.94 10.94 0 0 1 19 12.55M5 12.55a10.94 10.94 0 0 1 5.17-2.8M10.71 5.05A16 16 0 0 1 22.56 9M1.42 9a15.91 15.91 0 0 1 4.7-2.88M12 20h.01" stroke="rgba(255,80,80,.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-                <span style="font-size:11px;font-weight:600;color:rgba(255,80,80,.7)">Connection lost</span>
-              </span>
-              <!-- Offline badge -->
-              <span style="position:absolute;top:10px;left:10px;display:flex;align-items:center;gap:4px;background:rgba(0,0,0,.65);backdrop-filter:blur(4px);border-radius:20px;padding:3px 8px 3px 6px">
-                <span style="width:6px;height:6px;border-radius:50%;background:#FF3B30;flex-shrink:0;animation:liveblink 1.6s infinite"></span>
-                <span style="font-size:10px;font-weight:700;color:#FF3B30;letter-spacing:.04em">Offline</span>
-              </span>
-              <span style="position:absolute;bottom:0;left:0;right:0;padding:28px 12px 10px;background:linear-gradient(to top,rgba(0,0,0,.72),transparent)">
-                <span style="font-size:14px;font-weight:800;color:rgba(255,255,255,.6)">Living Room · Camera 2</span>
-              </span>
-            </span>
-            <span style="display:block;padding:10px 12px 12px;font-size:12px;line-height:17px;color:var(--ink-label)">
-              <span style="font-weight:700;color:#FF3B30">Not working</span> · last seen 14 min ago · <span style="color:var(--accent,#3478F6);font-weight:600">Reconnect</span>
-            </span>
-          </button>
-
-        </div>
-      </section>
+      <!-- hidden people grid (keeps JS working) -->
+      <div style="display:none" data-people-section>
+        <div data-people-grid></div>
+      </div>
 
     </main>
+
+    <!-- Floating add button -->
+    <button type="button" class="cctv-fab" data-open="settings-camera" aria-label="Add camera">+</button>
   </section>
 
   <!-- Bottom navigation — Today / My home / Events / Ask.
        Four destinations, not five: Cameras folded into My home next to the
        people, and Insights is reached from there rather than owning a tab. -->
-  <nav class="tabbar" data-tabbar aria-label="Main">
+  <nav class="tabbar cctv-nav" data-tabbar aria-label="Main">
     <button type="button" class="tab" data-tab="my-home">
-      <span class="ic"><svg width="22" height="22" viewBox="0 0 56 56" fill="none" aria-hidden="true"><path d="M50.097 21.7244L32.317 6.30104C31.1241 5.25108 29.5894 4.67188 28.0003 4.67188C26.4112 4.67188 24.8765 5.25108 23.6836 6.30104L5.90363 21.7244C5.36106 22.1892 4.97046 22.8062 4.78236 23.4955C4.59425 24.1848 4.61729 24.9146 4.8485 25.5907C5.07971 26.2667 5.50845 26.8578 6.07926 27.2875C6.65007 27.7172 7.33669 27.9658 8.0503 28.001H9.33363V44.3344C9.33363 46.1909 10.0711 47.9714 11.3839 49.2841C12.6966 50.5969 14.4771 51.3344 16.3336 51.3344H23.3336V37.3344H32.667V51.3344H39.667C41.5235 51.3344 43.304 50.5969 44.6167 49.2841C45.9295 47.9714 46.667 46.1909 46.667 44.3344V28.001H47.9503C48.6639 27.9658 49.3505 27.7172 49.9213 27.2875C50.4921 26.8578 50.9209 26.2667 51.1521 25.5907C51.3833 24.9146 51.4063 24.1848 51.2182 23.4955C51.0301 22.8062 50.6395 22.1892 50.097 21.7244V21.7244Z" fill="currentColor"/></svg></span>
+      <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 0 0 1 1h4v-5h4v5h4a1 1 0 0 0 1-1v-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       <span class="lb">Home</span>
     </button>
     <button type="button" class="tab" data-tab="events">
-      <span class="ic"><svg width="22" height="22" viewBox="0 0 56 56" fill="none" aria-hidden="true"><path d="M46.6667 39.6667H21C20.3812 39.6667 19.7877 39.9125 19.3501 40.3501C18.9125 40.7877 18.6667 41.3812 18.6667 42C18.6667 42.6188 18.9125 43.2123 19.3501 43.6499C19.7877 44.0875 20.3812 44.3333 21 44.3333H46.6667C47.2855 44.3333 47.879 44.0875 48.3166 43.6499C48.7542 43.2123 49 42.6188 49 42C49 41.3812 48.7542 40.7877 48.3166 40.3501C47.879 39.9125 47.2855 39.6667 46.6667 39.6667ZM46.6667 25.6667H21C20.3812 25.6667 19.7877 25.9125 19.3501 26.3501C18.9125 26.7877 18.6667 27.3812 18.6667 28C18.6667 28.6188 18.9125 29.2123 19.3501 29.6499C19.7877 30.0875 20.3812 30.3333 21 30.3333H46.6667C47.2855 30.3333 47.879 30.0875 48.3166 29.6499C48.7542 29.2123 49 28.6188 49 28C49 27.3812 48.7542 26.7877 48.3166 26.3501C47.879 25.9125 47.2855 25.6667 46.6667 25.6667ZM21 16.3333H46.6667C47.2855 16.3333 47.879 16.0875 48.3166 15.6499C48.7542 15.2123 49 14.6188 49 14C49 13.3812 48.7542 12.7877 48.3166 12.3501C47.879 11.9125 47.2855 11.6667 46.6667 11.6667H21C20.3812 11.6667 19.7877 11.9125 19.3501 12.3501C18.9125 12.7877 18.6667 13.3812 18.6667 14C18.6667 14.6188 18.9125 15.2123 19.3501 15.6499C19.7877 16.0875 20.3812 16.3333 21 16.3333V16.3333ZM10.5 10.5C9.80776 10.5 9.13108 10.7053 8.5555 11.0899C7.97993 11.4744 7.53133 12.0211 7.26642 12.6606C7.00151 13.3001 6.9322 14.0039 7.06725 14.6828C7.2023 15.3617 7.53564 15.9854 8.02513 16.4749C8.51461 16.9644 9.13825 17.2977 9.81718 17.4327C10.4961 17.5678 11.1998 17.4985 11.8394 17.2336C12.4789 16.9687 13.0256 16.5201 13.4101 15.9445C13.7947 15.3689 14 14.6922 14 14C14 13.0717 13.6313 12.1815 12.9749 11.5251C12.3185 10.8687 11.4283 10.5 10.5 10.5ZM10.5 24.5C9.80776 24.5 9.13108 24.7053 8.5555 25.0899C7.97993 25.4744 7.53133 26.0211 7.26642 26.6606C7.00151 27.3002 6.9322 28.0039 7.06725 28.6828C7.2023 29.3618 7.53564 29.9854 8.02513 30.4749C8.51461 30.9644 9.13825 31.2977 9.81718 31.4328C10.4961 31.5678 11.1998 31.4985 11.8394 31.2336C12.4789 30.9687 13.0256 30.5201 13.4101 29.9445C13.7947 29.3689 14 28.6922 14 28C14 27.0717 13.6313 26.1815 12.9749 25.5251C12.3185 24.8688 11.4283 24.5 10.5 24.5ZM10.5 38.5C9.80776 38.5 9.13108 38.7053 8.5555 39.0899C7.97993 39.4744 7.53133 40.0211 7.26642 40.6606C7.00151 41.3002 6.9322 42.0039 7.06725 42.6828C7.2023 43.3618 7.53564 43.9854 8.02513 44.4749C8.51461 44.9644 9.13825 45.2977 9.81718 45.4328C10.4961 45.5678 11.1998 45.4985 11.8394 45.2336C12.4789 44.9687 13.0256 44.5201 13.4101 43.9445C13.7947 43.3689 14 42.6922 14 42C14 41.0717 13.6313 40.1815 12.9749 39.5251C12.3185 38.8687 11.4283 38.5 10.5 38.5Z" fill="currentColor"/></svg></span>
-      <span class="lb">Activity</span>
+      <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M23 7l-7 5 7 5V7zM14 5H3a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="lb">Record</span>
     </button>
+    <span style="width:56px;flex-shrink:0"></span>
     <button type="button" class="tab" data-tab="ai-search">
-      <span class="ic"><svg width="22" height="22" viewBox="0 0 56 56" fill="none" aria-hidden="true"><path d="M23.3427 4.66603C26.3721 4.66927 29.3408 5.51492 31.9172 7.10845C34.4935 8.70198 36.5759 10.9806 37.9316 13.6896C39.2874 16.3987 39.863 19.4314 39.5942 22.4488C39.3253 25.4661 38.2227 28.3493 36.4094 30.776L50.6661 45.0094C50.8848 45.2263 51.0584 45.4843 51.1768 45.7687C51.2953 46.053 51.3563 46.358 51.3563 46.666C51.3563 46.9741 51.2953 47.279 51.1768 47.5634C51.0584 47.8477 50.8848 48.1058 50.6661 48.3227C50.4492 48.5414 50.1911 48.715 49.9067 48.8334C49.6224 48.9519 49.3174 49.0129 49.0094 49.0129C48.7014 49.0129 48.3964 48.9519 48.1121 48.8334C47.8277 48.715 47.5696 48.5414 47.3527 48.3227L33.1194 34.066C31.0482 35.6194 28.6373 36.6582 26.0857 37.0967C23.5341 37.5352 20.9148 37.3608 18.4438 36.588C15.9728 35.8151 13.7209 34.466 11.8739 32.6517C10.0268 30.8374 8.63755 28.6101 7.82058 26.1533C7.00361 23.6966 6.78237 21.0808 7.1751 18.5217C7.56783 15.9627 8.56329 13.5336 10.0794 11.4349C11.5955 9.33619 13.5887 7.62795 15.8948 6.45106C18.2009 5.27416 20.7537 4.66234 23.3427 4.66603V4.66603ZM23.3427 32.666C25.6502 32.666 27.9058 31.9818 29.8244 30.6998C31.743 29.4179 33.2383 27.5958 34.1213 25.464C35.0044 23.3322 35.2354 20.9864 34.7852 18.7233C34.3351 16.4602 33.2239 14.3814 31.5923 12.7498C29.9607 11.1182 27.8819 10.007 25.6188 9.55687C23.3557 9.10671 21.0099 9.33775 18.8781 10.2208C16.7463 11.1038 14.9242 12.5991 13.6423 14.5177C12.3603 16.4363 11.6761 18.6919 11.6761 20.9994C11.6761 22.5315 11.9778 24.0485 12.5641 25.464C13.1504 26.8795 14.0098 28.1656 15.0932 29.2489C16.1765 30.3323 17.4626 31.1917 18.8781 31.778C20.2936 32.3643 21.8106 32.666 23.3427 32.666V32.666Z" fill="currentColor"/></svg></span>
-      <span class="lb">Ask</span>
+      <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="lb">Alarm</span>
     </button>
-    <!-- Digest tab removed from the footer nav — the Daily digest card on
-         Today (with its "View full digest" affordance) is the only entry
-         point now. The daily-digest screen itself is left intact so the
-         card's data-tab="daily-digest" and other in-app links still
-         resolve; only the persistent tab button is gone. -->
+    <button type="button" class="tab" data-tab="settings-camera">
+      <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" stroke="currentColor" stroke-width="2"/></svg></span>
+      <span class="lb">Settings</span>
+    </button>
   </nav>
 
   <!-- ============================================================ DAILY DIGEST ============================================================ -->
