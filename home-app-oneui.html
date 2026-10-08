@@ -1791,6 +1791,66 @@ h1,h2,h3,p{margin:0}
 .ctrl .circ.talk.on{background:var(--accent);color:var(--Text-On-Bold-High)}
 .ctrl span{font-size:11px;font-weight:600;color:var(--ink-label)}
 
+/* ── Dark camera detail screens (reference design language) ────────────── */
+[data-screen="cam-detail-live"],[data-screen="cam-detail-motion"],
+[data-screen="cam-detail-off"],[data-screen="cam-detail-offline"]{background:#13131f}
+[data-screen="cam-detail-live"] .statusbar,[data-screen="cam-detail-motion"] .statusbar,
+[data-screen="cam-detail-off"] .statusbar,[data-screen="cam-detail-offline"] .statusbar{background:#13131f;color:rgba(255,255,255,.8)}
+[data-screen="cam-detail-live"] .appbar,[data-screen="cam-detail-motion"] .appbar,
+[data-screen="cam-detail-off"] .appbar,[data-screen="cam-detail-offline"] .appbar{background:#13131f;border-color:rgba(255,255,255,.07)}
+[data-screen="cam-detail-live"] .appbar h1,[data-screen="cam-detail-live"] .appbar .back,[data-screen="cam-detail-live"] .appbar .icon-btn,
+[data-screen="cam-detail-motion"] .appbar h1,[data-screen="cam-detail-motion"] .appbar .back,[data-screen="cam-detail-motion"] .appbar .icon-btn,
+[data-screen="cam-detail-off"] .appbar h1,[data-screen="cam-detail-off"] .appbar .back,
+[data-screen="cam-detail-offline"] .appbar h1,[data-screen="cam-detail-offline"] .appbar .back{color:#fff}
+/* dark timeline bar */
+[data-screen="cam-detail-live"] .tl-datebar,[data-screen="cam-detail-motion"] .tl-datebar,
+[data-screen="cam-detail-off"] .tl-datebar,[data-screen="cam-detail-offline"] .tl-datebar{background:#1c1c2e;border-color:rgba(255,255,255,.07)}
+[data-screen="cam-detail-live"] .tl-date-label,[data-screen="cam-detail-motion"] .tl-date-label,
+[data-screen="cam-detail-off"] .tl-date-label,[data-screen="cam-detail-offline"] .tl-date-label{color:#fff}
+[data-screen="cam-detail-live"] .tl-nav-btn,[data-screen="cam-detail-motion"] .tl-nav-btn,
+[data-screen="cam-detail-off"] .tl-nav-btn,[data-screen="cam-detail-offline"] .tl-nav-btn{color:rgba(255,255,255,.4)}
+/* dark timeline ruler */
+[data-screen="cam-detail-live"] .tl-scrub,[data-screen="cam-detail-motion"] .tl-scrub,
+[data-screen="cam-detail-off"] .tl-scrub,[data-screen="cam-detail-offline"] .tl-scrub{background:#1c1c2e;border-color:rgba(255,255,255,.07)}
+[data-screen="cam-detail-live"] .tl-ruler-bg,[data-screen="cam-detail-motion"] .tl-ruler-bg,
+[data-screen="cam-detail-off"] .tl-ruler-bg,[data-screen="cam-detail-offline"] .tl-ruler-bg{background:repeating-linear-gradient(90deg,transparent,transparent 11px,rgba(255,255,255,.06) 11px,rgba(255,255,255,.06) 12px)}
+[data-screen="cam-detail-live"] .tl-track-line,[data-screen="cam-detail-motion"] .tl-track-line,
+[data-screen="cam-detail-off"] .tl-track-line,[data-screen="cam-detail-offline"] .tl-track-line{background:rgba(255,255,255,.1)}
+[data-screen="cam-detail-live"] .tl-hour-tick,[data-screen="cam-detail-motion"] .tl-hour-tick,
+[data-screen="cam-detail-off"] .tl-hour-tick,[data-screen="cam-detail-offline"] .tl-hour-tick{color:rgba(255,255,255,.35)}
+[data-screen="cam-detail-live"] .tl-hour-tick::before,[data-screen="cam-detail-motion"] .tl-hour-tick::before,
+[data-screen="cam-detail-off"] .tl-hour-tick::before,[data-screen="cam-detail-offline"] .tl-hour-tick::before{background:rgba(255,255,255,.15)}
+/* dark event list */
+[data-screen="cam-detail-live"] .tl-ev-hdr,[data-screen="cam-detail-motion"] .tl-ev-hdr,
+[data-screen="cam-detail-off"] .tl-ev-hdr,[data-screen="cam-detail-offline"] .tl-ev-hdr{color:rgba(255,255,255,.38)}
+[data-screen="cam-detail-live"] .tl-ev-row,[data-screen="cam-detail-motion"] .tl-ev-row,
+[data-screen="cam-detail-off"] .tl-ev-row,[data-screen="cam-detail-offline"] .tl-ev-row{border-color:rgba(255,255,255,.07)}
+[data-screen="cam-detail-live"] .tl-ev-row.is-sel,[data-screen="cam-detail-motion"] .tl-ev-row.is-sel{background:rgba(52,120,246,.18);border-color:transparent}
+[data-screen="cam-detail-live"] .tl-ev-time,[data-screen="cam-detail-motion"] .tl-ev-time,
+[data-screen="cam-detail-off"] .tl-ev-time,[data-screen="cam-detail-offline"] .tl-ev-time{color:#fff}
+[data-screen="cam-detail-live"] .tl-ev-sub,[data-screen="cam-detail-motion"] .tl-ev-sub,
+[data-screen="cam-detail-off"] .tl-ev-sub,[data-screen="cam-detail-offline"] .tl-ev-sub{color:rgba(255,255,255,.45)}
+[data-screen="cam-detail-live"] .tl-ev-btn,[data-screen="cam-detail-motion"] .tl-ev-btn,
+[data-screen="cam-detail-off"] .tl-ev-btn,[data-screen="cam-detail-offline"] .tl-ev-btn{color:rgba(255,255,255,.3)}
+/* hide legacy cam-foot for dark screens; content is now inline */
+[data-screen="cam-detail-live"] .cam-foot,[data-screen="cam-detail-motion"] .cam-foot{display:none}
+[data-screen="cam-detail-live"] .scroll,[data-screen="cam-detail-motion"] .scroll{padding-bottom:32px}
+/* Quick action grid */
+.cam-quick-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:14px 16px 0}
+.cam-qa-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;padding:16px 8px;background:#1e1e2e;border:1px solid rgba(255,255,255,.09);border-radius:14px;color:rgba(255,255,255,.85);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;width:100%;transition:background .15s}
+.cam-qa-btn:active{background:rgba(255,255,255,.1)}
+.cam-qa-btn.is-on{background:rgba(52,120,246,.22);border-color:rgba(52,120,246,.4);color:#3478F6}
+/* Expand/collapse toggle */
+.cam-expand-toggle{display:flex;align-items:center;justify-content:center;padding:10px;background:none;border:none;cursor:pointer;width:100%}
+.cam-expand-toggle svg{color:rgba(255,255,255,.4);transition:transform .2s}
+.cam-expand-toggle.is-open svg{transform:rotate(180deg)}
+/* Extra controls panel */
+.cam-expand-more{display:none;padding:0 16px 14px}
+.cam-expand-more.is-open{display:block}
+.cam-speak-btn{width:100%;padding:15px;border-radius:14px;background:#3478F6;color:#fff;border:none;font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;margin-bottom:10px;font-family:inherit;transition:background .15s}
+.cam-speak-btn:active{background:#2868d6}
+.cam-alarm-btn{width:100%;padding:13px;border-radius:14px;background:#1e1e2e;color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.09);font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;font-family:inherit}
+
 /* ── Timeline ─────────────────────────────────────────────────────────── */
 .daylabel{margin:22px 0 10px;font-size:13px;font-weight:800;color:var(--ink-label);text-transform:uppercase;letter-spacing:.4px}
 .daylabel:first-child{margin-top:8px}
@@ -5432,6 +5492,51 @@ h1,h2,h3,p{margin:0}
           <div class="tl-ph" data-time="8:14" style="left:68.5%"></div>
         </div>
       </div>
+      <!-- ── Quick actions ── -->
+      <div class="cam-quick-actions">
+        <button type="button" class="cam-qa-btn" data-toggle-rec>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="3.5" fill="currentColor"/></svg>
+          Record
+        </button>
+        <button type="button" class="cam-qa-btn">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Alarm
+        </button>
+        <button type="button" class="cam-qa-btn" data-hold-talk>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          Speak
+        </button>
+      </div>
+      <!-- collapse / expand toggle -->
+      <button type="button" class="cam-expand-toggle" aria-label="More controls" onclick="this.classList.toggle('is-open');this.nextElementSibling.classList.toggle('is-open')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <!-- expanded panel -->
+      <div class="cam-expand-more">
+        <div class="cam-quick-actions" style="padding:0 0 10px">
+          <button type="button" class="cam-qa-btn" data-toggle-rec>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="3.5" fill="currentColor"/></svg>
+            Record
+          </button>
+          <button type="button" class="cam-qa-btn">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 8a2 2 0 0 1 2-2h2l1.2-1.6A2 2 0 0 1 10.8 3h2.4a2 2 0 0 1 1.6.8L16 5.5h2a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="3.4" stroke="currentColor" stroke-width="1.6"/></svg>
+            Capture
+          </button>
+          <button type="button" class="cam-qa-btn">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            Sound
+          </button>
+        </div>
+        <button type="button" class="cam-speak-btn" data-hold-talk>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3" fill="rgba(255,255,255,.9)"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+          Speak
+        </button>
+        <button type="button" class="cam-alarm-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Alarm
+        </button>
+      </div>
+
       <div class="tl-ev-list">
         <p class="tl-ev-hdr">Detected Events (2)</p>
         <div class="tl-ev-row" data-ev-id="live-ev2" data-ev-time="5:58 AM" onclick="tlRowTap(this)">
@@ -5452,14 +5557,7 @@ h1,h2,h3,p{margin:0}
         </div>
       </div>
     </main>
-    <!-- Pinned camera controls -->
-    <div class="cam-foot">
-      <div class="livecontrols">
-        <div class="ctrl"><button type="button" class="circ talk" data-hold-talk aria-label="Hold to talk"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3" fill="currentColor"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><span>Hold to talk</span></div>
-        <div class="ctrl"><button type="button" class="circ" aria-label="Take snapshot"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 8a2 2 0 0 1 2-2h2l1.2-1.6A2 2 0 0 1 10.8 3h2.4a2 2 0 0 1 1.6.8L16 5.5h2a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="3.4" stroke="currentColor" stroke-width="1.6"/></svg></button><span>Snapshot</span></div>
-        <div class="ctrl"><button type="button" class="circ rec" data-toggle-rec aria-label="Record clip" aria-pressed="false"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="currentColor"/></svg></button><span data-rec-label>Record</span></div>
-      </div>
-    </div>
+    <div class="cam-foot" style="display:none"></div>
   </section>
 
   <!-- ============================================================ CAMERA DETAIL — MOTION DETECTED (Front Porch) ============================================================ -->
@@ -5521,6 +5619,49 @@ h1,h2,h3,p{margin:0}
           <div class="tl-ph" data-time="8:14" style="left:37.2%"></div>
         </div>
       </div>
+      <!-- ── Quick actions ── -->
+      <div class="cam-quick-actions">
+        <button type="button" class="cam-qa-btn" data-toggle-rec>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="3.5" fill="currentColor"/></svg>
+          Record
+        </button>
+        <button type="button" class="cam-qa-btn">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Alarm
+        </button>
+        <button type="button" class="cam-qa-btn" data-hold-talk>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          Speak
+        </button>
+      </div>
+      <button type="button" class="cam-expand-toggle" aria-label="More controls" onclick="this.classList.toggle('is-open');this.nextElementSibling.classList.toggle('is-open')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="cam-expand-more">
+        <div class="cam-quick-actions" style="padding:0 0 10px">
+          <button type="button" class="cam-qa-btn" data-toggle-rec>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="3.5" fill="currentColor"/></svg>
+            Record
+          </button>
+          <button type="button" class="cam-qa-btn">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 8a2 2 0 0 1 2-2h2l1.2-1.6A2 2 0 0 1 10.8 3h2.4a2 2 0 0 1 1.6.8L16 5.5h2a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="3.4" stroke="currentColor" stroke-width="1.6"/></svg>
+            Capture
+          </button>
+          <button type="button" class="cam-qa-btn">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            Sound
+          </button>
+        </div>
+        <button type="button" class="cam-speak-btn" data-hold-talk>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3" fill="rgba(255,255,255,.9)"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+          Speak
+        </button>
+        <button type="button" class="cam-alarm-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Alarm
+        </button>
+      </div>
+
       <div class="tl-ev-list">
         <p class="tl-ev-hdr">Detected Events (2)</p>
         <div class="tl-ev-row is-sel" data-ev-id="mot-ev1" data-ev-time="8:12 AM" onclick="tlRowTap(this)">
@@ -5545,14 +5686,7 @@ h1,h2,h3,p{margin:0}
         </div>
       </div>
     </main>
-    <!-- Pinned camera controls -->
-    <div class="cam-foot">
-      <div class="livecontrols">
-        <div class="ctrl"><button type="button" class="circ talk" data-hold-talk aria-label="Hold to talk"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3" fill="currentColor"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><span>Hold to talk</span></div>
-        <div class="ctrl"><button type="button" class="circ" aria-label="Take snapshot"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 8a2 2 0 0 1 2-2h2l1.2-1.6A2 2 0 0 1 10.8 3h2.4a2 2 0 0 1 1.6.8L16 5.5h2a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="3.4" stroke="currentColor" stroke-width="1.6"/></svg></button><span>Snapshot</span></div>
-        <div class="ctrl"><button type="button" class="circ rec" data-toggle-rec aria-label="Record clip" aria-pressed="false"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="currentColor"/></svg></button><span data-rec-label>Record</span></div>
-      </div>
-    </div>
+    <div class="cam-foot" style="display:none"></div>
   </section>
 
   <!-- ============================================================ CAMERA DETAIL — POWERED OFF ============================================================ -->
