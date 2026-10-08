@@ -2537,13 +2537,15 @@ h1,h2,h3,p{margin:0}
 .ob-star-field{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .ob-star{position:absolute;width:5px;height:5px;border-radius:50%;background:rgba(34,0,113,.18);animation:ob-twinkle 3.5s ease-in-out infinite}
 @keyframes ob-twinkle{0%,100%{opacity:.15;transform:scale(.7)}50%{opacity:1;transform:scale(1.3)}}
-.ob-radar{position:relative;width:260px;height:260px;flex-shrink:0;display:grid;place-items:center}
-.ob-radar-ring{position:absolute;border-radius:50%;border:2px solid rgba(34,0,113,.12);animation:ob-ripple 4s ease-out infinite}
-.ob-radar-ring:nth-child(1){width:70px;height:70px;animation-delay:0s}
-.ob-radar-ring:nth-child(2){width:120px;height:120px;animation-delay:1s}
-.ob-radar-ring:nth-child(3){width:180px;height:180px;animation-delay:2s}
-.ob-radar-ring:nth-child(4){width:240px;height:240px;animation-delay:3s}
-@keyframes ob-ripple{0%{opacity:.7;transform:scale(.3)}100%{opacity:0;transform:scale(1)}}
+.ob-radar{position:relative;width:200px;height:200px;flex-shrink:0;display:grid;place-items:center}
+.ob-radar-ring{position:absolute;border-radius:50%;border:1.5px solid rgba(34,0,113,.25);animation:ob-ripple 4.5s ease-out infinite}
+.ob-radar-ring:nth-child(1){width:90px;height:90px;animation-delay:0s}
+.ob-radar-ring:nth-child(2){width:210px;height:210px;animation-delay:.75s}
+.ob-radar-ring:nth-child(3){width:350px;height:350px;animation-delay:1.5s}
+.ob-radar-ring:nth-child(4){width:500px;height:500px;animation-delay:2.25s}
+.ob-radar-ring:nth-child(5){width:650px;height:650px;animation-delay:3s}
+.ob-radar-ring:nth-child(6){width:800px;height:800px;animation-delay:3.75s}
+@keyframes ob-ripple{0%{opacity:1;transform:scale(.08)}100%{opacity:0;transform:scale(1)}}
 .ob-radar-center{width:56px;height:56px;background:#E4E0EE;border-radius:50%;display:grid;place-items:center;position:relative;z-index:2;box-shadow:0 4px 16px rgba(34,0,113,.15);overflow:hidden}
 .ob-sweep-bg{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,transparent 0deg,transparent 278deg,rgba(34,0,113,.1) 315deg,rgba(34,0,113,.42) 360deg);animation:ob-icon-scan 2s linear infinite;transform-origin:center}
 .ob-sweep-line{position:absolute;top:0;left:calc(50% - .8px);width:1.6px;height:50%;background:linear-gradient(to bottom,rgba(34,0,113,.95) 0%,rgba(34,0,113,.15) 100%);transform-origin:bottom center;animation:ob-icon-scan 2s linear infinite}
@@ -3862,6 +3864,8 @@ h1,h2,h3,p{margin:0}
     <!-- Centered content -->
     <main class="ob-loading-main">
       <div class="ob-radar" aria-hidden="true">
+        <div class="ob-radar-ring"></div>
+        <div class="ob-radar-ring"></div>
         <div class="ob-radar-ring"></div>
         <div class="ob-radar-ring"></div>
         <div class="ob-radar-ring"></div>
