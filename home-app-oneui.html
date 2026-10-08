@@ -2537,19 +2537,10 @@ h1,h2,h3,p{margin:0}
 .ob-star-field{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .ob-star{position:absolute;width:5px;height:5px;border-radius:50%;background:rgba(34,0,113,.18);animation:ob-twinkle 3.5s ease-in-out infinite}
 @keyframes ob-twinkle{0%,100%{opacity:.15;transform:scale(.7)}50%{opacity:1;transform:scale(1.3)}}
-.ob-radar{position:relative;width:200px;height:200px;flex-shrink:0;display:grid;place-items:center}
-.ob-radar-ring{position:absolute;border-radius:50%;border:1.5px solid rgba(34,0,113,.25);animation:ob-ripple 4.5s ease-out infinite}
-.ob-radar-ring:nth-child(1){width:90px;height:90px;animation-delay:0s}
-.ob-radar-ring:nth-child(2){width:210px;height:210px;animation-delay:.75s}
-.ob-radar-ring:nth-child(3){width:350px;height:350px;animation-delay:1.5s}
-.ob-radar-ring:nth-child(4){width:500px;height:500px;animation-delay:2.25s}
-.ob-radar-ring:nth-child(5){width:650px;height:650px;animation-delay:3s}
-.ob-radar-ring:nth-child(6){width:800px;height:800px;animation-delay:3.75s}
-@keyframes ob-ripple{0%{opacity:1;transform:scale(.08)}100%{opacity:0;transform:scale(1)}}
-.ob-radar-center{width:56px;height:56px;background:#E4E0EE;border-radius:50%;display:grid;place-items:center;position:relative;z-index:2;box-shadow:0 4px 16px rgba(34,0,113,.15);overflow:hidden}
-.ob-sweep-bg{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,transparent 0deg,transparent 278deg,rgba(34,0,113,.1) 315deg,rgba(34,0,113,.42) 360deg);animation:ob-icon-scan 2s linear infinite;transform-origin:center}
-.ob-sweep-line{position:absolute;top:0;left:calc(50% - .8px);width:1.6px;height:50%;background:linear-gradient(to bottom,rgba(34,0,113,.95) 0%,rgba(34,0,113,.15) 100%);transform-origin:bottom center;animation:ob-icon-scan 2s linear infinite}
-.ob-sweep-dot{position:relative;z-index:3;width:6px;height:6px;border-radius:50%;background:#220071;flex-shrink:0;animation:ob-icon-dot 1.6s ease-in-out infinite;transform-origin:center}
+.ob-wave-canvas{position:absolute;inset:0;z-index:1;pointer-events:none;width:100%;height:100%}
+.ob-center-pill{width:62px;height:62px;background:#E4E0EE;border-radius:50%;display:grid;place-items:center;position:relative;z-index:3;box-shadow:0 4px 20px rgba(34,0,113,.18)}
+.ob-center-pill-dot{width:18px;height:18px;border-radius:50%;background:#220071;animation:ob-icon-dot 1.8s ease-in-out infinite;transform-origin:center}
+@keyframes ob-icon-scan{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 .ob-loading-title{font-size:22px;font-weight:700;color:#000;margin:0;transition:opacity .3s}
 .ob-loading-sub{font-size:14px;font-weight:400;color:rgba(0,0,0,.5);margin:0;line-height:1.5;max-width:280px}
 .ob-problem-sheet{position:absolute;bottom:0;left:0;right:0;background:#fff;border-radius:20px 20px 0 0;padding:20px 24px 40px;transform:translateY(100%);transition:transform .45s cubic-bezier(.34,1.56,.64,1);box-shadow:0 -2px 20px rgba(0,0,0,.12)}
@@ -3840,6 +3831,7 @@ h1,h2,h3,p{margin:0}
        auto-advances it into ob-camselect after a short simulated scan. -->
   <section class="screen" data-screen="ob-loading" style="overflow:hidden">
     <div class="statusbar" aria-hidden="true"><span data-clock>08:14</span></div>
+    <canvas id="ob-wave-canvas" class="ob-wave-canvas" aria-hidden="true"></canvas>
     <!-- Twinkling particles -->
     <div class="ob-star-field" aria-hidden="true">
       <span class="ob-star" style="left:8%;top:14%;animation-delay:0s"></span>
@@ -3863,18 +3855,8 @@ h1,h2,h3,p{margin:0}
     </div>
     <!-- Centered content -->
     <main class="ob-loading-main">
-      <div class="ob-radar" aria-hidden="true">
-        <div class="ob-radar-ring"></div>
-        <div class="ob-radar-ring"></div>
-        <div class="ob-radar-ring"></div>
-        <div class="ob-radar-ring"></div>
-        <div class="ob-radar-ring"></div>
-        <div class="ob-radar-ring"></div>
-        <div class="ob-radar-center" aria-hidden="true">
-          <div class="ob-sweep-bg"></div>
-          <div class="ob-sweep-line"></div>
-          <div class="ob-sweep-dot"></div>
-        </div>
+      <div class="ob-center-pill" aria-hidden="true">
+        <div class="ob-center-pill-dot"></div>
       </div>
       <div style="display:flex;flex-direction:column;gap:8px">
         <h1 class="ob-loading-title" id="ob-loading-title">Looking for camera</h1>
@@ -12324,6 +12306,60 @@ function tlDateNav(btn, dir){
   window.__notifCarousel = { refresh: function(){ goTo(Math.min(idx, slides().length - 1)); } };
 
   goTo(0);
+})();
+</script>
+<script>
+/* ob-loading wave animation — dense dotted ellipses with perspective */
+(function obWave(){
+  var canvas = document.getElementById('ob-wave-canvas');
+  if(!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var phase = 0, raf;
+  var spacing = 12;   /* px between rings */
+  var speed   = 0.18; /* px advance per frame — slow, calm */
+  var yRatio  = 0.30; /* vertical squeeze for perspective */
+
+  function setup(){
+    var dpr = window.devicePixelRatio || 1;
+    var w = canvas.clientWidth || 375;
+    var h = canvas.clientHeight || 667;
+    canvas.width  = w * dpr;
+    canvas.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function draw(){
+    var w  = canvas.clientWidth  || 375;
+    var h  = canvas.clientHeight || 667;
+    var cx = w / 2;
+    var cy = h * 0.42; /* source point — sits at the center pill */
+    var maxRx = w * 1.2;
+    var n  = Math.ceil(maxRx / spacing) + 1;
+
+    ctx.clearRect(0, 0, w, h);
+    phase = (phase + speed) % spacing;
+
+    for(var i = 0; i < n; i++){
+      var rx = phase + i * spacing;
+      if(rx <= 0 || rx > maxRx) continue;
+      var t  = rx / maxRx;
+      var op = Math.pow(1 - t, 1.6) * 0.55;
+      if(op < 0.007) continue;
+      var ry = rx * yRatio;
+
+      ctx.beginPath();
+      ctx.strokeStyle = 'rgba(34,0,113,' + op.toFixed(3) + ')';
+      ctx.lineWidth = 1;
+      ctx.setLineDash([1.5, 2.5]);
+      ctx.ellipse(cx, cy, rx, ry, 0, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+    raf = requestAnimationFrame(draw);
+  }
+
+  setup();
+  draw();
+  window.addEventListener('resize', setup);
 })();
 </script>
 </body>
