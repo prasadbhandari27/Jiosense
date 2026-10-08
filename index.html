@@ -1609,48 +1609,41 @@ h1,h2,h3,p{margin:0}
 .camgrid .cam .room-summary{display:block;margin-top:6px;font-size:12px;line-height:17px;color:var(--ink-label);padding:0 2px}
 .cam-tally{display:flex;align-items:center;gap:var(--Spacing-2);margin-top:var(--Spacing-2);font-size:12px;line-height:16px;color:var(--ink-label)}
 
-/* ── CCTV Home dark redesign ── */
-[data-screen="my-home"]{background:#13131f}
-[data-screen="my-home"] .statusbar{background:#13131f;color:#fff}
-[data-screen="my-home"] .cctv-scroll{background:#13131f;padding-bottom:96px}
-.cctv-home-hdr{display:flex;align-items:center;justify-content:space-between;padding:10px 16px 8px;background:#13131f}
+/* ── CCTV Home light mode ── */
+[data-screen="my-home"]{background:#f2f2f7}
+[data-screen="my-home"] .statusbar{background:#f2f2f7;color:#1a1a1a}
+[data-screen="my-home"] .cctv-scroll{background:#f2f2f7;padding-bottom:80px}
+.cctv-home-hdr{display:flex;align-items:center;justify-content:space-between;padding:12px 16px 10px;background:#f2f2f7}
 .cctv-loc{display:flex;align-items:center;gap:10px}
-.cctv-loc-pin{width:36px;height:36px;border-radius:50%;background:#3478F6;display:grid;place-items:center;flex-shrink:0}
-.cctv-loc-label{display:block;font-size:11px;font-weight:500;color:rgba(255,255,255,.5);line-height:1.2}
-.cctv-loc-name{display:flex;align-items:center;gap:4px;background:none;border:none;padding:0;font-size:15px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit}
-.cctv-avatar-btn{width:40px;height:40px;border-radius:50%;overflow:hidden;border:2px solid rgba(255,255,255,.15);background:#2a2a3e;display:grid;place-items:center;flex-shrink:0;font-size:15px;font-weight:800;color:#fff;cursor:pointer;padding:0;font-family:inherit}
-.cctv-page-title{font-size:30px;font-weight:900;color:#fff;padding:8px 16px 18px;margin:0;letter-spacing:-.3px}
-.cctv-room{margin-bottom:24px;padding:0 16px}
-.cctv-room-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.cctv-room-name{font-size:17px;font-weight:800;color:#fff;margin:0 0 3px}
-.cctv-room-meta{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:rgba(255,255,255,.5);margin:0}
+.cctv-loc-pin{width:38px;height:38px;border-radius:50%;background:#3478F6;display:grid;place-items:center;flex-shrink:0}
+.cctv-loc-label{display:block;font-size:11px;font-weight:500;color:#888;line-height:1.3}
+.cctv-loc-name{display:flex;align-items:center;gap:4px;background:none;border:none;padding:0;font-size:15px;font-weight:700;color:#1a1a1a;cursor:pointer;font-family:inherit}
+.cctv-avatar-btn{width:40px;height:40px;border-radius:50%;overflow:hidden;border:2px solid #e0e0e0;background:#3478F6;display:grid;place-items:center;flex-shrink:0;font-size:15px;font-weight:800;color:#fff;cursor:pointer;padding:0;font-family:inherit}
+.cctv-page-title{font-size:28px;font-weight:900;color:#1a1a1a;padding:4px 16px 16px;margin:0;letter-spacing:-.4px}
+.cctv-room{margin-bottom:20px;padding:0 16px}
+.cctv-room-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.cctv-room-name{font-size:17px;font-weight:800;color:#1a1a1a;margin:0 0 3px}
+.cctv-room-meta{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:#888;margin:0}
 .cctv-dot{width:7px;height:7px;border-radius:50%;display:inline-block;flex-shrink:0}
 .cctv-dot.green{background:#34C759}
 .cctv-dot.amber{background:#FF9500;animation:liveblink 1.4s infinite}
-.cctv-dot.grey{background:rgba(255,255,255,.3)}
-.cctv-room-arrow{background:rgba(255,255,255,.08);border:none;border-radius:50%;width:30px;height:30px;display:grid;place-items:center;color:rgba(255,255,255,.6);cursor:pointer;font-size:16px;font-weight:700;flex-shrink:0}
-.cctv-cam-lg{display:block;position:relative;width:100%;border-radius:16px;overflow:hidden;border:none;padding:0;cursor:pointer;background:#1e1e2e;margin-bottom:8px;aspect-ratio:16/9}
+.cctv-dot.grey{background:#bbb}
+.cctv-room-arrow{background:rgba(0,0,0,.06);border:none;border-radius:50%;width:30px;height:30px;display:grid;place-items:center;color:#888;cursor:pointer;flex-shrink:0}
+.cctv-cam-lg{display:block;position:relative;width:100%;border-radius:14px;overflow:hidden;border:none;padding:0;cursor:pointer;background:#1e1e2e;margin-bottom:8px;aspect-ratio:16/9}
 .cctv-cam-lg img,.cctv-cam-lg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.cctv-cam-sm{display:block;position:relative;width:100%;border-radius:14px;overflow:hidden;border:none;padding:0;cursor:pointer;background:#1e1e2e;aspect-ratio:16/9}
+.cctv-cam-sm{display:block;position:relative;width:100%;border-radius:12px;overflow:hidden;border:none;padding:0;cursor:pointer;background:#1e1e2e;aspect-ratio:16/9}
 .cctv-cam-sm img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .cctv-sub-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .cctv-cam-name{position:absolute;top:10px;left:12px;font-size:12px;font-weight:700;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.7)}
-.cctv-cam-badge{position:absolute;top:10px;right:10px;display:flex;align-items:center;gap:5px;background:rgba(30,30,30,.85);backdrop-filter:blur(6px);border-radius:20px;padding:3px 9px 3px 7px;font-size:11px;font-weight:700;color:#fff}
+.cctv-cam-badge{position:absolute;top:10px;right:10px;display:flex;align-items:center;gap:5px;background:rgba(20,20,20,.8);backdrop-filter:blur(6px);border-radius:20px;padding:3px 9px 3px 7px;font-size:11px;font-weight:700;color:#fff}
 .cctv-cam-badge .bdot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
 .cctv-cam-badge .bdot.live{background:#FF3B30;animation:liveblink 2s infinite}
 .cctv-cam-badge .bdot.motion{background:#FF9500;animation:liveblink 1.4s infinite}
-.cctv-cam-badge .bdot.off{background:rgba(255,255,255,.35)}
+.cctv-cam-badge .bdot.off{background:rgba(255,255,255,.4)}
 .cctv-cam-badge .bdot.offline{background:#FF3B30;animation:liveblink 1.6s infinite}
-.cctv-cam-time{position:absolute;bottom:10px;left:12px;display:flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:rgba(255,255,255,.8)}
-.cctv-cam-gradient{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.5) 0%,transparent 50%)}
-/* dark overlay for off/offline cams */
+.cctv-cam-time{position:absolute;bottom:10px;left:12px;display:flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:rgba(255,255,255,.85)}
+.cctv-cam-gradient{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.45) 0%,transparent 55%)}
 .cctv-cam-off-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
-/* tabbar dark + FAB */
-[data-screen="my-home"] ~ .tabbar,.tabbar.cctv-nav{background:#1c1c2e;border-top:1px solid rgba(255,255,255,.07)}
-[data-screen="my-home"] ~ .tabbar .tab,.tabbar.cctv-nav .tab{color:rgba(255,255,255,.45)}
-[data-screen="my-home"] ~ .tabbar .tab.is-active,.tabbar.cctv-nav .tab.is-active{color:#3478F6}
-.cctv-fab{position:fixed;bottom:72px;left:50%;transform:translateX(-50%);width:56px;height:56px;border-radius:50%;background:#3478F6;border:none;display:grid;place-items:center;cursor:pointer;box-shadow:0 4px 20px rgba(52,120,246,.5);z-index:200;font-size:26px;font-weight:300;color:#fff;line-height:1}
-.cctv-fab:active{background:#2868d6}
 .cam-tally i{width:7px;height:7px;border-radius:50%;background:var(--good);flex:0 0 auto}
 .cam-tally i.down{background:var(--alert-red)}
 
@@ -6480,30 +6473,27 @@ h1,h2,h3,p{margin:0}
 
     </main>
 
-    <!-- Floating add button -->
-    <button type="button" class="cctv-fab" data-open="settings-camera" aria-label="Add camera">+</button>
   </section>
 
   <!-- Bottom navigation — Today / My home / Events / Ask.
        Four destinations, not five: Cameras folded into My home next to the
        people, and Insights is reached from there rather than owning a tab. -->
-  <nav class="tabbar cctv-nav" data-tabbar aria-label="Main">
+  <nav class="tabbar" data-tabbar aria-label="Main">
     <button type="button" class="tab" data-tab="my-home">
       <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 0 0 1 1h4v-5h4v5h4a1 1 0 0 0 1-1v-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       <span class="lb">Home</span>
     </button>
+    <button type="button" class="tab" data-tab="daily-digest">
+      <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="2"/><path d="M8 12h8M8 8h8M8 16h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+      <span class="lb">Show Home</span>
+    </button>
     <button type="button" class="tab" data-tab="events">
-      <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M23 7l-7 5 7 5V7zM14 5H3a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      <span class="lb">Record</span>
+      <span class="ic"><svg width="22" height="22" viewBox="0 0 56 56" fill="none" aria-hidden="true"><path d="M46.6667 39.6667H21C20.3812 39.6667 19.7877 39.9125 19.3501 40.3501C18.9125 40.7877 18.6667 41.3812 18.6667 42C18.6667 42.6188 18.9125 43.2123 19.3501 43.6499C19.7877 44.0875 20.3812 44.3333 21 44.3333H46.6667C47.2855 44.3333 47.879 44.0875 48.3166 43.6499C48.7542 43.2123 49 42.6188 49 42C49 41.3812 48.7542 40.7877 48.3166 40.3501C47.879 39.9125 47.2855 39.6667 46.6667 39.6667ZM46.6667 25.6667H21C20.3812 25.6667 19.7877 25.9125 19.3501 26.3501C18.9125 26.7877 18.6667 27.3812 18.6667 28C18.6667 28.6188 18.9125 29.2123 19.3501 29.6499C19.7877 30.0875 20.3812 30.3333 21 30.3333H46.6667C47.2855 30.3333 47.879 30.0875 48.3166 29.6499C48.7542 29.2123 49 28.6188 49 28C49 27.3812 48.7542 26.7877 48.3166 26.3501C47.879 25.9125 47.2855 25.6667 46.6667 25.6667ZM21 16.3333H46.6667C47.2855 16.3333 47.879 16.0875 48.3166 15.6499C48.7542 15.2123 49 14.6188 49 14C49 13.3812 48.7542 12.7877 48.3166 12.3501C47.879 11.9125 47.2855 11.6667 46.6667 11.6667H21C20.3812 11.6667 19.7877 11.9125 19.3501 12.3501C18.9125 12.7877 18.6667 13.3812 18.6667 14C18.6667 14.6188 18.9125 15.2123 19.3501 15.6499C19.7877 16.0875 20.3812 16.3333 21 16.3333V16.3333ZM10.5 10.5C9.80776 10.5 9.13108 10.7053 8.5555 11.0899C7.97993 11.4744 7.53133 12.0211 7.26642 12.6606C7.00151 13.3001 6.9322 14.0039 7.06725 14.6828C7.2023 15.3617 7.53564 15.9854 8.02513 16.4749C8.51461 16.9644 9.13825 17.2977 9.81718 17.4327C10.4961 17.5678 11.1998 17.4985 11.8394 17.2336C12.4789 16.9687 13.0256 16.5201 13.4101 15.9445C13.7947 15.3689 14 14.6922 14 14C14 13.0717 13.6313 12.1815 12.9749 11.5251C12.3185 10.8687 11.4283 10.5 10.5 10.5ZM10.5 24.5C9.80776 24.5 9.13108 24.7053 8.5555 25.0899C7.97993 25.4744 7.53133 26.0211 7.26642 26.6606C7.00151 27.3002 6.9322 28.0039 7.06725 28.6828C7.2023 29.3618 7.53564 29.9854 8.02513 30.4749C8.51461 30.9644 9.13825 31.2977 9.81718 31.4328C10.4961 31.5678 11.1998 31.4985 11.8394 31.2336C12.4789 30.9687 13.0256 30.5201 13.4101 29.9445C13.7947 29.3689 14 28.6922 14 28C14 27.0717 13.6313 26.1815 12.9749 25.5251C12.3185 24.8688 11.4283 24.5 10.5 24.5ZM10.5 38.5C9.80776 38.5 9.13108 38.7053 8.5555 39.0899C7.97993 39.4744 7.53133 40.0211 7.26642 40.6606C7.00151 41.3002 6.9322 42.0039 7.06725 42.6828C7.2023 43.3618 7.53564 43.9854 8.02513 44.4749C8.51461 44.9644 9.13825 45.2977 9.81718 45.4328C10.4961 45.5678 11.1998 45.4985 11.8394 45.2336C12.4789 44.9687 13.0256 44.5201 13.4101 43.9445C13.7947 43.3689 14 42.6922 14 42C14 41.0717 13.6313 40.1815 12.9749 39.5251C12.3185 38.8687 11.4283 38.5 10.5 38.5Z" fill="currentColor"/></svg></span>
+      <span class="lb">Activity</span>
     </button>
-    <span style="width:56px;flex-shrink:0"></span>
     <button type="button" class="tab" data-tab="ai-search">
-      <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      <span class="lb">Alarm</span>
-    </button>
-    <button type="button" class="tab" data-tab="settings-camera">
-      <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" stroke="currentColor" stroke-width="2"/></svg></span>
-      <span class="lb">Settings</span>
+      <span class="ic"><svg width="22" height="22" viewBox="0 0 56 56" fill="none" aria-hidden="true"><path d="M23.3427 4.66603C26.3721 4.66927 29.3408 5.51492 31.9172 7.10845C34.4935 8.70198 36.5759 10.9806 37.9316 13.6896C39.2874 16.3987 39.863 19.4314 39.5942 22.4488C39.3253 25.4661 38.2227 28.3493 36.4094 30.776L50.6661 45.0094C50.8848 45.2263 51.0584 45.4843 51.1768 45.7687C51.2953 46.053 51.3563 46.358 51.3563 46.666C51.3563 46.9741 51.2953 47.279 51.1768 47.5634C51.0584 47.8477 50.8848 48.1058 50.6661 48.3227C50.4492 48.5414 50.1911 48.715 49.9067 48.8334C49.6224 48.9519 49.3174 49.0129 49.0094 49.0129C48.7014 49.0129 48.3964 48.9519 48.1121 48.8334C47.8277 48.715 47.5696 48.5414 47.3527 48.3227L33.1194 34.066C31.0482 35.6194 28.6373 36.6582 26.0857 37.0967C23.5341 37.5352 20.9148 37.3608 18.4438 36.588C15.9728 35.8151 13.7209 34.466 11.8739 32.6517C10.0268 30.8374 8.63755 28.6101 7.82058 26.1533C7.00361 23.6966 6.78237 21.0808 7.1751 18.5217C7.56783 15.9627 8.56329 13.5336 10.0794 11.4349C11.5955 9.33619 13.5887 7.62795 15.8948 6.45106C18.2009 5.27416 20.7537 4.66234 23.3427 4.66603V4.66603ZM23.3427 32.666C25.6502 32.666 27.9058 31.9818 29.8244 30.6998C31.743 29.4179 33.2383 27.5958 34.1213 25.464C35.0044 23.3322 35.2354 20.9864 34.7852 18.7233C34.3351 16.4602 33.2239 14.3814 31.5923 12.7498C29.9607 11.1182 27.8819 10.007 25.6188 9.55687C23.3557 9.10671 21.0099 9.33775 18.8781 10.2208C16.7463 11.1038 14.9242 12.5991 13.6423 14.5177C12.3603 16.4363 11.6761 18.6919 11.6761 20.9994C11.6761 22.5315 11.9778 24.0485 12.5641 25.464C13.1504 26.8795 14.0098 28.1656 15.0932 29.2489C16.1765 30.3323 17.4626 31.1917 18.8781 31.778C20.2936 32.3643 21.8106 32.666 23.3427 32.666V32.666Z" fill="currentColor"/></svg></span>
+      <span class="lb">Ask</span>
     </button>
   </nav>
 
