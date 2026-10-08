@@ -1620,18 +1620,19 @@ h1,h2,h3,p{margin:0}
 .cctv-loc-name{display:flex;align-items:center;gap:4px;background:none;border:none;padding:0;font-size:15px;font-weight:700;color:#1a1a1a;cursor:pointer;font-family:inherit}
 .cctv-avatar-btn{width:40px;height:40px;border-radius:50%;overflow:hidden;border:2px solid #e0e0e0;background:#3478F6;display:grid;place-items:center;flex-shrink:0;font-size:15px;font-weight:800;color:#fff;cursor:pointer;padding:0;font-family:inherit}
 .cctv-page-title{font-size:28px;font-weight:900;color:#1a1a1a;padding:4px 16px 16px;margin:0;letter-spacing:-.4px}
-.cctv-room{margin-bottom:20px;padding:0 16px}
+.cctv-room{margin-bottom:24px;padding:0 16px}
+.cctv-room-card{background:#1a1a1a;border-radius:20px;padding:16px 16px 14px;overflow:hidden}
 .cctv-room-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.cctv-room-name{font-size:17px;font-weight:800;color:#1a1a1a;margin:0 0 3px}
-.cctv-room-meta{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:#888;margin:0}
+.cctv-room-name{font-size:17px;font-weight:800;color:#fff;margin:0 0 3px}
+.cctv-room-meta{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:rgba(255,255,255,.55);margin:0}
 .cctv-dot{width:7px;height:7px;border-radius:50%;display:inline-block;flex-shrink:0}
 .cctv-dot.green{background:#34C759}
 .cctv-dot.amber{background:#FF9500;animation:liveblink 1.4s infinite}
-.cctv-dot.grey{background:#bbb}
-.cctv-room-arrow{background:rgba(0,0,0,.06);border:none;border-radius:50%;width:30px;height:30px;display:grid;place-items:center;color:#888;cursor:pointer;flex-shrink:0}
-.cctv-cam-lg{display:block;position:relative;width:100%;border-radius:14px;overflow:hidden;border:none;padding:0;cursor:pointer;background:#1e1e2e;margin-bottom:8px;aspect-ratio:16/9}
+.cctv-dot.grey{background:rgba(255,255,255,.35)}
+.cctv-room-arrow{background:rgba(255,255,255,.1);border:none;border-radius:50%;width:32px;height:32px;display:grid;place-items:center;color:rgba(255,255,255,.75);cursor:pointer;flex-shrink:0}
+.cctv-cam-lg{display:block;position:relative;width:100%;border-radius:12px;overflow:hidden;border:none;padding:0;cursor:pointer;background:#111;margin-bottom:8px;aspect-ratio:16/9}
 .cctv-cam-lg img,.cctv-cam-lg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.cctv-cam-sm{display:block;position:relative;width:100%;border-radius:12px;overflow:hidden;border:none;padding:0;cursor:pointer;background:#1e1e2e;aspect-ratio:16/9}
+.cctv-cam-sm{display:block;position:relative;width:100%;border-radius:10px;overflow:hidden;border:none;padding:0;cursor:pointer;background:#111;aspect-ratio:16/9}
 .cctv-cam-sm img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .cctv-sub-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .cctv-cam-name{position:absolute;top:10px;left:12px;font-size:12px;font-weight:700;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.7)}
@@ -6368,101 +6369,100 @@ h1,h2,h3,p{margin:0}
     </header>
     <main class="scroll cctv-scroll">
 
-      <!-- Page title -->
-      <h1 class="cctv-page-title">Home CCTV</h1>
-
       <!-- ── Room: Nursery ── -->
       <div class="cctv-room">
-        <div class="cctv-room-hdr">
-          <div>
-            <p class="cctv-room-name">Nursery</p>
-            <p class="cctv-room-meta"><span class="cctv-dot green"></span> 1 Camera</p>
+        <div class="cctv-room-card">
+          <div class="cctv-room-hdr">
+            <div>
+              <p class="cctv-room-name">Nursery</p>
+              <p class="cctv-room-meta"><span class="cctv-dot green"></span> 1 Camera</p>
+            </div>
+            <button type="button" class="cctv-room-arrow" data-open="cam-detail-live">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
           </div>
-          <button type="button" class="cctv-room-arrow" data-open="cam-detail-live">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <button type="button" class="cctv-cam-lg" data-open="cam-detail-live" aria-label="Nursery Cam 1 · Live">
+            <img src="assets/nursery.png" alt="">
+            <video src="assets/nursery-clip.mp4" poster="assets/nursery.png" autoplay muted playsinline loop preload="metadata" onerror="this.style.display='none'" aria-hidden="true"></video>
+            <div class="cctv-cam-gradient"></div>
+            <span class="cctv-cam-name">Cam 1</span>
+            <span class="cctv-cam-badge"><span class="bdot live"></span> Live</span>
+            <span class="cctv-cam-time">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              08:14 AM
+            </span>
           </button>
         </div>
-        <!-- Featured large cam — Live -->
-        <button type="button" class="cctv-cam-lg" data-open="cam-detail-live" aria-label="Nursery Cam 1 · Live">
-          <img src="assets/nursery.png" alt="">
-          <video src="assets/nursery-clip.mp4" poster="assets/nursery.png" autoplay muted playsinline loop preload="metadata" onerror="this.style.display='none'" aria-hidden="true"></video>
-          <div class="cctv-cam-gradient"></div>
-          <span class="cctv-cam-name">Cam 1</span>
-          <span class="cctv-cam-badge"><span class="bdot live"></span> Live</span>
-          <span class="cctv-cam-time">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            08:14 AM
-          </span>
-        </button>
       </div>
 
       <!-- ── Room: Front Porch ── -->
       <div class="cctv-room">
-        <div class="cctv-room-hdr">
-          <div>
-            <p class="cctv-room-name">Front Porch</p>
-            <p class="cctv-room-meta"><span class="cctv-dot amber"></span> 1 Camera</p>
+        <div class="cctv-room-card">
+          <div class="cctv-room-hdr">
+            <div>
+              <p class="cctv-room-name">Front Porch</p>
+              <p class="cctv-room-meta"><span class="cctv-dot amber"></span> 1 Camera</p>
+            </div>
+            <button type="button" class="cctv-room-arrow" data-open="cam-detail-motion">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
           </div>
-          <button type="button" class="cctv-room-arrow" data-open="cam-detail-motion">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <button type="button" class="cctv-cam-lg" data-open="cam-detail-motion" aria-label="Front Porch Cam 1 · Motion">
+            <img src="assets/frontporch.png" alt="">
+            <div class="cctv-cam-gradient"></div>
+            <span class="cctv-cam-name">Cam 1</span>
+            <span class="cctv-cam-badge"><span class="bdot motion"></span> Motion</span>
+            <span class="cctv-cam-time">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              08:12 AM
+            </span>
           </button>
         </div>
-        <!-- Featured large cam — Motion -->
-        <button type="button" class="cctv-cam-lg" data-open="cam-detail-motion" aria-label="Front Porch Cam 1 · Motion">
-          <img src="assets/frontporch.png" alt="">
-          <div class="cctv-cam-gradient"></div>
-          <span class="cctv-cam-name">Cam 1</span>
-          <span class="cctv-cam-badge"><span class="bdot motion"></span> Motion</span>
-          <span class="cctv-cam-time">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            08:12 AM
-          </span>
-        </button>
       </div>
 
       <!-- ── Room: Living Room (2 cams) ── -->
       <div class="cctv-room">
-        <div class="cctv-room-hdr">
-          <div>
-            <p class="cctv-room-name">Living Room</p>
-            <p class="cctv-room-meta"><span class="cctv-dot grey"></span> 2 Cameras</p>
-          </div>
-          <button type="button" class="cctv-room-arrow" data-open="cam-detail-off">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-        </div>
-        <!-- Featured large cam — Off -->
-        <button type="button" class="cctv-cam-lg" data-open="cam-detail-off" aria-label="Living Room Cam 1 · Off">
-          <img src="assets/livingroom-cam1.png" alt="" style="opacity:.1;filter:grayscale(1)">
-          <div class="cctv-cam-off-overlay">
-            <span style="width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.1);display:grid;place-items:center">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2v10M6.35 4.65a9 9 0 1 0 11.3 0" stroke="rgba(255,255,255,.6)" stroke-width="2" stroke-linecap="round"/></svg>
-            </span>
-            <span style="font-size:11px;font-weight:600;color:rgba(255,255,255,.4)">Camera off</span>
-          </div>
-          <span class="cctv-cam-name">Cam 1</span>
-          <span class="cctv-cam-badge"><span class="bdot off"></span> Off</span>
-          <span class="cctv-cam-time">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            14:30 PM
-          </span>
-        </button>
-        <!-- Sub-camera grid — Offline -->
-        <div class="cctv-sub-grid">
-          <button type="button" class="cctv-cam-sm" data-open="cam-detail-offline" aria-label="Living Room Cam 2 · Offline">
-            <img src="assets/livingroom-cam2.png" alt="" style="opacity:.08;filter:grayscale(1)">
-            <div class="cctv-cam-off-overlay">
-              <span style="width:36px;height:36px;border-radius:50%;background:rgba(255,59,48,.18);display:grid;place-items:center">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M1 1l22 22M16.72 11.06A10.94 10.94 0 0 1 19 12.55M5 12.55a10.94 10.94 0 0 1 5.17-2.8M10.71 5.05A16 16 0 0 1 22.56 9M1.42 9a15.91 15.91 0 0 1 4.7-2.88M12 20h.01" stroke="rgba(255,80,80,.7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </span>
+        <div class="cctv-room-card">
+          <div class="cctv-room-hdr">
+            <div>
+              <p class="cctv-room-name">Living Room</p>
+              <p class="cctv-room-meta"><span class="cctv-dot grey"></span> 2 Cameras</p>
             </div>
-            <span class="cctv-cam-name">Cam 2</span>
-            <span class="cctv-cam-badge" style="font-size:10px;padding:2px 7px 2px 6px"><span class="bdot offline"></span> Offline</span>
-            <span class="cctv-cam-time" style="font-size:10px">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-              15:24 PM
+            <button type="button" class="cctv-room-arrow" data-open="cam-detail-off">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <button type="button" class="cctv-cam-lg" data-open="cam-detail-off" aria-label="Living Room Cam 1 · Off">
+            <img src="assets/livingroom-cam1.png" alt="" style="opacity:.1;filter:grayscale(1)">
+            <div class="cctv-cam-off-overlay">
+              <span style="width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.1);display:grid;place-items:center">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2v10M6.35 4.65a9 9 0 1 0 11.3 0" stroke="rgba(255,255,255,.6)" stroke-width="2" stroke-linecap="round"/></svg>
+              </span>
+              <span style="font-size:11px;font-weight:600;color:rgba(255,255,255,.4)">Camera off</span>
+            </div>
+            <span class="cctv-cam-name">Cam 1</span>
+            <span class="cctv-cam-badge"><span class="bdot off"></span> Off</span>
+            <span class="cctv-cam-time">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              14:30 PM
             </span>
           </button>
+          <div class="cctv-sub-grid">
+            <button type="button" class="cctv-cam-sm" data-open="cam-detail-offline" aria-label="Living Room Cam 2 · Offline">
+              <img src="assets/livingroom-cam2.png" alt="" style="opacity:.08;filter:grayscale(1)">
+              <div class="cctv-cam-off-overlay">
+                <span style="width:36px;height:36px;border-radius:50%;background:rgba(255,59,48,.18);display:grid;place-items:center">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M1 1l22 22M16.72 11.06A10.94 10.94 0 0 1 19 12.55M5 12.55a10.94 10.94 0 0 1 5.17-2.8M10.71 5.05A16 16 0 0 1 22.56 9M1.42 9a15.91 15.91 0 0 1 4.7-2.88M12 20h.01" stroke="rgba(255,80,80,.7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </div>
+              <span class="cctv-cam-name">Cam 2</span>
+              <span class="cctv-cam-badge" style="font-size:10px;padding:2px 7px 2px 6px"><span class="bdot offline"></span> Offline</span>
+              <span class="cctv-cam-time" style="font-size:10px">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                15:24 PM
+              </span>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -6482,10 +6482,6 @@ h1,h2,h3,p{margin:0}
     <button type="button" class="tab" data-tab="my-home">
       <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 0 0 1 1h4v-5h4v5h4a1 1 0 0 0 1-1v-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       <span class="lb">Home</span>
-    </button>
-    <button type="button" class="tab" data-tab="daily-digest">
-      <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="2"/><path d="M8 12h8M8 8h8M8 16h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-      <span class="lb">Show Home</span>
     </button>
     <button type="button" class="tab" data-tab="events">
       <span class="ic"><svg width="22" height="22" viewBox="0 0 56 56" fill="none" aria-hidden="true"><path d="M46.6667 39.6667H21C20.3812 39.6667 19.7877 39.9125 19.3501 40.3501C18.9125 40.7877 18.6667 41.3812 18.6667 42C18.6667 42.6188 18.9125 43.2123 19.3501 43.6499C19.7877 44.0875 20.3812 44.3333 21 44.3333H46.6667C47.2855 44.3333 47.879 44.0875 48.3166 43.6499C48.7542 43.2123 49 42.6188 49 42C49 41.3812 48.7542 40.7877 48.3166 40.3501C47.879 39.9125 47.2855 39.6667 46.6667 39.6667ZM46.6667 25.6667H21C20.3812 25.6667 19.7877 25.9125 19.3501 26.3501C18.9125 26.7877 18.6667 27.3812 18.6667 28C18.6667 28.6188 18.9125 29.2123 19.3501 29.6499C19.7877 30.0875 20.3812 30.3333 21 30.3333H46.6667C47.2855 30.3333 47.879 30.0875 48.3166 29.6499C48.7542 29.2123 49 28.6188 49 28C49 27.3812 48.7542 26.7877 48.3166 26.3501C47.879 25.9125 47.2855 25.6667 46.6667 25.6667ZM21 16.3333H46.6667C47.2855 16.3333 47.879 16.0875 48.3166 15.6499C48.7542 15.2123 49 14.6188 49 14C49 13.3812 48.7542 12.7877 48.3166 12.3501C47.879 11.9125 47.2855 11.6667 46.6667 11.6667H21C20.3812 11.6667 19.7877 11.9125 19.3501 12.3501C18.9125 12.7877 18.6667 13.3812 18.6667 14C18.6667 14.6188 18.9125 15.2123 19.3501 15.6499C19.7877 16.0875 20.3812 16.3333 21 16.3333V16.3333ZM10.5 10.5C9.80776 10.5 9.13108 10.7053 8.5555 11.0899C7.97993 11.4744 7.53133 12.0211 7.26642 12.6606C7.00151 13.3001 6.9322 14.0039 7.06725 14.6828C7.2023 15.3617 7.53564 15.9854 8.02513 16.4749C8.51461 16.9644 9.13825 17.2977 9.81718 17.4327C10.4961 17.5678 11.1998 17.4985 11.8394 17.2336C12.4789 16.9687 13.0256 16.5201 13.4101 15.9445C13.7947 15.3689 14 14.6922 14 14C14 13.0717 13.6313 12.1815 12.9749 11.5251C12.3185 10.8687 11.4283 10.5 10.5 10.5ZM10.5 24.5C9.80776 24.5 9.13108 24.7053 8.5555 25.0899C7.97993 25.4744 7.53133 26.0211 7.26642 26.6606C7.00151 27.3002 6.9322 28.0039 7.06725 28.6828C7.2023 29.3618 7.53564 29.9854 8.02513 30.4749C8.51461 30.9644 9.13825 31.2977 9.81718 31.4328C10.4961 31.5678 11.1998 31.4985 11.8394 31.2336C12.4789 30.9687 13.0256 30.5201 13.4101 29.9445C13.7947 29.3689 14 28.6922 14 28C14 27.0717 13.6313 26.1815 12.9749 25.5251C12.3185 24.8688 11.4283 24.5 10.5 24.5ZM10.5 38.5C9.80776 38.5 9.13108 38.7053 8.5555 39.0899C7.97993 39.4744 7.53133 40.0211 7.26642 40.6606C7.00151 41.3002 6.9322 42.0039 7.06725 42.6828C7.2023 43.3618 7.53564 43.9854 8.02513 44.4749C8.51461 44.9644 9.13825 45.2977 9.81718 45.4328C10.4961 45.5678 11.1998 45.4985 11.8394 45.2336C12.4789 44.9687 13.0256 44.5201 13.4101 43.9445C13.7947 43.3689 14 42.6922 14 42C14 41.0717 13.6313 40.1815 12.9749 39.5251C12.3185 38.8687 11.4283 38.5 10.5 38.5Z" fill="currentColor"/></svg></span>
