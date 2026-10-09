@@ -12278,16 +12278,36 @@ function tlDateNav(btn, dir){
 })();
 </script>
 <script>
-/* ob-loading — halftone ripple: grid of dots whose radius pulses outward like a sine wave */
+/* ob-loading — halftone ring animation (second style): concentric rings via abs(sin),
+   AI-themed colour gradient purple→electric-blue→cyan, slow outward propagation */
 (function obHalftone(){
   var canvas = document.getElementById('ob-wave-canvas');
   if(!canvas) return;
   var ctx = canvas.getContext('2d');
   var W, H, time = 0;
-  var GAP   = 22;    /* grid spacing px  */
-  var MAXR  = 7.5;   /* max dot radius   */
-  var SPEED = 0.038; /* wave propagation speed */
-  var WAVE  = 55;    /* wavelength px    */
+  var GAP   = 20;    /* grid spacing px          */
+  var MAXR  = 7;     /* max dot radius px         */
+  var SPEED = 0.032; /* wave speed (slow & calm)  */
+  var WAVE  = 52;    /* ring wavelength px         */
+
+  /* AI colour stops: deep purple → electric blue → cyan */
+  var STOPS = [
+    [34,  0, 113],   /* #220071 Jio purple   */
+    [0,  85, 255],   /* #0055FF electric blue */
+    [0, 200, 255]    /* #00C8FF AI cyan       */
+  ];
+
+  function lerpColor(t){
+    /* t in [0,1]: map across the three stops */
+    var seg = t < 0.5 ? 0 : 1;
+    var lt  = t < 0.5 ? t * 2 : (t - 0.5) * 2;
+    var a = STOPS[seg], b = STOPS[seg + 1];
+    return [
+      Math.round(a[0] + (b[0]-a[0]) * lt),
+      Math.round(a[1] + (b[1]-a[1]) * lt),
+      Math.round(a[2] + (b[2]-a[2]) * lt)
+    ];
+  }
 
   function setup(){
     var dpr = window.devicePixelRatio || 1;
@@ -12300,34 +12320,40 @@ function tlDateNav(btn, dir){
 
   function draw(){
     ctx.clearRect(0, 0, W, H);
-    var cx = W / 2;
-    var cy = H * 0.40;          /* wave origin — upper-center */
-    var textTop = H * 0.68;     /* below this → fade dots to 0 */
-    var maxDist = Math.hypot(cx, cy) * 1.4;
+    var cx      = W / 2;
+    var cy      = H * 0.38;
+    var textTop = H * 0.67;
+    var maxDist = Math.hypot(W * 0.6, H * 0.45);
 
     for(var x = GAP / 2; x < W + GAP; x += GAP){
       for(var y = GAP / 2; y < H; y += GAP){
         var dx = x - cx, dy = y - cy;
         var dist = Math.sqrt(dx*dx + dy*dy);
 
-        /* sine ripple: 0–1 */
-        var wave = (Math.sin(dist / WAVE - time) + 1) / 2;
+        /* abs(sin) → multiple sharp bright rings radiating outward */
+        var ring = Math.abs(Math.sin(dist / WAVE - time));
 
-        /* radial fade — far dots are smaller */
-        var radialFade = Math.max(0, 1 - dist / maxDist);
+        /* radial envelope — shrink far dots gently */
+        var rFade = Math.max(0, 1 - dist / maxDist);
 
-        /* vertical fade — dots near text area disappear */
-        var vFade = y < textTop ? 1 : Math.max(0, 1 - (y - textTop) / (GAP * 3));
+        /* vertical fade before text */
+        var vFade = y < textTop
+          ? 1
+          : Math.max(0, 1 - (y - textTop) / (GAP * 2.5));
 
-        var r = wave * MAXR * radialFade * vFade;
-        if(r < 0.4) continue;
+        var r = ring * MAXR * rFade * vFade;
+        if(r < 0.35) continue;
 
-        /* opacity also follows radial fade */
-        var op = (0.55 + wave * 0.35) * radialFade * vFade;
+        /* colour: gradient from purple (center) to cyan (edge) */
+        var colT  = Math.min(1, dist / (maxDist * 0.85));
+        var col   = lerpColor(colT);
+
+        /* brightness pulses with the ring */
+        var op = (0.45 + ring * 0.55) * rFade * vFade;
 
         ctx.beginPath();
         ctx.arc(x, y, r, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(34,0,113,' + op.toFixed(2) + ')';
+        ctx.fillStyle = 'rgba('+col[0]+','+col[1]+','+col[2]+','+op.toFixed(2)+')';
         ctx.fill();
       }
     }
