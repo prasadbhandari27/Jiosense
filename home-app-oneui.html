@@ -2532,8 +2532,8 @@ h1,h2,h3,p{margin:0}
    auto-advances (see primeLoading() in the onboarding controller). */
 [data-screen="ob-loading"]{background:#fff}
 [data-screen="ob-loading"] .statusbar{background:#fff}
-.ob-loading-main{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;padding:0 32px;position:relative;z-index:2;pointer-events:none}
-.ob-loading-text-box{margin-top:auto;padding-bottom:64px;pointer-events:auto}
+.ob-loading-main{height:100%;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;z-index:2;pointer-events:none}
+.ob-loading-text-box{position:absolute;top:62%;left:0;right:0;padding:0 32px;pointer-events:auto}
 .ob-wave-canvas{position:absolute;inset:0;z-index:1;pointer-events:none;width:100%;height:100%}
 .ob-loading-title{font-size:22px;font-weight:700;color:#000;margin:0;transition:opacity .3s}
 .ob-loading-sub{font-size:14px;font-weight:400;color:rgba(0,0,0,.5);margin:0;line-height:1.5;max-width:280px}
@@ -3828,6 +3828,7 @@ h1,h2,h3,p{margin:0}
     <canvas id="ob-wave-canvas" class="ob-wave-canvas" aria-hidden="true"></canvas>
     <main class="ob-loading-main">
       <div class="ob-loading-text-box">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" style="display:block;margin:0 auto 14px" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="#3B6EF5" stroke-width="2" stroke-linecap="round"/><path d="M16 16L20 20" stroke="#3B6EF5" stroke-width="2.2" stroke-linecap="round"/></svg>
         <h1 class="ob-loading-title" id="ob-loading-title">Looking for camera</h1>
         <p class="ob-loading-sub" style="margin-top:8px">Make sure it is connected to the power outlet, blinking and your phone is close to it.</p>
       </div>
@@ -12278,92 +12279,111 @@ function tlDateNav(btn, dir){
 })();
 </script>
 <script>
-/* ob-loading — halftone donut animation: single breathing Gaussian ring,
-   coral-orange (top) → peach → soft-purple (bottom), light-mode, speed 0.035 */
-(function obHalftone(){
+/* ob-loading — Connecting Dots: search icon scans LEFT HALF of screen,
+   full-screen dot field, coral→peach→purple gradient, speed=0.004, reach=30 */
+(function obDots(){
   var canvas = document.getElementById('ob-wave-canvas');
   if(!canvas) return;
   var ctx = canvas.getContext('2d');
-  var W, H, cx, cy, BASE_R, time = 0;
-  var GAP   = 17;    /* grid spacing px  */
-  var MAXR  = 10;    /* max dot radius   */
-  var SPEED = 0.035; /* 0.03-0.04 range  */
-  var SIGMA = 34;    /* ring band width  */
-  var AMP   = 14;    /* breathing px     */
+  var W, H, t = 0;
+  var SPEED  = 0.004;
+  var REACH  = 30;
+  var LINE_R = 26;
+  var GAP    = 22;
+  var BASE_R = 1.8;
+  var MAX_R  = 7;
 
-  /* Reference colours adapted for light mode:
-     coral-orange (top) → light-peach (mid) → soft-purple (bottom) */
-  var C_TOP = [255,  88,  44];   /* coral orange  */
-  var C_MID = [255, 185, 155];   /* warm peach    */
-  var C_BOT = [160, 110, 210];   /* soft purple   */
+  var C_TOP = [240,  85,  50];
+  var C_MID = [220, 155, 135];
+  var C_BOT = [140, 100, 200];
 
-  function lerp3(a, b, t){
-    return [
-      Math.round(a[0]+(b[0]-a[0])*t)|0,
-      Math.round(a[1]+(b[1]-a[1])*t)|0,
-      Math.round(a[2]+(b[2]-a[2])*t)|0
-    ];
-  }
+  function lp(a,b,u){ return [a[0]+(b[0]-a[0])*u|0, a[1]+(b[1]-a[1])*u|0, a[2]+(b[2]-a[2])*u|0]; }
 
   function setup(){
-    var dpr = window.devicePixelRatio || 1;
-    W = canvas.clientWidth  || 375;
-    H = canvas.clientHeight || 667;
-    canvas.width  = W * dpr;
-    canvas.height = H * dpr;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    cx     = W / 2;
-    cy     = H * 0.40;
-    BASE_R = W * 0.37;
+    var dpr = window.devicePixelRatio||1;
+    W = canvas.clientWidth ||375;
+    H = canvas.clientHeight||667;
+    canvas.width  = W*dpr;
+    canvas.height = H*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+
+  function iconPos(){
+    var scanCx = W*0.25, scanCy = H*0.36;
+    return {
+      x: scanCx + W*0.18*Math.sin(t*SPEED),
+      y: scanCy + H*0.16*Math.sin(t*SPEED*1.4+1.2)
+    };
+  }
+
+  function drawSearchIcon(x, y){
+    var s=12;
+    ctx.save();
+    ctx.strokeStyle='rgba(59,110,245,0.88)';
+    ctx.lineWidth=2; ctx.lineCap='round';
+    ctx.beginPath(); ctx.arc(x,y,s*0.5,0,Math.PI*2); ctx.stroke();
+    var ang=Math.PI*0.78;
+    ctx.beginPath();
+    ctx.moveTo(x+Math.cos(ang)*s*0.5, y+Math.sin(ang)*s*0.5);
+    ctx.lineTo(x+Math.cos(ang)*s*0.9, y+Math.sin(ang)*s*0.9);
+    ctx.stroke();
+    ctx.restore();
   }
 
   function draw(){
-    ctx.clearRect(0, 0, W, H);
-    var textTop = H * 0.67;
-    var ringR   = BASE_R + AMP * Math.sin(time);
+    ctx.clearRect(0,0,W,H);
+    var ip = iconPos();
+    var textTop = H*0.60;
+    var active=[], rest=[];
 
-    for(var x = 0; x < W + GAP; x += GAP){
-      for(var y = 0; y < H; y += GAP){
-        var dx = x - cx, dy = y - cy;
-        var dist = Math.sqrt(dx*dx + dy*dy);
-
-        /* Gaussian profile centred at ringR → donut/torus shape */
-        var diff   = dist - ringR;
-        var bright = Math.exp(-(diff*diff) / (2*SIGMA*SIGMA));
-        if(bright < 0.04) continue;
-
-        var r = bright * MAXR;
-        if(r < 0.3) continue;
-
-        /* vertical fade into text area */
-        var vFade = y < textTop
-          ? 1
-          : Math.max(0, 1 - (y - textTop) / (GAP * 2));
-        if(vFade < 0.01) continue;
-
-        /* colour by vertical position within the ring band */
-        var yNorm = Math.max(0, Math.min(1,
-          (y - (cy - ringR - SIGMA)) / (2*(ringR + SIGMA))
-        ));
-        var col = yNorm < 0.5
-          ? lerp3(C_TOP, C_MID, yNorm * 2)
-          : lerp3(C_MID, C_BOT, (yNorm - 0.5) * 2);
-
-        var op = bright * 0.88 * vFade;
-
-        ctx.beginPath();
-        ctx.arc(x, y, r, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba('+col[0]+','+col[1]+','+col[2]+','+op.toFixed(2)+')';
-        ctx.fill();
+    for(var x=GAP/2; x<W+GAP; x+=GAP){
+      for(var y=GAP/2; y<H; y+=GAP){
+        var vF = y<textTop ? 1 : Math.max(0, 1-(y-textTop)/(H*0.10));
+        if(vF<0.01) continue;
+        var dx=x-ip.x, dy=y-ip.y;
+        var d=Math.sqrt(dx*dx+dy*dy);
+        var p=Math.max(0, 1-d/REACH);
+        if(p>0.01){ active.push({x:x,y:y,p:p,vF:vF}); }
+        else       { rest.push({x:x,y:y,vF:vF}); }
       }
     }
 
-    time += SPEED;
+    rest.forEach(function(pt){
+      ctx.beginPath(); ctx.arc(pt.x,pt.y,BASE_R,0,Math.PI*2);
+      ctx.fillStyle='rgba(160,165,185,'+(0.20*pt.vF).toFixed(2)+')';
+      ctx.fill();
+    });
+
+    for(var i=0;i<active.length;i++){
+      for(var j=i+1;j<active.length;j++){
+        var a=active[i],b=active[j];
+        var ldx=a.x-b.x, ldy=a.y-b.y;
+        var ld=Math.sqrt(ldx*ldx+ldy*ldy);
+        if(ld>LINE_R) continue;
+        var lop=a.p*b.p*(1-ld/LINE_R)*0.55;
+        if(lop<0.02) continue;
+        ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y);
+        ctx.strokeStyle='rgba(59,110,245,'+lop.toFixed(2)+')';
+        ctx.lineWidth=0.8; ctx.stroke();
+      }
+    }
+
+    active.forEach(function(pt){
+      var r=BASE_R+(MAX_R-BASE_R)*pt.p;
+      var op=(0.22+pt.p*0.72)*pt.vF;
+      var yN=Math.max(0,Math.min(1,pt.y/textTop));
+      var col=yN<0.5?lp(C_TOP,C_MID,yN*2):lp(C_MID,C_BOT,(yN-0.5)*2);
+      ctx.beginPath(); ctx.arc(pt.x,pt.y,r,0,Math.PI*2);
+      ctx.fillStyle='rgba('+col[0]+','+col[1]+','+col[2]+','+op.toFixed(2)+')';
+      ctx.fill();
+    });
+
+    drawSearchIcon(ip.x,ip.y);
+    t++;
     requestAnimationFrame(draw);
   }
 
-  setup();
-  draw();
+  setup(); draw();
   window.addEventListener('resize', setup);
 })();
 </script>
