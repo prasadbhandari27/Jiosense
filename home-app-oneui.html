@@ -12278,34 +12278,30 @@ function tlDateNav(btn, dir){
 })();
 </script>
 <script>
-/* ob-loading — halftone ring animation (second style): concentric rings via abs(sin),
-   AI-themed colour gradient purple→electric-blue→cyan, slow outward propagation */
+/* ob-loading — halftone donut animation: single breathing Gaussian ring,
+   coral-orange (top) → peach → soft-purple (bottom), light-mode, speed 0.035 */
 (function obHalftone(){
   var canvas = document.getElementById('ob-wave-canvas');
   if(!canvas) return;
   var ctx = canvas.getContext('2d');
-  var W, H, time = 0;
-  var GAP   = 20;    /* grid spacing px          */
-  var MAXR  = 7;     /* max dot radius px         */
-  var SPEED = 0.032; /* wave speed (slow & calm)  */
-  var WAVE  = 52;    /* ring wavelength px         */
+  var W, H, cx, cy, BASE_R, time = 0;
+  var GAP   = 17;    /* grid spacing px  */
+  var MAXR  = 10;    /* max dot radius   */
+  var SPEED = 0.035; /* 0.03-0.04 range  */
+  var SIGMA = 34;    /* ring band width  */
+  var AMP   = 14;    /* breathing px     */
 
-  /* AI colour stops: deep purple → electric blue → cyan */
-  var STOPS = [
-    [34,  0, 113],   /* #220071 Jio purple   */
-    [0,  85, 255],   /* #0055FF electric blue */
-    [0, 200, 255]    /* #00C8FF AI cyan       */
-  ];
+  /* Reference colours adapted for light mode:
+     coral-orange (top) → light-peach (mid) → soft-purple (bottom) */
+  var C_TOP = [255,  88,  44];   /* coral orange  */
+  var C_MID = [255, 185, 155];   /* warm peach    */
+  var C_BOT = [160, 110, 210];   /* soft purple   */
 
-  function lerpColor(t){
-    /* t in [0,1]: map across the three stops */
-    var seg = t < 0.5 ? 0 : 1;
-    var lt  = t < 0.5 ? t * 2 : (t - 0.5) * 2;
-    var a = STOPS[seg], b = STOPS[seg + 1];
+  function lerp3(a, b, t){
     return [
-      Math.round(a[0] + (b[0]-a[0]) * lt),
-      Math.round(a[1] + (b[1]-a[1]) * lt),
-      Math.round(a[2] + (b[2]-a[2]) * lt)
+      Math.round(a[0]+(b[0]-a[0])*t)|0,
+      Math.round(a[1]+(b[1]-a[1])*t)|0,
+      Math.round(a[2]+(b[2]-a[2])*t)|0
     ];
   }
 
@@ -12316,40 +12312,44 @@ function tlDateNav(btn, dir){
     canvas.width  = W * dpr;
     canvas.height = H * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    cx     = W / 2;
+    cy     = H * 0.40;
+    BASE_R = W * 0.37;
   }
 
   function draw(){
     ctx.clearRect(0, 0, W, H);
-    var cx      = W / 2;
-    var cy      = H * 0.38;
     var textTop = H * 0.67;
-    var maxDist = Math.hypot(W * 0.6, H * 0.45);
+    var ringR   = BASE_R + AMP * Math.sin(time);
 
-    for(var x = GAP / 2; x < W + GAP; x += GAP){
-      for(var y = GAP / 2; y < H; y += GAP){
+    for(var x = 0; x < W + GAP; x += GAP){
+      for(var y = 0; y < H; y += GAP){
         var dx = x - cx, dy = y - cy;
         var dist = Math.sqrt(dx*dx + dy*dy);
 
-        /* abs(sin) → multiple sharp bright rings radiating outward */
-        var ring = Math.abs(Math.sin(dist / WAVE - time));
+        /* Gaussian profile centred at ringR → donut/torus shape */
+        var diff   = dist - ringR;
+        var bright = Math.exp(-(diff*diff) / (2*SIGMA*SIGMA));
+        if(bright < 0.04) continue;
 
-        /* radial envelope — shrink far dots gently */
-        var rFade = Math.max(0, 1 - dist / maxDist);
+        var r = bright * MAXR;
+        if(r < 0.3) continue;
 
-        /* vertical fade before text */
+        /* vertical fade into text area */
         var vFade = y < textTop
           ? 1
-          : Math.max(0, 1 - (y - textTop) / (GAP * 2.5));
+          : Math.max(0, 1 - (y - textTop) / (GAP * 2));
+        if(vFade < 0.01) continue;
 
-        var r = ring * MAXR * rFade * vFade;
-        if(r < 0.35) continue;
+        /* colour by vertical position within the ring band */
+        var yNorm = Math.max(0, Math.min(1,
+          (y - (cy - ringR - SIGMA)) / (2*(ringR + SIGMA))
+        ));
+        var col = yNorm < 0.5
+          ? lerp3(C_TOP, C_MID, yNorm * 2)
+          : lerp3(C_MID, C_BOT, (yNorm - 0.5) * 2);
 
-        /* colour: gradient from purple (center) to cyan (edge) */
-        var colT  = Math.min(1, dist / (maxDist * 0.85));
-        var col   = lerpColor(colT);
-
-        /* brightness pulses with the ring */
-        var op = (0.45 + ring * 0.55) * rFade * vFade;
+        var op = bright * 0.88 * vFade;
 
         ctx.beginPath();
         ctx.arc(x, y, r, 0, Math.PI * 2);
