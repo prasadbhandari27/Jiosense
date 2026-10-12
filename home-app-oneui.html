@@ -2694,13 +2694,12 @@ button.oneui-Avatar{position:relative}
 .ob-search-layer{position:absolute;left:0;top:0;width:320px;height:260px}
 .ob-item{position:absolute;display:block}
 .ob-item-camera{object-fit:contain}
-/* Five cameras scattered across the scene (image ratio 620:578). The four outer ones are small
-   enough (<=42px, x1.4 in the 72px glass) to appear whole in the lens; the middle one is
-   larger so the lens shows a close-up of it. */
+/* Five same-size cameras around the edge of the scene (image ratio 620:578); 40px x1.4 fits
+   whole in the 72px glass. The centre is left empty: that is where the lens rests. */
 .ob-cam-1{left:46px;top:54px;width:40px;height:37px}
-.ob-cam-2{left:211px;top:36px;width:42px;height:39px}
-.ob-cam-3{left:124px;top:104px;width:84px;height:78px}
-.ob-cam-4{left:38px;top:180px;width:36px;height:34px}
+.ob-cam-2{left:212px;top:37px;width:40px;height:37px}
+.ob-cam-3{left:140px;top:204px;width:40px;height:37px}
+.ob-cam-4{left:36px;top:179px;width:40px;height:37px}
 .ob-cam-5{left:244px;top:182px;width:40px;height:37px}
 /* Outside the lens the camera is barely there; only the lens shows it clearly. */
 .ob-search-ghost{opacity:0}
@@ -12821,9 +12820,9 @@ function tlDateNav(btn, dir){
 })();
 </script>
 <script>
-/* ob-loading — searching scene: five hidden (0% opacity) cameras and a black magnifier that hops
-   between them, showing only what is under the lens. Only animates while the screen is
-   showing; rests on the middle camera for reduced motion. */
+/* ob-loading — searching scene: five hidden (0% opacity) cameras and a black magnifier that starts
+   on the empty centre, then hops between them, showing only what is under the lens. Only
+   animates while the screen is showing; rests on the first camera for reduced motion. */
 (function obSearch(){
   var section = document.querySelector('[data-screen="ob-loading"]');
   var scene   = document.getElementById('ob-search');
@@ -12835,10 +12834,11 @@ function tlDateNav(btn, dir){
   zoom.classList.remove('ob-search-ghost'); zoom.removeAttribute('data-ob-layer');
   view.appendChild(zoom);
 
-  var K = 1.4, PERIOD = 9000, LENS_C = 48, VIEW_R = 36;
-  // middle camera's lens, then the centres of the four small ones (each fits whole in the glass)
-  var CAM = {x:166, y:153}, C1 = {x:66, y:72.5}, C2 = {x:232, y:55.5}, C5 = {x:264, y:200.5}, C4 = {x:56, y:197};
-  var WAY = [[0,CAM],[.10,CAM],[.24,C1],[.30,C1],[.44,C2],[.50,C2],[.64,C5],[.70,C5],[.84,C4],[.90,C4],[1,CAM]];
+  var K = 1.4, PERIOD = 10000, LENS_C = 48, VIEW_R = 36;
+  // HOME is the empty centre, so the resting lens shows nothing; cameras only appear once it moves
+  var HOME = {x:160, y:130}, C1 = {x:66, y:72.5}, C2 = {x:232, y:55.5}, C3 = {x:160, y:222.5},
+      C4 = {x:56, y:197.5}, C5 = {x:264, y:200.5};
+  var WAY = [[0,HOME],[.08,HOME],[.19,C1],[.25,C1],[.36,C2],[.42,C2],[.53,C5],[.59,C5],[.68,C3],[.74,C3],[.83,C4],[.89,C4],[1,HOME]];
   function ease(u){ return u*u*u*(u*(u*6-15)+10); }
   function place(p, bob){
     var x = p.x, y = p.y + bob;
@@ -12854,7 +12854,7 @@ function tlDateNav(btn, dir){
         return { x: a[1].x + (b[1].x - a[1].x) * k, y: a[1].y + (b[1].y - a[1].y) * k, lift: lift };
       }
     }
-    return CAM;
+    return HOME;
   }
   var running = false, t0 = 0;
   function frame(ts){
@@ -12866,10 +12866,10 @@ function tlDateNav(btn, dir){
   }
   function start(){
     if(running) return;
-    if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches){ place(CAM, 0); return; }
+    if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches){ place(C1, 0); return; }
     running = true; t0 = 0; requestAnimationFrame(frame);
   }
-  place(CAM, 0);
+  place(HOME, 0);
   new MutationObserver(function(){ if(section.classList.contains('is-active')) start(); }).observe(section, {attributes:true, attributeFilter:['class']});
   if(section.classList.contains('is-active')) start();
 })();
