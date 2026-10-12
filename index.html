@@ -2853,16 +2853,15 @@ button.oneui-Avatar{position:relative}
 .ob-camcard-tx .t,.ob-camcard-tx .s{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ob-camcard .cbox-float{flex:none;order:3}
 
-/* "Other camera providers" — single-row list below the grid,
-   matching .room-row's icon/label/chevron layout since it's the
-   same "tap to open a picker/sheet" affordance. Title and status
-   are stacked (two block-level spans), not inline. */
+/* "Other camera providers" — single row below the list: icon, provider name, and a secondary
+   "Sign in" button that opens the credentials sheet; once connected the button is replaced
+   by a "Connected" status. */
 .ob-provider-row{
   display:flex;align-items:center;gap:var(--Spacing-3);
   padding:var(--Spacing-2) var(--Spacing-3);
   background:var(--Surface-Fill-Default);
   border-radius:var(--Shape-3);box-shadow:var(--Elevation-2,var(--Elevation-3));
-  border:2px solid transparent;cursor:pointer;
+  border:2px solid transparent;
   font:inherit;text-align:left;width:100%;
 }
 .ob-provider-row .ob-camtx{
@@ -2871,8 +2870,7 @@ button.oneui-Avatar{position:relative}
 }
 .ob-provider-row .ob-camtx .s{flex:0 0 auto}
 .ob-provider-row .r-ico svg{width:var(--Spacing-5);height:var(--Spacing-5)}
-.ob-provider-row .r-chev{flex:0 0 auto;color:var(--Neutral-Low)}
-.ob-provider-row .r-chev svg{width:16px;height:16px;display:block}
+.ob-provider-row .oneui-Button{flex:0 0 auto}
 .ob-provider-row.is-connected{border-color:var(--Positive-Bold)}
 
 .ob-tv-submit{width:100%;justify-content:center;margin-top:var(--Spacing-2)}
@@ -3703,14 +3701,14 @@ button.oneui-Avatar{position:relative}
 
       <div class="oneui-Container" data-gap="2">
         <p class="oneui-Text" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low">Other camera providers</p>
-        <button type="button" class="ob-provider-row" data-ob-trueview-open>
+        <div class="ob-provider-row" data-ob-trueview-row>
           <span class="oneui-Avatar r-ico" data-size="2xl" data-content="icon" data-appearance="primary" data-attention="medium" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M17 10.5 21 8v8l-4-2.5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
           <span class="ob-camtx">
             <span class="oneui-Text t" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">TrueView</span>
-            <span class="oneui-Text s" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low" data-ob-trueview-status>Sign in</span>
+            <span class="oneui-Text s" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low" data-ob-trueview-status style="display:none">Connected</span>
+            <button type="button" class="oneui-Button" data-appearance="neutral" data-attention="medium" data-size="8" data-ob-trueview-open>Sign in</button>
           </span>
-          <span class="r-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </button>
+        </div>
       </div>
 
       <!-- Trailing help line + support link — last thing on the
@@ -7588,6 +7586,7 @@ window.addEventListener('error', function(e){
     var tvErr    = document.querySelector('[data-ob-tv-err]');
     var tvSubmit = document.querySelector('[data-ob-tv-submit]');
     var tvStatus = document.querySelector('[data-ob-trueview-status]');
+    var tvRow    = document.querySelector('[data-ob-trueview-row]');
 
     function openTvSheet(){
       if(!tvSheet || !tvScrim) return;
@@ -7661,8 +7660,10 @@ window.addEventListener('error', function(e){
       }
       hideTvErr();
       if(state.cams.indexOf('trueview') === -1) state.cams.push('trueview');
-      if(tvOpen) tvOpen.classList.add('is-connected');
-      if(tvStatus) tvStatus.textContent = 'Connected';
+      // Connected: the Sign in button gives way to a "Connected" status
+      if(tvRow) tvRow.classList.add('is-connected');
+      if(tvOpen) tvOpen.style.display = 'none';
+      if(tvStatus) tvStatus.style.display = '';
       addTrueviewCard();
       syncNextEnabled('ob-camselect');
       closeTvSheet();
