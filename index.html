@@ -2942,6 +2942,47 @@ button.oneui-Avatar{position:relative}
 }
 .ob-suggest > span{flex:1;min-width:0}
 
+/* ── Step 2 camera cards (accordion) ─────────────────────────────────
+   Same white card + tinted thumbnail as the Step 1 list. The body opens with a
+   0fr → 1fr grid-row transition so it slides rather than jumps; the chevron
+   flips. Only one card is open at a time. */
+.ob-camacc{display:flex;flex-direction:column;gap:var(--Spacing-3)}
+.ob-acc{
+  background:var(--Surface-Fill-Default);border-radius:var(--Shape-4);overflow:hidden;
+  box-shadow:0 1px 3px rgba(0,0,0,.06),0 6px 18px rgba(0,0,0,.05);
+}
+.ob-acc-head{
+  display:flex;align-items:center;gap:var(--Spacing-3);width:100%;
+  padding:var(--Spacing-3) var(--Spacing-4) var(--Spacing-3) var(--Spacing-3);
+  border:0;background:none;font:inherit;text-align:left;cursor:pointer;color:inherit;
+}
+.ob-acc-tx{flex:1;display:flex;flex-direction:column;gap:var(--Spacing-0-5);min-width:0}
+.ob-acc-tx .t,.ob-acc-tx .s{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ob-acc-chev{flex:none;display:grid;place-items:center;width:var(--Spacing-6);height:var(--Spacing-6);color:var(--Neutral-Low);transition:transform var(--Motion-Duration-L) var(--Motion-Easing-Standard)}
+.ob-acc-chev svg{width:20px;height:20px;display:block}
+.ob-acc.is-open .ob-acc-chev{transform:rotate(180deg)}
+.ob-acc-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows var(--Motion-Duration-L) var(--Motion-Easing-Standard)}
+.ob-acc.is-open .ob-acc-body{grid-template-rows:1fr}
+.ob-acc-inner{min-height:0;overflow:hidden}
+.ob-acc-pad{padding:0 var(--Spacing-3) var(--Spacing-4)}
+.ob-acc:not(.is-open) .ob-acc-pad{visibility:hidden;transition:visibility 0s var(--Motion-Duration-L)}
+/* Room field — reads as a dropdown: label + "AI suggestion" tag, then a select-style box
+   that opens the room sheet. */
+.ob-room-field{display:flex;flex-direction:column;gap:var(--Spacing-2);margin-top:var(--Spacing-4)}
+.ob-room-field-hd{display:flex;align-items:center;gap:var(--Spacing-2)}
+.ob-room-select{
+  display:flex;align-items:center;gap:var(--Spacing-3);width:100%;min-height:48px;
+  padding:0 var(--Spacing-3) 0 var(--Spacing-4);
+  border:1px solid var(--Neutral-Stroke-Medium,var(--Surface-Fill-Minimal));border-radius:var(--Shape-3);
+  background:var(--Surface-Fill-Default);font:inherit;text-align:left;cursor:pointer;color:inherit;
+}
+.ob-room-select .v{flex:1;min-width:0}
+.ob-room-select svg{width:20px;height:20px;flex:none;color:var(--Neutral-Low)}
+.ob-room-select:active{background:var(--Surface-Fill-Minimal)}
+.room-sheet .room-row.is-selected{background:var(--Primary-Minimal)}
+.room-sheet .room-row.is-selected .r-name{color:var(--Primary-TintedA11y)}
+@media (prefers-reduced-motion: reduce){.ob-acc-body,.ob-acc-chev{transition:none}}
+
 /* Small ghost Change button inside the suggestion pill — sits on
    the right, sized to fit the pill rather than filling the row. */
 .ob-suggest .ob-change-btn{width:auto;flex:0 0 auto}
@@ -3769,41 +3810,23 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
         <button type="button" class="oneui-IconButton ob-p-back" data-size="8" data-appearance="neutral" data-attention="low" data-ob-back-arrow aria-label="Back">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 5-7 7 7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
-        <span class="oneui-Text ob-p-step" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low" data-ob-phase>Step 2 · Tapo Camera</span>
+        <span class="oneui-Text ob-p-step" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low" data-ob-phase>Step 2 · Set up cameras</span>
         <span class="oneui-Text" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low" data-ob-frac>2 / 4</span>
       </div>
       <div class="ob-segs" role="progressbar" aria-label="Setup progress" aria-valuemin="1" aria-valuemax="4" aria-valuenow="2" aria-valuetext="Step 2 of 4" data-ob-segs><span class="ob-seg is-on"></span><span class="ob-seg is-on"></span><span class="ob-seg"></span><span class="ob-seg"></span></div>
     </div>
     <main class="scroll oneui-Container" data-gap="5" data-padding-x="6" data-padding-y="4">
-      <!-- Combined camera-setup screen. Was previously three
-           screens (connecting → room-confirm → coverage) — folded
-           into one so the user sees the whole picture in one place:
-           the live frame, JioSense's room guess, and a checklist of
-           what the camera can see. Room correction is tap-a-chip
-           via the bottom sheet; the coverage list confirms the
-           camera is pointing at the right things. Continue advances
-           to the household step. -->
+      <!-- Camera setup: one expandable card per camera picked on Step 1, built by
+           renderCamAcc(). Closed: thumbnail, name, room. Open (the first card starts
+           open): live view, then the AI-suggested room in a dropdown-style field that
+           opens the room sheet. The Tapo card also carries the "Objects detected"
+           checks and the main-door warning held in [data-ob-tapo-extra] below. -->
       <div class="oneui-Container" data-gap="1">
-        <h1 class="oneui-Text" data-variant="headline" data-size="S" data-weight="high" data-appearance="neutral">Set up Tapo Camera</h1>
+        <h1 class="oneui-Text" data-variant="headline" data-size="S" data-weight="high" data-appearance="neutral">Set up your cameras</h1>
+        <p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium">Check each camera's live view and confirm the room it's in.</p>
       </div>
-      <div class="ob-feed" data-ob-feed>
-        <img src="assets/livingroom-detections.png" alt="" onerror="this.style.display='none'">
-        <span class="oneui-Badge ob-live-pill" data-appearance="neutral" data-attention="high" data-size="s"><span class="oneui-IndicatorBadge" data-appearance="negative" data-size="xs" aria-hidden="true"></span>Live</span>
-        <!-- Scan line — shown while the room guess and coverage
-             checklist below are still hidden, so the feed reads as
-             "loading, then being analyzed" before any conclusions
-             appear. Removed once primeCamRoom()'s timer fires. -->
-        <span class="ob-scan" data-ob-scan-line hidden></span>
-      </div>
-      <!-- Room guess + coverage checklist stay hidden (and the scan
-           line stays visible) until primeCamRoom() below reveals
-           them — the feed loads and gets "scanned" first, then the
-           rest of the screen's conclusions land. -->
-      <div data-ob-scan-reveal class="ob-scan-reveal">
-      <div class="ob-suggest">
-        <span class="oneui-Text" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">We think this is your <span data-ob-room-name>Living Room</span></span>
-        <button type="button" class="oneui-Button ob-change-btn" data-appearance="neutral" data-attention="medium" data-size="8" data-ob-room-picker>Change</button>
-      </div>
+      <div class="ob-camacc" data-ob-camacc></div>
+      <div hidden data-ob-tapo-extra>
       <!-- "Can it see what matters?" — presented with the same
            icon-on-top / label-below tile grid as Step 4's household
            choices, so the two AI-derived confirmations speak the
@@ -7440,7 +7463,7 @@ window.addEventListener('error', function(e){
          off straight to Home. Flow is now 4 screens total;
          percentages re-spread evenly. */
       { id:'ob-camselect',      phase:'Step 1 · Your cameras', frac:'1 / 4', pct:25 },
-      { id:'ob-cam-room',       phase:'Step 2 · Tapo Camera', frac:'2 / 4', pct:50 },
+      { id:'ob-cam-room',       phase:'Step 2 · Set up cameras', frac:'2 / 4', pct:50 },
       { id:'ob-household',      phase:'Step 3 · Household',   frac:'3 / 4', pct:75 },
       { id:'ob-privacy',        phase:'Step 4 · Privacy',     frac:'4 / 4', pct:100 }
     ];
@@ -7790,30 +7813,114 @@ window.addEventListener('error', function(e){
       var warning = document.querySelector('[data-ob-door-warning]');
       if(warning) warning.hidden = true;
     }
-    function primeCamRoom(opts){
-      var screen = document.querySelector('[data-screen="ob-cam-room"]');
-      if(!screen) return;
-      var scanLine = screen.querySelector('[data-ob-scan-line]');
-      var reveal   = screen.querySelector('[data-ob-scan-reveal]');
-      if(camRoomTimer) clearTimeout(camRoomTimer);
+    /* ── Step 2 camera cards ─────────────────────────────────────────
+       One card per camera in state.cams. renderCamAcc() rebuilds only when the
+       selection changed (so room picks survive Back/forward) and always reopens
+       the first card. Opening a card runs that camera's scan: the scan line sweeps
+       its live view, then the room field (and, for Tapo, the object checks) fade in. */
+    var CAM_INFO = {
+      tapo:     { name:'Tapo - C201',        img:'assets/cam-mi360.png',   feed:'assets/livingroom-detections.png', room:'Living Room', env:'Indoor' },
+      cpplus:   { name:'CP Plus - E45Q',     img:'assets/cam-battery.png', feed:'assets/kitchen.jpg',              room:'Kitchen',     env:'Indoor' },
+      trueview: { name:'TrueView - T18161S', img:'assets/dome-cam.png',    feed:'assets/frontporch.png',           room:'Entrance',    env:'Outdoor' }
+    };
+    state.camRooms = state.camRooms || {};
+    var CHEV_DOWN = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    var camAcc = document.querySelector('[data-ob-camacc]');
+    var tapoExtra = document.querySelector('[data-ob-tapo-extra]');
+    var camAccKey = '', camScanTimers = {};
+    function camRoomOf(id){ return state.camRooms[id] || CAM_INFO[id].room; }
+    // cards follow the Step 1 list order, not the order cameras were ticked
+    function camAccIds(){ return Object.keys(CAM_INFO).filter(function(id){ return state.cams.indexOf(id) > -1; }); }
+    function camAccCard(id){
+      var c = CAM_INFO[id], room = camRoomOf(id);
+      var el = document.createElement('div');
+      el.className = 'ob-acc';
+      el.setAttribute('data-ob-acc', id);
+      el.innerHTML =
+        '<button type="button" class="ob-acc-head" aria-expanded="false" aria-controls="ob-acc-' + id + '" id="ob-acc-h-' + id + '">' +
+          '<span class="ob-camcard-thumb" aria-hidden="true"><img src="' + c.img + '" alt="" onerror="this.style.display=\'none\'"></span>' +
+          '<span class="ob-acc-tx">' +
+            '<span class="oneui-Text t" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral">' + c.name + '</span>' +
+            '<span class="oneui-Text s" data-variant="body" data-size="S" data-appearance="neutral" data-attention="low" data-ob-acc-sub>' + room + ' · ' + c.env + '</span>' +
+          '</span>' +
+          '<span class="ob-acc-chev" aria-hidden="true">' + CHEV_DOWN + '</span>' +
+        '</button>' +
+        '<div class="ob-acc-body" id="ob-acc-' + id + '" role="region" aria-labelledby="ob-acc-h-' + id + '"><div class="ob-acc-inner"><div class="ob-acc-pad">' +
+          '<div class="ob-feed">' +
+            '<img src="' + c.feed + '" alt="Live view from ' + c.name + '" onerror="this.style.display=\'none\'">' +
+            '<span class="oneui-Badge ob-live-pill" data-appearance="neutral" data-attention="high" data-size="s"><span class="oneui-IndicatorBadge" data-appearance="negative" data-size="xs" aria-hidden="true"></span>Live</span>' +
+            '<span class="ob-scan" data-ob-scan-line hidden></span>' +
+          '</div>' +
+          '<div class="ob-scan-reveal" data-ob-scan-reveal>' +
+            '<div class="ob-room-field">' +
+              '<div class="ob-room-field-hd">' +
+                '<span class="oneui-Text" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low">Room</span>' +
+                '<span class="oneui-Badge" data-appearance="sparkle" data-attention="medium" data-size="s" data-ob-ai-tag' + (room === c.room ? '' : ' style="display:none"') + '>AI suggestion</span>' +
+              '</div>' +
+              '<button type="button" class="ob-room-select" data-ob-room-select aria-haspopup="dialog" aria-label="Room for ' + c.name + ': ' + room + '. Change room">' +
+                '<span class="oneui-Text v" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral" data-ob-room-val>' + room + '</span>' + CHEV_DOWN +
+              '</button>' +
+            '</div>' +
+          '</div>' +
+        '</div></div></div>';
+      if(id === 'tapo' && tapoExtra){
+        // the Tapo analysis (object checks + door warning) moves into this card
+        var reveal = el.querySelector('[data-ob-scan-reveal]');
+        while(tapoExtra.firstChild) reveal.appendChild(tapoExtra.firstChild);
+      }
+      el.querySelector('.ob-acc-head').addEventListener('click', function(){
+        if(el.classList.contains('is-open')) setCamAccOpen(null); else setCamAccOpen(id);
+      });
+      el.querySelector('[data-ob-room-select]').addEventListener('click', function(){ openRoomSheet(id); });
+      return el;
+    }
+    function renderCamAcc(){
+      if(!camAcc) return;
+      var ids = camAccIds(), key = ids.join(',');
+      if(key !== camAccKey){
+        // hand the Tapo extras back to their holder before the cards are rebuilt
+        var oldTapo = camAcc.querySelector('[data-ob-acc="tapo"] [data-ob-scan-reveal]');
+        if(oldTapo && tapoExtra){ Array.prototype.slice.call(oldTapo.children, 1).forEach(function(n){ tapoExtra.appendChild(n); }); }
+        camAcc.innerHTML = '';
+        ids.forEach(function(id){ camAcc.appendChild(camAccCard(id)); });
+        camAccKey = key;
+      }
+    }
+    function scanCamCard(card, opts){
+      if(!card) return;
+      var id = card.getAttribute('data-ob-acc');
+      var line = card.querySelector('[data-ob-scan-line]'), reveal = card.querySelector('[data-ob-scan-reveal]');
+      if(camScanTimers[id]) clearTimeout(camScanTimers[id]);
       if(reveal) reveal.classList.remove('is-in');
-      if(scanLine) scanLine.hidden = false;
-      camRoomTimer = setTimeout(function(){
-        if(scanLine) scanLine.hidden = true;
+      if(line) line.hidden = false;
+      camScanTimers[id] = setTimeout(function(){
+        if(line) line.hidden = true;
         if(reveal) reveal.classList.add('is-in');
-        if(opts && opts.confirmDoor) confirmDoorTile();
+        if(opts && opts.confirmDoor && id === 'tapo') confirmDoorTile();
       }, 1500);
     }
-    /* Footer "Rescan" used to share [data-ob-room-picker] with the
-       "Change" link above the room name, so tapping it just opened
-       the room sheet instead of actually rescanning. It's now its
-       own [data-ob-rescan] hook that replays the scan-line + reveal
-       sequence via the same primeCamRoom() the screen runs on
-       entry, so "Rescan" does what it says — and this time also
-       resolves the Main door tile's "not sure" state to confirmed,
-       since a rescan is the moment the camera gets a better look. */
+    function setCamAccOpen(id, opts){
+      if(!camAcc) return;
+      camAcc.querySelectorAll('.ob-acc').forEach(function(card){
+        var on = card.getAttribute('data-ob-acc') === id;
+        var was = card.classList.contains('is-open');
+        card.classList.toggle('is-open', on);
+        card.querySelector('.ob-acc-head').setAttribute('aria-expanded', on ? 'true' : 'false');
+        if(on && (!was || (opts && opts.rescan))) scanCamCard(card, opts);
+      });
+    }
+    function primeCamRoom(opts){
+      renderCamAcc();
+      var first = camAccIds()[0];
+      if(camAcc) camAcc.querySelectorAll('.ob-acc').forEach(function(c){ c.classList.remove('is-open'); });
+      setCamAccOpen(first, opts);
+    }
     var rescanBtn = document.querySelector('[data-ob-rescan]');
-    if(rescanBtn) rescanBtn.addEventListener('click', function(){ primeCamRoom({ confirmDoor: true }); });
+    if(rescanBtn) rescanBtn.addEventListener('click', function(){
+      // rescans whichever camera card is open (the Tapo rescan also confirms the main door)
+      var open = camAcc && camAcc.querySelector('.ob-acc.is-open');
+      if(open) setCamAccOpen(open.getAttribute('data-ob-acc'), { rescan: true, confirmDoor: true });
+    });
 
     /* ── Household — quantity steppers (adults / kids / elders / pets /
        staff) ── Each row is a [data-hh-step="group:key:delta"] pair of
@@ -8325,8 +8432,20 @@ window.addEventListener('error', function(e){
        run. */
     var roomSheet = document.querySelector('[data-room-sheet]');
     var roomScrim = document.querySelector('[data-confirm-scrim="room"]');
-    function openRoomSheet(){
+    var roomSheetCam = null;
+    function openRoomSheet(camId){
       if(!roomSheet || !roomScrim) return;
+      roomSheetCam = (typeof camId === 'string') ? camId : null;
+      if(roomSheetCam && CAM_INFO[roomSheetCam]){
+        var head = roomSheet.querySelector('#room-sheet-head');
+        if(head) head.textContent = 'Which room is ' + CAM_INFO[roomSheetCam].name + ' in?';
+        var cur = camRoomOf(roomSheetCam);
+        roomSheet.querySelectorAll('[data-room]').forEach(function(r){
+          var sel = r.getAttribute('data-room') === cur;
+          r.classList.toggle('is-selected', sel);
+          r.setAttribute('aria-current', sel ? 'true' : 'false');
+        });
+      }
       roomScrim.classList.add('is-open');
       roomSheet.classList.add('is-open');
     }
@@ -8334,8 +8453,6 @@ window.addEventListener('error', function(e){
       if(roomScrim) roomScrim.classList.remove('is-open');
       if(roomSheet) roomSheet.classList.remove('is-open');
     }
-    var notQuite = document.querySelector('[data-ob-room-picker]');
-    if(notQuite) notQuite.addEventListener('click', openRoomSheet);
     if(roomScrim) roomScrim.addEventListener('click', closeRoomSheet);
 
     document.querySelectorAll('[data-room]').forEach(function(row){
@@ -8344,8 +8461,18 @@ window.addEventListener('error', function(e){
         /* Coverage is now inline on ob-cam-room, so a room pick
            updates the room-name chip in place instead of advancing
            to a separate screen. Continue then moves the flow on. */
-        var nameEl = document.querySelector('[data-ob-room-name]');
-        if(nameEl) nameEl.textContent = name;
+        if(roomSheetCam && CAM_INFO[roomSheetCam]){
+          state.camRooms[roomSheetCam] = name;
+          var card = camAcc && camAcc.querySelector('[data-ob-acc="' + roomSheetCam + '"]');
+          if(card){
+            var c = CAM_INFO[roomSheetCam];
+            card.querySelector('[data-ob-room-val]').textContent = name;
+            card.querySelector('[data-ob-acc-sub]').textContent = name + ' · ' + c.env;
+            card.querySelector('[data-ob-room-select]').setAttribute('aria-label', 'Room for ' + c.name + ': ' + name + '. Change room');
+            // the tag only applies while the room is still JioSense's own guess
+            card.querySelector('[data-ob-ai-tag]').style.display = (name === c.room) ? '' : 'none';
+          }
+        }
         closeRoomSheet();
       });
     });
