@@ -2833,29 +2833,25 @@ button.oneui-Avatar{position:relative}
    cards, replacing the row-list layout above for the auto-
    discovered cameras. Each card stacks a large feed preview over
    the title, with the checkbox pinned inside the thumb corner. */
-/* Device tiles (smart-home style): three per row, product shot centred on a soft tinted tile,
-   name and room below. Selection is shown by the corner checkbox alone (no card outline). A
-   lone camera spans the full row so it reads as an intentional hero. */
-.ob-camgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--Spacing-2)}
-.ob-camgrid[data-ob-cam-count="1"] .ob-camcard{grid-column:1 / -1}
-.ob-camgrid[data-ob-cam-count="1"] .ob-camcard-thumb{height:108px}
-.ob-camgrid[data-ob-cam-count="1"] .ob-camcard-thumb img{max-width:min(100%,96px)}
+/* Found cameras as a list: one row per camera — product shot on a soft tinted square, name
+   and room beside it, checkbox on the right. Selection is shown by the checkbox alone. */
+.ob-camgrid{display:flex;flex-direction:column;gap:var(--Spacing-2)}
 .ob-camcard{
-  position:relative;display:flex;flex-direction:column;gap:var(--Spacing-3);min-width:0;
-  padding:var(--Spacing-6) var(--Spacing-3) var(--Spacing-3);
-  background:linear-gradient(180deg,var(--Primary-Minimal) 0%,var(--Surface-Fill-Default) 75%);
-  border-radius:var(--Shape-5);
-  box-shadow:0 1px 3px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.06);
+  display:flex;align-items:center;gap:var(--Spacing-3);min-width:0;width:100%;
+  padding:var(--Spacing-3) var(--Spacing-4) var(--Spacing-3) var(--Spacing-3);
+  background:var(--Surface-Fill-Default);
+  border-radius:var(--Shape-4);
+  box-shadow:0 1px 3px rgba(0,0,0,.06),0 6px 18px rgba(0,0,0,.05);
   border:0;cursor:pointer;
   font:inherit;text-align:left;
   transition:transform var(--Motion-Duration-Short) var(--Motion-Easing-Standard);
 }
 .ob-camcard:active{transform:scale(.98)}
-.ob-camcard-thumb{display:flex;align-items:center;justify-content:center;height:72px}
-.ob-camcard-thumb img{display:block;width:auto;height:auto;max-height:100%;max-width:min(100%,68px);object-fit:contain;filter:drop-shadow(0 8px 10px rgba(0,0,0,.12))}
-.ob-camcard .cbox-float{position:absolute;top:var(--Spacing-2);right:var(--Spacing-2)}
-.ob-camcard-tx{display:flex;flex-direction:column;gap:var(--Spacing-0-5,2px);min-width:0}
-.ob-camcard-tx .t{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.ob-camcard-thumb{flex:none;display:flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:var(--Shape-3);background:linear-gradient(180deg,var(--Primary-Minimal),var(--Primary-Subtle))}
+.ob-camcard-thumb img{display:block;width:auto;height:auto;max-width:48px;max-height:52px;object-fit:contain;filter:drop-shadow(0 4px 6px rgba(0,0,0,.14))}
+.ob-camcard-tx{flex:1;display:flex;flex-direction:column;gap:var(--Spacing-0-5,2px);min-width:0}
+.ob-camcard-tx .t,.ob-camcard-tx .s{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ob-camcard .cbox-float{flex:none;order:3}
 
 /* "Other camera providers" — single-row list below the grid,
    matching .room-row's icon/label/chevron layout since it's the
@@ -3690,8 +3686,8 @@ button.oneui-Avatar{position:relative}
           <span class="oneui-Checkbox cbox-float" data-size="l" data-appearance="primary" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <span class="ob-camcard-thumb" aria-hidden="true"><img src="assets/cam-mi360.png" alt="" onerror="this.style.display='none'"></span>
           <span class="ob-camcard-tx">
-            <span class="oneui-Text t" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Tapo - C201</span>
-            <span class="oneui-Text s" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Living room · Indoor</span>
+            <span class="oneui-Text t" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral">Tapo - C201</span>
+            <span class="oneui-Text s" data-variant="body" data-size="S" data-appearance="neutral" data-attention="low">Living room · Indoor</span>
           </span>
         </button>
 
@@ -3699,8 +3695,8 @@ button.oneui-Avatar{position:relative}
           <span class="oneui-Checkbox cbox-float" data-size="l" data-appearance="primary" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <span class="ob-camcard-thumb" aria-hidden="true"><img src="assets/cam-battery.png" alt="" onerror="this.style.display='none'"></span>
           <span class="ob-camcard-tx">
-            <span class="oneui-Text t" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">CP Plus - E45Q</span>
-            <span class="oneui-Text s" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Kitchen · Indoor</span>
+            <span class="oneui-Text t" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral">CP Plus - E45Q</span>
+            <span class="oneui-Text s" data-variant="body" data-size="S" data-appearance="neutral" data-attention="low">Kitchen · Indoor</span>
           </span>
         </button>
       </div>
@@ -7636,8 +7632,8 @@ window.addEventListener('error', function(e){
         '<span class="oneui-Checkbox cbox-float" data-size="l" data-appearance="primary" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
         '<span class="ob-camcard-thumb" aria-hidden="true"><img src="assets/dome-cam.png" alt="" onerror="this.style.display=\'none\'"></span>' +
         '<span class="ob-camcard-tx">' +
-          '<span class="oneui-Text t" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">TrueView - T18161S</span>' +
-          '<span class="oneui-Text s" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Front porch · Outdoor</span>' +
+          '<span class="oneui-Text t" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral">TrueView - T18161S</span>' +
+          '<span class="oneui-Text s" data-variant="body" data-size="S" data-appearance="neutral" data-attention="low">Front porch · Outdoor</span>' +
         '</span>';
       camGrid.appendChild(card);
       syncCamGridCount();

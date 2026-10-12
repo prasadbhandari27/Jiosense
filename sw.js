@@ -1,4 +1,4 @@
-var CACHE = 'jiosense-v144';
+var CACHE = 'jiosense-v145';
 var CORE = [
   './',
   './index.html',
