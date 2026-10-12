@@ -71,7 +71,8 @@
   --Motion-Easing-Exit:cubic-bezier(.4,0,1,1);
 
   --Touch-Target-Min:44px;
-  --Disabled-Opacity:.38;   /* referenced by the brand sheet's --*-disabledOpacity tokens but never defined there */
+  --Disabled-Opacity:.38;
+  --App-Surface:#f2f2f7;     /* page background on every light screen — the Home surface; cards and bars stay white on it */   /* referenced by the brand sheet's --*-disabledOpacity tokens but never defined there */
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -793,7 +794,7 @@ button.oneui-Avatar{position:relative}
 .stage-link{display:none}
 .device{
   width:100%;height:100dvh;
-  background:var(--Surface-Fill-Default);border-radius:0;overflow:hidden;position:relative;
+  background:var(--App-Surface);border-radius:0;overflow:hidden;position:relative;
   box-shadow:none;
   display:flex;flex-direction:column;
   flex:1 1 auto;
@@ -967,7 +968,7 @@ button.oneui-Avatar{position:relative}
 
 /* ── Screen stack / router ───────────────────────────────────────────── */
 .screen{
-  position:absolute;inset:0;display:flex;flex-direction:column;background:var(--Surface-Fill-Default);
+  position:absolute;inset:0;display:flex;flex-direction:column;background:var(--App-Surface);
   transform:translateX(100%);opacity:0;pointer-events:none;
   transition:transform .36s cubic-bezier(.22,1,.36,1), opacity .3s ease;will-change:transform;
 }
@@ -1036,7 +1037,7 @@ button.oneui-Avatar{position:relative}
 .foot-cta{position:absolute;left:0;right:0;bottom:0;padding:14px var(--Spacing-4) calc(20px + env(safe-area-inset-bottom));background:var(--Surface-Fill-Default);border-top:1px solid var(--Neutral-Stroke-Low)}
 
 /* ── Onboarding shared chrome ─────────────────────────────────────────── */
-.ob{background:var(--Surface-Fill-Default)}
+.ob{background:var(--App-Surface)}
 .ob .obbar{flex:0 0 auto;display:flex;align-items:center;gap:10px;padding:16px var(--Spacing-4) 6px}
 .dots{display:flex;gap:5px;margin-left:4px}
 .dots i{width:6px;height:6px;border-radius:var(--Shape-Pill);background:var(--Neutral-Grey-40)}
@@ -1084,7 +1085,7 @@ button.oneui-Avatar{position:relative}
 .progress-ring .pct{position:absolute;inset:0;display:grid;place-items:center;font-size:22px;font-weight:900}
 
 .roomchips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-.facecard{display:flex;align-items:center;gap:12px;background:var(--Surface-Fill-Minimal);border-radius:var(--Shape-3);padding:12px 14px;margin-top:10px}
+.facecard{display:flex;align-items:center;gap:12px;background:var(--Surface-Fill-Default);border-radius:var(--Shape-3);padding:12px 14px;margin-top:10px}
 .facecard .ph-wrap{position:relative;flex-shrink:0;display:inline-flex}
 /* ── Photo inside a circular initials holder ──────────────────────────────
    Shared by `.facecard .ph` and `.row .ico`, which are both
@@ -1747,9 +1748,9 @@ button.oneui-Avatar{position:relative}
 .cam-tally{display:flex;align-items:center;gap:var(--Spacing-2);margin-top:var(--Spacing-2);font-size:12px;line-height:16px;color:var(--Neutral-Low)}
 
 /* ── CCTV Home — light theme ── */
-[data-screen="my-home"]{background:#f2f2f7}
-[data-screen="my-home"] .statusbar{background:#f2f2f7}
-[data-screen="my-home"] .cctv-scroll{background:#f2f2f7;padding-bottom:80px;padding-top:12px;padding-inline:0}
+[data-screen="my-home"]{background:var(--App-Surface)}
+[data-screen="my-home"] .statusbar{background:var(--App-Surface)}
+[data-screen="my-home"] .cctv-scroll{background:var(--App-Surface);padding-bottom:80px;padding-top:12px;padding-inline:0}
 .cctv-home-hdr{display:flex;align-items:center;justify-content:space-between;padding:var(--Spacing-4)}
 .cctv-loc{display:flex;align-items:center;gap:4px}
 .cctv-loc-pin{width:var(--Spacing-6);height:var(--Spacing-6);display:grid;place-items:center;flex-shrink:0;color:var(--Primary-Bold-Hover)}
@@ -2450,7 +2451,7 @@ button.oneui-Avatar{position:relative}
    off: the label column and the switch, with the countdown inside the label
    column. As a sibling of the switch it ran the full width of the banner and
    passed underneath it. */
-.mute-banner{display:flex;align-items:center;gap:12px;background:var(--Surface-Fill-Minimal);border-radius:var(--Shape-3);padding:14px;margin-top:8px}
+.mute-banner{display:flex;align-items:center;gap:12px;background:var(--Surface-Fill-Default);border-radius:var(--Shape-3);padding:14px;margin-top:8px}
 .mute-banner .txt{flex:1;min-width:0}
 .mute-banner .s{margin-top:var(--Spacing-0-5)}
 .mute-banner .ct{margin-top:var(--Spacing-1-5);font-variant-numeric:tabular-nums}
@@ -2684,7 +2685,7 @@ button.oneui-Avatar{position:relative}
   position:sticky;bottom:0;left:0;right:0;
   display:flex;gap:var(--Spacing-2);
   padding:var(--Spacing-3) var(--Spacing-6) var(--Spacing-4);
-  background:linear-gradient(180deg,transparent,var(--Surface-Fill-Default) 20%);
+  background:linear-gradient(180deg,transparent,var(--App-Surface) 20%);
 }
 .ob-footer .oneui-Button{flex:1}
 
@@ -2694,8 +2695,8 @@ button.oneui-Avatar{position:relative}
    user straight into a camera list with no transition. No back arrow
    or footer: it isn't a step the user drives, just a beat that
    auto-advances (see primeLoading() in the onboarding controller). */
-[data-screen="ob-loading"]{background:#fff}
-[data-screen="ob-loading"] .statusbar{background:#fff}
+[data-screen="ob-loading"]{background:var(--App-Surface)}
+[data-screen="ob-loading"] .statusbar{background:var(--App-Surface)}
 .ob-loading-main{height:100%;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;z-index:2;pointer-events:none}
 .ob-loading-text-box{position:absolute;top:62%;left:0;right:0;padding:0 32px;pointer-events:auto;text-align:center}
 /* Searching scene: small cameras scattered, hidden (0% opacity); a black magnifier hops between
@@ -2717,7 +2718,7 @@ button.oneui-Avatar{position:relative}
 /* Magnifier: simple 80px black search icon (viewBox drawn at 3/4 scale) over a soft
    brand-gradient shadow; its glass shows the camera magnified. */
 .ob-search-lens{position:absolute;left:0;top:0;width:112px;height:160px;will-change:transform}
-.ob-search-view{position:absolute;left:12px;top:12px;width:72px;height:72px;border-radius:var(--Shape-Pill);overflow:hidden;background:var(--Surface-Fill-Default)}
+.ob-search-view{position:absolute;left:12px;top:12px;width:72px;height:72px;border-radius:var(--Shape-Pill);overflow:hidden;background:var(--App-Surface)}
 .ob-search-view .ob-search-layer{transform-origin:0 0}
 .ob-search-icon{position:absolute;left:0;top:0;width:112px;height:160px;overflow:visible}
 /* Shadow: the icon's own silhouette in the brand gradient, cast down-right in two layers — a
@@ -4236,7 +4237,7 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
            16px padding inside each one and read as uneven spacing.
            Combined into one .ob-info-group card (one background, one
            padding) with the rows spaced by a plain 12px gap instead. -->
-      <div class="ob-info-group oneui-Surface" data-surface="subtle">
+      <div class="ob-info-group oneui-Surface" data-surface="elevated">
       <div class="ob-info">
         <span class="oneui-Avatar o-ic" data-size="2xl" data-content="icon" data-appearance="primary" data-attention="medium" aria-hidden="true">
           <!-- Camera glyph: choosing which cameras connect. -->
@@ -4422,7 +4423,7 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
              restore automatically. The visual state (green vs. neutral,
              "On"/"Off" label, knob position) is driven by the same .arm-bar
              tokens used on Profile, so both entry points move in lockstep. -->
-        <div class="oneui-Surface oneui-enter" data-surface="minimal" style="animation-delay:80ms">
+        <div class="oneui-Surface oneui-enter" data-surface="elevated" style="animation-delay:80ms">
           <div class="oneui-Container" data-direction="row" data-align="center" data-gap="2" data-padding-x="6" data-padding-y="3">
             <span class="oneui-Icon" data-size="sm" data-appearance="neutral" data-emphasis="low" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none"><path d="M12 3.2 5 6v6c0 4.2 2.9 7.4 7 8.8 4.1-1.4 7-4.6 7-8.8V6l-7-2.8Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m8.8 12.2 2.2 2.2 4.2-4.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
