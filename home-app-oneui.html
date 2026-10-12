@@ -433,6 +433,9 @@ button.oneui-Avatar:active{transform:scale(.94)}
 .oneui-Button[data-appearance="neutral"][data-attention="low"]{background:var(--Neutral-Ghost);color:var(--Neutral-TintedA11y)}
 @media (hover:hover){.oneui-Button[data-appearance="neutral"][data-attention="low"]:hover:not(:disabled){background:var(--Neutral-Ghost-Hover)}}
 .oneui-Button[data-appearance="neutral"][data-attention="low"]:active:not(:disabled){background:var(--Neutral-Ghost-Pressed)}
+.oneui-Button[data-appearance="primary"][data-attention="low"]{background:var(--Primary-Ghost);color:var(--Primary-TintedA11y)}
+@media (hover:hover){.oneui-Button[data-appearance="primary"][data-attention="low"]:hover:not(:disabled){background:var(--Primary-Ghost-Hover)}}
+.oneui-Button[data-appearance="primary"][data-attention="low"]:active:not(:disabled){background:var(--Primary-Ghost-Pressed)}
 .oneui-Button:active:not(:disabled){transform:scale(.98)}
 .oneui-Button:focus-visible{outline:var(--Button-focusOutlineWidth) solid var(--Button-focusOutlineColor);outline-offset:2px}
 .oneui-Button:disabled{opacity:var(--Button-disabledOpacity);cursor:not-allowed}
@@ -2857,7 +2860,7 @@ button.oneui-Avatar{position:relative}
 .ob-camcard-tx .t,.ob-camcard-tx .s{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ob-camcard .cbox-float{flex:none;order:3}
 
-/* "Other camera providers" — single row below the list: icon, provider name, and a primary
+/* "Other camera providers" — single row below the list: icon, provider name, and a tertiary
    "Sign in" button that opens the credentials sheet. The whole section is removed once
    TrueView is connected (its camera then appears in the list above). */
 .ob-provider-row{
@@ -3715,7 +3718,7 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
           <span class="oneui-Avatar r-ico" data-size="2xl" data-content="icon" data-appearance="primary" data-attention="medium" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M17 10.5 21 8v8l-4-2.5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
           <span class="ob-camtx">
             <span class="oneui-Text t" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">TrueView</span>
-            <button type="button" class="oneui-Button" data-appearance="primary" data-attention="high" data-size="8" data-ob-trueview-open>Sign in</button>
+            <button type="button" class="oneui-Button" data-appearance="primary" data-attention="low" data-size="8" data-ob-trueview-open>Sign in</button>
           </span>
         </div>
       </div>
