@@ -3177,7 +3177,14 @@ button.oneui-Avatar{position:relative}
   border-radius:var(--Shape-3);font:inherit;font-size:15px;font-weight:800;cursor:pointer;
 }
 
-.ob-section-label{margin:var(--Spacing-4) 0 0}
+.ob-section-label{margin:0}
+/* Onboarding sections (small label + its content), same on every step: 32px above the label,
+   12px from label to content. The step's <main> already adds its own gap (20px or 24px), so
+   the margin tops that up to 32. */
+main[data-gap="5"] > .ob-section{margin-top:var(--Spacing-3)}
+main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
+.ob-scan-reveal > .ob-section{margin-top:var(--Spacing-8)}   /* room step: plain block parent, no gap */
+.ob-hh-section.ob-section{gap:var(--Spacing-3)}
 .ob-legal-note{margin-top:var(--Spacing-3);text-align:center}
 
 /* Household step — counter rows (who's home / pets), a toggle-
@@ -3702,7 +3709,7 @@ button.oneui-Avatar{position:relative}
         </button>
       </div>
 
-      <div class="oneui-Container" data-gap="2" data-ob-providers>
+      <div class="oneui-Container ob-section" data-gap="3" data-ob-providers>
         <p class="oneui-Text" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low">Other camera providers</p>
         <div class="ob-provider-row">
           <span class="oneui-Avatar r-ico" data-size="2xl" data-content="icon" data-appearance="primary" data-attention="medium" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M17 10.5 21 8v8l-4-2.5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
@@ -3799,7 +3806,7 @@ button.oneui-Avatar{position:relative}
            (.is-on) because the coverage checks are all passing by
            default; the pattern still supports a warn/miss state
            later by dropping .is-on on any specific tile. -->
-      <div class="ob-hh-section is-review">
+      <div class="ob-hh-section ob-section is-review">
         <div class="oneui-Text hh-head" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low">Objects detected</div>
         <div class="ob-hh-grid">
           <div class="ob-hh-tile oneui-Surface is-on" data-surface="elevated">
@@ -3963,7 +3970,7 @@ button.oneui-Avatar{position:relative}
            toggle so the section doesn't compete with the counters
            above it when nobody has help. -->
 
-      <div class="oneui-Container" data-gap="3">
+      <div class="oneui-Container ob-section" data-gap="3">
         <p class="oneui-Text ob-section-label" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low">Family members</p>
         <div class="hh-counters">
           <div class="hh-count-row oneui-Surface" data-surface="elevated">
@@ -4005,7 +4012,7 @@ button.oneui-Avatar{position:relative}
         </div>
       </div>
 
-      <div class="oneui-Container" data-gap="3">
+      <div class="oneui-Container ob-section" data-gap="3">
         <p class="oneui-Text ob-section-label" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low">Pets</p>
         <div class="hh-counters">
           <div class="hh-count-row oneui-Surface" data-surface="elevated">
