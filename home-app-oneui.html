@@ -3671,7 +3671,7 @@ button.oneui-Avatar{position:relative}
     </div>
     <main class="scroll oneui-Container" data-gap="5" data-padding-x="6" data-padding-y="4">
       <div class="oneui-Container" data-gap="1">
-        <h1 class="oneui-Text" data-variant="headline" data-size="S" data-weight="high" data-appearance="neutral">2 cameras found</h1>
+        <h1 class="oneui-Text" data-variant="headline" data-size="S" data-weight="high" data-appearance="neutral" data-ob-cam-heading>2 cameras found</h1>
         <p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium">Select cameras that you want to onboard.</p>
       </div>
 
@@ -7612,9 +7612,13 @@ window.addEventListener('error', function(e){
        addTrueviewCard() appends a third one. A lone camera gets the
        [data-ob-cam-count="1"] hero treatment; anything else is left
        to the auto-fit grid to lay out evenly. */
+    var camHeading = document.querySelector('[data-ob-cam-heading]');
     function syncCamGridCount(){
       if(!camGrid) return;
-      camGrid.setAttribute('data-ob-cam-count', camGrid.children.length);
+      var n = camGrid.children.length;
+      camGrid.setAttribute('data-ob-cam-count', n);
+      // heading always reflects how many cameras are listed
+      if(camHeading) camHeading.textContent = n + (n === 1 ? ' camera found' : ' cameras found');
     }
     syncCamGridCount();
     function addTrueviewCard(){
