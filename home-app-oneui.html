@@ -2703,13 +2703,14 @@ button.oneui-Avatar{position:relative}
 .ob-search-layer{position:absolute;left:0;top:0;width:320px;height:260px}
 .ob-item{position:absolute;display:block}
 .ob-item-camera{object-fit:contain}
-/* Five same-size cameras around the edge of the scene (image ratio 620:578); 40px x1.4 fits
-   whole in the 72px glass. The centre is left empty: that is where the lens rests. */
-.ob-cam-1{left:46px;top:54px;width:40px;height:37px}
-.ob-cam-2{left:212px;top:37px;width:40px;height:37px}
-.ob-cam-3{left:140px;top:204px;width:40px;height:37px}
-.ob-cam-4{left:36px;top:179px;width:40px;height:37px}
-.ob-cam-5{left:244px;top:182px;width:40px;height:37px}
+/* Five different cameras around the edge of the scene, each fitted (contain) into the same
+   36px box — x1.4 that stays inside the 72px glass even at the corners. The centre is left
+   empty: that is where the lens rests. Box centres match the lens stops in obSearch. */
+.ob-cam-1{left:48px;top:54.5px;width:36px;height:36px}
+.ob-cam-2{left:214px;top:37.5px;width:36px;height:36px}
+.ob-cam-3{left:142px;top:204.5px;width:36px;height:36px}
+.ob-cam-4{left:38px;top:179.5px;width:36px;height:36px}
+.ob-cam-5{left:246px;top:182.5px;width:36px;height:36px}
 /* Outside the lens the camera is barely there; only the lens shows it clearly. */
 .ob-search-ghost{opacity:0}
 /* Magnifier: simple 80px black search icon (viewBox drawn at 3/4 scale) over a soft
@@ -3658,11 +3659,11 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
     <div class="statusbar" aria-hidden="true"><span data-clock>08:14</span></div>
     <div class="ob-search" id="ob-search" aria-hidden="true">
       <div class="ob-search-layer ob-search-ghost" data-ob-layer>
-        <img class="ob-item ob-item-camera ob-cam-1" src="assets/dome-cam.png" alt="" onerror="this.style.display='none'">
-        <img class="ob-item ob-item-camera ob-cam-2" src="assets/dome-cam.png" alt="" onerror="this.style.display='none'">
+        <img class="ob-item ob-item-camera ob-cam-1" src="assets/cam-battery.png" alt="" onerror="this.style.display='none'">
+        <img class="ob-item ob-item-camera ob-cam-2" src="assets/cam-mi360.png" alt="" onerror="this.style.display='none'">
         <img class="ob-item ob-item-camera ob-cam-3" src="assets/dome-cam.png" alt="" onerror="this.style.display='none'">
-        <img class="ob-item ob-item-camera ob-cam-4" src="assets/dome-cam.png" alt="" onerror="this.style.display='none'">
-        <img class="ob-item ob-item-camera ob-cam-5" src="assets/dome-cam.png" alt="" onerror="this.style.display='none'">
+        <img class="ob-item ob-item-camera ob-cam-4" src="assets/cam-cube.png" alt="" onerror="this.style.display='none'">
+        <img class="ob-item ob-item-camera ob-cam-5" src="assets/cam-pantilt.png" alt="" onerror="this.style.display='none'">
       </div>
       <div class="ob-search-lens" data-ob-lens>
         <svg class="ob-search-icon ob-search-shade ob-search-shade-far" viewBox="0 0 84 120" fill="none">
