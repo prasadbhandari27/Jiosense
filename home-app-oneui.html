@@ -2663,6 +2663,10 @@ button.oneui-Avatar{position:relative}
   padding:var(--Spacing-6) var(--Spacing-4);   /* 24px top/bottom, 16px sides to match the content gutter */
 }
 .ob-progress .ob-p-row{display:flex;align-items:center;gap:var(--Spacing-2)}
+/* Segmented progress: one bar per onboarding step; completed and current steps fill violet. */
+.ob-segs{display:flex;gap:var(--Spacing-1)}
+.ob-seg{flex:1;height:var(--LinearProgressIndicator-trackHeight-M);border-radius:var(--LinearProgressIndicator-borderRadius);background:var(--Primary-Subtle);transition:background-color var(--Motion-Duration-L) var(--Motion-Easing-Transition-Moderate)}
+.ob-seg.is-on{background:var(--Primary-Bold)}
 /* Back arrow — sits in front of the step label. Hidden on the very
    first step (ob-camselect) because there's no earlier onboarding
    screen to return to. */
@@ -3667,7 +3671,7 @@ button.oneui-Avatar{position:relative}
         <span class="oneui-Text ob-p-step" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low" data-ob-phase>Step 1 · Your cameras</span>
         <span class="oneui-Text" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low" data-ob-frac>1 / 4</span>
       </div>
-      <div class="oneui-LinearProgressIndicator" data-size="M" role="progressbar" aria-label="Setup progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="25"><span class="oneui-LinearProgressIndicator-indicator" data-ob-fill style="width:25%"></span></div>
+      <div class="ob-segs" role="progressbar" aria-label="Setup progress" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1" aria-valuetext="Step 1 of 4" data-ob-segs><span class="ob-seg is-on"></span><span class="ob-seg"></span><span class="ob-seg"></span><span class="ob-seg"></span></div>
     </div>
     <main class="scroll oneui-Container" data-gap="5" data-padding-x="6" data-padding-y="4">
       <div class="oneui-Container" data-gap="1">
@@ -3756,7 +3760,7 @@ button.oneui-Avatar{position:relative}
         <span class="oneui-Text ob-p-step" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low" data-ob-phase>Step 2 · Tapo Camera</span>
         <span class="oneui-Text" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low" data-ob-frac>2 / 4</span>
       </div>
-      <div class="oneui-LinearProgressIndicator" data-size="M" role="progressbar" aria-label="Setup progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><span class="oneui-LinearProgressIndicator-indicator" data-ob-fill style="width:50%"></span></div>
+      <div class="ob-segs" role="progressbar" aria-label="Setup progress" aria-valuemin="1" aria-valuemax="4" aria-valuenow="2" aria-valuetext="Step 2 of 4" data-ob-segs><span class="ob-seg is-on"></span><span class="ob-seg is-on"></span><span class="ob-seg"></span><span class="ob-seg"></span></div>
     </div>
     <main class="scroll oneui-Container" data-gap="5" data-padding-x="6" data-padding-y="4">
       <!-- Combined camera-setup screen. Was previously three
@@ -3932,7 +3936,7 @@ button.oneui-Avatar{position:relative}
         <span class="oneui-Text ob-p-step" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low" data-ob-phase>Step 3 · Household</span>
         <span class="oneui-Text" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low" data-ob-frac>3 / 4</span>
       </div>
-      <div class="oneui-LinearProgressIndicator" data-size="M" role="progressbar" aria-label="Setup progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75"><span class="oneui-LinearProgressIndicator-indicator" data-ob-fill style="width:75%"></span></div>
+      <div class="ob-segs" role="progressbar" aria-label="Setup progress" aria-valuemin="1" aria-valuemax="4" aria-valuenow="3" aria-valuetext="Step 3 of 4" data-ob-segs><span class="ob-seg is-on"></span><span class="ob-seg is-on"></span><span class="ob-seg is-on"></span><span class="ob-seg"></span></div>
     </div>
     <main class="scroll oneui-Container" data-gap="6" data-padding-x="6" data-padding-y="4">
       <div class="oneui-Container" data-gap="1">
@@ -4226,7 +4230,7 @@ button.oneui-Avatar{position:relative}
         <span class="oneui-Text ob-p-step" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low" data-ob-phase>Step 4 · Privacy</span>
         <span class="oneui-Text" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low" data-ob-frac>4 / 4</span>
       </div>
-      <div class="oneui-LinearProgressIndicator" data-size="M" role="progressbar" aria-label="Setup progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"><span class="oneui-LinearProgressIndicator-indicator" data-ob-fill style="width:100%"></span></div>
+      <div class="ob-segs" role="progressbar" aria-label="Setup progress" aria-valuemin="1" aria-valuemax="4" aria-valuenow="4" aria-valuetext="Step 4 of 4" data-ob-segs><span class="ob-seg is-on"></span><span class="ob-seg is-on"></span><span class="ob-seg is-on"></span><span class="ob-seg is-on"></span></div>
     </div>
     <main class="scroll oneui-Container" data-gap="5" data-padding-x="6" data-padding-y="4">
       <div class="oneui-Container" data-gap="1">
@@ -7465,10 +7469,16 @@ window.addEventListener('error', function(e){
       if(!screen) return;
       var ph = screen.querySelector('[data-ob-phase]');
       var fr = screen.querySelector('[data-ob-frac]');
-      var fl = screen.querySelector('[data-ob-fill]');
+      var sg = screen.querySelector('[data-ob-segs]');
       if(ph) ph.textContent = meta.phase;
       if(fr) fr.textContent = meta.frac;
-      if(fl){ fl.style.width = meta.pct + '%'; fl.parentElement.setAttribute('aria-valuenow', meta.pct); }
+      if(sg){
+        // one segment per step: steps up to and including this one are filled
+        var n = indexOf[id] + 1, segs = sg.children;
+        for(var i = 0; i < segs.length; i++) segs[i].classList.toggle('is-on', i < n);
+        sg.setAttribute('aria-valuenow', n);
+        sg.setAttribute('aria-valuetext', 'Step ' + n + ' of ' + segs.length);
+      }
     }
 
     /* Next / Back — thin wrappers over the router. The router's
