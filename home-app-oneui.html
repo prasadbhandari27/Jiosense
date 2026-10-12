@@ -2701,18 +2701,17 @@ button.oneui-Avatar{position:relative}
 @keyframes ob-pulse{0%{transform:scale(.7);opacity:.35}100%{transform:scale(1.35);opacity:0}}
 .ob-search-layer{position:absolute;left:0;top:0;width:320px;height:260px}
 .ob-item{position:absolute;display:block}
-.ob-item-camera{left:55px;top:32px;width:210px;height:196px;object-fit:contain;filter:drop-shadow(0 14px 18px color-mix(in srgb,var(--Primary-Bold) 18%,transparent))}
-.ob-search-view .ob-item-camera{filter:none}
-/* Magnifier: 60px lens with a gradient ring; its glass shows the camera magnified. */
+.ob-item-camera{left:55px;top:32px;width:210px;height:196px;object-fit:contain}
+/* Outside the lens the camera is barely there; only the lens shows it clearly. */
+.ob-search-ghost{opacity:.05}
+/* Magnifier: 60px black lens; its glass shows the camera magnified. */
 .ob-search-lens{position:absolute;left:0;top:0;width:84px;height:120px;will-change:transform}
-.ob-search-view{position:absolute;left:9px;top:9px;width:54px;height:54px;border-radius:var(--Shape-Pill);overflow:hidden;background:var(--Surface-Fill-Default);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--Informative-Bold) 25%,transparent)}
+.ob-search-view{position:absolute;left:9px;top:9px;width:54px;height:54px;border-radius:var(--Shape-Pill);overflow:hidden;background:var(--Surface-Fill-Default)}
 .ob-search-view .ob-search-layer{transform-origin:0 0}
-.ob-search-icon{position:absolute;left:0;top:0;width:84px;height:120px;overflow:visible;filter:drop-shadow(0 6px 10px color-mix(in srgb,var(--Primary-Bold) 28%,transparent))}
-.ob-search-halo{stroke:var(--Surface-Fill-Default);stroke-width:10;stroke-linecap:round}
-.ob-search-halo-handle{stroke-width:13}
-.ob-search-ring{stroke:url(#ob-lens-grad);stroke-width:6}
-.ob-search-glint{stroke:var(--Surface-Fill-Default);stroke-width:3;stroke-linecap:round;opacity:.85}
-.ob-search-handle{stroke:url(#ob-lens-grad);stroke-width:9;stroke-linecap:round}
+.ob-search-icon{position:absolute;left:0;top:0;width:84px;height:120px;overflow:visible;filter:drop-shadow(0 6px 10px var(--Overlay-On-Media-Lowest))}
+.ob-search-ring{stroke:var(--Neutral-High);stroke-width:6}
+.ob-search-glint{stroke:var(--Neutral-Stroke-Medium);stroke-width:3;stroke-linecap:round}
+.ob-search-handle{stroke:var(--Neutral-High);stroke-width:9;stroke-linecap:round}
 @media (prefers-reduced-motion: reduce){.ob-aura::before,.ob-pulse{animation:none}}
 .ob-loading-title{transition:opacity var(--Motion-Duration-L) var(--Motion-Easing-Standard)}
 .ob-loading-sub{margin:0 auto;max-width:280px}
@@ -3617,21 +3616,12 @@ button.oneui-Avatar{position:relative}
       <div class="ob-aura"></div>
       <div class="ob-pulse"></div>
       <div class="ob-pulse" style="animation-delay:-1.6s"></div>
-      <div class="ob-search-layer" data-ob-layer>
+      <div class="ob-search-layer ob-search-ghost" data-ob-layer>
         <img class="ob-item ob-item-camera" src="assets/dome-cam.png" alt="" onerror="this.style.display='none'">
       </div>
       <div class="ob-search-lens" data-ob-lens>
         <div class="ob-search-view" data-ob-view></div>
         <svg class="ob-search-icon" viewBox="0 0 84 120" fill="none">
-          <defs>
-            <linearGradient id="ob-lens-grad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="var(--Primary-Bold)"/>
-              <stop offset=".55" stop-color="var(--Informative-Bold)"/>
-              <stop offset="1" stop-color="var(--Sparkle-Bold)"/>
-            </linearGradient>
-          </defs>
-          <circle cx="36" cy="36" r="30" class="ob-search-halo"/>
-          <path d="M48 64 62 104" class="ob-search-halo ob-search-halo-handle"/>
           <circle cx="36" cy="36" r="30" class="ob-search-ring"/>
           <path d="M18 24a20 20 0 0 1 14-9" class="ob-search-glint"/>
           <path d="M48 64 62 104" class="ob-search-handle"/>
@@ -12811,9 +12801,9 @@ function tlDateNav(btn, dir){
 })();
 </script>
 <script>
-/* ob-loading — searching scene: a small magnifier scans the smart camera and shows each part
-   magnified in its lens, dwelling on the camera lens; the aurora spotlight follows it. Only
-   animates while the screen is showing, and rests on the camera lens for reduced-motion users. */
+/* ob-loading — searching scene: the camera is a faint 5% ghost and a small black magnifier
+   wanders over it, showing only what is under the lens; it keeps coming back to the camera
+   lens. Only animates while the screen is showing; rests on the lens for reduced motion. */
 (function obSearch(){
   var section = document.querySelector('[data-screen="ob-loading"]');
   var scene   = document.getElementById('ob-search');
@@ -12822,12 +12812,13 @@ function tlDateNav(btn, dir){
   var view  = scene.querySelector('[data-ob-view]');
   var ghost = scene.querySelector('[data-ob-layer]');
   var zoom  = ghost.cloneNode(true);
-  zoom.removeAttribute('data-ob-layer');
+  zoom.classList.remove('ob-search-ghost'); zoom.removeAttribute('data-ob-layer');
   view.appendChild(zoom);
 
-  var K = 1.8, PERIOD = 7200, LENS_C = 36, VIEW_R = 27;
-  var CAM = {x:159, y:150}, TOP = {x:178, y:62}, RIGHT = {x:240, y:112}, LEFT = {x:88, y:122};
-  var WAY = [[0,CAM],[.16,CAM],[.30,TOP],[.40,RIGHT],[.52,CAM],[.66,CAM],[.80,LEFT],[.88,LEFT],[1,CAM]];
+  var K = 1.4, PERIOD = 9000, LENS_C = 36, VIEW_R = 27;
+  var CAM = {x:160, y:154}, NW = {x:72, y:66}, TOP = {x:172, y:52}, RIGHT = {x:248, y:116},
+      SE = {x:226, y:214}, LEFT = {x:80, y:142};
+  var WAY = [[0,CAM],[.12,CAM],[.24,NW],[.32,NW],[.42,TOP],[.52,RIGHT],[.58,RIGHT],[.68,SE],[.78,LEFT],[.84,LEFT],[.94,CAM],[1,CAM]];
   function ease(u){ return u*u*u*(u*(u*6-15)+10); }
   function place(p, bob){
     var x = p.x, y = p.y + bob;
