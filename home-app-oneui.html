@@ -2973,8 +2973,8 @@ button.oneui-Avatar{position:relative}
 .ob-acc-inner{min-height:0;overflow:hidden}
 .ob-acc-pad{padding:0 var(--Spacing-3) var(--Spacing-4)}
 .ob-acc:not(.is-open) .ob-acc-pad{visibility:hidden;transition:visibility 0s var(--Motion-Duration-L)}
-/* Room field — reads as a dropdown: label + "AI suggestion" tag, then a select-style box
-   that opens the room sheet. */
+/* Room field — reads as a dropdown: "AI suggestion" tag (hidden once the user picks a room
+   themselves), then a select-style box that opens the room sheet. */
 .ob-room-field{display:flex;flex-direction:column;gap:var(--Spacing-2);margin-top:var(--Spacing-4)}
 .ob-room-field-hd{display:flex;align-items:center;gap:var(--Spacing-2)}
 .ob-room-select{
@@ -3949,11 +3949,6 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
         <button type="button" class="room-row" data-room="Dining Room">
           <span class="oneui-Avatar r-ico" data-size="2xl" data-content="icon" data-appearance="neutral" data-attention="medium" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="14" rx="8" ry="2.4" stroke="currentColor" stroke-width="1.8"/><path d="M5 14v5M19 14v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="7" r="2.4" stroke="currentColor" stroke-width="1.8"/><path d="M12 9.4v4" stroke="currentColor" stroke-width="1.8"/></svg></span>
           <span class="oneui-Text r-name" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral">Dining Room</span>
-          <span class="r-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </button>
-        <button type="button" class="room-row" data-room="Other">
-          <span class="oneui-Avatar r-ico" data-size="2xl" data-content="icon" data-appearance="neutral" data-attention="medium" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="12" r="1.6" fill="currentColor"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="18" cy="12" r="1.6" fill="currentColor"/></svg></span>
-          <span class="oneui-Text r-name" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral">Other</span>
           <span class="r-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </button>
       </div>
@@ -7857,9 +7852,8 @@ window.addEventListener('error', function(e){
           '</div>' +
           '<div class="ob-scan-reveal" data-ob-scan-reveal>' +
             '<div class="ob-room-field">' +
-              '<div class="ob-room-field-hd">' +
-                '<span class="oneui-Text" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low">Room</span>' +
-                '<span class="oneui-Badge" data-appearance="sparkle" data-attention="medium" data-size="s" data-ob-ai-tag' + (room === c.room ? '' : ' style="display:none"') + '>AI suggestion</span>' +
+              '<div class="ob-room-field-hd" data-ob-ai-tag' + (room === c.room ? '' : ' style="display:none"') + '>' +
+                '<span class="oneui-Badge" data-appearance="sparkle" data-attention="medium" data-size="s">AI suggestion</span>' +
               '</div>' +
               '<button type="button" class="ob-room-select" data-ob-room-select aria-haspopup="dialog" aria-label="Room for ' + c.name + ': ' + room + '. Change room">' +
                 '<span class="oneui-Text v" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral" data-ob-room-val>' + room + '</span>' + CHEV_DOWN +
