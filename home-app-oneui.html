@@ -2723,8 +2723,14 @@ button.oneui-Avatar{position:relative}
    tight contact shadow and a soft ambient one. --lift (0 resting, 1 mid-move, set by the
    script) pushes both farther and softer, so the icon seems to rise as it travels. */
 .ob-search-shade .ob-search-ring,.ob-search-shade .ob-search-handle{stroke:url(#ob-shade-grad)}
-.ob-search-shade-near{opacity:calc(.5 - var(--lift,0) * .25);filter:blur(calc(1.5px + var(--lift,0) * 2px));transform:translate(calc(1px + var(--lift,0) * 3px),calc(3px + var(--lift,0) * 5px))}
-.ob-search-shade-far{opacity:calc(.55 - var(--lift,0) * .15);filter:blur(calc(7px + var(--lift,0) * 5px));transform:translate(calc(4px + var(--lift,0) * 6px),calc(11px + var(--lift,0) * 9px)) scale(calc(1 + var(--lift,0) * .05))}
+/* Pulse: --pulse breathes 0 → 1 → 0 on the lens (registered so it can animate) and adds a
+   little size, strength and softness to the gradient shadow on top of the lift. */
+@property --pulse{syntax:'<number>';inherits:true;initial-value:0}
+@keyframes ob-shade-pulse{0%,100%{--pulse:0}50%{--pulse:1}}
+.ob-search-lens{animation:ob-shade-pulse 1.8s var(--Motion-Easing-Standard,ease-in-out) infinite}
+@media (prefers-reduced-motion: reduce){.ob-search-lens{animation:none}}
+.ob-search-shade-near{opacity:calc(.5 - var(--lift,0) * .25 + var(--pulse,0) * .1);filter:blur(calc(1.5px + var(--lift,0) * 2px));transform:translate(calc(1px + var(--lift,0) * 3px),calc(3px + var(--lift,0) * 5px))}
+.ob-search-shade-far{opacity:calc(.55 - var(--lift,0) * .15 + var(--pulse,0) * .3);filter:blur(calc(7px + var(--lift,0) * 5px + var(--pulse,0) * 4px));transform:translate(calc(4px + var(--lift,0) * 6px),calc(11px + var(--lift,0) * 9px)) scale(calc(1 + var(--lift,0) * .05 + var(--pulse,0) * .1))}
 .ob-search-ring{stroke:var(--Neutral-High);stroke-width:6}
 .ob-search-handle{stroke:var(--Neutral-High);stroke-width:8;stroke-linecap:round}
 .ob-loading-title{transition:opacity var(--Motion-Duration-L) var(--Motion-Easing-Standard)}
