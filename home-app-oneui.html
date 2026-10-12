@@ -2704,11 +2704,11 @@ button.oneui-Avatar{position:relative}
 .ob-item-camera{left:55px;top:32px;width:210px;height:196px;object-fit:contain}
 /* Outside the lens the camera is barely there; only the lens shows it clearly. */
 .ob-search-ghost{opacity:.05}
-/* Magnifier: 60px black lens; its glass shows the camera magnified. */
-.ob-search-lens{position:absolute;left:0;top:0;width:84px;height:120px;will-change:transform}
-.ob-search-view{position:absolute;left:9px;top:9px;width:54px;height:54px;border-radius:var(--Shape-Pill);overflow:hidden;background:var(--Surface-Fill-Default)}
+/* Magnifier: 80px black lens (viewBox drawn at 3/4 scale); its glass shows the camera magnified. */
+.ob-search-lens{position:absolute;left:0;top:0;width:112px;height:160px;will-change:transform}
+.ob-search-view{position:absolute;left:12px;top:12px;width:72px;height:72px;border-radius:var(--Shape-Pill);overflow:hidden;background:var(--Surface-Fill-Default)}
 .ob-search-view .ob-search-layer{transform-origin:0 0}
-.ob-search-icon{position:absolute;left:0;top:0;width:84px;height:120px;overflow:visible;filter:drop-shadow(0 6px 10px var(--Overlay-On-Media-Lowest))}
+.ob-search-icon{position:absolute;left:0;top:0;width:112px;height:160px;overflow:visible;filter:drop-shadow(0 6px 10px var(--Overlay-On-Media-Lowest))}
 .ob-search-ring{stroke:var(--Neutral-High);stroke-width:6}
 .ob-search-glint{stroke:var(--Neutral-Stroke-Medium);stroke-width:3;stroke-linecap:round}
 .ob-search-handle{stroke:var(--Neutral-High);stroke-width:9;stroke-linecap:round}
@@ -12815,7 +12815,7 @@ function tlDateNav(btn, dir){
   zoom.classList.remove('ob-search-ghost'); zoom.removeAttribute('data-ob-layer');
   view.appendChild(zoom);
 
-  var K = 1.4, PERIOD = 9000, LENS_C = 36, VIEW_R = 27;
+  var K = 1.4, PERIOD = 9000, LENS_C = 48, VIEW_R = 36;
   var CAM = {x:160, y:154}, NW = {x:72, y:66}, TOP = {x:172, y:52}, RIGHT = {x:248, y:116},
       SE = {x:226, y:214}, LEFT = {x:80, y:142};
   var WAY = [[0,CAM],[.12,CAM],[.24,NW],[.32,NW],[.42,TOP],[.52,RIGHT],[.58,RIGHT],[.68,SE],[.78,LEFT],[.84,LEFT],[.94,CAM],[1,CAM]];
