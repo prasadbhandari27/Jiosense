@@ -2688,7 +2688,25 @@ button.oneui-Avatar{position:relative}
 [data-screen="ob-loading"] .statusbar{background:#fff}
 .ob-loading-main{height:100%;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;z-index:2;pointer-events:none}
 .ob-loading-text-box{position:absolute;top:62%;left:0;right:0;padding:0 32px;pointer-events:auto;text-align:center}
-.ob-wave-canvas{position:absolute;inset:0;z-index:1;pointer-events:none;width:100%;height:100%}
+/* Searching scene: a large magnifier drifts along a shelf of faint smart-home items and
+   shows each one magnified inside the lens; it dwells on the smart camera. */
+.ob-search{position:absolute;left:50%;top:15%;width:320px;height:240px;margin-left:-160px;z-index:1;pointer-events:none}
+.ob-search-layer{position:absolute;left:0;top:0;width:320px;height:240px}
+.ob-search-ghost{opacity:.3;filter:grayscale(1)}
+.ob-item{position:absolute;display:block}
+.ob-item-plug{left:30px;top:90px;width:64px;height:64px}
+.ob-item-camera{left:80px;top:28px;width:160px;height:160px;mix-blend-mode:multiply}
+.ob-item-bulb{left:226px;top:88px;width:64px;height:64px}
+.ob-item-body{fill:var(--Neutral-Subtle);stroke:var(--Neutral-Stroke-Medium);stroke-width:2}
+.ob-item-detail{fill:var(--Neutral-Low)}
+.ob-item-led{fill:var(--Sparkle-Bold)}
+.ob-item-glint{stroke:var(--Surface-Fill-Default);stroke-width:3;stroke-linecap:round}
+.ob-search-lens{position:absolute;left:0;top:0;width:170px;height:250px;will-change:transform}
+.ob-search-view{position:absolute;left:8px;top:8px;width:144px;height:144px;border-radius:var(--Shape-Pill);overflow:hidden;background:var(--Surface-Fill-Default)}
+.ob-search-view .ob-search-layer{transform-origin:0 0}
+.ob-search-icon{position:absolute;left:0;top:0;width:170px;height:250px;overflow:visible;filter:drop-shadow(0 6px 10px var(--Overlay-On-Media-Lowest))}
+.ob-search-ring{stroke:var(--Neutral-High);stroke-width:8}
+.ob-search-handle{stroke:var(--Neutral-High);stroke-width:12;stroke-linecap:round}
 .ob-loading-title{transition:opacity var(--Motion-Duration-L) var(--Motion-Easing-Standard)}
 .ob-loading-sub{margin:0 auto;max-width:280px}
 .ob-problem-sheet{position:absolute;bottom:0;left:0;right:0;background:var(--Surface-Fill-Default);border-radius:var(--Shape-5) var(--Shape-5) 0 0;padding:var(--Spacing-5) var(--Spacing-6) calc(var(--Spacing-10) + env(safe-area-inset-bottom));transform:translateY(100%);transition:transform .45s cubic-bezier(.34,1.56,.64,1);box-shadow:0 calc(-1 * var(--Spacing-0-5)) var(--Spacing-5) var(--Overlay-On-Media-Low);z-index:10}
@@ -3588,7 +3606,30 @@ button.oneui-Avatar{position:relative}
        auto-advances it into ob-camselect after a short simulated scan. -->
   <section class="screen" data-screen="ob-loading" style="overflow:hidden">
     <div class="statusbar" aria-hidden="true"><span data-clock>08:14</span></div>
-    <canvas id="ob-wave-canvas" class="ob-wave-canvas" aria-hidden="true"></canvas>
+    <div class="ob-search" id="ob-search" aria-hidden="true">
+      <div class="ob-search-layer ob-search-ghost" data-ob-layer>
+        <svg class="ob-item ob-item-plug" viewBox="0 0 64 64" fill="none">
+          <rect x="10" y="6" width="44" height="52" rx="14" class="ob-item-body"/>
+          <rect x="22" y="20" width="6" height="14" rx="3" class="ob-item-detail"/>
+          <rect x="36" y="20" width="6" height="14" rx="3" class="ob-item-detail"/>
+          <circle cx="32" cy="46" r="3" class="ob-item-led"/>
+        </svg>
+        <img class="ob-item ob-item-camera" src="assets/tapo-cam.png" alt="" onerror="this.style.display='none'">
+        <svg class="ob-item ob-item-bulb" viewBox="0 0 64 64" fill="none">
+          <path d="M32 6C21.5 6 14 13.6 14 23c0 6.2 3.2 10.6 6.6 14.4 1.8 2 2.9 3.8 3.1 6.1h16.6c.2-2.3 1.3-4.1 3.1-6.1C46.8 33.6 50 29.2 50 23 50 13.6 42.5 6 32 6Z" class="ob-item-body"/>
+          <rect x="24" y="46" width="16" height="5" rx="2.5" class="ob-item-detail"/>
+          <rect x="26" y="53" width="12" height="5" rx="2.5" class="ob-item-detail"/>
+          <path d="M26 24c0-3.6 2.6-6.2 6-6.2" class="ob-item-glint"/>
+        </svg>
+      </div>
+      <div class="ob-search-lens" data-ob-lens>
+        <div class="ob-search-view" data-ob-view></div>
+        <svg class="ob-search-icon" viewBox="0 0 170 250" fill="none">
+          <circle cx="80" cy="80" r="72" class="ob-search-ring"/>
+          <path d="M106 151 133 227" class="ob-search-handle"/>
+        </svg>
+      </div>
+    </div>
     <main class="ob-loading-main">
       <div class="ob-loading-text-box">
         <h1 class="oneui-Text ob-loading-title" data-variant="headline" data-size="M" data-appearance="neutral" data-text-align="center" id="ob-loading-title">Looking for camera</h1>
@@ -12762,112 +12803,54 @@ function tlDateNav(btn, dir){
 })();
 </script>
 <script>
-/* ob-loading — Connecting Dots: search icon scans LEFT HALF of screen,
-   full-screen dot field, coral→peach→purple gradient, speed=0.004, reach=30 */
-(function obDots(){
-  var canvas = document.getElementById('ob-wave-canvas');
-  if(!canvas) return;
-  var ctx = canvas.getContext('2d');
-  var W, H, t = 0;
-  var SPEED  = 0.004;
-  var REACH  = 30;
-  var LINE_R = 26;
-  var GAP    = 22;
-  var BASE_R = 1.8;
-  var MAX_R  = 7;
+/* ob-loading — searching scene: magnifier sweeps a shelf of ghosted smart-home items and
+   reveals each magnified in the lens, dwelling on the smart camera. Only animates while the
+   screen is showing, and rests on the camera for reduced-motion users. */
+(function obSearch(){
+  var section = document.querySelector('[data-screen="ob-loading"]');
+  var scene   = document.getElementById('ob-search');
+  if(!section || !scene) return;
+  var lens  = scene.querySelector('[data-ob-lens]');
+  var view  = scene.querySelector('[data-ob-view]');
+  var ghost = scene.querySelector('[data-ob-layer]');
+  var zoom  = ghost.cloneNode(true);
+  zoom.classList.remove('ob-search-ghost'); zoom.removeAttribute('data-ob-layer');
+  view.appendChild(zoom);
 
-  var C_TOP = [ 80, 180, 255];
-  var C_MID = [100, 100, 255];
-  var C_BOT = [190,  60, 255];
-
-  function lp(a,b,u){ return [a[0]+(b[0]-a[0])*u|0, a[1]+(b[1]-a[1])*u|0, a[2]+(b[2]-a[2])*u|0]; }
-
-  function setup(){
-    var dpr = window.devicePixelRatio||1;
-    W = canvas.clientWidth ||375;
-    H = canvas.clientHeight||667;
-    canvas.width  = W*dpr;
-    canvas.height = H*dpr;
-    ctx.setTransform(dpr,0,0,dpr,0,0);
+  var K = 1.2, PERIOD = 6800, LENS_R = 72, VIEW_R = 72;
+  var CAM = {x:160, y:108}, PLUG = {x:62, y:122}, BULB = {x:258, y:120};
+  var WAY = [[0,CAM],[.18,CAM],[.30,PLUG],[.42,PLUG],[.56,CAM],[.72,CAM],[.84,BULB],[.92,BULB],[1,CAM]];
+  function ease(u){ return u*u*u*(u*(u*6-15)+10); }
+  function place(p, bob){
+    var x = p.x, y = p.y + bob;
+    lens.style.transform = 'translate3d(' + (x - 80) + 'px,' + (y - 80) + 'px,0)';
+    zoom.style.transform = 'translate(' + VIEW_R + 'px,' + VIEW_R + 'px) scale(' + K + ') translate(' + (-x) + 'px,' + (-y) + 'px)';
   }
-
-  function iconPos(){
-    var scanCx = W*0.5, scanCy = H*0.36;
-    return {
-      x: scanCx + W*0.42*Math.sin(t*SPEED),
-      y: scanCy + H*0.22*Math.sin(t*SPEED*1.4+1.2)
-    };
-  }
-
-  function drawSearchIcon(x, y){
-    var s=20;
-    ctx.save();
-    ctx.strokeStyle='rgba(0,0,0,0.82)';
-    ctx.lineWidth=2.5; ctx.lineCap='round';
-    ctx.beginPath(); ctx.arc(x,y,s*0.5,0,Math.PI*2); ctx.stroke();
-    var ang=Math.PI*0.78;
-    ctx.beginPath();
-    ctx.moveTo(x+Math.cos(ang)*s*0.5, y+Math.sin(ang)*s*0.5);
-    ctx.lineTo(x+Math.cos(ang)*s*0.9, y+Math.sin(ang)*s*0.9);
-    ctx.stroke();
-    ctx.restore();
-  }
-
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    var ip = iconPos();
-    var textTop = H*0.60;
-    var active=[], rest=[];
-
-    for(var x=GAP/2; x<W+GAP; x+=GAP){
-      for(var y=GAP/2; y<H; y+=GAP){
-        var vF = y<textTop ? 1 : Math.max(0, 1-(y-textTop)/(H*0.10));
-        if(vF<0.01) continue;
-        var dx=x-ip.x, dy=y-ip.y;
-        var d=Math.sqrt(dx*dx+dy*dy);
-        var p=Math.max(0, 1-d/REACH);
-        if(p>0.01){ active.push({x:x,y:y,p:p,vF:vF}); }
-        else       { rest.push({x:x,y:y,vF:vF}); }
+  function at(u){
+    for(var i=1;i<WAY.length;i++){
+      if(u <= WAY[i][0]){
+        var a = WAY[i-1], b = WAY[i], k = ease((u - a[0]) / (b[0] - a[0]));
+        return { x: a[1].x + (b[1].x - a[1].x) * k, y: a[1].y + (b[1].y - a[1].y) * k };
       }
     }
-
-    rest.forEach(function(pt){
-      ctx.beginPath(); ctx.arc(pt.x,pt.y,BASE_R,0,Math.PI*2);
-      ctx.fillStyle='rgba(100,130,220,'+(0.07*pt.vF).toFixed(2)+')';
-      ctx.fill();
-    });
-
-    for(var i=0;i<active.length;i++){
-      for(var j=i+1;j<active.length;j++){
-        var a=active[i],b=active[j];
-        var ldx=a.x-b.x, ldy=a.y-b.y;
-        var ld=Math.sqrt(ldx*ldx+ldy*ldy);
-        if(ld>LINE_R) continue;
-        var lop=a.p*b.p*(1-ld/LINE_R)*0.55;
-        if(lop<0.02) continue;
-        ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y);
-        ctx.strokeStyle='rgba(59,110,245,'+lop.toFixed(2)+')';
-        ctx.lineWidth=0.8; ctx.stroke();
-      }
-    }
-
-    active.forEach(function(pt){
-      var r=BASE_R+(MAX_R-BASE_R)*pt.p;
-      var op=(0.22+pt.p*0.72)*pt.vF;
-      var yN=Math.max(0,Math.min(1,pt.y/textTop));
-      var col=yN<0.5?lp(C_TOP,C_MID,yN*2):lp(C_MID,C_BOT,(yN-0.5)*2);
-      ctx.beginPath(); ctx.arc(pt.x,pt.y,r,0,Math.PI*2);
-      ctx.fillStyle='rgba('+col[0]+','+col[1]+','+col[2]+','+op.toFixed(2)+')';
-      ctx.fill();
-    });
-
-    drawSearchIcon(ip.x,ip.y);
-    t++;
-    requestAnimationFrame(draw);
+    return CAM;
   }
-
-  setup(); draw();
-  window.addEventListener('resize', setup);
+  var running = false, t0 = 0;
+  function frame(ts){
+    if(!section.classList.contains('is-active')){ running = false; return; }
+    if(!t0) t0 = ts;
+    var u = ((ts - t0) % PERIOD) / PERIOD;
+    place(at(u), Math.sin(u * Math.PI * 4) * 5);
+    requestAnimationFrame(frame);
+  }
+  function start(){
+    if(running) return;
+    if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches){ place(CAM, 0); return; }
+    running = true; t0 = 0; requestAnimationFrame(frame);
+  }
+  place(CAM, 0);
+  new MutationObserver(function(){ if(section.classList.contains('is-active')) start(); }).observe(section, {attributes:true, attributeFilter:['class']});
+  if(section.classList.contains('is-active')) start();
 })();
 </script>
 </body>
