@@ -1,4 +1,4 @@
-var CACHE = 'jiosense-v140';
+var CACHE = 'jiosense-v141';
 var CORE = [
   './',
   './index.html',
@@ -23,6 +23,20 @@ self.addEventListener('activate', function(e) {
 
 self.addEventListener('fetch', function(e) {
   if(e.request.method !== 'GET') return;
+  // Pages: network first, so a shared link (e.g. the Maze test) always gets the latest
+  // build; the cached copy is only an offline fallback.
+  if(e.request.mode === 'navigate'){
+    e.respondWith(
+      fetch(e.request).then(function(res){
+        if(res && res.status === 200){
+          var clone = res.clone();
+          caches.open(CACHE).then(function(c){ c.put(e.request, clone); });
+        }
+        return res;
+      }).catch(function(){ return caches.match(e.request); })
+    );
+    return;
+  }
   e.respondWith(
     caches.match(e.request).then(function(cached){
       var network = fetch(e.request).then(function(res){
