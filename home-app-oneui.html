@@ -2708,9 +2708,12 @@ button.oneui-Avatar{position:relative}
 .ob-search-view{position:absolute;left:12px;top:12px;width:72px;height:72px;border-radius:var(--Shape-Pill);overflow:hidden;background:var(--Surface-Fill-Default)}
 .ob-search-view .ob-search-layer{transform-origin:0 0}
 .ob-search-icon{position:absolute;left:0;top:0;width:112px;height:160px;overflow:visible}
-/* Shadow: one soft blurred capsule along the icon's diagonal, brand violet -> blue -> green,
-   dropped 8px; a CSS blur on a plain box stays smooth while it moves. */
-.ob-search-glow{position:absolute;left:4px;top:34.5px;width:117px;height:72px;border-radius:var(--Shape-Pill);background:linear-gradient(90deg,var(--Primary-Bold),var(--Informative-Bold),var(--Sparkle-Bold));filter:blur(14px);opacity:.45;transform:rotate(45deg)}
+/* Shadow: the icon's own silhouette in the brand gradient, cast down-right in two layers — a
+   tight contact shadow and a soft ambient one. --lift (0 resting, 1 mid-move, set by the
+   script) pushes both farther and softer, so the icon seems to rise as it travels. */
+.ob-search-shade .ob-search-ring,.ob-search-shade .ob-search-handle{stroke:url(#ob-shade-grad)}
+.ob-search-shade-near{opacity:calc(.5 - var(--lift,0) * .25);filter:blur(calc(1.5px + var(--lift,0) * 2px));transform:translate(calc(1px + var(--lift,0) * 3px),calc(3px + var(--lift,0) * 5px))}
+.ob-search-shade-far{opacity:calc(.55 - var(--lift,0) * .15);filter:blur(calc(7px + var(--lift,0) * 5px));transform:translate(calc(4px + var(--lift,0) * 6px),calc(11px + var(--lift,0) * 9px)) scale(calc(1 + var(--lift,0) * .05))}
 .ob-search-ring{stroke:var(--Neutral-High);stroke-width:6}
 .ob-search-handle{stroke:var(--Neutral-High);stroke-width:8;stroke-linecap:round}
 .ob-loading-title{transition:opacity var(--Motion-Duration-L) var(--Motion-Easing-Standard)}
@@ -3621,7 +3624,21 @@ button.oneui-Avatar{position:relative}
         <img class="ob-item ob-item-camera ob-cam-5" src="assets/dome-cam.png" alt="" onerror="this.style.display='none'">
       </div>
       <div class="ob-search-lens" data-ob-lens>
-        <div class="ob-search-glow"></div>
+        <svg class="ob-search-icon ob-search-shade ob-search-shade-far" viewBox="0 0 84 120" fill="none">
+          <defs>
+            <linearGradient id="ob-shade-grad" gradientUnits="userSpaceOnUse" x1="6" y1="6" x2="80" y2="80">
+              <stop offset="0" stop-color="var(--Primary-Bold)"/>
+              <stop offset=".5" stop-color="var(--Informative-Bold)"/>
+              <stop offset="1" stop-color="var(--Sparkle-Bold)"/>
+            </linearGradient>
+          </defs>
+          <circle cx="36" cy="36" r="30" class="ob-search-ring"/>
+          <path d="M58 58 78 78" class="ob-search-handle"/>
+        </svg>
+        <svg class="ob-search-icon ob-search-shade ob-search-shade-near" viewBox="0 0 84 120" fill="none">
+          <circle cx="36" cy="36" r="30" class="ob-search-ring"/>
+          <path d="M58 58 78 78" class="ob-search-handle"/>
+        </svg>
         <div class="ob-search-view" data-ob-view></div>
         <svg class="ob-search-icon" viewBox="0 0 84 120" fill="none">
           <circle cx="36" cy="36" r="30" class="ob-search-ring"/>
@@ -12823,14 +12840,16 @@ function tlDateNav(btn, dir){
   function ease(u){ return u*u*u*(u*(u*6-15)+10); }
   function place(p, bob){
     var x = p.x, y = p.y + bob;
+    lens.style.setProperty('--lift', (p.lift || 0).toFixed(3));
     lens.style.transform = 'translate3d(' + (x - LENS_C) + 'px,' + (y - LENS_C) + 'px,0)';
     zoom.style.transform = 'translate(' + VIEW_R + 'px,' + VIEW_R + 'px) scale(' + K + ') translate(' + (-x) + 'px,' + (-y) + 'px)';
   }
   function at(u){
     for(var i=1;i<WAY.length;i++){
       if(u <= WAY[i][0]){
-        var a = WAY[i-1], b = WAY[i], k = ease((u - a[0]) / (b[0] - a[0]));
-        return { x: a[1].x + (b[1].x - a[1].x) * k, y: a[1].y + (b[1].y - a[1].y) * k };
+        var a = WAY[i-1], b = WAY[i], t = (u - a[0]) / (b[0] - a[0]), k = ease(t);
+        var lift = a[1] === b[1] ? 0 : Math.sin(Math.PI * t);   // rises while travelling
+        return { x: a[1].x + (b[1].x - a[1].x) * k, y: a[1].y + (b[1].y - a[1].y) * k, lift: lift };
       }
     }
     return CAM;
