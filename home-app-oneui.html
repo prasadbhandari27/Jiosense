@@ -2662,7 +2662,7 @@ button.oneui-Avatar{position:relative}
    screens visually match the rest of the app rather than inventing a
    parallel style. */
 .ob-progress{
-  display:flex;flex-direction:column;gap:var(--Spacing-1-5);
+  display:flex;flex-direction:column;gap:var(--Spacing-3-5);   /* step label → progress bar */
   padding:var(--Spacing-6) var(--Spacing-4);   /* 24px top/bottom, 16px sides to match the content gutter */
 }
 .ob-progress .ob-p-row{display:flex;align-items:center;gap:var(--Spacing-2)}
@@ -2673,7 +2673,7 @@ button.oneui-Avatar{position:relative}
 /* Back arrow — sits in front of the step label. Hidden on the very
    first step (ob-camselect) because there's no earlier onboarding
    screen to return to. Negative margins keep the 32px button from stretching the 16px label
-   row (so label → bar is 6px and the header is 74px tall on every step) and pull the arrow
+   row (so label → bar and header height are identical on every step) and pull the arrow
    glyph onto the 16px gutter; the global 44px touch floor keeps it easy to tap. */
 .ob-progress .ob-p-back{margin:calc(var(--Spacing-2) * -1) calc(var(--Spacing-1) * -1) calc(var(--Spacing-2) * -1) calc(var(--Spacing-3) * -1)}
 [data-screen="ob-camselect"] .ob-p-back{display:none}
