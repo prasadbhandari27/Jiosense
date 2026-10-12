@@ -2956,6 +2956,9 @@ button.oneui-Avatar{position:relative}
   padding:var(--Spacing-3) var(--Spacing-4) var(--Spacing-3) var(--Spacing-3);
   border:0;background:none;font:inherit;text-align:left;cursor:pointer;color:inherit;
 }
+/* Smaller thumbnail than the Step 1 list (48 vs 64px) so the header stays compact. */
+.ob-acc-head .ob-camcard-thumb{width:48px;height:48px;border-radius:var(--Shape-2)}
+.ob-acc-head .ob-camcard-thumb img{max-width:34px;max-height:38px}
 .ob-acc-tx{flex:1;display:flex;flex-direction:column;gap:var(--Spacing-0-5);min-width:0}
 .ob-acc-tx .t,.ob-acc-tx .s{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ob-acc-chev{flex:none;display:grid;place-items:center;width:var(--Spacing-6);height:var(--Spacing-6);color:var(--Neutral-Low);transition:transform var(--Motion-Duration-L) var(--Motion-Easing-Standard)}
