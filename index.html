@@ -2977,13 +2977,13 @@ button.oneui-Avatar{position:relative}
    sheet. */
 .ob-room-field{display:flex;flex-direction:column;gap:var(--Spacing-2);margin-top:var(--Spacing-4)}
 .ob-room-select{
-  display:flex;align-items:center;gap:var(--Spacing-3);width:100%;min-height:48px;
-  padding:0 var(--Spacing-3) 0 var(--Spacing-4);
+  display:flex;align-items:center;gap:var(--Spacing-2);width:100%;min-height:40px;
+  padding:0 var(--Spacing-2-5,10px) 0 var(--Spacing-3);
   border:1px solid var(--Neutral-Stroke-Medium,var(--Surface-Fill-Minimal));border-radius:var(--Shape-3);
   background:var(--Surface-Fill-Default);font:inherit;text-align:left;cursor:pointer;color:inherit;
 }
 .ob-room-select .v{flex:1;min-width:0}
-.ob-room-select svg{width:20px;height:20px;flex:none;color:var(--Neutral-Low)}
+.ob-room-select svg{width:16px;height:16px;flex:none;color:var(--Neutral-Low)}
 .ob-room-select:active{background:var(--Surface-Fill-Minimal)}
 .room-sheet .room-row.is-selected{background:var(--Primary-Minimal)}
 .room-sheet .room-row.is-selected .r-name{color:var(--Primary-TintedA11y)}
@@ -7851,8 +7851,8 @@ window.addEventListener('error', function(e){
           '</div>' +
           '<div class="ob-scan-reveal" data-ob-scan-reveal>' +
             '<div class="ob-room-field">' +
-              '<button type="button" class="ob-room-select" data-ob-room-select aria-haspopup="dialog" aria-label="Room for ' + c.name + ': ' + room + '. Change room">' +
-                '<span class="oneui-Text v" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral" data-ob-room-val>' + room + '</span>' + CHEV_DOWN +
+              '<button type="button" class="ob-room-select touch-floor" data-ob-room-select aria-haspopup="dialog" aria-label="Room for ' + c.name + ': ' + room + '. Change room">' +
+                '<span class="oneui-Text v" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral" data-ob-room-val>' + room + '</span>' + CHEV_DOWN +
               '</button>' +
             '</div>' +
           '</div>' +
