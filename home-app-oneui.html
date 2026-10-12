@@ -2688,20 +2688,18 @@ button.oneui-Avatar{position:relative}
 [data-screen="ob-loading"] .statusbar{background:#fff}
 .ob-loading-main{height:100%;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;z-index:2;pointer-events:none}
 .ob-loading-text-box{position:absolute;top:62%;left:0;right:0;padding:0 32px;pointer-events:auto;text-align:center}
-/* Searching scene: a large magnifier drifts along a shelf of faint smart-home items and
-   shows each one magnified inside the lens; it dwells on the smart camera. */
-.ob-search{position:absolute;left:50%;top:14%;width:320px;height:260px;margin-left:-160px;z-index:1;pointer-events:none;--lx:159px;--ly:150px}
-/* Aurora: brand violet -> blue -> green, blurred behind the camera and slowly turning;
-   a soft spotlight follows the magnifier (--lx/--ly set by the script). */
-.ob-aura{position:absolute;inset:0;border-radius:var(--Shape-Pill)}
-.ob-aura::before{content:"";position:absolute;left:40px;top:20px;width:240px;height:220px;border-radius:var(--Shape-Pill);background:conic-gradient(from 0deg,var(--Primary-Bold),var(--Informative-Bold),var(--Sparkle-Bold),var(--Informative-Bold),var(--Primary-Bold));filter:blur(42px);opacity:.28;animation:ob-aura-spin 9s linear infinite}
-.ob-aura::after{content:"";position:absolute;inset:-20px;background:radial-gradient(90px 90px at calc(var(--lx) + 20px) calc(var(--ly) + 20px),color-mix(in srgb,var(--Informative-Bold) 30%,transparent),transparent 70%)}
-@keyframes ob-aura-spin{to{transform:rotate(1turn)}}
-.ob-pulse{position:absolute;left:50%;top:50%;width:220px;height:220px;margin:-110px 0 0 -110px;border-radius:var(--Shape-Pill);border:var(--Stroke-M,2px) solid var(--Informative-Bold);opacity:0;animation:ob-pulse 3.2s cubic-bezier(.2,.6,.3,1) infinite}
-@keyframes ob-pulse{0%{transform:scale(.7);opacity:.35}100%{transform:scale(1.35);opacity:0}}
+/* Searching scene: small cameras scattered at 5% opacity; a black magnifier hops between
+   them and only its lens shows them clearly. */
+.ob-search{position:absolute;left:50%;top:14%;width:320px;height:260px;margin-left:-160px;z-index:1;pointer-events:none}
 .ob-search-layer{position:absolute;left:0;top:0;width:320px;height:260px}
 .ob-item{position:absolute;display:block}
-.ob-item-camera{left:55px;top:32px;width:210px;height:196px;object-fit:contain}
+.ob-item-camera{object-fit:contain}
+/* Five small cameras scattered across the scene (image ratio 620:578). */
+.ob-cam-1{left:30px;top:30px;width:72px;height:67px}
+.ob-cam-2{left:200px;top:18px;width:64px;height:60px}
+.ob-cam-3{left:124px;top:104px;width:84px;height:78px}
+.ob-cam-4{left:24px;top:160px;width:64px;height:60px}
+.ob-cam-5{left:228px;top:158px;width:72px;height:67px}
 /* Outside the lens the camera is barely there; only the lens shows it clearly. */
 .ob-search-ghost{opacity:.05}
 /* Magnifier: 80px black lens (viewBox drawn at 3/4 scale); its glass shows the camera magnified. */
@@ -2712,7 +2710,6 @@ button.oneui-Avatar{position:relative}
 .ob-search-ring{stroke:var(--Neutral-High);stroke-width:6}
 .ob-search-glint{stroke:var(--Neutral-Stroke-Medium);stroke-width:3;stroke-linecap:round}
 .ob-search-handle{stroke:var(--Neutral-High);stroke-width:9;stroke-linecap:round}
-@media (prefers-reduced-motion: reduce){.ob-aura::before,.ob-pulse{animation:none}}
 .ob-loading-title{transition:opacity var(--Motion-Duration-L) var(--Motion-Easing-Standard)}
 .ob-loading-sub{margin:0 auto;max-width:280px}
 .ob-problem-sheet{position:absolute;bottom:0;left:0;right:0;background:var(--Surface-Fill-Default);border-radius:var(--Shape-5) var(--Shape-5) 0 0;padding:var(--Spacing-5) var(--Spacing-6) calc(var(--Spacing-10) + env(safe-area-inset-bottom));transform:translateY(100%);transition:transform .45s cubic-bezier(.34,1.56,.64,1);box-shadow:0 calc(-1 * var(--Spacing-0-5)) var(--Spacing-5) var(--Overlay-On-Media-Low);z-index:10}
@@ -3613,11 +3610,12 @@ button.oneui-Avatar{position:relative}
   <section class="screen" data-screen="ob-loading" style="overflow:hidden">
     <div class="statusbar" aria-hidden="true"><span data-clock>08:14</span></div>
     <div class="ob-search" id="ob-search" aria-hidden="true">
-      <div class="ob-aura"></div>
-      <div class="ob-pulse"></div>
-      <div class="ob-pulse" style="animation-delay:-1.6s"></div>
       <div class="ob-search-layer ob-search-ghost" data-ob-layer>
-        <img class="ob-item ob-item-camera" src="assets/dome-cam.png" alt="" onerror="this.style.display='none'">
+        <img class="ob-item ob-item-camera ob-cam-1" src="assets/dome-cam.png" alt="" onerror="this.style.display='none'">
+        <img class="ob-item ob-item-camera ob-cam-2" src="assets/dome-cam.png" alt="" onerror="this.style.display='none'">
+        <img class="ob-item ob-item-camera ob-cam-3" src="assets/dome-cam.png" alt="" onerror="this.style.display='none'">
+        <img class="ob-item ob-item-camera ob-cam-4" src="assets/dome-cam.png" alt="" onerror="this.style.display='none'">
+        <img class="ob-item ob-item-camera ob-cam-5" src="assets/dome-cam.png" alt="" onerror="this.style.display='none'">
       </div>
       <div class="ob-search-lens" data-ob-lens>
         <div class="ob-search-view" data-ob-view></div>
@@ -12801,9 +12799,9 @@ function tlDateNav(btn, dir){
 })();
 </script>
 <script>
-/* ob-loading — searching scene: the camera is a faint 5% ghost and a small black magnifier
-   wanders over it, showing only what is under the lens; it keeps coming back to the camera
-   lens. Only animates while the screen is showing; rests on the lens for reduced motion. */
+/* ob-loading — searching scene: five faint (5%) cameras and a black magnifier that hops
+   between them, showing only what is under the lens. Only animates while the screen is
+   showing; rests on the middle camera for reduced motion. */
 (function obSearch(){
   var section = document.querySelector('[data-screen="ob-loading"]');
   var scene   = document.getElementById('ob-search');
@@ -12816,14 +12814,13 @@ function tlDateNav(btn, dir){
   view.appendChild(zoom);
 
   var K = 1.4, PERIOD = 9000, LENS_C = 48, VIEW_R = 36;
-  var CAM = {x:160, y:154}, NW = {x:72, y:66}, TOP = {x:172, y:52}, RIGHT = {x:248, y:116},
-      SE = {x:226, y:214}, LEFT = {x:80, y:142};
-  var WAY = [[0,CAM],[.12,CAM],[.24,NW],[.32,NW],[.42,TOP],[.52,RIGHT],[.58,RIGHT],[.68,SE],[.78,LEFT],[.84,LEFT],[.94,CAM],[1,CAM]];
+  // lens centres of the five cameras, with a dwell at each and the middle one as "home"
+  var CAM = {x:166, y:153}, C1 = {x:66, y:72}, C2 = {x:232, y:55}, C5 = {x:264, y:200}, C4 = {x:56, y:197};
+  var WAY = [[0,CAM],[.10,CAM],[.24,C1],[.30,C1],[.44,C2],[.50,C2],[.64,C5],[.70,C5],[.84,C4],[.90,C4],[1,CAM]];
   function ease(u){ return u*u*u*(u*(u*6-15)+10); }
   function place(p, bob){
     var x = p.x, y = p.y + bob;
     lens.style.transform = 'translate3d(' + (x - LENS_C) + 'px,' + (y - LENS_C) + 'px,0)';
-    scene.style.setProperty('--lx', x + 'px'); scene.style.setProperty('--ly', y + 'px');
     zoom.style.transform = 'translate(' + VIEW_R + 'px,' + VIEW_R + 'px) scale(' + K + ') translate(' + (-x) + 'px,' + (-y) + 'px)';
   }
   function at(u){
