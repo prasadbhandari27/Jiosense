@@ -2672,8 +2672,10 @@ button.oneui-Avatar{position:relative}
 .ob-seg.is-on{background:var(--Primary-Bold)}
 /* Back arrow — sits in front of the step label. Hidden on the very
    first step (ob-camselect) because there's no earlier onboarding
-   screen to return to. */
-.ob-progress .ob-p-back{margin-right:calc(var(--Spacing-1) * -1)}
+   screen to return to. Negative margins keep the 32px button from stretching the 16px label
+   row (so label → bar is 6px and the header is 74px tall on every step) and pull the arrow
+   glyph onto the 16px gutter; the global 44px touch floor keeps it easy to tap. */
+.ob-progress .ob-p-back{margin:calc(var(--Spacing-2) * -1) calc(var(--Spacing-1) * -1) calc(var(--Spacing-2) * -1) calc(var(--Spacing-3) * -1)}
 [data-screen="ob-camselect"] .ob-p-back{display:none}
 .ob-progress .ob-p-step{flex:1}
 
