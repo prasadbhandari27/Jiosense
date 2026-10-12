@@ -2989,23 +2989,28 @@ button.oneui-Avatar{position:relative}
 .room-sheet .room-row.is-selected{background:var(--Primary-Minimal)}
 .room-sheet .room-row.is-selected .r-name{color:var(--Primary-TintedA11y)}
 @media (prefers-reduced-motion: reduce){.ob-acc-body,.ob-acc-chev{transition:none}}
-/* Objects in each camera card: what the AI found (tick), what the user added ("Added by
-   you", removable), and a dashed "Add object" tile that invites filling any gap. */
+/* Objects in each camera card — compact info chips, not cards: what the AI found, what the
+   user added (tinted, removable), and a dashed "+ Add object" chip to fill any gap. */
 .ob-obj-hd{display:flex;flex-direction:column;gap:var(--Spacing-0-5)}
-.ob-hh-tile.is-added .hh-t-tick{display:none}
-.ob-hh-tile .hh-t-sub{text-align:center;margin-top:calc(var(--Spacing-1) * -1)}
-.ob-hh-tile .hh-t-del{
-  position:absolute;top:4px;right:4px;width:20px;height:20px;border:0;padding:0;border-radius:50%;
-  display:grid;place-items:center;background:var(--Neutral-Subtle);color:var(--Neutral-Medium,var(--Neutral-High));cursor:pointer;
+.ob-obj-list{display:flex;flex-wrap:wrap;gap:var(--Spacing-2)}
+.ob-obj-chip{
+  display:inline-flex;align-items:center;gap:var(--Spacing-1-5);height:32px;
+  padding:0 var(--Spacing-3) 0 var(--Spacing-2-5);border-radius:var(--Shape-Pill);
+  background:var(--Surface-Fill-Minimal);color:var(--Neutral-High);
+  border:1px solid transparent;font:inherit;white-space:nowrap;
 }
-.ob-hh-tile .hh-t-del svg{width:10px;height:10px;display:block}
-.ob-hh-tile.ob-hh-add{
-  background:transparent;box-shadow:none;border:1.5px dashed var(--Neutral-Stroke-Medium,var(--Neutral-Low));
-  color:var(--Primary-TintedA11y);font:inherit;cursor:pointer;
+.ob-obj-chip-ico{display:grid;place-items:center;width:16px;height:16px;color:var(--Neutral-Low);flex:none}
+.ob-obj-chip-ico svg{width:16px;height:16px;display:block}
+.ob-obj-chip.is-added{background:var(--Primary-Minimal);padding-right:var(--Spacing-1)}
+.ob-obj-chip.is-added .ob-obj-chip-ico{color:var(--Primary-TintedA11y)}
+.ob-obj-chip-del{
+  display:grid;place-items:center;width:22px;height:22px;border:0;padding:0;border-radius:50%;
+  background:transparent;color:var(--Neutral-Low);cursor:pointer;
 }
-.ob-hh-tile.ob-hh-add .hh-t-ico{color:var(--Primary-TintedA11y)}
-.ob-hh-tile.ob-hh-add:active{background:var(--Primary-Minimal)}
-.ob-hh-tile.ob-hh-add .hh-t-lbl{color:var(--Primary-TintedA11y)}
+.ob-obj-chip-del svg{width:10px;height:10px;display:block}
+.ob-obj-chip-add{background:transparent;border:1px dashed var(--Neutral-Stroke-Medium,var(--Neutral-Low));cursor:pointer}
+.ob-obj-chip-add .ob-obj-chip-ico{color:var(--Primary-TintedA11y)}
+.ob-obj-chip-add:active{background:var(--Primary-Minimal)}
 .obj-sheet .ob-obj-chips{display:flex;flex-wrap:wrap;gap:var(--Spacing-2);margin:var(--Spacing-4) 0 var(--Spacing-5)}
 .obj-sheet .ob-obj-chips:empty{display:none}
 .obj-sheet .ob-obj-add-btn{margin-top:var(--Spacing-4)}
@@ -7763,29 +7768,28 @@ window.addEventListener('error', function(e){
     };
     var ADDABLE = ['door','window','stove','fridge','crib','safe','car','gate'];
     state.camAdded = state.camAdded || {};   // camera id -> [{ key, label }] the user added
-    var TICK_SVG = '<svg viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
     var X_SVG = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>';
     var PLUS_SVG = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>';
-    function objTile(o, added, idx){
+    /* Compact info chips (icon + name): found objects are plain; ones the user added get a
+       tint and a remove ×; a dashed "+ Add object" chip ends the list. */
+    function objChip(o, added, idx){
       var label = o.label || OBJ[o.key].label, icon = OBJ[o.key] ? OBJ[o.key].icon : OBJ.custom.icon;
-      return '<div class="ob-hh-tile oneui-Surface is-on' + (added ? ' is-added' : '') + '" data-surface="elevated">' +
-        '<span class="hh-t-tick" aria-hidden="true">' + TICK_SVG + '</span>' +
-        (added ? '<button type="button" class="hh-t-del touch-floor" data-ob-obj-del="' + idx + '" aria-label="Remove ' + label + '">' + X_SVG + '</button>' : '') +
-        '<span class="hh-t-ico" aria-hidden="true">' + icon + '</span>' +
-        '<span class="oneui-Text hh-t-lbl" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral">' + label + '</span>' +
-        (added ? '<span class="oneui-Text hh-t-sub" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Added by you</span>' : '') +
-      '</div>';
+      return '<span class="ob-obj-chip' + (added ? ' is-added' : '') + '">' +
+        '<span class="ob-obj-chip-ico" aria-hidden="true">' + icon + '</span>' +
+        '<span class="oneui-Text" data-variant="label" data-size="S" data-appearance="neutral">' + label + '</span>' +
+        (added ? '<button type="button" class="ob-obj-chip-del touch-floor" data-ob-obj-del="' + idx + '" aria-label="Remove ' + label + '">' + X_SVG + '</button>' : '') +
+      '</span>';
     }
     function renderObjGrid(card, id){
       var grid = card.querySelector('[data-ob-obj-grid]');
       if(!grid) return;
       var added = state.camAdded[id] || [];
       grid.innerHTML =
-        CAM_INFO[id].objects.map(function(k){ return objTile({ key:k }, false); }).join('') +
-        added.map(function(o, i){ return objTile(o, true, i); }).join('') +
-        '<button type="button" class="ob-hh-tile oneui-Surface ob-hh-add" data-surface="elevated" data-ob-obj-open>' +
-          '<span class="hh-t-ico" aria-hidden="true">' + PLUS_SVG + '</span>' +
-          '<span class="oneui-Text hh-t-lbl" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral">Add object</span>' +
+        CAM_INFO[id].objects.map(function(k){ return objChip({ key:k }, false); }).join('') +
+        added.map(function(o, i){ return objChip(o, true, i); }).join('') +
+        '<button type="button" class="ob-obj-chip ob-obj-chip-add touch-floor" data-ob-obj-open>' +
+          '<span class="ob-obj-chip-ico" aria-hidden="true">' + PLUS_SVG + '</span>' +
+          '<span class="oneui-Text" data-variant="label" data-size="S" data-weight="high" data-appearance="primary">Add object</span>' +
         '</button>';
       grid.querySelector('[data-ob-obj-open]').addEventListener('click', function(){ openObjSheet(id); });
       grid.querySelectorAll('[data-ob-obj-del]').forEach(function(btn){
@@ -7879,7 +7883,7 @@ window.addEventListener('error', function(e){
                 '<div class="oneui-Text hh-head" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low">Objects detected</div>' +
                 '<p class="oneui-Text" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Missed something? Add it so JioSense keeps an eye on it.</p>' +
               '</div>' +
-              '<div class="ob-hh-grid" data-ob-obj-grid></div>' +
+              '<div class="ob-obj-list" data-ob-obj-grid></div>' +
             '</div>' +
           '</div>' +
         '</div></div></div>';
