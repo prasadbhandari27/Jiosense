@@ -2856,8 +2856,8 @@ button.oneui-Avatar{position:relative}
   transition:transform var(--Motion-Duration-Short) var(--Motion-Easing-Standard);
 }
 .ob-camcard:active{transform:scale(.98)}
-.ob-camcard-thumb{flex:none;display:flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:var(--Shape-3);background:linear-gradient(180deg,var(--Primary-Minimal),var(--Primary-Subtle))}
-.ob-camcard-thumb img{display:block;width:auto;height:auto;max-width:48px;max-height:52px;object-fit:contain;filter:drop-shadow(0 4px 6px rgba(0,0,0,.14))}
+.ob-camcard-thumb{flex:none;display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:var(--Shape-2);background:linear-gradient(180deg,var(--Primary-Minimal),var(--Primary-Subtle))}
+.ob-camcard-thumb img{display:block;width:auto;height:auto;max-width:34px;max-height:38px;object-fit:contain;filter:drop-shadow(0 4px 6px rgba(0,0,0,.14))}
 .ob-camcard-tx{flex:1;display:flex;flex-direction:column;gap:var(--Spacing-0-5,2px);min-width:0}
 .ob-camcard-tx .t,.ob-camcard-tx .s{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ob-camcard .cbox-float{flex:none;order:3}
@@ -2956,9 +2956,6 @@ button.oneui-Avatar{position:relative}
   padding:var(--Spacing-3) var(--Spacing-4) var(--Spacing-3) var(--Spacing-3);
   border:0;background:none;font:inherit;text-align:left;cursor:pointer;color:inherit;
 }
-/* Smaller thumbnail than the Step 1 list (48 vs 64px) so the header stays compact. */
-.ob-acc-head .ob-camcard-thumb{width:48px;height:48px;border-radius:var(--Shape-2)}
-.ob-acc-head .ob-camcard-thumb img{max-width:34px;max-height:38px}
 .ob-acc-tx{flex:1;display:flex;flex-direction:column;gap:var(--Spacing-0-5);min-width:0}
 .ob-acc-tx .t,.ob-acc-tx .s{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ob-acc-chev{flex:none;display:grid;place-items:center;width:var(--Spacing-6);height:var(--Spacing-6);color:var(--Neutral-Low);transition:transform var(--Motion-Duration-L) var(--Motion-Easing-Standard)}
@@ -3744,7 +3741,7 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
           <span class="ob-camcard-thumb" aria-hidden="true"><img src="assets/cam-mi360.png" alt="" onerror="this.style.display='none'"></span>
           <span class="ob-camcard-tx">
             <span class="oneui-Text t" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral">Tapo - C201</span>
-            <span class="oneui-Text s" data-variant="body" data-size="S" data-appearance="neutral" data-attention="low">Living room · Indoor</span>
+            <span class="oneui-Text s" data-variant="body" data-size="S" data-appearance="neutral" data-attention="low">Living Room · Indoor</span>
           </span>
         </button>
 
@@ -7681,7 +7678,7 @@ window.addEventListener('error', function(e){
         '<span class="ob-camcard-thumb" aria-hidden="true"><img src="assets/dome-cam.png" alt="" onerror="this.style.display=\'none\'"></span>' +
         '<span class="ob-camcard-tx">' +
           '<span class="oneui-Text t" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral">TrueView - T18161S</span>' +
-          '<span class="oneui-Text s" data-variant="body" data-size="S" data-appearance="neutral" data-attention="low">Front porch · Outdoor</span>' +
+          '<span class="oneui-Text s" data-variant="body" data-size="S" data-appearance="neutral" data-attention="low">Entrance · Outdoor</span>' +
         '</span>';
       camGrid.appendChild(card);
       syncCamGridCount();
