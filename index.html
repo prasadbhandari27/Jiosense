@@ -2871,7 +2871,10 @@ button.oneui-Avatar{position:relative}
 .ob-provider-row .ob-camtx .s{flex:0 0 auto}
 .ob-provider-row .r-ico svg{width:var(--Spacing-5);height:var(--Spacing-5)}
 .ob-provider-row .oneui-Button{flex:0 0 auto}
-.ob-provider-row.is-connected{border-color:var(--Positive-Bold)}
+/* Connected = success → Sparkle green (Jio's Positive role is black); text uses the
+   contrast-safe shade. */
+.ob-provider-row.is-connected{border-color:var(--Sparkle-Bold)}
+.ob-provider-row .oneui-Text[data-ob-trueview-status][data-attention]{color:var(--Sparkle-Success-Text);font-weight:var(--Label-FontWeight-Medium,500)}
 
 .ob-tv-submit{width:100%;justify-content:center;margin-top:var(--Spacing-2)}
 .ob-locate-err{margin:var(--Spacing-1) var(--Spacing-1) var(--Spacing-2)}
