@@ -2833,39 +2833,28 @@ button.oneui-Avatar{position:relative}
    cards, replacing the row-list layout above for the auto-
    discovered cameras. Each card stacks a large feed preview over
    the title, with the checkbox pinned inside the thumb corner. */
-/* Progressive grid: auto-fit means a single card has no second
-   column to share with, so it stretches to the full row and reads
-   as an intentional hero rather than a small tile floating in a
-   half-empty grid. Two cards split evenly as before; a third+ wraps
-   to a new row instead of leaving a lopsided gap. */
-.ob-camgrid{
-  display:flex;flex-direction:column;gap:var(--Spacing-3);
-}
+/* Device tiles (smart-home style): two per row, product shot centred on a soft tinted tile,
+   name and room below, selection tick in the corner. A lone camera spans the full row so it
+   reads as an intentional hero, and a third (TrueView) wraps to a new row. */
+.ob-camgrid{display:grid;grid-template-columns:1fr 1fr;gap:var(--Spacing-3)}
+.ob-camgrid[data-ob-cam-count="1"] .ob-camcard{grid-column:1 / -1}
 .ob-camcard{
-  display:flex;flex-direction:column;gap:0;
-  background:var(--Surface-Fill-Default);
-  border-radius:var(--Shape-3);
-  box-shadow:0 1px 3px rgba(0,0,0,.08),0 4px 16px rgba(0,0,0,.06);
+  position:relative;display:flex;flex-direction:column;gap:var(--Spacing-4);min-width:0;
+  padding:var(--Spacing-5) var(--Spacing-4) var(--Spacing-4);
+  background:linear-gradient(180deg,var(--Primary-Minimal) 0%,var(--Surface-Fill-Default) 75%);
+  border-radius:var(--Shape-6);
+  box-shadow:0 1px 3px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.06);
   border:2px solid transparent;cursor:pointer;
-  font:inherit;text-align:left;overflow:hidden;
-  transition:border-color var(--Motion-Duration-Short) var(--Motion-Easing-Standard);
+  font:inherit;text-align:left;
+  transition:border-color var(--Motion-Duration-Short) var(--Motion-Easing-Standard),transform var(--Motion-Duration-Short) var(--Motion-Easing-Standard);
 }
+.ob-camcard:active{transform:scale(.98)}
 .ob-camcard.is-checked{border-color:var(--Primary-Bold)}
-.ob-camcard-thumb{
-  position:relative;width:100%;aspect-ratio:16/9;
-  background:var(--Media-Placeholder,var(--Surface-Fill-Minimal));
-}
-.ob-camcard-thumb img{
-  width:100%;height:100%;object-fit:cover;display:block;
-}
-.ob-camcard-thumb .live-pill{position:absolute;top:var(--Spacing-2-5);left:var(--Spacing-2-5)}
-.ob-camcard-thumb .cbox-float{position:absolute;top:var(--Spacing-2-5);right:var(--Spacing-2-5)}
-.ob-camcard-tx{
-  display:flex;flex-direction:column;gap:var(--Spacing-3);
-  padding:var(--Spacing-4) var(--Spacing-4) var(--Spacing-4);
-}
-.ob-camcard-tx .ob-cam-actions{display:flex;flex-direction:column;gap:var(--Spacing-2);margin-top:var(--Spacing-1)}
-.ob-camcard-tx .ob-cam-link{align-self:center}
+.ob-camcard-thumb{display:flex;align-items:center;justify-content:center;height:108px}
+.ob-camcard-thumb img{display:block;width:auto;height:auto;max-height:100%;max-width:min(100%,96px);object-fit:contain;filter:drop-shadow(0 10px 12px rgba(0,0,0,.12))}
+.ob-camcard .cbox-float{position:absolute;top:var(--Spacing-3);right:var(--Spacing-3)}
+.ob-camcard-tx{display:flex;flex-direction:column;gap:var(--Spacing-0-5,2px);min-width:0}
+.ob-camcard-tx .t{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
 
 /* "Other camera providers" — single-row list below the grid,
    matching .room-row's icon/label/chevron layout since it's the
@@ -3697,34 +3686,20 @@ button.oneui-Avatar{position:relative}
            camera as a full-width hero rather than a half-empty row. -->
       <div class="ob-camgrid" data-ob-camgrid>
         <button type="button" class="ob-camcard is-checked" data-ob-cam="tapo" aria-pressed="true">
-          <span class="ob-camcard-thumb" aria-hidden="true">
-            <img src="assets/tapo-cam.png" alt="" onerror="this.style.display='none'" style="object-fit:contain;background:#f5f5f7">
-            <span class="oneui-Badge live-pill" data-appearance="neutral" data-attention="high" data-size="s"><span class="oneui-IndicatorBadge" data-appearance="negative" data-size="xs" aria-hidden="true"></span>Live</span>
-            <span class="oneui-Checkbox cbox-float" data-size="l" data-appearance="primary" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          </span>
+          <span class="oneui-Checkbox cbox-float" data-size="l" data-appearance="primary" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="ob-camcard-thumb" aria-hidden="true"><img src="assets/cam-mi360.png" alt="" onerror="this.style.display='none'"></span>
           <span class="ob-camcard-tx">
-            <span class="oneui-Text t" data-variant="headline" data-size="S" data-weight="high" data-appearance="neutral">Tapo - C201</span>
+            <span class="oneui-Text t" data-variant="title" data-size="M" data-appearance="neutral">Tapo - C201</span>
             <span class="oneui-Text s" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Living room · Indoor</span>
-            <span class="ob-cam-actions">
-              <span class="oneui-Button ob-cam-setup" data-appearance="primary" data-attention="high" data-size="10" data-full-width="true">Set up</span>
-              <span class="oneui-Button ob-cam-link" data-appearance="primary" data-attention="low" data-contained="false" data-size="8">Add to existing account</span>
-            </span>
           </span>
         </button>
 
         <button type="button" class="ob-camcard is-checked" data-ob-cam="cpplus" aria-pressed="true">
-          <span class="ob-camcard-thumb" aria-hidden="true">
-            <img src="assets/kitchen.jpg" alt="" onerror="this.style.display='none'">
-            <span class="oneui-Badge live-pill" data-appearance="neutral" data-attention="high" data-size="s"><span class="oneui-IndicatorBadge" data-appearance="negative" data-size="xs" aria-hidden="true"></span>Live</span>
-            <span class="oneui-Checkbox cbox-float" data-size="l" data-appearance="primary" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          </span>
+          <span class="oneui-Checkbox cbox-float" data-size="l" data-appearance="primary" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="ob-camcard-thumb" aria-hidden="true"><img src="assets/cam-battery.png" alt="" onerror="this.style.display='none'"></span>
           <span class="ob-camcard-tx">
-            <span class="oneui-Text t" data-variant="headline" data-size="S" data-weight="high" data-appearance="neutral">CP Plus - E45Q</span>
+            <span class="oneui-Text t" data-variant="title" data-size="M" data-appearance="neutral">CP Plus - E45Q</span>
             <span class="oneui-Text s" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Kitchen · Indoor</span>
-            <span class="ob-cam-actions">
-              <span class="oneui-Button ob-cam-setup" data-appearance="primary" data-attention="high" data-size="10" data-full-width="true">Set up</span>
-              <span class="oneui-Button ob-cam-link" data-appearance="primary" data-attention="low" data-contained="false" data-size="8">Add to existing account</span>
-            </span>
           </span>
         </button>
       </div>
@@ -7657,12 +7632,12 @@ window.addEventListener('error', function(e){
       card.setAttribute('data-ob-cam', 'trueview');
       card.setAttribute('aria-pressed', 'true');
       card.innerHTML =
-        '<span class="ob-camcard-thumb" aria-hidden="true">' +
-          '<img src="assets/frontporch.png" alt="" onerror="this.style.display=\'none\'">' +
-          '<span class="oneui-Badge live-pill" data-appearance="neutral" data-attention="high" data-size="s"><span class="oneui-IndicatorBadge" data-appearance="negative" data-size="xs" aria-hidden="true"></span>Live</span>' +
-          '<span class="oneui-Checkbox cbox-float" data-size="l" data-appearance="primary" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
-        '</span>' +
-        '<span class="ob-camcard-tx"><span class="oneui-Text t" data-variant="headline" data-size="S" data-weight="high" data-appearance="neutral">TrueView - T18161S</span></span>';
+        '<span class="oneui-Checkbox cbox-float" data-size="l" data-appearance="primary" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
+        '<span class="ob-camcard-thumb" aria-hidden="true"><img src="assets/dome-cam.png" alt="" onerror="this.style.display=\'none\'"></span>' +
+        '<span class="ob-camcard-tx">' +
+          '<span class="oneui-Text t" data-variant="title" data-size="M" data-appearance="neutral">TrueView - T18161S</span>' +
+          '<span class="oneui-Text s" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Front porch · Outdoor</span>' +
+        '</span>';
       camGrid.appendChild(card);
       syncCamGridCount();
       card.addEventListener('click', function(){
