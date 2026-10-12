@@ -3822,7 +3822,7 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
     </div>
     <main class="scroll oneui-Container" data-gap="5" data-padding-x="6" data-padding-y="4">
       <!-- Camera setup: one expandable card per camera picked on Step 1, built by
-           renderCamAcc(). Closed: thumbnail, name, room. Open (the first card starts
+           renderCamAcc(). Closed: thumbnail and name. Open (the first card starts
            open): live view, then the AI-suggested room in a dropdown-style field that
            opens the room sheet. The Tapo card also carries the "Objects detected"
            checks and the main-door warning held in [data-ob-tapo-extra] below. -->
@@ -7818,7 +7818,8 @@ window.addEventListener('error', function(e){
       if(warning) warning.hidden = true;
     }
     /* ── Step 2 camera cards ─────────────────────────────────────────
-       One card per camera in state.cams. renderCamAcc() rebuilds only when the
+       One card per camera in state.cams; the header shows thumbnail + name, the room lives in
+       the open card's dropdown. renderCamAcc() rebuilds only when the
        selection changed (so room picks survive Back/forward) and always reopens
        the first card. Opening a card runs that camera's scan: the scan line sweeps
        its live view, then the room field (and, for Tapo, the object checks) fade in. */
@@ -7845,7 +7846,6 @@ window.addEventListener('error', function(e){
           '<span class="ob-camcard-thumb" aria-hidden="true"><img src="' + c.img + '" alt="" onerror="this.style.display=\'none\'"></span>' +
           '<span class="ob-acc-tx">' +
             '<span class="oneui-Text t" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral">' + c.name + '</span>' +
-            '<span class="oneui-Text s" data-variant="body" data-size="S" data-appearance="neutral" data-attention="low" data-ob-acc-sub>' + room + ' · ' + c.env + '</span>' +
           '</span>' +
           '<span class="ob-acc-chev" aria-hidden="true">' + CHEV_DOWN + '</span>' +
         '</button>' +
@@ -8471,7 +8471,6 @@ window.addEventListener('error', function(e){
           if(card){
             var c = CAM_INFO[roomSheetCam];
             card.querySelector('[data-ob-room-val]').textContent = name;
-            card.querySelector('[data-ob-acc-sub]').textContent = name + ' · ' + c.env;
             card.querySelector('[data-ob-room-select]').setAttribute('aria-label', 'Room for ' + c.name + ': ' + name + '. Change room');
             // the tag only applies while the room is still JioSense's own guess
             card.querySelector('[data-ob-ai-tag]').style.display = (name === c.room) ? '' : 'none';
