@@ -2854,8 +2854,8 @@ button.oneui-Avatar{position:relative}
 .ob-camcard .cbox-float{flex:none;order:3}
 
 /* "Other camera providers" — single row below the list: icon, provider name, and a secondary
-   "Sign in" button that opens the credentials sheet; once connected the button is replaced
-   by a "Connected" status. */
+   "Sign in" button that opens the credentials sheet. The whole section is removed once
+   TrueView is connected (its camera then appears in the list above). */
 .ob-provider-row{
   display:flex;align-items:center;gap:var(--Spacing-3);
   padding:var(--Spacing-2) var(--Spacing-3);
@@ -2871,10 +2871,6 @@ button.oneui-Avatar{position:relative}
 .ob-provider-row .ob-camtx .s{flex:0 0 auto}
 .ob-provider-row .r-ico svg{width:var(--Spacing-5);height:var(--Spacing-5)}
 .ob-provider-row .oneui-Button{flex:0 0 auto}
-/* Connected = success → Sparkle green (Jio's Positive role is black); text uses the
-   contrast-safe shade. */
-.ob-provider-row.is-connected{border-color:var(--Sparkle-Bold)}
-.ob-provider-row .oneui-Text[data-ob-trueview-status][data-attention]{color:var(--Sparkle-Success-Text);font-weight:var(--Label-FontWeight-Medium,500)}
 
 .ob-tv-submit{width:100%;justify-content:center;margin-top:var(--Spacing-2)}
 .ob-locate-err{margin:var(--Spacing-1) var(--Spacing-1) var(--Spacing-2)}
@@ -3702,13 +3698,12 @@ button.oneui-Avatar{position:relative}
         </button>
       </div>
 
-      <div class="oneui-Container" data-gap="2">
+      <div class="oneui-Container" data-gap="2" data-ob-providers>
         <p class="oneui-Text" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low">Other camera providers</p>
-        <div class="ob-provider-row" data-ob-trueview-row>
+        <div class="ob-provider-row">
           <span class="oneui-Avatar r-ico" data-size="2xl" data-content="icon" data-appearance="primary" data-attention="medium" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M17 10.5 21 8v8l-4-2.5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
           <span class="ob-camtx">
             <span class="oneui-Text t" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">TrueView</span>
-            <span class="oneui-Text s" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low" data-ob-trueview-status style="display:none">Connected</span>
             <button type="button" class="oneui-Button" data-appearance="neutral" data-attention="medium" data-size="8" data-ob-trueview-open>Sign in</button>
           </span>
         </div>
@@ -3728,7 +3723,7 @@ button.oneui-Avatar{position:relative}
          .timer-sheet chrome (scrim, grabber, spring slide-up) via
          the composable-subclass pattern already used for the room
          sheet. Submitting adds "trueview" into state.cams, joins
-         the grid above, and flips this row to a connected state. -->
+         the list above, and removes the providers section. -->
     <div class="confirm-scrim" data-confirm-scrim="trueview"></div>
     <div class="timer-sheet trueview-sheet" data-trueview-sheet role="dialog" aria-modal="true" aria-labelledby="trueview-sheet-head">
       <span class="grabber" aria-hidden="true"></span>
@@ -7578,7 +7573,7 @@ window.addEventListener('error', function(e){
        credentials sheet (reusing the shared .timer-sheet chrome);
        submitting non-empty username + password adds "trueview"
        into state.cams, appends a matching card into the grid above,
-       and flips the row into a connected state. There's no real
+       and removes the providers section. There's no real
        TrueView backend here, so "success" just means both fields
        were filled in. */
     var tvScrim  = document.querySelector('[data-confirm-scrim="trueview"]');
@@ -7588,8 +7583,7 @@ window.addEventListener('error', function(e){
     var tvPass   = document.querySelector('[data-ob-tv-pass]');
     var tvErr    = document.querySelector('[data-ob-tv-err]');
     var tvSubmit = document.querySelector('[data-ob-tv-submit]');
-    var tvStatus = document.querySelector('[data-ob-trueview-status]');
-    var tvRow    = document.querySelector('[data-ob-trueview-row]');
+    var tvProviders = document.querySelector('[data-ob-providers]');
 
     function openTvSheet(){
       if(!tvSheet || !tvScrim) return;
@@ -7663,10 +7657,8 @@ window.addEventListener('error', function(e){
       }
       hideTvErr();
       if(state.cams.indexOf('trueview') === -1) state.cams.push('trueview');
-      // Connected: the Sign in button gives way to a "Connected" status
-      if(tvRow) tvRow.classList.add('is-connected');
-      if(tvOpen) tvOpen.style.display = 'none';
-      if(tvStatus) tvStatus.style.display = '';
+      // Connected: TrueView now has its own card in the list, so the providers section goes
+      if(tvProviders) tvProviders.style.display = 'none';
       addTrueviewCard();
       syncNextEnabled('ob-camselect');
       closeTvSheet();
