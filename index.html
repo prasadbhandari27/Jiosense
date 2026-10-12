@@ -71,6 +71,7 @@
   --Motion-Easing-Exit:cubic-bezier(.4,0,1,1);
 
   --Touch-Target-Min:44px;
+  --Disabled-Opacity:.38;   /* referenced by the brand sheet's --*-disabledOpacity tokens but never defined there */
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -2988,6 +2989,26 @@ button.oneui-Avatar{position:relative}
 .room-sheet .room-row.is-selected{background:var(--Primary-Minimal)}
 .room-sheet .room-row.is-selected .r-name{color:var(--Primary-TintedA11y)}
 @media (prefers-reduced-motion: reduce){.ob-acc-body,.ob-acc-chev{transition:none}}
+/* Objects in each camera card: what the AI found (tick), what the user added ("Added by
+   you", removable), and a dashed "Add object" tile that invites filling any gap. */
+.ob-obj-hd{display:flex;flex-direction:column;gap:var(--Spacing-0-5)}
+.ob-hh-tile.is-added .hh-t-tick{display:none}
+.ob-hh-tile .hh-t-sub{text-align:center;margin-top:calc(var(--Spacing-1) * -1)}
+.ob-hh-tile .hh-t-del{
+  position:absolute;top:4px;right:4px;width:20px;height:20px;border:0;padding:0;border-radius:50%;
+  display:grid;place-items:center;background:var(--Neutral-Subtle);color:var(--Neutral-Medium,var(--Neutral-High));cursor:pointer;
+}
+.ob-hh-tile .hh-t-del svg{width:10px;height:10px;display:block}
+.ob-hh-tile.ob-hh-add{
+  background:transparent;box-shadow:none;border:1.5px dashed var(--Neutral-Stroke-Medium,var(--Neutral-Low));
+  color:var(--Primary-TintedA11y);font:inherit;cursor:pointer;
+}
+.ob-hh-tile.ob-hh-add .hh-t-ico{color:var(--Primary-TintedA11y)}
+.ob-hh-tile.ob-hh-add:active{background:var(--Primary-Minimal)}
+.ob-hh-tile.ob-hh-add .hh-t-lbl{color:var(--Primary-TintedA11y)}
+.obj-sheet .ob-obj-chips{display:flex;flex-wrap:wrap;gap:var(--Spacing-2);margin:var(--Spacing-4) 0 var(--Spacing-5)}
+.obj-sheet .ob-obj-chips:empty{display:none}
+.obj-sheet .ob-obj-add-btn{margin-top:var(--Spacing-4)}
 
 /* Small ghost Change button inside the suggestion pill — sits on
    the right, sized to fit the pill rather than filling the row. */
@@ -3822,96 +3843,13 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
     <main class="scroll oneui-Container" data-gap="5" data-padding-x="6" data-padding-y="4">
       <!-- Camera setup: one expandable card per camera picked on Step 1, built by
            renderCamAcc(). Closed: thumbnail and name. Open (the first card starts
-           open): live view, then the AI-suggested room in a dropdown-style field that
-           opens the room sheet. The Tapo card also carries the "Objects detected"
-           checks and the main-door warning held in [data-ob-tapo-extra] below. -->
+           open): live view, the suggested room in a dropdown-style field, and the
+           objects JioSense found plus an "Add object" tile for anything it missed. -->
       <div class="oneui-Container" data-gap="1">
         <h1 class="oneui-Text" data-variant="headline" data-size="S" data-weight="high" data-appearance="neutral">Set up your cameras</h1>
         <p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium">Check each camera's live view and confirm the room it's in.</p>
       </div>
       <div class="ob-camacc" data-ob-camacc></div>
-      <div hidden data-ob-tapo-extra>
-      <!-- "Can it see what matters?" — presented with the same
-           icon-on-top / label-below tile grid as Step 4's household
-           choices, so the two AI-derived confirmations speak the
-           same visual language. Every tile ships pre-selected
-           (.is-on) because the coverage checks are all passing by
-           default; the pattern still supports a warn/miss state
-           later by dropping .is-on on any specific tile. -->
-      <div class="ob-hh-section ob-section is-review">
-        <div class="oneui-Text hh-head" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low">Objects detected</div>
-        <div class="ob-hh-grid">
-          <div class="ob-hh-tile oneui-Surface is-on" data-surface="elevated">
-            <span class="hh-t-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span class="hh-t-ico" aria-hidden="true">
-              <!-- Sofa -->
-              <svg viewBox="0 0 56 56" fill="none" aria-hidden="true"><path d="M44.3333 16.3327C44.3333 15.095 43.8416 13.908 42.9665 13.0329C42.0913 12.1577 40.9043 11.666 39.6666 11.666H16.3333C15.0956 11.666 13.9086 12.1577 13.0335 13.0329C12.1583 13.908 11.6666 15.095 11.6666 16.3327V27.9994H44.3333V16.3327ZM49 20.9993C48.3811 20.9993 47.7876 21.2452 47.35 21.6828C46.9125 22.1204 46.6666 22.7138 46.6666 23.3327V30.3327H9.33329V23.3327C9.33329 22.7138 9.08746 22.1204 8.64988 21.6828C8.21229 21.2452 7.6188 20.9993 6.99996 20.9993C6.38112 20.9993 5.78763 21.2452 5.35004 21.6828C4.91246 22.1204 4.66663 22.7138 4.66663 23.3327V37.3327C4.66663 37.9515 4.91246 38.545 5.35004 38.9826C5.78763 39.4202 6.38112 39.666 6.99996 39.666H9.33329V41.9994C9.33329 42.6182 9.57913 43.2117 10.0167 43.6493C10.4543 44.0869 11.0478 44.3327 11.6666 44.3327C12.2855 44.3327 12.879 44.0869 13.3165 43.6493C13.7541 43.2117 14 42.6182 14 41.9994V39.666H42V41.9994C42 42.6182 42.2458 43.2117 42.6834 43.6493C43.121 44.0869 43.7145 44.3327 44.3333 44.3327C44.9521 44.3327 45.5456 44.0869 45.9832 43.6493C46.4208 43.2117 46.6666 42.6182 46.6666 41.9994V39.666H49C49.6188 39.666 50.2123 39.4202 50.6499 38.9826C51.0875 38.545 51.3333 37.9515 51.3333 37.3327V23.3327C51.3333 22.7138 51.0875 22.1204 50.6499 21.6828C50.2123 21.2452 49.6188 20.9993 49 20.9993Z" fill="currentColor"/></svg>
-            </span>
-            <span class="oneui-Text hh-t-lbl" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral">Sofa</span>
-            <span class="oneui-Badge hh-t-status is-on" data-appearance="sparkle" data-attention="high" data-size="s" data-ob-obj-status>Visible</span>
-          </div>
-          <div class="ob-hh-tile oneui-Surface is-on" data-surface="elevated">
-            <span class="hh-t-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span class="hh-t-ico" aria-hidden="true">
-              <!-- Center table -->
-              <svg viewBox="0 0 56 56" fill="none" aria-hidden="true"><g clip-path="url(#clip0_center_table)"><rect width="48" height="32" transform="translate(4 16)" fill="none"/><path d="M37.0856 42.6523C36.7895 43.7582 33.0609 44.5699 28.0833 44.5699C23.1056 44.5699 19.303 43.7481 18.7849 42.6929C15.4449 43.1901 13.2984 43.951 13.2984 44.7931V45.27C13.2984 46.7817 20.0894 47.9992 28.4718 47.9992C36.8543 47.9992 43.3123 46.8324 43.3123 45.3308V44.854C43.3123 43.951 40.8604 43.1495 37.0856 42.6523Z" fill="currentColor"/><path d="M50.1958 16H5.80416C4.80493 16 4 16.8827 4 17.9784V19.3887C4 20.4845 4.80493 21.3672 5.80416 21.3672H19.6176V41.4661C19.6176 42.3386 23.4757 43.0387 28.2313 43.0387C32.9869 43.0387 36.512 42.3893 36.512 41.5269C36.512 41.5067 36.5027 41.4762 36.4934 41.4559C36.4934 41.4356 36.512 41.4255 36.512 41.4052V21.428L50.1958 21.3672C51.1951 21.3672 52 20.4845 52 19.3887V17.9784C52 16.8827 51.1951 16 50.1958 16Z" fill="currentColor"/></g><defs><clipPath id="clip0_center_table"><rect width="48" height="32" fill="white" transform="translate(4 16)"/></clipPath></defs></svg>
-            </span>
-            <span class="oneui-Text hh-t-lbl" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral">Center table</span>
-            <span class="oneui-Badge hh-t-status is-on" data-appearance="sparkle" data-attention="high" data-size="s" data-ob-obj-status>Visible</span>
-          </div>
-          <div class="ob-hh-tile oneui-Surface is-on" data-surface="elevated">
-            <span class="hh-t-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span class="hh-t-ico" aria-hidden="true">
-              <!-- TV unit -->
-              <svg viewBox="0 0 56 56" fill="none" aria-hidden="true"><path d="M35 44.3327H21C20.3811 44.3327 19.7876 44.5785 19.35 45.0161C18.9125 45.4537 18.6666 46.0472 18.6666 46.666C18.6666 47.2849 18.9125 47.8784 19.35 48.3159C19.7876 48.7535 20.3811 48.9994 21 48.9994H35C35.6188 48.9994 36.2123 48.7535 36.6499 48.3159C37.0875 47.8784 37.3333 47.2849 37.3333 46.666C37.3333 46.0472 37.0875 45.4537 36.6499 45.0161C36.2123 44.5785 35.6188 44.3327 35 44.3327ZM46.6666 11.666H9.33329C8.09562 11.666 6.90863 12.1577 6.03346 13.0329C5.15829 13.908 4.66663 15.095 4.66663 16.3327V37.3327C4.66663 38.5704 5.15829 39.7573 6.03346 40.6325C6.90863 41.5077 8.09562 41.9994 9.33329 41.9994H46.6666C47.9043 41.9994 49.0913 41.5077 49.9665 40.6325C50.8416 39.7573 51.3333 38.5704 51.3333 37.3327V16.3327C51.3333 15.095 50.8416 13.908 49.9665 13.0329C49.0913 12.1577 47.9043 11.666 46.6666 11.666V11.666Z" fill="currentColor"/></svg>
-            </span>
-            <span class="oneui-Text hh-t-lbl" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral">TV unit</span>
-            <span class="oneui-Badge hh-t-status is-on" data-appearance="sparkle" data-attention="high" data-size="s" data-ob-obj-status>Visible</span>
-          </div>
-          <div class="ob-hh-tile oneui-Surface is-warn" data-surface="elevated" aria-label="Main door — not sure" data-ob-door-tile>
-            <!-- Question-mark badge in the corner (not the glyph itself)
-                 signals the camera can't confirm the main door is clearly
-                 in frame — the tile still shows the real door icon so it
-                 reads "this is a door, we're just not sure it's fully
-                 visible". Tapping Rescan resolves the badge/status to
-                 confirmed (.is-on, green tick) via confirmDoorTile() below;
-                 the door glyph itself doesn't need to swap since it's
-                 already the real icon in both states. -->
-            <span class="hh-t-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9.5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="8.5" r="1" fill="currentColor"/><path d="M12 11v5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-            <span class="hh-t-ico" aria-hidden="true" data-ob-door-ico>
-              <svg viewBox="0 0 56 56" fill="none"><path d="M11.6666 16.3328H44.3333C44.7796 16.3339 45.2168 16.207 45.5932 15.9671C45.9695 15.7272 46.2692 15.3845 46.4566 14.9795C46.6435 14.5735 46.7099 14.1224 46.6478 13.6798C46.5858 13.2372 46.3979 12.8217 46.1066 12.4828C43.8197 9.96505 41.0211 7.96513 37.8983 6.61703C34.7755 5.26892 31.4007 4.60377 27.9999 4.66612C24.5992 4.60377 21.2244 5.26892 18.1016 6.61703C14.9788 7.96513 12.1802 9.96505 9.89328 12.4828C9.60196 12.8217 9.41411 13.2372 9.35206 13.6798C9.29002 14.1224 9.35639 14.5735 9.54328 14.9795C9.73072 15.3845 10.0304 15.7272 10.4067 15.9671C10.7831 16.207 11.2203 16.3339 11.6666 16.3328ZM23.3333 20.9995H11.6666C11.0478 20.9995 10.4543 21.2453 10.0167 21.6829C9.57911 22.1205 9.33328 22.7139 9.33328 23.3328V48.9995C9.33328 49.6183 9.57911 50.2118 10.0167 50.6494C10.4543 51.087 11.0478 51.3328 11.6666 51.3328H23.3333C23.9521 51.3328 24.5456 51.087 24.9832 50.6494C25.4208 50.2118 25.6666 49.6183 25.6666 48.9995V23.3328C25.6666 22.7139 25.4208 22.1205 24.9832 21.6829C24.5456 21.2453 23.9521 20.9995 23.3333 20.9995ZM18.6666 37.3328C18.2051 37.3328 17.754 37.1959 17.3703 36.9395C16.9866 36.6832 16.6875 36.3187 16.5109 35.8924C16.3343 35.466 16.2881 34.9969 16.3781 34.5442C16.4681 34.0916 16.6904 33.6759 17.0167 33.3495C17.343 33.0232 17.7588 32.801 18.2114 32.711C18.664 32.6209 19.1332 32.6671 19.5595 32.8437C19.9859 33.0203 20.3503 33.3194 20.6067 33.7031C20.8631 34.0868 20.9999 34.538 20.9999 34.9995C20.9999 35.6183 20.7541 36.2118 20.3165 36.6494C19.8789 37.087 19.2854 37.3328 18.6666 37.3328V37.3328ZM44.3333 20.9995H32.6666C32.0478 20.9995 31.4543 21.2453 31.0167 21.6829C30.5791 22.1205 30.3333 22.7139 30.3333 23.3328V48.9995C30.3333 49.6183 30.5791 50.2118 31.0167 50.6494C31.4543 51.087 32.0478 51.3328 32.6666 51.3328H44.3333C44.9521 51.3328 45.5456 51.087 45.9832 50.6494C46.4208 50.2118 46.6666 49.6183 46.6666 48.9995V23.3328C46.6666 22.7139 46.4208 22.1205 45.9832 21.6829C45.5456 21.2453 44.9521 20.9995 44.3333 20.9995ZM37.3333 37.3328C36.8718 37.3328 36.4207 37.1959 36.0369 36.9395C35.6532 36.6832 35.3542 36.3187 35.1776 35.8924C35.001 35.466 34.9547 34.9969 35.0448 34.5442C35.1348 34.0916 35.357 33.6759 35.6834 33.3495C36.0097 33.0232 36.4254 32.801 36.8781 32.711C37.3307 32.6209 37.7998 32.6671 38.2262 32.8437C38.6526 33.0203 39.017 33.3194 39.2734 33.7031C39.5298 34.0868 39.6666 34.538 39.6666 34.9995C39.6666 35.6183 39.4208 36.2118 38.9832 36.6494C38.5456 37.087 37.9521 37.3328 37.3333 37.3328Z" fill="currentColor"/></svg>
-            </span>
-            <span class="oneui-Text hh-t-lbl" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral">Main door</span>
-            <span class="oneui-Badge hh-t-status is-warn" data-appearance="warning" data-attention="high" data-size="s" data-ob-obj-status data-ob-door-status>Partially visible</span>
-          </div>
-        </div>
-      </div>
-      <!-- Warning line — only relevant while an object (currently the
-           Main door tile above) is still "Partially visible". Sits at
-           the bottom of the scrollable content, right above the
-           Rescan/Continue footer, so it reads as the reason Rescan is
-           there. Built from the same OneUI primitives as the rest of
-           the app (Surface fill remapped to Warning, exactly like the
-           home-screen Alert card) rather than a one-off banner class.
-           confirmDoorTile() hides it once the tile resolves to
-           confirmed; it isn't re-shown by primeCamRoom() since the
-           door never goes back to warn once confirmed. -->
-      <div class="oneui-Surface" data-surface="subtle" data-ob-door-warning style="--Surface-Fill-Subtle:var(--Warning-Subtle);border-radius:var(--Shape-3);margin-top:var(--Spacing-4);overflow:hidden">
-        <div style="padding:var(--Spacing-3) var(--Spacing-4) var(--Spacing-2)">
-          <div style="display:flex;align-items:center;gap:var(--Spacing-2);margin-bottom:var(--Spacing-1-5)">
-            <span class="oneui-Icon" data-size="sm" data-appearance="warning" data-emphasis="tintedA11y" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M12 9v5M12 17.5v.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M10.3 3.9 2.5 18A2 2 0 0 0 4.3 21h15.4a2 2 0 0 0 1.7-3L13.6 3.9a2 2 0 0 0-3.3 0Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
-            </span>
-            <span class="oneui-Text" data-variant="label" data-size="S" data-appearance="warning" data-attention="tintedA11y" style="font-weight:700">Main door partially in frame</span>
-          </div>
-          <p class="oneui-Text" data-variant="body" data-size="S" style="color:var(--Neutral-Medium-Text);line-height:1.5;margin-bottom:var(--Spacing-3)">Adjust the camera so the full door is in view.</p>
-          <button type="button" class="oneui-Button" data-appearance="warning" data-attention="medium" data-size="8" onclick="alert('Opening Tapo camera app…')">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 10l4.553-2.07A1 1 0 0 1 21 8.845v6.31a1 1 0 0 1-1.447.914L15 14M3 8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
-            Adjust angle in camera app
-          </button>
-        </div>
-      </div>
-      </div>
     </main>
 
     <!-- Room-picker bottom sheet — opened by "Not quite" in the
@@ -3951,6 +3889,22 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
           <span class="r-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </button>
       </div>
+    </div>
+
+    <!-- Add-object sheet — opened from the "Add object" tile in a camera card. Quick picks
+         are chips for common things worth watching (minus what that camera already has);
+         "Something else" takes free text. Either adds a tile marked "Added by you". -->
+    <div class="confirm-scrim" data-confirm-scrim="obj"></div>
+    <div class="timer-sheet obj-sheet" data-obj-sheet role="dialog" aria-modal="true" aria-labelledby="obj-sheet-head">
+      <span class="grabber" aria-hidden="true"></span>
+      <h3 class="oneui-Text ts-head" data-variant="title" data-size="M" data-appearance="neutral" id="obj-sheet-head">Add an object</h3>
+      <p class="oneui-Text ts-sub" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low" data-ob-obj-sub>Pick what this camera should keep an eye on.</p>
+      <div class="ob-obj-chips" data-ob-obj-chips></div>
+      <div class="oneui-InputField">
+        <label class="oneui-InputField-label" for="ob-obj-custom">Something else</label>
+        <div class="oneui-Input" data-size="10" data-attention="medium"><input id="ob-obj-custom" type="text" maxlength="30" autocomplete="off" placeholder="e.g. Study table" data-ob-obj-input></div>
+      </div>
+      <button type="button" class="oneui-Button ob-obj-add-btn" data-appearance="primary" data-attention="high" data-size="12" data-full-width="true" data-ob-obj-add disabled>Add</button>
     </div>
 
     <div class="ob-footer">
@@ -7779,38 +7733,6 @@ window.addEventListener('error', function(e){
        used in the room picker: a frame + handle) instead of the
        question-mark placeholder, for once the tile is confirmed. */
     var DOOR_ICON_SVG = '<svg viewBox="0 0 56 56" fill="none" aria-hidden="true"><path d="M11.6666 16.3328H44.3333C44.7796 16.3339 45.2168 16.207 45.5932 15.9671C45.9695 15.7272 46.2692 15.3845 46.4566 14.9795C46.6435 14.5735 46.7099 14.1224 46.6478 13.6798C46.5858 13.2372 46.3979 12.8217 46.1066 12.4828C43.8197 9.96505 41.0211 7.96513 37.8983 6.61703C34.7755 5.26892 31.4007 4.60377 27.9999 4.66612C24.5992 4.60377 21.2244 5.26892 18.1016 6.61703C14.9788 7.96513 12.1802 9.96505 9.89328 12.4828C9.60196 12.8217 9.41411 13.2372 9.35206 13.6798C9.29002 14.1224 9.35639 14.5735 9.54328 14.9795C9.73072 15.3845 10.0304 15.7272 10.4067 15.9671C10.7831 16.207 11.2203 16.3339 11.6666 16.3328ZM23.3333 20.9995H11.6666C11.0478 20.9995 10.4543 21.2453 10.0167 21.6829C9.57911 22.1205 9.33328 22.7139 9.33328 23.3328V48.9995C9.33328 49.6183 9.57911 50.2118 10.0167 50.6494C10.4543 51.087 11.0478 51.3328 11.6666 51.3328H23.3333C23.9521 51.3328 24.5456 51.087 24.9832 50.6494C25.4208 50.2118 25.6666 49.6183 25.6666 48.9995V23.3328C25.6666 22.7139 25.4208 22.1205 24.9832 21.6829C24.5456 21.2453 23.9521 20.9995 23.3333 20.9995ZM18.6666 37.3328C18.2051 37.3328 17.754 37.1959 17.3703 36.9395C16.9866 36.6832 16.6875 36.3187 16.5109 35.8924C16.3343 35.466 16.2881 34.9969 16.3781 34.5442C16.4681 34.0916 16.6904 33.6759 17.0167 33.3495C17.343 33.0232 17.7588 32.801 18.2114 32.711C18.664 32.6209 19.1332 32.6671 19.5595 32.8437C19.9859 33.0203 20.3503 33.3194 20.6067 33.7031C20.8631 34.0868 20.9999 34.538 20.9999 34.9995C20.9999 35.6183 20.7541 36.2118 20.3165 36.6494C19.8789 37.087 19.2854 37.3328 18.6666 37.3328V37.3328ZM44.3333 20.9995H32.6666C32.0478 20.9995 31.4543 21.2453 31.0167 21.6829C30.5791 22.1205 30.3333 22.7139 30.3333 23.3328V48.9995C30.3333 49.6183 30.5791 50.2118 31.0167 50.6494C31.4543 51.087 32.0478 51.3328 32.6666 51.3328H44.3333C44.9521 51.3328 45.5456 51.087 45.9832 50.6494C46.4208 50.2118 46.6666 49.6183 46.6666 48.9995V23.3328C46.6666 22.7139 46.4208 22.1205 45.9832 21.6829C45.5456 21.2453 44.9521 20.9995 44.3333 20.9995ZM37.3333 37.3328C36.8718 37.3328 36.4207 37.1959 36.0369 36.9395C35.6532 36.6832 35.3542 36.3187 35.1776 35.8924C35.001 35.466 34.9547 34.9969 35.0448 34.5442C35.1348 34.0916 35.357 33.6759 35.6834 33.3495C36.0097 33.0232 36.4254 32.801 36.8781 32.711C37.3307 32.6209 37.7998 32.6671 38.2262 32.8437C38.6526 33.0203 39.017 33.3194 39.2734 33.7031C39.5298 34.0868 39.6666 34.538 39.6666 34.9995C39.6666 35.6183 39.4208 36.2118 38.9832 36.6494C38.5456 37.087 37.9521 37.3328 37.3333 37.3328Z" fill="currentColor"/></svg>';
-    /* Resolves the Main door tile from "not sure" (.is-warn, question
-       mark) to confirmed (.is-on, green tick, real door icon) — only
-       called after an explicit Rescan, so the first pass still shows
-       the honest "we're not sure" state and Rescan is what visibly
-       improves it. */
-    function confirmDoorTile(){
-      var tile = document.querySelector('[data-ob-door-tile]');
-      if(!tile) return;
-      tile.classList.remove('is-warn');
-      tile.classList.add('is-on');
-      tile.setAttribute('aria-label', 'Main door — confirmed');
-      var ico = tile.querySelector('[data-ob-door-ico]');
-      if(ico) ico.innerHTML = DOOR_ICON_SVG;
-      /* The corner badge itself still held the question-mark path
-         from the warn state — only its background color flips via
-         .is-on's CSS, so without this it'd be a green circle with a
-         "?" in it. Swap it to the same checkmark every other
-         confirmed tile uses. */
-      var tick = tile.querySelector('.hh-t-tick');
-      if(tick) tick.innerHTML = '<svg viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-      var status = tile.querySelector('[data-ob-door-status]');
-      if(status){
-        status.classList.remove('is-warn');
-        status.classList.add('is-on');
-        status.setAttribute('data-appearance', 'sparkle');
-        status.textContent = 'Visible';
-      }
-      /* Object is fully visible now — the "change camera angle"
-         warning no longer applies. */
-      var warning = document.querySelector('[data-ob-door-warning]');
-      if(warning) warning.hidden = true;
-    }
     /* ── Step 2 camera cards ─────────────────────────────────────────
        One card per camera in state.cams; the header shows thumbnail + name, the room lives in
        the open card's dropdown. renderCamAcc() rebuilds only when the
@@ -7818,14 +7740,111 @@ window.addEventListener('error', function(e){
        the first card. Opening a card runs that camera's scan: the scan line sweeps
        its live view, then the room field (and, for Tapo, the object checks) fade in. */
     var CAM_INFO = {
-      tapo:     { name:'Tapo - C201',        img:'assets/cam-mi360.png',   feed:'assets/livingroom-detections.png', room:'Living Room', env:'Indoor' },
-      cpplus:   { name:'CP Plus - E45Q',     img:'assets/cam-battery.png', feed:'assets/kitchen.jpg',              room:'Kitchen',     env:'Indoor' },
-      trueview: { name:'TrueView - T18161S', img:'assets/dome-cam.png',    feed:'assets/frontporch.png',           room:'Entrance',    env:'Outdoor' }
+      tapo:     { name:'Tapo - C201',        img:'assets/cam-mi360.png',   feed:'assets/livingroom-detections.png', room:'Living Room', env:'Indoor',  objects:['sofa','table','tv'] },
+      cpplus:   { name:'CP Plus - E45Q',     img:'assets/cam-battery.png', feed:'assets/kitchen.jpg',              room:'Kitchen',     env:'Indoor',  objects:['stove','fridge'] },
+      trueview: { name:'TrueView - T18161S', img:'assets/dome-cam.png',    feed:'assets/frontporch.png',           room:'Entrance',    env:'Outdoor', objects:['door','gate'] }
     };
+    /* Objects JioSense can recognise. Furniture comes from the AI pass; ADDABLE are the quick
+       picks offered when the user adds something the AI missed. */
+    function objSvg(d){ return '<svg viewBox="0 0 56 56" fill="none" aria-hidden="true"><path fill-rule="evenodd" d="' + d + '" fill="currentColor"/></svg>'; }
+    var OBJ = {
+      sofa:   { label:'Sofa',          icon:'<svg viewBox="0 0 56 56" fill="none" aria-hidden="true"><path d="M44.3333 16.3327C44.3333 15.095 43.8416 13.908 42.9665 13.0329C42.0913 12.1577 40.9043 11.666 39.6666 11.666H16.3333C15.0956 11.666 13.9086 12.1577 13.0335 13.0329C12.1583 13.908 11.6666 15.095 11.6666 16.3327V27.9994H44.3333V16.3327ZM49 20.9993C48.3811 20.9993 47.7876 21.2452 47.35 21.6828C46.9125 22.1204 46.6666 22.7138 46.6666 23.3327V30.3327H9.33329V23.3327C9.33329 22.7138 9.08746 22.1204 8.64988 21.6828C8.21229 21.2452 7.6188 20.9993 6.99996 20.9993C6.38112 20.9993 5.78763 21.2452 5.35004 21.6828C4.91246 22.1204 4.66663 22.7138 4.66663 23.3327V37.3327C4.66663 37.9515 4.91246 38.545 5.35004 38.9826C5.78763 39.4202 6.38112 39.666 6.99996 39.666H9.33329V41.9994C9.33329 42.6182 9.57913 43.2117 10.0167 43.6493C10.4543 44.0869 11.0478 44.3327 11.6666 44.3327C12.2855 44.3327 12.879 44.0869 13.3165 43.6493C13.7541 43.2117 14 42.6182 14 41.9994V39.666H42V41.9994C42 42.6182 42.2458 43.2117 42.6834 43.6493C43.121 44.0869 43.7145 44.3327 44.3333 44.3327C44.9521 44.3327 45.5456 44.0869 45.9832 43.6493C46.4208 43.2117 46.6666 42.6182 46.6666 41.9994V39.666H49C49.6188 39.666 50.2123 39.4202 50.6499 38.9826C51.0875 38.545 51.3333 37.9515 51.3333 37.3327V23.3327C51.3333 22.7138 51.0875 22.1204 50.6499 21.6828C50.2123 21.2452 49.6188 20.9993 49 20.9993Z" fill="currentColor"/></svg>' },
+      table:  { label:'Center table',  icon:'<svg viewBox="0 0 56 56" fill="none" aria-hidden="true"><g clip-path="url(#clip0_center_table)"><rect width="48" height="32" transform="translate(4 16)" fill="none"/><path d="M37.0856 42.6523C36.7895 43.7582 33.0609 44.5699 28.0833 44.5699C23.1056 44.5699 19.303 43.7481 18.7849 42.6929C15.4449 43.1901 13.2984 43.951 13.2984 44.7931V45.27C13.2984 46.7817 20.0894 47.9992 28.4718 47.9992C36.8543 47.9992 43.3123 46.8324 43.3123 45.3308V44.854C43.3123 43.951 40.8604 43.1495 37.0856 42.6523Z" fill="currentColor"/><path d="M50.1958 16H5.80416C4.80493 16 4 16.8827 4 17.9784V19.3887C4 20.4845 4.80493 21.3672 5.80416 21.3672H19.6176V41.4661C19.6176 42.3386 23.4757 43.0387 28.2313 43.0387C32.9869 43.0387 36.512 42.3893 36.512 41.5269C36.512 41.5067 36.5027 41.4762 36.4934 41.4559C36.4934 41.4356 36.512 41.4255 36.512 41.4052V21.428L50.1958 21.3672C51.1951 21.3672 52 20.4845 52 19.3887V17.9784C52 16.8827 51.1951 16 50.1958 16Z" fill="currentColor"/></g><defs><clipPath id="clip0_center_table"><rect width="48" height="32" fill="white" transform="translate(4 16)"/></clipPath></defs></svg>' },
+      tv:     { label:'TV unit',       icon:'<svg viewBox="0 0 56 56" fill="none" aria-hidden="true"><path d="M35 44.3327H21C20.3811 44.3327 19.7876 44.5785 19.35 45.0161C18.9125 45.4537 18.6666 46.0472 18.6666 46.666C18.6666 47.2849 18.9125 47.8784 19.35 48.3159C19.7876 48.7535 20.3811 48.9994 21 48.9994H35C35.6188 48.9994 36.2123 48.7535 36.6499 48.3159C37.0875 47.8784 37.3333 47.2849 37.3333 46.666C37.3333 46.0472 37.0875 45.4537 36.6499 45.0161C36.2123 44.5785 35.6188 44.3327 35 44.3327ZM46.6666 11.666H9.33329C8.09562 11.666 6.90863 12.1577 6.03346 13.0329C5.15829 13.908 4.66663 15.095 4.66663 16.3327V37.3327C4.66663 38.5704 5.15829 39.7573 6.03346 40.6325C6.90863 41.5077 8.09562 41.9994 9.33329 41.9994H46.6666C47.9043 41.9994 49.0913 41.5077 49.9665 40.6325C50.8416 39.7573 51.3333 38.5704 51.3333 37.3327V16.3327C51.3333 15.095 50.8416 13.908 49.9665 13.0329C49.0913 12.1577 47.9043 11.666 46.6666 11.666V11.666Z" fill="currentColor"/></svg>' },
+      door:   { label:'Main door',     icon:DOOR_ICON_SVG },
+      window: { label:'Window',        icon:objSvg('M13 8h30a3 3 0 0 1 3 3v34a3 3 0 0 1-3 3H13a3 3 0 0 1-3-3V11a3 3 0 0 1 3-3Zm2 5v13h11V13Zm15 0v13h11V13ZM15 30v13h11V30Zm15 0v13h11V30Z') },
+      stove:  { label:'Gas stove',     icon:objSvg('M10 27h36a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H10a3 3 0 0 1-3-3V30a3 3 0 0 1 3-3Zm9-17a6 6 0 1 1 0 12 6 6 0 0 1 0-12Zm18 0a6 6 0 1 1 0 12 6 6 0 0 1 0-12Z') },
+      fridge: { label:'Fridge',        icon:objSvg('M19 5h18a4 4 0 0 1 4 4v12H15V9a4 4 0 0 1 4-4Zm-4 19h26v23a4 4 0 0 1-4 4H19a4 4 0 0 1-4-4Zm5-14h3v6h-3Zm0 18h3v8h-3Z') },
+      crib:   { label:'Crib',          icon:objSvg('M8 11h4v34H8Zm36 0h4v34h-4ZM12 15h32v3H12Zm0 20h32v3H12ZM17 18h3v17h-3Zm7 0h3v17h-3Zm7 0h3v17h-3Zm7 0h3v17h-3Z') },
+      safe:   { label:'Safe / locker', icon:objSvg('M10 7h36a3 3 0 0 1 3 3v31a3 3 0 0 1-3 3H10a3 3 0 0 1-3-3V10a3 3 0 0 1 3-3Zm18 9a9.5 9.5 0 1 0 0 19 9.5 9.5 0 0 0 0-19Zm0 6a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7ZM12 46h6v4h-6Zm26 0h6v4h-6Z') },
+      car:    { label:'Car',           icon:objSvg('M14 23l4-9a4 4 0 0 1 3.7-2.5h12.6A4 4 0 0 1 38 14l4 9h2a4 4 0 0 1 4 4v10a2 2 0 0 1-2 2h-3a5 5 0 0 1-10 0H23a5 5 0 0 1-10 0h-3a2 2 0 0 1-2-2V27a4 4 0 0 1 4-4Zm5 0h18l-3-7H22Z') },
+      gate:   { label:'Gate',          icon:objSvg('M8 10h4v36H8Zm36 0h4v36h-4ZM12 14h32v3H12Zm0 24h32v3H12ZM18 17h3v21h-3Zm8.5 0h3v21h-3ZM35 17h3v21h-3Z') },
+      custom: { label:'',              icon:objSvg('M28 5 48 15v26L28 51 8 41V15Zm0 5.6L13.6 17.8 28 25l14.4-7.2Z') }
+    };
+    var ADDABLE = ['door','window','stove','fridge','crib','safe','car','gate'];
+    state.camAdded = state.camAdded || {};   // camera id -> [{ key, label }] the user added
+    var TICK_SVG = '<svg viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    var X_SVG = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>';
+    var PLUS_SVG = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>';
+    function objTile(o, added, idx){
+      var label = o.label || OBJ[o.key].label, icon = OBJ[o.key] ? OBJ[o.key].icon : OBJ.custom.icon;
+      return '<div class="ob-hh-tile oneui-Surface is-on' + (added ? ' is-added' : '') + '" data-surface="elevated">' +
+        '<span class="hh-t-tick" aria-hidden="true">' + TICK_SVG + '</span>' +
+        (added ? '<button type="button" class="hh-t-del touch-floor" data-ob-obj-del="' + idx + '" aria-label="Remove ' + label + '">' + X_SVG + '</button>' : '') +
+        '<span class="hh-t-ico" aria-hidden="true">' + icon + '</span>' +
+        '<span class="oneui-Text hh-t-lbl" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral">' + label + '</span>' +
+        (added ? '<span class="oneui-Text hh-t-sub" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Added by you</span>' : '') +
+      '</div>';
+    }
+    function renderObjGrid(card, id){
+      var grid = card.querySelector('[data-ob-obj-grid]');
+      if(!grid) return;
+      var added = state.camAdded[id] || [];
+      grid.innerHTML =
+        CAM_INFO[id].objects.map(function(k){ return objTile({ key:k }, false); }).join('') +
+        added.map(function(o, i){ return objTile(o, true, i); }).join('') +
+        '<button type="button" class="ob-hh-tile oneui-Surface ob-hh-add" data-surface="elevated" data-ob-obj-open>' +
+          '<span class="hh-t-ico" aria-hidden="true">' + PLUS_SVG + '</span>' +
+          '<span class="oneui-Text hh-t-lbl" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral">Add object</span>' +
+        '</button>';
+      grid.querySelector('[data-ob-obj-open]').addEventListener('click', function(){ openObjSheet(id); });
+      grid.querySelectorAll('[data-ob-obj-del]').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          state.camAdded[id].splice(+btn.getAttribute('data-ob-obj-del'), 1);
+          renderObjGrid(card, id);
+        });
+      });
+    }
+
+    /* Add-object sheet */
+    var objSheet = document.querySelector('[data-obj-sheet]'), objScrim = document.querySelector('[data-confirm-scrim="obj"]');
+    var objChips = document.querySelector('[data-ob-obj-chips]'), objInput = document.querySelector('[data-ob-obj-input]');
+    var objAddBtn = document.querySelector('[data-ob-obj-add]'), objSheetCam = null;
+    function closeObjSheet(){
+      if(objScrim) objScrim.classList.remove('is-open');
+      if(objSheet) objSheet.classList.remove('is-open');
+    }
+    function addObj(id, o){
+      var list = state.camAdded[id] = state.camAdded[id] || [];
+      var name = (o.label || OBJ[o.key].label).toLowerCase();
+      var taken = CAM_INFO[id].objects.some(function(k){ return OBJ[k].label.toLowerCase() === name; }) ||
+                  list.some(function(x){ return (x.label || OBJ[x.key].label).toLowerCase() === name; });
+      if(!taken) list.push(o);
+      var card = camAcc && camAcc.querySelector('[data-ob-acc="' + id + '"]');
+      if(card) renderObjGrid(card, id);
+      closeObjSheet();
+    }
+    function openObjSheet(id){
+      if(!objSheet || !objScrim) return;
+      objSheetCam = id;
+      var sub = objSheet.querySelector('[data-ob-obj-sub]');
+      if(sub) sub.textContent = 'Pick what ' + CAM_INFO[id].name + ' should keep an eye on, or type your own.';
+      var have = CAM_INFO[id].objects.concat((state.camAdded[id] || []).map(function(o){ return o.key; }));
+      objChips.innerHTML = ADDABLE.filter(function(k){ return have.indexOf(k) === -1; }).map(function(k){
+        return '<button type="button" class="oneui-Chip chip" data-size="l" data-appearance="primary" data-attention="high" aria-pressed="false" data-ob-obj-pick="' + k + '">' + OBJ[k].label + '</button>';
+      }).join('');
+      objChips.querySelectorAll('[data-ob-obj-pick]').forEach(function(chip){
+        chip.addEventListener('click', function(){ addObj(objSheetCam, { key: chip.getAttribute('data-ob-obj-pick') }); });
+      });
+      if(objInput) objInput.value = '';
+      if(objAddBtn) objAddBtn.disabled = true;
+      objScrim.classList.add('is-open');
+      objSheet.classList.add('is-open');
+    }
+    function addCustomObj(){
+      var v = objInput ? objInput.value.trim() : '';
+      if(!v || !objSheetCam) return;
+      addObj(objSheetCam, { key:'custom', label: v.charAt(0).toUpperCase() + v.slice(1) });
+    }
+    if(objScrim) objScrim.addEventListener('click', closeObjSheet);
+    if(objInput){
+      objInput.addEventListener('input', function(){ if(objAddBtn) objAddBtn.disabled = !objInput.value.trim(); });
+      objInput.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); addCustomObj(); } });
+    }
+    if(objAddBtn) objAddBtn.addEventListener('click', addCustomObj);
     state.camRooms = state.camRooms || {};
     var CHEV_DOWN = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
     var camAcc = document.querySelector('[data-ob-camacc]');
-    var tapoExtra = document.querySelector('[data-ob-tapo-extra]');
     var camAccKey = '', camScanTimers = {};
     function camRoomOf(id){ return state.camRooms[id] || CAM_INFO[id].room; }
     // cards follow the Step 1 list order, not the order cameras were ticked
@@ -7855,13 +7874,16 @@ window.addEventListener('error', function(e){
                 '<span class="oneui-Text v" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral" data-ob-room-val>' + room + '</span>' + CHEV_DOWN +
               '</button>' +
             '</div>' +
+            '<div class="ob-hh-section ob-section is-review">' +
+              '<div class="ob-obj-hd">' +
+                '<div class="oneui-Text hh-head" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low">Objects detected</div>' +
+                '<p class="oneui-Text" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Missed something? Add it so JioSense keeps an eye on it.</p>' +
+              '</div>' +
+              '<div class="ob-hh-grid" data-ob-obj-grid></div>' +
+            '</div>' +
           '</div>' +
         '</div></div></div>';
-      if(id === 'tapo' && tapoExtra){
-        // the Tapo analysis (object checks + door warning) moves into this card
-        var reveal = el.querySelector('[data-ob-scan-reveal]');
-        while(tapoExtra.firstChild) reveal.appendChild(tapoExtra.firstChild);
-      }
+      renderObjGrid(el, id);
       el.querySelector('.ob-acc-head').addEventListener('click', function(){
         if(el.classList.contains('is-open')) setCamAccOpen(null); else setCamAccOpen(id);
       });
@@ -7872,9 +7894,6 @@ window.addEventListener('error', function(e){
       if(!camAcc) return;
       var ids = camAccIds(), key = ids.join(',');
       if(key !== camAccKey){
-        // hand the Tapo extras back to their holder before the cards are rebuilt
-        var oldTapo = camAcc.querySelector('[data-ob-acc="tapo"] [data-ob-scan-reveal]');
-        if(oldTapo && tapoExtra){ Array.prototype.slice.call(oldTapo.children, 1).forEach(function(n){ tapoExtra.appendChild(n); }); }
         camAcc.innerHTML = '';
         ids.forEach(function(id){ camAcc.appendChild(camAccCard(id)); });
         camAccKey = key;
@@ -7890,7 +7909,6 @@ window.addEventListener('error', function(e){
       camScanTimers[id] = setTimeout(function(){
         if(line) line.hidden = true;
         if(reveal) reveal.classList.add('is-in');
-        if(opts && opts.confirmDoor && id === 'tapo') confirmDoorTile();
       }, 1500);
     }
     function setCamAccOpen(id, opts){
@@ -7911,9 +7929,9 @@ window.addEventListener('error', function(e){
     }
     var rescanBtn = document.querySelector('[data-ob-rescan]');
     if(rescanBtn) rescanBtn.addEventListener('click', function(){
-      // rescans whichever camera card is open (the Tapo rescan also confirms the main door)
+      // replays the scan on whichever camera card is open
       var open = camAcc && camAcc.querySelector('.ob-acc.is-open');
-      if(open) setCamAccOpen(open.getAttribute('data-ob-acc'), { rescan: true, confirmDoor: true });
+      if(open) setCamAccOpen(open.getAttribute('data-ob-acc'), { rescan: true });
     });
 
     /* ── Household — quantity steppers (adults / kids / elders / pets /
