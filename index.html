@@ -2973,10 +2973,9 @@ button.oneui-Avatar{position:relative}
 .ob-acc-inner{min-height:0;overflow:hidden}
 .ob-acc-pad{padding:0 var(--Spacing-3) var(--Spacing-4)}
 .ob-acc:not(.is-open) .ob-acc-pad{visibility:hidden;transition:visibility 0s var(--Motion-Duration-L)}
-/* Room field — reads as a dropdown: "AI suggestion" tag (hidden once the user picks a room
-   themselves), then a select-style box that opens the room sheet. */
+/* Room field — a select-style box showing the suggested room; tapping it opens the room
+   sheet. */
 .ob-room-field{display:flex;flex-direction:column;gap:var(--Spacing-2);margin-top:var(--Spacing-4)}
-.ob-room-field-hd{display:flex;align-items:center;gap:var(--Spacing-2)}
 .ob-room-select{
   display:flex;align-items:center;gap:var(--Spacing-3);width:100%;min-height:48px;
   padding:0 var(--Spacing-3) 0 var(--Spacing-4);
@@ -7852,9 +7851,6 @@ window.addEventListener('error', function(e){
           '</div>' +
           '<div class="ob-scan-reveal" data-ob-scan-reveal>' +
             '<div class="ob-room-field">' +
-              '<div class="ob-room-field-hd" data-ob-ai-tag' + (room === c.room ? '' : ' style="display:none"') + '>' +
-                '<span class="oneui-Badge" data-appearance="sparkle" data-attention="medium" data-size="s">AI suggestion</span>' +
-              '</div>' +
               '<button type="button" class="ob-room-select" data-ob-room-select aria-haspopup="dialog" aria-label="Room for ' + c.name + ': ' + room + '. Change room">' +
                 '<span class="oneui-Text v" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral" data-ob-room-val>' + room + '</span>' + CHEV_DOWN +
               '</button>' +
@@ -8466,8 +8462,6 @@ window.addEventListener('error', function(e){
             var c = CAM_INFO[roomSheetCam];
             card.querySelector('[data-ob-room-val]').textContent = name;
             card.querySelector('[data-ob-room-select]').setAttribute('aria-label', 'Room for ' + c.name + ': ' + name + '. Change room');
-            // the tag only applies while the room is still JioSense's own guess
-            card.querySelector('[data-ob-ai-tag]').style.display = (name === c.room) ? '' : 'none';
           }
         }
         closeRoomSheet();
