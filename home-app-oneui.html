@@ -2573,7 +2573,6 @@ button.oneui-Avatar{position:relative}
 .inc-ctrl-row .pp-time{margin-left:var(--Spacing-1)}
 .oneui-IconButton.inc-ic{background:transparent;color:var(--Media-On-Surface-High,#fff)}
 .oneui-IconButton.inc-ic:active{background:var(--Overlay-On-Media-Lowest,rgba(255,255,255,.18))}
-.inc-media .inc-dots{bottom:86px}
 .inc-flash{position:absolute;inset:0;z-index:3;background:#fff;opacity:0;pointer-events:none}
 .inc-flash.is-on{animation:incFlash .45s ease-out}
 @keyframes incFlash{0%{opacity:.85}100%{opacity:0}}
@@ -2596,9 +2595,13 @@ button.oneui-Avatar{position:relative}
 .inc-actions .oneui-Button{flex:1;gap:var(--Spacing-1-5);display:inline-flex;align-items:center;justify-content:center}
 .inc-actions .oneui-Button svg{flex:0 0 auto}
 .inc-auto[hidden],.inc-dots[hidden]{display:none}
-.inc-dots{position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:6px;pointer-events:none}
-.inc-dots i{width:6px;height:6px;border-radius:3px;background:rgba(255,255,255,.6);box-shadow:0 0 2px rgba(0,0,0,.35);transition:width var(--Motion-Duration-Micro) var(--Motion-Easing-Standard)}
-.inc-dots i.is-on{width:18px;background:#fff}
+.inc-dots{display:flex;justify-content:center;gap:0;padding:var(--Spacing-2) var(--Spacing-4) 0}
+.inc-dots button{position:relative;width:20px;height:20px;padding:0;border:0;background:none;cursor:pointer;display:grid;place-items:center;transition:width var(--Motion-Duration-Micro) var(--Motion-Easing-Standard)}
+.inc-dots button::before{content:"";width:6px;height:6px;border-radius:3px;background:rgba(12,13,16,.28);transition:width var(--Motion-Duration-Micro) var(--Motion-Easing-Standard),background-color var(--Motion-Duration-Micro) var(--Motion-Easing-Standard)}
+.inc-dots button.is-on{width:30px}
+.inc-dots button.is-on::before{width:20px;background:var(--Primary-Bold)}
+.inc-dots button:focus-visible{outline:2px solid var(--Focus-Outline);outline-offset:-2px;border-radius:10px}
+.inc-dots + .inc-actions{padding-top:var(--Spacing-2)}
 .inc-sec{padding:var(--Spacing-6) var(--Spacing-4) 0}
 .inc-sum-hd{display:flex;align-items:center;gap:var(--Spacing-2);margin-bottom:var(--Spacing-2)}
 .inc-spark{width:28px;height:28px;border-radius:50%;background:var(--Primary-Subtle);display:grid;place-items:center;flex:0 0 auto}
@@ -6318,7 +6321,6 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
         <div class="inc-track" data-inc-track aria-roledescription="carousel"></div>
         <span class="oneui-Badge inc-stamp" data-appearance="neutral" data-attention="high" data-size="s" data-inc-stamp></span>
         <button type="button" class="inc-bigplay" data-inc-bigplay aria-label="Play clip" hidden><svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 5.5v13l11-6.5-11-6.5Z" fill="currentColor"/></svg></button>
-        <span class="inc-dots" data-inc-dots aria-hidden="true"></span>
         <span class="inc-flash" data-inc-flash aria-hidden="true"></span>
         <div class="pp-ctrl inc-ctrl">
           <input type="range" class="pp-scrub" data-inc-scrub min="0" max="1000" value="0" aria-label="Scrub through this clip">
@@ -6332,6 +6334,9 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
           </div>
         </div>
       </div>
+
+      <!-- Clip dots: which clip is on, tap one to jump to it -->
+      <div class="inc-dots" data-inc-dots role="tablist" aria-label="Clips"></div>
 
       <!-- Clip actions -->
       <div class="inc-actions">
@@ -11980,7 +11985,7 @@ window.addEventListener('error', function(e){
       cur = i; elapsed = 0;
       var c = clips[i];
       stamp.textContent = c.cam + ' · ' + fmtTimestamp(c.mins);
-      Array.prototype.forEach.call(dots.children, function(d, k){ d.classList.toggle('is-on', k === i); });
+      Array.prototype.forEach.call(dots.children, function(d, k){ d.classList.toggle('is-on', k === i); d.setAttribute('aria-selected', k === i ? 'true' : 'false'); });
       Array.prototype.forEach.call(grid.children, function(g, k){ g.setAttribute('aria-current', k === i ? 'true' : 'false'); });
       render();
     }
@@ -12109,7 +12114,12 @@ window.addEventListener('error', function(e){
         slide.setAttribute('role', 'group');
         slide.setAttribute('aria-label', 'Clip ' + (i + 1) + ' of ' + list.length + ': ' + it.t);
         track.appendChild(slide);
-        dots.appendChild(el('i'));
+        var dot = el('button');
+        dot.type = 'button';
+        dot.setAttribute('role', 'tab');
+        dot.setAttribute('aria-label', 'Clip ' + (i + 1) + ': ' + it.t);
+        dot.addEventListener('click', function(){ if(i !== cur) go(i); });
+        dots.appendChild(dot);
 
         var card = el('button', 'inc-ev');
         card.type = 'button';
