@@ -1298,6 +1298,15 @@ button.oneui-Avatar{position:relative}
   margin:var(--Spacing-1) 0 0;
   padding:var(--Spacing-1) 0;
 }
+.evt-week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));padding:var(--Spacing-1) var(--Spacing-3) var(--Spacing-3);border-bottom:1px solid var(--Neutral-Stroke-Low);flex:none}
+.evt-day{display:flex;flex-direction:column;align-items:center;gap:var(--Spacing-1-5);padding:var(--Spacing-1) 0;border:0;background:none;font:inherit;cursor:pointer;color:var(--Neutral-High)}
+.evt-day .dw{font-size:var(--Label-XS-FontSize,12px);line-height:16px;font-weight:var(--Label-FontWeight-Medium,500);color:var(--Neutral-Low)}
+.evt-day .dd{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;font-size:16px;font-weight:700;font-variant-numeric:tabular-nums;transition:background-color var(--Motion-Duration-Short) var(--Motion-Easing-Standard),color var(--Motion-Duration-Short) var(--Motion-Easing-Standard)}
+.evt-day.is-empty .dd{color:var(--Neutral-Low);font-weight:500}
+.evt-day.is-today .dw{color:var(--Primary-TintedA11y);font-weight:700}
+.evt-day.is-today:not([aria-pressed="true"]) .dd{box-shadow:inset 0 0 0 1.5px var(--Primary-Bold);color:var(--Primary-TintedA11y)}
+.evt-day[aria-pressed="true"] .dd{background:var(--Primary-Bold);color:var(--Primary-Bold-High,#fff)}
+.evt-day:active .dd{transform:scale(.94)}
 .dpill{
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
   flex:1 1 0;min-width:0;min-height:var(--Touch-Target-Min);
@@ -5911,6 +5920,11 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
       <button type="button" id="evt-tab-insights" class="oneui-Tabs-tab tab-btn" role="tab" aria-controls="evt-panel-insights" aria-selected="false" tabindex="-1">Daily digest</button>
       <button type="button" id="evt-tab-allevents" class="oneui-Tabs-tab tab-btn" role="tab" aria-controls="evt-panel-allevents" aria-selected="true" tabindex="0">All events <span class="oneui-CounterBadge" data-appearance="negative" data-attention="high" data-size="m" data-unread-count hidden></span></button>
     </div>
+
+    <!-- Week selector (reference: events app day strip): last 7 days, oldest left, today
+         right; the picked day fills, today carries a ring, days without events dim. Built
+         by buildWeekStrip(); picking a day filters the list below. -->
+    <div class="evt-week" role="group" aria-label="Choose a day" data-events-date></div>
 
     <!-- Insights panel -->
     <div id="evt-panel-insights" role="tabpanel" aria-labelledby="evt-tab-insights" style="display:none;flex-direction:column;flex:1 1 0;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:14px var(--Spacing-4) 100px">
@@ -11259,6 +11273,7 @@ window.addEventListener('error', function(e){
   function filteredAlerts(){
     var f = alertFilters;
     return currentAlerts().filter(function(a){
+      if(a.day !== eventsDay) return false;   // the list shows the day picked in the week strip
       if(f.type.length && f.type.indexOf(a.type) === -1) return false;
       if(f.priority.length && f.priority.indexOf(a.priority) === -1) return false;
       return true;
@@ -11328,10 +11343,26 @@ window.addEventListener('error', function(e){
   }
   /* Unread count on the "All events" tab: important events in the list not yet opened —
      the same set that carries an unread dot. */
+  /* Week strip for Activity: the last RETENTION_DAYS days, oldest first so today sits on
+     the right. Weekday above, date in a circle below. */
+  function buildWeekStrip(container, selected, has){
+    container.innerHTML = '';
+    for(var day = RETENTION_DAYS - 1; day >= 0; day--){
+      var d = dateFor(day), any = !!has(day);
+      var b = el('button', 'evt-day' + (day === 0 ? ' is-today' : '') + (any ? '' : ' is-empty'));
+      b.type = 'button';
+      b.setAttribute('data-day', String(day));
+      b.setAttribute('aria-pressed', day === selected ? 'true' : 'false');
+      b.setAttribute('aria-label', dayFull(day) + (any ? '' : ' — nothing recorded'));
+      b.appendChild(el('span', 'dw', WEEKDAY[d.getDay()]));
+      b.appendChild(el('span', 'dd', String(d.getDate())));
+      container.appendChild(b);
+    }
+  }
   function updateUnreadCount(){
     var badge = document.querySelector('[data-unread-count]');
     if(!badge) return;
-    var n = currentAlerts().filter(function(a){ return a.priority !== 'low' && !a.read; }).length;
+    var n = currentAlerts().filter(function(a){ return a.day === eventsDay && a.priority !== 'low' && !a.read; }).length;
     badge.textContent = n;
     badge.hidden = n === 0;
     badge.setAttribute('aria-label', n + ' unread');
@@ -11633,14 +11664,14 @@ window.addEventListener('error', function(e){
       return tierOf(x) - tierOf(y) || latestOf(y) - latestOf(x);
     });
 
-    alertCount.textContent = 'Today: ' + list.length + ' event' + (list.length === 1 ? '' : 's');
+    alertCount.textContent = dayFull(eventsDay) + ': ' + list.length + ' event' + (list.length === 1 ? '' : 's');
 
     /* Rebuilt on every render, so the dots follow a location switch. */
     if(eventsStrip){
       var all = currentAlerts();
-      buildDateStrip(eventsStrip, eventsDay, function(n){
+      buildWeekStrip(eventsStrip, eventsDay, function(n){
         return all.some(function(a){ return a.day === n; });
-      }, ' — nothing recorded');
+      });
     }
 
     /* ── Render events grouped by time-of-day period ──────────────── */
@@ -11738,12 +11769,14 @@ window.addEventListener('error', function(e){
     });
     if(eventsStrip){
       eventsStrip.addEventListener('click', function(e){
-        var pill = e.target.closest('.dpill');
+        var pill = e.target.closest('.evt-day');
         if(!pill) return;
         var day = +pill.getAttribute('data-day');
         if(day === eventsDay) return;
         eventsDay = day;
         renderAlerts();
+        var sc = document.getElementById('evt-panel-allevents');
+        if(sc) sc.scrollTop = 0;
       });
     }
     if(groupToggle) groupToggle.addEventListener('click', function(){
