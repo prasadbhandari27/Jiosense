@@ -1847,6 +1847,19 @@ button.oneui-Avatar{position:relative}
   background:var(--Surface-Fill-Default);border:1.5px dashed var(--Neutral-Stroke-Medium,var(--Neutral-Low));color:var(--Neutral-Low);box-shadow:0 0 0 var(--Stroke-XL) var(--Surface-Fill-Default)}
 .home-fresh .home-fresh-av + .home-fresh-av{margin-left:calc(-1 * var(--Spacing-2-5))}
 .home-fresh .home-fresh-av svg{width:18px;height:18px}
+.home-fresh-people:not([data-state="unknown"]) [data-when="unknown"],
+.home-fresh-people[data-state="unknown"] [data-when="empty"]{display:none!important}
+/* face snapshot cropped from the Front Porch frame, with an unread dot */
+.home-fresh .home-fresh-face{position:relative;width:36px;height:36px;border-radius:50%;flex:none;
+  background:url(assets/frontporch.png) 90% 19%/900% no-repeat var(--Surface-Fill-Subtle);   /* centred on the visitor's head */
+  box-shadow:0 0 0 var(--Stroke-XL) var(--Surface-Fill-Default),0 0 0 calc(var(--Stroke-XL) + 1.5px) var(--Warning-Bold)}
+.home-fresh .home-fresh-face + .home-fresh-av{margin-left:calc(-1 * var(--Spacing-2-5))}
+.home-fresh .home-fresh-face-dot{position:absolute;top:-1px;right:-1px;width:10px;height:10px;border-radius:50%;background:var(--Negative-Bold);border:2px solid var(--Surface-Fill-Default)}
+.home-fresh .home-fresh-unk-tx{display:flex;flex-direction:column;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.home-fresh-people[data-state="unknown"]{animation:ob-hh-tile-in .4s var(--Motion-Easing-Standard) both}
+/* a brand-new household has no one to pick from yet */
+[data-screen="my-home"].is-fresh #unk-btn-link{display:none}
+[data-screen="my-home"].is-fresh .unk-av-lg{background:url(assets/frontporch.png) 90% 19%/900% no-repeat var(--Surface-Fill-Subtle);color:transparent;border:0}
 .home-fresh .home-fresh-hd{padding:0 var(--Spacing-4) var(--Spacing-3)}
 [data-screen="my-home"] .cctv-scroll{background:var(--App-Surface);padding-bottom:80px;padding-top:12px;padding-inline:0}
 .cctv-home-hdr{display:flex;align-items:center;justify-content:space-between;padding:var(--Spacing-4)}
@@ -6337,17 +6350,23 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
           </div>
         </div>
 
-        <!-- Empty people pill — same chrome as "5 people are in the home" -->
-        <div class="cctv-people-wrap home-fresh-people">
+        <!-- People pill, first-day version — same chrome as "5 people are in the home".
+             data-state="empty": no one added yet → Add.
+             data-state="unknown": a camera saw someone it doesn't recognise → face snapshot,
+             where/when, and "Who's this?" opening the Unknown person sheet. -->
+        <div class="cctv-people-wrap home-fresh-people" data-state="empty" data-fresh-people>
           <div class="cctv-people-pill">
-            <div class="cctv-av-group" aria-hidden="true">
-              <span class="home-fresh-av"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8.5" r="3.4" stroke="currentColor" stroke-width="1.8"/><path d="M5.5 19c.6-3.3 3.3-5.4 6.5-5.4s5.9 2.1 6.5 5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
-              <span class="home-fresh-av"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8.5" r="3.4" stroke="currentColor" stroke-width="1.8"/><path d="M5.5 19c.6-3.3 3.3-5.4 6.5-5.4s5.9 2.1 6.5 5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
-              <span class="home-fresh-av"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8.5" r="3.4" stroke="currentColor" stroke-width="1.8"/><path d="M5.5 19c.6-3.3 3.3-5.4 6.5-5.4s5.9 2.1 6.5 5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+            <div class="cctv-av-group" aria-hidden="true" data-when="empty">
+              <span class="home-fresh-av"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8.5" r="3.4" stroke="currentColor" stroke-width="1.8"/><path d="M5.5 19c.6-3.3 3.3-5.4 6.5-5.4s5.9 2.1 6.5 5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="home-fresh-av"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8.5" r="3.4" stroke="currentColor" stroke-width="1.8"/><path d="M5.5 19c.6-3.3 3.3-5.4 6.5-5.4s5.9 2.1 6.5 5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="home-fresh-av"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8.5" r="3.4" stroke="currentColor" stroke-width="1.8"/><path d="M5.5 19c.6-3.3 3.3-5.4 6.5-5.4s5.9 2.1 6.5 5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+            </div>
+            <div class="cctv-av-group" aria-hidden="true" data-when="unknown">
+              <span class="home-fresh-face"><span class="home-fresh-face-dot"></span></span>
             </div>
             <div class="cctv-people-sep"></div>
-            <span class="oneui-Text cctv-people-text" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low"><strong class="oneui-Text" data-variant="body" data-size="XS" data-weight="high" data-appearance="neutral">No one added yet</strong></span>
-            <button type="button" class="oneui-Button" data-appearance="primary" data-attention="medium" data-size="8" data-open="add-person">Add</button>
+            <span class="oneui-Text cctv-people-text" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low" data-when="empty"><strong class="oneui-Text" data-variant="body" data-size="XS" data-weight="high" data-appearance="neutral">No one added yet</strong></span>
+            <span class="oneui-Text cctv-people-text home-fresh-unk-tx" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low" data-when="unknown"><strong class="oneui-Text" data-variant="body" data-size="XS" data-weight="high" data-appearance="neutral">Unknown person</strong><span>Front Porch · just now</span></span>
+            <button type="button" class="oneui-Button" data-appearance="primary" data-attention="medium" data-size="8" data-open="add-person" data-when="empty">Add</button>
+            <button type="button" class="oneui-Button" data-appearance="primary" data-attention="high" data-size="8" data-when="unknown" data-fresh-unk>Who's this?</button>
           </div>
         </div>
 
@@ -8375,7 +8394,14 @@ window.addEventListener('error', function(e){
       else sessionStorage.removeItem('jiosense_fresh');
     }
     window.__setFreshHome = setFreshHome;
-    if(location.hash === '#home-new' || sessionStorage.getItem('jiosense_fresh') === '1') setFreshHome(true);
+    /* First-day people pill: "unknown" once a camera sees someone it doesn't recognise. */
+    function setFreshUnknown(on){
+      var pill = document.querySelector('[data-fresh-people]');
+      if(pill) pill.setAttribute('data-state', on ? 'unknown' : 'empty');
+    }
+    window.__setFreshUnknown = setFreshUnknown;
+    if(location.hash === '#home-new' || location.hash === '#home-new-unknown' || sessionStorage.getItem('jiosense_fresh') === '1') setFreshHome(true);
+    if(location.hash === '#home-new-unknown') setFreshUnknown(true);
 
     function primeCamRoom(opts){
       renderCamAcc();
@@ -13229,6 +13255,9 @@ window.addEventListener('error', function(e){
     }
 
     unkOverlay.addEventListener('click', function(){ closeUnkSheet(); });
+    window.__openUnkSheet = openUnkSheet;
+    var freshUnkBtn = document.querySelector('[data-fresh-unk]');
+    if(freshUnkBtn) freshUnkBtn.addEventListener('click', function(){ openUnkSheet(freshUnkBtn); });
     document.getElementById('unk-btn-dismiss').addEventListener('click', function(){ closeUnkSheet(); });
 
     // Escape steps back inside the sheet instead of reaching the router's back(); Tab stays inside
