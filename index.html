@@ -1838,10 +1838,15 @@ button.oneui-Avatar{position:relative}
 [data-screen="my-home"] .statusbar{background:var(--App-Surface)}
 .home-fresh{display:none}
 [data-screen="my-home"].is-fresh .home-fresh{display:block}
-[data-screen="my-home"].is-fresh .cctv-notif-carousel,
-[data-screen="my-home"].is-fresh .cctv-people-wrap,
+[data-screen="my-home"].is-fresh .cctv-notif-carousel:not(.home-fresh-notif),
+[data-screen="my-home"].is-fresh .cctv-people-wrap:not(.home-fresh-people),
 [data-screen="my-home"].is-fresh .cctv-room:not(.is-fresh-room){display:none}
-.home-fresh .home-fresh-empty{padding:var(--Spacing-6) var(--Spacing-6) var(--Spacing-8)}
+.home-fresh .home-fresh-notif .cctv-notif-card{width:auto;flex:1 1 auto}
+.home-fresh .home-fresh-people .cctv-people-pill{cursor:default}
+.home-fresh .home-fresh-av{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;flex:none;
+  background:var(--Surface-Fill-Default);border:1.5px dashed var(--Neutral-Stroke-Medium,var(--Neutral-Low));color:var(--Neutral-Low);box-shadow:0 0 0 var(--Stroke-XL) var(--Surface-Fill-Default)}
+.home-fresh .home-fresh-av + .home-fresh-av{margin-left:calc(-1 * var(--Spacing-2-5))}
+.home-fresh .home-fresh-av svg{width:18px;height:18px}
 .home-fresh .home-fresh-hd{padding:0 var(--Spacing-4) var(--Spacing-3)}
 [data-screen="my-home"] .cctv-scroll{background:var(--App-Surface);padding-bottom:80px;padding-top:12px;padding-inline:0}
 .cctv-home-hdr{display:flex;align-items:center;justify-content:space-between;padding:var(--Spacing-4)}
@@ -6313,22 +6318,39 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
     <main class="scroll cctv-scroll">
       <!-- ── Just-onboarded Home (shown instead of the demo alerts / people / rooms when
            .is-fresh is on the screen — set at the end of onboarding, or via #home-new).
-           Same empty-state language as Activity, then live cards for the cameras the user
-           just set up, in the rooms they picked. Filled by renderFreshHome(). ── -->
+           Empty versions of the notification card and the people pill, then live cards
+           for the cameras the user just set up, in the rooms they picked (filled by
+           renderFreshHome()). ── -->
       <div class="home-fresh" data-home-fresh>
-        <div class="evt-empty home-fresh-empty">
-          <svg class="evt-empty-art" viewBox="0 0 168 104" fill="none" aria-hidden="true">
-            <rect x="48" y="6" width="104" height="64" rx="12" style="fill:var(--Primary-Bold);opacity:.12"/>
-            <rect x="32" y="17" width="112" height="70" rx="12" style="fill:var(--Primary-Bold);opacity:.22"/>
-            <rect x="16" y="29" width="120" height="72" rx="12" style="fill:var(--Surface-Fill-Default);stroke:var(--Neutral-Stroke-Low)" stroke-width="1.5"/>
-            <path d="M58 52.5 47 57.4v9.5c0 6.3 4.7 11.7 11 13.1 6.3-1.4 11-6.8 11-13.1v-9.5l-11-4.9Z" style="fill:var(--Primary-Bold)"/>
-            <path d="m53.4 66.2 3.3 3.3 6-6.4" style="stroke:var(--Surface-Fill-Default)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-            <rect x="80" y="57" width="38" height="6" rx="3" style="fill:var(--Neutral-Stroke-Low)"/>
-            <rect x="80" y="69" width="24" height="6" rx="3" style="fill:var(--Primary-Bold)"/>
-          </svg>
-          <h3 class="oneui-Text" data-variant="title" data-size="M" data-appearance="neutral" data-text-align="center">You're all set</h3>
-          <p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium" data-text-align="center">Your cameras are live. Alerts and activity will show up here.</p>
+        <!-- Empty notification card — same chrome as the alert carousel cards -->
+        <div class="cctv-notif-carousel home-fresh-notif">
+          <div class="cctv-notif-card oneui-Surface" data-surface="elevated">
+            <div class="cctv-notif-hdr">
+              <div class="oneui-Avatar cctv-notif-icon" data-size="xl" data-content="icon" data-appearance="sparkle" data-attention="medium" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M18 8.5a6 6 0 0 0-12 0c0 6.5-2.5 8-2.5 8h17S18 15 18 8.5ZM10 20a2.1 2.1 0 0 0 4 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="cctv-notif-titles">
+                <p class="oneui-Text cctv-notif-title" data-variant="title" data-size="M" data-appearance="neutral">You're all set</p>
+              </div>
+            </div>
+            <p class="oneui-Text cctv-notif-body" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Alerts will show up here when your cameras spot something.</p>
+          </div>
         </div>
+
+        <!-- Empty people pill — same chrome as "5 people are in the home" -->
+        <div class="cctv-people-wrap home-fresh-people">
+          <div class="cctv-people-pill">
+            <div class="cctv-av-group" aria-hidden="true">
+              <span class="home-fresh-av"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8.5" r="3.4" stroke="currentColor" stroke-width="1.8"/><path d="M5.5 19c.6-3.3 3.3-5.4 6.5-5.4s5.9 2.1 6.5 5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+              <span class="home-fresh-av"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8.5" r="3.4" stroke="currentColor" stroke-width="1.8"/><path d="M5.5 19c.6-3.3 3.3-5.4 6.5-5.4s5.9 2.1 6.5 5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+              <span class="home-fresh-av"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8.5" r="3.4" stroke="currentColor" stroke-width="1.8"/><path d="M5.5 19c.6-3.3 3.3-5.4 6.5-5.4s5.9 2.1 6.5 5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+            </div>
+            <div class="cctv-people-sep"></div>
+            <span class="oneui-Text cctv-people-text" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low"><strong class="oneui-Text" data-variant="body" data-size="XS" data-weight="high" data-appearance="neutral">No one added yet</strong></span>
+            <button type="button" class="oneui-Button" data-appearance="primary" data-attention="medium" data-size="8" data-open="add-person">Add</button>
+          </div>
+        </div>
+
         <p class="oneui-Text home-fresh-hd" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral">Your cameras</p>
         <div data-home-fresh-rooms></div>
       </div>
