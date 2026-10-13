@@ -7223,6 +7223,8 @@ window.addEventListener('error', function(e){
     localStorage.removeItem('jiosense_onboarded');
     localStorage.removeItem('jiosense_members');
     localStorage.removeItem('jiosense_cameras');
+    sessionStorage.removeItem('jiosense_fresh');       // first-day Home + its unknown-person moment
+    sessionStorage.removeItem('jiosense_fresh_unk');
   }
   var startAt = (location.hash || '').replace(/^#/, '');
   if(startAt === 'onboard') startAt = 'ob-camselect';
@@ -8391,7 +8393,7 @@ window.addEventListener('error', function(e){
       if(!home) return;
       home.classList.toggle('is-fresh', on);
       if(on){ renderFreshHome(); sessionStorage.setItem('jiosense_fresh', '1'); }
-      else sessionStorage.removeItem('jiosense_fresh');
+      else { sessionStorage.removeItem('jiosense_fresh'); sessionStorage.removeItem('jiosense_fresh_unk'); }
     }
     window.__setFreshHome = setFreshHome;
     /* First-day people pill: "unknown" once a camera sees someone it doesn't recognise. */
@@ -8401,7 +8403,28 @@ window.addEventListener('error', function(e){
     }
     window.__setFreshUnknown = setFreshUnknown;
     if(location.hash === '#home-new' || location.hash === '#home-new-unknown' || sessionStorage.getItem('jiosense_fresh') === '1') setFreshHome(true);
-    if(location.hash === '#home-new-unknown') setFreshUnknown(true);
+    if(location.hash === '#home-new-unknown' || sessionStorage.getItem('jiosense_fresh_unk') === '1') setFreshUnknown(true);
+    /* On a first-day Home the cameras "spot" someone a few seconds after the user arrives:
+       once per session, only while Home is on screen (leaving cancels the timer). */
+    (function(){
+      var home = document.querySelector('[data-screen="my-home"]');
+      if(!home) return;
+      var timer = null, UNK_DELAY = 6000;
+      function arm(){
+        var waiting = home.classList.contains('is-fresh') && home.classList.contains('is-active') &&
+                      sessionStorage.getItem('jiosense_fresh_unk') !== '1';
+        if(waiting && !timer){
+          timer = setTimeout(function(){
+            timer = null;
+            if(!home.classList.contains('is-active') || !home.classList.contains('is-fresh')) return;
+            setFreshUnknown(true);
+            sessionStorage.setItem('jiosense_fresh_unk', '1');
+          }, UNK_DELAY);
+        } else if(!waiting && timer){ clearTimeout(timer); timer = null; }
+      }
+      new MutationObserver(arm).observe(home, { attributes:true, attributeFilter:['class'] });
+      arm();
+    })();
 
     function primeCamRoom(opts){
       renderCamAcc();
