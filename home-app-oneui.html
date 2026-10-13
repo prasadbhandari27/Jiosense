@@ -2554,8 +2554,20 @@ button.oneui-Avatar{position:relative}
 .inc-media .inc-stamp{position:absolute;top:var(--Spacing-3);left:var(--Spacing-3);pointer-events:none}
 .inc-media .inc-auto{position:absolute;top:var(--Spacing-2);right:var(--Spacing-2);gap:var(--Spacing-1);display:inline-flex;align-items:center}
 .inc-auto [data-inc-auto-ico]{display:inline-flex}
+.inc-media .inc-auto[data-attention="medium"]{background:rgba(255,255,255,.85);color:var(--Neutral-High)}
+.inc-slide{overflow:hidden}
+.inc-slide img{transform-origin:60% 45%;transition:transform .25s linear}
+.inc-media .inc-ctrl{z-index:2}
+.inc-media .inc-dots{bottom:56px}
+.inc-bigplay{position:absolute;left:50%;top:50%;transform:translate(-50%,-62%);width:56px;height:56px;border-radius:50%;border:0;display:grid;place-items:center;
+  background:var(--Overlay-On-Media-Lowest,rgba(0,0,0,.45));color:#fff;cursor:pointer;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.inc-bigplay[hidden]{display:none}
+.inc-bigplay svg{margin-left:3px}
+.inc-actions{display:flex;gap:var(--Spacing-2);padding:var(--Spacing-4) var(--Spacing-4) 0}
+.inc-actions .oneui-Button{flex:1;gap:var(--Spacing-1-5);display:inline-flex;align-items:center;justify-content:center}
+.inc-actions .oneui-Button svg{flex:0 0 auto}
 .inc-auto[hidden],.inc-dots[hidden]{display:none}
-.inc-dots{position:absolute;left:50%;bottom:var(--Spacing-3);transform:translateX(-50%);display:flex;gap:6px;pointer-events:none}
+.inc-dots{position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:6px;pointer-events:none}
 .inc-dots i{width:6px;height:6px;border-radius:3px;background:rgba(255,255,255,.6);box-shadow:0 0 2px rgba(0,0,0,.35);transition:width var(--Motion-Duration-Micro) var(--Motion-Easing-Standard)}
 .inc-dots i.is-on{width:18px;background:#fff}
 .inc-sec{padding:var(--Spacing-6) var(--Spacing-4) 0}
@@ -6275,9 +6287,28 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
         <div class="inc-track" data-inc-track aria-roledescription="carousel"></div>
         <span class="oneui-Badge inc-stamp" data-appearance="neutral" data-attention="high" data-size="s" data-inc-stamp></span>
         <button type="button" class="oneui-Button inc-auto" data-size="8" data-appearance="neutral" data-attention="high" data-inc-auto aria-pressed="true">
-          <span data-inc-auto-ico aria-hidden="true"></span><span data-inc-auto-lbl>Auto-play</span>
+          <span data-inc-auto-ico aria-hidden="true"></span><span>Auto-play</span>
         </button>
+        <button type="button" class="inc-bigplay" data-inc-bigplay aria-label="Play clip" hidden><svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 5.5v13l11-6.5-11-6.5Z" fill="currentColor"/></svg></button>
         <span class="inc-dots" data-inc-dots aria-hidden="true"></span>
+        <div class="pp-ctrl inc-ctrl">
+          <button type="button" class="oneui-IconButton pp-play" data-size="8" data-appearance="neutral" data-attention="low" data-inc-play aria-label="Play clip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 5.5v13l11-6.5-11-6.5Z" fill="currentColor"/></svg></button>
+          <input type="range" class="pp-scrub" data-inc-scrub min="0" max="1000" value="0" aria-label="Scrub through this clip">
+          <span class="pp-time" data-inc-time>0:00 / 0:00</span>
+        </div>
+      </div>
+
+      <!-- Clip actions -->
+      <div class="inc-actions">
+        <button type="button" class="oneui-Button" data-size="8" data-appearance="neutral" data-attention="medium" data-inc-act="share">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 15V3.5M7.5 8 12 3.5 16.5 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 12.5V18a2.5 2.5 0 0 0 2.5 2.5h9A2.5 2.5 0 0 0 19 18v-5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Share
+        </button>
+        <button type="button" class="oneui-Button" data-size="8" data-appearance="neutral" data-attention="medium" data-inc-act="download">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5V15M7.5 10.5 12 15l4.5-4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M4.5 19.5h15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Download
+        </button>
+        <button type="button" class="oneui-Button" data-size="8" data-appearance="neutral" data-attention="medium" data-inc-act="feedback">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 12.5a7.5 7.5 0 0 1-11 6.6L4.5 20l1-4.2A7.5 7.5 0 1 1 20 12.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 11.5h6M9 14.5h3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Feedback
+        </button>
       </div>
 
       <section class="inc-sec">
@@ -6296,6 +6327,27 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
         <div class="inc-grid" data-inc-grid></div>
       </section>
     </main>
+
+    <!-- Feedback sheet -->
+    <div class="ap-sheet-scrim" data-inc-fb-scrim></div>
+    <div class="ap-photo-sheet" data-inc-fb-sheet role="dialog" aria-modal="true" aria-label="Feedback on this alert">
+      <div class="ap-sheet-handle"></div>
+      <h2 class="oneui-Text ap-sheet-title" data-variant="title" data-size="M" data-appearance="neutral">Was this alert helpful?</h2>
+      <div class="ap-sheet-opts">
+        <button class="ap-sheet-opt oneui-Surface" data-surface="elevated" type="button" data-inc-fb="Thanks — we’ll keep alerts like this coming">
+          <span class="ap-sheet-opt-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M7.5 10.5v9H4.5v-9h3Zm0 0 3.6-6.3a1.6 1.6 0 0 1 3 .9l-.6 4.4h5a2 2 0 0 1 2 2.3l-1.1 6.2a2 2 0 0 1-2 1.5H7.5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
+          <span class="ap-sheet-opt-tx"><span class="oneui-Text t" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral">Yes, this was useful</span></span>
+        </button>
+        <button class="ap-sheet-opt oneui-Surface" data-surface="elevated" type="button" data-inc-fb="Thanks — we’ll show fewer alerts like this">
+          <span class="ap-sheet-opt-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M16.5 13.5v-9h3v9h-3Zm0 0-3.6 6.3a1.6 1.6 0 0 1-3-.9l.6-4.4h-5a2 2 0 0 1-2-2.3l1.1-6.2a2 2 0 0 1 2-1.5h9.9" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
+          <span class="ap-sheet-opt-tx"><span class="oneui-Text t" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral">Not useful</span></span>
+        </button>
+        <button class="ap-sheet-opt oneui-Surface" data-surface="elevated" type="button" data-inc-fb="Thanks — the story will be checked again">
+          <span class="ap-sheet-opt-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.8"/><path d="M12 7.5v5.5M12 16.2v.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+          <span class="ap-sheet-opt-tx"><span class="oneui-Text t" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral">The summary is wrong</span></span>
+        </button>
+      </div>
+    </div>
   </section>
 
   <section class="screen" data-screen="summary">
@@ -11793,53 +11845,117 @@ window.addEventListener('error', function(e){
     return lo === hi ? fmtTimestamp(hi) : fmtTimestamp(lo) + ' – ' + fmtTimestamp(hi);
   }
   /* ── Incident story screen (unknown person) ─────────────────────────
-     Clips swipe in the media (auto-play advances them), the story is stitched from
-     each clip's step, and the grid lists every clip — tapping one jumps the media to it. */
+     The media is a player: each clip plays (the timecode and scrub move over the clip's
+     frame, which drifts slowly like footage), and with Auto-play on the next clip starts
+     when one ends. Swipe for another clip; the grid below jumps straight to one. */
   (function(){
     var scr = document.querySelector('[data-screen="incident"]');
     if(!scr) return;
-    var track = scr.querySelector('[data-inc-track]'), dots = scr.querySelector('[data-inc-dots]');
-    var stamp = scr.querySelector('[data-inc-stamp]'), grid = scr.querySelector('[data-inc-grid]');
-    var autoBtn = scr.querySelector('[data-inc-auto]'), autoIco = scr.querySelector('[data-inc-auto-ico]'), autoLbl = scr.querySelector('[data-inc-auto-lbl]');
-    var ICO_PLAY = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M8 5.5v13l11-6.5-11-6.5Z" fill="currentColor"/></svg>';
-    var ICO_PAUSE = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="6.5" y="5" width="3.6" height="14" rx="1" fill="currentColor"/><rect x="13.9" y="5" width="3.6" height="14" rx="1" fill="currentColor"/></svg>';
-    var clips = [], cur = 0, timer = null, auto = true;
+    var q = function(sel){ return scr.querySelector(sel); };
+    var track = q('[data-inc-track]'), dots = q('[data-inc-dots]'), stamp = q('[data-inc-stamp]'), grid = q('[data-inc-grid]');
+    var autoBtn = q('[data-inc-auto]'), autoIco = q('[data-inc-auto-ico]');
+    var playBtn = q('[data-inc-play]'), bigPlay = q('[data-inc-bigplay]'), scrub = q('[data-inc-scrub]'), timeEl = q('[data-inc-time]');
+    var ICO_PLAY = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 5.5v13l11-6.5-11-6.5Z" fill="currentColor"/></svg>';
+    var ICO_PAUSE = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="6.5" y="5" width="3.6" height="14" rx="1" fill="currentColor"/><rect x="13.9" y="5" width="3.6" height="14" rx="1" fill="currentColor"/></svg>';
+    var ICO_AUTO = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M8 5.5v13l11-6.5-11-6.5Z" fill="currentColor"/></svg>';
+    var clips = [], cur = 0, auto = true, playing = false, elapsed = 0, last = null, raf = null, swapping = false;
 
+    function durOf(c){ return 30 + (c.mins % 7) * 11; }     // same stand-in length as the grid badge
+    function slideMedia(i){ var sl = track.children[i]; return sl && sl.firstChild; }
+    function render(){
+      var c = clips[cur]; if(!c) return;
+      var d = durOf(c), p = Math.min(1, elapsed / d);
+      scrub.value = Math.round(p * 1000);
+      timeEl.textContent = mmss(elapsed) + ' / ' + mmss(d);
+      var m = slideMedia(cur);
+      if(m && m.tagName === 'IMG') m.style.transform = 'scale(' + (1 + p * 0.08) + ')';
+    }
+    function setPlaying(on){
+      playing = on;
+      playBtn.innerHTML = on ? ICO_PAUSE : ICO_PLAY;
+      playBtn.setAttribute('aria-label', on ? 'Pause clip' : 'Play clip');
+      bigPlay.hidden = on;
+      cancelAnimationFrame(raf); last = null;
+      var m = slideMedia(cur);
+      if(m && m.tagName === 'VIDEO'){ if(on) m.play().catch(function(){}); else m.pause(); }
+      if(on) raf = requestAnimationFrame(tick);
+    }
+    function tick(t){
+      if(!scr.classList.contains('is-active')){ setPlaying(false); return; }
+      if(last !== null) elapsed += (t - last) / 1000;
+      last = t;
+      var d = durOf(clips[cur]);
+      if(elapsed >= d){
+        elapsed = d; render();
+        if(auto && cur < clips.length - 1){ go(cur + 1, true); }
+        else { setPlaying(false); }
+        return;
+      }
+      render();
+      raf = requestAnimationFrame(tick);
+    }
     function setAuto(on){
       auto = on;
       autoBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
-      autoIco.innerHTML = on ? ICO_PAUSE : ICO_PLAY;
-      autoLbl.textContent = on ? 'Pause' : 'Auto-play';
-      clearInterval(timer); timer = null;
-      if(on) timer = setInterval(function(){
-        if(!scr.classList.contains('is-active')){ clearInterval(timer); timer = null; return; }
-        go((cur + 1) % clips.length);
-      }, 3500);
+      autoBtn.setAttribute('data-attention', on ? 'high' : 'medium');
+      autoBtn.setAttribute('aria-label', 'Auto-play next clip: ' + (on ? 'on' : 'off'));
     }
-    function mark(i){
-      cur = i;
+    function select(i){
+      var prev = slideMedia(cur);
+      if(prev && prev.tagName === 'IMG') prev.style.transform = '';
+      cur = i; elapsed = 0;
       var c = clips[i];
-      if(!c) return;
       stamp.textContent = c.cam + ' · ' + fmtTimestamp(c.mins);
       Array.prototype.forEach.call(dots.children, function(d, k){ d.classList.toggle('is-on', k === i); });
       Array.prototype.forEach.call(grid.children, function(g, k){ g.setAttribute('aria-current', k === i ? 'true' : 'false'); });
+      render();
     }
-    function go(i){
-      cur = i;
+    function go(i, keepPlaying){
+      var wasPlaying = keepPlaying || playing;
+      swapping = true;
       track.scrollTo({ left:i * track.clientWidth, behavior:'smooth' });
-      mark(i);
+      setTimeout(function(){ swapping = false; }, 700);
+      select(i);
+      setPlaying(wasPlaying);
     }
     var scrollT;
     track.addEventListener('scroll', function(){
+      if(swapping) return;
       clearTimeout(scrollT);
       scrollT = setTimeout(function(){
         var i = Math.round(track.scrollLeft / Math.max(1, track.clientWidth));
-        if(i !== cur) mark(i);
-      }, 60);
+        if(i !== cur){ select(i); setPlaying(playing); }
+      }, 80);
     }, { passive:true });
-    // a hand on the media takes over from auto-play
-    track.addEventListener('pointerdown', function(){ if(auto) setAuto(false); });
+    function toggle(){ if(!playing && elapsed >= durOf(clips[cur])) elapsed = 0; setPlaying(!playing); }
+    playBtn.addEventListener('click', toggle);
+    bigPlay.addEventListener('click', toggle);
+    track.addEventListener('click', toggle);
+    scrub.addEventListener('input', function(){ elapsed = (+scrub.value / 1000) * durOf(clips[cur]); last = null; render(); });
     autoBtn.addEventListener('click', function(){ setAuto(!auto); });
+
+    /* Share / Download / Feedback */
+    var fbSheet = q('[data-inc-fb-sheet]'), fbScrim = q('[data-inc-fb-scrim]');
+    function fbOpen(on){ fbSheet.classList.toggle('is-up', on); fbScrim.classList.toggle('is-up', on); }
+    fbScrim.addEventListener('click', function(){ fbOpen(false); });
+    Array.prototype.forEach.call(scr.querySelectorAll('[data-inc-fb]'), function(b){
+      b.addEventListener('click', function(){ fbOpen(false); toastMsg(b.getAttribute('data-inc-fb')); });
+    });
+    function toastMsg(msg){
+      var t = document.querySelector('[data-toast]'); if(!t) return;
+      t.textContent = msg; t.classList.remove('has-action'); t.classList.add('is-on');
+      clearTimeout(t._timer); t._timer = setTimeout(function(){ t.classList.remove('is-on'); }, 2000);
+    }
+    Array.prototype.forEach.call(scr.querySelectorAll('[data-inc-act]'), function(b){
+      b.addEventListener('click', function(){
+        var c = clips[cur], act = b.getAttribute('data-inc-act');
+        if(act === 'feedback'){ fbOpen(true); return; }
+        if(act === 'download'){ toastMsg('Clip saved: ' + c.cam + ', ' + fmtTimestamp(c.mins)); return; }
+        var title = q('[data-inc-title]').textContent;
+        if(navigator.share){ navigator.share({ title:title, text:title + ' · ' + fmtTimestamp(c.mins) }).catch(function(){}); }
+        else toastMsg('Share link copied');
+      });
+    });
 
     function story(items, who){
       var steps = items.map(function(it){ return it.step; }).filter(Boolean);
@@ -11857,41 +11973,42 @@ window.addEventListener('error', function(e){
       if(!items.length || !g.who || KNOWN_PEOPLE[g.who]) return false;   // only unknown people get the story screen
       clips = items;
       var main = items.slice().sort(function(x, y){ return PRIORITY_RANK[x.priority] - PRIORITY_RANK[y.priority] || y.mins - x.mins; })[0];
-      scr.querySelector('[data-inc-title]').textContent = g.who + ' at ' + main.cam;
-      scr.querySelector('[data-inc-summary]').textContent = story(items, g.who);
-      var imp = scr.querySelector('[data-inc-imp]'), top = PRIORITY_RANK[main.priority];
+      q('[data-inc-title]').textContent = g.who + ' at ' + main.cam;
+      q('[data-inc-summary]').textContent = story(items, g.who);
+      var imp = q('[data-inc-imp]'), top = PRIORITY_RANK[main.priority];
       imp.hidden = top > 1;
       imp.setAttribute('data-appearance', top === 0 ? 'negative' : 'warning');
       imp.textContent = top === 0 ? 'High importance' : 'Worth a look';
+      autoIco.innerHTML = ICO_AUTO;
+      fbOpen(false);
 
       track.innerHTML = ''; dots.innerHTML = ''; grid.innerHTML = '';
       items.forEach(function(it, i){
         var slide = el('span', 'inc-slide');
         slide.setAttribute('role', 'group');
         slide.setAttribute('aria-label', 'Clip ' + (i + 1) + ' of ' + items.length + ': ' + it.t);
-        slide.innerHTML = it.video ? '<video src="' + it.video + '" poster="' + (it.img || '') + '" muted playsinline autoplay loop></video>' : '<img src="' + it.img + '" alt="">';
+        slide.innerHTML = it.video ? '<video src="' + it.video + '" poster="' + (it.img || '') + '" muted playsinline loop></video>' : '<img src="' + it.img + '" alt="">';
         track.appendChild(slide);
         dots.appendChild(el('i'));
 
-        var dur = 30 + (it.mins % 7) * 11;
         var card = el('button', 'inc-ev');
         card.type = 'button';
-        card.setAttribute('aria-label', it.t + ', ' + it.cam + ', ' + fmtTimestamp(it.mins) + ', ' + mmss(dur));
+        card.setAttribute('aria-label', it.t + ', ' + it.cam + ', ' + fmtTimestamp(it.mins) + ', ' + mmss(durOf(it)));
         card.innerHTML =
           '<span class="inc-ev-th"><img src="' + it.img + '" alt="">' +
-            '<span class="oneui-Badge inc-ev-dur" data-appearance="neutral" data-attention="high" data-size="s">' + mmss(dur) + '</span></span>' +
+            '<span class="oneui-Badge inc-ev-dur" data-appearance="neutral" data-attention="high" data-size="s">' + mmss(durOf(it)) + '</span></span>' +
           '<span class="oneui-Text inc-ev-t" data-variant="label" data-size="S" data-weight="high" data-appearance="neutral">' + EV_TAG[eventTags(it)[0]].svg + '<span>' + it.t + '</span></span>' +
           '<span class="oneui-Text inc-ev-s" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low">' + it.cam + ' · ' + fmtTimestamp(it.mins) + '</span>';
-        card.addEventListener('click', function(){ if(auto) setAuto(false); go(i); scr.querySelector('.scroll').scrollTo({ top:0, behavior:'smooth' }); });
+        card.addEventListener('click', function(){ go(i, true); q('.scroll').scrollTo({ top:0, behavior:'smooth' }); });
         grid.appendChild(card);
       });
-      // mark the whole incident as read, like opening the card always did
+      // opening the incident marks it read, like opening the card always did
       items.forEach(function(it){ it.read = true; });
+      dots.hidden = autoBtn.hidden = items.length < 2;
       requestAnimationFrame(function(){ track.scrollLeft = 0; });
-      mark(0);
-      setAuto(items.length > 1);
-      autoBtn.hidden = items.length < 2;
-      dots.hidden = items.length < 2;
+      setAuto(true);
+      select(0);
+      setPlaying(true);      // the clip starts playing as the screen opens
       return true;
     };
   })();
