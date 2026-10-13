@@ -492,6 +492,11 @@ button.oneui-Avatar:active{transform:scale(.94)}
 .oneui-Checkbox-input:checked + .oneui-Checkbox,.is-checked .oneui-Checkbox,.oneui-Checkbox[aria-checked="true"]{background:var(--_cb-bold);border-color:var(--_cb-bold)}
 .oneui-Checkbox-input:checked + .oneui-Checkbox > svg,.is-checked .oneui-Checkbox > svg,.oneui-Checkbox[aria-checked="true"] > svg{opacity:1;transform:scale(1)}
 .oneui-Checkbox[role="checkbox"]:focus-visible{outline:none;box-shadow:0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap),0 0 0 calc(var(--Stroke-XL) * 2) var(--Informative-Bold)}
+/* OneUI CounterBadge (port) — numeric count pill; negative/high = bold red with white text. */
+.oneui-CounterBadge{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;min-width:var(--CounterBadge-height-m,16px);height:var(--CounterBadge-height-m,16px);padding:0 var(--Spacing-1);border-radius:var(--CounterBadge-borderRadius,999px);font-size:var(--CounterBadge-fontSize-m,10px);font-weight:var(--CounterBadge-fontWeight,500);line-height:1;font-variant-numeric:tabular-nums;vertical-align:middle;background:var(--Neutral-Bold);color:var(--Neutral-Bold-High,#fff)}
+.oneui-CounterBadge[data-appearance="negative"][data-attention="high"]{background:var(--Negative-Bold);color:var(--Negative-Bold-High,#fff)}
+.oneui-CounterBadge[hidden]{display:none}
+.oneui-Tabs-tab .oneui-CounterBadge{margin-left:var(--Spacing-1)}
 /* OneUI Radio (port) — native <input type="radio"> visually hidden, followed by the drawn
    control: Radio-boxSize ring that takes the appearance colour when checked, with a
    Radio-dotSize dot that scales in. Use inside a role="radiogroup" (RadioGroup). */
@@ -2245,58 +2250,58 @@ button.oneui-Avatar{position:relative}
    row carries a thumbnail now (the big 16:9 media-led variant is
    dropped in favour of a single consistent thumb size). */
 .acard-row{
-  display:grid;
+  position:relative;display:grid;
   grid-template-columns:auto 1fr;
   grid-template-areas:"thumb tx"
                       "thumb ts";
-  align-items:start;column-gap:var(--Spacing-3);row-gap:2px;
+  align-items:start;column-gap:var(--Spacing-3);row-gap:var(--Spacing-1);
   width:100%;text-align:left;
-  background:var(--Surface-Fill-Default);padding:var(--Spacing-3) var(--Spacing-3);
-  border-bottom:1px solid var(--Neutral-Stroke-Low);
-  transition:background .14s ease;
+  background:var(--Surface-Fill-Default);padding:var(--Spacing-2-5);
+  border-radius:var(--Shape-4);box-shadow:var(--Elevation-2);
+  transition:background .14s ease,transform var(--Motion-Duration-Micro) var(--Motion-Easing-Standard);
 }
-.acard-row:first-child{border-radius:var(--Shape-3) var(--Shape-3) 0 0}
-.acard-row:last-child{border-radius:0 0 var(--Shape-3) var(--Shape-3);border-bottom:0}
-.acard-row:only-child{border-radius:var(--Shape-3);border-bottom:0}
+.acard-row:active{transform:scale(.99)}
 @media (hover:hover){.acard-row:hover{background:var(--Surface-Fill-Minimal)}}
-/* Grid areas: thumbnail on the left spans both rows; title on the
-   top-right; timestamp on the bottom-right. Placeholder keeps the
-   thumb column reserved even when a row happens to have no media,
-   so text columns line up across the list. */
-.acard-row .arow-thumb{grid-area:thumb;align-self:center}
+/* Card per event (reference: smart-home activity feed): large 16:10 thumbnail with a round
+   play control on the left; detection icons, title, camera and time on the right; a dot
+   marks unread. Thumbnail spans both rows; text rows stack top to bottom. */
+.acard-row .arow-thumb{grid-area:thumb;align-self:stretch}
 .acard-row:not(.has-thumb) .arow-thumb{display:none}
 .acard-row:not(.has-thumb){grid-template-columns:1fr;grid-template-areas:"tx" "ts"}
-.acard-row .tx{grid-area:tx;min-width:0}
+.acard-row .tx{grid-area:tx;min-width:0;padding-right:var(--Spacing-4)}
 .acard-row .arow-ts{
-  grid-area:ts;
+  grid-area:ts;align-self:end;
   display:flex;align-items:baseline;gap:var(--Spacing-2);
   text-align:left;min-width:0;
 }
 .acard-row .arow-div{display:none}
 .acard-row .arow-ts .arow-time{display:inline;font-variant-numeric:tabular-nums}
 .acard-row .arow-ts .arow-date{display:inline}
-/* Headline runs end-to-end within the text column and wraps naturally
-   — the ellipsis+nowrap pair is gone, so the full event title is
-   always visible. */
-.acard-row .t{display:block;overflow-wrap:anywhere;word-break:break-word}
+.acard-row .t{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;overflow-wrap:anywhere}
 .acard-row .s{display:block;margin-top:var(--Spacing-0-5)}
-/* Inline video thumbnail for timeline rows */
+.acard-row .arow-tags{display:flex;align-items:center;gap:var(--Spacing-1-5);margin-bottom:var(--Spacing-1);color:var(--Neutral-High)}
+.acard-row .arow-tag{display:grid;place-items:center;width:20px;height:20px}
+.acard-row .arow-tag svg{width:20px;height:20px;display:block}
+.acard-row .arow-dot{position:absolute;top:var(--Spacing-3);right:var(--Spacing-3);width:8px;height:8px;border-radius:50%;background:var(--Negative-Bold)}
 .acard-row .arow-thumb{
-  position:relative;display:block;width:72px;height:50px;flex:0 0 auto;
-  border-radius:var(--Shape-2);overflow:hidden;background:var(--Media-Placeholder);
+  position:relative;display:block;width:128px;height:84px;flex:0 0 auto;
+  border-radius:var(--Shape-3);overflow:hidden;background:var(--Surface-Fill-Subtle);
 }
-/* video sized identically to img — a <video> defaults to 300x150 and would
-   otherwise ignore the thumb's frame entirely. */
 .acard-row .arow-thumb img,
 .acard-row .arow-thumb video{width:100%;height:100%;object-fit:cover;display:block}
 .acard-row .arow-thumb.is-offline img,
 .acard-row .arow-thumb.is-offline video{opacity:.3}
-/* play icon centred over the thumbnail */
-.acard-row .arow-thumb .arow-play{
-  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  background:var(--Overlay-On-Media-Track);
+.acard-row .arow-thumb .arow-play{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(transparent,rgba(0,0,0,.12))}
+.acard-row .arow-thumb .arow-play-btn{
+  display:grid;place-items:center;width:40px;height:40px;border-radius:50%;
+  background:var(--Primary-Bold);color:var(--Primary-Bold-High,#fff);
+  box-shadow:0 4px 12px rgba(0,0,0,.25),0 0 0 3px rgba(255,255,255,.35);
 }
-.acard-row .arow-thumb .arow-play svg{filter:drop-shadow(0 1px 2px var(--Overlay-On-Media-Medium))}
+.acard-row .arow-thumb .arow-play-btn svg{width:18px;height:18px}
+.acard-row .arow-thumb .arow-nomedia{position:absolute;inset:0;display:none;place-items:center;color:var(--Neutral-Low)}
+.acard-row .arow-thumb .arow-nomedia svg{width:26px;height:26px}
+.acard-row .arow-thumb.no-media .arow-nomedia,.acard-row .arow-thumb.is-offline .arow-nomedia{display:grid}
+.acard-row .arow-thumb.no-media .arow-play{display:none}
 
 /* ── Media-led variant ────────────────────────────────────────────────────
    Same row, but the still leads: full-bleed 16:9 across the top, with the
@@ -2407,7 +2412,7 @@ button.oneui-Avatar{position:relative}
   display:flex;align-items:center;gap:6px;
 }
 .alert-video-card .avc-dot{opacity:.4}
-.simple-group{margin-top:var(--Spacing-3);border-radius:var(--Shape-3);box-shadow:var(--Elevation-2);overflow:hidden}
+.simple-group{margin-top:var(--Spacing-3);display:flex;flex-direction:column;gap:var(--Spacing-2)}
 /* High-priority events render outside .simple-group — give them card treatment */
 .alert-list > .acard-row{margin-top:var(--Spacing-3);box-shadow:var(--Elevation-2)}
 
@@ -5902,7 +5907,7 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
     <!-- Tab bar: Insights | All Events -->
     <div class="oneui-Tabs" role="tablist" aria-label="Activity views">
       <button type="button" id="evt-tab-insights" class="oneui-Tabs-tab tab-btn" role="tab" aria-controls="evt-panel-insights" aria-selected="false" tabindex="-1">Daily digest</button>
-      <button type="button" id="evt-tab-allevents" class="oneui-Tabs-tab tab-btn" role="tab" aria-controls="evt-panel-allevents" aria-selected="true" tabindex="0">All events</button>
+      <button type="button" id="evt-tab-allevents" class="oneui-Tabs-tab tab-btn" role="tab" aria-controls="evt-panel-allevents" aria-selected="true" tabindex="0">All events <span class="oneui-CounterBadge" data-appearance="negative" data-attention="high" data-size="m" data-unread-count hidden></span></button>
     </div>
 
     <!-- Insights panel -->
@@ -11299,6 +11304,37 @@ window.addEventListener('error', function(e){
     return h12 + ':' + (mm < 10 ? '0' : '') + mm + ' ' + ap;
   }
 
+  /* Detection tags shown as icons on each activity card. The record's type is the
+     primary one; the title adds what it mentions (a pet, a sound, a person). */
+  function evIcon(d){ return '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">' + d + '</svg>'; }
+  var EV_TAG = {
+    person:  { label:'Person',  svg:evIcon('<circle cx="12" cy="8" r="3.6" stroke="currentColor" stroke-width="1.8"/><path d="M4.8 20c.6-3.8 3.6-6.2 7.2-6.2s6.6 2.4 7.2 6.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>') },
+    motion:  { label:'Motion',  svg:evIcon('<path d="M3 12h3.5l2-5.5 4 11 2.2-5.5H21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>') },
+    pet:     { label:'Animal',  svg:evIcon('<circle cx="6.5" cy="10.5" r="1.7" fill="currentColor"/><circle cx="9.6" cy="6.6" r="1.7" fill="currentColor"/><circle cx="14.4" cy="6.6" r="1.7" fill="currentColor"/><circle cx="17.5" cy="10.5" r="1.7" fill="currentColor"/><path d="M12 11.6c-2.6 0-5.2 2.8-5.2 5.2 0 1.6 1.3 2.6 2.9 2.1.8-.3 1.5-.5 2.3-.5s1.5.2 2.3.5c1.6.5 2.9-.5 2.9-2.1 0-2.4-2.6-5.2-5.2-5.2Z" fill="currentColor"/>') },
+    sound:   { label:'Sound',   svg:evIcon('<path d="M4 10v4h3.5L12 18V6L7.5 10H4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.8 7.8 0 0 1 0 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>') },
+    package: { label:'Package', svg:evIcon('<path d="M3.5 7.5 12 3.5l8.5 4v9L12 20.5l-8.5-4v-9Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M3.5 7.5 12 11.5l8.5-4M12 11.5v9" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>') },
+    vehicle: { label:'Vehicle', svg:evIcon('<path d="M5 15.5V12l1.8-4.2A2 2 0 0 1 8.6 6.5h6.8a2 2 0 0 1 1.8 1.3L19 12v3.5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1ZM5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="8" cy="16.5" r="1.6" fill="currentColor"/><circle cx="16" cy="16.5" r="1.6" fill="currentColor"/>') },
+    system:  { label:'Camera status', svg:evIcon('<circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.8"/><path d="M12 7.5v5.5M12 16.2v.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>') }
+  };
+  function eventTags(a){
+    var tags = [EV_TAG[a.type] ? a.type : 'motion'], t = (a.t || '').toLowerCase();
+    function add(k){ if(tags.indexOf(k) === -1) tags.push(k); }
+    if(/\b(cat|dog|pet|animal)\b/.test(t)) add('pet');
+    if(/\b(cry|crying|bark|barking|sound|noise|doorbell)\b/.test(t)) add('sound');
+    if(a.type !== 'person' && /\b(arrived|left|visitor|someone|helper|checked in|awake|up early)\b/.test(t)) add('person');
+    return tags.slice(0, 3);
+  }
+  /* Unread count on the "All events" tab: important events in the list not yet opened —
+     the same set that carries an unread dot. */
+  function updateUnreadCount(){
+    var badge = document.querySelector('[data-unread-count]');
+    if(!badge) return;
+    var n = currentAlerts().filter(function(a){ return a.priority !== 'low' && !a.read; }).length;
+    badge.textContent = n;
+    badge.hidden = n === 0;
+    badge.setAttribute('aria-label', n + ' unread');
+  }
+
   function buildSimpleRow(a){
     /* Previously high-priority events routed through buildVideoAlertCard
        for a full 16:9 video tile. Removed — every event now uses the
@@ -11327,9 +11363,28 @@ window.addEventListener('error', function(e){
     b.appendChild(el('span', 'arow-div'));
 
     var tx = el('span', 'tx');
+    /* What was detected, as a row of icons above the title (an event can carry more than
+       one: "likely the cat" is motion + animal). */
+    var tags = eventTags(a);
+    var tagRow = el('span', 'arow-tags');
+    tagRow.setAttribute('aria-label', 'Detected: ' + tags.map(function(k){ return EV_TAG[k].label; }).join(', '));
+    tags.forEach(function(k){
+      var ic = el('span', 'arow-tag');
+      ic.innerHTML = EV_TAG[k].svg;
+      ic.title = EV_TAG[k].label;
+      tagRow.appendChild(ic);
+    });
+    tx.appendChild(tagRow);
     tx.appendChild(oneuiText(el('span', 't', a.t), 'body', 'S', null, 'high'));
     tx.appendChild(oneuiText(el('span', 's', (a.place ? a.place + ' · ' : '') + a.cam), 'label', 'XS', 'low'));
     b.appendChild(tx);
+    /* Unread dot on events worth a look; opening the event clears it. */
+    if(a.priority !== 'low' && !a.read){
+      var dot = el('span', 'arow-dot');
+      dot.setAttribute('aria-label', 'Unread');
+      b.appendChild(dot);
+      b.addEventListener('click', function(){ a.read = true; dot.remove(); updateUnreadCount(); });
+    }
 
     /* Every event carries a small thumbnail — the previous "big
        media-led" variant is dropped in favour of one consistent
@@ -11366,13 +11421,21 @@ window.addEventListener('error', function(e){
       } else {
         var img = document.createElement('img');
         img.src = a.img; img.alt = '';
+        /* No footage for this camera (offline / not in the bundle): show a camera-off
+           placeholder instead of a dark empty tile, and no play button. */
+        img.addEventListener('error', function(){ th.classList.add('no-media'); img.remove(); });
         th.appendChild(img);
-        /* Play glyph — only on stills; a looping clip already
-           signals liveness. */
+      }
+      /* Round play control centred on the thumbnail; a clip that is already looping shows
+         pause instead. Offline cameras have nothing to play. */
+      if(!a.offline){
         var playDiv = el('span', 'arow-play');
-        playDiv.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="white" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>';
+        playDiv.innerHTML = '<span class="arow-play-btn">' + (a.video
+          ? '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="7" y="5" width="3.6" height="14" rx="1.2"/><rect x="13.4" y="5" width="3.6" height="14" rx="1.2"/></svg>'
+          : '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.6v12.8a1 1 0 0 0 1.5.86l10.4-6.4a1 1 0 0 0 0-1.72L9.5 4.74A1 1 0 0 0 8 5.6Z"/></svg>') + '</span>';
         th.appendChild(playDiv);
       }
+      th.insertAdjacentHTML('beforeend', '<span class="arow-nomedia" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3 3l18 18M10.5 6H14a2 2 0 0 1 2 2v1.5l4-2.5v10M16 16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 1.2-1.83" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>');
 
       b.appendChild(th);
     }
@@ -11634,6 +11697,7 @@ window.addEventListener('error', function(e){
     });
 
     if(alertClear) alertClear.hidden = alertFilters.type.length + alertFilters.priority.length === 0;
+    updateUnreadCount();
     if(typeof updateAllChip === 'function') updateAllChip();
     /* rebuild scrubber after list is populated */
     if(typeof window.__buildScrubber === 'function') window.__buildScrubber();
