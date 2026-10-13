@@ -3023,9 +3023,27 @@ button.oneui-Avatar{position:relative}
 .ob-acc-inner{min-height:0;overflow:hidden}
 .ob-acc-pad{padding:0 var(--Spacing-3) var(--Spacing-4)}
 .ob-acc:not(.is-open) .ob-acc-pad{visibility:hidden;transition:visibility 0s var(--Motion-Duration-L)}
-/* Room field — a select-style box showing the suggested room; tapping it opens the room
-   sheet. */
-.ob-room-field{display:flex;flex-direction:column;gap:var(--Spacing-2);margin-top:var(--Spacing-4)}
+/* Open card, in scan order: live view (scan line + "Scanning room…" tag) → objects detected
+   (chips pop in one by one) → the room JioSense concludes, as an inline dropdown. */
+.ob-feed .ob-scan-tag{position:absolute;left:var(--Spacing-2);bottom:var(--Spacing-2)}
+.ob-feed .ob-scan-tag[hidden]{display:none}
+/* Results take no space until their stage lands, so the card grows as the scan reports in
+   rather than holding an empty block; they fade up on arrival. */
+.ob-obj-block:not(.is-in),.ob-room-guess:not(.is-in){display:none}
+.ob-obj-block.is-in,.ob-room-guess.is-in{animation:ob-hh-tile-in .32s var(--Motion-Easing-Standard) both}
+.ob-obj-block{display:flex;flex-direction:column;gap:var(--Spacing-3);margin-top:var(--Spacing-4)}
+.ob-scan-reveal.is-in .ob-obj-chip{animation:ob-hh-tile-in .32s var(--Motion-Easing-Standard) both}
+.ob-scan-reveal.is-in .ob-obj-chip:nth-child(2){animation-delay:.09s}
+.ob-scan-reveal.is-in .ob-obj-chip:nth-child(3){animation-delay:.18s}
+.ob-scan-reveal.is-in .ob-obj-chip:nth-child(4){animation-delay:.27s}
+.ob-scan-reveal.is-in .ob-obj-chip:nth-child(5){animation-delay:.36s}
+.ob-scan-reveal.is-in .ob-obj-chip:nth-child(n+6){animation-delay:.45s}
+.ob-room-guess{
+  display:flex;align-items:center;flex-wrap:wrap;gap:var(--Spacing-2);margin-top:var(--Spacing-5);
+  padding-top:var(--Spacing-4);border-top:1px solid var(--Neutral-Stroke-Low);
+}
+.ob-room-guess .ob-room-select{width:auto;min-height:32px;padding:0 var(--Spacing-2) 0 var(--Spacing-3);border-color:var(--Primary-Subtle);background:var(--Primary-Minimal)}
+.ob-room-guess .ob-room-select svg{color:var(--Primary-TintedA11y)}
 .ob-room-select{
   display:flex;align-items:center;gap:var(--Spacing-2);width:100%;min-height:40px;
   padding:0 var(--Spacing-2-5,10px) 0 var(--Spacing-3);
@@ -7955,20 +7973,22 @@ window.addEventListener('error', function(e){
             '<img src="' + c.feed + '" alt="Live view from ' + c.name + '" onerror="this.style.display=\'none\'">' +
             '<span class="oneui-Badge ob-live-pill" data-appearance="neutral" data-attention="high" data-size="s"><span class="oneui-IndicatorBadge" data-appearance="negative" data-size="xs" aria-hidden="true"></span>Live</span>' +
             '<span class="ob-scan" data-ob-scan-line hidden></span>' +
+            '<span class="oneui-Badge ob-scan-tag" data-appearance="neutral" data-attention="high" data-size="s" data-ob-scan-tag hidden>Scanning room…</span>' +
           '</div>' +
-          '<div class="ob-scan-reveal" data-ob-scan-reveal>' +
-            '<div class="ob-room-field">' +
-              '<button type="button" class="ob-room-select touch-floor" data-ob-room-select aria-haspopup="dialog" aria-label="Room for ' + c.name + ': ' + room + '. Change room">' +
-                '<span class="oneui-Text v" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral" data-ob-room-val>' + room + '</span>' + CHEV_DOWN +
-              '</button>' +
+          // 1) what the scan found …
+          '<div class="ob-scan-reveal ob-obj-block" data-ob-scan-reveal>' +
+            '<div class="ob-obj-hd">' +
+              '<div class="oneui-Text" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral">Objects detected</div>' +
+              '<p class="oneui-Text" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Missed something? Add it so JioSense keeps an eye on it.</p>' +
             '</div>' +
-            '<div class="ob-hh-section ob-section is-review">' +
-              '<div class="ob-obj-hd">' +
-                '<div class="oneui-Text hh-head" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral">Objects detected</div>' +
-                '<p class="oneui-Text" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Missed something? Add it so JioSense keeps an eye on it.</p>' +
-              '</div>' +
-              '<div class="ob-obj-list" data-ob-obj-grid></div>' +
-            '</div>' +
+            '<div class="ob-obj-list" data-ob-obj-grid></div>' +
+          '</div>' +
+          // 2) … then the room it concludes from them, changeable inline
+          '<div class="ob-scan-reveal ob-room-guess" data-ob-room-reveal>' +
+            '<span class="oneui-Text" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral" data-ob-room-lead>' + (room === c.room ? 'We think this is your' : 'This camera is in your') + '</span>' +
+            '<button type="button" class="ob-room-select touch-floor" data-ob-room-select aria-haspopup="dialog" aria-label="Room for ' + c.name + ': ' + room + '. Change room">' +
+              '<span class="oneui-Text v" data-variant="body" data-size="S" data-weight="high" data-appearance="primary" data-ob-room-val>' + room + '</span>' + CHEV_DOWN +
+            '</button>' +
           '</div>' +
         '</div></div></div>';
       renderObjGrid(el, id);
@@ -7990,14 +8010,22 @@ window.addEventListener('error', function(e){
     function scanCamCard(card, opts){
       if(!card) return;
       var id = card.getAttribute('data-ob-acc');
-      var line = card.querySelector('[data-ob-scan-line]'), reveal = card.querySelector('[data-ob-scan-reveal]');
-      if(camScanTimers[id]) clearTimeout(camScanTimers[id]);
-      if(reveal) reveal.classList.remove('is-in');
+      // scan the live view → objects land one by one → then the room guess
+      var line = card.querySelector('[data-ob-scan-line]'), tag = card.querySelector('[data-ob-scan-tag]');
+      var objs = card.querySelector('[data-ob-scan-reveal]'), roomGuess = card.querySelector('[data-ob-room-reveal]');
+      (camScanTimers[id] || []).forEach(clearTimeout);
+      [objs, roomGuess].forEach(function(n){ if(n) n.classList.remove('is-in'); });
       if(line) line.hidden = false;
-      camScanTimers[id] = setTimeout(function(){
-        if(line) line.hidden = true;
-        if(reveal) reveal.classList.add('is-in');
-      }, 1500);
+      if(tag) tag.hidden = false;
+      var chips = objs ? objs.querySelectorAll('.ob-obj-chip').length : 0;
+      camScanTimers[id] = [
+        setTimeout(function(){
+          if(line) line.hidden = true;
+          if(tag) tag.hidden = true;
+          if(objs) objs.classList.add('is-in');
+        }, 1500),
+        setTimeout(function(){ if(roomGuess) roomGuess.classList.add('is-in'); }, 1500 + 200 + chips * 90)
+      ];
     }
     function setCamAccOpen(id, opts){
       if(!camAcc) return;
@@ -8567,6 +8595,7 @@ window.addEventListener('error', function(e){
           if(card){
             var c = CAM_INFO[roomSheetCam];
             card.querySelector('[data-ob-room-val]').textContent = name;
+            card.querySelector('[data-ob-room-lead]').textContent = (name === c.room) ? 'We think this is your' : 'This camera is in your';
             card.querySelector('[data-ob-room-select]').setAttribute('aria-label', 'Room for ' + c.name + ': ' + name + '. Change room');
           }
         }
