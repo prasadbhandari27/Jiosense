@@ -2517,6 +2517,19 @@ button.oneui-Avatar{position:relative}
 .alert-list .arow-card{gap:var(--Spacing-3);align-items:stretch}
 .alert-list .arow-card .arow-thumb{flex:none;width:112px;height:auto;min-height:76px;align-self:stretch;border-radius:var(--Shape-3)}
 .alert-list .arow-card .tx{flex:1;min-width:0;padding:var(--Spacing-0-5) 0;display:flex;flex-direction:column;justify-content:center}
+/* No footage / offline: the Home "camera off" treatment — dark overlay, icon in a soft
+   white circle, short label. Offline stills (if any) show faint and grey underneath. */
+.alert-list .arow-thumb.no-media,.alert-list .arow-thumb.is-offline,
+.alert-list .arow-hero-media.no-media{background:linear-gradient(160deg,#2b2d38 0%,#15161c 100%)}
+.alert-list .arow-thumb.is-offline img,.alert-list .arow-thumb.is-offline video{opacity:.18;filter:grayscale(1)}
+.alert-list .arow-thumb .arow-nomedia,.alert-list .arow-hero-media .arow-nomedia{flex-direction:column;justify-content:center;align-items:center;gap:var(--Spacing-1);color:rgba(255,255,255,.75)}
+.alert-list .arow-thumb.no-media .arow-nomedia,.alert-list .arow-thumb.is-offline .arow-nomedia,
+.alert-list .arow-hero-media.no-media .arow-nomedia{display:flex}
+.alert-list .arow-nomedia-ico{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.12)}
+.alert-list .arow-nomedia-ico svg{width:18px;height:18px}
+.alert-list .arow-nomedia-lbl{font-size:10px;line-height:12px;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.02em}
+.alert-list .arow-mini .arow-nomedia-lbl{display:none}
+.alert-list .arow-mini .arow-nomedia-ico{width:20px;height:20px;background:none}
 .alert-list .acard-row.is-known .arow-card{padding:var(--Spacing-3) var(--Spacing-4)}
 /* event icon above the headline */
 .alert-list .acard-row .arow-tags{display:flex;margin:0 0 var(--Spacing-1);gap:var(--Spacing-1-5);color:var(--Neutral-High)}
@@ -11684,7 +11697,7 @@ window.addEventListener('error', function(e){
       img.addEventListener('error', function(){ th.classList.add('no-media'); img.remove(); });
       th.appendChild(img);
     } else th.classList.add('no-media');
-    th.insertAdjacentHTML('beforeend', '<span class="arow-nomedia" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3 3l18 18M10.5 6H14a2 2 0 0 1 2 2v1.5l4-2.5v10M16 16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 1.2-1.83" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>');
+    th.insertAdjacentHTML('beforeend', '<span class="arow-nomedia" aria-hidden="true"><span class="arow-nomedia-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M3 3l18 18M10.5 6H14a2 2 0 0 1 2 2v1.5l4-2.5v10M16 16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 1.2-1.83" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="arow-nomedia-lbl">' + (m.offline ? 'Offline' : 'No footage') + '</span></span>');
     return th;
   }
 
