@@ -2491,6 +2491,43 @@ button.oneui-Avatar{position:relative}
 .simple-group{margin-top:var(--Spacing-3);display:flex;flex-direction:column;gap:var(--Spacing-2)}
 /* High-priority events render outside .simple-group — give them card treatment */
 .alert-list > .acard-row{margin-top:var(--Spacing-3);box-shadow:var(--Elevation-2)}
+/* ── Activity as a timeline (reference: events feed) ───────────────────
+   Events sit on the page, not in cards, along a rail on the left with a node per event
+   (red when unread). Time first, then: compact rows = small thumb · icon + title · camera
+   · 👍👎; important incidents = time range · title · full-width media · footer. */
+.alert-list .simple-group{gap:0;margin-top:var(--Spacing-1)}
+.alert-list .acard-row,
+.alert-list > .acard-row{
+  position:relative;background:transparent;box-shadow:none;border-radius:0;margin-top:0;
+  padding:0 0 var(--Spacing-5) var(--Spacing-6);
+  grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"ts ts ts" "thumb tx fb";
+  row-gap:var(--Spacing-2);column-gap:var(--Spacing-3);align-items:center;
+}
+.alert-list .acard-row:not(.has-thumb){grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"ts ts" "tx fb"}
+@media (hover:hover){.alert-list .acard-row:hover{background:transparent}}
+.alert-list .acard-row:active{transform:none}
+.alert-list .acard-row:focus-visible{outline:2px solid var(--Primary-Bold);outline-offset:2px;border-radius:var(--Shape-2)}
+/* rail + node */
+.alert-list .acard-row::before{content:"";position:absolute;left:7px;top:0;bottom:0;width:2px;background:var(--Neutral-Stroke-Low)}
+.alert-list .acard-row::after{content:"";position:absolute;left:3px;top:4px;width:10px;height:10px;border-radius:50%;background:var(--App-Surface);box-shadow:inset 0 0 0 2px var(--Neutral-Stroke-Medium,var(--Neutral-Low))}
+.alert-list .acard-row .arow-dot{top:4px;left:3px;right:auto;width:10px;height:10px;z-index:1;box-shadow:0 0 0 2px var(--App-Surface)}
+/* time first */
+.alert-list .acard-row .arow-ts{grid-area:ts;align-self:start}
+/* compact content */
+.alert-list .acard-row .arow-thumb{grid-area:thumb;align-self:center;width:96px;height:64px;min-height:0;border-radius:var(--Shape-2-5,10px)}
+.alert-list .acard-row .tx{padding-right:0}
+.alert-list .acard-row .arow-tags{display:inline-flex;vertical-align:-4px;margin:0 var(--Spacing-1-5) 0 0;gap:var(--Spacing-1);color:var(--Primary-TintedA11y)}
+.alert-list .acard-row .arow-tag,.alert-list .acard-row .arow-tag svg{width:18px;height:18px}
+.alert-list .acard-row .t{display:inline}
+.alert-list .acard-row .arow-who{display:inline-flex}
+.alert-list .acard-row .s{display:block}
+.alert-list .acard-row .arow-fb{grid-area:fb;display:flex;align-items:center;gap:0;color:var(--Neutral-Low)}
+.alert-list .acard-row .arow-fb svg,.alert-list .acard-row.is-hero .hero-fb svg{width:18px;height:18px}
+.alert-list .acard-row [data-fb][aria-pressed="true"]{color:var(--Primary-TintedA11y);background:var(--Primary-Minimal)}
+.alert-list .acard-row.is-known{padding:0 0 var(--Spacing-5) var(--Spacing-6)}
+/* important incident on the same rail */
+.alert-list .acard-row.is-hero{display:flex;align-items:stretch;text-align:left;padding:0 0 var(--Spacing-5) var(--Spacing-6);gap:var(--Spacing-2)}
+.alert-list .acard-row.is-hero .hero-hd{padding-right:0}
 
 .acard{
   position:relative;width:100%;text-align:left;display:flex;gap:var(--Spacing-3);
@@ -11658,6 +11695,22 @@ window.addEventListener('error', function(e){
      high-priority event. A div with role=button, since it holds the feedback buttons. */
   var THUMB_UP = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 10v10H4.5a1.5 1.5 0 0 1-1.5-1.5v-7A1.5 1.5 0 0 1 4.5 10H7Zm0 0 4.2-6.4a1.6 1.6 0 0 1 2.9 1.1L13.4 9h5.1a2 2 0 0 1 2 2.4l-1.3 6.8a2.2 2.2 0 0 1-2.2 1.8H7" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>';
   var THUMB_DOWN = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" style="transform:scaleY(-1)"><path d="M7 10v10H4.5a1.5 1.5 0 0 1-1.5-1.5v-7A1.5 1.5 0 0 1 4.5 10H7Zm0 0 4.2-6.4a1.6 1.6 0 0 1 2.9 1.1L13.4 9h5.1a2 2 0 0 1 2 2.4l-1.3 6.8a2.2 2.2 0 0 1-2.2 1.8H7" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>';
+  /* 👍 / 👎 on every timeline item — toggles, never opens the event. */
+  function feedbackButtons(g, cls){
+    var fb = el('span', cls);
+    fb.innerHTML =
+      '<button type="button" class="oneui-IconButton" data-size="8" data-appearance="neutral" data-attention="low" aria-pressed="' + (g.feedback === 'up') + '" aria-label="Useful" data-fb="up">' + THUMB_UP + '</button>' +
+      '<button type="button" class="oneui-IconButton" data-size="8" data-appearance="neutral" data-attention="low" aria-pressed="' + (g.feedback === 'down') + '" aria-label="Not useful" data-fb="down">' + THUMB_DOWN + '</button>';
+    fb.querySelectorAll('[data-fb]').forEach(function(btn){
+      btn.addEventListener('click', function(e){
+        e.stopPropagation();
+        var v = btn.getAttribute('data-fb');
+        g.feedback = g.feedback === v ? null : v;
+        fb.querySelectorAll('[data-fb]').forEach(function(x){ x.setAttribute('aria-pressed', String(g.feedback === x.getAttribute('data-fb'))); });
+      });
+    });
+    return fb;
+  }
   function buildHeroCard(g){
     var items = g.items, first = items[0], last = items[items.length - 1], multi = items.length > 1;
     var main = items.slice().sort(function(x, y){
@@ -11716,8 +11769,10 @@ window.addEventListener('error', function(e){
     var heroWho = combined ? grp.who : a.who;
     if(!(heroWho && KNOWN_PEOPLE[heroWho]) && (combined || a.priority === 'high'))
       return buildHeroCard(combined ? grp : { cam:a.cam, day:a.day, place:a.place, who:a.who, items:[a] });
-    var b = el('button', 'acard-row');
-    b.type = 'button';
+    // a div with role=button (not <button>) so it can hold the feedback buttons
+    var b = el('div', 'acard-row');
+    b.setAttribute('role', 'button'); b.tabIndex = 0;
+    b.addEventListener('keydown', function(e){ if(e.target === b && (e.key === 'Enter' || e.key === ' ')){ e.preventDefault(); b.click(); } });
     b.setAttribute('data-alert-open', '1');
     b.setAttribute('data-cam', a.cam);
     b.setAttribute('data-mins', a.mins);
@@ -11787,6 +11842,7 @@ window.addEventListener('error', function(e){
       tx.appendChild(minis);
     }
     b.appendChild(tx);
+    b.appendChild(feedbackButtons(b._group, 'arow-fb'));
     /* Unread dot on events worth a look; opening the event clears it. */
     if(items.some(function(it){ return it.priority !== 'low' && !it.read; })){
       var dot = el('span', 'arow-dot');
