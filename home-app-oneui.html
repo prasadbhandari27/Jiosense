@@ -1898,7 +1898,6 @@ button.oneui-Avatar{position:relative}
 .cctv-nudge .nudge-top{display:flex;gap:var(--Spacing-3);align-items:center;padding-right:var(--Spacing-6)}
 .cctv-nudge .nudge-thumb{position:relative;flex:0 0 auto;width:56px;height:56px;border-radius:var(--Shape-3);overflow:hidden;background:var(--Media-Surface)}
 .cctv-nudge .nudge-thumb img{width:100%;height:100%;object-fit:cover;display:block}
-.cctv-nudge .nudge-live{position:absolute;top:6px;left:6px;width:8px;height:8px;border-radius:50%;background:var(--Negative-Bold,#df012c);box-shadow:0 0 0 2px #fff}
 .cctv-nudge .nudge-tx{display:flex;flex-direction:column;align-items:flex-start;gap:var(--Spacing-1);min-width:0}
 .cctv-nudge .nudge-title{display:block}
 .cctv-nudge .nudge-meta{display:block}
@@ -12125,7 +12124,7 @@ window.addEventListener('error', function(e){
         '<button class="oneui-IconButton cctv-notif-close" data-size="8" data-appearance="neutral" data-attention="low" aria-label="Dismiss" data-nudge-close>' +
           '<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>' +
         '<div class="nudge-top">' +
-          '<span class="nudge-thumb"><img src="' + main.img + '" alt=""><span class="nudge-live" aria-hidden="true"></span></span>' +
+          '<span class="nudge-thumb"><img src="' + main.img + '" alt=""></span>' +
           '<span class="nudge-tx">' +
             '<span class="oneui-Badge" data-appearance="negative" data-attention="medium" data-size="s">High importance</span>' +
             '<span class="oneui-Text nudge-title" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">' + g.who + ' at ' + main.cam + '</span>' +
