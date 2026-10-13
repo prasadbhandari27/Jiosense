@@ -11975,9 +11975,9 @@ window.addEventListener('error', function(e){
       var main = items.slice().sort(function(x, y){ return PRIORITY_RANK[x.priority] - PRIORITY_RANK[y.priority] || y.mins - x.mins; })[0];
       q('[data-inc-title]').textContent = g.who + ' at ' + main.cam;
       q('[data-inc-summary]').textContent = story(items, g.who);
-      // an unknown person at the home is always flagged high importance
+      // same rule as the Activity card
       var imp = q('[data-inc-imp]');
-      imp.hidden = false;
+      imp.hidden = !isHighImportance(g);
       imp.setAttribute('data-appearance', 'negative');
       imp.textContent = 'High importance';
       autoIco.innerHTML = ICO_AUTO;
@@ -12013,6 +12013,12 @@ window.addEventListener('error', function(e){
       return true;
     };
   })();
+
+  /* One rule for the card and its story screen: an unknown person, or a high-priority event */
+  function isHighImportance(g){
+    var items = g.items || [g];
+    return !!(g.who && !KNOWN_PEOPLE[g.who]) || items.some(function(it){ return it.priority === 'high'; });
+  }
 
   /* Camera line on an activity card: video-camera icon, then the camera name(s) */
   var CAM_ICO = '<svg class="cam-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2.5" y="6" width="13" height="12" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M15.5 10.2l5-3v9.6l-5-3" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>';
@@ -12054,6 +12060,7 @@ window.addEventListener('error', function(e){
 
     var ft = el('span', 'hero-ft');
     ft.innerHTML =
+      (isHighImportance(g) ? '<span class="oneui-Badge" data-appearance="negative" data-attention="medium" data-size="s">High importance</span>' : '') +
       (multi ? '<span class="oneui-Text hero-count" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="7" width="14" height="13" rx="2.5" stroke="currentColor" stroke-width="2"/><path d="M7 4h11.5A2.5 2.5 0 0 1 21 6.5V16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>' + items.length + ' clips</span>' : '');
     if(ft.innerHTML) card.appendChild(ft);
     b.appendChild(card);
