@@ -5904,8 +5904,10 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
       <div><h1 class="oneui-Text" data-variant="title" data-size="M" data-appearance="neutral">Activity</h1><p class="oneui-Text stamp" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low" data-alerts-sub>All locations</p></div>
     </header>
 
-    <!-- Tab bar: Insights | All Events -->
-    <div class="oneui-Tabs" role="tablist" aria-label="Activity views">
+    <!-- Tab bar: Daily digest | All events. Daily digest is hidden for now (tab bar and its
+         panel kept in place, display:none) so the screen opens straight on All events;
+         remove the two display:none to bring it back. -->
+    <div class="oneui-Tabs" role="tablist" aria-label="Activity views" style="display:none">
       <button type="button" id="evt-tab-insights" class="oneui-Tabs-tab tab-btn" role="tab" aria-controls="evt-panel-insights" aria-selected="false" tabindex="-1">Daily digest</button>
       <button type="button" id="evt-tab-allevents" class="oneui-Tabs-tab tab-btn" role="tab" aria-controls="evt-panel-allevents" aria-selected="true" tabindex="0">All events <span class="oneui-CounterBadge" data-appearance="negative" data-attention="high" data-size="m" data-unread-count hidden></span></button>
     </div>
@@ -6042,8 +6044,8 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
     <main id="evt-panel-allevents" role="tabpanel" aria-labelledby="evt-tab-allevents" class="scroll" data-events-scroll style="padding-right:28px;padding-bottom:120px">
       <div class="filterrow" data-alert-filters role="group" aria-label="Filter events" style="display:none"></div>
 
-      <div class="alert-bar" style="display:flex;align-items:center;justify-content:space-between">
-        <p class="oneui-Text alert-count" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low" data-alert-count style="margin:0"></p>
+      <div class="alert-bar" style="display:flex;align-items:center;justify-content:space-between;margin-top:0">
+        <p class="oneui-Text alert-count" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low" style="margin:0;display:flex;align-items:center;gap:var(--Spacing-1-5)"><span data-alert-count></span><span class="oneui-CounterBadge" data-appearance="negative" data-attention="high" data-size="m" data-unread-inline hidden></span></p>
         <div style="display:flex;align-items:center;gap:4px">
           <button type="button" class="oneui-IconButton" data-size="8" data-appearance="neutral" data-attention="low" data-filter-btn aria-label="Filter events">
             <span class="oneui-Icon" data-size="sm" data-appearance="neutral" data-emphasis="low" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></span>
@@ -11333,6 +11335,9 @@ window.addEventListener('error', function(e){
     badge.textContent = n;
     badge.hidden = n === 0;
     badge.setAttribute('aria-label', n + ' unread');
+    // shown next to the event count while the tab bar is hidden
+    var inline = document.querySelector('[data-unread-inline]');
+    if(inline){ inline.textContent = n + ' unread'; inline.hidden = n === 0; }
   }
 
   function buildSimpleRow(a){
