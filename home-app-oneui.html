@@ -6058,16 +6058,10 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
     <main id="evt-panel-allevents" role="tabpanel" aria-labelledby="evt-tab-allevents" class="scroll" data-events-scroll style="padding-right:28px;padding-bottom:120px">
       <div class="filterrow" data-alert-filters role="group" aria-label="Filter events" style="display:none"></div>
 
-      <div class="alert-bar" style="display:flex;align-items:center;justify-content:space-between;margin-top:0">
-        <p class="oneui-Text alert-count" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low" style="margin:0;display:flex;align-items:center;gap:var(--Spacing-1-5)"><span data-alert-count></span><span class="oneui-CounterBadge" data-appearance="negative" data-attention="high" data-size="m" data-unread-inline hidden></span></p>
-        <div style="display:flex;align-items:center;gap:4px">
-          <button type="button" class="oneui-IconButton" data-size="8" data-appearance="neutral" data-attention="low" data-filter-btn aria-label="Filter events">
-            <span class="oneui-Icon" data-size="sm" data-appearance="neutral" data-emphasis="low" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></span>
-          </button>
-          <button type="button" class="oneui-IconButton" data-size="8" data-appearance="neutral" data-attention="low" data-cal-btn aria-label="Open calendar">
-            <span class="oneui-Icon" data-size="sm" data-appearance="neutral" data-emphasis="low" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
-          </button>
-        </div>
+      <!-- Count line only: the filter / calendar buttons and the unread badge are gone (the week
+           strip above picks the day; unread dots stay on the cards). -->
+      <div class="alert-bar" style="display:flex;align-items:center;margin-top:0">
+        <p class="oneui-Text alert-count" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low" style="margin:0"><span data-alert-count></span></p>
       </div>
 
       <div class="alert-list" data-alert-list></div>
