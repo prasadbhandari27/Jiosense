@@ -2301,6 +2301,21 @@ button.oneui-Avatar{position:relative}
 .acard-row .arow-mini.no-media .arow-nomedia{display:grid}
 .acard-row .arow-mini-more{display:grid;place-items:center;height:30px;padding:0 var(--Spacing-1-5);border-radius:var(--Shape-1-5,6px);background:var(--Surface-Fill-Subtle);font-size:11px;font-weight:700;color:var(--Neutral-Medium,var(--Neutral-High))}
 .acard-row.is-known{padding:var(--Spacing-3) var(--Spacing-4)}
+/* Important incident card */
+.acard-row.is-hero{display:flex;flex-direction:column;gap:var(--Spacing-2-5);padding:var(--Spacing-3);cursor:pointer}
+.acard-row.is-hero .hero-hd{display:flex;flex-direction:column;gap:2px;padding-right:var(--Spacing-5)}
+.acard-row.is-hero .arow-hero-media{position:relative;display:block;width:100%;aspect-ratio:16/9;border-radius:var(--Shape-3);overflow:hidden;background:var(--Surface-Fill-Subtle)}
+.acard-row.is-hero .arow-hero-media img,.acard-row.is-hero .arow-hero-media video{width:100%;height:100%;object-fit:cover;display:block}
+.acard-row.is-hero .arow-hero-media .arow-nomedia{position:absolute;inset:0;display:none;place-items:center;color:var(--Neutral-Low)}
+.acard-row.is-hero .arow-hero-media.no-media .arow-nomedia{display:grid}
+.acard-row.is-hero .hero-cam{position:absolute;top:var(--Spacing-2);left:var(--Spacing-2);z-index:1}
+.acard-row.is-hero .hero-ft{display:flex;align-items:center;gap:var(--Spacing-2);min-height:32px}
+.acard-row.is-hero .hero-count{display:inline-flex;align-items:center;gap:4px}
+.acard-row.is-hero .hero-count svg{width:13px;height:13px}
+.acard-row.is-hero .hero-fb{margin-left:auto;display:flex;gap:var(--Spacing-1)}
+.acard-row.is-hero .hero-fb svg{width:18px;height:18px}
+.acard-row.is-hero .hero-fb [aria-pressed="true"]{color:var(--Primary-TintedA11y);background:var(--Primary-Minimal)}
+.acard-row.is-hero:focus-visible{outline:2px solid var(--Primary-Bold);outline-offset:2px}
 .acard-row .arow-who{display:flex;align-items:center;gap:var(--Spacing-1-5)}
 .acard-row .arow-av{--_av-size:22px;width:22px;height:22px;flex:none;font-size:11px}
 .acard-row .arow-av img{width:100%;height:100%;object-fit:cover;border-radius:50%}
@@ -11453,8 +11468,70 @@ window.addEventListener('error', function(e){
     return th;
   }
 
+  /* Important incident card (reference: "larger thumbnails for events with higher
+     importance"): time range, story title, full-width media, then importance · clip count
+     · thumbs up/down. Used for combined incidents that aren't a known person, and for any
+     high-priority event. A div with role=button, since it holds the feedback buttons. */
+  var THUMB_UP = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 10v10H4.5a1.5 1.5 0 0 1-1.5-1.5v-7A1.5 1.5 0 0 1 4.5 10H7Zm0 0 4.2-6.4a1.6 1.6 0 0 1 2.9 1.1L13.4 9h5.1a2 2 0 0 1 2 2.4l-1.3 6.8a2.2 2.2 0 0 1-2.2 1.8H7" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>';
+  var THUMB_DOWN = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" style="transform:scaleY(-1)"><path d="M7 10v10H4.5a1.5 1.5 0 0 1-1.5-1.5v-7A1.5 1.5 0 0 1 4.5 10H7Zm0 0 4.2-6.4a1.6 1.6 0 0 1 2.9 1.1L13.4 9h5.1a2 2 0 0 1 2 2.4l-1.3 6.8a2.2 2.2 0 0 1-2.2 1.8H7" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>';
+  function buildHeroCard(g){
+    var items = g.items, first = items[0], last = items[items.length - 1], multi = items.length > 1;
+    var main = items.slice().sort(function(x, y){
+      return PRIORITY_RANK[x.priority] - PRIORITY_RANK[y.priority] || y.mins - x.mins;
+    })[0];
+    var top = PRIORITY_RANK[main.priority];
+    var title = multi ? (g.who || 'Activity') + ' at ' + main.cam : main.t;
+
+    var b = el('div', 'acard-row is-hero');
+    b.setAttribute('role', 'button'); b.tabIndex = 0;
+    b.setAttribute('data-alert-open', '1');
+    b.setAttribute('data-cam', main.cam);
+    b.setAttribute('data-mins', first.mins);
+    b._group = g;
+    b.setAttribute('aria-label', title + ', ' + fmtTimestamp(first.mins) + (multi ? ' to ' + fmtTimestamp(last.mins) + ', ' + items.length + ' clips' : ''));
+    b.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); b.click(); } });
+
+    b.innerHTML =
+      '<span class="hero-hd">' +
+        '<span class="oneui-Text" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low">' + fmtTimestamp(first.mins) + (multi ? ' – ' + fmtTimestamp(last.mins) : '') + '</span>' +
+        '<span class="oneui-Text hero-title" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral">' + title + '</span>' +
+      '</span>';
+    var media = clipThumb(main, 'arow-hero-media');
+    media.insertAdjacentHTML('afterbegin', '<span class="oneui-Badge hero-cam" data-appearance="neutral" data-attention="high" data-size="s">' + main.cam + '</span>');
+    b.appendChild(media);
+
+    var ft = el('span', 'hero-ft');
+    ft.innerHTML =
+      (top <= 1 ? '<span class="oneui-Badge" data-appearance="' + (top === 0 ? 'negative' : 'warning') + '" data-attention="medium" data-size="s">' + (top === 0 ? 'High importance' : 'Worth a look') + '</span>' : '') +
+      (multi ? '<span class="oneui-Text hero-count" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="7" width="14" height="13" rx="2.5" stroke="currentColor" stroke-width="2"/><path d="M7 4h11.5A2.5 2.5 0 0 1 21 6.5V16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>' + items.length + ' clips</span>' : '') +
+      '<span class="hero-fb">' +
+        '<button type="button" class="oneui-IconButton" data-size="8" data-appearance="neutral" data-attention="low" aria-pressed="' + (g.feedback === 'up') + '" aria-label="Useful alert" data-fb="up">' + THUMB_UP + '</button>' +
+        '<button type="button" class="oneui-IconButton" data-size="8" data-appearance="neutral" data-attention="low" aria-pressed="' + (g.feedback === 'down') + '" aria-label="Not useful" data-fb="down">' + THUMB_DOWN + '</button>' +
+      '</span>';
+    ft.querySelectorAll('[data-fb]').forEach(function(btn){
+      btn.addEventListener('click', function(e){
+        e.stopPropagation();   // feedback, not "open the event"
+        var v = btn.getAttribute('data-fb');
+        g.feedback = g.feedback === v ? null : v;
+        ft.querySelectorAll('[data-fb]').forEach(function(x){ x.setAttribute('aria-pressed', String(g.feedback === x.getAttribute('data-fb'))); });
+      });
+    });
+    b.appendChild(ft);
+
+    if(items.some(function(it){ return it.priority !== 'low' && !it.read; })){
+      var dot = el('span', 'arow-dot');
+      dot.setAttribute('aria-label', 'Unread');
+      b.appendChild(dot);
+      b.addEventListener('click', function(){ items.forEach(function(it){ it.read = true; }); dot.remove(); updateUnreadCount(); });
+    }
+    return b;
+  }
+
   function buildSimpleRow(a, grp){
     var combined = !!(grp && grp.items.length > 1);
+    var heroWho = combined ? grp.who : a.who;
+    if(!(heroWho && KNOWN_PEOPLE[heroWho]) && (combined || a.priority === 'high'))
+      return buildHeroCard(combined ? grp : { cam:a.cam, day:a.day, place:a.place, who:a.who, items:[a] });
     var b = el('button', 'acard-row');
     b.type = 'button';
     b.setAttribute('data-alert-open', '1');
