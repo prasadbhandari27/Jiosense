@@ -2564,13 +2564,24 @@ button.oneui-Avatar{position:relative}
 .inc-slide{flex:0 0 100%;height:100%;scroll-snap-align:start;display:block}
 .inc-slide img,.inc-slide video{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
 .inc-media .inc-stamp{position:absolute;top:var(--Spacing-3);left:var(--Spacing-3);pointer-events:none}
-.inc-media .inc-auto{position:absolute;top:var(--Spacing-2);right:var(--Spacing-2);gap:var(--Spacing-1);display:inline-flex;align-items:center}
-.inc-auto [data-inc-auto-ico]{display:inline-flex}
-.inc-media .inc-auto[data-attention="medium"]{background:rgba(255,255,255,.85);color:var(--Neutral-High)}
 .inc-slide{overflow:hidden}
 .inc-slide img{transform-origin:60% 45%;transition:transform .25s linear}
-.inc-media .inc-ctrl{z-index:2}
-.inc-media .inc-dots{bottom:56px}
+.inc-media .inc-ctrl{z-index:2;flex-direction:column;align-items:stretch;gap:0;padding:28px var(--Spacing-2) var(--Spacing-1-5)}
+.inc-media .inc-ctrl .pp-scrub{flex:0 0 auto;width:auto;margin:0 var(--Spacing-1-5)}
+.inc-ctrl-row{display:flex;align-items:center;gap:var(--Spacing-1)}
+.inc-ctrl-sp{flex:1}
+.inc-ctrl-row .pp-time{margin-left:var(--Spacing-1)}
+.oneui-IconButton.inc-ic{background:transparent;color:var(--Media-On-Surface-High,#fff)}
+.oneui-IconButton.inc-ic:active{background:var(--Overlay-On-Media-Lowest,rgba(255,255,255,.18))}
+.inc-media .inc-dots{bottom:86px}
+.inc-flash{position:absolute;inset:0;z-index:3;background:#fff;opacity:0;pointer-events:none}
+.inc-flash.is-on{animation:incFlash .45s ease-out}
+@keyframes incFlash{0%{opacity:.85}100%{opacity:0}}
+/* landscape: the player turns sideways and fills the phone */
+.inc-media.is-land{position:fixed;top:50%;left:50%;margin:0;aspect-ratio:auto;border-radius:0;z-index:60;
+  transform:translate(-50%,-50%) rotate(90deg);box-shadow:0 0 0 100vmax #000;background:#000}
+.inc-media.is-land .inc-slide img,.inc-media.is-land .inc-slide video{object-fit:contain}
+.inc-media.is-land .inc-ctrl{padding-left:var(--Spacing-4);padding-right:var(--Spacing-4)}
 .inc-bigplay{position:absolute;left:50%;top:50%;transform:translate(-50%,-62%);width:56px;height:56px;border-radius:50%;border:0;display:grid;place-items:center;
   background:var(--Overlay-On-Media-Lowest,rgba(0,0,0,.45));color:#fff;cursor:pointer;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 .inc-bigplay[hidden]{display:none}
@@ -6306,15 +6317,19 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
       <div class="inc-media" data-inc-media>
         <div class="inc-track" data-inc-track aria-roledescription="carousel"></div>
         <span class="oneui-Badge inc-stamp" data-appearance="neutral" data-attention="high" data-size="s" data-inc-stamp></span>
-        <button type="button" class="oneui-Button inc-auto" data-size="8" data-appearance="neutral" data-attention="high" data-inc-auto aria-pressed="true">
-          <span data-inc-auto-ico aria-hidden="true"></span><span>Auto-play</span>
-        </button>
         <button type="button" class="inc-bigplay" data-inc-bigplay aria-label="Play clip" hidden><svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 5.5v13l11-6.5-11-6.5Z" fill="currentColor"/></svg></button>
         <span class="inc-dots" data-inc-dots aria-hidden="true"></span>
+        <span class="inc-flash" data-inc-flash aria-hidden="true"></span>
         <div class="pp-ctrl inc-ctrl">
-          <button type="button" class="oneui-IconButton pp-play" data-size="8" data-appearance="neutral" data-attention="low" data-inc-play aria-label="Play clip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 5.5v13l11-6.5-11-6.5Z" fill="currentColor"/></svg></button>
           <input type="range" class="pp-scrub" data-inc-scrub min="0" max="1000" value="0" aria-label="Scrub through this clip">
-          <span class="pp-time" data-inc-time>0:00 / 0:00</span>
+          <div class="inc-ctrl-row">
+            <button type="button" class="oneui-IconButton pp-play" data-size="8" data-appearance="neutral" data-attention="low" data-inc-play aria-label="Play clip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 5.5v13l11-6.5-11-6.5Z" fill="currentColor"/></svg></button>
+            <span class="pp-time" data-inc-time>0:00 / 0:00</span>
+            <span class="inc-ctrl-sp"></span>
+            <button type="button" class="oneui-IconButton inc-ic" data-size="8" data-appearance="neutral" data-attention="low" data-inc-mute aria-pressed="true" aria-label="Unmute"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m16 9.5 5 5m0-5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+            <button type="button" class="oneui-IconButton inc-ic" data-size="8" data-appearance="neutral" data-attention="low" data-inc-capture aria-label="Capture snapshot"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 8.5A2 2 0 0 1 6 6.5h1.8L9.3 4.5h5.4l1.5 2H18a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="12.5" r="3.4" stroke="currentColor" stroke-width="1.8"/></svg></button>
+            <button type="button" class="oneui-IconButton inc-ic" data-size="8" data-appearance="neutral" data-attention="low" data-inc-land aria-pressed="false" aria-label="Landscape view"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2.5" y="7" width="19" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M18 10v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+          </div>
         </div>
       </div>
 
@@ -11875,11 +11890,14 @@ window.addEventListener('error', function(e){
     if(!scr) return;
     var q = function(sel){ return scr.querySelector(sel); };
     var track = q('[data-inc-track]'), dots = q('[data-inc-dots]'), stamp = q('[data-inc-stamp]'), grid = q('[data-inc-grid]');
-    var autoBtn = q('[data-inc-auto]'), autoIco = q('[data-inc-auto-ico]');
+    var media = q('[data-inc-media]'), muteBtn = q('[data-inc-mute]'), capBtn = q('[data-inc-capture]'), landBtn = q('[data-inc-land]'), flash = q('[data-inc-flash]');
     var playBtn = q('[data-inc-play]'), bigPlay = q('[data-inc-bigplay]'), scrub = q('[data-inc-scrub]'), timeEl = q('[data-inc-time]');
     var ICO_PLAY = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 5.5v13l11-6.5-11-6.5Z" fill="currentColor"/></svg>';
     var ICO_PAUSE = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="6.5" y="5" width="3.6" height="14" rx="1" fill="currentColor"/><rect x="13.9" y="5" width="3.6" height="14" rx="1" fill="currentColor"/></svg>';
-    var ICO_AUTO = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M8 5.5v13l11-6.5-11-6.5Z" fill="currentColor"/></svg>';
+    var ICO_MUTED = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m16 9.5 5 5m0-5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+    var ICO_SOUND = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M15.5 9.2a4 4 0 0 1 0 5.6M18 6.8a7.5 7.5 0 0 1 0 10.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+    var ICO_LAND = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2.5" y="7" width="19" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M18 10v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+    var ICO_PORTRAIT = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M10 18h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
     var clips = [], cur = 0, auto = true, playing = false, elapsed = 0, last = null, raf = null, swapping = false;
 
     function durOf(c){ return c._dur || 30 + (c.mins % 7) * 11; }     // real length for video, else a stable stand-in
@@ -11921,12 +11939,38 @@ window.addEventListener('error', function(e){
       render();
       raf = requestAnimationFrame(tick);
     }
-    function setAuto(on){
-      auto = on;
-      autoBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
-      autoBtn.setAttribute('data-attention', on ? 'high' : 'medium');
-      autoBtn.setAttribute('aria-label', 'Auto-play next clip: ' + (on ? 'on' : 'off'));
+    /* Sound: clips start muted (like any camera feed); one toggle for every clip */
+    var muted = true;
+    function setMuted(on){
+      muted = on;
+      muteBtn.innerHTML = on ? ICO_MUTED : ICO_SOUND;
+      muteBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      muteBtn.setAttribute('aria-label', on ? 'Unmute' : 'Mute');
+      Array.prototype.forEach.call(track.querySelectorAll('video'), function(v){ v.muted = on; });
     }
+    muteBtn.addEventListener('click', function(){ setMuted(!muted); });
+    /* Capture: a still of the current frame */
+    capBtn.addEventListener('click', function(){
+      if(noMedia(cur)) return;
+      flash.classList.remove('is-on'); void flash.offsetWidth; flash.classList.add('is-on');
+      toastMsg('Snapshot saved to Gallery');
+    });
+    /* Landscape: the player rotates to fill the phone; the same button (or Esc) comes back */
+    var land = false;
+    function setLandscape(on){
+      land = on;
+      media.classList.toggle('is-land', on);
+      if(on){ media.style.width = scr.clientHeight + 'px'; media.style.height = scr.clientWidth + 'px'; }
+      else { media.style.width = ''; media.style.height = ''; }
+      landBtn.innerHTML = on ? ICO_PORTRAIT : ICO_LAND;
+      landBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      landBtn.setAttribute('aria-label', on ? 'Exit landscape view' : 'Landscape view');
+      requestAnimationFrame(function(){ swapping = true; track.scrollLeft = cur * track.clientWidth; setTimeout(function(){ swapping = false; }, 120); });
+    }
+    landBtn.addEventListener('click', function(){ setLandscape(!land); });
+    document.addEventListener('keydown', function(e){ if(land && e.key === 'Escape') setLandscape(false); });
+    var backBtn = q('[data-back]');
+    if(backBtn) backBtn.addEventListener('click', function(){ if(land) setLandscape(false); });
     function select(i){
       var prev = slideMedia(cur);
       if(prev && prev.tagName === 'IMG') prev.style.transform = '';
@@ -11967,7 +12011,6 @@ window.addEventListener('error', function(e){
       if(m && m.tagName === 'VIDEO'){ try{ m.currentTime = elapsed; }catch(e){} }
       render();
     });
-    autoBtn.addEventListener('click', function(){ setAuto(!auto); });
 
     /* Share / Download / Feedback */
     var fbSheet = q('[data-inc-fb-sheet]'), fbScrim = q('[data-inc-fb-scrim]');
@@ -12056,7 +12099,7 @@ window.addEventListener('error', function(e){
       imp.hidden = !isHighImportance(g);
       imp.setAttribute('data-appearance', 'negative');
       imp.textContent = 'High importance';
-      autoIco.innerHTML = ICO_AUTO;
+      if(land) setLandscape(false);
       fbOpen(false);
       cancelAnimationFrame(raf);
 
@@ -12083,9 +12126,9 @@ window.addEventListener('error', function(e){
       });
       // opening the event marks it read, like opening the card always did
       items.forEach(function(it){ it.read = true; });
-      dots.hidden = autoBtn.hidden = list.length < 2;
+      dots.hidden = list.length < 2;
       requestAnimationFrame(function(){ track.scrollLeft = focus * track.clientWidth; });
-      setAuto(true);
+      setMuted(muted);
       select(focus);
       setPlaying(true);      // the clip starts playing as the screen opens
       return true;
