@@ -2291,23 +2291,21 @@ button.oneui-Avatar{position:relative}
 .acard-row .arow-tags{display:flex;align-items:center;gap:var(--Spacing-1-5);margin-bottom:var(--Spacing-1);color:var(--Neutral-High)}
 .acard-row .arow-tag{display:grid;place-items:center;width:20px;height:20px}
 .acard-row .arow-tag svg{width:20px;height:20px;display:block}
-/* Combined activity card: the thumbnail sits on a little stack (two offset cards behind)
-   with an "N clips" pill; the title carries the person's avatar. */
-.acard-row.is-combined{isolation:isolate}
-.acard-row.is-combined .arow-thumb{overflow:visible;margin-top:12px;background:none}
-.acard-row.is-combined .arow-thumb > img,.acard-row.is-combined .arow-thumb > video{position:relative;border-radius:var(--Shape-3);background:var(--Surface-Fill-Subtle)}
-.acard-row.is-combined .arow-thumb.no-media{background:var(--Surface-Fill-Subtle);border-radius:var(--Shape-3)}
-.acard-row .arow-stack{
-  position:absolute;inset:0;border-radius:var(--Shape-3);z-index:-1;
-  background:var(--Neutral-Stroke-Medium,#d3d4d6) center/cover no-repeat;box-shadow:0 0 0 1.5px var(--Surface-Fill-Default);
-}
-.acard-row .arow-stack.s1{transform:translateY(-9px) scale(.92);filter:brightness(.82)}
-.acard-row .arow-stack.s2{transform:translateY(-17px) scale(.84);filter:brightness(.68)}
-.acard-row .arow-clips{position:absolute;left:var(--Spacing-1-5);bottom:var(--Spacing-1-5);display:inline-flex;align-items:center;gap:3px;padding:2px 7px 2px 5px;border-radius:var(--Shape-Pill);background:rgba(0,0,0,.62);color:#fff;font-size:10px;line-height:14px;font-weight:700}
-.acard-row .arow-clips svg{width:11px;height:11px}
+/* Combined incident (unknown person): main clip big on the left, the other clips as small
+   thumbnails in the text column. Known people: text-only rows with their avatar. */
+.acard-row .arow-minis{display:flex;align-items:center;gap:var(--Spacing-1);margin-top:var(--Spacing-1-5)}
+.acard-row .arow-mini{position:relative;display:block;width:44px;height:30px;border-radius:var(--Shape-1-5,6px);overflow:hidden;background:var(--Surface-Fill-Subtle);flex:none}
+.acard-row .arow-mini img{width:100%;height:100%;object-fit:cover;display:block}
+.acard-row .arow-mini .arow-nomedia{position:absolute;inset:0;display:none;place-items:center;color:var(--Neutral-Low)}
+.acard-row .arow-mini .arow-nomedia svg{width:14px;height:14px}
+.acard-row .arow-mini.no-media .arow-nomedia{display:grid}
+.acard-row .arow-mini-more{display:grid;place-items:center;height:30px;padding:0 var(--Spacing-1-5);border-radius:var(--Shape-1-5,6px);background:var(--Surface-Fill-Subtle);font-size:11px;font-weight:700;color:var(--Neutral-Medium,var(--Neutral-High))}
+.acard-row.is-known{padding:var(--Spacing-3) var(--Spacing-4)}
 .acard-row .arow-who{display:flex;align-items:center;gap:var(--Spacing-1-5)}
 .acard-row .arow-av{--_av-size:22px;width:22px;height:22px;flex:none;font-size:11px}
 .acard-row .arow-av img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.acard-row .arow-av svg{width:14px;height:14px}
+.acard-row .arow-av[data-content="icon"]{display:grid;place-items:center;border-radius:50%;background:var(--Neutral-Subtle);color:var(--Neutral-High)}
 .acard-row .arow-dot{position:absolute;top:var(--Spacing-3);right:var(--Spacing-3);width:8px;height:8px;border-radius:50%;background:var(--Negative-Bold)}
 .acard-row .arow-thumb{
   position:relative;display:block;width:128px;height:84px;flex:0 0 auto;
@@ -9626,7 +9624,11 @@ window.addEventListener('error', function(e){
         /* ── Evening (5 pm – 9 pm) ── */
         { type:'person',  priority:'low',  cam:'Front Porch',  day:0, mins:1080, who:'Priya', img:'assets/cam2.jpg',           t:'Priya returned home from work' },
         { type:'motion',  priority:'low',  cam:'Kitchen',      day:0, mins:1095, who:'Priya', img:'assets/cam1.jpg',           t:'Dinner preparation — kitchen active' },
-        { type:'person',  priority:'med',  cam:'Front Porch',  day:0, mins:1214, img:'assets/unknown-face.jpg',   t:'Same unknown face seen again at door', clip:true },
+        /* An unknown person around the porch over ~10 min — groups into one combined card
+           (unknown, so it keeps video: the most important clip big, the others small). */
+        { type:'person',  priority:'low',  cam:'Front Porch',  day:0, mins:1203, who:'Unknown person', img:'assets/front-porch-delivery.png', t:'Unknown person approached the gate', clip:true },
+        { type:'person',  priority:'low',  cam:'Front Porch',  day:0, mins:1209, who:'Unknown person', img:'assets/frontporch.png', t:'Unknown person waited by the door', clip:true },
+        { type:'person',  priority:'med',  cam:'Front Porch',  day:0, mins:1214, who:'Unknown person', img:'assets/unknown-face.jpg',   t:'Same unknown face seen again at door', clip:true },
         { type:'motion',  priority:'low',  cam:'Living Room',  day:0, mins:1230, img:'assets/livingroom.jpg',     t:'Family gathered in the living room' },
         { type:'motion',  priority:'low',  cam:'Backyard',     day:0, mins:1260, img:'assets/cam4.jpg',           t:'Garden light triggered by motion' },
 
@@ -10616,7 +10618,7 @@ window.addEventListener('error', function(e){
     'assets/livingroom.jpg':        'assets/livingroom-cam1.png'
   };
   /* Subject-specific, so they outrank the camera's own viewpoint still. */
-  var PER_EVENT = { 'assets/porch-package.png': true };
+  var PER_EVENT = { 'assets/porch-package.png': true, 'assets/front-porch-delivery.png': true };
 
   function resolveStills(node){
     if(!node || typeof node !== 'object') return;
@@ -11421,22 +11423,60 @@ window.addEventListener('error', function(e){
     return out;
   }
 
+  /* People the household knows (family, helpers). Their clips never show footage on the
+     list — a compact text row with their avatar instead; the video is still there when the
+     event is opened. Anyone else (unknown visitors) keeps the video thumbnail. */
+  var KNOWN_PEOPLE = { Priya:1, Arun:1, Meena:1, Rohan:1, Aparna:1 };
+  function whoAvatar(who){
+    var av = el('span', 'oneui-Avatar arow-av');
+    av.setAttribute('data-size', 'custom'); av.setAttribute('aria-hidden', 'true');
+    if(WHO_PHOTO[who]){ av.setAttribute('data-content', 'image'); av.innerHTML = '<img src="' + WHO_PHOTO[who] + '" alt="">'; }
+    else if(KNOWN_PEOPLE[who]){ av.setAttribute('data-content', 'text'); av.setAttribute('data-appearance', 'primary'); av.setAttribute('data-attention', 'medium'); av.textContent = who.charAt(0); }
+    else { av.setAttribute('data-content', 'icon'); av.setAttribute('data-appearance', 'neutral'); av.setAttribute('data-attention', 'medium'); av.innerHTML = EV_TAG.person.svg; }
+    return av;
+  }
+  /* Thumbnail for one clip: looping video, or still + play control; camera-off placeholder
+     when there is no footage. */
+  function clipThumb(m, cls){
+    var th = el('span', cls + (m.offline ? ' is-offline' : ''));
+    if(m.video){
+      var vid = document.createElement('video');
+      vid.src = m.video; vid.poster = m.img || '';
+      vid.muted = true; vid.defaultMuted = true; vid.autoplay = true; vid.loop = true; vid.playsInline = true;
+      vid.setAttribute('preload', 'metadata'); vid.setAttribute('aria-hidden', 'true');
+      vid.addEventListener('error', function(){
+        vid.remove();
+        if(!m.img) return;
+        var fb = document.createElement('img'); fb.src = m.img; fb.alt = '';
+        th.insertBefore(fb, th.firstChild);
+      });
+      th.appendChild(vid);
+    } else if(m.img){
+      var img = document.createElement('img');
+      img.src = m.img; img.alt = '';
+      img.addEventListener('error', function(){ th.classList.add('no-media'); img.remove(); });
+      th.appendChild(img);
+    } else th.classList.add('no-media');
+    th.insertAdjacentHTML('beforeend', '<span class="arow-nomedia" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3 3l18 18M10.5 6H14a2 2 0 0 1 2 2v1.5l4-2.5v10M16 16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 1.2-1.83" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>');
+    return th;
+  }
+
   function buildSimpleRow(a, grp){
     var combined = !!(grp && grp.items.length > 1);
-    /* Previously high-priority events routed through buildVideoAlertCard
-       for a full 16:9 video tile. Removed — every event now uses the
-       same small-thumbnail row (see the block below that always
-       attaches a .arow-thumb). Consistency > per-severity layout on a
-       scrollable list. */
-
     var b = el('button', 'acard-row');
     b.type = 'button';
     b.setAttribute('data-alert-open', '1');
     b.setAttribute('data-cam', a.cam);
     b.setAttribute('data-mins', a.mins);
-    b._group = combined ? grp : { cam:a.cam, day:a.day, place:a.place, items:[a] };
+    b._group = combined ? grp : { cam:a.cam, day:a.day, place:a.place, who:a.who, items:[a] };
     var items = b._group.items, last = items[items.length - 1];
+    var who = b._group.who, known = !!(who && KNOWN_PEOPLE[who]);
     if(combined) b.classList.add('is-combined');
+    if(known) b.classList.add('is-known');
+    /* Combined, not a known person: the most important clip leads (priority, then latest). */
+    var main = (combined && !known) ? items.slice().sort(function(x, y){
+      return PRIORITY_RANK[x.priority] - PRIORITY_RANK[y.priority] || y.mins - x.mins;
+    })[0] : a;
 
     function oneuiText(node, variant, size, attention, weight){
       node.classList.add('oneui-Text');
@@ -11466,22 +11506,32 @@ window.addEventListener('error', function(e){
       tagRow.appendChild(ic);
     });
     tx.appendChild(tagRow);
+    var route = items.map(function(it){ return it.cam; }).filter(function(c, i, arr){ return i === 0 || c !== arr[i - 1]; });
     if(combined){
       /* who + how many clips, then the cameras they moved through, in order */
       var head = el('span', 't arow-who');
-      var av = el('span', 'oneui-Avatar arow-av');
-      av.setAttribute('data-size', 'custom'); av.setAttribute('aria-hidden', 'true');
-      if(WHO_PHOTO[grp.who]){ av.setAttribute('data-content', 'image'); av.innerHTML = '<img src="' + WHO_PHOTO[grp.who] + '" alt="">'; }
-      else { av.setAttribute('data-content', 'text'); av.setAttribute('data-appearance', 'primary'); av.setAttribute('data-attention', 'medium'); av.textContent = grp.who.charAt(0); }
-      head.appendChild(av);
-      head.appendChild(document.createTextNode(grp.who + ' · ' + items.length + ' clips'));
+      head.appendChild(whoAvatar(who));
+      head.appendChild(document.createTextNode(who + ' · ' + items.length + ' clips'));
       tx.appendChild(oneuiText(head, 'body', 'S', null, 'high'));
-      var route = items.map(function(it){ return it.cam; }).filter(function(c, i, arr){ return i === 0 || c !== arr[i - 1]; });
       tx.appendChild(oneuiText(el('span', 's', route.join(' → ')), 'label', 'XS', 'low'));
-      b.setAttribute('aria-label', grp.who + ', ' + items.length + ' clips, ' + route.join(', ') + ', ' + fmtTimestamp(a.mins) + ' to ' + fmtTimestamp(last.mins));
+      b.setAttribute('aria-label', who + ', ' + items.length + ' clips, ' + route.join(', ') + ', ' + fmtTimestamp(a.mins) + ' to ' + fmtTimestamp(last.mins));
+    } else if(known){
+      var kh = el('span', 't arow-who');
+      kh.appendChild(whoAvatar(who));
+      kh.appendChild(document.createTextNode(a.t));
+      tx.appendChild(oneuiText(kh, 'body', 'S', null, 'high'));
+      tx.appendChild(oneuiText(el('span', 's', (a.place ? a.place + ' · ' : '') + a.cam), 'label', 'XS', 'low'));
     } else {
       tx.appendChild(oneuiText(el('span', 't', a.t), 'body', 'S', null, 'high'));
       tx.appendChild(oneuiText(el('span', 's', (a.place ? a.place + ' · ' : '') + a.cam), 'label', 'XS', 'low'));
+    }
+    /* The other clips of a combined (unknown) incident as small thumbnails. */
+    if(combined && !known){
+      var rest = items.filter(function(it){ return it !== main; });
+      var minis = el('span', 'arow-minis');
+      rest.slice(0, 3).forEach(function(it){ minis.appendChild(clipThumb({ img:it.img, offline:it.offline }, 'arow-mini')); });
+      if(rest.length > 3) minis.appendChild(el('span', 'arow-mini-more', '+' + (rest.length - 3)));
+      tx.appendChild(minis);
     }
     b.appendChild(tx);
     /* Unread dot on events worth a look; opening the event clears it. */
@@ -11492,70 +11542,17 @@ window.addEventListener('error', function(e){
       b.addEventListener('click', function(){ items.forEach(function(it){ it.read = true; }); dot.remove(); updateUnreadCount(); });
     }
 
-    /* Every event carries a small thumbnail — the previous "big
-       media-led" variant is dropped in favour of one consistent
-       72×54 tile on the left. A record with `video` plays the clip
-       muted+looped in place of the still; a record with only `img`
-       shows the still + a play glyph so the tap-to-open affordance
-       is obvious. Events with no media at all fall through without
-       has-thumb, and the layout collapses to a single-column row
-       for those. */
-    if(a.img || a.video){
+    /* Big thumbnail (the main clip) — never for known people. */
+    if(!known && (main.img || main.video)){
       b.classList.add('has-thumb');
-      var th = el('span', a.offline ? 'arow-thumb is-offline' : 'arow-thumb');
-
-      if(a.video){
-        var vid = document.createElement('video');
-        vid.src = a.video;
-        vid.poster = a.img || '';
-        vid.muted = true;
-        vid.defaultMuted = true;      /* Safari reads this at parse time */
-        vid.autoplay = true;
-        vid.loop = true;
-        vid.playsInline = true;
-        vid.setAttribute('preload', 'metadata');
-        vid.setAttribute('aria-hidden', 'true');
-        /* If the clip fails, fall back to the poster still. */
-        vid.addEventListener('error', function(){
-          vid.remove();
-          if(!a.img) return;
-          var fb = document.createElement('img');
-          fb.src = a.img; fb.alt = '';
-          th.insertBefore(fb, th.firstChild);
-        });
-        th.appendChild(vid);
-      } else {
-        var img = document.createElement('img');
-        /* Combined cards try each clip's still in turn and show the first that loads. */
-        var srcs = combined ? items.map(function(it){ return it.img; }).filter(Boolean) : [a.img], si = 0;
-        img.src = srcs[0]; img.alt = '';
-        /* No footage for this camera (offline / not in the bundle): show a camera-off
-           placeholder instead of a dark empty tile, and no play button. */
-        img.addEventListener('error', function(){
-          if(++si < srcs.length){ img.src = srcs[si]; return; }
-          th.classList.add('no-media'); img.remove();
-        });
-        th.appendChild(img);
-      }
-      /* Round play control centred on the thumbnail; a clip that is already looping shows
-         pause instead. Offline cameras have nothing to play. */
-      if(!a.offline){
+      var th = clipThumb(main, 'arow-thumb');
+      if(!main.offline){
         var playDiv = el('span', 'arow-play');
-        playDiv.innerHTML = '<span class="arow-play-btn">' + (a.video
+        playDiv.innerHTML = '<span class="arow-play-btn">' + (main.video
           ? '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="7" y="5" width="3.6" height="14" rx="1.2"/><rect x="13.4" y="5" width="3.6" height="14" rx="1.2"/></svg>'
           : '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.6v12.8a1 1 0 0 0 1.5.86l10.4-6.4a1 1 0 0 0 0-1.72L9.5 4.74A1 1 0 0 0 8 5.6Z"/></svg>') + '</span>';
-        th.appendChild(playDiv);
+        th.insertBefore(playDiv, th.querySelector('.arow-nomedia'));
       }
-      if(combined){
-        // two cards peeking out above the thumbnail, showing the other clips' stills
-        var others = items.filter(function(it){ return it !== a; }).slice(0, 2);
-        others.forEach(function(it, i){
-          th.insertAdjacentHTML('afterbegin', '<span class="arow-stack s' + (i + 1) + '" aria-hidden="true" style="background-image:url(' + (it.img || '') + ')"></span>');
-        });
-      }
-      if(combined) th.insertAdjacentHTML('beforeend', '<span class="arow-clips" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="14" height="13" rx="2.5" stroke="currentColor" stroke-width="2"/><path d="M7 4h11.5A2.5 2.5 0 0 1 21 6.5V16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>' + items.length + ' clips</span>');
-      th.insertAdjacentHTML('beforeend', '<span class="arow-nomedia" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3 3l18 18M10.5 6H14a2 2 0 0 1 2 2v1.5l4-2.5v10M16 16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 1.2-1.83" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>');
-
       b.appendChild(th);
     }
 
