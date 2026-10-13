@@ -1853,6 +1853,19 @@ button.oneui-Avatar{position:relative}
 /* a brand-new household has no one to pick from yet */
 [data-screen="my-home"].is-fresh #unk-btn-link{display:none}
 [data-screen="my-home"].is-fresh .home-fresh-people[data-state="unknown"] .cctv-people-pill{cursor:pointer}
+/* Unknown person: the visitor's face cropped from the Front Porch frame, with a "?" on it */
+.home-fresh .home-fresh-face,
+[data-screen="my-home"].is-fresh .unk-av-lg{
+  position:relative;display:grid;place-items:center;border-radius:50%;flex:none;overflow:hidden;
+  background:url(assets/frontporch.png) 90% 19%/900% no-repeat var(--Surface-Fill-Subtle);
+  color:#fff;font-weight:800;text-shadow:0 1px 3px rgba(0,0,0,.45);border:0;
+}
+.home-fresh .home-fresh-face::before,
+[data-screen="my-home"].is-fresh .unk-av-lg::before{content:"";position:absolute;inset:0;background:rgba(12,13,16,.38)}
+.home-fresh .home-fresh-face{width:36px;height:36px;font-size:17px;line-height:1;box-shadow:0 0 0 var(--Stroke-XL) var(--Surface-Fill-Default)}
+[data-screen="my-home"].is-fresh .unk-av-lg{font-size:32px}
+.home-fresh .home-fresh-face,[data-screen="my-home"].is-fresh .unk-av-lg{isolation:isolate}
+.home-fresh .home-fresh-face::before,[data-screen="my-home"].is-fresh .unk-av-lg::before{z-index:-1}
 .home-fresh .home-fresh-hd{padding:0 var(--Spacing-4) var(--Spacing-3)}
 [data-screen="my-home"] .cctv-scroll{background:var(--App-Surface);padding-bottom:80px;padding-top:12px;padding-inline:0}
 .cctv-home-hdr{display:flex;align-items:center;justify-content:space-between;padding:var(--Spacing-4)}
@@ -6353,7 +6366,7 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
               <span class="home-fresh-av"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8.5" r="3.4" stroke="currentColor" stroke-width="1.8"/><path d="M5.5 19c.6-3.3 3.3-5.4 6.5-5.4s5.9 2.1 6.5 5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="home-fresh-av"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8.5" r="3.4" stroke="currentColor" stroke-width="1.8"/><path d="M5.5 19c.6-3.3 3.3-5.4 6.5-5.4s5.9 2.1 6.5 5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="home-fresh-av"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8.5" r="3.4" stroke="currentColor" stroke-width="1.8"/><path d="M5.5 19c.6-3.3 3.3-5.4 6.5-5.4s5.9 2.1 6.5 5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
             </div>
             <div class="cctv-av-group" aria-hidden="true" data-when="unknown">
-              <div class="oneui-Avatar cctv-av" data-size="custom" data-content="text" data-appearance="neutral" data-attention="medium" style="--_av-size:36px">?</div>
+              <span class="home-fresh-face">?</span>
             </div>
             <div class="cctv-people-sep"></div>
             <span class="oneui-Text cctv-people-text" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low" data-when="empty"><strong class="oneui-Text" data-variant="body" data-size="XS" data-weight="high" data-appearance="neutral">No one added yet</strong></span>
