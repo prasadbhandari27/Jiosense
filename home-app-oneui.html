@@ -1223,6 +1223,12 @@ button.oneui-Avatar{position:relative}
   box-shadow:var(--Elevation-2);font-size:13px;line-height:19px;color:var(--Neutral-Low);
 }
 .attn-empty[hidden]{display:none}
+.evt-empty{display:flex;flex-direction:column;align-items:center;gap:var(--Spacing-2);padding:var(--Spacing-10,40px) var(--Spacing-4) var(--Spacing-6)}
+.evt-empty[hidden]{display:none}
+.evt-empty .evt-empty-art{width:168px;height:104px;margin-bottom:var(--Spacing-4)}
+.evt-empty p{max-width:300px}
+.evt-empty .oneui-Button{margin-top:var(--Spacing-2)}
+.evt-empty .oneui-Button[hidden]{display:none}
 
 /* ── People at home ───────────────────────────────────────────────────────
    Three across, so each tile gets ~96px at 360px. Avatars are real <img>
@@ -6087,7 +6093,21 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
       </div>
 
       <div class="alert-list" data-alert-list></div>
-      <p class="attn-empty" data-alert-empty hidden></p>
+      <!-- Empty state for a day with nothing on it. Copy is set per case by renderAlerts():
+           the install day ("first day with JioSense"), a quiet day, or no events at all. -->
+      <div class="evt-empty" data-alert-empty hidden>
+        <svg class="evt-empty-art" viewBox="0 0 168 104" fill="none" aria-hidden="true">
+          <rect x="48" y="6" width="104" height="64" rx="12" style="fill:var(--Primary-Bold);opacity:.12"/>
+          <rect x="32" y="17" width="112" height="70" rx="12" style="fill:var(--Primary-Bold);opacity:.22"/>
+          <rect x="16" y="29" width="120" height="72" rx="12" style="fill:var(--Surface-Fill-Default);stroke:var(--Neutral-Stroke-Low)" stroke-width="1.5"/>
+          <path d="M44 53.5v23a1.6 1.6 0 0 0 2.4 1.4l19.4-11.5a1.6 1.6 0 0 0 0-2.8L46.4 52.1a1.6 1.6 0 0 0-2.4 1.4Z" style="fill:var(--Primary-Bold)"/>
+          <rect x="80" y="57" width="38" height="6" rx="3" style="fill:var(--Neutral-Stroke-Low)"/>
+          <rect x="80" y="69" width="24" height="6" rx="3" style="fill:var(--Primary-Bold)"/>
+        </svg>
+        <h3 class="oneui-Text" data-variant="title" data-size="M" data-appearance="neutral" data-text-align="center" data-empty-title></h3>
+        <p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium" data-text-align="center" data-empty-body></p>
+        <button type="button" class="oneui-Button" data-appearance="primary" data-attention="low" data-size="10" data-empty-cta>Go to today</button>
+      </div>
     </main>
 
     <!-- Time scrubber — right edge, anchors to section headers in the list -->
@@ -11303,6 +11323,11 @@ window.addEventListener('error', function(e){
   var eventsStrip = document.querySelector('[data-events-date]');
   var alertList  = document.querySelector('[data-alert-list]');
   var alertEmpty = document.querySelector('[data-alert-empty]');
+  /* The day the cameras were installed — the oldest day in the week strip (Wed 7 in the
+     prototype). Its empty state reads as "first day", not "quiet day". */
+  var INSTALL_DAY = 6;
+  var emptyCta = alertEmpty && alertEmpty.querySelector('[data-empty-cta]');
+  if(emptyCta) emptyCta.addEventListener('click', function(){ eventsDay = 0; renderAlerts(); });
   var alertCount = document.querySelector('[data-alert-count]');
   var alertClear = document.querySelector('[data-fclear]');
   var alertViewBtn = document.querySelector('[data-alerts-view]');
@@ -11786,11 +11811,25 @@ window.addEventListener('error', function(e){
        nothing on this day, or nothing that matches the chips. */
     var onDay = currentAlerts().filter(function(a){ return a.day === eventsDay; });
     alertEmpty.hidden = list.length > 0;
-    alertEmpty.textContent = !currentAlerts().length
-      ? 'No events at ' + (loc ? loc.name : 'this location') + '.'
-      : !onDay.length
-        ? 'Nothing recorded ' + dayPhrase(eventsDay) + '.'
-        : 'No events ' + dayPhrase(eventsDay) + ' match these filters.';
+    var bar = alertList.parentNode.querySelector('.alert-bar');
+    if(bar) bar.style.display = list.length ? 'flex' : 'none';   // the empty state says it instead
+    var eTitle = alertEmpty.querySelector('[data-empty-title]'), eBody = alertEmpty.querySelector('[data-empty-body]');
+    var eCta = alertEmpty.querySelector('[data-empty-cta]');
+    var dateLong = dateFor(eventsDay).toLocaleDateString('en-IN', { weekday:'long', day:'numeric', month:'long' });
+    if(!currentAlerts().length){
+      eTitle.textContent = 'No events yet';
+      eBody.textContent = 'Once your cameras notice something at ' + (loc ? loc.name : 'home') + ', it shows up here.';
+    } else if(eventsDay === INSTALL_DAY && !onDay.length){
+      eTitle.textContent = 'Your first day with JioSense';
+      eBody.textContent = 'Your cameras were set up on ' + dateLong + ', so there was nothing to record yet. From now on, people, packages, pets and anything unusual they spot will show up here.';
+    } else if(!onDay.length){
+      eTitle.textContent = 'A quiet day';
+      eBody.textContent = 'Your cameras were watching all day on ' + dateLong + ' and didn\'t spot anything worth an alert.';
+    } else {
+      eTitle.textContent = 'No matching events';
+      eBody.textContent = 'Nothing ' + dayPhrase(eventsDay) + ' matches these filters.';
+    }
+    if(eCta) eCta.hidden = eventsDay === 0;
 
     /* High first, then the rest of the day newest-first. It is the *groups*
        that get ordered, not the alerts inside them: sorting the flat list by
