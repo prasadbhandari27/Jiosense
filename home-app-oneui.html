@@ -11731,7 +11731,6 @@ window.addEventListener('error', function(e){
     var main = items.slice().sort(function(x, y){
       return PRIORITY_RANK[x.priority] - PRIORITY_RANK[y.priority] || y.mins - x.mins;
     })[0];
-    var top = PRIORITY_RANK[main.priority];
     var title = multi ? (g.who || 'Activity') + ' at ' + main.cam : main.t;
 
     var b = el('div', 'acard-row is-hero');
@@ -11759,7 +11758,6 @@ window.addEventListener('error', function(e){
 
     var ft = el('span', 'hero-ft');
     ft.innerHTML =
-      (top <= 1 ? '<span class="oneui-Badge" data-appearance="' + (top === 0 ? 'negative' : 'warning') + '" data-attention="medium" data-size="s">' + (top === 0 ? 'High importance' : 'Worth a look') + '</span>' : '') +
       (multi ? '<span class="oneui-Text hero-count" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="7" width="14" height="13" rx="2.5" stroke="currentColor" stroke-width="2"/><path d="M7 4h11.5A2.5 2.5 0 0 1 21 6.5V16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>' + items.length + ' clips</span>' : '');
     if(ft.innerHTML) card.appendChild(ft);
     b.appendChild(card);
