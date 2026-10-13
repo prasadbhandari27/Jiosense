@@ -2291,6 +2291,23 @@ button.oneui-Avatar{position:relative}
 .acard-row .arow-tags{display:flex;align-items:center;gap:var(--Spacing-1-5);margin-bottom:var(--Spacing-1);color:var(--Neutral-High)}
 .acard-row .arow-tag{display:grid;place-items:center;width:20px;height:20px}
 .acard-row .arow-tag svg{width:20px;height:20px;display:block}
+/* Combined activity card: the thumbnail sits on a little stack (two offset cards behind)
+   with an "N clips" pill; the title carries the person's avatar. */
+.acard-row.is-combined{isolation:isolate}
+.acard-row.is-combined .arow-thumb{overflow:visible;margin-top:12px;background:none}
+.acard-row.is-combined .arow-thumb > img,.acard-row.is-combined .arow-thumb > video{position:relative;border-radius:var(--Shape-3);background:var(--Surface-Fill-Subtle)}
+.acard-row.is-combined .arow-thumb.no-media{background:var(--Surface-Fill-Subtle);border-radius:var(--Shape-3)}
+.acard-row .arow-stack{
+  position:absolute;inset:0;border-radius:var(--Shape-3);z-index:-1;
+  background:var(--Neutral-Stroke-Medium,#d3d4d6) center/cover no-repeat;box-shadow:0 0 0 1.5px var(--Surface-Fill-Default);
+}
+.acard-row .arow-stack.s1{transform:translateY(-9px) scale(.92);filter:brightness(.82)}
+.acard-row .arow-stack.s2{transform:translateY(-17px) scale(.84);filter:brightness(.68)}
+.acard-row .arow-clips{position:absolute;left:var(--Spacing-1-5);bottom:var(--Spacing-1-5);display:inline-flex;align-items:center;gap:3px;padding:2px 7px 2px 5px;border-radius:var(--Shape-Pill);background:rgba(0,0,0,.62);color:#fff;font-size:10px;line-height:14px;font-weight:700}
+.acard-row .arow-clips svg{width:11px;height:11px}
+.acard-row .arow-who{display:flex;align-items:center;gap:var(--Spacing-1-5)}
+.acard-row .arow-av{--_av-size:22px;width:22px;height:22px;flex:none;font-size:11px}
+.acard-row .arow-av img{width:100%;height:100%;object-fit:cover;border-radius:50%}
 .acard-row .arow-dot{position:absolute;top:var(--Spacing-3);right:var(--Spacing-3);width:8px;height:8px;border-radius:50%;background:var(--Negative-Bold)}
 .acard-row .arow-thumb{
   position:relative;display:block;width:128px;height:84px;flex:0 0 auto;
@@ -9576,21 +9593,21 @@ window.addEventListener('error', function(e){
            onto events that already existed, this one did not. Living Room
            because Arun's room has no camera; this is the first place he is seen
            after getting up. 375 = 6:15 am, the time on the card. */
-        { type:'motion',  priority:'low',  cam:'Living Room',  day:0, mins:375,  img:'assets/livingroom.jpg',     t:'Arun up early — living room motion' },
+        { type:'motion',  priority:'low',  cam:'Living Room',  day:0, mins:375, who:'Arun',  img:'assets/livingroom.jpg',     t:'Arun up early — living room motion' },
         { type:'system',  priority:'low',  cam:'Nursery Cam',  day:0, mins:390,  img:'assets/nursery.png',        t:'Nursery camera angle adjusted automatically' },
         { type:'package', priority:'low',  cam:'Front Porch',  day:0, mins:473,  img:'assets/porch-package.png',  t:'Package left on the front porch', clip:true },
         { type:'package', priority:'med',  cam:'Front Porch',  day:0, mins:488,  img:'assets/alert-delivery.png', video:null, t:'Package delivery at the front door', clip:true },
-        { type:'motion',  priority:'low',  cam:'Kitchen',      day:0, mins:510,  img:'assets/cam1.jpg',           t:'Kitchen motion — Priya making breakfast' },
-        { type:'person',  priority:'low',  cam:'Front Porch',  day:0, mins:527,  img:'assets/cam2.jpg',           t:'Priya left for work' },
+        { type:'motion',  priority:'low',  cam:'Kitchen',      day:0, mins:510, who:'Priya',  img:'assets/cam1.jpg',           t:'Kitchen motion — Priya making breakfast' },
+        { type:'person',  priority:'low',  cam:'Front Porch',  day:0, mins:527, who:'Priya',  img:'assets/cam2.jpg',           t:'Priya left for work' },
 
         /* ── Morning (9 am – 12 pm) ── */
-        { type:'motion',  priority:'low',  cam:'Living Room',  day:0, mins:560,  img:'assets/livingroom.jpg',     t:'Living room motion — housekeeper arrived' },
-        { type:'person',  priority:'low',  cam:'Front Porch',  day:0, mins:565,  img:'assets/cam2.jpg',           t:'Meena Patil arrived — helper' },
-        { type:'motion',  priority:'low',  cam:'Kitchen',      day:0, mins:575,  img:'assets/cam1.jpg',           t:'Kitchen activity — cleaning in progress' },
-        { type:'motion',  priority:'low',  cam:'Nursery Cam',  day:0, mins:600,  img:'assets/nursery.png',        t:'Rohan awake — nursery activity' },
+        { type:'motion',  priority:'low',  cam:'Living Room',  day:0, mins:560, who:'Meena',  img:'assets/livingroom.jpg',     t:'Living room motion — housekeeper arrived' },
+        { type:'person',  priority:'low',  cam:'Front Porch',  day:0, mins:565, who:'Meena',  img:'assets/cam2.jpg',           t:'Meena Patil arrived — helper' },
+        { type:'motion',  priority:'low',  cam:'Kitchen',      day:0, mins:575, who:'Meena',  img:'assets/cam1.jpg',           t:'Kitchen activity — cleaning in progress' },
+        { type:'motion',  priority:'low',  cam:'Nursery Cam',  day:0, mins:600, who:'Rohan',  img:'assets/nursery.png',        t:'Rohan awake — nursery activity' },
         { type:'system',  priority:'low',  cam:'Living Room',  day:0, mins:620,  img:'assets/livingroom.jpg',     t:'Motion sensitivity auto-adjusted' },
         { type:'motion',  priority:'low',  cam:'Backyard',     day:0, mins:640,  img:'assets/cam4.jpg',           t:'Backyard motion — courier passing lane' },
-        { type:'person',  priority:'low',  cam:'Front Porch',  day:0, mins:676,  img:'assets/cam2.jpg',           t:'Meena Patil left — helper' },
+        { type:'person',  priority:'low',  cam:'Front Porch',  day:0, mins:676, who:'Meena',  img:'assets/cam2.jpg',           t:'Meena Patil left — helper' },
 
         /* ── Afternoon (12 pm – 5 pm) ── */
         /* Bedroom events. Without these the new camera would open to an empty
@@ -9601,14 +9618,14 @@ window.addEventListener('error', function(e){
         { type:'motion',  priority:'low',  cam:'Bedroom',      day:0, mins:852,  img:'assets/bedroom.jpg',        t:'Fan still on — room empty for 42 min', clip:true },
         { type:'pet',     priority:'low',  cam:'Living Room',  day:0, mins:735,  img:'assets/livingroom.jpg',     t:'Dog settled on the living room rug', clip:true },
         { type:'vehicle', priority:'med',  cam:'Front Porch',  day:0, mins:758,  img:'assets/cam2.jpg',           t:'Unknown vehicle idling outside', clip:true },
-        { type:'person',  priority:'low',  cam:'Front Porch',  day:0, mins:840,  img:'assets/cam2.jpg',           t:'Arun returned home from school' },
-        { type:'motion',  priority:'low',  cam:'Kitchen',      day:0, mins:855,  img:'assets/cam1.jpg',           t:'Kitchen activity — after-school snack' },
-        { type:'motion',  priority:'low',  cam:'Backyard',     day:0, mins:900,  img:'assets/cam4.jpg',           t:'Arun playing in the backyard' },
+        { type:'person',  priority:'low',  cam:'Front Porch',  day:0, mins:840, who:'Arun',  img:'assets/cam2.jpg',           t:'Arun returned home from school' },
+        { type:'motion',  priority:'low',  cam:'Kitchen',      day:0, mins:855, who:'Arun',  img:'assets/cam1.jpg',           t:'Kitchen activity — after-school snack' },
+        { type:'motion',  priority:'low',  cam:'Backyard',     day:0, mins:900, who:'Arun',  img:'assets/cam4.jpg',           t:'Arun playing in the backyard' },
         { type:'package', priority:'low',  cam:'Front Porch',  day:0, mins:940,  img:'assets/porch-package.jpg',  t:'Second delivery collected from porch' },
 
         /* ── Evening (5 pm – 9 pm) ── */
-        { type:'person',  priority:'low',  cam:'Front Porch',  day:0, mins:1080, img:'assets/cam2.jpg',           t:'Priya returned home from work' },
-        { type:'motion',  priority:'low',  cam:'Kitchen',      day:0, mins:1095, img:'assets/cam1.jpg',           t:'Dinner preparation — kitchen active' },
+        { type:'person',  priority:'low',  cam:'Front Porch',  day:0, mins:1080, who:'Priya', img:'assets/cam2.jpg',           t:'Priya returned home from work' },
+        { type:'motion',  priority:'low',  cam:'Kitchen',      day:0, mins:1095, who:'Priya', img:'assets/cam1.jpg',           t:'Dinner preparation — kitchen active' },
         { type:'person',  priority:'med',  cam:'Front Porch',  day:0, mins:1214, img:'assets/unknown-face.jpg',   t:'Same unknown face seen again at door', clip:true },
         { type:'motion',  priority:'low',  cam:'Living Room',  day:0, mins:1230, img:'assets/livingroom.jpg',     t:'Family gathered in the living room' },
         { type:'motion',  priority:'low',  cam:'Backyard',     day:0, mins:1260, img:'assets/cam4.jpg',           t:'Garden light triggered by motion' },
@@ -9617,7 +9634,7 @@ window.addEventListener('error', function(e){
         { type:'motion',  priority:'low',  cam:'Nursery Cam',  day:0, mins:1350, img:'assets/nursery.png',        t:'Nursery motion — baby restless' },
         { type:'motion',  priority:'low',  cam:'Living Room',  day:0, mins:1390, img:'assets/livingroom.jpg',     t:'Living room cleared — everyone to bed' },
         { type:'system',  priority:'low',  cam:'Backyard',     day:0, mins:1410, img:'assets/cam4.jpg',           t:'Backyard camera back online' },
-        { type:'motion',  priority:'low',  cam:'Nursery Cam',  day:0, mins:1432, img:'assets/nursery.png',        t:'Rohan checked in on the baby' },
+        { type:'motion',  priority:'low',  cam:'Nursery Cam',  day:0, mins:1432, who:'Rohan', img:'assets/nursery.png',        t:'Rohan checked in on the baby' },
 
         /* ── Other days (for calendar nav demo) ── */
         { type:'pet',     priority:'low',  cam:'Living Room',  day:1, mins:855,  img:'assets/livingroom.jpg',     t:'Dog on the living room rug' },
@@ -11169,6 +11186,28 @@ window.addEventListener('error', function(e){
       return;
     }
 
+    /* Combined activity (same person across clips/cameras, see groupByPerson): the story is
+       the person's, not one camera's — title, route, and their clips as the video list. */
+    if(g.who && base.length > 1 && sumDay === homeDay){
+      var route = base.map(function(it){ return it.cam; }).filter(function(c, i, arr){ return i === 0 || c !== arr[i - 1]; });
+      var from = fmtMins(base[0].mins), to = fmtMins(base[base.length - 1].mins);
+      renderSummary({
+        title:g.who + ' · ' + base.length + ' clips',
+        sub:route.join(' → ') + ' · ' + dayFull(sumDay) + ', ' + from + ' – ' + to,
+        summary:g.who + ' was seen in ' + base.length + ' clips' + (route.length > 1 ? ' across ' + route.length + ' cameras' : '') +
+          ' between ' + from + ' and ' + to + ': ' +
+          base.map(function(it){ return it.t + ' (' + it.cam + ')'; }).join(', ') + '.',
+        unusual:[],
+        cam:base[0].cam,
+        clipHead:'Clips in this activity', oneCamera:false,
+        clips:clipsFor(base),
+        focusMins:base[0].mins,
+        emptyText:'No clips.',
+        dayHas:dayHas
+      });
+      return;
+    }
+
     var items = sumDay === homeDay ? base : sameCam;
     var lead = items.slice().sort(function(x, y){
       return PRIORITY_RANK[x.priority] - PRIORITY_RANK[y.priority] || y.mins - x.mins;
@@ -11365,7 +11404,25 @@ window.addEventListener('error', function(e){
     if(inline){ inline.textContent = n + ' unread'; inline.hidden = n === 0; }
   }
 
-  function buildSimpleRow(a){
+  /* Combined activity: clips of the same person (`who`) on the same day, each within
+     PERSON_GAP minutes of the last, become one card — "Arun · 3 clips" — even across
+     cameras. Everything else stays one card per clip. Items run oldest → newest. */
+  var PERSON_GAP = 45;
+  var WHO_PHOTO = { Priya:'assets/people/priya-portrait.jpg', Arun:'assets/people/arun.jpg', Rohan:'assets/people/rohan.jpg' };
+  function groupByPerson(list){
+    var asc = list.slice().sort(function(x, y){ return x.mins - y.mins; }), out = [], open = {};
+    asc.forEach(function(a){
+      var g = a.who && open[a.who];
+      if(g && g.day === a.day && a.mins - g.items[g.items.length - 1].mins <= PERSON_GAP){ g.items.push(a); return; }
+      g = { cam:a.cam, day:a.day, place:a.place, who:a.who, items:[a] };
+      if(a.who) open[a.who] = g;
+      out.push(g);
+    });
+    return out;
+  }
+
+  function buildSimpleRow(a, grp){
+    var combined = !!(grp && grp.items.length > 1);
     /* Previously high-priority events routed through buildVideoAlertCard
        for a full 16:9 video tile. Removed — every event now uses the
        same small-thumbnail row (see the block below that always
@@ -11377,7 +11434,9 @@ window.addEventListener('error', function(e){
     b.setAttribute('data-alert-open', '1');
     b.setAttribute('data-cam', a.cam);
     b.setAttribute('data-mins', a.mins);
-    b._group = { cam:a.cam, day:a.day, place:a.place, items:[a] };
+    b._group = combined ? grp : { cam:a.cam, day:a.day, place:a.place, items:[a] };
+    var items = b._group.items, last = items[items.length - 1];
+    if(combined) b.classList.add('is-combined');
 
     function oneuiText(node, variant, size, attention, weight){
       node.classList.add('oneui-Text');
@@ -11387,7 +11446,7 @@ window.addEventListener('error', function(e){
       return node;
     }
     var ts = el('span', 'arow-ts');
-    ts.appendChild(oneuiText(el('span', 'arow-time', fmtTimestamp(a.mins)), 'label', 'XS', 'low', 'high'));
+    ts.appendChild(oneuiText(el('span', 'arow-time', combined ? fmtTimestamp(a.mins) + ' – ' + fmtTimestamp(last.mins) : fmtTimestamp(a.mins)), 'label', 'XS', 'low', 'high'));
     ts.appendChild(oneuiText(el('span', 'arow-date', dayFull(a.day)), 'label', '2XS', 'low'));
     b.appendChild(ts);
     b.appendChild(el('span', 'arow-div'));
@@ -11395,7 +11454,9 @@ window.addEventListener('error', function(e){
     var tx = el('span', 'tx');
     /* What was detected, as a row of icons above the title (an event can carry more than
        one: "likely the cat" is motion + animal). */
-    var tags = eventTags(a);
+    var tags = combined
+      ? items.reduce(function(acc, it){ eventTags(it).forEach(function(k){ if(acc.indexOf(k) === -1) acc.push(k); }); return acc; }, ['person']).slice(0, 4)
+      : eventTags(a);
     var tagRow = el('span', 'arow-tags');
     tagRow.setAttribute('aria-label', 'Detected: ' + tags.map(function(k){ return EV_TAG[k].label; }).join(', '));
     tags.forEach(function(k){
@@ -11405,15 +11466,30 @@ window.addEventListener('error', function(e){
       tagRow.appendChild(ic);
     });
     tx.appendChild(tagRow);
-    tx.appendChild(oneuiText(el('span', 't', a.t), 'body', 'S', null, 'high'));
-    tx.appendChild(oneuiText(el('span', 's', (a.place ? a.place + ' · ' : '') + a.cam), 'label', 'XS', 'low'));
+    if(combined){
+      /* who + how many clips, then the cameras they moved through, in order */
+      var head = el('span', 't arow-who');
+      var av = el('span', 'oneui-Avatar arow-av');
+      av.setAttribute('data-size', 'custom'); av.setAttribute('aria-hidden', 'true');
+      if(WHO_PHOTO[grp.who]){ av.setAttribute('data-content', 'image'); av.innerHTML = '<img src="' + WHO_PHOTO[grp.who] + '" alt="">'; }
+      else { av.setAttribute('data-content', 'text'); av.setAttribute('data-appearance', 'primary'); av.setAttribute('data-attention', 'medium'); av.textContent = grp.who.charAt(0); }
+      head.appendChild(av);
+      head.appendChild(document.createTextNode(grp.who + ' · ' + items.length + ' clips'));
+      tx.appendChild(oneuiText(head, 'body', 'S', null, 'high'));
+      var route = items.map(function(it){ return it.cam; }).filter(function(c, i, arr){ return i === 0 || c !== arr[i - 1]; });
+      tx.appendChild(oneuiText(el('span', 's', route.join(' → ')), 'label', 'XS', 'low'));
+      b.setAttribute('aria-label', grp.who + ', ' + items.length + ' clips, ' + route.join(', ') + ', ' + fmtTimestamp(a.mins) + ' to ' + fmtTimestamp(last.mins));
+    } else {
+      tx.appendChild(oneuiText(el('span', 't', a.t), 'body', 'S', null, 'high'));
+      tx.appendChild(oneuiText(el('span', 's', (a.place ? a.place + ' · ' : '') + a.cam), 'label', 'XS', 'low'));
+    }
     b.appendChild(tx);
     /* Unread dot on events worth a look; opening the event clears it. */
-    if(a.priority !== 'low' && !a.read){
+    if(items.some(function(it){ return it.priority !== 'low' && !it.read; })){
       var dot = el('span', 'arow-dot');
       dot.setAttribute('aria-label', 'Unread');
       b.appendChild(dot);
-      b.addEventListener('click', function(){ a.read = true; dot.remove(); updateUnreadCount(); });
+      b.addEventListener('click', function(){ items.forEach(function(it){ it.read = true; }); dot.remove(); updateUnreadCount(); });
     }
 
     /* Every event carries a small thumbnail — the previous "big
@@ -11450,10 +11526,15 @@ window.addEventListener('error', function(e){
         th.appendChild(vid);
       } else {
         var img = document.createElement('img');
-        img.src = a.img; img.alt = '';
+        /* Combined cards try each clip's still in turn and show the first that loads. */
+        var srcs = combined ? items.map(function(it){ return it.img; }).filter(Boolean) : [a.img], si = 0;
+        img.src = srcs[0]; img.alt = '';
         /* No footage for this camera (offline / not in the bundle): show a camera-off
            placeholder instead of a dark empty tile, and no play button. */
-        img.addEventListener('error', function(){ th.classList.add('no-media'); img.remove(); });
+        img.addEventListener('error', function(){
+          if(++si < srcs.length){ img.src = srcs[si]; return; }
+          th.classList.add('no-media'); img.remove();
+        });
         th.appendChild(img);
       }
       /* Round play control centred on the thumbnail; a clip that is already looping shows
@@ -11465,6 +11546,14 @@ window.addEventListener('error', function(e){
           : '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.6v12.8a1 1 0 0 0 1.5.86l10.4-6.4a1 1 0 0 0 0-1.72L9.5 4.74A1 1 0 0 0 8 5.6Z"/></svg>') + '</span>';
         th.appendChild(playDiv);
       }
+      if(combined){
+        // two cards peeking out above the thumbnail, showing the other clips' stills
+        var others = items.filter(function(it){ return it !== a; }).slice(0, 2);
+        others.forEach(function(it, i){
+          th.insertAdjacentHTML('afterbegin', '<span class="arow-stack s' + (i + 1) + '" aria-hidden="true" style="background-image:url(' + (it.img || '') + ')"></span>');
+        });
+      }
+      if(combined) th.insertAdjacentHTML('beforeend', '<span class="arow-clips" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="14" height="13" rx="2.5" stroke="currentColor" stroke-width="2"/><path d="M7 4h11.5A2.5 2.5 0 0 1 21 6.5V16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>' + items.length + ' clips</span>');
       th.insertAdjacentHTML('beforeend', '<span class="arow-nomedia" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3 3l18 18M10.5 6H14a2 2 0 0 1 2 2v1.5l4-2.5v10M16 16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 1.2-1.83" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>');
 
       b.appendChild(th);
@@ -11629,9 +11718,7 @@ window.addEventListener('error', function(e){
     if(sub && loc) sub.textContent = loc.name;
 
     var list = filteredAlerts();
-    var groups = alertsGrouped ? groupAlerts(list) : list.map(function(a){
-      return { cam:a.cam, day:a.day, place:a.place, items:[a] };
-    });
+    var groups = alertsGrouped ? groupAlerts(list) : groupByPerson(list);
 
     alertList.innerHTML = '';
     alertList.classList.toggle('is-grid', alertsGrid);
@@ -11716,13 +11803,13 @@ window.addEventListener('error', function(e){
       /* High-priority → full-width video card, not inside a grouped container */
       if(a.priority === 'high'){
         curWrap = null;
-        alertList.appendChild(buildSimpleRow(a));
+        alertList.appendChild(buildSimpleRow(a, g));
       } else {
         if(!curWrap){
           curWrap = el('div', 'simple-group');
           alertList.appendChild(curWrap);
         }
-        curWrap.appendChild(buildSimpleRow(a));
+        curWrap.appendChild(buildSimpleRow(a, g));
       }
     });
 
