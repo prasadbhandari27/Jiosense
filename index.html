@@ -2367,11 +2367,12 @@ button.oneui-Avatar{position:relative}
 .acard-row .arow-av[data-content="icon"]{display:grid;place-items:center;border-radius:50%;background:var(--Neutral-Subtle);color:var(--Neutral-High)}
 .acard-row .arow-dot{position:absolute;top:var(--Spacing-3);right:var(--Spacing-3);width:8px;height:8px;border-radius:50%;background:var(--Negative-Bold)}
 .acard-row .arow-thumb{
-  position:relative;display:block;width:128px;height:84px;flex:0 0 auto;
+  position:relative;display:block;width:128px;min-height:84px;flex:0 0 auto;
   border-radius:var(--Shape-3);overflow:hidden;background:var(--Surface-Fill-Subtle);
 }
+/* fills the card's full inner height so the gap around it equals the card padding */
 .acard-row .arow-thumb img,
-.acard-row .arow-thumb video{width:100%;height:100%;object-fit:cover;display:block}
+.acard-row .arow-thumb video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .acard-row .arow-thumb.is-offline img,
 .acard-row .arow-thumb.is-offline video{opacity:.3}
 .acard-row .arow-thumb .arow-nomedia{position:absolute;inset:0;display:none;place-items:center;color:var(--Neutral-Low)}
