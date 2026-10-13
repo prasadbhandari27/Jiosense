@@ -12042,18 +12042,14 @@ window.addEventListener('error', function(e){
       var items = (g.items && g.items.length ? g.items : [g]).slice().sort(function(x, y){ return x.mins - y.mins; });
       if(!items.length) return false;
       var single = items.length === 1, focus = 0, list = items, heading = 'Events included';
-      if(single){
-        var a0 = items[0];
-        var same = currentAlerts().filter(function(a){ return a.cam === a0.cam && a.day === a0.day; }).sort(function(x, y){ return x.mins - y.mins; });
-        if(same.indexOf(a0) === -1) same = [a0];
-        list = same; focus = same.indexOf(a0);
-        heading = same.length > 1 ? 'Clips from ' + a0.cam + ' ' + dayPhrase(a0.day) : 'Events included';
-      }
+      var others = single ? currentAlerts().filter(function(a){ return a !== items[0] && a.cam === items[0].cam && a.day === items[0].day; }).length : 0;
       clips = list;
+      // the clip list only appears when the event is made of several clips
+      grid.closest('.inc-sec').hidden = single;
       var main = items.slice().sort(function(x, y){ return PRIORITY_RANK[x.priority] - PRIORITY_RANK[y.priority] || y.mins - x.mins; })[0];
       var known = !!(g.who && KNOWN_PEOPLE[g.who]);
       q('[data-inc-title]').textContent = single ? main.t : known ? g.who + '’s activity' : (g.who || 'Activity') + ' at ' + main.cam;
-      q('[data-inc-summary]').textContent = story(items, g.who, single, single ? list.length - 1 : 0);
+      q('[data-inc-summary]').textContent = story(items, g.who, single, others);
       q('[data-inc-head]').textContent = heading;
       // same rule as the Activity card
       var imp = q('[data-inc-imp]');
