@@ -2352,7 +2352,6 @@ button.oneui-Avatar{position:relative}
 .acard-row.is-hero .arow-hero-media img,.acard-row.is-hero .arow-hero-media video{width:100%;height:100%;object-fit:cover;display:block}
 .acard-row.is-hero .arow-hero-media .arow-nomedia{position:absolute;inset:0;display:none;place-items:center;color:var(--Neutral-Low)}
 .acard-row.is-hero .arow-hero-media.no-media .arow-nomedia{display:grid}
-.acard-row.is-hero .hero-cam{position:absolute;top:var(--Spacing-2);left:var(--Spacing-2);z-index:1}
 .acard-row.is-hero .hero-ft{display:flex;align-items:center;gap:var(--Spacing-2);min-height:32px}
 .acard-row.is-hero .hero-count{display:inline-flex;align-items:center;gap:4px}
 .acard-row.is-hero .hero-count svg{width:13px;height:13px}
@@ -11735,9 +11734,10 @@ window.addEventListener('error', function(e){
       '<span class="hero-top"><span class="arow-tags" aria-label="Detected: ' + htags.map(function(k){ return EV_TAG[k].label; }).join(', ') + '">' +
         htags.map(function(k){ return '<span class="arow-tag" title="' + EV_TAG[k].label + '">' + EV_TAG[k].svg + '</span>'; }).join('') + '</span>' +
       '<span class="oneui-Text hero-title" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral">' + title + '</span></span>';
-    var media = clipThumb(main, 'arow-hero-media');
-    media.insertAdjacentHTML('afterbegin', '<span class="oneui-Badge hero-cam" data-appearance="neutral" data-attention="high" data-size="s">' + main.cam + '</span>');
-    card.appendChild(media);
+    // path of the clips (cameras in time order) instead of a camera tag on the image
+    var route = items.map(function(it){ return it.cam; }).filter(function(c, i, arr){ return i === 0 || c !== arr[i - 1]; });
+    card.firstChild.insertAdjacentHTML('beforeend', '<span class="oneui-Text s hero-route" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low">' + route.join(' → ') + '</span>');
+    card.appendChild(clipThumb(main, 'arow-hero-media'));
 
     var ft = el('span', 'hero-ft');
     ft.innerHTML =
@@ -11755,10 +11755,15 @@ window.addEventListener('error', function(e){
     return b;
   }
 
+  /* Combined clips of someone not known, or a high-priority event → the big incident card */
+  function isHeroGroup(g){
+    var a = g.items[0], combined = g.items.length > 1;
+    var who = combined ? g.who : a.who;
+    return !(who && KNOWN_PEOPLE[who]) && (combined || a.priority === 'high');
+  }
   function buildSimpleRow(a, grp){
     var combined = !!(grp && grp.items.length > 1);
-    var heroWho = combined ? grp.who : a.who;
-    if(!(heroWho && KNOWN_PEOPLE[heroWho]) && (combined || a.priority === 'high'))
+    if(isHeroGroup(grp || { items:[a], who:a.who }))
       return buildHeroCard(combined ? grp : { cam:a.cam, day:a.day, place:a.place, who:a.who, items:[a] });
     // a div with role=button (not <button>) so it can hold the feedback buttons
     var b = el('div', 'acard-row');
@@ -12079,6 +12084,10 @@ window.addEventListener('error', function(e){
 
     /* Sort all groups by time ascending so sections flow naturally */
     var sortedGroups = groups.slice().sort(function(x, y){
+      /* the big incident cards lead the list (most important, then latest) */
+      var hx = isHeroGroup(x), hy = isHeroGroup(y);
+      if(hx !== hy) return hx ? -1 : 1;
+      if(hx) return PRIORITY_RANK[x.items[0].priority] - PRIORITY_RANK[y.items[0].priority] || y.items[0].mins - x.items[0].mins;
       /* high-priority first within each period still, but sections stay chronological */
       var pa = periodOf(x.items[0].mins), pb = periodOf(y.items[0].mins);
       if(pa.from !== pb.from) return pa.from - pb.from;
