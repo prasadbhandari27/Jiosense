@@ -1836,6 +1836,13 @@ button.oneui-Avatar{position:relative}
 /* ── CCTV Home — light theme ── */
 [data-screen="my-home"]{background:var(--App-Surface)}
 [data-screen="my-home"] .statusbar{background:var(--App-Surface)}
+.home-fresh{display:none}
+[data-screen="my-home"].is-fresh .home-fresh{display:block}
+[data-screen="my-home"].is-fresh .cctv-notif-carousel,
+[data-screen="my-home"].is-fresh .cctv-people-wrap,
+[data-screen="my-home"].is-fresh .cctv-room:not(.is-fresh-room){display:none}
+.home-fresh .home-fresh-empty{padding:var(--Spacing-6) var(--Spacing-6) var(--Spacing-8)}
+.home-fresh .home-fresh-hd{padding:0 var(--Spacing-4) var(--Spacing-3)}
 [data-screen="my-home"] .cctv-scroll{background:var(--App-Surface);padding-bottom:80px;padding-top:12px;padding-inline:0}
 .cctv-home-hdr{display:flex;align-items:center;justify-content:space-between;padding:var(--Spacing-4)}
 .cctv-loc{display:flex;align-items:center;gap:4px}
@@ -6304,6 +6311,28 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
       <button type="button" class="oneui-Avatar cctv-avatar-btn" data-size="xl" data-content="text" data-appearance="primary" data-attention="medium" aria-label="Profile" data-open="profile">P</button>
     </header>
     <main class="scroll cctv-scroll">
+      <!-- ── Just-onboarded Home (shown instead of the demo alerts / people / rooms when
+           .is-fresh is on the screen — set at the end of onboarding, or via #home-new).
+           Same empty-state language as Activity, then live cards for the cameras the user
+           just set up, in the rooms they picked. Filled by renderFreshHome(). ── -->
+      <div class="home-fresh" data-home-fresh>
+        <div class="evt-empty home-fresh-empty">
+          <svg class="evt-empty-art" viewBox="0 0 168 104" fill="none" aria-hidden="true">
+            <rect x="48" y="6" width="104" height="64" rx="12" style="fill:var(--Primary-Bold);opacity:.12"/>
+            <rect x="32" y="17" width="112" height="70" rx="12" style="fill:var(--Primary-Bold);opacity:.22"/>
+            <rect x="16" y="29" width="120" height="72" rx="12" style="fill:var(--Surface-Fill-Default);stroke:var(--Neutral-Stroke-Low)" stroke-width="1.5"/>
+            <path d="M58 52.5 47 57.4v9.5c0 6.3 4.7 11.7 11 13.1 6.3-1.4 11-6.8 11-13.1v-9.5l-11-4.9Z" style="fill:var(--Primary-Bold)"/>
+            <path d="m53.4 66.2 3.3 3.3 6-6.4" style="stroke:var(--Surface-Fill-Default)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="80" y="57" width="38" height="6" rx="3" style="fill:var(--Neutral-Stroke-Low)"/>
+            <rect x="80" y="69" width="24" height="6" rx="3" style="fill:var(--Primary-Bold)"/>
+          </svg>
+          <h3 class="oneui-Text" data-variant="title" data-size="M" data-appearance="neutral" data-text-align="center">You're all set</h3>
+          <p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium" data-text-align="center">Your cameras are live. Alerts and activity will show up here.</p>
+        </div>
+        <p class="oneui-Text home-fresh-hd" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral">Your cameras</p>
+        <div data-home-fresh-rooms></div>
+      </div>
+
       <!-- ── Notification carousel ── -->
       <div class="cctv-notif-carousel">
         <!-- Card 1 -->
@@ -7683,6 +7712,7 @@ window.addEventListener('error', function(e){
          advances to the next entry in OB_FLOW. */
       if(i >= OB_FLOW.length - 1){
         localStorage.setItem('jiosense_onboarded', '1');
+        if(typeof setFreshHome === 'function') setFreshHome(true);   // first-day Home
         openScreen('my-home');
         return;
       }
@@ -7942,7 +7972,7 @@ window.addEventListener('error', function(e){
        the first card. Opening a card runs that camera's scan: the scan line sweeps
        its live view, then the room field (and, for Tapo, the object checks) fade in. */
     var CAM_INFO = {
-      tapo:     { name:'Tapo - C201',        img:'assets/cam-mi360.png',   feed:'assets/livingroom-detections.png', room:'Living Room', env:'Indoor',  objects:['sofa','table','tv'] },
+      tapo:     { name:'Tapo - C201',        img:'assets/cam-mi360.png',   feed:'assets/livingroom-detections.png', live:'assets/livingroom-cam1.png', room:'Living Room', env:'Indoor',  objects:['sofa','table','tv'] },
       cpplus:   { name:'CP Plus - E45Q',     img:'assets/cam-battery.png', feed:'assets/kitchen.jpg',              room:'Kitchen',     env:'Indoor',  objects:['stove','fridge'] },
       trueview: { name:'TrueView - T18161S', img:'assets/dome-cam.png',    feed:'assets/frontporch.png',           room:'Entrance',    env:'Outdoor', objects:['door','gate'] }
     };
@@ -8283,6 +8313,48 @@ window.addEventListener('error', function(e){
         if(on && (!was || (opts && opts.rescan))) scanCamCard(card, opts);
       });
     }
+    /* ── Just-onboarded Home ─────────────────────────────────────────────
+       After the last onboarding step (or with #home-new) Home swaps the demo content
+       for a first-day view: the empty state plus a live card per camera the user set
+       up, grouped by the room they confirmed in Step 2. Kept for the session. */
+    function renderFreshHome(){
+      var host = document.querySelector('[data-home-fresh-rooms]');
+      if(!host) return;
+      var byRoom = {}, order = [];
+      camAccIds().forEach(function(id){
+        var r = camRoomOf(id);
+        if(!byRoom[r]){ byRoom[r] = []; order.push(r); }
+        byRoom[r].push(id);
+      });
+      host.innerHTML = order.map(function(room){
+        var ids = byRoom[room];
+        return '<div class="cctv-room is-fresh-room"><div class="cctv-room-card oneui-Surface" data-surface="elevated">' +
+          '<div class="cctv-room-hdr"><div>' +
+            '<p class="oneui-Text cctv-room-name" data-variant="title" data-size="M" data-appearance="neutral">' + room + '</p>' +
+            '<p class="oneui-Text cctv-room-meta" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low"><span class="oneui-IndicatorBadge cctv-dot green" data-appearance="sparkle" data-size="xs" aria-hidden="true"></span> ' + ids.length + ' Camera' + (ids.length > 1 ? 's' : '') + '</p>' +
+          '</div></div>' +
+          '<div class="cctv-cam-grid">' + ids.map(function(id){
+            var c = CAM_INFO[id];
+            return '<button type="button" class="cctv-cam-lg" data-open="cam-detail-live" aria-label="' + c.name + ' · Live">' +
+              '<img src="' + (c.live || c.feed) + '" alt="">' +   // clean live frame, not the detection overlay
+              '<div class="cctv-cam-gradient"></div>' +
+              '<span class="oneui-Text cctv-cam-name" data-variant="label" data-size="XS" data-weight="high">' + c.name + '</span>' +
+              '<span class="oneui-Badge cctv-cam-badge" data-appearance="neutral" data-attention="high" data-size="s"><span class="oneui-IndicatorBadge bdot live" data-appearance="negative" data-size="xs" aria-hidden="true"></span>Live</span>' +
+            '</button>';
+          }).join('') + '</div>' +
+        '</div></div>';
+      }).join('');
+    }
+    function setFreshHome(on){
+      var home = document.querySelector('[data-screen="my-home"]');
+      if(!home) return;
+      home.classList.toggle('is-fresh', on);
+      if(on){ renderFreshHome(); sessionStorage.setItem('jiosense_fresh', '1'); }
+      else sessionStorage.removeItem('jiosense_fresh');
+    }
+    window.__setFreshHome = setFreshHome;
+    if(location.hash === '#home-new' || sessionStorage.getItem('jiosense_fresh') === '1') setFreshHome(true);
+
     function primeCamRoom(opts){
       renderCamAcc();
       var first = camAccIds()[0];
