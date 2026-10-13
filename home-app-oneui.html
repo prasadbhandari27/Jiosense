@@ -1863,7 +1863,15 @@ button.oneui-Avatar{position:relative}
 .home-fresh .home-fresh-face::before,
 [data-screen="my-home"].is-fresh .unk-av-lg::before{content:"";position:absolute;inset:0;background:rgba(12,13,16,.38)}
 .home-fresh .home-fresh-face{width:36px;height:36px;font-size:17px;line-height:1;box-shadow:0 0 0 var(--Stroke-XL) var(--Surface-Fill-Default)}
-[data-screen="my-home"].is-fresh .unk-av-lg{font-size:32px}
+[data-screen="my-home"].is-fresh .unk-av-lg{font-size:0;overflow:visible}
+[data-screen="my-home"].is-fresh .unk-av-lg::before{display:none}
+.unk-av-lg .unk-av-q{display:none}
+[data-screen="my-home"].is-fresh .unk-av-lg .unk-av-q{
+  display:grid;place-items:center;position:absolute;right:-2px;bottom:-2px;width:24px;height:24px;border-radius:50%;
+  background:var(--Neutral-High);color:#fff;font-size:13px;font-weight:800;text-shadow:none;border:2px solid var(--Surface-Fill-Default);
+}
+#unk-btn-add{justify-content:center}
+#unk-btn-add .ap-sheet-opt-tx{flex:0 0 auto}
 .home-fresh .home-fresh-face,[data-screen="my-home"].is-fresh .unk-av-lg{isolation:isolate}
 .home-fresh .home-fresh-face::before,[data-screen="my-home"].is-fresh .unk-av-lg::before{z-index:-1}
 .home-fresh .home-fresh-hd{padding:0 var(--Spacing-4) var(--Spacing-3)}
@@ -6599,8 +6607,8 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
       <!-- View 1: main actions -->
       <div id="unk-view-main">
         <div class="unk-hero">
-          <div class="unk-av-lg" aria-hidden="true">?</div>
-          <span class="oneui-Badge" data-appearance="warning" data-attention="high" data-size="s">Unrecognised</span>
+          <div class="unk-av-lg" aria-hidden="true">?<span class="unk-av-q">?</span></div>
+          <span class="oneui-Badge" data-appearance="warning" data-attention="high" data-size="s">Unknown Person</span>
           <h2 class="oneui-Text" id="unk-title" data-variant="title" data-size="M" data-appearance="neutral" data-text-align="center">Unknown person</h2>
           <p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="low" data-text-align="center">Spotted today by your camera</p>
         </div>
@@ -6610,7 +6618,6 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="currentColor"/></svg>
             </span>
             <span class="ap-sheet-opt-tx"><span class="oneui-Text t" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral">Add as new person</span></span>
-            <span class="oneui-Icon unk-chevron" data-size="sm" data-appearance="neutral" data-emphasis="low" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </button>
           <button class="ap-sheet-opt oneui-Surface" data-surface="elevated" id="unk-btn-link" type="button">
             <span class="ap-sheet-opt-icon" aria-hidden="true">
