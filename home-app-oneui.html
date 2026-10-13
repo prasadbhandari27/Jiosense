@@ -2542,6 +2542,39 @@ button.oneui-Avatar{position:relative}
 .alert-list .acard-row .cam-line .cam-ico{width:14px;height:14px;flex:0 0 auto}
 .alert-list .acard-row .arow-count{display:inline-flex;align-items:center;gap:4px;margin-top:var(--Spacing-1-5)}
 .alert-list .acard-row .arow-count svg{width:13px;height:13px}
+/* ── Incident story screen ── */
+[data-screen="incident"] .appbar{gap:var(--Spacing-2)}
+.inc-title{margin:0;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.inc-scroll{padding:0 0 calc(var(--Spacing-8) + var(--Safe-Bottom))}
+.inc-media{position:relative;margin:0 var(--Spacing-4);aspect-ratio:4/3;border-radius:var(--Shape-4);overflow:hidden;background:var(--Media-Surface);box-shadow:var(--Elevation-2)}
+.inc-track{display:flex;height:100%;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.inc-track::-webkit-scrollbar{display:none}
+.inc-slide{flex:0 0 100%;height:100%;scroll-snap-align:start;display:block}
+.inc-slide img,.inc-slide video{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.inc-media .inc-stamp{position:absolute;top:var(--Spacing-3);left:var(--Spacing-3);pointer-events:none}
+.inc-media .inc-auto{position:absolute;top:var(--Spacing-2);right:var(--Spacing-2);gap:var(--Spacing-1);display:inline-flex;align-items:center}
+.inc-auto [data-inc-auto-ico]{display:inline-flex}
+.inc-auto[hidden],.inc-dots[hidden]{display:none}
+.inc-dots{position:absolute;left:50%;bottom:var(--Spacing-3);transform:translateX(-50%);display:flex;gap:6px;pointer-events:none}
+.inc-dots i{width:6px;height:6px;border-radius:3px;background:rgba(255,255,255,.6);box-shadow:0 0 2px rgba(0,0,0,.35);transition:width var(--Motion-Duration-Micro) var(--Motion-Easing-Standard)}
+.inc-dots i.is-on{width:18px;background:#fff}
+.inc-sec{padding:var(--Spacing-6) var(--Spacing-4) 0}
+.inc-sum-hd{display:flex;align-items:center;gap:var(--Spacing-2);margin-bottom:var(--Spacing-2)}
+.inc-spark{width:28px;height:28px;border-radius:50%;background:var(--Primary-Subtle);display:grid;place-items:center;flex:0 0 auto}
+.inc-imp{margin-left:auto}
+.inc-sum{margin:0}
+.inc-h{margin:0 0 var(--Spacing-3)}
+.inc-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--Spacing-3)}
+.inc-ev{display:flex;flex-direction:column;align-items:stretch;gap:0;padding:var(--Spacing-2);border:0;margin:0;text-align:left;font:inherit;color:inherit;cursor:pointer;
+  background:var(--Surface-Fill-Default);border-radius:var(--Shape-4);box-shadow:var(--Elevation-2);transition:box-shadow var(--Motion-Duration-Micro) var(--Motion-Easing-Standard)}
+.inc-ev[aria-current="true"]{box-shadow:var(--Elevation-2),inset 0 0 0 2px var(--Primary-Bold)}
+.inc-ev-th{position:relative;display:block;aspect-ratio:4/3;border-radius:var(--Shape-3);overflow:hidden;background:var(--Media-Surface)}
+.inc-ev-th img{width:100%;height:100%;object-fit:cover;display:block}
+.inc-ev-dur{position:absolute;right:6px;bottom:6px}
+.inc-ev-t{display:flex;align-items:flex-start;gap:6px;margin-top:var(--Spacing-2)}
+.inc-ev-t svg{width:16px;height:16px;flex:0 0 auto;margin-top:1px}
+.inc-ev-s{display:block;margin-top:var(--Spacing-0-5);padding-left:22px}
+
 /* important incident card */
 .alert-list .hero-card{flex-direction:column;gap:var(--Spacing-2-5);padding:var(--Spacing-3)}
 .alert-list .hero-card .hero-top{display:flex;flex-direction:column}
@@ -6229,6 +6262,42 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
 
   <!-- generic toast -->
   <!-- ================================================== SUMMARY (people + alerts) ================================================== -->
+  <!-- Incident story (unknown person): swipeable clips with auto-play, the AI story,
+       and every clip it was stitched from. Filled by window.__openIncident. -->
+  <section class="screen" data-screen="incident">
+    <div class="statusbar" aria-hidden="true"><span data-clock>08:14</span></div>
+    <header class="appbar">
+      <button class="oneui-IconButton back" data-size="10" data-appearance="neutral" data-attention="low" data-back aria-label="Back"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 5-7 7 7 7" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <h1 class="oneui-Text inc-title" data-variant="title" data-size="M" data-appearance="neutral" data-inc-title>Unknown person</h1>
+    </header>
+    <main class="scroll inc-scroll">
+      <div class="inc-media" data-inc-media>
+        <div class="inc-track" data-inc-track aria-roledescription="carousel"></div>
+        <span class="oneui-Badge inc-stamp" data-appearance="neutral" data-attention="high" data-size="s" data-inc-stamp></span>
+        <button type="button" class="oneui-Button inc-auto" data-size="8" data-appearance="neutral" data-attention="high" data-inc-auto aria-pressed="true">
+          <span data-inc-auto-ico aria-hidden="true"></span><span data-inc-auto-lbl>Auto-play</span>
+        </button>
+        <span class="inc-dots" data-inc-dots aria-hidden="true"></span>
+      </div>
+
+      <section class="inc-sec">
+        <div class="inc-sum-hd">
+          <span class="oneui-Icon inc-spark" data-size="sm" data-appearance="primary" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 3l1.6 4.9 4.9 1.6-4.9 1.6L12 16l-1.6-4.9L5.5 9.5l4.9-1.6L12 3Z" fill="currentColor"/><path d="M18.6 15.4l.7 2.1 2.1.7-2.1.7-.7 2.1-.7-2.1-2.1-.7 2.1-.7.7-2.1Z" fill="currentColor"/></svg>
+          </span>
+          <span class="oneui-Text" data-variant="label" data-size="M" data-weight="high" data-appearance="neutral">Story summary</span>
+          <span class="oneui-Badge inc-imp" data-size="s" data-attention="medium" data-inc-imp hidden></span>
+        </div>
+        <p class="oneui-Text inc-sum" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium" data-inc-summary></p>
+      </section>
+
+      <section class="inc-sec">
+        <p class="oneui-Text inc-h" data-variant="label" data-size="M" data-weight="high" data-appearance="neutral" role="heading" aria-level="2">Events included</p>
+        <div class="inc-grid" data-inc-grid></div>
+      </section>
+    </main>
+  </section>
+
   <section class="screen" data-screen="summary">
     <div class="statusbar" aria-hidden="true"><span data-clock>08:14</span></div>
     <header class="appbar" style="position:relative">
@@ -7399,6 +7468,11 @@ window.addEventListener('error', function(e){
     var alertEl = e.target.closest('[data-alert-open]');
     if(alertEl){
       var grp = alertEl._group || alertFromAttrs(alertEl);
+      if(grp && alertEl.classList.contains('is-hero') && typeof window.__openIncident === 'function' && window.__openIncident(grp)){
+        e.preventDefault();
+        open('incident');
+        return;
+      }
       if(grp){
         e.preventDefault();
         renderAlertSummary(grp);
@@ -9867,9 +9941,9 @@ window.addEventListener('error', function(e){
         { type:'motion',  priority:'low',  cam:'Kitchen',      day:0, mins:1095, who:'Priya', img:'assets/cam1.jpg',           t:'Dinner preparation — kitchen active' },
         /* An unknown person around the porch over ~10 min — groups into one combined card
            (unknown, so it keeps video: the most important clip big, the others small). */
-        { type:'person',  priority:'low',  cam:'Front Porch',  day:0, mins:1203, who:'Unknown person', img:'assets/front-porch-delivery.png', t:'Unknown person approached the gate', clip:true },
-        { type:'person',  priority:'low',  cam:'Front Porch',  day:0, mins:1209, who:'Unknown person', img:'assets/frontporch.png', t:'Unknown person waited by the door', clip:true },
-        { type:'person',  priority:'med',  cam:'Front Porch',  day:0, mins:1214, who:'Unknown person', img:'assets/unknown-face.jpg',   t:'Same unknown face seen again at door', clip:true },
+        { type:'person',  priority:'low',  cam:'Front Porch',  day:0, mins:1203, who:'Unknown person', img:'assets/frontporch.png', t:'Came in through the gate', step:'came in through the gate carrying a package', clip:true },
+        { type:'person',  priority:'low',  cam:'Front Porch',  day:0, mins:1209, who:'Unknown person', img:'assets/porch-package.png', t:'Rang the doorbell', step:'rang the doorbell', clip:true },
+        { type:'person',  priority:'med',  cam:'Front Porch',  day:0, mins:1214, who:'Unknown person', img:'assets/front-porch-delivery.png', t:'Waited at the door', step:'waited at the door', clip:true },
         { type:'motion',  priority:'low',  cam:'Living Room',  day:0, mins:1230, img:'assets/livingroom.jpg',     t:'Family gathered in the living room' },
         { type:'motion',  priority:'low',  cam:'Backyard',     day:0, mins:1260, img:'assets/cam4.jpg',           t:'Garden light triggered by motion' },
 
@@ -11718,6 +11792,110 @@ window.addEventListener('error', function(e){
     var lo = Math.min.apply(null, ms), hi = Math.max.apply(null, ms);
     return lo === hi ? fmtTimestamp(hi) : fmtTimestamp(lo) + ' – ' + fmtTimestamp(hi);
   }
+  /* ── Incident story screen (unknown person) ─────────────────────────
+     Clips swipe in the media (auto-play advances them), the story is stitched from
+     each clip's step, and the grid lists every clip — tapping one jumps the media to it. */
+  (function(){
+    var scr = document.querySelector('[data-screen="incident"]');
+    if(!scr) return;
+    var track = scr.querySelector('[data-inc-track]'), dots = scr.querySelector('[data-inc-dots]');
+    var stamp = scr.querySelector('[data-inc-stamp]'), grid = scr.querySelector('[data-inc-grid]');
+    var autoBtn = scr.querySelector('[data-inc-auto]'), autoIco = scr.querySelector('[data-inc-auto-ico]'), autoLbl = scr.querySelector('[data-inc-auto-lbl]');
+    var ICO_PLAY = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M8 5.5v13l11-6.5-11-6.5Z" fill="currentColor"/></svg>';
+    var ICO_PAUSE = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="6.5" y="5" width="3.6" height="14" rx="1" fill="currentColor"/><rect x="13.9" y="5" width="3.6" height="14" rx="1" fill="currentColor"/></svg>';
+    var clips = [], cur = 0, timer = null, auto = true;
+
+    function setAuto(on){
+      auto = on;
+      autoBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      autoIco.innerHTML = on ? ICO_PAUSE : ICO_PLAY;
+      autoLbl.textContent = on ? 'Pause' : 'Auto-play';
+      clearInterval(timer); timer = null;
+      if(on) timer = setInterval(function(){
+        if(!scr.classList.contains('is-active')){ clearInterval(timer); timer = null; return; }
+        go((cur + 1) % clips.length);
+      }, 3500);
+    }
+    function mark(i){
+      cur = i;
+      var c = clips[i];
+      if(!c) return;
+      stamp.textContent = c.cam + ' · ' + fmtTimestamp(c.mins);
+      Array.prototype.forEach.call(dots.children, function(d, k){ d.classList.toggle('is-on', k === i); });
+      Array.prototype.forEach.call(grid.children, function(g, k){ g.setAttribute('aria-current', k === i ? 'true' : 'false'); });
+    }
+    function go(i){
+      cur = i;
+      track.scrollTo({ left:i * track.clientWidth, behavior:'smooth' });
+      mark(i);
+    }
+    var scrollT;
+    track.addEventListener('scroll', function(){
+      clearTimeout(scrollT);
+      scrollT = setTimeout(function(){
+        var i = Math.round(track.scrollLeft / Math.max(1, track.clientWidth));
+        if(i !== cur) mark(i);
+      }, 60);
+    }, { passive:true });
+    // a hand on the media takes over from auto-play
+    track.addEventListener('pointerdown', function(){ if(auto) setAuto(false); });
+    autoBtn.addEventListener('click', function(){ setAuto(!auto); });
+
+    function story(items, who){
+      var steps = items.map(function(it){ return it.step; }).filter(Boolean);
+      var from = fmtTimestamp(items[0].mins), to = fmtTimestamp(items[items.length - 1].mins);
+      var cams = items.map(function(it){ return it.cam; }).filter(function(c, i, a){ return a.indexOf(c) === i; });
+      var where = cams.length === 1 ? 'at the ' + cams[0] : 'across ' + cams.join(', ');
+      var lead = (who === 'Unknown person' ? 'someone we don’t recognise' : who);
+      var body = 'Between ' + from + ' and ' + to + ' ' + where + ', ' + lead + ' ' +
+        (steps.length ? (steps.length > 1 ? steps.slice(0, -1).join(', ') + ' and then ' + steps[steps.length - 1] : steps[0]) : 'was seen in ' + items.length + ' clips') + '.';
+      return body + ' They aren’t one of your known people yet.';
+    }
+
+    window.__openIncident = function(g){
+      var items = (g.items || []).slice().sort(function(x, y){ return x.mins - y.mins; });
+      if(!items.length || !g.who || KNOWN_PEOPLE[g.who]) return false;   // only unknown people get the story screen
+      clips = items;
+      var main = items.slice().sort(function(x, y){ return PRIORITY_RANK[x.priority] - PRIORITY_RANK[y.priority] || y.mins - x.mins; })[0];
+      scr.querySelector('[data-inc-title]').textContent = g.who + ' at ' + main.cam;
+      scr.querySelector('[data-inc-summary]').textContent = story(items, g.who);
+      var imp = scr.querySelector('[data-inc-imp]'), top = PRIORITY_RANK[main.priority];
+      imp.hidden = top > 1;
+      imp.setAttribute('data-appearance', top === 0 ? 'negative' : 'warning');
+      imp.textContent = top === 0 ? 'High importance' : 'Worth a look';
+
+      track.innerHTML = ''; dots.innerHTML = ''; grid.innerHTML = '';
+      items.forEach(function(it, i){
+        var slide = el('span', 'inc-slide');
+        slide.setAttribute('role', 'group');
+        slide.setAttribute('aria-label', 'Clip ' + (i + 1) + ' of ' + items.length + ': ' + it.t);
+        slide.innerHTML = it.video ? '<video src="' + it.video + '" poster="' + (it.img || '') + '" muted playsinline autoplay loop></video>' : '<img src="' + it.img + '" alt="">';
+        track.appendChild(slide);
+        dots.appendChild(el('i'));
+
+        var dur = 30 + (it.mins % 7) * 11;
+        var card = el('button', 'inc-ev');
+        card.type = 'button';
+        card.setAttribute('aria-label', it.t + ', ' + it.cam + ', ' + fmtTimestamp(it.mins) + ', ' + mmss(dur));
+        card.innerHTML =
+          '<span class="inc-ev-th"><img src="' + it.img + '" alt="">' +
+            '<span class="oneui-Badge inc-ev-dur" data-appearance="neutral" data-attention="high" data-size="s">' + mmss(dur) + '</span></span>' +
+          '<span class="oneui-Text inc-ev-t" data-variant="label" data-size="S" data-weight="high" data-appearance="neutral">' + EV_TAG[eventTags(it)[0]].svg + '<span>' + it.t + '</span></span>' +
+          '<span class="oneui-Text inc-ev-s" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low">' + it.cam + ' · ' + fmtTimestamp(it.mins) + '</span>';
+        card.addEventListener('click', function(){ if(auto) setAuto(false); go(i); scr.querySelector('.scroll').scrollTo({ top:0, behavior:'smooth' }); });
+        grid.appendChild(card);
+      });
+      // mark the whole incident as read, like opening the card always did
+      items.forEach(function(it){ it.read = true; });
+      requestAnimationFrame(function(){ track.scrollLeft = 0; });
+      mark(0);
+      setAuto(items.length > 1);
+      autoBtn.hidden = items.length < 2;
+      dots.hidden = items.length < 2;
+      return true;
+    };
+  })();
+
   /* Camera line on an activity card: video-camera icon, then the camera name(s) */
   var CAM_ICO = '<svg class="cam-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2.5" y="6" width="13" height="12" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M15.5 10.2l5-3v9.6l-5-3" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>';
   function camLine(text){
