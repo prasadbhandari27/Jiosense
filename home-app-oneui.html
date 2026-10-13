@@ -11975,10 +11975,11 @@ window.addEventListener('error', function(e){
       var main = items.slice().sort(function(x, y){ return PRIORITY_RANK[x.priority] - PRIORITY_RANK[y.priority] || y.mins - x.mins; })[0];
       q('[data-inc-title]').textContent = g.who + ' at ' + main.cam;
       q('[data-inc-summary]').textContent = story(items, g.who);
-      var imp = q('[data-inc-imp]'), top = PRIORITY_RANK[main.priority];
-      imp.hidden = top > 1;
-      imp.setAttribute('data-appearance', top === 0 ? 'negative' : 'warning');
-      imp.textContent = top === 0 ? 'High importance' : 'Worth a look';
+      // an unknown person at the home is always flagged high importance
+      var imp = q('[data-inc-imp]');
+      imp.hidden = false;
+      imp.setAttribute('data-appearance', 'negative');
+      imp.textContent = 'High importance';
       autoIco.innerHTML = ICO_AUTO;
       fbOpen(false);
 
