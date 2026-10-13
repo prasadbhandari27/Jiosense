@@ -1894,17 +1894,15 @@ button.oneui-Avatar{position:relative}
 .home-fresh-notif .cctv-nudge{display:none}
 [data-screen="my-home"].is-fresh.has-unk .home-fresh-notif .cctv-nudge{display:flex}
 [data-screen="my-home"].is-fresh.has-unk .home-fresh-notif:has(.cctv-nudge) > .cctv-notif-card:not(.cctv-nudge){display:none}
-.cctv-nudge{width:300px;display:flex;flex-direction:column;gap:var(--Spacing-2-5)}
-.cctv-nudge .nudge-top{display:flex;gap:var(--Spacing-3);align-items:flex-start;padding-right:var(--Spacing-6)}
-.cctv-nudge .nudge-thumb{position:relative;flex:0 0 auto;width:64px;height:64px;border-radius:var(--Shape-3);overflow:hidden;background:var(--Media-Surface)}
+.cctv-nudge{width:300px;display:flex;flex-direction:column;cursor:pointer}
+.cctv-nudge .nudge-top{display:flex;gap:var(--Spacing-3);align-items:center;padding-right:var(--Spacing-6)}
+.cctv-nudge .nudge-thumb{position:relative;flex:0 0 auto;width:56px;height:56px;border-radius:var(--Shape-3);overflow:hidden;background:var(--Media-Surface)}
 .cctv-nudge .nudge-thumb img{width:100%;height:100%;object-fit:cover;display:block}
 .cctv-nudge .nudge-live{position:absolute;top:6px;left:6px;width:8px;height:8px;border-radius:50%;background:var(--Negative-Bold,#df012c);box-shadow:0 0 0 2px #fff}
 .cctv-nudge .nudge-tx{display:flex;flex-direction:column;align-items:flex-start;gap:var(--Spacing-1);min-width:0}
 .cctv-nudge .nudge-title{display:block}
 .cctv-nudge .nudge-meta{display:block}
-.cctv-nudge .nudge-body{margin:0}
-.cctv-nudge .nudge-acts{display:flex;gap:var(--Spacing-2)}
-.cctv-nudge .nudge-acts .oneui-Button{flex:1}
+.cctv-nudge:focus-visible{outline:2px solid var(--Focus-Outline);outline-offset:2px}
 .cctv-people-wrap{margin:0 var(--Spacing-4) var(--Spacing-4);border-radius:var(--Shape-5);background:var(--Surface-Fill-Elevated);box-shadow:var(--Elevation-2);overflow:hidden}
 .cctv-people-pill{display:flex;align-items:center;gap:10px;padding:8px 16px 8px 8px;min-height:52px;cursor:pointer;margin:0}
 .cctv-people-pill[aria-expanded="true"]{padding-left:16px}
@@ -12119,8 +12117,6 @@ window.addEventListener('error', function(e){
       if(!groups.length) return;
       var g = groups[groups.length - 1], items = g.items, first = items[0], last = items[items.length - 1];
       var main = items.slice().sort(function(x, y){ return PRIORITY_RANK[x.priority] - PRIORITY_RANK[y.priority] || y.mins - x.mins; })[0];
-      var steps = items.map(function(it){ return it.step; }).filter(Boolean);
-      var line = steps.length ? steps[0].charAt(0).toUpperCase() + steps[0].slice(1) + (steps.length > 1 ? ', then ' + steps[steps.length - 1] : '') + '.' : main.t + '.';
       var card = el('div', 'cctv-notif-card cctv-nudge oneui-Surface');
       card.setAttribute('data-surface', 'elevated');
       card.setAttribute('role', 'group');
@@ -12136,15 +12132,13 @@ window.addEventListener('error', function(e){
             '<span class="oneui-Text nudge-meta" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low">' +
               fmtTimestamp(first.mins) + (items.length > 1 ? ' – ' + fmtTimestamp(last.mins) + ' · ' + items.length + ' clips' : '') + '</span>' +
           '</span>' +
-        '</div>' +
-        '<p class="oneui-Text nudge-body" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="medium">' + line + '</p>' +
-        '<div class="nudge-acts">' +
-          '<button type="button" class="oneui-Button" data-appearance="primary" data-attention="high" data-size="8" data-alert-open="1">View clips</button>' +
-          '<button type="button" class="oneui-Button" data-appearance="neutral" data-attention="medium" data-size="8" data-nudge-known>Add as known</button>' +
         '</div>';
-      card.querySelector('[data-alert-open]')._group = g;
-      card.querySelector('[data-nudge-close]').addEventListener('click', function(){ card.remove(); });
-      card.querySelector('[data-nudge-known]').addEventListener('click', function(e){ if(window.__openUnkSheet) window.__openUnkSheet(e.currentTarget); });
+      // the whole card opens the event's story; the X only dismisses
+      card.setAttribute('role', 'button'); card.tabIndex = 0;
+      card.setAttribute('data-alert-open', '1');
+      card._group = g;
+      card.addEventListener('keydown', function(e){ if(e.target === card && (e.key === 'Enter' || e.key === ' ')){ e.preventDefault(); card.click(); } });
+      card.querySelector('[data-nudge-close]').addEventListener('click', function(e){ e.stopPropagation(); card.remove(); });
       row.insertBefore(card, row.firstChild);
     }
     setTimeout(renderHomeNudge, 0);
