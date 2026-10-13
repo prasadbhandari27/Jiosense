@@ -3087,6 +3087,25 @@ button.oneui-Avatar{position:relative}
 .ob-obj-chip-add{background:transparent;border:1px dashed var(--Neutral-Stroke-Medium,var(--Neutral-Low));cursor:pointer}
 .ob-obj-chip-add .ob-obj-chip-ico{color:var(--Primary-TintedA11y)}
 .ob-obj-chip-add:active{background:var(--Primary-Minimal)}
+/* Mark-the-object mode on a camera's live view */
+.ob-feed .ob-mark-layer{position:absolute;inset:0;pointer-events:none;touch-action:none;z-index:2}
+.ob-feed.is-marking .ob-mark-layer{pointer-events:auto;cursor:crosshair}
+.ob-feed.is-marking .ob-mark-layer:not(:has(.is-draft)){background:rgba(0,0,0,.45)}
+.ob-feed.is-marking .ob-live-pill{opacity:0}
+.ob-feed .ob-mark-hint{position:absolute;left:50%;bottom:var(--Spacing-2);transform:translateX(-50%);z-index:3;display:none;white-space:nowrap;pointer-events:none}
+.ob-feed.is-marking .ob-mark-hint{display:flex}
+.ob-mark-box{position:absolute;border:2px dashed var(--Primary-Bold);border-radius:var(--Shape-1);pointer-events:none}
+.ob-mark-box > span{position:absolute;left:-2px;top:-2px;transform:translateY(-100%);padding:1px 6px;border-radius:4px 4px 4px 0;background:var(--Primary-Bold);color:var(--Primary-Bold-High,#fff);font-size:10px;line-height:14px;font-weight:700;white-space:nowrap}
+.ob-mark-box.is-top > span{transform:none;border-radius:0 0 4px 0}
+.ob-mark-box.is-draft{border:2px solid #fff;border-radius:var(--Shape-1);box-shadow:0 0 0 9999px rgba(0,0,0,.45)}
+.ob-mark-box.is-draft i{position:absolute;width:10px;height:10px;background:#fff;border-radius:2px}
+.ob-mark-box.is-draft i:nth-child(1){left:-5px;top:-5px}.ob-mark-box.is-draft i:nth-child(2){right:-5px;top:-5px}
+.ob-mark-box.is-draft i:nth-child(3){left:-5px;bottom:-5px}.ob-mark-box.is-draft i:nth-child(4){right:-5px;bottom:-5px}
+.ob-mark-bar{display:flex;gap:var(--Spacing-2);margin-top:var(--Spacing-3)}
+.ob-mark-bar[hidden]{display:none}
+.obj-sheet .ob-obj-sheet-hd{display:flex;align-items:center;gap:var(--Spacing-3)}
+.obj-sheet .ob-obj-crop{flex:none;border-radius:var(--Shape-3);background-repeat:no-repeat;box-shadow:0 0 0 2px var(--Primary-Bold);background-color:var(--Surface-Fill-Minimal)}
+.obj-sheet .ob-obj-crop[hidden]{display:none}
 .obj-sheet .ob-obj-chips{display:flex;flex-wrap:wrap;gap:var(--Spacing-2);margin:var(--Spacing-4) 0 var(--Spacing-5)}
 .obj-sheet .ob-obj-chips:empty{display:none}
 .obj-sheet .ob-obj-add-btn{margin-top:var(--Spacing-4)}
@@ -3992,14 +4011,19 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
       </div>
     </div>
 
-    <!-- Add-object sheet — opened from the "Add object" tile in a camera card. Quick picks
-         are chips for common things worth watching (minus what that camera already has);
-         "Something else" takes free text. Either adds a tile marked "Added by you". -->
+    <!-- Name-object sheet — step 2 of "Add object": after the user boxes the object on the
+         live view, this shows a crop of what they marked, quick-pick chips (common things
+         worth watching, minus what that camera already has) and a free-text field. -->
     <div class="confirm-scrim" data-confirm-scrim="obj"></div>
     <div class="timer-sheet obj-sheet" data-obj-sheet role="dialog" aria-modal="true" aria-labelledby="obj-sheet-head">
       <span class="grabber" aria-hidden="true"></span>
-      <h3 class="oneui-Text ts-head" data-variant="title" data-size="M" data-appearance="neutral" id="obj-sheet-head">Add an object</h3>
-      <p class="oneui-Text ts-sub" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low" data-ob-obj-sub>Pick what this camera should keep an eye on.</p>
+      <div class="ob-obj-sheet-hd">
+        <span class="ob-obj-crop" data-ob-obj-crop aria-hidden="true"></span>
+        <div>
+          <h3 class="oneui-Text ts-head" data-variant="title" data-size="M" data-appearance="neutral" id="obj-sheet-head">Name this object</h3>
+          <p class="oneui-Text ts-sub" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low" data-ob-obj-sub>What did you just mark?</p>
+        </div>
+      </div>
       <div class="ob-obj-chips" data-ob-obj-chips></div>
       <div class="oneui-InputField">
         <label class="oneui-InputField-label" for="ob-obj-custom">Something else</label>
@@ -7905,19 +7929,113 @@ window.addEventListener('error', function(e){
           '<span class="ob-obj-chip-ico" aria-hidden="true">' + PLUS_SVG + '</span>' +
           '<span class="oneui-Text" data-variant="label" data-size="S" data-weight="high" data-appearance="primary">Add object</span>' +
         '</button>';
-      grid.querySelector('[data-ob-obj-open]').addEventListener('click', function(){ openObjSheet(id); });
+      grid.querySelector('[data-ob-obj-open]').addEventListener('click', function(){ startMarking(card, id); });
       grid.querySelectorAll('[data-ob-obj-del]').forEach(function(btn){
         btn.addEventListener('click', function(){
           state.camAdded[id].splice(+btn.getAttribute('data-ob-obj-del'), 1);
           renderObjGrid(card, id);
         });
       });
+      renderMarks(card, id);
+    }
+
+    /* ── Add object, step 1: mark it on the live view ──────────────────
+       The feed dims and the user drags a box around the object (a tap drops a default box;
+       dragging again redraws). Box is kept in fractions of the feed so it scales. Next opens
+       the name sheet with a crop of the marked area. User-added objects keep their box on
+       the feed as a dashed, labelled outline (AI detections are the solid ones). */
+    function boxStyle(b){ return 'left:' + (b.x * 100) + '%;top:' + (b.y * 100) + '%;width:' + (b.w * 100) + '%;height:' + (b.h * 100) + '%'; }
+    function renderMarks(card, id){
+      var layer = card.querySelector('[data-ob-mark-layer]');
+      if(!layer) return;
+      layer.querySelectorAll('.ob-mark-box:not(.is-draft)').forEach(function(n){ n.remove(); });
+      (state.camAdded[id] || []).forEach(function(o){
+        if(!o.box) return;
+        var n = document.createElement('div');
+        n.className = 'ob-mark-box' + (o.box.y < .1 ? ' is-top' : '');   // label goes inside when there's no room above
+        n.setAttribute('style', boxStyle(o.box));
+        n.innerHTML = '<span>' + (o.label || OBJ[o.key].label) + '</span>';
+        layer.appendChild(n);
+      });
+    }
+    function setHint(card, txt){ var h = card.querySelector('[data-ob-mark-hint]'); if(h) h.textContent = txt; }
+    function startMarking(card, id){
+      if(camAcc) camAcc.querySelectorAll('.ob-feed.is-marking').forEach(function(f){ stopMarking(f.closest('.ob-acc')); });
+      var feed = card.querySelector('.ob-feed'), bar = card.querySelector('[data-ob-mark-bar]');
+      card._markBox = null;
+      feed.classList.add('is-marking');
+      bar.hidden = false;
+      card.querySelector('[data-ob-mark-next]').disabled = true;
+      setHint(card, 'Drag a box around the object');
+      // bring the live view into view inside the step's scroll area
+      var main = card.closest('main');
+      if(main){ main.scrollTo({ top: main.scrollTop + feed.getBoundingClientRect().top - main.getBoundingClientRect().top - 16, behavior: 'smooth' }); }
+    }
+    function stopMarking(card){
+      if(!card) return;
+      var feed = card.querySelector('.ob-feed'), bar = card.querySelector('[data-ob-mark-bar]');
+      feed.classList.remove('is-marking');
+      if(bar) bar.hidden = true;
+      var d = card.querySelector('.ob-mark-box.is-draft');
+      if(d) d.remove();
+      card._markBox = null;
+    }
+    function wireMarking(card, id){
+      var layer = card.querySelector('[data-ob-mark-layer]'), feed = card.querySelector('.ob-feed');
+      var start = null, draft = null;
+      function pt(e){
+        var r = layer.getBoundingClientRect();
+        return { x: Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)), y: Math.min(1, Math.max(0, (e.clientY - r.top) / r.height)) };
+      }
+      function show(b){
+        if(!draft){
+          draft = document.createElement('div');
+          draft.className = 'ob-mark-box is-draft';
+          draft.innerHTML = '<i></i><i></i><i></i><i></i>';
+          layer.appendChild(draft);
+        }
+        draft.setAttribute('style', boxStyle(b));
+      }
+      layer.addEventListener('pointerdown', function(e){
+        if(!feed.classList.contains('is-marking')) return;
+        e.preventDefault();
+        try{ layer.setPointerCapture(e.pointerId); }catch(err){}
+        start = pt(e);
+        draft = layer.querySelector('.ob-mark-box.is-draft');
+        show({ x:start.x, y:start.y, w:0, h:0 });
+      });
+      layer.addEventListener('pointermove', function(e){
+        if(!start) return;
+        var p = pt(e);
+        show({ x:Math.min(start.x, p.x), y:Math.min(start.y, p.y), w:Math.abs(p.x - start.x), h:Math.abs(p.y - start.y) });
+      });
+      function finish(e){
+        if(!start) return;
+        var p = pt(e), b = { x:Math.min(start.x, p.x), y:Math.min(start.y, p.y), w:Math.abs(p.x - start.x), h:Math.abs(p.y - start.y) };
+        if(b.w < .06 || b.h < .06){   // a tap: drop a default box centred on it
+          b = { w:.3, h:.36 };
+          b.x = Math.min(1 - b.w, Math.max(0, start.x - b.w / 2));
+          b.y = Math.min(1 - b.h, Math.max(0, start.y - b.h / 2));
+        }
+        start = null;
+        show(b);
+        card._markBox = b;
+        card.querySelector('[data-ob-mark-next]').disabled = false;
+        setHint(card, 'Drag again to redraw');
+      }
+      layer.addEventListener('pointerup', finish);
+      layer.addEventListener('pointercancel', function(){ start = null; });
+      card.querySelector('[data-ob-mark-cancel]').addEventListener('click', function(){ stopMarking(card); });
+      card.querySelector('[data-ob-mark-next]').addEventListener('click', function(){
+        if(card._markBox) openObjSheet(id, card._markBox);
+      });
     }
 
     /* Add-object sheet */
     var objSheet = document.querySelector('[data-obj-sheet]'), objScrim = document.querySelector('[data-confirm-scrim="obj"]');
     var objChips = document.querySelector('[data-ob-obj-chips]'), objInput = document.querySelector('[data-ob-obj-input]');
-    var objAddBtn = document.querySelector('[data-ob-obj-add]'), objSheetCam = null;
+    var objAddBtn = document.querySelector('[data-ob-obj-add]'), objSheetCam = null, objSheetBox = null;
+    var objCrop = document.querySelector('[data-ob-obj-crop]');
     function closeObjSheet(){
       if(objScrim) objScrim.classList.remove('is-open');
       if(objSheet) objSheet.classList.remove('is-open');
@@ -7927,16 +8045,28 @@ window.addEventListener('error', function(e){
       var name = (o.label || OBJ[o.key].label).toLowerCase();
       var taken = CAM_INFO[id].objects.some(function(k){ return OBJ[k].label.toLowerCase() === name; }) ||
                   list.some(function(x){ return (x.label || OBJ[x.key].label).toLowerCase() === name; });
-      if(!taken) list.push(o);
+      if(!taken){ if(objSheetBox) o.box = objSheetBox; list.push(o); }
       var card = camAcc && camAcc.querySelector('[data-ob-acc="' + id + '"]');
-      if(card) renderObjGrid(card, id);
+      if(card){ stopMarking(card); renderObjGrid(card, id); }
       closeObjSheet();
     }
-    function openObjSheet(id){
+    function openObjSheet(id, box){
       if(!objSheet || !objScrim) return;
-      objSheetCam = id;
+      objSheetCam = id; objSheetBox = box || null;
       var sub = objSheet.querySelector('[data-ob-obj-sub]');
-      if(sub) sub.textContent = 'Pick what ' + CAM_INFO[id].name + ' should keep an eye on, or type your own.';
+      if(sub) sub.textContent = 'What did you just mark? Pick one or type your own.';
+      // crop of the marked area, sized to the box's own aspect so it isn't stretched
+      if(objCrop){
+        if(box){
+          var aspect = Math.min(1.75, Math.max(.6, (box.w * 16) / (box.h * 10))), hgt = 64;
+          objCrop.style.width = Math.round(hgt * aspect) + 'px';
+          objCrop.style.height = hgt + 'px';
+          objCrop.style.backgroundImage = 'url(' + CAM_INFO[id].feed + ')';
+          objCrop.style.backgroundSize = (100 / box.w) + '% ' + (100 / box.h) + '%';
+          objCrop.style.backgroundPosition = (box.w < 1 ? box.x / (1 - box.w) * 100 : 0) + '% ' + (box.h < 1 ? box.y / (1 - box.h) * 100 : 0) + '%';
+          objCrop.hidden = false;
+        } else objCrop.hidden = true;
+      }
       var have = CAM_INFO[id].objects.concat((state.camAdded[id] || []).map(function(o){ return o.key; }));
       objChips.innerHTML = ADDABLE.filter(function(k){ return have.indexOf(k) === -1; }).map(function(k){
         return '<button type="button" class="oneui-Chip chip" data-size="l" data-appearance="primary" data-attention="high" aria-pressed="false" data-ob-obj-pick="' + k + '">' + OBJ[k].label + '</button>';
@@ -7986,6 +8116,12 @@ window.addEventListener('error', function(e){
             '<span class="oneui-Badge ob-live-pill" data-appearance="neutral" data-attention="high" data-size="s"><span class="oneui-IndicatorBadge" data-appearance="negative" data-size="xs" aria-hidden="true"></span>Live</span>' +
             '<span class="ob-scan" data-ob-scan-line hidden></span>' +
             '<span class="oneui-Badge ob-scan-tag" data-appearance="neutral" data-attention="high" data-size="s" data-ob-scan-tag hidden>Scanning room…</span>' +
+            '<div class="ob-mark-layer" data-ob-mark-layer></div>' +
+            '<span class="oneui-Badge ob-mark-hint" data-appearance="neutral" data-attention="high" data-size="s" data-ob-mark-hint>Drag a box around the object</span>' +
+          '</div>' +
+          '<div class="ob-mark-bar" data-ob-mark-bar hidden>' +
+            '<button type="button" class="oneui-Button" data-appearance="neutral" data-attention="medium" data-size="10" data-full-width="true" data-ob-mark-cancel>Cancel</button>' +
+            '<button type="button" class="oneui-Button" data-appearance="primary" data-attention="high" data-size="10" data-full-width="true" data-ob-mark-next disabled>Next</button>' +
           '</div>' +
           // 1) what the scan found …
           '<div class="ob-scan-reveal ob-obj-block" data-ob-scan-reveal>' +
@@ -8004,6 +8140,7 @@ window.addEventListener('error', function(e){
           '</div>' +
         '</div></div></div>';
       renderObjGrid(el, id);
+      wireMarking(el, id);
       el.querySelector('.ob-acc-head').addEventListener('click', function(){
         if(el.classList.contains('is-open')) setCamAccOpen(null); else setCamAccOpen(id);
       });
@@ -8046,6 +8183,7 @@ window.addEventListener('error', function(e){
         var was = card.classList.contains('is-open');
         card.classList.toggle('is-open', on);
         card.querySelector('.ob-acc-head').setAttribute('aria-expanded', on ? 'true' : 'false');
+        if(!on || (opts && opts.rescan)) stopMarking(card);   // leaving or rescanning ends any marking
         if(on && (!was || (opts && opts.rescan))) scanCamCard(card, opts);
       });
     }
