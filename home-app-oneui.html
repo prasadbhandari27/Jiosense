@@ -2538,6 +2538,8 @@ button.oneui-Avatar{position:relative}
 .alert-list .acard-row .t{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
 .alert-list .acard-row .arow-who{display:flex}
 .alert-list .acard-row .s{display:block;margin-top:var(--Spacing-0-5)}
+.alert-list .acard-row .cam-line{display:flex;align-items:center;gap:4px}
+.alert-list .acard-row .cam-line .cam-ico{width:14px;height:14px;flex:0 0 auto}
 .alert-list .acard-row .arow-count{display:inline-flex;align-items:center;gap:4px;margin-top:var(--Spacing-1-5)}
 .alert-list .acard-row .arow-count svg{width:13px;height:13px}
 /* important incident card */
@@ -11716,6 +11718,14 @@ window.addEventListener('error', function(e){
     var lo = Math.min.apply(null, ms), hi = Math.max.apply(null, ms);
     return lo === hi ? fmtTimestamp(hi) : fmtTimestamp(lo) + ' – ' + fmtTimestamp(hi);
   }
+  /* Camera line on an activity card: video-camera icon, then the camera name(s) */
+  var CAM_ICO = '<svg class="cam-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2.5" y="6" width="13" height="12" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M15.5 10.2l5-3v9.6l-5-3" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>';
+  function camLine(text){
+    var n = el('span', 's cam-line');
+    n.innerHTML = CAM_ICO;
+    n.appendChild(document.createTextNode(text));
+    return n;
+  }
   function buildHeroCard(g){
     var items = g.items, first = items[0], last = items[items.length - 1], multi = items.length > 1;
     var main = items.slice().sort(function(x, y){
@@ -11744,7 +11754,7 @@ window.addEventListener('error', function(e){
       '<span class="oneui-Text hero-title" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral">' + title + '</span></span>';
     // path of the clips (cameras in time order) instead of a camera tag on the image
     var route = items.map(function(it){ return it.cam; }).filter(function(c, i, arr){ return i === 0 || c !== arr[i - 1]; });
-    card.firstChild.insertAdjacentHTML('beforeend', '<span class="oneui-Text s hero-route" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low">' + route.join(' → ') + '</span>');
+    card.firstChild.insertAdjacentHTML('beforeend', '<span class="oneui-Text s cam-line hero-route" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low">' + CAM_ICO + route.join(' → ') + '</span>');
     card.appendChild(clipThumb(main, 'arow-hero-media'));
 
     var ft = el('span', 'hero-ft');
@@ -11824,7 +11834,7 @@ window.addEventListener('error', function(e){
       head.appendChild(whoAvatar(who));
       head.appendChild(document.createTextNode(who));
       tx.appendChild(oneuiText(head, 'body', 'S', null, 'high'));
-      tx.appendChild(oneuiText(el('span', 's', route.join(' → ')), 'label', 'XS', 'low'));
+      tx.appendChild(oneuiText(camLine(route.join(' → ')), 'label', 'XS', 'low'));
       // same clip counter as the important-incident card
       tx.insertAdjacentHTML('beforeend', '<span class="oneui-Text hero-count arow-count" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="7" width="14" height="13" rx="2.5" stroke="currentColor" stroke-width="2"/><path d="M7 4h11.5A2.5 2.5 0 0 1 21 6.5V16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>' + items.length + ' clips</span>');
       b.setAttribute('aria-label', who + ', ' + items.length + ' clips, ' + route.join(', ') + ', ' + fmtTimestamp(a.mins) + ' to ' + fmtTimestamp(last.mins));
@@ -11833,10 +11843,10 @@ window.addEventListener('error', function(e){
       kh.appendChild(whoAvatar(who));
       kh.appendChild(document.createTextNode(a.t));
       tx.appendChild(oneuiText(kh, 'body', 'S', null, 'high'));
-      tx.appendChild(oneuiText(el('span', 's', (a.place ? a.place + ' · ' : '') + a.cam), 'label', 'XS', 'low'));
+      tx.appendChild(oneuiText(camLine((a.place ? a.place + ' · ' : '') + a.cam), 'label', 'XS', 'low'));
     } else {
       tx.appendChild(oneuiText(el('span', 't', a.t), 'body', 'S', null, 'high'));
-      tx.appendChild(oneuiText(el('span', 's', (a.place ? a.place + ' · ' : '') + a.cam), 'label', 'XS', 'low'));
+      tx.appendChild(oneuiText(camLine((a.place ? a.place + ' · ' : '') + a.cam), 'label', 'XS', 'low'));
     }
     /* The other clips of a combined (unknown) incident as small thumbnails. */
     if(combined && !known){
