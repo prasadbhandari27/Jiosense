@@ -1890,6 +1890,21 @@ button.oneui-Avatar{position:relative}
 .cctv-notif-title{margin:0 0 var(--Spacing-0-5)}
 .cctv-notif-body{margin:0 0 var(--Spacing-3)}
 .cctv-notif-close{position:absolute;top:var(--Spacing-1-5);right:var(--Spacing-1-5)}
+/* High-importance nudge (unknown person) */
+.home-fresh-notif .cctv-nudge{display:none}
+[data-screen="my-home"].is-fresh.has-unk .home-fresh-notif .cctv-nudge{display:flex}
+[data-screen="my-home"].is-fresh.has-unk .home-fresh-notif:has(.cctv-nudge) > .cctv-notif-card:not(.cctv-nudge){display:none}
+.cctv-nudge{width:300px;display:flex;flex-direction:column;gap:var(--Spacing-2-5)}
+.cctv-nudge .nudge-top{display:flex;gap:var(--Spacing-3);align-items:flex-start;padding-right:var(--Spacing-6)}
+.cctv-nudge .nudge-thumb{position:relative;flex:0 0 auto;width:64px;height:64px;border-radius:var(--Shape-3);overflow:hidden;background:var(--Media-Surface)}
+.cctv-nudge .nudge-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.cctv-nudge .nudge-live{position:absolute;top:6px;left:6px;width:8px;height:8px;border-radius:50%;background:var(--Negative-Bold,#df012c);box-shadow:0 0 0 2px #fff}
+.cctv-nudge .nudge-tx{display:flex;flex-direction:column;align-items:flex-start;gap:var(--Spacing-1);min-width:0}
+.cctv-nudge .nudge-title{display:block}
+.cctv-nudge .nudge-meta{display:block}
+.cctv-nudge .nudge-body{margin:0}
+.cctv-nudge .nudge-acts{display:flex;gap:var(--Spacing-2)}
+.cctv-nudge .nudge-acts .oneui-Button{flex:1}
 .cctv-people-wrap{margin:0 var(--Spacing-4) var(--Spacing-4);border-radius:var(--Shape-5);background:var(--Surface-Fill-Elevated);box-shadow:var(--Elevation-2);overflow:hidden}
 .cctv-people-pill{display:flex;align-items:center;gap:10px;padding:8px 16px 8px 8px;min-height:52px;cursor:pointer;margin:0}
 .cctv-people-pill[aria-expanded="true"]{padding-left:16px}
@@ -8602,6 +8617,8 @@ window.addEventListener('error', function(e){
       var pill = document.querySelector('[data-fresh-people]');
       if(!pill) return;
       pill.setAttribute('data-state', on ? 'unknown' : 'empty');
+      var home = document.querySelector('[data-screen="my-home"]');
+      if(home) home.classList.toggle('has-unk', !!on);   // first-day notification card becomes the incident nudge
       var row = pill.querySelector('[data-fresh-unk-pill]');
       if(row){
         if(on){ row.setAttribute('role', 'button'); row.tabIndex = 0; row.setAttribute('aria-label', 'Unknown person in the home'); }
@@ -12087,6 +12104,52 @@ window.addEventListener('error', function(e){
     var items = g.items || [g];
     return !!(g.who && !KNOWN_PEOPLE[g.who]) || items.some(function(it){ return it.priority === 'high'; });
   }
+
+  /* ── Home nudge: the latest high-importance incident leads the notification row ──
+     Built from the same group as its Activity card, so "View clips" opens the same story. */
+  (function(){
+    function renderHomeNudge(){
+      // the regular notification row, and the first-day row (shown there once the unknown person is spotted)
+      document.querySelectorAll('[data-screen="my-home"] .cctv-notif-carousel').forEach(buildNudge);
+    }
+    function buildNudge(row){
+      var old = row.querySelector('.cctv-nudge'); if(old) old.remove();
+      var groups = groupByPerson(currentAlerts().filter(function(a){ return a.day === 0; }))
+        .filter(function(g){ return g.who && !KNOWN_PEOPLE[g.who]; });
+      if(!groups.length) return;
+      var g = groups[groups.length - 1], items = g.items, first = items[0], last = items[items.length - 1];
+      var main = items.slice().sort(function(x, y){ return PRIORITY_RANK[x.priority] - PRIORITY_RANK[y.priority] || y.mins - x.mins; })[0];
+      var steps = items.map(function(it){ return it.step; }).filter(Boolean);
+      var line = steps.length ? steps[0].charAt(0).toUpperCase() + steps[0].slice(1) + (steps.length > 1 ? ', then ' + steps[steps.length - 1] : '') + '.' : main.t + '.';
+      var card = el('div', 'cctv-notif-card cctv-nudge oneui-Surface');
+      card.setAttribute('data-surface', 'elevated');
+      card.setAttribute('role', 'group');
+      card.setAttribute('aria-label', 'High importance: ' + g.who + ' at ' + main.cam);
+      card.innerHTML =
+        '<button class="oneui-IconButton cctv-notif-close" data-size="8" data-appearance="neutral" data-attention="low" aria-label="Dismiss" data-nudge-close>' +
+          '<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>' +
+        '<div class="nudge-top">' +
+          '<span class="nudge-thumb"><img src="' + main.img + '" alt=""><span class="nudge-live" aria-hidden="true"></span></span>' +
+          '<span class="nudge-tx">' +
+            '<span class="oneui-Badge" data-appearance="negative" data-attention="medium" data-size="s">High importance</span>' +
+            '<span class="oneui-Text nudge-title" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">' + g.who + ' at ' + main.cam + '</span>' +
+            '<span class="oneui-Text nudge-meta" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low">' +
+              fmtTimestamp(first.mins) + (items.length > 1 ? ' – ' + fmtTimestamp(last.mins) + ' · ' + items.length + ' clips' : '') + '</span>' +
+          '</span>' +
+        '</div>' +
+        '<p class="oneui-Text nudge-body" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="medium">' + line + '</p>' +
+        '<div class="nudge-acts">' +
+          '<button type="button" class="oneui-Button" data-appearance="primary" data-attention="high" data-size="8" data-alert-open="1">View clips</button>' +
+          '<button type="button" class="oneui-Button" data-appearance="neutral" data-attention="medium" data-size="8" data-nudge-known>Add as known</button>' +
+        '</div>';
+      card.querySelector('[data-alert-open]')._group = g;
+      card.querySelector('[data-nudge-close]').addEventListener('click', function(){ card.remove(); });
+      card.querySelector('[data-nudge-known]').addEventListener('click', function(e){ if(window.__openUnkSheet) window.__openUnkSheet(e.currentTarget); });
+      row.insertBefore(card, row.firstChild);
+    }
+    setTimeout(renderHomeNudge, 0);
+    window.__renderHomeNudge = renderHomeNudge;
+  })();
 
   /* Camera line on an activity card: video-camera icon, then the camera name(s) */
   var CAM_ICO = '<svg class="cam-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2.5" y="6" width="13" height="12" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M15.5 10.2l5-3v9.6l-5-3" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>';
