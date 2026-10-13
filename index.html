@@ -72,7 +72,14 @@
 
   --Touch-Target-Min:44px;
   --Disabled-Opacity:.38;
-  --App-Surface:#f2f2f7;     /* page background on every light screen — the Home surface; cards and bars stay white on it */   /* referenced by the brand sheet's --*-disabledOpacity tokens but never defined there */
+  --App-Surface:#f2f2f7;
+  /* Bottom-sheet motion (no overshoot, no fade on the sheet itself): slides up decelerating
+     over 450ms, slides away accelerating over 300ms — close is quicker than open, as in iOS
+     sheets and Material 3. Built on the brand's Entrance/Exit-Moderate curves. */
+  --Sheet-Enter:var(--Motion-Duration-XL,450ms) var(--Motion-Easing-Entrance-Moderate,cubic-bezier(.25,.8,.5,1));
+  --Sheet-Exit:var(--Motion-Duration-L,300ms) var(--Motion-Easing-Exit-Moderate,cubic-bezier(.7,.1,.9,.7));
+  --Scrim-Enter:var(--Motion-Duration-L,300ms) var(--Motion-Easing-Entrance-Moderate,ease-out);
+  --Scrim-Exit:var(--Motion-Duration-M,200ms) var(--Motion-Easing-Exit-Moderate,ease-in);     /* page background on every light screen — the Home surface; cards and bars stay white on it */   /* referenced by the brand sheet's --*-disabledOpacity tokens but never defined there */
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -1863,8 +1870,8 @@ button.oneui-Avatar{position:relative}
 /* Unknown person sheet */
 .unk-overlay{position:absolute;inset:0;background:rgba(0,0,0,.35);z-index:50;opacity:0;pointer-events:none;transition:opacity .3s}
 .unk-overlay.is-up{opacity:1;pointer-events:auto}
-.unk-sheet{position:absolute;bottom:0;left:0;right:0;z-index:51;background:var(--Neutral-Page);border-radius:24px 24px 0 0;padding:12px 16px calc(32px + var(--Safe-Bottom,env(safe-area-inset-bottom)));transform:translateY(100%);transition:transform .38s cubic-bezier(.34,1.1,.64,1)}
-.unk-sheet.is-up{transform:translateY(0)}
+.unk-sheet{position:absolute;bottom:0;left:0;right:0;z-index:51;background:var(--Neutral-Page);border-radius:24px 24px 0 0;padding:12px 16px calc(32px + var(--Safe-Bottom,env(safe-area-inset-bottom)));transform:translateY(100%);transition:transform var(--Sheet-Exit)}
+.unk-sheet.is-up{transform:translateY(0);transition:transform var(--Sheet-Enter)}
 .unk-hero{display:flex;flex-direction:column;align-items:center;gap:var(--Spacing-1-5);padding:var(--Spacing-2) 0 var(--Spacing-1)}
 .unk-av-lg{width:72px;height:72px;border-radius:var(--Shape-Pill);background:var(--Surface-Fill-Minimal);display:grid;place-items:center;font-size:var(--Headline-L-FontSize);font-weight:var(--Typography-Weight-Bold);color:var(--Neutral-Low);border:2px dashed var(--Border-Default)}
 .unk-hero .oneui-Text[data-variant="title"]{margin-top:var(--Spacing-0-5)}
@@ -1889,10 +1896,10 @@ button.oneui-Avatar{position:relative}
 .ap-photo-ring.has-photo .ap-photo-icon{display:none}
 .ap-photo-icon{display:flex;flex-direction:column;align-items:center;gap:var(--Spacing-1-5);color:var(--Neutral-Low)}
 .ap-photo-icon svg{width:28px;height:28px}
-.ap-sheet-scrim{position:absolute;inset:0;z-index:40;background:var(--Scrim-Modal);opacity:0;pointer-events:none;transition:opacity .3s ease}
-.ap-sheet-scrim.is-up{opacity:1;pointer-events:auto}
-.ap-photo-sheet{position:absolute;bottom:0;left:0;right:0;z-index:41;background:var(--Surface-Fill-Minimal);border-radius:var(--Shape-6) var(--Shape-6) 0 0;padding:var(--Spacing-3) var(--Spacing-4) calc(var(--Spacing-8) + var(--Safe-Bottom,env(safe-area-inset-bottom)));transform:translateY(100%);transition:transform .38s cubic-bezier(.34,1.1,.64,1)}
-.ap-photo-sheet.is-up{transform:translateY(0)}
+.ap-sheet-scrim{position:absolute;inset:0;z-index:40;background:var(--Scrim-Modal);opacity:0;pointer-events:none;transition:opacity var(--Scrim-Exit)}
+.ap-sheet-scrim.is-up{opacity:1;pointer-events:auto;transition:opacity var(--Scrim-Enter)}
+.ap-photo-sheet{position:absolute;bottom:0;left:0;right:0;z-index:41;background:var(--Surface-Fill-Minimal);border-radius:var(--Shape-6) var(--Shape-6) 0 0;padding:var(--Spacing-3) var(--Spacing-4) calc(var(--Spacing-8) + var(--Safe-Bottom,env(safe-area-inset-bottom)));transform:translateY(100%);transition:transform var(--Sheet-Exit)}
+.ap-photo-sheet.is-up{transform:translateY(0);transition:transform var(--Sheet-Enter)}
 .ap-sheet-handle{width:36px;height:4px;border-radius:var(--Shape-Pill);background:var(--Border-Default);margin:0 auto 18px}
 .ap-sheet-title{padding:0 var(--Spacing-1) var(--Spacing-4)}
 .ap-sheet-opts{display:flex;flex-direction:column;gap:var(--Spacing-4)}
@@ -1936,8 +1943,8 @@ button.oneui-Avatar{position:relative}
 .pd-row-value{font-size:15px;font-weight:600;color:var(--Neutral-High)}
 .pd-footer{position:absolute;bottom:0;left:0;right:0;padding:16px 20px calc(16px + var(--Safe-Bottom,env(safe-area-inset-bottom)));background:#fff;border-top:1px solid rgba(0,0,0,.07)}
 /* photo sheet reuse */
-.pd-photo-sheet{position:absolute;bottom:0;left:0;right:0;z-index:41;background:#fff;border-radius:20px 20px 0 0;padding:12px 0 40px;transform:translateY(100%);transition:transform .38s cubic-bezier(.34,1.1,.64,1)}
-.pd-photo-sheet.is-up{transform:translateY(0)}
+.pd-photo-sheet{position:absolute;bottom:0;left:0;right:0;z-index:41;background:#fff;border-radius:20px 20px 0 0;padding:12px 0 40px;transform:translateY(100%);transition:transform var(--Sheet-Exit)}
+.pd-photo-sheet.is-up{transform:translateY(0);transition:transform var(--Sheet-Enter)}
 .pd-photo-sheet-row{display:flex;align-items:center;gap:14px;padding:14px 20px;font-size:16px;font-weight:500;cursor:pointer}
 .pd-photo-sheet-row:active{background:rgba(0,0,0,.04)}
 .pd-photo-sheet-row svg{width:22px;height:22px;color:var(--Primary-Bold);flex-shrink:0}
@@ -2522,8 +2529,8 @@ button.oneui-Avatar{position:relative}
 /* misc */
 .hidden{display:none!important}
 .stack-gap{display:flex;flex-direction:column;gap:12px}
-.confirm-scrim{position:absolute;inset:0;z-index:70;background:var(--Scrim-Modal);opacity:0;visibility:hidden;transition:opacity .22s ease,visibility .22s}
-.confirm-scrim.is-open{opacity:1;visibility:visible}
+.confirm-scrim{position:absolute;inset:0;z-index:70;background:var(--Scrim-Modal);opacity:0;visibility:hidden;transition:opacity var(--Scrim-Exit),visibility 0s linear var(--Motion-Duration-M,200ms)}
+.confirm-scrim.is-open{opacity:1;visibility:visible;transition:opacity var(--Scrim-Enter),visibility 0s}
 .confirm{position:absolute;left:var(--Spacing-5);right:var(--Spacing-5);top:50%;transform:translateY(-50%) scale(.94);z-index:71;opacity:0;visibility:hidden;transition:opacity .22s ease,transform .22s ease,visibility .22s}
 
 /* ── Bottom sheet: arm-duration picker ─────────────────────────────────────
@@ -2536,11 +2543,11 @@ button.oneui-Avatar{position:relative}
   background:var(--Surface-Fill-Default);
   border-radius:var(--Shape-3) var(--Shape-3) 0 0;
   padding:var(--Spacing-3) var(--Spacing-6) calc(var(--Spacing-6) + var(--Safe-Bottom,env(safe-area-inset-bottom,0px)));
-  transform:translateY(100%);opacity:0;visibility:hidden;
-  transition:opacity .22s ease,transform .28s var(--Motion-Easing-Spring),visibility .22s;
+  transform:translateY(100%);visibility:hidden;
+  transition:transform var(--Sheet-Exit),visibility 0s linear var(--Motion-Duration-L,300ms);
   box-shadow:var(--Elevation-3);
 }
-.timer-sheet.is-open{opacity:1;visibility:visible;transform:translateY(0)}
+.timer-sheet.is-open{visibility:visible;transform:translateY(0);transition:transform var(--Sheet-Enter),visibility 0s}
 .timer-sheet .grabber{
   display:block;width:36px;height:4px;
   border-radius:var(--Shape-Pill);background:var(--Neutral-Moderate);
@@ -2797,8 +2804,8 @@ button.oneui-Avatar{position:relative}
 .ob-search-handle{stroke:var(--Neutral-High);stroke-width:8;stroke-linecap:round}
 .ob-loading-title{transition:opacity var(--Motion-Duration-L) var(--Motion-Easing-Standard)}
 .ob-loading-sub{margin:0 auto;max-width:280px}
-.ob-problem-sheet{position:absolute;bottom:0;left:0;right:0;background:var(--Surface-Fill-Default);border-radius:var(--Shape-5) var(--Shape-5) 0 0;padding:var(--Spacing-5) var(--Spacing-6) calc(var(--Spacing-10) + var(--Safe-Bottom,env(safe-area-inset-bottom)));transform:translateY(100%);transition:transform .45s cubic-bezier(.34,1.56,.64,1);box-shadow:0 calc(-1 * var(--Spacing-0-5)) var(--Spacing-5) var(--Overlay-On-Media-Low);z-index:10}
-.ob-problem-sheet.is-up{transform:translateY(0)}
+.ob-problem-sheet{position:absolute;bottom:0;left:0;right:0;background:var(--Surface-Fill-Default);border-radius:var(--Shape-5) var(--Shape-5) 0 0;padding:var(--Spacing-5) var(--Spacing-6) calc(var(--Spacing-10) + var(--Safe-Bottom,env(safe-area-inset-bottom)));transform:translateY(100%);transition:transform var(--Sheet-Exit);box-shadow:0 calc(-1 * var(--Spacing-0-5)) var(--Spacing-5) var(--Overlay-On-Media-Low);z-index:10}
+.ob-problem-sheet.is-up{transform:translateY(0);transition:transform var(--Sheet-Enter)}
 .ob-problem-label{font-size:11px;font-weight:600;color:rgba(0,0,0,.4);text-transform:uppercase;letter-spacing:.6px;margin:0 0 6px;text-align:center}
 .ob-problem-q{margin:0 0 var(--Spacing-4-5)}
 .ob-problem-close{position:absolute;top:var(--Spacing-3);right:var(--Spacing-3)}
