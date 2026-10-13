@@ -11708,6 +11708,8 @@ window.addEventListener('error', function(e){
      importance"): time range, story title, full-width media, then importance · clip count
      · thumbs up/down. Used for combined incidents that aren't a known person, and for any
      high-priority event. A div with role=button, since it holds the feedback buttons. */
+  /* A card's time on the rail is its most recent clip */
+  function latestMins(items){ return Math.max.apply(null, items.map(function(it){ return it.mins; })); }
   function buildHeroCard(g){
     var items = g.items, first = items[0], last = items[items.length - 1], multi = items.length > 1;
     var main = items.slice().sort(function(x, y){
@@ -11727,7 +11729,7 @@ window.addEventListener('error', function(e){
 
     // time (and day) sit outside the card, on the timeline rail
     b.innerHTML = '<span class="arow-ts"><span class="oneui-Text arow-time" data-variant="label" data-size="S" data-weight="high" data-appearance="neutral" data-attention="medium">' +
-      fmtTimestamp(first.mins) + (multi ? ' – ' + fmtTimestamp(last.mins) : '') + '</span></span>';
+      fmtTimestamp(latestMins(items)) + '</span></span>';
     var card = el('span', 'hero-card');
     var htags = items.reduce(function(acc, it){ eventTags(it).forEach(function(k){ if(acc.indexOf(k) === -1) acc.push(k); }); return acc; }, []).slice(0, 4);
     card.innerHTML =
@@ -11790,7 +11792,7 @@ window.addEventListener('error', function(e){
       return node;
     }
     var ts = el('span', 'arow-ts');
-    ts.appendChild(oneuiText(el('span', 'arow-time', combined ? fmtTimestamp(a.mins) + ' – ' + fmtTimestamp(last.mins) : fmtTimestamp(a.mins)), 'label', 'S', 'medium', 'high'));
+    ts.appendChild(oneuiText(el('span', 'arow-time', fmtTimestamp(latestMins(items))), 'label', 'S', 'medium', 'high'));
     b.appendChild(ts);
     b.appendChild(el('span', 'arow-div'));
 
@@ -12087,12 +12089,9 @@ window.addEventListener('error', function(e){
       /* the big incident cards lead the list (most important, then latest) */
       var hx = isHeroGroup(x), hy = isHeroGroup(y);
       if(hx !== hy) return hx ? -1 : 1;
-      if(hx) return PRIORITY_RANK[x.items[0].priority] - PRIORITY_RANK[y.items[0].priority] || y.items[0].mins - x.items[0].mins;
-      /* high-priority first within each period still, but sections stay chronological */
-      var pa = periodOf(x.items[0].mins), pb = periodOf(y.items[0].mins);
-      if(pa.from !== pb.from) return pa.from - pb.from;
-      var ra = PRIORITY_RANK[x.items[0].priority], rb = PRIORITY_RANK[y.items[0].priority];
-      return ra !== rb ? ra - rb : x.items[0].mins - y.items[0].mins;
+      if(hx) return PRIORITY_RANK[x.items[0].priority] - PRIORITY_RANK[y.items[0].priority] || latestMins(y.items) - latestMins(x.items);
+      /* the rest is a plain timeline, ordered by the time shown on the rail */
+      return latestMins(x.items) - latestMins(y.items);
     });
 
     var lastPeriodKey = null;
