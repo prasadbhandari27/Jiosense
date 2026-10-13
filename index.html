@@ -11710,6 +11710,12 @@ window.addEventListener('error', function(e){
      high-priority event. A div with role=button, since it holds the feedback buttons. */
   /* A card's time on the rail is its most recent clip */
   function latestMins(items){ return Math.max.apply(null, items.map(function(it){ return it.mins; })); }
+  /* Rail label: one time for a single clip, first – last for combined clips */
+  function timeRange(items){
+    var ms = items.map(function(it){ return it.mins; });
+    var lo = Math.min.apply(null, ms), hi = Math.max.apply(null, ms);
+    return lo === hi ? fmtTimestamp(hi) : fmtTimestamp(lo) + ' – ' + fmtTimestamp(hi);
+  }
   function buildHeroCard(g){
     var items = g.items, first = items[0], last = items[items.length - 1], multi = items.length > 1;
     var main = items.slice().sort(function(x, y){
@@ -11729,7 +11735,7 @@ window.addEventListener('error', function(e){
 
     // time (and day) sit outside the card, on the timeline rail
     b.innerHTML = '<span class="arow-ts"><span class="oneui-Text arow-time" data-variant="label" data-size="S" data-weight="high" data-appearance="neutral" data-attention="medium">' +
-      fmtTimestamp(latestMins(items)) + '</span></span>';
+      timeRange(items) + '</span></span>';
     var card = el('span', 'hero-card');
     var htags = items.reduce(function(acc, it){ eventTags(it).forEach(function(k){ if(acc.indexOf(k) === -1) acc.push(k); }); return acc; }, []).slice(0, 4);
     card.innerHTML =
@@ -11792,7 +11798,7 @@ window.addEventListener('error', function(e){
       return node;
     }
     var ts = el('span', 'arow-ts');
-    ts.appendChild(oneuiText(el('span', 'arow-time', fmtTimestamp(latestMins(items))), 'label', 'S', 'medium', 'high'));
+    ts.appendChild(oneuiText(el('span', 'arow-time', timeRange(items)), 'label', 'S', 'medium', 'high'));
     b.appendChild(ts);
     b.appendChild(el('span', 'arow-div'));
 
@@ -12090,8 +12096,8 @@ window.addEventListener('error', function(e){
       var hx = isHeroGroup(x), hy = isHeroGroup(y);
       if(hx !== hy) return hx ? -1 : 1;
       if(hx) return PRIORITY_RANK[x.items[0].priority] - PRIORITY_RANK[y.items[0].priority] || latestMins(y.items) - latestMins(x.items);
-      /* the rest is a plain timeline, ordered by the time shown on the rail */
-      return latestMins(x.items) - latestMins(y.items);
+      /* the rest is a plain timeline, ordered by when each card starts */
+      return Math.min.apply(null, x.items.map(function(it){ return it.mins; })) - Math.min.apply(null, y.items.map(function(it){ return it.mins; }));
     });
 
     var lastPeriodKey = null;
