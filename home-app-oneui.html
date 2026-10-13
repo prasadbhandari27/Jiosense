@@ -2562,6 +2562,12 @@ button.oneui-Avatar{position:relative}
 .inc-bigplay{position:absolute;left:50%;top:50%;transform:translate(-50%,-62%);width:56px;height:56px;border-radius:50%;border:0;display:grid;place-items:center;
   background:var(--Overlay-On-Media-Lowest,rgba(0,0,0,.45));color:#fff;cursor:pointer;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 .inc-bigplay[hidden]{display:none}
+.inc-media.is-nomedia .inc-ctrl,.inc-media.is-nomedia .inc-bigplay{display:none}
+.inc-nomedia{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--Spacing-1-5);
+  background:linear-gradient(160deg,#2a2b31,#16171b);color:rgba(255,255,255,.75);font-size:var(--Label-XS-FontSize,12px);font-weight:600}
+.inc-nomedia svg{width:30px;height:30px}
+.inc-ev-th .inc-nomedia svg{width:22px;height:22px}
+.inc-slide{position:relative}
 .inc-bigplay svg{margin-left:3px}
 .inc-actions{display:flex;gap:var(--Spacing-2);padding:var(--Spacing-4) var(--Spacing-4) 0}
 .inc-actions .oneui-Button{flex:1;gap:var(--Spacing-1-5);display:inline-flex;align-items:center;justify-content:center}
@@ -2574,6 +2580,7 @@ button.oneui-Avatar{position:relative}
 .inc-sum-hd{display:flex;align-items:center;gap:var(--Spacing-2);margin-bottom:var(--Spacing-2)}
 .inc-spark{width:28px;height:28px;border-radius:50%;background:var(--Primary-Subtle);display:grid;place-items:center;flex:0 0 auto}
 .inc-imp{margin-left:auto}
+.inc-imp[hidden],.inc-ev-dur[hidden]{display:none}
 .inc-sum{margin:0}
 .inc-h{margin:0 0 var(--Spacing-3)}
 .inc-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--Spacing-3)}
@@ -2581,7 +2588,8 @@ button.oneui-Avatar{position:relative}
   background:var(--Surface-Fill-Default);border-radius:var(--Shape-4);box-shadow:var(--Elevation-2);transition:box-shadow var(--Motion-Duration-Micro) var(--Motion-Easing-Standard)}
 .inc-ev[aria-current="true"]{box-shadow:var(--Elevation-2),inset 0 0 0 2px var(--Primary-Bold)}
 .inc-ev-th{position:relative;display:block;aspect-ratio:4/3;border-radius:var(--Shape-3);overflow:hidden;background:var(--Media-Surface)}
-.inc-ev-th img{width:100%;height:100%;object-fit:cover;display:block}
+.inc-ev-th img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.inc-ev{min-width:0}
 .inc-ev-dur{position:absolute;right:6px;bottom:6px}
 .inc-ev-t{display:flex;align-items:flex-start;gap:6px;margin-top:var(--Spacing-2)}
 .inc-ev-t svg{width:16px;height:16px;flex:0 0 auto;margin-top:1px}
@@ -6275,7 +6283,7 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
   <!-- generic toast -->
   <!-- ================================================== SUMMARY (people + alerts) ================================================== -->
   <!-- Incident story (unknown person): swipeable clips with auto-play, the AI story,
-       and every clip it was stitched from. Filled by window.__openIncident. -->
+       and every clip it was stitched from. Filled by window.__openEventDetail. -->
   <section class="screen" data-screen="incident">
     <div class="statusbar" aria-hidden="true"><span data-clock>08:14</span></div>
     <header class="appbar">
@@ -6323,7 +6331,7 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
       </section>
 
       <section class="inc-sec">
-        <p class="oneui-Text inc-h" data-variant="label" data-size="M" data-weight="high" data-appearance="neutral" role="heading" aria-level="2">Events included</p>
+        <p class="oneui-Text inc-h" data-variant="label" data-size="M" data-weight="high" data-appearance="neutral" role="heading" aria-level="2" data-inc-head>Events included</p>
         <div class="inc-grid" data-inc-grid></div>
       </section>
     </main>
@@ -7520,7 +7528,7 @@ window.addEventListener('error', function(e){
     var alertEl = e.target.closest('[data-alert-open]');
     if(alertEl){
       var grp = alertEl._group || alertFromAttrs(alertEl);
-      if(grp && alertEl.classList.contains('is-hero') && typeof window.__openIncident === 'function' && window.__openIncident(grp)){
+      if(grp && typeof window.__openEventDetail === 'function' && window.__openEventDetail(grp)){
         e.preventDefault();
         open('incident');
         return;
@@ -11860,8 +11868,9 @@ window.addEventListener('error', function(e){
     var ICO_AUTO = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M8 5.5v13l11-6.5-11-6.5Z" fill="currentColor"/></svg>';
     var clips = [], cur = 0, auto = true, playing = false, elapsed = 0, last = null, raf = null, swapping = false;
 
-    function durOf(c){ return 30 + (c.mins % 7) * 11; }     // same stand-in length as the grid badge
+    function durOf(c){ return c._dur || 30 + (c.mins % 7) * 11; }     // real length for video, else a stable stand-in
     function slideMedia(i){ var sl = track.children[i]; return sl && sl.firstChild; }
+    function noMedia(i){ var sl = track.children[i]; return !sl || sl.classList.contains('is-nomedia'); }
     function render(){
       var c = clips[cur]; if(!c) return;
       var d = durOf(c), p = Math.min(1, elapsed / d);
@@ -11871,7 +11880,9 @@ window.addEventListener('error', function(e){
       if(m && m.tagName === 'IMG') m.style.transform = 'scale(' + (1 + p * 0.08) + ')';
     }
     function setPlaying(on){
+      if(noMedia(cur)) on = false;
       playing = on;
+      q('[data-inc-media]').classList.toggle('is-nomedia', noMedia(cur));
       playBtn.innerHTML = on ? ICO_PAUSE : ICO_PLAY;
       playBtn.setAttribute('aria-label', on ? 'Pause clip' : 'Play clip');
       bigPlay.hidden = on;
@@ -11882,7 +11893,9 @@ window.addEventListener('error', function(e){
     }
     function tick(t){
       if(!scr.classList.contains('is-active')){ setPlaying(false); return; }
-      if(last !== null) elapsed += (t - last) / 1000;
+      var m = slideMedia(cur);
+      if(m && m.tagName === 'VIDEO') elapsed = m.currentTime;
+      else if(last !== null) elapsed += (t - last) / 1000;
       last = t;
       var d = durOf(clips[cur]);
       if(elapsed >= d){
@@ -11903,6 +11916,9 @@ window.addEventListener('error', function(e){
     function select(i){
       var prev = slideMedia(cur);
       if(prev && prev.tagName === 'IMG') prev.style.transform = '';
+      if(prev && prev.tagName === 'VIDEO') prev.pause();
+      var nx = slideMedia(i);
+      if(nx && nx.tagName === 'VIDEO'){ try{ nx.currentTime = 0; }catch(e){} }
       cur = i; elapsed = 0;
       var c = clips[i];
       stamp.textContent = c.cam + ' · ' + fmtTimestamp(c.mins);
@@ -11931,7 +11947,12 @@ window.addEventListener('error', function(e){
     playBtn.addEventListener('click', toggle);
     bigPlay.addEventListener('click', toggle);
     track.addEventListener('click', toggle);
-    scrub.addEventListener('input', function(){ elapsed = (+scrub.value / 1000) * durOf(clips[cur]); last = null; render(); });
+    scrub.addEventListener('input', function(){
+      elapsed = (+scrub.value / 1000) * durOf(clips[cur]); last = null;
+      var m = slideMedia(cur);
+      if(m && m.tagName === 'VIDEO'){ try{ m.currentTime = elapsed; }catch(e){} }
+      render();
+    });
     autoBtn.addEventListener('click', function(){ setAuto(!auto); });
 
     /* Share / Download / Feedback */
@@ -11957,24 +11978,69 @@ window.addEventListener('error', function(e){
       });
     });
 
-    function story(items, who){
-      var steps = items.map(function(it){ return it.step; }).filter(Boolean);
+    function listJoin(a){ return a.length < 2 ? a.join('') : a.slice(0, -1).join(', ') + ' and ' + a[a.length - 1]; }
+    function story(items, who, single, others){
       var from = fmtTimestamp(items[0].mins), to = fmtTimestamp(items[items.length - 1].mins);
       var cams = items.map(function(it){ return it.cam; }).filter(function(c, i, a){ return a.indexOf(c) === i; });
-      var where = cams.length === 1 ? 'at the ' + cams[0] : 'across ' + cams.join(', ');
-      var lead = (who === 'Unknown person' ? 'someone we don’t recognise' : who);
-      var body = 'Between ' + from + ' and ' + to + ' ' + where + ', ' + lead + ' ' +
-        (steps.length ? (steps.length > 1 ? steps.slice(0, -1).join(', ') + ' and then ' + steps[steps.length - 1] : steps[0]) : 'was seen in ' + items.length + ' clips') + '.';
-      return body + ' They aren’t one of your known people yet.';
+      if(single){
+        var it = items[0];
+        if(it.offline) return 'The ' + it.cam + ' camera lost connection at ' + from + ', so nothing was recorded from it after that.';
+        return it.t + '. Seen on ' + it.cam + ' at ' + from + '.' +
+          (others ? ' ' + others + ' other event' + (others === 1 ? '' : 's') + ' from this camera ' + dayPhrase(it.day) + '.' : ' Nothing else from this camera ' + dayPhrase(it.day) + '.');
+      }
+      var where = cams.length === 1 ? 'at the ' + cams[0] : 'across the ' + listJoin(cams);
+      if(who === 'Unknown person' || (who && !KNOWN_PEOPLE[who])){
+        var steps = items.map(function(it){ return it.step; }).filter(Boolean);
+        return 'Between ' + from + ' and ' + to + ' ' + where + ', someone we don’t recognise ' +
+          (steps.length ? listJoin(steps.slice(0, -1).concat(steps.length > 1 ? ['then ' + steps[steps.length - 1]] : [steps[0]])).replace(', and then', ' and then') : 'was seen in ' + items.length + ' clips') +
+          '. They aren’t one of your known people yet.';
+      }
+      return 'Between ' + from + ' and ' + to + ', ' + (who || 'there was activity') + ' ' + (who ? 'was seen ' : '') + where + ' in ' + items.length + ' clips: ' +
+        items.map(function(it){ return it.t; }).join('; ') + '.';
+    }
+    function mediaHTML(it, still){
+      if(it.offline) return null;
+      return it.video && !still ? '<video src="' + it.video + '" poster="' + (it.img || '') + '" muted playsinline preload="metadata"></video>'
+                      : (it.img ? '<img src="' + it.img + '" alt="">' : null);
+    }
+    var NOMEDIA_ICO = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 3l18 18M10.5 6H14a2 2 0 0 1 2 2v1.5l4-2.5v10M16 16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 1.2-1.83" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    function setNoMedia(box, it){
+      box.classList.add('is-nomedia');
+      var keep = box.querySelector('.inc-ev-dur');
+      box.innerHTML = '<span class="inc-nomedia">' + NOMEDIA_ICO + '<span>' + (it.offline ? 'Offline' : 'No footage') + '</span></span>';
+      if(keep){ keep.hidden = true; box.appendChild(keep); }
+    }
+    function fillMedia(box, it, onMeta, still){
+      var h = mediaHTML(it, still);
+      if(!h){ setNoMedia(box, it); return; }
+      box.insertAdjacentHTML('afterbegin', h);
+      var m = box.firstChild;
+      m.addEventListener('error', function(){
+        if(m.tagName === 'VIDEO' && it.img){ var im = document.createElement('img'); im.src = it.img; im.alt = ''; im.onerror = function(){ setNoMedia(box, it); if(box === track.children[cur]) setPlaying(false); }; box.replaceChild(im, m); }
+        else { setNoMedia(box, it); if(box === track.children[cur]) setPlaying(false); }
+      });
+      if(m.tagName === 'VIDEO' && onMeta) m.addEventListener('loadedmetadata', function(){ if(isFinite(m.duration) && m.duration > 0){ it._dur = m.duration; onMeta(); } });
     }
 
-    window.__openIncident = function(g){
-      var items = (g.items || []).slice().sort(function(x, y){ return x.mins - y.mins; });
-      if(!items.length || !g.who || KNOWN_PEOPLE[g.who]) return false;   // only unknown people get the story screen
-      clips = items;
+    /* Opens any Activity event. Combined clips (a person across cameras) are the story;
+       a single event plays its clip, with that camera's other clips from the day beside it. */
+    window.__openEventDetail = function(g){
+      var items = (g.items && g.items.length ? g.items : [g]).slice().sort(function(x, y){ return x.mins - y.mins; });
+      if(!items.length) return false;
+      var single = items.length === 1, focus = 0, list = items, heading = 'Events included';
+      if(single){
+        var a0 = items[0];
+        var same = currentAlerts().filter(function(a){ return a.cam === a0.cam && a.day === a0.day; }).sort(function(x, y){ return x.mins - y.mins; });
+        if(same.indexOf(a0) === -1) same = [a0];
+        list = same; focus = same.indexOf(a0);
+        heading = same.length > 1 ? 'Clips from ' + a0.cam + ' ' + dayPhrase(a0.day) : 'Events included';
+      }
+      clips = list;
       var main = items.slice().sort(function(x, y){ return PRIORITY_RANK[x.priority] - PRIORITY_RANK[y.priority] || y.mins - x.mins; })[0];
-      q('[data-inc-title]').textContent = g.who + ' at ' + main.cam;
-      q('[data-inc-summary]').textContent = story(items, g.who);
+      var known = !!(g.who && KNOWN_PEOPLE[g.who]);
+      q('[data-inc-title]').textContent = single ? main.t : known ? g.who + '’s activity' : (g.who || 'Activity') + ' at ' + main.cam;
+      q('[data-inc-summary]').textContent = story(items, g.who, single, single ? list.length - 1 : 0);
+      q('[data-inc-head]').textContent = heading;
       // same rule as the Activity card
       var imp = q('[data-inc-imp]');
       imp.hidden = !isHighImportance(g);
@@ -11982,33 +12048,35 @@ window.addEventListener('error', function(e){
       imp.textContent = 'High importance';
       autoIco.innerHTML = ICO_AUTO;
       fbOpen(false);
+      cancelAnimationFrame(raf);
 
       track.innerHTML = ''; dots.innerHTML = ''; grid.innerHTML = '';
-      items.forEach(function(it, i){
+      list.forEach(function(it, i){
         var slide = el('span', 'inc-slide');
         slide.setAttribute('role', 'group');
-        slide.setAttribute('aria-label', 'Clip ' + (i + 1) + ' of ' + items.length + ': ' + it.t);
-        slide.innerHTML = it.video ? '<video src="' + it.video + '" poster="' + (it.img || '') + '" muted playsinline loop></video>' : '<img src="' + it.img + '" alt="">';
+        slide.setAttribute('aria-label', 'Clip ' + (i + 1) + ' of ' + list.length + ': ' + it.t);
         track.appendChild(slide);
         dots.appendChild(el('i'));
 
         var card = el('button', 'inc-ev');
         card.type = 'button';
-        card.setAttribute('aria-label', it.t + ', ' + it.cam + ', ' + fmtTimestamp(it.mins) + ', ' + mmss(durOf(it)));
+        card.setAttribute('aria-label', it.t + ', ' + it.cam + ', ' + fmtTimestamp(it.mins));
         card.innerHTML =
-          '<span class="inc-ev-th"><img src="' + it.img + '" alt="">' +
-            '<span class="oneui-Badge inc-ev-dur" data-appearance="neutral" data-attention="high" data-size="s">' + mmss(durOf(it)) + '</span></span>' +
+          '<span class="inc-ev-th"><span class="oneui-Badge inc-ev-dur" data-appearance="neutral" data-attention="high" data-size="s">' + mmss(durOf(it)) + '</span></span>' +
           '<span class="oneui-Text inc-ev-t" data-variant="label" data-size="S" data-weight="high" data-appearance="neutral">' + EV_TAG[eventTags(it)[0]].svg + '<span>' + it.t + '</span></span>' +
           '<span class="oneui-Text inc-ev-s" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low">' + it.cam + ' · ' + fmtTimestamp(it.mins) + '</span>';
+        var th = card.firstChild, badge = th.firstChild;
+        fillMedia(slide, it, function(){ badge.textContent = mmss(durOf(it)); if(i === cur) render(); });
+        fillMedia(th, it, null, true);     // grid shows the still, the player shows the clip
         card.addEventListener('click', function(){ go(i, true); q('.scroll').scrollTo({ top:0, behavior:'smooth' }); });
         grid.appendChild(card);
       });
-      // opening the incident marks it read, like opening the card always did
+      // opening the event marks it read, like opening the card always did
       items.forEach(function(it){ it.read = true; });
-      dots.hidden = autoBtn.hidden = items.length < 2;
-      requestAnimationFrame(function(){ track.scrollLeft = 0; });
+      dots.hidden = autoBtn.hidden = list.length < 2;
+      requestAnimationFrame(function(){ track.scrollLeft = focus * track.clientWidth; });
       setAuto(true);
-      select(0);
+      select(focus);
       setPlaying(true);      // the clip starts playing as the screen opens
       return true;
     };
