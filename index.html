@@ -485,6 +485,18 @@ button.oneui-Avatar:active{transform:scale(.94)}
 .oneui-Checkbox-input:checked + .oneui-Checkbox,.is-checked .oneui-Checkbox,.oneui-Checkbox[aria-checked="true"]{background:var(--_cb-bold);border-color:var(--_cb-bold)}
 .oneui-Checkbox-input:checked + .oneui-Checkbox > svg,.is-checked .oneui-Checkbox > svg,.oneui-Checkbox[aria-checked="true"] > svg{opacity:1;transform:scale(1)}
 .oneui-Checkbox[role="checkbox"]:focus-visible{outline:none;box-shadow:0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap),0 0 0 calc(var(--Stroke-XL) * 2) var(--Informative-Bold)}
+/* OneUI Radio (port) — native <input type="radio"> visually hidden, followed by the drawn
+   control: Radio-boxSize ring that takes the appearance colour when checked, with a
+   Radio-dotSize dot that scales in. Use inside a role="radiogroup" (RadioGroup). */
+.oneui-Radio-input{position:absolute;width:1px;height:1px;margin:0;opacity:0;pointer-events:none}
+.oneui-Radio{--_rd-bold:var(--Secondary-Bold);position:relative;display:grid;place-items:center;flex:0 0 auto;box-sizing:border-box;width:var(--Radio-boxSize-m);height:var(--Radio-boxSize-m);border-radius:var(--Radio-borderRadius-m);border:var(--Stroke-XL) solid var(--Neutral-Low);background:var(--Surface-Fill-Default);transition:border-color var(--Motion-Duration-Short) var(--Motion-Easing-Standard)}
+.oneui-Radio::before{content:"";width:var(--Radio-dotSize-m);height:var(--Radio-dotSize-m);border-radius:var(--Radio-dotBorderRadius-m);background:var(--_rd-bold);transform:scale(0);transition:transform var(--Motion-Duration-Short) var(--Motion-Easing-Spring,var(--Motion-Easing-Standard))}
+.oneui-Radio[data-size="l"]{width:var(--Radio-boxSize-l);height:var(--Radio-boxSize-l);border-radius:var(--Radio-borderRadius-l)}
+.oneui-Radio[data-size="l"]::before{width:var(--Radio-dotSize-l);height:var(--Radio-dotSize-l)}
+.oneui-Radio[data-appearance="primary"]{--_rd-bold:var(--Primary-Bold)}
+.oneui-Radio-input:checked + .oneui-Radio{border-color:var(--_rd-bold)}
+.oneui-Radio-input:checked + .oneui-Radio::before{transform:scale(1)}
+.oneui-Radio-input:focus-visible + .oneui-Radio{box-shadow:0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap),0 0 0 calc(var(--Stroke-XL) * 2) var(--Informative-Bold)}
 .oneui-Checkbox-input:focus-visible + .oneui-Checkbox{box-shadow:0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap),0 0 0 calc(var(--Stroke-XL) * 2) var(--Informative-Bold)}
 label:active > .oneui-Checkbox{transform:scale(1.07)}
 
@@ -3042,19 +3054,9 @@ button.oneui-Avatar{position:relative}
   display:flex;align-items:center;flex-wrap:wrap;gap:var(--Spacing-2);margin-top:var(--Spacing-5);
   padding-top:var(--Spacing-4);border-top:1px solid var(--Neutral-Stroke-Low);
 }
-.ob-room-guess .ob-room-select{width:auto;min-height:32px;padding:0 var(--Spacing-2) 0 var(--Spacing-3);border-color:var(--Primary-Subtle);background:var(--Primary-Minimal)}
-.ob-room-guess .ob-room-select svg{color:var(--Primary-TintedA11y)}
-.ob-room-select{
-  display:flex;align-items:center;gap:var(--Spacing-2);width:100%;min-height:40px;
-  padding:0 var(--Spacing-2-5,10px) 0 var(--Spacing-3);
-  border:1px solid var(--Neutral-Stroke-Medium,var(--Surface-Fill-Minimal));border-radius:var(--Shape-3);
-  background:var(--Surface-Fill-Default);font:inherit;text-align:left;cursor:pointer;color:inherit;
-}
-.ob-room-select .v{flex:1;min-width:0}
-.ob-room-select svg{width:16px;height:16px;flex:none;color:var(--Neutral-Low)}
-.ob-room-select:active{background:var(--Surface-Fill-Minimal)}
-.room-sheet .room-row.is-selected{background:var(--Primary-Minimal)}
-.room-sheet .room-row.is-selected .r-name{color:var(--Primary-TintedA11y)}
+/* OneUI Button (primary, medium, size 8) with an end chevron — the spec's trigger for a
+   picker; OneUI has no Select, so it opens the room sheet's RadioGroup. */
+.ob-room-btn svg{width:var(--Button-iconSize-8);height:var(--Button-iconSize-8);flex:none;margin-left:calc(var(--Button-iconGap-8) - var(--Button-contentGap,0px))}
 @media (prefers-reduced-motion: reduce){.ob-acc-body,.ob-acc-chev{transition:none}}
 /* Objects in each camera card — compact info chips, not cards: what the AI found, what the
    user added (tinted, removable), and a dashed "+ Add object" chip to fill any gap. */
@@ -3105,8 +3107,6 @@ button.oneui-Avatar{position:relative}
 @media (hover:hover){.room-sheet .room-row:hover{background:var(--Surface-Fill-Minimal)}}
 .room-sheet .room-row .r-ico svg{width:20px;height:20px}
 .room-sheet .room-row .r-name{flex:1}
-.room-sheet .room-row .r-chev{color:var(--Neutral-Low)}
-.room-sheet .room-row .r-chev svg{width:16px;height:16px;display:block}
 
 
 .ob-svc-row{
@@ -3951,32 +3951,37 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
       <span class="grabber" aria-hidden="true"></span>
       <h3 class="oneui-Text ts-head" data-variant="title" data-size="M" data-appearance="neutral" id="room-sheet-head">Which room is this?</h3>
       <p  class="oneui-Text ts-sub" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Pick the room this camera is in.</p>
-      <div class="room-list">
-        <button type="button" class="room-row" data-room="Living Room">
+      <div class="room-list" role="radiogroup" aria-labelledby="room-sheet-head">
+        <label class="room-row" data-room="Living Room">
           <span class="oneui-Avatar r-ico" data-size="2xl" data-content="icon" data-appearance="neutral" data-attention="medium" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12v6h16v-6" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M6 12V9a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v3" stroke="currentColor" stroke-width="1.8"/><path d="M5 15h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
           <span class="oneui-Text r-name" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral">Living Room</span>
-          <span class="r-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </button>
-        <button type="button" class="room-row" data-room="Kitchen">
+          <input type="radio" class="oneui-Radio-input" name="ob-room" value="Living Room" data-room-input>
+          <span class="oneui-Radio" data-size="l" data-appearance="primary" aria-hidden="true"></span>
+        </label>
+        <label class="room-row" data-room="Kitchen">
           <span class="oneui-Avatar r-ico" data-size="2xl" data-content="icon" data-appearance="neutral" data-attention="medium" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="10" width="16" height="9" rx="1.6" stroke="currentColor" stroke-width="1.8"/><path d="M4 14h16" stroke="currentColor" stroke-width="1.8"/><circle cx="8" cy="17" r="1.1" fill="currentColor"/><circle cx="12" cy="17" r="1.1" fill="currentColor"/><path d="M9 10V6a3 3 0 0 1 6 0v4" stroke="currentColor" stroke-width="1.8"/></svg></span>
           <span class="oneui-Text r-name" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral">Kitchen</span>
-          <span class="r-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </button>
-        <button type="button" class="room-row" data-room="Bedroom">
+          <input type="radio" class="oneui-Radio-input" name="ob-room" value="Kitchen" data-room-input>
+          <span class="oneui-Radio" data-size="l" data-appearance="primary" aria-hidden="true"></span>
+        </label>
+        <label class="room-row" data-room="Bedroom">
           <span class="oneui-Avatar r-ico" data-size="2xl" data-content="icon" data-appearance="neutral" data-attention="medium" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3 18v-3a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v3" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M3 18v2M21 18v2M6 12V9a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
           <span class="oneui-Text r-name" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral">Bedroom</span>
-          <span class="r-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </button>
-        <button type="button" class="room-row" data-room="Entrance">
+          <input type="radio" class="oneui-Radio-input" name="ob-room" value="Bedroom" data-room-input>
+          <span class="oneui-Radio" data-size="l" data-appearance="primary" aria-hidden="true"></span>
+        </label>
+        <label class="room-row" data-room="Entrance">
           <span class="oneui-Avatar r-ico" data-size="2xl" data-content="icon" data-appearance="neutral" data-attention="medium" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="7" y="3" width="10" height="18" rx="1.4" stroke="currentColor" stroke-width="1.8"/><circle cx="14" cy="12" r=".9" fill="currentColor"/></svg></span>
           <span class="oneui-Text r-name" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral">Entrance</span>
-          <span class="r-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </button>
-        <button type="button" class="room-row" data-room="Dining Room">
+          <input type="radio" class="oneui-Radio-input" name="ob-room" value="Entrance" data-room-input>
+          <span class="oneui-Radio" data-size="l" data-appearance="primary" aria-hidden="true"></span>
+        </label>
+        <label class="room-row" data-room="Dining Room">
           <span class="oneui-Avatar r-ico" data-size="2xl" data-content="icon" data-appearance="neutral" data-attention="medium" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="14" rx="8" ry="2.4" stroke="currentColor" stroke-width="1.8"/><path d="M5 14v5M19 14v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="7" r="2.4" stroke="currentColor" stroke-width="1.8"/><path d="M12 9.4v4" stroke="currentColor" stroke-width="1.8"/></svg></span>
           <span class="oneui-Text r-name" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral">Dining Room</span>
-          <span class="r-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </button>
+          <input type="radio" class="oneui-Radio-input" name="ob-room" value="Dining Room" data-room-input>
+          <span class="oneui-Radio" data-size="l" data-appearance="primary" aria-hidden="true"></span>
+        </label>
       </div>
     </div>
 
@@ -7986,8 +7991,8 @@ window.addEventListener('error', function(e){
           // 2) … then the room it concludes from them, changeable inline
           '<div class="ob-scan-reveal ob-room-guess" data-ob-room-reveal>' +
             '<span class="oneui-Text" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral" data-ob-room-lead>' + (room === c.room ? 'We think this is your' : 'This camera is in your') + '</span>' +
-            '<button type="button" class="ob-room-select touch-floor" data-ob-room-select aria-haspopup="dialog" aria-label="Room for ' + c.name + ': ' + room + '. Change room">' +
-              '<span class="oneui-Text v" data-variant="body" data-size="S" data-weight="high" data-appearance="primary" data-ob-room-val>' + room + '</span>' + CHEV_DOWN +
+            '<button type="button" class="oneui-Button ob-room-btn" data-appearance="primary" data-attention="medium" data-size="8" data-ob-room-select aria-haspopup="dialog" aria-label="Room for ' + c.name + ': ' + room + '. Change room">' +
+              '<span data-ob-room-val>' + room + '</span>' + CHEV_DOWN +
             '</button>' +
           '</div>' +
         '</div></div></div>';
@@ -8568,11 +8573,7 @@ window.addEventListener('error', function(e){
         var head = roomSheet.querySelector('#room-sheet-head');
         if(head) head.textContent = 'Which room is ' + CAM_INFO[roomSheetCam].name + ' in?';
         var cur = camRoomOf(roomSheetCam);
-        roomSheet.querySelectorAll('[data-room]').forEach(function(r){
-          var sel = r.getAttribute('data-room') === cur;
-          r.classList.toggle('is-selected', sel);
-          r.setAttribute('aria-current', sel ? 'true' : 'false');
-        });
+        roomSheet.querySelectorAll('[data-room-input]').forEach(function(r){ r.checked = r.value === cur; });
       }
       roomScrim.classList.add('is-open');
       roomSheet.classList.add('is-open');
@@ -8583,9 +8584,11 @@ window.addEventListener('error', function(e){
     }
     if(roomScrim) roomScrim.addEventListener('click', closeRoomSheet);
 
-    document.querySelectorAll('[data-room]').forEach(function(row){
-      row.addEventListener('click', function(){
-        var name = row.getAttribute('data-room');
+    // room options are a OneUI RadioGroup: picking one applies it and closes the sheet
+    document.querySelectorAll('[data-room-input]').forEach(function(input){
+      input.addEventListener('change', function(){
+        if(!input.checked) return;
+        var name = input.value;
         /* Coverage is now inline on ob-cam-room, so a room pick
            updates the room-name chip in place instead of advancing
            to a separate screen. Continue then moves the flow on. */
