@@ -2537,6 +2537,8 @@ button.oneui-Avatar{position:relative}
 .alert-list .acard-row .t{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
 .alert-list .acard-row .arow-who{display:flex}
 .alert-list .acard-row .s{display:block;margin-top:var(--Spacing-0-5)}
+.alert-list .acard-row .arow-count{display:inline-flex;align-items:center;gap:4px;margin-top:var(--Spacing-1-5)}
+.alert-list .acard-row .arow-count svg{width:13px;height:13px}
 /* important incident card */
 .alert-list .hero-card{flex-direction:column;gap:var(--Spacing-2-5);padding:var(--Spacing-3)}
 .alert-list .hero-card .hero-top{display:flex;flex-direction:column}
@@ -11807,9 +11809,11 @@ window.addEventListener('error', function(e){
       /* who + how many clips, then the cameras they moved through, in order */
       var head = el('span', 't arow-who');
       head.appendChild(whoAvatar(who));
-      head.appendChild(document.createTextNode(who + ' · ' + items.length + ' clips'));
+      head.appendChild(document.createTextNode(who));
       tx.appendChild(oneuiText(head, 'body', 'S', null, 'high'));
       tx.appendChild(oneuiText(el('span', 's', route.join(' → ')), 'label', 'XS', 'low'));
+      // same clip counter as the important-incident card
+      tx.insertAdjacentHTML('beforeend', '<span class="oneui-Text hero-count arow-count" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="7" width="14" height="13" rx="2.5" stroke="currentColor" stroke-width="2"/><path d="M7 4h11.5A2.5 2.5 0 0 1 21 6.5V16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>' + items.length + ' clips</span>');
       b.setAttribute('aria-label', who + ', ' + items.length + ' clips, ' + route.join(', ') + ', ' + fmtTimestamp(a.mins) + ' to ' + fmtTimestamp(last.mins));
     } else if(known){
       var kh = el('span', 't arow-who');
