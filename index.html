@@ -2590,7 +2590,6 @@ button.oneui-Avatar{position:relative}
 .inc-nomedia svg{width:30px;height:30px}
 .inc-nomedia-sub{font-weight:500;color:rgba(255,255,255,.55)}
 .inc-ev-th .inc-nomedia-sub{display:none}
-.alert-list .acard-row .arow-outage{display:block;margin-top:var(--Spacing-0-5)}
 .inc-ev-th .inc-nomedia svg{width:22px;height:22px}
 .inc-slide{position:relative}
 .inc-bigplay svg{margin-left:3px}
@@ -11886,8 +11885,6 @@ window.addEventListener('error', function(e){
   /* Rail label: one time for a single clip, first – last for combined clips */
   /* "42 min", "1 hr 5 min" */
   function spanText(m){ var h = Math.floor(m / 60), r = m % 60; return (h ? h + ' hr' + (r ? ' ' : '') : '') + (r || !h ? r + ' min' : ''); }
-  /* Offline: from the drop to when it came back (or "still offline") */
-  function outageText(a){ return a.until != null ? 'Offline for ' + spanText(a.until - a.mins) : 'Still offline'; }
   function timeRange(items){
     var ms = items.reduce(function(acc, it){ acc.push(it.mins); if(it.until != null) acc.push(it.until); return acc; }, []);
     var lo = Math.min.apply(null, ms), hi = Math.max.apply(null, ms);
@@ -12318,12 +12315,6 @@ window.addEventListener('error', function(e){
       tx.appendChild(oneuiText(camLine((a.place ? a.place + ' · ' : '') + a.cam), 'label', 'XS', 'low'));
     } else {
       tx.appendChild(oneuiText(el('span', 't', a.t), 'body', 'S', null, 'high'));
-      if(a.offline){
-        // how long it was down, and why
-        var out = oneuiText(el('span', 's arow-outage', outageText(a) + (a.cause ? ' · ' + a.cause : '')), 'label', 'XS', null);
-        out.setAttribute('data-appearance', 'negative'); out.setAttribute('data-attention', 'tintedA11y');
-        tx.appendChild(out);
-      }
       tx.appendChild(oneuiText(camLine((a.place ? a.place + ' · ' : '') + a.cam), 'label', 'XS', 'low'));
     }
     /* The other clips of a combined (unknown) incident as small thumbnails. */
