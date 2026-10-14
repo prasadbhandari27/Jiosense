@@ -1903,6 +1903,16 @@ button.oneui-Avatar{position:relative}
 .evt-nudge{margin:0 0 var(--Spacing-4)}
 .evt-nudge[hidden]{display:none}
 .evt-nudge .cctv-nudge{width:auto;padding:var(--Spacing-2-5) var(--Spacing-3)}
+/* stacked look: one or two cards peeking out below = more important events waiting */
+.evt-nudge{position:relative}
+.evt-nudge[data-stack="1"]{margin-bottom:calc(var(--Spacing-4) + 9px)}
+.evt-nudge[data-stack="2"]{margin-bottom:calc(var(--Spacing-4) + 18px)}
+.evt-nudge::before,.evt-nudge::after{content:"";position:absolute;left:0;right:0;top:0;bottom:0;border-radius:var(--Shape-4);
+  background:var(--Surface-Fill-Default);border:1px solid var(--Neutral-Stroke-Low,rgba(12,13,16,.08));box-shadow:0 2px 6px rgba(12,13,16,.08);pointer-events:none;display:none}
+.evt-nudge::before{transform:translateY(9px) scale(.94);z-index:-1}
+.evt-nudge::after{transform:translateY(18px) scale(.88);opacity:.8;z-index:-2}
+.evt-nudge[data-stack="1"]::before,.evt-nudge[data-stack="2"]::before,.evt-nudge[data-stack="2"]::after{display:block}
+.evt-nudge .cctv-nudge{position:relative;z-index:1}
 .evt-nudge .cctv-nudge .nudge-thumb{width:40px;height:40px;border-radius:var(--Shape-2-5,10px)}
 .evt-nudge .cctv-nudge .nudge-top{gap:var(--Spacing-2-5);padding-right:var(--Spacing-8)}
 .evt-nudge .cctv-nudge .nudge-tx{gap:2px}
@@ -12409,6 +12419,10 @@ window.addEventListener('error', function(e){
       card._group = g;
       card.addEventListener('keydown', function(e){ if(e.target === card && (e.key === 'Enter' || e.key === ' ')){ e.preventDefault(); card.click(); } });
       card.querySelector('[data-nudge-close]').addEventListener('click', function(e){ e.stopPropagation(); window.__nudgeDismissed = true; card.remove(); });
+      // other important events today show as cards stacked behind this one (up to two)
+      var others = groupByPerson(currentAlerts().filter(function(a){ return a.day === 0; }))
+        .filter(function(x){ return x !== g && isHighImportance(x); }).length;
+      row.setAttribute('data-stack', String(Math.min(2, others)));
       row.insertBefore(card, row.firstChild);
     }
     setTimeout(renderHomeNudge, 0);
