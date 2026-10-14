@@ -2565,6 +2565,7 @@ button.oneui-Avatar{position:relative}
 .alert-list .acard-row .s{display:block;margin-top:var(--Spacing-0-5)}
 .alert-list .acard-row .cam-line{display:flex;align-items:center;gap:4px}
 .alert-list .acard-row .cam-line .cam-ico{width:14px;height:14px;flex:0 0 auto}
+.arow-av.arow-av-unk{background:url(assets/frontporch.png) 90% 19%/900% no-repeat var(--Surface-Fill-Subtle)}
 .alert-list .acard-row .arow-add{align-self:flex-start;margin:var(--Spacing-1) 0 calc(-1 * var(--Spacing-1-5)) calc(-1 * var(--Button-paddingHorizontal-8,12px))}
 .alert-list .acard-row .arow-count{display:inline-flex;align-items:center;gap:4px;margin-top:var(--Spacing-1-5)}
 .alert-list .acard-row .arow-count svg{width:13px;height:13px}
@@ -11878,7 +11879,7 @@ window.addEventListener('error', function(e){
     av.setAttribute('data-size', 'custom'); av.setAttribute('aria-hidden', 'true');
     if(WHO_PHOTO[who]){ av.setAttribute('data-content', 'image'); av.innerHTML = '<img src="' + WHO_PHOTO[who] + '" alt="">'; }
     else if(KNOWN_PEOPLE[who]){ av.setAttribute('data-content', 'text'); av.setAttribute('data-appearance', 'primary'); av.setAttribute('data-attention', 'medium'); av.textContent = who.charAt(0); }
-    else { av.setAttribute('data-content', 'icon'); av.setAttribute('data-appearance', 'neutral'); av.setAttribute('data-attention', 'medium'); av.innerHTML = EV_TAG.person.svg; }
+    else { av.setAttribute('data-content', 'image'); av.classList.add('arow-av-unk'); }   // someone we don't recognise: their face from the camera
     return av;
   }
   /* Thumbnail for one clip: looping video, or still + play control; camera-off placeholder
