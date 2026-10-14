@@ -2612,7 +2612,10 @@ button.oneui-Avatar{position:relative}
 .inc-spark{width:28px;height:28px;border-radius:50%;background:var(--Primary-Subtle);display:grid;place-items:center;flex:0 0 auto}
 .inc-imp{margin-left:auto}
 .inc-imp[hidden],.inc-ev-dur[hidden]{display:none}
-.inc-sum{margin:0}
+.inc-sum{margin:0;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden}
+.inc-sum.is-open{-webkit-line-clamp:7;line-clamp:7}
+.inc-more{margin:var(--Spacing-0-5) 0 0 calc(-1 * var(--Button-paddingHorizontal-8,12px))}
+.inc-more[hidden]{display:none}
 .inc-h{margin:0 0 var(--Spacing-3)}
 .inc-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--Spacing-3)}
 .inc-ev{display:flex;flex-direction:column;align-items:stretch;gap:0;padding:var(--Spacing-2);border:0;margin:0;text-align:left;font:inherit;color:inherit;cursor:pointer;
@@ -6368,7 +6371,8 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
           <span class="oneui-Text" data-variant="label" data-size="M" data-weight="high" data-appearance="neutral">Story summary</span>
           <span class="oneui-Badge inc-imp" data-size="s" data-attention="medium" data-inc-imp hidden></span>
         </div>
-        <p class="oneui-Text inc-sum" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium" data-inc-summary></p>
+        <p class="oneui-Text inc-sum" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium" data-inc-summary id="inc-sum-text"></p>
+        <button type="button" class="oneui-Button inc-more" data-size="8" data-appearance="primary" data-attention="low" data-inc-more aria-expanded="false" aria-controls="inc-sum-text" hidden>Read more</button>
       </section>
 
       <section class="inc-sec">
@@ -12037,6 +12041,17 @@ window.addEventListener('error', function(e){
       render();
     });
 
+    /* Story summary: two lines, "Read more" opens it to seven */
+    var sumEl = q('[data-inc-summary]'), moreBtn = q('[data-inc-more]');
+    function setSummaryOpen(open){
+      sumEl.classList.toggle('is-open', open);
+      moreBtn.textContent = open ? 'Read less' : 'Read more';
+      moreBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      // only offer it when the text is actually cut off
+      if(!open) requestAnimationFrame(function(){ moreBtn.hidden = sumEl.scrollHeight <= sumEl.clientHeight + 1; });
+    }
+    moreBtn.addEventListener('click', function(){ setSummaryOpen(!sumEl.classList.contains('is-open')); });
+
     /* Share / Download / Feedback */
     var fbSheet = q('[data-inc-fb-sheet]'), fbScrim = q('[data-inc-fb-scrim]');
     function fbOpen(on){ fbSheet.classList.toggle('is-up', on); fbScrim.classList.toggle('is-up', on); }
@@ -12125,6 +12140,7 @@ window.addEventListener('error', function(e){
       var known = !!(g.who && KNOWN_PEOPLE[g.who]);
       q('[data-inc-title]').textContent = single ? main.t : known ? g.who + '’s activity' : (g.who || 'Activity') + ' at ' + main.cam;
       q('[data-inc-summary]').textContent = story(items, g.who, single, others);
+      setSummaryOpen(false);
       q('[data-inc-head]').textContent = heading;
       // same rule as the Activity card
       var imp = q('[data-inc-imp]');
