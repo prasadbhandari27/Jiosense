@@ -1903,7 +1903,14 @@ button.oneui-Avatar{position:relative}
 /* High-importance nudge (unknown person) — on Activity, under the week strip */
 .evt-nudge{margin:0 0 var(--Spacing-4)}
 .evt-nudge[hidden]{display:none}
-.evt-nudge .cctv-nudge{width:auto;padding:var(--Spacing-3-5)}
+.evt-nudge .cctv-nudge{width:auto;padding:var(--Spacing-2-5) var(--Spacing-3)}
+.evt-nudge .cctv-nudge .nudge-thumb{width:40px;height:40px;border-radius:var(--Shape-2-5,10px)}
+.evt-nudge .cctv-nudge .nudge-top{gap:var(--Spacing-2-5);padding-right:var(--Spacing-8)}
+.evt-nudge .cctv-nudge .nudge-tx{gap:2px}
+.evt-nudge .cctv-nudge .nudge-title{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.evt-nudge .cctv-nudge .cctv-notif-close{top:50%;transform:translateY(-50%);right:var(--Spacing-1-5)}
+.cctv-nudge .nudge-imp{display:inline}
+.cctv-nudge .nudge-meta .nudge-imp{font-size:inherit;line-height:inherit}
 .home-fresh-notif .cctv-nudge{display:none}
 [data-screen="my-home"].is-fresh.has-unk .home-fresh-notif .cctv-nudge{display:flex}
 [data-screen="my-home"].is-fresh.has-unk .home-fresh-notif:has(.cctv-nudge) > .cctv-notif-card:not(.cctv-nudge){display:none}
@@ -12338,10 +12345,11 @@ window.addEventListener('error', function(e){
         '<div class="nudge-top">' +
           '<span class="nudge-thumb"><img src="' + main.img + '" alt=""></span>' +
           '<span class="nudge-tx">' +
-            '<span class="oneui-Badge" data-appearance="negative" data-attention="medium" data-size="s">High importance</span>' +
             '<span class="oneui-Text nudge-title" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">' + g.who + ' at ' + main.cam + '</span>' +
+            // slim: importance sits in the meta line instead of a badge row
             '<span class="oneui-Text nudge-meta" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low">' +
-              fmtTimestamp(first.mins) + (items.length > 1 ? ' – ' + fmtTimestamp(last.mins) + ' · ' + items.length + ' clips' : '') + '</span>' +
+              '<span class="oneui-Text nudge-imp" data-variant="label" data-size="XS" data-weight="high" data-appearance="negative" data-attention="tintedA11y">High importance</span>' +
+              ' · ' + fmtTimestamp(first.mins) + (items.length > 1 ? ' · ' + items.length + ' clips' : '') + '</span>' +
           '</span>' +
         '</div>';
       // the whole card opens the event's story; the X only dismisses
