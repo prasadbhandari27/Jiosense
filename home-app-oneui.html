@@ -1900,7 +1900,10 @@ button.oneui-Avatar{position:relative}
 .cctv-notif-title{margin:0 0 var(--Spacing-0-5)}
 .cctv-notif-body{margin:0 0 var(--Spacing-3)}
 .cctv-notif-close{position:absolute;top:var(--Spacing-1-5);right:var(--Spacing-1-5)}
-/* High-importance nudge (unknown person) */
+/* High-importance nudge (unknown person) — on Activity, under the week strip */
+.evt-nudge{margin:0 0 var(--Spacing-4)}
+.evt-nudge[hidden]{display:none}
+.evt-nudge .cctv-nudge{width:auto;padding:var(--Spacing-3-5)}
 .home-fresh-notif .cctv-nudge{display:none}
 [data-screen="my-home"].is-fresh.has-unk .home-fresh-notif .cctv-nudge{display:flex}
 [data-screen="my-home"].is-fresh.has-unk .home-fresh-notif:has(.cctv-nudge) > .cctv-notif-card:not(.cctv-nudge){display:none}
@@ -6310,6 +6313,8 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
 
     <main id="evt-panel-allevents" role="tabpanel" aria-labelledby="evt-tab-allevents" class="scroll" data-events-scroll style="padding-right:28px;padding-bottom:120px">
       <div class="filterrow" data-alert-filters role="group" aria-label="Filter events" style="display:none"></div>
+      <!-- High-importance nudge for today's unknown-person incident, right under the week strip -->
+      <div class="evt-nudge" data-evt-nudge></div>
 
       <!-- Count line only: the filter / calendar buttons and the unread badge are gone (the week
            strip above picks the day; unread dots stay on the cards). -->
@@ -12315,7 +12320,7 @@ window.addEventListener('error', function(e){
   (function(){
     function renderHomeNudge(){
       // the regular notification row, and the first-day row (shown there once the unknown person is spotted)
-      document.querySelectorAll('[data-screen="my-home"] .cctv-notif-carousel').forEach(buildNudge);
+      document.querySelectorAll('[data-evt-nudge]').forEach(buildNudge);
     }
     function buildNudge(row){
       var old = row.querySelector('.cctv-nudge'); if(old) old.remove();
@@ -12348,7 +12353,7 @@ window.addEventListener('error', function(e){
       card.setAttribute('data-alert-open', '1');
       card._group = g;
       card.addEventListener('keydown', function(e){ if(e.target === card && (e.key === 'Enter' || e.key === ' ')){ e.preventDefault(); card.click(); } });
-      card.querySelector('[data-nudge-close]').addEventListener('click', function(e){ e.stopPropagation(); card.remove(); });
+      card.querySelector('[data-nudge-close]').addEventListener('click', function(e){ e.stopPropagation(); window.__nudgeDismissed = true; card.remove(); });
       row.insertBefore(card, row.firstChild);
     }
     setTimeout(renderHomeNudge, 0);
@@ -12690,6 +12695,9 @@ window.addEventListener('error', function(e){
        nothing on this day, or nothing that matches the chips. */
     var onDay = currentAlerts().filter(function(a){ return a.day === eventsDay; });
     alertEmpty.hidden = list.length > 0;
+    // the nudge is about today, so it only shows on today's list
+    var evtNudge = document.querySelector('[data-evt-nudge]');
+    if(evtNudge) evtNudge.hidden = eventsDay !== 0 || !!window.__nudgeDismissed || !evtNudge.firstChild;
     var bar = alertList.parentNode.querySelector('.alert-bar');
     if(bar) bar.style.display = list.length ? 'flex' : 'none';   // the empty state says it instead
     var eTitle = alertEmpty.querySelector('[data-empty-title]'), eBody = alertEmpty.querySelector('[data-empty-body]');
