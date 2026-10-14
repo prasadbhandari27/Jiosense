@@ -11170,7 +11170,7 @@ window.addEventListener('error', function(e){
       { type:'person', priority:'low', cam:'Living Room', mins:at(14,30), until:at(15,0), who:'Aarav', solo:true, t:'Aarav watched TV' },
       { type:'person', priority:'low', cam:'Study',      mins:at(15,5), since:at(15,0), who:'Aarav', grp:'aarav-study', headline:'Aarav did his homework and read', t:'Did his homework', clip:true },
       { type:'person', priority:'low', cam:'Study',      mins:at(15,40), until:at(16,0), who:'Aarav', grp:'aarav-study', t:'Read a book', clip:true },
-      { type:'person', priority:'med', cam:'Living Room', mins:at(16,0), who:'Aarav', grp:'aarav-fall', headline:'Aarav fell while playing in the living room', thumb:true, img:'assets/living-aarav-fell.jpg', t:'Fell while playing', clip:true },
+      { type:'person', priority:'high', cam:'Living Room', mins:at(16,0), who:'Aarav', grp:'aarav-fall', headline:'Aarav fell while playing in the living room', thumb:true, img:'assets/living-aarav-fell.jpg', t:'Fell while playing', clip:true },
       { type:'person', priority:'low', cam:'Living Room', mins:at(16,2), who:'Aarav', grp:'aarav-fall', img:'assets/living-aarav-up.jpg', t:'Got back up and carried on', clip:true },
       { type:'person', priority:'low', cam:'Bedroom',    mins:at(16,30), who:'Aarav', solo:true, t:'Aarav napped' },
       { type:'person', priority:'low', cam:'Front Door', mins:at(17,30), who:'Hamid', solo:true, t:'Hamid came home' },
@@ -12442,7 +12442,7 @@ window.addEventListener('error', function(e){
     var main = items.slice().sort(function(x, y){
       return PRIORITY_RANK[x.priority] - PRIORITY_RANK[y.priority] || y.mins - x.mins;
     })[0];
-    var title = multi ? (g.who || 'Activity') + ' at ' + main.cam : main.t;
+    var title = items[0].headline || (multi ? (g.who || 'Activity') + ' at ' + main.cam : main.t);
 
     var b = el('div', 'acard-row is-hero');
     b.setAttribute('role', 'button'); b.tabIndex = 0;
@@ -12497,7 +12497,10 @@ window.addEventListener('error', function(e){
   function isHeroGroup(g){
     var a = g.items[0], combined = g.items.length > 1;
     var who = combined ? g.who : a.who;
-    return !a.alert && !(who && KNOWN_PEOPLE[who]) && (combined || a.priority === 'high');
+    if(a.alert) return false;
+    // a high-importance event gets the big card even for someone the household knows
+    if(g.items.some(function(it){ return it.priority === 'high'; })) return true;
+    return !(who && KNOWN_PEOPLE[who]) && combined;
   }
   function buildSimpleRow(a, grp){
     var combined = !!(grp && grp.items.length > 1);
