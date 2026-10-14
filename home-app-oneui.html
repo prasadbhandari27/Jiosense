@@ -2619,7 +2619,7 @@ button.oneui-Avatar{position:relative}
 .inc-ev-dur{position:absolute;right:6px;bottom:6px}
 .inc-ev-t{display:flex;align-items:flex-start;gap:6px;margin-top:var(--Spacing-2)}
 .inc-ev-t svg{width:16px;height:16px;flex:0 0 auto;margin-top:1px}
-.inc-ev-s{display:block;margin-top:var(--Spacing-0-5);padding-left:22px}
+.inc-ev-s{display:block;margin-top:var(--Spacing-0-5)}
 
 /* important incident card */
 .alert-list .hero-card{flex-direction:column;gap:var(--Spacing-2-5);padding:var(--Spacing-3)}
@@ -12126,7 +12126,7 @@ window.addEventListener('error', function(e){
         card.setAttribute('aria-label', it.t + ', ' + it.cam + ', ' + fmtTimestamp(it.mins));
         card.innerHTML =
           '<span class="inc-ev-th"><span class="oneui-Badge inc-ev-dur" data-appearance="neutral" data-attention="high" data-size="s">' + mmss(durOf(it)) + '</span></span>' +
-          '<span class="oneui-Text inc-ev-t" data-variant="label" data-size="S" data-weight="high" data-appearance="neutral">' + EV_TAG[eventTags(it)[0]].svg + '<span>' + it.t + '</span></span>' +
+          '<span class="oneui-Text inc-ev-t" data-variant="label" data-size="S" data-weight="high" data-appearance="neutral"><span>' + it.t + '</span></span>' +
           '<span class="oneui-Text inc-ev-s" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low">' + it.cam + ' · ' + fmtTimestamp(it.mins) + '</span>';
         var th = card.firstChild, badge = th.firstChild;
         fillMedia(slide, it, function(){ badge.textContent = mmss(durOf(it)); if(i === cur) render(); });
@@ -12221,10 +12221,8 @@ window.addEventListener('error', function(e){
     b.innerHTML = '<span class="arow-ts"><span class="oneui-Text arow-time" data-variant="label" data-size="S" data-weight="high" data-appearance="neutral" data-attention="medium">' +
       timeRange(items) + '</span></span>';
     var card = el('span', 'hero-card');
-    var htags = items.reduce(function(acc, it){ eventTags(it).forEach(function(k){ if(acc.indexOf(k) === -1) acc.push(k); }); return acc; }, []).slice(0, 4);
     card.innerHTML =
-      '<span class="hero-top"><span class="arow-tags" aria-label="Detected: ' + htags.map(function(k){ return EV_TAG[k].label; }).join(', ') + '">' +
-        htags.map(function(k){ return '<span class="arow-tag" title="' + EV_TAG[k].label + '">' + EV_TAG[k].svg + '</span>'; }).join('') + '</span>' +
+      '<span class="hero-top">' +
       '<span class="oneui-Text hero-title" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral">' + title + '</span></span>';
     // path of the clips (cameras in time order) instead of a camera tag on the image
     var route = items.map(function(it){ return it.cam; }).filter(function(c, i, arr){ return i === 0 || c !== arr[i - 1]; });
@@ -12287,20 +12285,6 @@ window.addEventListener('error', function(e){
     b.appendChild(el('span', 'arow-div'));
 
     var tx = el('span', 'tx');
-    /* What was detected, as a row of icons above the title (an event can carry more than
-       one: "likely the cat" is motion + animal). */
-    var tags = combined
-      ? items.reduce(function(acc, it){ eventTags(it).forEach(function(k){ if(acc.indexOf(k) === -1) acc.push(k); }); return acc; }, ['person']).slice(0, 4)
-      : eventTags(a);
-    var tagRow = el('span', 'arow-tags');
-    tagRow.setAttribute('aria-label', 'Detected: ' + tags.map(function(k){ return EV_TAG[k].label; }).join(', '));
-    tags.forEach(function(k){
-      var ic = el('span', 'arow-tag');
-      ic.innerHTML = EV_TAG[k].svg;
-      ic.title = EV_TAG[k].label;
-      tagRow.appendChild(ic);
-    });
-    tx.appendChild(tagRow);
     var route = items.map(function(it){ return it.cam; }).filter(function(c, i, arr){ return i === 0 || c !== arr[i - 1]; });
     if(combined){
       /* who + how many clips, then the cameras they moved through, in order */
