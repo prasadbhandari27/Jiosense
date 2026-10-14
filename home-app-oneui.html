@@ -2588,6 +2588,9 @@ button.oneui-Avatar{position:relative}
 .inc-nomedia{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--Spacing-1-5);
   background:linear-gradient(160deg,#2a2b31,#16171b);color:rgba(255,255,255,.75);font-size:var(--Label-XS-FontSize,12px);font-weight:600}
 .inc-nomedia svg{width:30px;height:30px}
+.inc-nomedia-sub{font-weight:500;color:rgba(255,255,255,.55)}
+.inc-ev-th .inc-nomedia-sub{display:none}
+.alert-list .acard-row .arow-outage{display:block;margin-top:var(--Spacing-0-5)}
 .inc-ev-th .inc-nomedia svg{width:22px;height:22px}
 .inc-slide{position:relative}
 .inc-bigplay svg{margin-left:3px}
@@ -9985,7 +9988,7 @@ window.addEventListener('error', function(e){
       },
       alerts:[
         /* ── Night (12 am – 6 am) ── */
-        { type:'system',  priority:'low',  cam:'Backyard',     day:0, mins:130,  img:'assets/cam4.jpg',           offline:true, t:'Backyard camera lost connection' },
+        { type:'system',  priority:'low',  cam:'Backyard',     day:0, mins:130,  img:'assets/cam4.jpg',           offline:true, until:172, cause:'Wi-Fi signal dropped', back:'reconnected on its own', t:'Backyard camera lost connection' },
         { type:'motion',  priority:'low',  cam:'Living Room',  day:0, mins:148,  img:'assets/livingroom.jpg',     t:'Low-light motion — likely the cat' },
         /* `video` upgrades the still to a looping clip; `img` stays as its
            poster, so the card shows the nursery frame while the file loads and
@@ -11881,8 +11884,12 @@ window.addEventListener('error', function(e){
   /* A card's time on the rail is its most recent clip */
   function latestMins(items){ return Math.max.apply(null, items.map(function(it){ return it.mins; })); }
   /* Rail label: one time for a single clip, first – last for combined clips */
+  /* "42 min", "1 hr 5 min" */
+  function spanText(m){ var h = Math.floor(m / 60), r = m % 60; return (h ? h + ' hr' + (r ? ' ' : '') : '') + (r || !h ? r + ' min' : ''); }
+  /* Offline: from the drop to when it came back (or "still offline") */
+  function outageText(a){ return a.until != null ? 'Offline for ' + spanText(a.until - a.mins) : 'Still offline'; }
   function timeRange(items){
-    var ms = items.map(function(it){ return it.mins; });
+    var ms = items.reduce(function(acc, it){ acc.push(it.mins); if(it.until != null) acc.push(it.until); return acc; }, []);
     var lo = Math.min.apply(null, ms), hi = Math.max.apply(null, ms);
     return lo === hi ? fmtTimestamp(hi) : fmtTimestamp(lo) + ' – ' + fmtTimestamp(hi);
   }
@@ -12046,7 +12053,12 @@ window.addEventListener('error', function(e){
       var cams = items.map(function(it){ return it.cam; }).filter(function(c, i, a){ return a.indexOf(c) === i; });
       if(single){
         var it = items[0];
-        if(it.offline) return 'The ' + it.cam + ' camera lost connection at ' + from + ', so nothing was recorded from it after that.';
+        if(it.offline){
+          if(it.until == null) return 'The ' + it.cam + ' camera lost connection at ' + from + (it.cause ? ' (' + it.cause + ')' : '') + ' and is still offline, so nothing is being recorded.';
+          return 'The ' + it.cam + ' camera was offline from ' + from + ' to ' + fmtTimestamp(it.until) + ' (' + spanText(it.until - it.mins) + ')' +
+            (it.cause ? ' because its ' + it.cause : '') + '. ' +
+            (it.back ? 'It ' + it.back + ', but nothing' : 'Nothing') + ' was recorded in that time.';
+        }
         return it.t + '. Seen on ' + it.cam + ' at ' + from + '.' +
           (others ? ' ' + others + ' other event' + (others === 1 ? '' : 's') + ' from this camera ' + dayPhrase(it.day) + '.' : ' Nothing else from this camera ' + dayPhrase(it.day) + '.');
       }
@@ -12069,7 +12081,9 @@ window.addEventListener('error', function(e){
     function setNoMedia(box, it){
       box.classList.add('is-nomedia');
       var keep = box.querySelector('.inc-ev-dur');
-      box.innerHTML = '<span class="inc-nomedia">' + NOMEDIA_ICO + '<span>' + (it.offline ? 'Offline' : 'No footage') + '</span></span>';
+      var lbl = it.offline ? (it.until != null ? 'Offline ' + fmtTimestamp(it.mins) + ' – ' + fmtTimestamp(it.until) : 'Offline since ' + fmtTimestamp(it.mins)) : 'No footage';
+      box.innerHTML = '<span class="inc-nomedia">' + NOMEDIA_ICO + '<span>' + lbl + '</span>' +
+        (it.offline && it.cause ? '<span class="inc-nomedia-sub">' + it.cause + '</span>' : '') + '</span>';
       if(keep){ keep.hidden = true; box.appendChild(keep); }
     }
     function fillMedia(box, it, onMeta, still){
@@ -12304,6 +12318,12 @@ window.addEventListener('error', function(e){
       tx.appendChild(oneuiText(camLine((a.place ? a.place + ' · ' : '') + a.cam), 'label', 'XS', 'low'));
     } else {
       tx.appendChild(oneuiText(el('span', 't', a.t), 'body', 'S', null, 'high'));
+      if(a.offline){
+        // how long it was down, and why
+        var out = oneuiText(el('span', 's arow-outage', outageText(a) + (a.cause ? ' · ' + a.cause : '')), 'label', 'XS', null);
+        out.setAttribute('data-appearance', 'negative'); out.setAttribute('data-attention', 'tintedA11y');
+        tx.appendChild(out);
+      }
       tx.appendChild(oneuiText(camLine((a.place ? a.place + ' · ' : '') + a.cam), 'label', 'XS', 'low'));
     }
     /* The other clips of a combined (unknown) incident as small thumbnails. */
