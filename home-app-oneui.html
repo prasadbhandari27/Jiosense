@@ -10098,7 +10098,8 @@ window.addEventListener('error', function(e){
            1:30 pm, the "fan on since" time in its summary; 852 = 2:12 pm, which
            is the 42 minutes later that Today's row reports. */
         { type:'motion',  priority:'low',  cam:'Bedroom',      day:0, mins:810,  img:'assets/bedroom.jpg',        t:'Fan switched on', clip:true },
-        { type:'motion',  priority:'low',  cam:'Bedroom',      day:0, mins:852,  img:'assets/bedroom.jpg',        t:'Fan still on — room empty for 42 min', clip:true },
+        { type:'person',  priority:'low',  cam:'Bedroom',      day:0, mins:845, who:'Meena', img:'assets/bedroom.jpg',         t:'Meena cleaning the bedroom', head:'Maid activity', clip:true },
+        { type:'person',  priority:'low',  cam:'Living Room',  day:0, mins:852, who:'Meena', img:'assets/livingroom-cam1.png', t:'Meena mopping the living room', clip:true },
         { type:'pet',     priority:'low',  cam:'Living Room',  day:0, mins:735,  img:'assets/livingroom.jpg',     t:'Dog settled on the living room rug', clip:true },
         { type:'vehicle', priority:'high', cam:'Front Door',  day:0, mins:758,  img:'assets/cam2.jpg',           t:'Unknown vehicle idling outside', clip:true },
         { type:'person',  priority:'low',  cam:'Front Door',  day:0, mins:840, who:'Arun',  img:'assets/cam2.jpg',           t:'Arun back home', solo:true },
@@ -12233,7 +12234,7 @@ window.addEventListener('error', function(e){
       grid.closest('.inc-sec').hidden = single;
       var main = items.slice().sort(function(x, y){ return PRIORITY_RANK[x.priority] - PRIORITY_RANK[y.priority] || y.mins - x.mins; })[0];
       var known = !!(g.who && KNOWN_PEOPLE[g.who]);
-      q('[data-inc-title]').textContent = single ? main.t : known ? g.who + '’s activity' : (g.who || 'Activity') + ' at ' + main.cam;
+      q('[data-inc-title]').textContent = single ? main.t : known ? (items[0].head ? g.who + ' \u00b7 ' + items[0].head : g.who + '\u2019s activity') : (g.who || 'Activity') + ' at ' + main.cam;
       q('[data-inc-summary]').textContent = story(items, g.who, single, others);
       setSummaryOpen(false);
       q('[data-inc-head]').textContent = heading;
@@ -12463,7 +12464,7 @@ window.addEventListener('error', function(e){
       /* who + how many clips, then the cameras they moved through, in order */
       var head = el('span', 't arow-who');
       head.appendChild(whoAvatar(who));
-      head.appendChild(document.createTextNode(who));
+      head.appendChild(document.createTextNode(items[0].head ? who + ' \u00b7 ' + items[0].head : who));
       tx.appendChild(oneuiText(head, 'body', 'S', null, 'high'));
       tx.appendChild(oneuiText(camLine(route.join(' → ')), 'label', 'XS', 'low'));
       // same clip counter as the important-incident card
