@@ -10042,8 +10042,8 @@ window.addEventListener('error', function(e){
   };
 
   /* The latest few events are placed minutes before the phone's clock, so today's timeline
-     always opens on them in this order: the unknown-person incident (now), Arun back home,
-     Meena's kitchen activity. */
+     always opens on them in this order: Arun back home (just now), the unknown-person
+     incident, the maid's visit. */
   var NOW_MINS = (function(){ var d = new Date(); return d.getHours() * 60 + d.getMinutes(); })();
   function minsAgo(m){ return Math.max(0, NOW_MINS - m); }
   var LOCATIONS = [
@@ -10125,7 +10125,7 @@ window.addEventListener('error', function(e){
         { type:'person',  priority:'low',  cam:'Living Room',  day:0, keep:true, mins:minsAgo(24), who:'Meena', grp:'maid-living', img:'assets/living-maid-floor.jpg', thumb:true, t:'Cleaned the floor', clip:true },
         { type:'pet',     priority:'low',  cam:'Living Room',  day:0, mins:735,  img:'assets/livingroom.jpg',     t:'Dog settled on the living room rug', clip:true },
         { type:'vehicle', priority:'high', cam:'Front Door',  day:0, mins:758,  img:'assets/cam2.jpg',           t:'Unknown vehicle idling outside', clip:true },
-        { type:'person',  priority:'low',  cam:'Front Door',  day:0, keep:true, mins:minsAgo(15), who:'Arun',  img:'assets/cam2.jpg',     t:'Arun back home', solo:true },
+        { type:'person',  priority:'low',  cam:'Front Door',  day:0, keep:true, mins:minsAgo(0), who:'Arun',  img:'assets/cam2.jpg',     t:'Arun back home', solo:true },
         { type:'package', priority:'low',  cam:'Front Door',  day:0, mins:940,  img:'assets/porch-package.jpg',  t:'Second delivery collected from the front door' },
 
         /* ── Evening (5 pm – 9 pm) ── */
