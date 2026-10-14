@@ -2563,6 +2563,7 @@ button.oneui-Avatar{position:relative}
 .alert-list .arow-mini .arow-nomedia-lbl{display:none}
 .alert-list .arow-mini .arow-nomedia-ico{width:20px;height:20px;background:none}
 .alert-list .acard-row.is-known .arow-card{padding:var(--Spacing-3) var(--Spacing-4)}
+.alert-list .acard-row.is-known.has-thumb .arow-card{padding:var(--Spacing-2-5)}
 /* event icon above the headline */
 .alert-list .acard-row .arow-tags{display:flex;margin:0 0 var(--Spacing-1);gap:var(--Spacing-1-5);color:var(--Neutral-High)}
 .alert-list .acard-row .arow-tag,.alert-list .acard-row .arow-tag svg{width:20px;height:20px}
@@ -10099,7 +10100,7 @@ window.addEventListener('error', function(e){
            is the 42 minutes later that Today's row reports. */
         { type:'motion',  priority:'low',  cam:'Bedroom',      day:0, mins:810,  img:'assets/bedroom.jpg',        t:'Fan switched on', clip:true },
         { type:'person',  priority:'low',  cam:'Bedroom',      day:0, mins:845, who:'Meena', img:'assets/bedroom.jpg',         t:'Meena cleaning the bedroom', head:'Maid activity', clip:true },
-        { type:'person',  priority:'low',  cam:'Living Room',  day:0, mins:852, who:'Meena', img:'assets/livingroom-cam1.png', t:'Meena mopping the living room', clip:true },
+        { type:'person',  priority:'low',  cam:'Living Room',  day:0, mins:852, who:'Meena', img:'assets/splash-suspicious.png', imgPos:'78% 58%', thumb:true, t:'Meena tidying the living room', clip:true },
         { type:'pet',     priority:'low',  cam:'Living Room',  day:0, mins:735,  img:'assets/livingroom.jpg',     t:'Dog settled on the living room rug', clip:true },
         { type:'vehicle', priority:'high', cam:'Front Door',  day:0, mins:758,  img:'assets/cam2.jpg',           t:'Unknown vehicle idling outside', clip:true },
         { type:'person',  priority:'low',  cam:'Front Door',  day:0, mins:840, who:'Arun',  img:'assets/cam2.jpg',           t:'Arun back home', solo:true },
@@ -11104,7 +11105,7 @@ window.addEventListener('error', function(e){
     'assets/livingroom.jpg':        'assets/livingroom-cam1.png'
   };
   /* Subject-specific, so they outrank the camera's own viewpoint still. */
-  var PER_EVENT = { 'assets/porch-package.png': true, 'assets/front-porch-delivery.png': true };
+  var PER_EVENT = { 'assets/porch-package.png': true, 'assets/front-porch-delivery.png': true, 'assets/splash-suspicious.png': true };
 
   function resolveStills(node){
     if(!node || typeof node !== 'object') return;
@@ -11955,6 +11956,7 @@ window.addEventListener('error', function(e){
     } else if(m.img){
       var img = document.createElement('img');
       img.src = m.img; img.alt = '';
+      if(m.imgPos) img.style.objectPosition = m.imgPos;
       img.addEventListener('error', function(){ th.classList.add('no-media'); img.remove(); });
       th.appendChild(img);
     } else th.classList.add('no-media');
@@ -12188,7 +12190,7 @@ window.addEventListener('error', function(e){
     function mediaHTML(it, still){
       if(it.offline) return null;
       return it.video && !still ? '<video src="' + it.video + '" poster="' + (it.img || '') + '" muted playsinline preload="metadata"></video>'
-                      : (it.img ? '<img src="' + it.img + '" alt="">' : null);
+                      : (it.img ? '<img src="' + it.img + '" alt=""' + (it.imgPos ? ' style="object-position:' + it.imgPos + '"' : '') + '>' : null);
     }
     var NOMEDIA_ICO = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 3l18 18M10.5 6H14a2 2 0 0 1 2 2v1.5l4-2.5v10M16 16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 1.2-1.83" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
     function setNoMedia(box, it){
@@ -12513,9 +12515,10 @@ window.addEventListener('error', function(e){
     }
 
     /* Big thumbnail (the main clip) — never for known people. */
-    if(!known && !unknownSolo && (main.img || main.video)){
+    var thumbClip = items.filter(function(it){ return it.thumb; })[0];
+    if((thumbClip || (!known && !unknownSolo)) && ((thumbClip || main).img || (thumbClip || main).video)){
       b.classList.add('has-thumb');
-      var th = clipThumb(main, 'arow-thumb');
+      var th = clipThumb(thumbClip || main, 'arow-thumb');
       // no play / pause control on the thumbnail — the whole card opens the clip
       card.insertBefore(th, card.firstChild);
     }
