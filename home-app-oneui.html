@@ -1914,6 +1914,7 @@ button.oneui-Avatar{position:relative}
 .evt-nudge[data-stack="1"]::before,.evt-nudge[data-stack="2"]::before,.evt-nudge[data-stack="2"]::after{display:block}
 .evt-nudge .cctv-nudge{position:relative;z-index:1}
 .evt-nudge .cctv-nudge .nudge-thumb{width:40px;height:40px;border-radius:var(--Shape-2-5,10px)}
+.cctv-nudge .nudge-thumb.is-nomedia{display:grid;place-items:center;background:var(--Negative-Subtle,#fbe5e3);color:var(--Negative-TintedA11y,#df012c)}
 .evt-nudge .cctv-nudge .nudge-top{gap:var(--Spacing-2-5);padding-right:var(--Spacing-8)}
 .evt-nudge .cctv-nudge .nudge-tx{gap:2px}
 .evt-nudge .cctv-nudge .nudge-title{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
@@ -12387,42 +12388,55 @@ window.addEventListener('error', function(e){
       // the regular notification row, and the first-day row (shown there once the unknown person is spotted)
       document.querySelectorAll('[data-evt-nudge]').forEach(buildNudge);
     }
+    /* A stack of today's important events, newest first. The front card is one event; closing
+       it dismisses only that event and the next one moves to the front. */
+    var NUDGE_NO_MEDIA = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.8"/><path d="M12 7.5v5.5M12 16.2v.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+    function nudgeTitle(g){
+      var items = g.items, multi = items.length > 1;
+      var main = items.slice().sort(function(x, y){ return PRIORITY_RANK[x.priority] - PRIORITY_RANK[y.priority] || y.mins - x.mins; })[0];
+      return items[0].headline || (multi && g.who ? g.who + ' at ' + main.cam : main.t);
+    }
     function buildNudge(row){
       var old = row.querySelector('.cctv-nudge'); if(old) old.remove();
-      var groups = groupByPerson(currentAlerts().filter(function(a){ return a.day === 0; }))
-        .filter(function(g){ return g.who && !KNOWN_PEOPLE[g.who]; });
-      // the nudge is for the incident (the big Activity card), not a one-off sighting
-      groups = groups.filter(isHeroGroup);
-      if(!groups.length){ row.hidden = true; return; }
-      var g = groups[groups.length - 1], items = g.items, first = items[0], last = items[items.length - 1];
+      var queue = groupByPerson(currentAlerts().filter(function(a){ return a.day === 0; }))
+        .filter(function(g){ return isHighImportance(g) && !g.items.some(function(it){ return it._nudgeClosed; }); })
+        .sort(function(x, y){ return latestMins(y.items) - latestMins(x.items); });
+      if(!queue.length){ row.hidden = true; row.setAttribute('data-stack', '0'); return; }
+      var g = queue[0], items = g.items, first = items[0];
       var main = items.slice().sort(function(x, y){ return PRIORITY_RANK[x.priority] - PRIORITY_RANK[y.priority] || y.mins - x.mins; })[0];
+      var thumbClip = items.filter(function(it){ return it.thumb; })[0] || main;
+      var title = nudgeTitle(g);
       var card = el('div', 'cctv-notif-card cctv-nudge oneui-Surface');
       card.setAttribute('data-surface', 'elevated');
-      card.setAttribute('role', 'group');
-      card.setAttribute('aria-label', 'High importance: ' + g.who + ' at ' + main.cam);
+      card.setAttribute('aria-label', 'High importance: ' + title + (queue.length > 1 ? ', 1 of ' + queue.length : ''));
       card.innerHTML =
-        '<button class="oneui-IconButton cctv-notif-close" data-size="8" data-appearance="neutral" data-attention="low" aria-label="Dismiss" data-nudge-close>' +
+        '<button class="oneui-IconButton cctv-notif-close" data-size="8" data-appearance="neutral" data-attention="low" aria-label="Dismiss this alert" data-nudge-close>' +
           '<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>' +
         '<div class="nudge-top">' +
-          '<span class="nudge-thumb"><img src="' + main.img + '" alt=""></span>' +
+          '<span class="nudge-thumb' + (thumbClip.img && !thumbClip.noFootage && !thumbClip.offline ? '' : ' is-nomedia') + '">' +
+            (thumbClip.img && !thumbClip.noFootage && !thumbClip.offline ? '<img src="' + thumbClip.img + '" alt="">' : NUDGE_NO_MEDIA) + '</span>' +
           '<span class="nudge-tx">' +
-            '<span class="oneui-Text nudge-title" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">' + g.who + ' at ' + main.cam + '</span>' +
-            // slim: importance sits in the meta line instead of a badge row
+            '<span class="oneui-Text nudge-title" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">' + title + '</span>' +
             '<span class="oneui-Text nudge-meta" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low">' +
               '<span class="oneui-Text nudge-imp" data-variant="label" data-size="XS" data-weight="high" data-appearance="negative" data-attention="tintedA11y">High importance</span>' +
               ' · ' + fmtTimestamp(first.mins) + (items.length > 1 ? ' · ' + items.length + ' clips' : '') + '</span>' +
           '</span>' +
         '</div>';
-      // the whole card opens the event's story; the X only dismisses
+      // the whole card opens the event's story; the X only dismisses this one
       card.setAttribute('role', 'button'); card.tabIndex = 0;
       card.setAttribute('data-alert-open', '1');
       card._group = g;
       card.addEventListener('keydown', function(e){ if(e.target === card && (e.key === 'Enter' || e.key === ' ')){ e.preventDefault(); card.click(); } });
-      card.querySelector('[data-nudge-close]').addEventListener('click', function(e){ e.stopPropagation(); window.__nudgeDismissed = true; card.remove(); });
-      // other important events today show as cards stacked behind this one (up to two)
-      var others = groupByPerson(currentAlerts().filter(function(a){ return a.day === 0; }))
-        .filter(function(x){ return x !== g && isHighImportance(x); }).length;
-      row.setAttribute('data-stack', String(Math.min(2, others)));
+      card.querySelector('[data-nudge-close]').addEventListener('click', function(e){
+        e.stopPropagation();
+        items.forEach(function(it){ it._nudgeClosed = true; });
+        buildNudge(row);          // next important event comes to the front
+        row.hidden = !row.firstChild || row.getAttribute('data-stack') === null;
+        if(!row.querySelector('.cctv-nudge')) row.hidden = true;
+      });
+      // the events still waiting peek out behind it (up to two)
+      row.setAttribute('data-stack', String(Math.min(2, queue.length - 1)));
+      row.hidden = false;
       row.insertBefore(card, row.firstChild);
     }
     setTimeout(renderHomeNudge, 0);
@@ -12772,7 +12786,7 @@ window.addEventListener('error', function(e){
     alertEmpty.hidden = list.length > 0;
     // the nudge is about today, so it only shows on today's list
     var evtNudge = document.querySelector('[data-evt-nudge]');
-    if(evtNudge) evtNudge.hidden = eventsDay !== 0 || !!window.__nudgeDismissed || !evtNudge.firstChild;
+    if(evtNudge) evtNudge.hidden = eventsDay !== 0 || !evtNudge.querySelector('.cctv-nudge');
     var bar = alertList.parentNode.querySelector('.alert-bar');
     if(bar) bar.style.display = list.length ? 'flex' : 'none';   // the empty state says it instead
     var eTitle = alertEmpty.querySelector('[data-empty-title]'), eBody = alertEmpty.querySelector('[data-empty-body]');
