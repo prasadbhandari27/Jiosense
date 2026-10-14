@@ -2314,7 +2314,7 @@ button.oneui-Avatar{position:relative}
 .alert-bar{display:flex;align-items:center;gap:var(--Spacing-2);margin-top:var(--Spacing-4)}
 .oneui-Chip[data-size="m"]{height:var(--Chip-height-m);padding:0 var(--Chip-paddingHorizontal-m);gap:var(--Chip-gap-m);font-size:var(--Chip-fontSize-m);line-height:var(--Chip-lineHeight-m)}
 /* filter chip: outlined when off, filled with a check when on */
-.alert-bar .imp-chip{margin-left:auto}
+.alert-bar .imp-chip{margin-left:auto;height:28px;padding:0 var(--Spacing-3)}
 .alert-bar .imp-chip[aria-pressed="false"]{background:var(--Surface-Fill-Default);border-color:var(--Neutral-Stroke-Medium)}
 .alert-bar .imp-chip .imp-chip-check{display:none}
 .alert-bar .imp-chip[aria-pressed="true"] .imp-chip-check{display:block}
@@ -12665,7 +12665,7 @@ window.addEventListener('error', function(e){
     }
     if(importantOnly) groups = impGroups;
     alertCount.textContent = importantOnly
-      ? impGroups.length + ' important event' + (impGroups.length === 1 ? '' : 's')
+      ? impGroups.length + ' event' + (impGroups.length === 1 ? '' : 's')
       : list.length + ' event' + (list.length === 1 ? '' : 's');
 
     /* Rebuilt on every render, so the dots follow a location switch. */
