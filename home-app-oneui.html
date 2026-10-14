@@ -11911,7 +11911,7 @@ window.addEventListener('error', function(e){
      PERSON_GAP minutes of the last, become one card — "Arun · 3 clips" — even across
      cameras. Everything else stays one card per clip. Items run oldest → newest. */
   var PERSON_GAP = 45;
-  var WHO_PHOTO = { Priya:'assets/people/priya-portrait.jpg', Arun:'assets/people/arun.jpg', Rohan:'assets/people/rohan.jpg' };
+  var WHO_PHOTO = { Priya:'assets/people/priya-portrait.jpg', Arun:'assets/people/arun.jpg', Rohan:'assets/people/rohan.jpg', Meena:'assets/people/meena.jpg' };
   function groupByPerson(list){
     var asc = list.slice().sort(function(x, y){ return x.mins - y.mins; }), out = [], open = {};
     asc.forEach(function(a){
