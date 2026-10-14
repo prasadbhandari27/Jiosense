@@ -2314,6 +2314,7 @@ button.oneui-Avatar{position:relative}
 .alert-bar{display:flex;align-items:center;gap:var(--Spacing-2);margin-top:var(--Spacing-4)}
 .alert-bar .imp-chip{margin-left:auto;gap:var(--Spacing-1-5);background:var(--Surface-Fill-Default);box-shadow:var(--Elevation-1,0 1px 2px rgba(0,0,0,.08))}
 .alert-bar .imp-chip[hidden]{display:none}
+.alert-bar .imp-chip .oneui-CounterBadge{color:#fff}
 .alert-bar .imp-chip[aria-pressed="true"] .oneui-CounterBadge{background:var(--Primary-Bold-High,#fff);color:var(--Primary-Bold)}
 .alert-count{flex:1;min-width:0}
 .alert-list{margin-top:var(--Spacing-2)}
@@ -6299,7 +6300,7 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
         <p class="oneui-Text alert-count" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral" data-attention="high" style="margin:0"><span data-alert-count></span></p>
         <!-- Shortcut to the events that matter: shows only high-importance events -->
         <button type="button" class="oneui-Chip imp-chip" data-appearance="primary" data-attention="high" aria-pressed="false" data-imp-chip hidden>
-          Important <span class="oneui-CounterBadge" data-appearance="negative" data-attention="high" data-imp-count>0</span>
+          High importance <span class="oneui-CounterBadge" data-appearance="negative" data-attention="high" data-imp-count>0</span>
         </button>
       </div>
 
@@ -12657,11 +12658,11 @@ window.addEventListener('error', function(e){
       impChip.hidden = !impGroups.length;
       impChip.setAttribute('aria-pressed', importantOnly ? 'true' : 'false');
       impChip.querySelector('[data-imp-count]').textContent = impGroups.length;
-      impChip.setAttribute('aria-label', 'Show only important events, ' + impGroups.length);
+      impChip.setAttribute('aria-label', 'Show only high-importance events, ' + impGroups.length);
     }
     if(importantOnly) groups = impGroups;
     alertCount.textContent = importantOnly
-      ? impGroups.length + ' important event' + (impGroups.length === 1 ? '' : 's')
+      ? impGroups.length + ' high-importance event' + (impGroups.length === 1 ? '' : 's')
       : list.length + ' event' + (list.length === 1 ? '' : 's');
 
     /* Rebuilt on every render, so the dots follow a location switch. */
