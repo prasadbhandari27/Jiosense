@@ -12616,11 +12616,8 @@ window.addEventListener('error', function(e){
 
     /* Sort all groups by time ascending so sections flow naturally */
     var sortedGroups = groups.slice().sort(function(x, y){
-      /* the big incident cards lead the list, newest first */
-      var hx = isHeroGroup(x), hy = isHeroGroup(y);
-      if(hx !== hy) return hx ? -1 : 1;
-      if(hx) return latestMins(y.items) - latestMins(x.items);   // incident cards: newest first
-      /* the rest is a plain timeline, most recent first */
+      /* one timeline, most recent first — important events sit at the time they happened
+         (the Important chip is the shortcut to them) */
       return latestMins(y.items) - latestMins(x.items);
     });
 
