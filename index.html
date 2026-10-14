@@ -1871,7 +1871,6 @@ button.oneui-Avatar{position:relative}
   background:var(--Neutral-High);color:#fff;font-size:13px;font-weight:800;text-shadow:none;border:2px solid var(--Surface-Fill-Default);
 }
 #unk-btn-add{justify-content:center}
-.unk-sheet.is-event #unk-btn-link{display:none}
 .unk-sheet.is-event .unk-av-lg{
   position:relative;display:grid;place-items:center;border-radius:50%;flex:none;overflow:visible;isolation:isolate;
   background:url(assets/frontporch.png) 90% 19%/900% no-repeat var(--Surface-Fill-Subtle);font-size:0;border:0;
@@ -6919,7 +6918,7 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
             <span class="ap-sheet-opt-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/></svg>
             </span>
-            <span class="ap-sheet-opt-tx"><span class="oneui-Text t" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral">This is someone I know</span></span>
+            <span class="ap-sheet-opt-tx"><span class="oneui-Text t" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral">Looks like someone I know</span></span>
             <span class="oneui-Icon unk-chevron" data-size="sm" data-appearance="neutral" data-emphasis="low" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </button>
         </div>
@@ -12307,6 +12306,7 @@ window.addEventListener('error', function(e){
     delete ev._group;
     if(typeof renderAlerts === 'function') renderAlerts();
     if(typeof window.__refreshEventDetail === 'function') window.__refreshEventDetail();
+    if(typeof window.__renderHomeNudge === 'function') window.__renderHomeNudge();   // the banner no longer has an unknown person to point at
   };
 
   window.__fmtTime = fmtTimestamp;
@@ -12329,9 +12329,8 @@ window.addEventListener('error', function(e){
       var groups = groupByPerson(currentAlerts().filter(function(a){ return a.day === 0; }))
         .filter(function(g){ return g.who && !KNOWN_PEOPLE[g.who]; });
       // the nudge is for the incident (the big Activity card), not a one-off sighting
-      var incidents = groups.filter(isHeroGroup);
-      if(incidents.length) groups = incidents;
-      if(!groups.length) return;
+      groups = groups.filter(isHeroGroup);
+      if(!groups.length){ row.hidden = true; return; }
       var g = groups[groups.length - 1], items = g.items, first = items[0], last = items[items.length - 1];
       var main = items.slice().sort(function(x, y){ return PRIORITY_RANK[x.priority] - PRIORITY_RANK[y.priority] || y.mins - x.mins; })[0];
       var card = el('div', 'cctv-notif-card cctv-nudge oneui-Surface');
@@ -14143,6 +14142,15 @@ window.addEventListener('error', function(e){
         btn.appendChild(av); btn.appendChild(tx);
 
         btn.addEventListener('click', function(){
+          // from an Activity card: the event becomes this person's
+          if(unkEvent){
+            var ev = unkEvent;
+            closeUnkSheet({restoreFocus:false});
+            if(typeof window.__resolveUnknownEvent === 'function') window.__resolveUnknownEvent(ev, name.split(' ')[0], photo);
+            var t = document.querySelector('[data-toast]');
+            if(t){ t.textContent = 'Identified as ' + name; t.classList.remove('has-action'); t.classList.add('is-on'); clearTimeout(t._timer); t._timer = setTimeout(function(){ t.classList.remove('is-on'); }, 2200); }
+            return;
+          }
           var undo = window.__resolveUnknownTile();
           closeUnkSheet({restoreFocus:false});
           var first = peopleGrid.querySelector('.cctv-person-item'); if(first) first.focus({preventScroll:true});
