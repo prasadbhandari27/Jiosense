@@ -11117,7 +11117,7 @@ window.addEventListener('error', function(e){
     'assets/livingroom.jpg':        'assets/livingroom-cam1.png'
   };
   /* Subject-specific, so they outrank the camera's own viewpoint still. */
-  var PER_EVENT = { 'assets/porch-package.png': true, 'assets/front-porch-delivery.png': true, 'assets/splash-suspicious.png': true, 'assets/kitchen-maid-dishes.jpg': true, 'assets/kitchen-maid-counter.jpg': true, 'assets/living-maid-dusting.jpg': true, 'assets/living-maid-sofa.jpg': true, 'assets/living-maid-floor.jpg': true, 'assets/living-tv-technician.jpg': true };
+  var PER_EVENT = { 'assets/porch-package.png': true, 'assets/front-porch-delivery.png': true, 'assets/splash-suspicious.png': true, 'assets/kitchen-maid-dishes.jpg': true, 'assets/kitchen-maid-counter.jpg': true, 'assets/living-maid-dusting.jpg': true, 'assets/living-maid-sofa.jpg': true, 'assets/living-maid-floor.jpg': true, 'assets/living-tv-technician.jpg': true, 'assets/living-family-evening.jpg': true };
 
   function resolveStills(node){
     if(!node || typeof node !== 'object') return;
@@ -11165,7 +11165,7 @@ window.addEventListener('error', function(e){
       { type:'person', priority:'low', cam:'Front Door', mins:at(17,30), who:'Hamid', solo:true, t:'Hamid came home' },
       { type:'package', priority:'low', cam:'Front Door', mins:at(17,45), who:'Hamid', solo:true, t:'Hamid received a package' },
       { type:'person', priority:'low', cam:'Front Door', mins:at(18,0), who:'Limmi', solo:true, t:'Limmi came home' },
-      { type:'person', priority:'low', cam:'Living Room', mins:at(18,30), who:'Aarav', solo:true, t:'Aarav and his parents spent the evening together' }
+      { type:'person', priority:'low', cam:'Living Room', mins:at(18,30), who:'Aarav', solo:true, thumb:true, img:'assets/living-family-evening.jpg', t:'Aarav and his parents spent the evening together', clip:true }
     ];
     LOCATIONS.forEach(function(l){
       if(l.key !== 'sharma-residence') return;
