@@ -12229,6 +12229,9 @@ window.addEventListener('error', function(e){
       var old = row.querySelector('.cctv-nudge'); if(old) old.remove();
       var groups = groupByPerson(currentAlerts().filter(function(a){ return a.day === 0; }))
         .filter(function(g){ return g.who && !KNOWN_PEOPLE[g.who]; });
+      // the nudge is for the incident (the big Activity card), not a one-off sighting
+      var incidents = groups.filter(isHeroGroup);
+      if(incidents.length) groups = incidents;
       if(!groups.length) return;
       var g = groups[groups.length - 1], items = g.items, first = items[0], last = items[items.length - 1];
       var main = items.slice().sort(function(x, y){ return PRIORITY_RANK[x.priority] - PRIORITY_RANK[y.priority] || y.mins - x.mins; })[0];
