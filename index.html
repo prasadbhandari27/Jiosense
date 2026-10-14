@@ -1871,6 +1871,16 @@ button.oneui-Avatar{position:relative}
   background:var(--Neutral-High);color:#fff;font-size:13px;font-weight:800;text-shadow:none;border:2px solid var(--Surface-Fill-Default);
 }
 #unk-btn-add{justify-content:center}
+.unk-sheet.is-event #unk-btn-link{display:none}
+.unk-sheet.is-event .unk-av-lg{
+  position:relative;display:grid;place-items:center;border-radius:50%;flex:none;overflow:visible;isolation:isolate;
+  background:url(assets/frontporch.png) 90% 19%/900% no-repeat var(--Surface-Fill-Subtle);font-size:0;border:0;
+}
+.unk-sheet.is-event .unk-av-lg::before{display:none}
+.unk-sheet.is-event .unk-av-lg .unk-av-q{
+  display:grid;place-items:center;position:absolute;right:-2px;bottom:-2px;width:24px;height:24px;border-radius:50%;
+  background:var(--Neutral-High);color:#fff;font-size:13px;font-weight:800;text-shadow:none;border:2px solid var(--Surface-Fill-Default);
+}
 #unk-btn-add .ap-sheet-opt-tx{flex:0 0 auto}
 .home-fresh .home-fresh-face,[data-screen="my-home"].is-fresh .unk-av-lg{isolation:isolate}
 .home-fresh .home-fresh-face::before,[data-screen="my-home"].is-fresh .unk-av-lg::before{z-index:-1}
@@ -12199,6 +12209,8 @@ window.addEventListener('error', function(e){
     if(typeof renderAlerts === 'function') renderAlerts();
   };
 
+  window.__fmtTime = fmtTimestamp;
+
   /* One rule for the card and its story screen: an unknown person, or a high-priority event */
   function isHighImportance(g){
     var items = g.items || [g];
@@ -12364,8 +12376,8 @@ window.addEventListener('error', function(e){
         addBtn.setAttribute('data-size', '8'); addBtn.setAttribute('data-appearance', 'primary'); addBtn.setAttribute('data-attention', 'low');
         addBtn.addEventListener('click', function(e){
           e.stopPropagation();
-          window.__unkPendingEvent = a;
-          window.__routerOpen('add-person');
+          if(window.__openUnkSheetFor) window.__openUnkSheetFor(a, addBtn);
+          else { window.__unkPendingEvent = a; window.__routerOpen('add-person'); }
         });
         tx.appendChild(addBtn);
       }
@@ -13892,7 +13904,17 @@ window.addEventListener('error', function(e){
       unkOverlay.classList.remove('is-up');
       unkSheet.setAttribute('inert', '');
       unkSheet.setAttribute('aria-hidden', 'true');
-      if(opts.restoreTabbar !== false && unkTabbar && unkHome.classList.contains('is-active')) unkTabbar.classList.add('is-on');
+      var host = unkSheet.parentNode;
+      if(opts.restoreTabbar !== false && unkTabbar && (unkHome.classList.contains('is-active') || (unkEvent && host.classList.contains('has-tabbar')))) unkTabbar.classList.add('is-on');
+      if(unkEvent){
+        unkEvent = null;
+        setTimeout(function(){
+          if(unkIsOpen()) return;
+          unkSheet.classList.remove('is-event');
+          unkSub.textContent = unkSubDefault;
+          unkHome.appendChild(unkOverlay); unkHome.appendChild(unkSheet);
+        }, 360);
+      }
       if(opts.restoreFocus !== false){
         var target = unkReturnFocus && document.contains(unkReturnFocus) ? unkReturnFocus : peopleGrid.querySelector('.cctv-person-item');
         if(target) target.focus({preventScroll:true});
@@ -13902,6 +13924,21 @@ window.addEventListener('error', function(e){
 
     unkOverlay.addEventListener('click', function(){ closeUnkSheet(); });
     window.__openUnkSheet = openUnkSheet;
+    /* The same sheet, opened from an Activity card: it moves over that screen, says where
+       and when the person was spotted, and "Add as new person" names that event's person. */
+    var unkEvent = null;
+    var unkSub = unkSheet.querySelector('.unk-hero p');
+    var unkSubDefault = unkSub ? unkSub.textContent : '';
+    window.__openUnkSheetFor = function(ev, fromEl){
+      var host = fromEl && fromEl.closest('.screen');
+      if(!host) return;
+      unkEvent = ev;
+      host.appendChild(unkOverlay); host.appendChild(unkSheet);
+      unkSheet.classList.add('is-event');
+      if(unkSub && ev.cam) unkSub.textContent = 'Spotted at ' + ev.cam + (typeof ev.mins === 'number' ? ' · ' + window.__fmtTime(ev.mins) : '');
+      void unkSheet.offsetWidth;               // let it start below the screen before sliding up
+      openUnkSheet(fromEl);
+    };
     /* First-day pill in its unknown state opens the Unknown person sheet (tap or Enter/Space). */
     var freshPill = document.querySelector('[data-fresh-unk-pill]');
     if(freshPill){
@@ -13941,7 +13978,8 @@ window.addEventListener('error', function(e){
     }
 
     document.getElementById('unk-btn-add').addEventListener('click', function(){
-      window.__unkPendingAdd = true;
+      if(unkEvent) window.__unkPendingEvent = unkEvent;   // from an Activity card: the new person is that event's
+      else window.__unkPendingAdd = true;
       closeUnkSheet({restoreTabbar:false, restoreFocus:false});
       setTimeout(function(){ window.__routerOpen('add-person'); }, 220);
     });
