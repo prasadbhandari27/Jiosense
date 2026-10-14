@@ -2383,6 +2383,7 @@ button.oneui-Avatar{position:relative}
 .acard-row.is-hero .arow-hero-media .arow-nomedia{position:absolute;inset:0;display:none;place-items:center;color:var(--Neutral-Low)}
 .acard-row.is-hero .arow-hero-media.no-media .arow-nomedia{display:grid}
 .acard-row.is-hero .hero-ft{display:flex;align-items:center;gap:var(--Spacing-2);min-height:32px}
+.acard-row.is-hero .hero-ft .hero-add{margin-left:auto;margin-right:calc(-1 * var(--Spacing-2))}
 .acard-row.is-hero .hero-count{display:inline-flex;align-items:center;gap:4px}
 .acard-row.is-hero .hero-count svg{width:13px;height:13px}
 .acard-row.is-hero:focus-visible{outline:2px solid var(--Primary-Bold);outline-offset:2px}
@@ -12392,6 +12393,18 @@ window.addEventListener('error', function(e){
     ft.innerHTML =
       (isHighImportance(g) ? '<span class="oneui-Badge" data-appearance="negative" data-attention="medium" data-size="s">High importance</span>' : '') +
       (multi ? '<span class="oneui-Text hero-count" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="7" width="14" height="13" rx="2.5" stroke="currentColor" stroke-width="2"/><path d="M7 4h11.5A2.5 2.5 0 0 1 21 6.5V16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>' + items.length + ' clips</span>' : '');
+    // someone we don't recognise: Add person, same Unknown Person sheet as the other cards
+    if(g.who && !KNOWN_PEOPLE[g.who]){
+      var add = el('button', 'oneui-Button hero-add', 'Add person');
+      add.type = 'button';
+      add.setAttribute('data-size', '8'); add.setAttribute('data-appearance', 'primary'); add.setAttribute('data-attention', 'low');
+      add.addEventListener('click', function(e){
+        e.stopPropagation();
+        var ev = items[items.length - 1];
+        if(window.__openUnkSheetFor) window.__openUnkSheetFor(Object.assign(ev, { _group:g }), add);
+      });
+      ft.appendChild(add);
+    }
     if(ft.innerHTML) card.appendChild(ft);
     b.appendChild(card);
 
