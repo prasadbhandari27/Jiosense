@@ -2582,6 +2582,8 @@ button.oneui-Avatar{position:relative}
 .alert-list .acard-row .cam-line{display:flex;align-items:center;gap:4px}
 .alert-list .acard-row .cam-line .cam-ico{width:14px;height:14px;flex:0 0 auto}
 .arow-av.arow-av-unk{background:url(assets/frontporch.png) 90% 19%/900% no-repeat var(--Surface-Fill-Subtle)}
+.alert-list .acard-row .arow-alert{align-self:flex-start;margin-top:var(--Spacing-1-5)}
+.alert-list .acard-row .arow-note{display:block;margin-top:var(--Spacing-0-5)}
 .alert-list .acard-row .arow-add{align-self:flex-start;margin:var(--Spacing-1) 0 calc(-1 * var(--Spacing-1-5)) calc(-1 * var(--Button-paddingHorizontal-8,12px))}
 .alert-list .acard-row .arow-count{display:inline-flex;align-items:center;gap:4px;margin-top:var(--Spacing-1-5)}
 .alert-list .acard-row .arow-count svg{width:13px;height:13px}
@@ -10108,12 +10110,12 @@ window.addEventListener('error', function(e){
            is the 42 minutes later that Today's row reports. */
         { type:'motion',  priority:'low',  cam:'Bedroom',      day:0, mins:810,  img:'assets/bedroom.jpg',        t:'Fan switched on', clip:true },
         /* One visit, three activities: the card reads "Your maid cleaned the living room" */
-        { type:'person',  priority:'low',  cam:'Living Room',  day:0, mins:minsAgo(43), since:minsAgo(45), who:'Meena', grp:'maid-living', headline:'Your maid cleaned the living room', unit:'activities', img:'assets/living-maid-dusting.jpg', t:'Dusted the surfaces', clip:true },
-        { type:'person',  priority:'low',  cam:'Living Room',  day:0, mins:minsAgo(31), who:'Meena', grp:'maid-living', img:'assets/living-maid-sofa.jpg', t:'Tidied the sofa', clip:true },
-        { type:'person',  priority:'low',  cam:'Living Room',  day:0, mins:minsAgo(24), who:'Meena', grp:'maid-living', img:'assets/living-maid-floor.jpg', thumb:true, t:'Cleaned the floor', clip:true },
+        { type:'person',  priority:'low',  cam:'Living Room',  day:0, keep:true, mins:minsAgo(43), since:minsAgo(45), who:'Meena', grp:'maid-living', headline:'Your maid cleaned the living room', unit:'activities', img:'assets/living-maid-dusting.jpg', t:'Dusted the surfaces', clip:true },
+        { type:'person',  priority:'low',  cam:'Living Room',  day:0, keep:true, mins:minsAgo(31), who:'Meena', grp:'maid-living', img:'assets/living-maid-sofa.jpg', t:'Tidied the sofa', clip:true },
+        { type:'person',  priority:'low',  cam:'Living Room',  day:0, keep:true, mins:minsAgo(24), who:'Meena', grp:'maid-living', img:'assets/living-maid-floor.jpg', thumb:true, t:'Cleaned the floor', clip:true },
         { type:'pet',     priority:'low',  cam:'Living Room',  day:0, mins:735,  img:'assets/livingroom.jpg',     t:'Dog settled on the living room rug', clip:true },
         { type:'vehicle', priority:'high', cam:'Front Door',  day:0, mins:758,  img:'assets/cam2.jpg',           t:'Unknown vehicle idling outside', clip:true },
-        { type:'person',  priority:'low',  cam:'Front Door',  day:0, mins:minsAgo(15), who:'Arun',  img:'assets/cam2.jpg',     t:'Arun back home', solo:true },
+        { type:'person',  priority:'low',  cam:'Front Door',  day:0, keep:true, mins:minsAgo(15), who:'Arun',  img:'assets/cam2.jpg',     t:'Arun back home', solo:true },
         { type:'package', priority:'low',  cam:'Front Door',  day:0, mins:940,  img:'assets/porch-package.jpg',  t:'Second delivery collected from the front door' },
 
         /* ── Evening (5 pm – 9 pm) ── */
@@ -10121,9 +10123,9 @@ window.addEventListener('error', function(e){
         { type:'motion',  priority:'low',  cam:'Kitchen',      day:0, mins:1095, who:'Priya', img:'assets/cam1.jpg',           t:'Dinner preparation — kitchen active' },
         /* An unknown person around the porch over ~10 min — groups into one combined card
            (unknown, so it keeps video: the most important clip big, the others small). */
-        { type:'person',  priority:'low',  cam:'Front Door',  day:0, mins:minsAgo(11), who:'Unknown person', img:'assets/frontporch.png', t:'Came in through the gate', step:'came in through the gate carrying a package', clip:true },
-        { type:'person',  priority:'low',  cam:'Front Door',  day:0, mins:minsAgo(6), who:'Unknown person', img:'assets/porch-package.png', t:'Rang the doorbell', step:'rang the doorbell', clip:true },
-        { type:'person',  priority:'med',  cam:'Front Door',  day:0, mins:minsAgo(1), who:'Unknown person', img:'assets/front-porch-delivery.png', t:'Waited at the door', step:'waited at the door', clip:true },
+        { type:'person',  priority:'low',  cam:'Front Door',  day:0, keep:true, mins:minsAgo(11), who:'Unknown person', img:'assets/frontporch.png', t:'Came in through the gate', step:'came in through the gate carrying a package', clip:true },
+        { type:'person',  priority:'low',  cam:'Front Door',  day:0, keep:true, mins:minsAgo(6), who:'Unknown person', img:'assets/porch-package.png', t:'Rang the doorbell', step:'rang the doorbell', clip:true },
+        { type:'person',  priority:'med',  cam:'Front Door',  day:0, keep:true, mins:minsAgo(1), who:'Unknown person', img:'assets/front-porch-delivery.png', t:'Waited at the door', step:'waited at the door', clip:true },
         { type:'motion',  priority:'low',  cam:'Living Room',  day:0, mins:1230, img:'assets/livingroom.jpg',     t:'Family gathered in the living room' },
         { type:'motion',  priority:'low',  cam:'Backyard',     day:0, mins:1260, img:'assets/cam4.jpg',           t:'Garden light triggered by motion' },
 
@@ -10131,7 +10133,7 @@ window.addEventListener('error', function(e){
         { type:'motion',  priority:'low',  cam:'Nursery Cam',  day:0, mins:1350, img:'assets/nursery.png',        t:'Nursery motion — baby restless' },
         { type:'motion',  priority:'low',  cam:'Living Room',  day:0, mins:1390, img:'assets/livingroom.jpg',     t:'Living room cleared — everyone to bed' },
         { type:'system',  priority:'low',  cam:'Backyard',     day:0, mins:172,  img:'assets/cam4.jpg',           t:'Backyard camera back online' },
-        { type:'person',  priority:'med',  cam:'Front Door',  day:0, mins:minsAgo(90), who:'Unknown person', img:'assets/front-porch-delivery.png', t:'Unknown person at the door', step:'stood at the front door', clip:true },
+        { type:'person',  priority:'med',  cam:'Front Door',  day:0, keep:true, mins:minsAgo(90), who:'Unknown person', img:'assets/front-porch-delivery.png', t:'Unknown person at the door', step:'stood at the front door', clip:true },
 
         /* ── Other days (for calendar nav demo) ── */
         { type:'pet',     priority:'low',  cam:'Living Room',  day:1, mins:855,  img:'assets/livingroom.jpg',     t:'Dog on the living room rug' },
@@ -11103,7 +11105,9 @@ window.addEventListener('error', function(e){
     'Nursery Cam': 'assets/nursery.png',
     'Front Door': 'assets/frontporch.png',
     'Living Room': 'assets/livingroom-cam1.png',
-    'Bedroom':     'assets/bedroom.jpg'
+    'Bedroom':     'assets/bedroom.jpg',
+    'Dining':      'assets/kitchen.jpg',
+    'Study':       'assets/bedroom.jpg'
   };
   var STILL_ALIAS = {
     'assets/frontdoor-visitor.jpg': 'assets/frontporch.png',
@@ -11113,7 +11117,7 @@ window.addEventListener('error', function(e){
     'assets/livingroom.jpg':        'assets/livingroom-cam1.png'
   };
   /* Subject-specific, so they outrank the camera's own viewpoint still. */
-  var PER_EVENT = { 'assets/porch-package.png': true, 'assets/front-porch-delivery.png': true, 'assets/splash-suspicious.png': true, 'assets/kitchen-maid-dishes.jpg': true, 'assets/kitchen-maid-counter.jpg': true, 'assets/living-maid-dusting.jpg': true, 'assets/living-maid-sofa.jpg': true, 'assets/living-maid-floor.jpg': true };
+  var PER_EVENT = { 'assets/porch-package.png': true, 'assets/front-porch-delivery.png': true, 'assets/splash-suspicious.png': true, 'assets/kitchen-maid-dishes.jpg': true, 'assets/kitchen-maid-counter.jpg': true, 'assets/living-maid-dusting.jpg': true, 'assets/living-maid-sofa.jpg': true, 'assets/living-maid-floor.jpg': true, 'assets/living-tv-technician.jpg': true };
 
   function resolveStills(node){
     if(!node || typeof node !== 'object') return;
@@ -11131,6 +11135,43 @@ window.addEventListener('error', function(e){
     });
   }
 
+  /* Today, after the first four cards: one household's day (Aarav, his parents Hamid and Limmi,
+     the maid). Written as clock times (7:30 am – 6:30 pm) and shifted as a block so it always
+     ends just before the 4th card, keeping the same order and gaps — squeezed only when there
+     isn't enough of the day left. */
+  (function(){
+    var START = 7 * 60 + 30, END = 18 * 60 + 30;
+    var anchor = NOW_MINS - 100;
+    var scale = Math.min(1, Math.max(0, anchor - 5) / (END - START));
+    function at(h, m){ return Math.max(0, Math.round(anchor - (END - (h * 60 + m)) * scale)); }
+    // the expected-by time moves with the block, so the copy matches the timeline
+    function fmtClock(t){ var h = Math.floor(t / 60), mm = t % 60; return (h % 12 || 12) + ':' + (mm < 10 ? '0' : '') + mm + ' ' + (h < 12 ? 'am' : 'pm'); }
+    var D = [
+      { type:'system', priority:'high', alert:true, cam:'Front Door', mins:at(7,30), noFootage:true, t:'Your cook hasn\u2019t arrived \u2014 expected by ' + fmtClock(at(7,0)), summary:'Your cook is usually in by ' + fmtClock(at(7,0)) + ', but the front door camera hasn\u2019t seen them yet this morning.' },
+      { type:'person', priority:'low', cam:'Front Door', mins:at(8,0),  who:'Aarav', solo:true, t:'Aarav left for school' },
+      { type:'person', priority:'low', cam:'Front Door', mins:at(9,0),  who:'Hamid', solo:true, t:'Hamid left for work' },
+      { type:'person', priority:'med', cam:'Living Room', mins:at(9,30), who:'Unknown person', solo:true, thumb:true, img:'assets/living-tv-technician.jpg', t:'An unknown person came in and worked on the TV', step:'came in and worked on the TV', clip:true },
+      { type:'person', priority:'low', cam:'Front Door', mins:at(10,0), who:'Limmi', solo:true, t:'Limmi left for work' },
+      { type:'person', priority:'low', cam:'Front Door', mins:at(11,0), who:'Meena', solo:true, t:'Your maid arrived' },
+      { type:'person', priority:'low', cam:'Front Door', mins:at(11,30), who:'Meena', solo:true, t:'Your maid left' },
+      { type:'person', priority:'low', cam:'Front Door', mins:at(14,0), who:'Aarav', solo:true, t:'Aarav came home from school' },
+      { type:'person', priority:'low', cam:'Dining',     mins:at(14,0), until:at(14,30), who:'Aarav', solo:true, t:'Aarav had lunch' },
+      { type:'person', priority:'low', cam:'Living Room', mins:at(14,30), until:at(15,0), who:'Aarav', solo:true, t:'Aarav watched TV' },
+      { type:'person', priority:'low', cam:'Study',      mins:at(15,5), since:at(15,0), who:'Aarav', grp:'aarav-study', headline:'Aarav did his homework and read', unit:'activities', t:'Did his homework', clip:true },
+      { type:'person', priority:'low', cam:'Study',      mins:at(15,40), until:at(16,0), who:'Aarav', grp:'aarav-study', t:'Read a book', clip:true },
+      { type:'person', priority:'med', cam:'Living Room', mins:at(16,0), who:'Aarav', solo:true, t:'Aarav fell while playing in the living room', note:'Got back up and carried on', clip:true },
+      { type:'person', priority:'low', cam:'Bedroom',    mins:at(16,30), who:'Aarav', solo:true, t:'Aarav napped' },
+      { type:'person', priority:'low', cam:'Front Door', mins:at(17,30), who:'Hamid', solo:true, t:'Hamid came home' },
+      { type:'package', priority:'low', cam:'Front Door', mins:at(17,45), who:'Hamid', solo:true, t:'Hamid received a package' },
+      { type:'person', priority:'low', cam:'Front Door', mins:at(18,0), who:'Limmi', solo:true, t:'Limmi came home' },
+      { type:'person', priority:'low', cam:'Living Room', mins:at(18,30), who:'Aarav', solo:true, t:'Aarav and his parents spent the evening together' }
+    ];
+    LOCATIONS.forEach(function(l){
+      if(l.key !== 'sharma-residence') return;
+      l.alerts = l.alerts.filter(function(a){ return a.day !== 0 || a.keep; })
+        .concat(D.map(function(a){ return Object.assign({ day:0 }, a); }));
+    });
+  })();
   resolveStills(LOCATIONS);
   resolveStills(PERSON_DAY);
 
@@ -11937,7 +11978,7 @@ window.addEventListener('error', function(e){
   /* People the household knows (family, helpers). Their clips never show footage on the
      list — a compact text row with their avatar instead; the video is still there when the
      event is opened. Anyone else (unknown visitors) keeps the video thumbnail. */
-  var KNOWN_PEOPLE = { Priya:1, Arun:1, Meena:1, Rohan:1, Aparna:1 };
+  var KNOWN_PEOPLE = { Priya:1, Arun:1, Meena:1, Rohan:1, Aparna:1, Aarav:1, Hamid:1, Limmi:1 };
   function whoAvatar(who){
     var av = el('span', 'oneui-Avatar arow-av');
     av.setAttribute('data-size', 'custom'); av.setAttribute('aria-hidden', 'true');
@@ -11978,7 +12019,7 @@ window.addEventListener('error', function(e){
      · thumbs up/down. Used for combined incidents that aren't a known person, and for any
      high-priority event. A div with role=button, since it holds the feedback buttons. */
   /* A card's time on the rail is its most recent clip */
-  function latestMins(items){ return Math.max.apply(null, items.map(function(it){ return it.mins; })); }
+  function latestMins(items){ return Math.max.apply(null, items.map(function(it){ return it.until != null ? it.until : it.mins; })); }
   /* Rail label: one time for a single clip, first – last for combined clips */
   /* "42 min", "1 hr 5 min" */
   function spanText(m){ var h = Math.floor(m / 60), r = m % 60; return (h ? h + ' hr' + (r ? ' ' : '') : '') + (r || !h ? r + ' min' : ''); }
@@ -12175,6 +12216,7 @@ window.addEventListener('error', function(e){
       var cams = items.map(function(it){ return it.cam; }).filter(function(c, i, a){ return a.indexOf(c) === i; });
       if(single){
         var it = items[0];
+        if(it.summary) return it.summary;
         if(it.offline){
           if(it.until == null) return 'The ' + it.cam + ' camera lost connection at ' + from + (it.cause ? ' (' + it.cause + ')' : '') + ' and is still offline, so nothing is being recorded.';
           return 'The ' + it.cam + ' camera was offline from ' + from + ' to ' + fmtTimestamp(it.until) + ' (' + spanText(it.until - it.mins) + ')' +
@@ -12202,7 +12244,7 @@ window.addEventListener('error', function(e){
         items.map(function(it){ return it.t; }).join('; ') + '.';
     }
     function mediaHTML(it, still){
-      if(it.offline) return null;
+      if(it.offline || it.noFootage) return null;
       return it.video && !still ? '<video src="' + it.video + '" poster="' + (it.img || '') + '" muted playsinline preload="metadata"></video>'
                       : (it.img ? '<img src="' + it.img + '" alt=""' + (it.imgPos ? ' style="object-position:' + it.imgPos + '"' : '') + '>' : null);
     }
@@ -12439,7 +12481,7 @@ window.addEventListener('error', function(e){
   function isHeroGroup(g){
     var a = g.items[0], combined = g.items.length > 1;
     var who = combined ? g.who : a.who;
-    return !(who && KNOWN_PEOPLE[who]) && (combined || a.priority === 'high');
+    return !a.alert && !(who && KNOWN_PEOPLE[who]) && (combined || a.priority === 'high');
   }
   function buildSimpleRow(a, grp){
     var combined = !!(grp && grp.items.length > 1);
@@ -12490,10 +12532,11 @@ window.addEventListener('error', function(e){
       b.setAttribute('aria-label', who + ', ' + items.length + ' clips, ' + route.join(', ') + ', ' + fmtTimestamp(a.mins) + ' to ' + fmtTimestamp(last.mins));
     } else if(known || unknownSolo){
       var kh = el('span', 't arow-who');
-      kh.appendChild(whoAvatar(who));
+      if(!a.thumb) kh.appendChild(whoAvatar(who));
       kh.appendChild(document.createTextNode(a.t));
       tx.appendChild(oneuiText(kh, 'body', 'S', null, 'high'));
       tx.appendChild(oneuiText(camLine((a.place ? a.place + ' · ' : '') + a.cam), 'label', 'XS', 'low'));
+      if(a.note) tx.appendChild(oneuiText(el('span', 's arow-note', a.note), 'label', 'XS', 'low'));
       if(unknownSolo){
         // name them right from the card (the Add person flow)
         var addBtn = el('button', 'oneui-Button arow-add', 'Add person');
@@ -12509,6 +12552,7 @@ window.addEventListener('error', function(e){
     } else {
       tx.appendChild(oneuiText(el('span', 't', a.t), 'body', 'S', null, 'high'));
       tx.appendChild(oneuiText(camLine((a.place ? a.place + ' · ' : '') + a.cam), 'label', 'XS', 'low'));
+      if(a.alert) tx.insertAdjacentHTML('beforeend', '<span class="oneui-Badge arow-alert" data-appearance="negative" data-attention="medium" data-size="s">Alert</span>');
     }
     /* The other clips of a combined (unknown) incident as small thumbnails. */
     if(combined && !known){
@@ -12532,7 +12576,7 @@ window.addEventListener('error', function(e){
 
     /* Big thumbnail (the main clip) — never for known people. */
     var thumbClip = items.filter(function(it){ return it.thumb; })[0];
-    if((thumbClip || (!known && !unknownSolo)) && ((thumbClip || main).img || (thumbClip || main).video)){
+    if(!a.alert && (thumbClip || (!known && !unknownSolo)) && ((thumbClip || main).img || (thumbClip || main).video)){
       b.classList.add('has-thumb');
       var th = clipThumb(thumbClip || main, 'arow-thumb');
       // no play / pause control on the thumbnail — the whole card opens the clip
