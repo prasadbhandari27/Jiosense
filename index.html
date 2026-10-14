@@ -2555,6 +2555,7 @@ button.oneui-Avatar{position:relative}
 .alert-list .acard-row .s{display:block;margin-top:var(--Spacing-0-5)}
 .alert-list .acard-row .cam-line{display:flex;align-items:center;gap:4px}
 .alert-list .acard-row .cam-line .cam-ico{width:14px;height:14px;flex:0 0 auto}
+.alert-list .acard-row .arow-add{align-self:flex-start;margin-top:var(--Spacing-2)}
 .alert-list .acard-row .arow-count{display:inline-flex;align-items:center;gap:4px;margin-top:var(--Spacing-1-5)}
 .alert-list .acard-row .arow-count svg{width:13px;height:13px}
 /* ── Incident story screen ── */
@@ -10058,7 +10059,7 @@ window.addEventListener('error', function(e){
         { type:'motion',  priority:'low',  cam:'Nursery Cam',  day:0, mins:1350, img:'assets/nursery.png',        t:'Nursery motion — baby restless' },
         { type:'motion',  priority:'low',  cam:'Living Room',  day:0, mins:1390, img:'assets/livingroom.jpg',     t:'Living room cleared — everyone to bed' },
         { type:'system',  priority:'low',  cam:'Backyard',     day:0, mins:172,  img:'assets/cam4.jpg',           t:'Backyard camera back online' },
-        { type:'motion',  priority:'low',  cam:'Nursery Cam',  day:0, mins:1432, who:'Rohan', img:'assets/nursery.png',        t:'Rohan checked in on the baby' },
+        { type:'person',  priority:'med',  cam:'Nursery Cam',  day:0, mins:1432, who:'Unknown person', img:'assets/nursery.png', t:'Unknown person found', step:'was seen by the crib', clip:true },
 
         /* ── Other days (for calendar nav demo) ── */
         { type:'pet',     priority:'low',  cam:'Living Room',  day:1, mins:855,  img:'assets/livingroom.jpg',     t:'Dog on the living room rug' },
@@ -12188,6 +12189,16 @@ window.addEventListener('error', function(e){
     };
   })();
 
+  /* Add person from an Activity card: the saved person becomes known and the event is theirs */
+  window.__resolveUnknownEvent = function(ev, name, photo){
+    if(!ev || !name) return;
+    KNOWN_PEOPLE[name] = 1;
+    if(photo) WHO_PHOTO[name] = photo;
+    ev.who = name;
+    ev.t = name + ' at ' + ev.cam;
+    if(typeof renderAlerts === 'function') renderAlerts();
+  };
+
   /* One rule for the card and its story screen: an unknown person, or a high-priority event */
   function isHighImportance(g){
     var items = g.items || [g];
@@ -12348,6 +12359,18 @@ window.addEventListener('error', function(e){
     } else {
       tx.appendChild(oneuiText(el('span', 't', a.t), 'body', 'S', null, 'high'));
       tx.appendChild(oneuiText(camLine((a.place ? a.place + ' · ' : '') + a.cam), 'label', 'XS', 'low'));
+      if(a.who && !KNOWN_PEOPLE[a.who]){
+        // someone we don't recognise: name them right from the card (the Add person flow)
+        var addBtn = el('button', 'oneui-Button arow-add', 'Add person');
+        addBtn.type = 'button';
+        addBtn.setAttribute('data-size', '8'); addBtn.setAttribute('data-appearance', 'primary'); addBtn.setAttribute('data-attention', 'medium');
+        addBtn.addEventListener('click', function(e){
+          e.stopPropagation();
+          window.__unkPendingEvent = a;
+          window.__routerOpen('add-person');
+        });
+        tx.appendChild(addBtn);
+      }
     }
     /* The other clips of a combined (unknown) incident as small thumbnails. */
     if(combined && !known){
@@ -13629,6 +13652,9 @@ window.addEventListener('error', function(e){
       // Started from the Unknown sheet: the unknown face is now this person
       if(window.__unkPendingAdd && typeof window.__resolveUnknownTile === 'function') window.__resolveUnknownTile();
       window.__unkPendingAdd = false;
+      // Started from an Activity card's "Add person"
+      if(window.__unkPendingEvent && typeof window.__resolveUnknownEvent === 'function') window.__resolveUnknownEvent(window.__unkPendingEvent, name, photoSrc);
+      window.__unkPendingEvent = null;
 
       // ── 2. Add avatar to closed-pill avatar row (max 4 shown) ────────
       var avGroup = document.querySelector('.cctv-av-group');
