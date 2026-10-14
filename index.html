@@ -5439,7 +5439,7 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
         <p class="oneui-Text sub" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Choose where each feature runs — faster on your device, or smarter in the cloud.</p>
         <div class="list stack-gap oneui-Surface" data-surface="elevated" style="background:none;box-shadow:none;margin-top:10px;gap:12px">
           <div class="card oneui-Surface" data-surface="elevated" style="padding:14px"><div class="oneui-Text t" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Face recognition</div><div class="oneui-Text s" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low" style="margin:var(--Spacing-1) 0 var(--Spacing-2-5)">Cloud: recognizes more faces, uses data · On-device: faster, private</div><div class="oneui-SegmentedControl seg" data-size="m" data-appearance="primary" data-attention="medium" role="group"><button type="button" class="oneui-SegmentedControl-item" aria-pressed="false">On-device</button><button type="button" class="oneui-SegmentedControl-item" aria-pressed="true">Cloud</button></div></div>
-          <div class="card oneui-Surface" data-surface="elevated" style="padding:14px"><div class="oneui-Text t" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Package recognition</div><div class="oneui-Text s" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low" style="margin:var(--Spacing-1) 0 var(--Spacing-2-5)">On-device is accurate enough for most porches</div><div class="oneui-SegmentedControl seg" data-size="m" data-appearance="primary" data-attention="medium" role="group"><button type="button" class="oneui-SegmentedControl-item" aria-pressed="true">On-device</button><button type="button" class="oneui-SegmentedControl-item" aria-pressed="false">Cloud</button></div></div>
+          <div class="card oneui-Surface" data-surface="elevated" style="padding:14px"><div class="oneui-Text t" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Package recognition</div><div class="oneui-Text s" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low" style="margin:var(--Spacing-1) 0 var(--Spacing-2-5)">On-device is accurate enough for most front doors</div><div class="oneui-SegmentedControl seg" data-size="m" data-appearance="primary" data-attention="medium" role="group"><button type="button" class="oneui-SegmentedControl-item" aria-pressed="true">On-device</button><button type="button" class="oneui-SegmentedControl-item" aria-pressed="false">Cloud</button></div></div>
           <div class="card oneui-Surface" data-surface="elevated" style="padding:14px"><div class="oneui-Text t" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Sound recognition</div><div class="oneui-Text s" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low" style="margin:var(--Spacing-1) 0 var(--Spacing-2-5)">Glass break / smoke alarm recognition</div><div class="oneui-SegmentedControl seg" data-size="m" data-appearance="primary" data-attention="medium" role="group"><button type="button" class="oneui-SegmentedControl-item" aria-pressed="true">On-device</button><button type="button" class="oneui-SegmentedControl-item" aria-pressed="false">Cloud</button></div></div>
         </div>
       </section>
@@ -10029,8 +10029,9 @@ window.addEventListener('error', function(e){
     store: '<path d="M4 9h16v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M3 9l1.6-4.4A1 1 0 0 1 5.5 4h13a1 1 0 0 1 .9.6L21 9" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9.5 21v-5h5v5" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>'
   };
 
-  /* The unknown-person incident is happening now: its clips are placed minutes before the
-     phone's clock, so it lands where it belongs on today's timeline. */
+  /* The latest few events are placed minutes before the phone's clock, so today's timeline
+     always opens on them in this order: the unknown-person incident (now), Arun back home,
+     Meena's kitchen activity. */
   var NOW_MINS = (function(){ var d = new Date(); return d.getHours() * 60 + d.getMinutes(); })();
   function minsAgo(m){ return Math.max(0, NOW_MINS - m); }
   var LOCATIONS = [
@@ -10106,12 +10107,12 @@ window.addEventListener('error', function(e){
            1:30 pm, the "fan on since" time in its summary; 852 = 2:12 pm, which
            is the 42 minutes later that Today's row reports. */
         { type:'motion',  priority:'low',  cam:'Bedroom',      day:0, mins:810,  img:'assets/bedroom.jpg',        t:'Fan switched on', clip:true },
-        { type:'person',  priority:'low',  cam:'Kitchen',      day:0, mins:845, who:'Meena', img:'assets/kitchen-maid-dishes.jpg',  t:'Meena washing the dishes', head:'Kitchen activity', thumb:true, clip:true },
-        { type:'person',  priority:'low',  cam:'Kitchen',      day:0, mins:852, who:'Meena', img:'assets/kitchen-maid-counter.jpg', t:'Meena wiping the kitchen counter', clip:true },
+        { type:'person',  priority:'low',  cam:'Kitchen',      day:0, mins:minsAgo(30), who:'Meena', img:'assets/kitchen-maid-dishes.jpg',  t:'Meena washing the dishes', head:'Kitchen activity', thumb:true, clip:true },
+        { type:'person',  priority:'low',  cam:'Kitchen',      day:0, mins:minsAgo(23), who:'Meena', img:'assets/kitchen-maid-counter.jpg', t:'Meena wiping the kitchen counter', clip:true },
         { type:'pet',     priority:'low',  cam:'Living Room',  day:0, mins:735,  img:'assets/livingroom.jpg',     t:'Dog settled on the living room rug', clip:true },
         { type:'vehicle', priority:'high', cam:'Front Door',  day:0, mins:758,  img:'assets/cam2.jpg',           t:'Unknown vehicle idling outside', clip:true },
-        { type:'person',  priority:'low',  cam:'Front Door',  day:0, mins:853, who:'Arun',  img:'assets/cam2.jpg',           t:'Arun back home', solo:true },
-        { type:'package', priority:'low',  cam:'Front Door',  day:0, mins:940,  img:'assets/porch-package.jpg',  t:'Second delivery collected from porch' },
+        { type:'person',  priority:'low',  cam:'Front Door',  day:0, mins:minsAgo(15), who:'Arun',  img:'assets/cam2.jpg',     t:'Arun back home', solo:true },
+        { type:'package', priority:'low',  cam:'Front Door',  day:0, mins:940,  img:'assets/porch-package.jpg',  t:'Second delivery collected from the front door' },
 
         /* ── Evening (5 pm – 9 pm) ── */
         { type:'person',  priority:'low',  cam:'Front Door',  day:0, mins:1080, who:'Priya', img:'assets/cam2.jpg',           t:'Priya returned home from work' },
