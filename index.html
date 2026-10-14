@@ -2624,6 +2624,12 @@ button.oneui-Avatar{position:relative}
 .inc-dots button.is-on::before{width:20px;background:var(--Primary-Bold)}
 .inc-dots button:focus-visible{outline:2px solid var(--Focus-Outline);outline-offset:-2px;border-radius:10px}
 .inc-dots + .inc-actions{padding-top:var(--Spacing-2)}
+.inc-who{display:flex;align-items:center;gap:var(--Spacing-3);margin:var(--Spacing-4) var(--Spacing-4) 0;padding:var(--Spacing-3) var(--Spacing-2) var(--Spacing-3) var(--Spacing-3);
+  background:var(--Surface-Fill-Default);border-radius:var(--Shape-4);box-shadow:var(--Elevation-2)}
+.inc-who[hidden]{display:none}
+.inc-who-av{--_av-size:40px;width:40px;height:40px;flex:0 0 auto;border-radius:50%}
+.inc-who-tx{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0}
+.oneui-Avatar.unk-face{background:url(assets/frontporch.png) 90% 19%/900% no-repeat var(--Surface-Fill-Subtle)}
 .inc-sec{padding:var(--Spacing-6) var(--Spacing-4) 0}
 .inc-sum-hd{display:flex;align-items:center;gap:var(--Spacing-2);margin-bottom:var(--Spacing-2)}
 .inc-spark{width:28px;height:28px;border-radius:50%;background:var(--Primary-Subtle);display:grid;place-items:center;flex:0 0 auto}
@@ -6393,6 +6399,16 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
         <button type="button" class="oneui-Button" data-size="8" data-appearance="neutral" data-attention="medium" data-inc-act="feedback">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g transform="translate(0.5 0.5) scale(.52)" stroke-width="3.4"><path d="M7 10v12M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/></g><g transform="translate(23.5 23.5) scale(-.52)" stroke-width="3.4"><path d="M7 10v12M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/></g></svg>Feedback
         </button>
+      </div>
+
+      <!-- Someone we don't recognise: same data points as the Activity card, with Add person -->
+      <div class="inc-who" data-inc-who hidden>
+        <span class="oneui-Avatar inc-who-av unk-face" data-size="custom" data-content="image" aria-hidden="true"></span>
+        <span class="inc-who-tx">
+          <span class="oneui-Text" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Unknown person</span>
+          <span class="oneui-Text" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low">Not one of your people yet</span>
+        </span>
+        <button type="button" class="oneui-Button" data-size="8" data-appearance="primary" data-attention="low" data-inc-add>Add person</button>
       </div>
 
       <section class="inc-sec">
@@ -12138,6 +12154,8 @@ window.addEventListener('error', function(e){
             (it.cause ? ' because its ' + it.cause : '') + '. ' +
             (it.back ? 'It ' + it.back + ', but nothing' : 'Nothing') + ' was recorded in that time.';
         }
+        if(it.who && !KNOWN_PEOPLE[it.who])
+          return 'At ' + from + ' someone we don\u2019t recognise ' + (it.step || 'was seen') + ' (' + it.cam + '). They aren\u2019t one of your known people yet.';
         return it.t + '. Seen on ' + it.cam + ' at ' + from + '.' +
           (others ? ' ' + others + ' other event' + (others === 1 ? '' : 's') + ' from this camera ' + dayPhrase(it.day) + '.' : ' Nothing else from this camera ' + dayPhrase(it.day) + '.');
       }
@@ -12179,6 +12197,15 @@ window.addEventListener('error', function(e){
 
     /* Opens any Activity event. Combined clips (a person across cameras) are the story;
        a single event plays its clip, with that camera's other clips from the day beside it. */
+    var lastGroup = null;
+    q('[data-inc-add]').addEventListener('click', function(e){
+      if(!lastGroup) return;
+      var ev = lastGroup.items ? lastGroup.items[lastGroup.items.length - 1] : lastGroup;
+      if(playing) setPlaying(false);
+      if(window.__openUnkSheetFor) window.__openUnkSheetFor(Object.assign(ev, { _group:lastGroup }), e.currentTarget);
+    });
+    // after the person is saved, redraw the open story with their name
+    window.__refreshEventDetail = function(){ if(lastGroup) window.__openEventDetail(lastGroup); };
     window.__openEventDetail = function(g){
       var items = (g.items && g.items.length ? g.items : [g]).slice().sort(function(x, y){ return x.mins - y.mins; });
       if(!items.length) return false;
@@ -12193,9 +12220,13 @@ window.addEventListener('error', function(e){
       q('[data-inc-summary]').textContent = story(items, g.who, single, others);
       setSummaryOpen(false);
       q('[data-inc-head]').textContent = heading;
-      // same rule as the Activity card
+      // same as the Activity card: the badge is on the big incident cards only
       var imp = q('[data-inc-imp]');
-      imp.hidden = !isHighImportance(g);
+      imp.hidden = !(isHeroGroup(g) && isHighImportance(g));
+      // unknown person → the Add person row, which opens the same Unknown Person sheet
+      var unkG = !!(g.who && !KNOWN_PEOPLE[g.who]);
+      q('[data-inc-who]').hidden = !unkG;
+      lastGroup = g;
       imp.setAttribute('data-appearance', 'negative');
       imp.textContent = 'High importance';
       if(land) setLandscape(false);
@@ -12244,9 +12275,12 @@ window.addEventListener('error', function(e){
     if(!ev || !name) return;
     KNOWN_PEOPLE[name] = 1;
     if(photo) WHO_PHOTO[name] = photo;
-    ev.who = name;
-    ev.t = name + ' at ' + ev.cam;
+    var grp = ev._group, all = grp && grp.items ? grp.items : [ev];
+    all.forEach(function(it){ it.who = name; if(all.length === 1) it.t = name + ' at ' + it.cam; });
+    if(grp) grp.who = name;
+    delete ev._group;
     if(typeof renderAlerts === 'function') renderAlerts();
+    if(typeof window.__refreshEventDetail === 'function') window.__refreshEventDetail();
   };
 
   window.__fmtTime = fmtTimestamp;
