@@ -12465,7 +12465,8 @@ window.addEventListener('error', function(e){
     if(combined){
       /* who + how many clips, then the cameras they moved through, in order */
       var head = el('span', 't arow-who');
-      head.appendChild(whoAvatar(who));
+      // the thumbnail already shows them — no avatar on top of it
+      if(!items.some(function(it){ return it.thumb; })) head.appendChild(whoAvatar(who));
       head.appendChild(document.createTextNode(items[0].head ? who + ' \u00b7 ' + items[0].head : who));
       tx.appendChild(oneuiText(head, 'body', 'S', null, 'high'));
       tx.appendChild(oneuiText(camLine(route.join(' → ')), 'label', 'XS', 'low'));
