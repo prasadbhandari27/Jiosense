@@ -2624,8 +2624,13 @@ button.oneui-Avatar{position:relative}
 .inc-dots button.is-on::before{width:20px;background:var(--Primary-Bold)}
 .inc-dots button:focus-visible{outline:2px solid var(--Focus-Outline);outline-offset:-2px;border-radius:10px}
 .inc-dots + .inc-actions{padding-top:var(--Spacing-2)}
-.inc-who{display:flex;align-items:center;gap:var(--Spacing-3);margin:var(--Spacing-4) var(--Spacing-4) 0;padding:var(--Spacing-3) var(--Spacing-2) var(--Spacing-3) var(--Spacing-3);
-  background:var(--Surface-Fill-Default);border-radius:var(--Shape-4);box-shadow:var(--Elevation-2)}
+.inc-who{position:absolute;left:var(--Spacing-4);right:var(--Spacing-4);bottom:calc(var(--Spacing-4) + var(--Safe-Bottom));z-index:30;
+  display:flex;align-items:center;gap:var(--Spacing-2);padding:var(--Spacing-3) var(--Spacing-1) var(--Spacing-3) var(--Spacing-3);
+  background:var(--Surface-Fill-Default);border-radius:var(--Shape-4);box-shadow:var(--Elevation-3,0 8px 24px rgba(0,0,0,.14));
+  animation:incWhoIn var(--Sheet-Enter, .45s cubic-bezier(.2,.8,.2,1)) both}
+@keyframes incWhoIn{from{transform:translateY(calc(100% + 24px));opacity:0}to{transform:none;opacity:1}}
+.inc-who .inc-who-tx{margin-left:var(--Spacing-1)}
+[data-screen="incident"].has-who .inc-scroll{padding-bottom:calc(112px + var(--Safe-Bottom))}
 .inc-who[hidden]{display:none}
 .inc-who-av{--_av-size:40px;width:40px;height:40px;flex:0 0 auto;border-radius:50%}
 .inc-who-tx{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0}
@@ -6401,16 +6406,6 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
         </button>
       </div>
 
-      <!-- Someone we don't recognise: same data points as the Activity card, with Add person -->
-      <div class="inc-who" data-inc-who hidden>
-        <span class="oneui-Avatar inc-who-av unk-face" data-size="custom" data-content="image" aria-hidden="true"></span>
-        <span class="inc-who-tx">
-          <span class="oneui-Text" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Unknown person</span>
-          <span class="oneui-Text" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low">Not one of your people yet</span>
-        </span>
-        <button type="button" class="oneui-Button" data-size="8" data-appearance="primary" data-attention="low" data-inc-add>Add person</button>
-      </div>
-
       <section class="inc-sec">
         <div class="inc-sum-hd">
           <span class="oneui-Icon inc-spark" data-size="sm" data-appearance="primary" aria-hidden="true">
@@ -6428,6 +6423,19 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
         <div class="inc-grid" data-inc-grid></div>
       </section>
     </main>
+
+    <!-- Someone we don't recognise: floating card with Add person (same sheet as the Activity card) -->
+    <div class="inc-who" data-inc-who role="region" aria-label="Unknown person" hidden>
+      <span class="oneui-Avatar inc-who-av unk-face" data-size="custom" data-content="image" aria-hidden="true"></span>
+      <span class="inc-who-tx">
+        <span class="oneui-Text" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Unknown person</span>
+        <span class="oneui-Text" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low">Not one of your people yet</span>
+      </span>
+      <button type="button" class="oneui-Button" data-size="8" data-appearance="primary" data-attention="low" data-inc-add>Add person</button>
+      <button type="button" class="oneui-IconButton inc-who-x" data-size="8" data-appearance="neutral" data-attention="low" data-inc-who-close aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
 
     <!-- Feedback sheet -->
     <div class="ap-sheet-scrim" data-inc-fb-scrim></div>
@@ -12198,6 +12206,8 @@ window.addEventListener('error', function(e){
     /* Opens any Activity event. Combined clips (a person across cameras) are the story;
        a single event plays its clip, with that camera's other clips from the day beside it. */
     var lastGroup = null;
+    function setWho(on){ q('[data-inc-who]').hidden = !on; scr.classList.toggle('has-who', on); }
+    q('[data-inc-who-close]').addEventListener('click', function(){ if(lastGroup) lastGroup._whoClosed = true; setWho(false); });
     q('[data-inc-add]').addEventListener('click', function(e){
       if(!lastGroup) return;
       var ev = lastGroup.items ? lastGroup.items[lastGroup.items.length - 1] : lastGroup;
@@ -12225,8 +12235,8 @@ window.addEventListener('error', function(e){
       imp.hidden = !(isHeroGroup(g) && isHighImportance(g));
       // unknown person → the Add person row, which opens the same Unknown Person sheet
       var unkG = !!(g.who && !KNOWN_PEOPLE[g.who]);
-      q('[data-inc-who]').hidden = !unkG;
       lastGroup = g;
+      setWho(unkG && !g._whoClosed);
       imp.setAttribute('data-appearance', 'negative');
       imp.textContent = 'High importance';
       if(land) setLandscape(false);
