@@ -2302,6 +2302,9 @@ button.oneui-Avatar{position:relative}
 .fdiv{flex:0 0 auto;width:1px;align-self:stretch;margin:4px 2px;background:var(--Neutral-Stroke-Low)}
 .chip.sm{height:30px;padding:0 12px;font-size:11px}
 .alert-bar{display:flex;align-items:center;gap:var(--Spacing-2);margin-top:var(--Spacing-4)}
+.alert-bar .imp-chip{margin-left:auto;gap:var(--Spacing-1-5);background:var(--Surface-Fill-Default);box-shadow:var(--Elevation-1,0 1px 2px rgba(0,0,0,.08))}
+.alert-bar .imp-chip[hidden]{display:none}
+.alert-bar .imp-chip[aria-pressed="true"] .oneui-CounterBadge{background:var(--Primary-Bold-High,#fff);color:var(--Primary-Bold)}
 .alert-count{flex:1;min-width:0}
 .alert-list{margin-top:var(--Spacing-2)}
 .alert-list.is-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--Spacing-3);align-items:start}
@@ -6264,6 +6267,10 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
            strip above picks the day; unread dots stay on the cards). -->
       <div class="alert-bar" style="display:flex;align-items:center;margin-top:0">
         <p class="oneui-Text alert-count" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral" data-attention="high" style="margin:0"><span data-alert-count></span></p>
+        <!-- Shortcut to the events that matter: shows only high-importance events -->
+        <button type="button" class="oneui-Chip imp-chip" data-appearance="primary" data-attention="high" aria-pressed="false" data-imp-chip hidden>
+          Important <span class="oneui-CounterBadge" data-appearance="negative" data-attention="high" data-imp-count>0</span>
+        </button>
       </div>
 
       <div class="alert-list" data-alert-list></div>
@@ -9992,7 +9999,7 @@ window.addEventListener('error', function(e){
         /* `video` upgrades the still to a looping clip; `img` stays as its
            poster, so the card shows the nursery frame while the file loads and
            keeps showing it if the video cannot play at all. */
-        { type:'motion',  priority:'med',  cam:'Nursery Cam',  day:0, mins:192,  img:'assets/nursery.png',        video:'assets/nursery-clip.mp4', t:'Motion in nursery after quiet hours', clip:true },
+        { type:'motion',  priority:'high', cam:'Nursery Cam',  day:0, mins:192,  img:'assets/nursery.png',        video:'assets/nursery-clip.mp4', t:'Motion in nursery after quiet hours', clip:true },
         { type:'system',  priority:'low',  cam:'Front Porch',  day:0, mins:215,  img:'assets/cam2.jpg',           t:'Front Porch camera rebooted' },
         { type:'motion',  priority:'low',  cam:'Backyard',     day:0, mins:310,  img:'assets/cam4.jpg',           t:'Wind-triggered motion — no subject detected' },
 
@@ -10026,7 +10033,7 @@ window.addEventListener('error', function(e){
         { type:'motion',  priority:'low',  cam:'Bedroom',      day:0, mins:810,  img:'assets/bedroom.jpg',        t:'Fan switched on', clip:true },
         { type:'motion',  priority:'low',  cam:'Bedroom',      day:0, mins:852,  img:'assets/bedroom.jpg',        t:'Fan still on — room empty for 42 min', clip:true },
         { type:'pet',     priority:'low',  cam:'Living Room',  day:0, mins:735,  img:'assets/livingroom.jpg',     t:'Dog settled on the living room rug', clip:true },
-        { type:'vehicle', priority:'med',  cam:'Front Porch',  day:0, mins:758,  img:'assets/cam2.jpg',           t:'Unknown vehicle idling outside', clip:true },
+        { type:'vehicle', priority:'high', cam:'Front Porch',  day:0, mins:758,  img:'assets/cam2.jpg',           t:'Unknown vehicle idling outside', clip:true },
         { type:'person',  priority:'low',  cam:'Front Porch',  day:0, mins:840, who:'Arun',  img:'assets/cam2.jpg',           t:'Arun returned home from school' },
         { type:'motion',  priority:'low',  cam:'Kitchen',      day:0, mins:855, who:'Arun',  img:'assets/cam1.jpg',           t:'Kitchen activity — after-school snack' },
         { type:'motion',  priority:'low',  cam:'Backyard',     day:0, mins:900, who:'Arun',  img:'assets/cam4.jpg',           t:'Arun playing in the backyard' },
@@ -10046,7 +10053,7 @@ window.addEventListener('error', function(e){
         /* ── Night (9 pm – 12 am) ── */
         { type:'motion',  priority:'low',  cam:'Nursery Cam',  day:0, mins:1350, img:'assets/nursery.png',        t:'Nursery motion — baby restless' },
         { type:'motion',  priority:'low',  cam:'Living Room',  day:0, mins:1390, img:'assets/livingroom.jpg',     t:'Living room cleared — everyone to bed' },
-        { type:'system',  priority:'low',  cam:'Backyard',     day:0, mins:1410, img:'assets/cam4.jpg',           t:'Backyard camera back online' },
+        { type:'system',  priority:'low',  cam:'Backyard',     day:0, mins:172,  img:'assets/cam4.jpg',           t:'Backyard camera back online' },
         { type:'motion',  priority:'low',  cam:'Nursery Cam',  day:0, mins:1432, who:'Rohan', img:'assets/nursery.png',        t:'Rohan checked in on the baby' },
 
         /* ── Other days (for calendar nav demo) ── */
@@ -11712,6 +11719,15 @@ window.addEventListener('error', function(e){
   var INSTALL_DAY = 6;
 
   var alertCount = document.querySelector('[data-alert-count]');
+  var importantOnly = false;
+  (function(){
+    var chip = document.querySelector('[data-imp-chip]');
+    if(chip) chip.addEventListener('click', function(){
+      importantOnly = !importantOnly;
+      renderAlerts();
+      var sc = document.querySelector('[data-screen="events"] .scroll'); if(sc) sc.scrollTo({ top:0, behavior:'smooth' });
+    });
+  })();
   var alertClear = document.querySelector('[data-fclear]');
   var alertViewBtn = document.querySelector('[data-alerts-view]');
   var groupToggle = document.querySelector('[data-group-toggle]');
@@ -12543,7 +12559,20 @@ window.addEventListener('error', function(e){
       return tierOf(x) - tierOf(y) || latestOf(y) - latestOf(x);
     });
 
-    alertCount.textContent = list.length + ' event' + (list.length === 1 ? '' : 's');
+    /* Important chip: count of high-importance cards; when on, the list shows only those */
+    var impGroups = groups.filter(isHighImportance);
+    var impChip = document.querySelector('[data-imp-chip]');
+    if(!impGroups.length) importantOnly = false;
+    if(impChip){
+      impChip.hidden = !impGroups.length;
+      impChip.setAttribute('aria-pressed', importantOnly ? 'true' : 'false');
+      impChip.querySelector('[data-imp-count]').textContent = impGroups.length;
+      impChip.setAttribute('aria-label', 'Show only important events, ' + impGroups.length);
+    }
+    if(importantOnly) groups = impGroups;
+    alertCount.textContent = importantOnly
+      ? impGroups.length + ' important event' + (impGroups.length === 1 ? '' : 's')
+      : list.length + ' event' + (list.length === 1 ? '' : 's');
 
     /* Rebuilt on every render, so the dots follow a location switch. */
     if(eventsStrip){
@@ -12571,10 +12600,10 @@ window.addEventListener('error', function(e){
 
     /* Sort all groups by time ascending so sections flow naturally */
     var sortedGroups = groups.slice().sort(function(x, y){
-      /* the big incident cards lead the list (most important, then latest) */
+      /* the big incident cards lead the list, newest first */
       var hx = isHeroGroup(x), hy = isHeroGroup(y);
       if(hx !== hy) return hx ? -1 : 1;
-      if(hx) return PRIORITY_RANK[x.items[0].priority] - PRIORITY_RANK[y.items[0].priority] || latestMins(y.items) - latestMins(x.items);
+      if(hx) return latestMins(y.items) - latestMins(x.items);   // incident cards: newest first
       /* the rest is a plain timeline, ordered by when each card starts */
       return Math.min.apply(null, x.items.map(function(it){ return it.mins; })) - Math.min.apply(null, y.items.map(function(it){ return it.mins; }));
     });
