@@ -12620,8 +12620,8 @@ window.addEventListener('error', function(e){
       var hx = isHeroGroup(x), hy = isHeroGroup(y);
       if(hx !== hy) return hx ? -1 : 1;
       if(hx) return latestMins(y.items) - latestMins(x.items);   // incident cards: newest first
-      /* the rest is a plain timeline, ordered by when each card starts */
-      return Math.min.apply(null, x.items.map(function(it){ return it.mins; })) - Math.min.apply(null, y.items.map(function(it){ return it.mins; }));
+      /* the rest is a plain timeline, most recent first */
+      return latestMins(y.items) - latestMins(x.items);
     });
 
     var lastPeriodKey = null;
