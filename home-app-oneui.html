@@ -2555,7 +2555,7 @@ button.oneui-Avatar{position:relative}
 .alert-list .acard-row .s{display:block;margin-top:var(--Spacing-0-5)}
 .alert-list .acard-row .cam-line{display:flex;align-items:center;gap:4px}
 .alert-list .acard-row .cam-line .cam-ico{width:14px;height:14px;flex:0 0 auto}
-.alert-list .acard-row .arow-add{align-self:flex-start;margin-top:var(--Spacing-2)}
+.alert-list .acard-row .arow-add{align-self:flex-start;margin:var(--Spacing-1) 0 calc(-1 * var(--Spacing-1-5)) calc(-1 * var(--Button-paddingHorizontal-8,12px))}
 .alert-list .acard-row .arow-count{display:inline-flex;align-items:center;gap:4px;margin-top:var(--Spacing-1-5)}
 .alert-list .acard-row .arow-count svg{width:13px;height:13px}
 /* ── Incident story screen ── */
@@ -10059,7 +10059,7 @@ window.addEventListener('error', function(e){
         { type:'motion',  priority:'low',  cam:'Nursery Cam',  day:0, mins:1350, img:'assets/nursery.png',        t:'Nursery motion — baby restless' },
         { type:'motion',  priority:'low',  cam:'Living Room',  day:0, mins:1390, img:'assets/livingroom.jpg',     t:'Living room cleared — everyone to bed' },
         { type:'system',  priority:'low',  cam:'Backyard',     day:0, mins:172,  img:'assets/cam4.jpg',           t:'Backyard camera back online' },
-        { type:'person',  priority:'med',  cam:'Nursery Cam',  day:0, mins:1432, who:'Unknown person', img:'assets/nursery.png', t:'Unknown person found', step:'was seen by the crib', clip:true },
+        { type:'person',  priority:'med',  cam:'Front Porch',  day:0, mins:1432, who:'Unknown person', img:'assets/front-porch-delivery.png', t:'Unknown person at the door', step:'stood at the front door', clip:true },
 
         /* ── Other days (for calendar nav demo) ── */
         { type:'pet',     priority:'low',  cam:'Living Room',  day:1, mins:855,  img:'assets/livingroom.jpg',     t:'Dog on the living room rug' },
@@ -12319,8 +12319,9 @@ window.addEventListener('error', function(e){
     b._group = combined ? grp : { cam:a.cam, day:a.day, place:a.place, who:a.who, items:[a] };
     var items = b._group.items, last = items[items.length - 1];
     var who = b._group.who, known = !!(who && KNOWN_PEOPLE[who]);
+    var unknownSolo = !combined && !known && !!who;   // one clip of someone we don't recognise
     if(combined) b.classList.add('is-combined');
-    if(known) b.classList.add('is-known');
+    if(known || unknownSolo) b.classList.add('is-known');
     /* Combined, not a known person: the most important clip leads (priority, then latest). */
     var main = (combined && !known) ? items.slice().sort(function(x, y){
       return PRIORITY_RANK[x.priority] - PRIORITY_RANK[y.priority] || y.mins - x.mins;
@@ -12350,20 +12351,17 @@ window.addEventListener('error', function(e){
       // same clip counter as the important-incident card
       tx.insertAdjacentHTML('beforeend', '<span class="oneui-Text hero-count arow-count" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="7" width="14" height="13" rx="2.5" stroke="currentColor" stroke-width="2"/><path d="M7 4h11.5A2.5 2.5 0 0 1 21 6.5V16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>' + items.length + ' clips</span>');
       b.setAttribute('aria-label', who + ', ' + items.length + ' clips, ' + route.join(', ') + ', ' + fmtTimestamp(a.mins) + ' to ' + fmtTimestamp(last.mins));
-    } else if(known){
+    } else if(known || unknownSolo){
       var kh = el('span', 't arow-who');
       kh.appendChild(whoAvatar(who));
       kh.appendChild(document.createTextNode(a.t));
       tx.appendChild(oneuiText(kh, 'body', 'S', null, 'high'));
       tx.appendChild(oneuiText(camLine((a.place ? a.place + ' · ' : '') + a.cam), 'label', 'XS', 'low'));
-    } else {
-      tx.appendChild(oneuiText(el('span', 't', a.t), 'body', 'S', null, 'high'));
-      tx.appendChild(oneuiText(camLine((a.place ? a.place + ' · ' : '') + a.cam), 'label', 'XS', 'low'));
-      if(a.who && !KNOWN_PEOPLE[a.who]){
-        // someone we don't recognise: name them right from the card (the Add person flow)
+      if(unknownSolo){
+        // name them right from the card (the Add person flow)
         var addBtn = el('button', 'oneui-Button arow-add', 'Add person');
         addBtn.type = 'button';
-        addBtn.setAttribute('data-size', '8'); addBtn.setAttribute('data-appearance', 'primary'); addBtn.setAttribute('data-attention', 'medium');
+        addBtn.setAttribute('data-size', '8'); addBtn.setAttribute('data-appearance', 'primary'); addBtn.setAttribute('data-attention', 'low');
         addBtn.addEventListener('click', function(e){
           e.stopPropagation();
           window.__unkPendingEvent = a;
@@ -12371,6 +12369,9 @@ window.addEventListener('error', function(e){
         });
         tx.appendChild(addBtn);
       }
+    } else {
+      tx.appendChild(oneuiText(el('span', 't', a.t), 'body', 'S', null, 'high'));
+      tx.appendChild(oneuiText(camLine((a.place ? a.place + ' · ' : '') + a.cam), 'label', 'XS', 'low'));
     }
     /* The other clips of a combined (unknown) incident as small thumbnails. */
     if(combined && !known){
@@ -12393,7 +12394,7 @@ window.addEventListener('error', function(e){
     }
 
     /* Big thumbnail (the main clip) — never for known people. */
-    if(!known && (main.img || main.video)){
+    if(!known && !unknownSolo && (main.img || main.video)){
       b.classList.add('has-thumb');
       var th = clipThumb(main, 'arow-thumb');
       // no play / pause control on the thumbnail — the whole card opens the clip
