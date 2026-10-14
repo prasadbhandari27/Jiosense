@@ -12207,7 +12207,7 @@ window.addEventListener('error', function(e){
        a single event plays its clip, with that camera's other clips from the day beside it. */
     var lastGroup = null;
     function setWho(on){ q('[data-inc-who]').hidden = !on; scr.classList.toggle('has-who', on); }
-    q('[data-inc-who-close]').addEventListener('click', function(){ if(lastGroup) lastGroup._whoClosed = true; setWho(false); });
+    q('[data-inc-who-close]').addEventListener('click', function(){ if(lastGroup) (lastGroup.items || [lastGroup]).forEach(function(it){ it._whoClosed = true; }); setWho(false); });
     q('[data-inc-add]').addEventListener('click', function(e){
       if(!lastGroup) return;
       var ev = lastGroup.items ? lastGroup.items[lastGroup.items.length - 1] : lastGroup;
@@ -12236,7 +12236,7 @@ window.addEventListener('error', function(e){
       // unknown person → the Add person row, which opens the same Unknown Person sheet
       var unkG = !!(g.who && !KNOWN_PEOPLE[g.who]);
       lastGroup = g;
-      setWho(unkG && !g._whoClosed);
+      setWho(unkG && !items.some(function(it){ return it._whoClosed; }));
       imp.setAttribute('data-appearance', 'negative');
       imp.textContent = 'High importance';
       if(land) setLandscape(false);
