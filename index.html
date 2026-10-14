@@ -2312,7 +2312,12 @@ button.oneui-Avatar{position:relative}
 .fdiv{flex:0 0 auto;width:1px;align-self:stretch;margin:4px 2px;background:var(--Neutral-Stroke-Low)}
 .chip.sm{height:30px;padding:0 12px;font-size:11px}
 .alert-bar{display:flex;align-items:center;gap:var(--Spacing-2);margin-top:var(--Spacing-4)}
-.alert-bar .imp-chip{margin-left:auto;gap:var(--Spacing-1-5);background:var(--Surface-Fill-Default);box-shadow:var(--Elevation-1,0 1px 2px rgba(0,0,0,.08))}
+.oneui-Chip[data-size="m"]{height:var(--Chip-height-m);padding:0 var(--Chip-paddingHorizontal-m);gap:var(--Chip-gap-m);font-size:var(--Chip-fontSize-m);line-height:var(--Chip-lineHeight-m)}
+/* filter chip: outlined when off, filled with a check when on */
+.alert-bar .imp-chip{margin-left:auto}
+.alert-bar .imp-chip[aria-pressed="false"]{background:var(--Surface-Fill-Default);border-color:var(--Neutral-Stroke-Medium)}
+.alert-bar .imp-chip .imp-chip-check{display:none}
+.alert-bar .imp-chip[aria-pressed="true"] .imp-chip-check{display:block}
 .alert-bar .imp-chip[hidden]{display:none}
 
 .alert-count{flex:1;min-width:0}
@@ -6298,8 +6303,8 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
       <div class="alert-bar" style="display:flex;align-items:center;margin-top:0">
         <p class="oneui-Text alert-count" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral" data-attention="high" style="margin:0"><span data-alert-count></span></p>
         <!-- Shortcut to the events that matter: shows only high-importance events -->
-        <button type="button" class="oneui-Chip imp-chip" data-appearance="primary" data-attention="high" aria-pressed="false" data-imp-chip hidden>
-          Important events
+        <button type="button" class="oneui-Chip chip imp-chip" data-size="m" data-appearance="primary" data-attention="high" aria-pressed="false" data-imp-chip hidden>
+          <svg class="imp-chip-check" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Important events
         </button>
       </div>
 
