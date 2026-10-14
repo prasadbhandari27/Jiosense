@@ -10107,8 +10107,10 @@ window.addEventListener('error', function(e){
            1:30 pm, the "fan on since" time in its summary; 852 = 2:12 pm, which
            is the 42 minutes later that Today's row reports. */
         { type:'motion',  priority:'low',  cam:'Bedroom',      day:0, mins:810,  img:'assets/bedroom.jpg',        t:'Fan switched on', clip:true },
-        { type:'person',  priority:'low',  cam:'Kitchen',      day:0, mins:minsAgo(30), who:'Meena', img:'assets/kitchen-maid-dishes.jpg',  t:'Meena washing the dishes', head:'Kitchen activity', thumb:true, clip:true },
-        { type:'person',  priority:'low',  cam:'Kitchen',      day:0, mins:minsAgo(23), who:'Meena', img:'assets/kitchen-maid-counter.jpg', t:'Meena wiping the kitchen counter', clip:true },
+        /* One visit, three activities: the card reads "Your maid cleaned the living room" */
+        { type:'person',  priority:'low',  cam:'Living Room',  day:0, mins:minsAgo(43), since:minsAgo(45), who:'Meena', grp:'maid-living', headline:'Your maid cleaned the living room', unit:'activities', img:'assets/living-maid-dusting.jpg', t:'Dusted the surfaces', clip:true },
+        { type:'person',  priority:'low',  cam:'Living Room',  day:0, mins:minsAgo(31), who:'Meena', grp:'maid-living', img:'assets/living-maid-sofa.jpg', t:'Tidied the sofa', clip:true },
+        { type:'person',  priority:'low',  cam:'Living Room',  day:0, mins:minsAgo(24), who:'Meena', grp:'maid-living', img:'assets/living-maid-floor.jpg', thumb:true, t:'Cleaned the floor', clip:true },
         { type:'pet',     priority:'low',  cam:'Living Room',  day:0, mins:735,  img:'assets/livingroom.jpg',     t:'Dog settled on the living room rug', clip:true },
         { type:'vehicle', priority:'high', cam:'Front Door',  day:0, mins:758,  img:'assets/cam2.jpg',           t:'Unknown vehicle idling outside', clip:true },
         { type:'person',  priority:'low',  cam:'Front Door',  day:0, mins:minsAgo(15), who:'Arun',  img:'assets/cam2.jpg',     t:'Arun back home', solo:true },
@@ -11111,7 +11113,7 @@ window.addEventListener('error', function(e){
     'assets/livingroom.jpg':        'assets/livingroom-cam1.png'
   };
   /* Subject-specific, so they outrank the camera's own viewpoint still. */
-  var PER_EVENT = { 'assets/porch-package.png': true, 'assets/front-porch-delivery.png': true, 'assets/splash-suspicious.png': true, 'assets/kitchen-maid-dishes.jpg': true, 'assets/kitchen-maid-counter.jpg': true };
+  var PER_EVENT = { 'assets/porch-package.png': true, 'assets/front-porch-delivery.png': true, 'assets/splash-suspicious.png': true, 'assets/kitchen-maid-dishes.jpg': true, 'assets/kitchen-maid-counter.jpg': true, 'assets/living-maid-dusting.jpg': true, 'assets/living-maid-sofa.jpg': true, 'assets/living-maid-floor.jpg': true };
 
   function resolveStills(node){
     if(!node || typeof node !== 'object') return;
@@ -11922,10 +11924,11 @@ window.addEventListener('error', function(e){
   function groupByPerson(list){
     var asc = list.slice().sort(function(x, y){ return x.mins - y.mins; }), out = [], open = {};
     asc.forEach(function(a){
-      var g = a.who && !a.solo && open[a.who];
+      var key = a.grp ? 'grp:' + a.grp : a.who;   // a named visit (grp) stays its own card
+      var g = key && !a.solo && open[key];
       if(g && g.day === a.day && a.mins - g.items[g.items.length - 1].mins <= PERSON_GAP){ g.items.push(a); return; }
       g = { cam:a.cam, day:a.day, place:a.place, who:a.who, items:[a] };
-      if(a.who) open[a.who] = a.solo ? null : g;
+      if(key) open[key] = a.solo ? null : g;
       out.push(g);
     });
     return out;
@@ -11980,7 +11983,7 @@ window.addEventListener('error', function(e){
   /* "42 min", "1 hr 5 min" */
   function spanText(m){ var h = Math.floor(m / 60), r = m % 60; return (h ? h + ' hr' + (r ? ' ' : '') : '') + (r || !h ? r + ' min' : ''); }
   function timeRange(items){
-    var ms = items.reduce(function(acc, it){ acc.push(it.mins); if(it.until != null) acc.push(it.until); return acc; }, []);
+    var ms = items.reduce(function(acc, it){ acc.push(it.mins); if(it.until != null) acc.push(it.until); if(it.since != null) acc.push(it.since); return acc; }, []);
     var lo = Math.min.apply(null, ms), hi = Math.max.apply(null, ms);
     return lo === hi ? fmtTimestamp(hi) : fmtTimestamp(lo) + ' – ' + fmtTimestamp(hi);
   }
@@ -12190,6 +12193,11 @@ window.addEventListener('error', function(e){
           (steps.length ? listJoin(steps.slice(0, -1).concat(steps.length > 1 ? ['then ' + steps[steps.length - 1]] : [steps[0]])).replace(', and then', ' and then') : 'was seen in ' + items.length + ' clips') +
           '. They aren’t one of your known people yet.';
       }
+      if(items[0].headline){
+        var start = items[0].since != null ? fmtTimestamp(items[0].since) : from;
+        return items[0].headline + ' between ' + start + ' and ' + to + ': ' +
+          listJoin(items.map(function(it){ return it.t.charAt(0).toLowerCase() + it.t.slice(1) + ' (' + fmtTimestamp(it.mins) + ')'; })) + '.';
+      }
       return 'Between ' + from + ' and ' + to + ', ' + (who || 'there was activity') + ' ' + (who ? 'was seen ' : '') + where + ' in ' + items.length + ' clips: ' +
         items.map(function(it){ return it.t; }).join('; ') + '.';
     }
@@ -12235,14 +12243,14 @@ window.addEventListener('error', function(e){
     window.__openEventDetail = function(g){
       var items = (g.items && g.items.length ? g.items : [g]).slice().sort(function(x, y){ return x.mins - y.mins; });
       if(!items.length) return false;
-      var single = items.length === 1, focus = 0, list = items, heading = 'Events included';
+      var single = items.length === 1, focus = 0, list = items, heading = items[0].unit === 'activities' ? 'Activities' : 'Events included';
       var others = single ? currentAlerts().filter(function(a){ return a !== items[0] && a.cam === items[0].cam && a.day === items[0].day; }).length : 0;
       clips = list;
       // the clip list only appears when the event is made of several clips
       grid.closest('.inc-sec').hidden = single;
       var main = items.slice().sort(function(x, y){ return PRIORITY_RANK[x.priority] - PRIORITY_RANK[y.priority] || y.mins - x.mins; })[0];
       var known = !!(g.who && KNOWN_PEOPLE[g.who]);
-      q('[data-inc-title]').textContent = single ? main.t : known ? (items[0].head ? g.who + ' \u00b7 ' + items[0].head : g.who + '\u2019s activity') : (g.who || 'Activity') + ' at ' + main.cam;
+      q('[data-inc-title]').textContent = single ? main.t : known ? (items[0].headline || (items[0].head ? g.who + ' \u00b7 ' + items[0].head : g.who + '\u2019s activity')) : (g.who || 'Activity') + ' at ' + main.cam;
       q('[data-inc-summary]').textContent = story(items, g.who, single, others);
       setSummaryOpen(false);
       q('[data-inc-head]').textContent = heading;
@@ -12474,11 +12482,11 @@ window.addEventListener('error', function(e){
       var head = el('span', 't arow-who');
       // the thumbnail already shows them — no avatar on top of it
       if(!items.some(function(it){ return it.thumb; })) head.appendChild(whoAvatar(who));
-      head.appendChild(document.createTextNode(items[0].head ? who + ' \u00b7 ' + items[0].head : who));
+      head.appendChild(document.createTextNode(items[0].headline || (items[0].head ? who + ' \u00b7 ' + items[0].head : who)));
       tx.appendChild(oneuiText(head, 'body', 'S', null, 'high'));
       tx.appendChild(oneuiText(camLine(route.join(' → ')), 'label', 'XS', 'low'));
       // same clip counter as the important-incident card
-      tx.insertAdjacentHTML('beforeend', '<span class="oneui-Text hero-count arow-count" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="7" width="14" height="13" rx="2.5" stroke="currentColor" stroke-width="2"/><path d="M7 4h11.5A2.5 2.5 0 0 1 21 6.5V16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>' + items.length + ' clips</span>');
+      tx.insertAdjacentHTML('beforeend', '<span class="oneui-Text hero-count arow-count" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="7" width="14" height="13" rx="2.5" stroke="currentColor" stroke-width="2"/><path d="M7 4h11.5A2.5 2.5 0 0 1 21 6.5V16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>' + items.length + ' ' + (items[0].unit || 'clips') + '</span>');
       b.setAttribute('aria-label', who + ', ' + items.length + ' clips, ' + route.join(', ') + ', ' + fmtTimestamp(a.mins) + ' to ' + fmtTimestamp(last.mins));
     } else if(known || unknownSolo){
       var kh = el('span', 't arow-who');
