@@ -10101,7 +10101,7 @@ window.addEventListener('error', function(e){
         { type:'motion',  priority:'low',  cam:'Bedroom',      day:0, mins:852,  img:'assets/bedroom.jpg',        t:'Fan still on — room empty for 42 min', clip:true },
         { type:'pet',     priority:'low',  cam:'Living Room',  day:0, mins:735,  img:'assets/livingroom.jpg',     t:'Dog settled on the living room rug', clip:true },
         { type:'vehicle', priority:'high', cam:'Front Porch',  day:0, mins:758,  img:'assets/cam2.jpg',           t:'Unknown vehicle idling outside', clip:true },
-        { type:'person',  priority:'low',  cam:'Front Porch',  day:0, mins:840, who:'Arun',  img:'assets/cam2.jpg',           t:'Arun returned home from school' },
+        { type:'person',  priority:'low',  cam:'Front Porch',  day:0, mins:840, who:'Arun',  img:'assets/cam2.jpg',           t:'Arun back home', solo:true },
         { type:'motion',  priority:'low',  cam:'Kitchen',      day:0, mins:855, who:'Arun',  img:'assets/cam1.jpg',           t:'Kitchen activity — after-school snack' },
         { type:'motion',  priority:'low',  cam:'Backyard',     day:0, mins:900, who:'Arun',  img:'assets/cam4.jpg',           t:'Arun playing in the backyard' },
         { type:'package', priority:'low',  cam:'Front Porch',  day:0, mins:940,  img:'assets/porch-package.jpg',  t:'Second delivery collected from porch' },
@@ -11914,10 +11914,10 @@ window.addEventListener('error', function(e){
   function groupByPerson(list){
     var asc = list.slice().sort(function(x, y){ return x.mins - y.mins; }), out = [], open = {};
     asc.forEach(function(a){
-      var g = a.who && open[a.who];
+      var g = a.who && !a.solo && open[a.who];
       if(g && g.day === a.day && a.mins - g.items[g.items.length - 1].mins <= PERSON_GAP){ g.items.push(a); return; }
       g = { cam:a.cam, day:a.day, place:a.place, who:a.who, items:[a] };
-      if(a.who) open[a.who] = g;
+      if(a.who) open[a.who] = a.solo ? null : g;
       out.push(g);
     });
     return out;
