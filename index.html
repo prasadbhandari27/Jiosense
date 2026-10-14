@@ -11152,8 +11152,9 @@ window.addEventListener('error', function(e){
       { type:'person', priority:'low', cam:'Front Door', mins:at(9,0),  who:'Hamid', solo:true, t:'Hamid left for work' },
       { type:'person', priority:'med', cam:'Living Room', mins:at(9,30), who:'Unknown person', solo:true, thumb:true, img:'assets/living-tv-technician.jpg', t:'An unknown person came in and worked on the TV', step:'came in and worked on the TV', clip:true },
       { type:'person', priority:'low', cam:'Front Door', mins:at(10,0), who:'Limmi', solo:true, t:'Limmi left for work' },
-      { type:'person', priority:'low', cam:'Front Door', mins:at(11,0), who:'Meena', solo:true, t:'Your maid arrived' },
-      { type:'person', priority:'low', cam:'Front Door', mins:at(11,30), who:'Meena', solo:true, t:'Your maid left' },
+      // the maid's arrival and departure frame her living-room cleaning (45 → 24 min ago)
+      { type:'person', priority:'low', cam:'Front Door', mins:minsAgo(48), who:'Meena', solo:true, t:'Your maid arrived' },
+      { type:'person', priority:'low', cam:'Front Door', mins:minsAgo(20), who:'Meena', solo:true, t:'Your maid left' },
       { type:'person', priority:'low', cam:'Front Door', mins:at(14,0), who:'Aarav', solo:true, t:'Aarav came home from school' },
       { type:'person', priority:'low', cam:'Dining',     mins:at(14,0), until:at(14,30), who:'Aarav', solo:true, t:'Aarav had lunch' },
       { type:'person', priority:'low', cam:'Living Room', mins:at(14,30), until:at(15,0), who:'Aarav', solo:true, t:'Aarav watched TV' },
