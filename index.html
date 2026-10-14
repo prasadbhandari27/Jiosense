@@ -10020,6 +10020,10 @@ window.addEventListener('error', function(e){
     store: '<path d="M4 9h16v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M3 9l1.6-4.4A1 1 0 0 1 5.5 4h13a1 1 0 0 1 .9.6L21 9" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9.5 21v-5h5v5" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>'
   };
 
+  /* The unknown-person incident is happening now: its clips are placed minutes before the
+     phone's clock, so it lands where it belongs on today's timeline. */
+  var NOW_MINS = (function(){ var d = new Date(); return d.getHours() * 60 + d.getMinutes(); })();
+  function minsAgo(m){ return Math.max(0, NOW_MINS - m); }
   var LOCATIONS = [
     {
       key:'sharma-residence', name:'Sharma Residence', where:'Bandra West, Mumbai', glyph:'house',
@@ -10106,9 +10110,9 @@ window.addEventListener('error', function(e){
         { type:'motion',  priority:'low',  cam:'Kitchen',      day:0, mins:1095, who:'Priya', img:'assets/cam1.jpg',           t:'Dinner preparation — kitchen active' },
         /* An unknown person around the porch over ~10 min — groups into one combined card
            (unknown, so it keeps video: the most important clip big, the others small). */
-        { type:'person',  priority:'low',  cam:'Front Porch',  day:0, mins:1203, who:'Unknown person', img:'assets/frontporch.png', t:'Came in through the gate', step:'came in through the gate carrying a package', clip:true },
-        { type:'person',  priority:'low',  cam:'Front Porch',  day:0, mins:1209, who:'Unknown person', img:'assets/porch-package.png', t:'Rang the doorbell', step:'rang the doorbell', clip:true },
-        { type:'person',  priority:'med',  cam:'Front Porch',  day:0, mins:1214, who:'Unknown person', img:'assets/front-porch-delivery.png', t:'Waited at the door', step:'waited at the door', clip:true },
+        { type:'person',  priority:'low',  cam:'Front Porch',  day:0, mins:minsAgo(11), who:'Unknown person', img:'assets/frontporch.png', t:'Came in through the gate', step:'came in through the gate carrying a package', clip:true },
+        { type:'person',  priority:'low',  cam:'Front Porch',  day:0, mins:minsAgo(6), who:'Unknown person', img:'assets/porch-package.png', t:'Rang the doorbell', step:'rang the doorbell', clip:true },
+        { type:'person',  priority:'med',  cam:'Front Porch',  day:0, mins:minsAgo(1), who:'Unknown person', img:'assets/front-porch-delivery.png', t:'Waited at the door', step:'waited at the door', clip:true },
         { type:'motion',  priority:'low',  cam:'Living Room',  day:0, mins:1230, img:'assets/livingroom.jpg',     t:'Family gathered in the living room' },
         { type:'motion',  priority:'low',  cam:'Backyard',     day:0, mins:1260, img:'assets/cam4.jpg',           t:'Garden light triggered by motion' },
 
@@ -10116,7 +10120,7 @@ window.addEventListener('error', function(e){
         { type:'motion',  priority:'low',  cam:'Nursery Cam',  day:0, mins:1350, img:'assets/nursery.png',        t:'Nursery motion — baby restless' },
         { type:'motion',  priority:'low',  cam:'Living Room',  day:0, mins:1390, img:'assets/livingroom.jpg',     t:'Living room cleared — everyone to bed' },
         { type:'system',  priority:'low',  cam:'Backyard',     day:0, mins:172,  img:'assets/cam4.jpg',           t:'Backyard camera back online' },
-        { type:'person',  priority:'med',  cam:'Front Porch',  day:0, mins:1432, who:'Unknown person', img:'assets/front-porch-delivery.png', t:'Unknown person at the door', step:'stood at the front door', clip:true },
+        { type:'person',  priority:'med',  cam:'Front Porch',  day:0, mins:minsAgo(90), who:'Unknown person', img:'assets/front-porch-delivery.png', t:'Unknown person at the door', step:'stood at the front door', clip:true },
 
         /* ── Other days (for calendar nav demo) ── */
         { type:'pet',     priority:'low',  cam:'Living Room',  day:1, mins:855,  img:'assets/livingroom.jpg',     t:'Dog on the living room rug' },
@@ -11796,7 +11800,9 @@ window.addEventListener('error', function(e){
 
   function currentAlerts(){
     var loc = LOCATIONS.filter(function(l){ return l.key === locCurrent; })[0];
-    return (loc && loc.alerts) || [];
+    // today only runs up to the phone's clock — nothing from later tonight yet
+    var d = new Date(), now = d.getHours() * 60 + d.getMinutes();
+    return ((loc && loc.alerts) || []).filter(function(a){ return a.day !== 0 || a.mins <= now; });
   }
   function filteredAlerts(){
     var f = alertFilters;
