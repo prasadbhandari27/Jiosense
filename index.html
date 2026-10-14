@@ -1853,7 +1853,7 @@ button.oneui-Avatar{position:relative}
 /* a brand-new household has no one to pick from yet */
 [data-screen="my-home"].is-fresh #unk-btn-link{display:none}
 [data-screen="my-home"].is-fresh .home-fresh-people[data-state="unknown"] .cctv-people-pill{cursor:pointer}
-/* Unknown person: the visitor's face cropped from the Front Porch frame, with a "?" on it */
+/* Unknown person: the visitor's face cropped from the Front Door frame, with a "?" on it */
 .home-fresh .home-fresh-face,
 [data-screen="my-home"].is-fresh .unk-av-lg{
   position:relative;display:grid;place-items:center;border-radius:50%;flex:none;overflow:hidden;
@@ -4743,20 +4743,20 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
           <!-- Opens this alert's own detail screen — player, AI summary and
                Related videos — rather than the Events list.
 
-               Now points at a SHARMA RESIDENCE alert (Front Porch, day 0, 488
+               Now points at a SHARMA RESIDENCE alert (Front Door, day 0, 488
                minutes = 8:08 am). It used to name the Back Entrance alert at
                6:24 am, which belongs to Sharma Textiles, the shop. The summary
                screen filters clips by camera AND place against the location
                currently selected, so from the residence that lookup returned
                zero clips and the screen fell through to its "nothing from this
-               camera today" branch: no video, no related videos. Front Porch
+               camera today" branch: no video, no related videos. Front Door
                has 11 clips on day 0, so the screen now fills.
 
                data-open="events" stays as the fallback if the record is ever
                renamed or retimed. -->
           <button type="button" class="oneui-Container oneui-press" data-gap="3" data-padding="4" data-align="start" data-grow="1"
-                  data-alert-open data-alert-cam="Front Porch" data-alert-mins="488" data-alert-day="0"
-                  data-open="events" aria-label="Alert: Package delivery at the front door. Front Porch, Today, 8:08 am">
+                  data-alert-open data-alert-cam="Front Door" data-alert-mins="488" data-alert-day="0"
+                  data-open="events" aria-label="Alert: Package delivery at the front door. Front Door, Today, 8:08 am">
             <span class="oneui-Badge" data-appearance="warning" data-attention="high" data-size="s">
               <span class="oneui-Icon" data-size="xs" data-appearance="warning" data-emphasis="tintedA11y" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none"><path d="M12 9v5M12 17.5v.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M10.3 3.9 2.5 18A2 2 0 0 0 4.3 21h15.4a2 2 0 0 0 1.7-3L13.6 3.9a2 2 0 0 0-3.3 0Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
@@ -4770,7 +4770,7 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
                  the title unable to wrap to the full width. -->
             <span class="oneui-Container" data-direction="row" data-align="center" data-gap="3" data-width="full">
               <!-- The still is now the right camera — this alert is on Front
-                   Porch, so it shows the front porch frame. The VIDEO is still
+                   Porch, so it shows the front door frame. The VIDEO is still
                    the one demo clip in the bundle (nursery footage), so the
                    moving image does not match the still behind it; swap its src
                    when front-porch footage arrives, or drop the <video> to fall
@@ -4784,7 +4784,7 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
                    size the title to fit-content and stop it wrapping. -->
               <span class="oneui-Container" data-gap="1" data-grow="1">
                 <span class="oneui-Text" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Package delivery at the front door</span>
-                <span class="oneui-Text" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low">Front Porch · Today, 8:08 am</span>
+                <span class="oneui-Text" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low">Front Door · Today, 8:08 am</span>
               </span>
             </span>
             <!-- Trailing chevron removed: the whole card is a button, and with a
@@ -4877,7 +4877,7 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
 
               <hr class="oneui-Divider" data-orientation="horizontal" data-size="s" data-attention="low" aria-hidden="true">
 
-              <!-- Arun → Front Porch, the entrance camera whose own registry
+              <!-- Arun → Front Door, the entrance camera whose own registry
                    summary is "Arun arrived home at 2:00 PM". -->
               <button type="button" class="oneui-Container oneui-press" data-direction="row" data-align="center" data-gap="3" data-padding-y="4" data-width="full"
                       data-open="camera-detail" data-cam="Living Room"
@@ -4890,13 +4890,13 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
 
               <hr class="oneui-Divider" data-orientation="horizontal" data-size="s" data-attention="low" aria-hidden="true">
 
-              <!-- Priya → Front Porch. The copy says "driveway cam", but there
-                   is no such camera in the registry; Front Porch is the one
+              <!-- Priya → Front Door. The copy says "driveway cam", but there
+                   is no such camera in the registry; Front Door is the one
                    that frames the gate and driveway, and its own event detail
                    is "front door closed". Flagged in the reply. -->
               <button type="button" class="oneui-Container oneui-press" data-direction="row" data-align="center" data-gap="3" data-padding-y="4" data-width="full"
-                      data-open="camera-detail" data-cam="Front Porch"
-                      aria-label="Priya headed out at 8:00 am. Open the Front Porch live view">
+                      data-open="camera-detail" data-cam="Front Door"
+                      aria-label="Priya headed out at 8:00 am. Open the Front Door live view">
                 <span class="oneui-Avatar" data-content="image" data-size="2xl"><img src="assets/people/priya-portrait.jpg" alt="Priya" onerror="this.style.display='none'"></span>
                 <span class="oneui-Container" data-grow="1">
                   <span class="oneui-Text" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Priya headed out at 8:00 am</span>
@@ -4906,10 +4906,10 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
               <!-- expandable rows 4 & 5 — original interaction preserved -->
               <div id="now-home-body" style="max-height:0;overflow:hidden;transition:max-height var(--Motion-Duration-Medium) var(--Motion-Easing-Standard)">
                 <hr class="oneui-Divider" data-orientation="horizontal" data-size="s" data-attention="low" aria-hidden="true">
-                <!-- Front door locked → Front Porch, the front-door camera. -->
+                <!-- Front door locked → Front Door, the front-door camera. -->
                 <button type="button" class="oneui-Container oneui-press" data-direction="row" data-align="center" data-gap="3" data-padding-y="4" data-width="full"
-                        data-open="camera-detail" data-cam="Front Porch"
-                        aria-label="Front door locked itself. Open the Front Porch live view">
+                        data-open="camera-detail" data-cam="Front Door"
+                        aria-label="Front door locked itself. Open the Front Door live view">
                   <span class="oneui-Avatar" data-content="icon" data-size="2xl" data-appearance="sparkle" data-attention="medium">
                     <span class="oneui-Icon" data-size="sm" data-appearance="sparkle" data-emphasis="tintedA11y" aria-hidden="true">
                       <svg viewBox="0 0 24 24" fill="none"><rect x="5" y="10.5" width="14" height="9.5" rx="2" stroke="currentColor" stroke-width="1.9"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>
@@ -5034,13 +5034,13 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
                    carries the row. All clips are muted/playsinline —
                    required for autoplay in modern browsers. -->
 
-              <!-- Stranger at the gate → Front Porch camera still.
-                   Thumbnail mirrors the CAMERAS['Front Porch'].img so
+              <!-- Stranger at the gate → Front Door camera still.
+                   Thumbnail mirrors the CAMERAS['Front Door'].img so
                    the tile shown here matches the frame the live pane
                    opens to when the row is tapped. -->
               <button type="button" class="oneui-Container oneui-press" data-direction="row" data-align="center" data-gap="3" data-padding-y="3" data-width="full"
-                      data-open="camera-detail" data-cam="Front Porch"
-                      aria-label="Watching for: someone hanging around at the gate. Open the Front Porch live view">
+                      data-open="camera-detail" data-cam="Front Door"
+                      aria-label="Watching for: someone hanging around at the gate. Open the Front Door live view">
                 <span class="oneui-Thumb"><img src="assets/front-porch-delivery.png" alt="" onerror="this.style.display='none'"></span>
                 <span class="oneui-Container" data-grow="1">
                   <span class="oneui-Text" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Someone hanging around at the gate</span>
@@ -5264,7 +5264,7 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
         </div>
         <div class="list oneui-Surface" data-surface="elevated" style="margin-top:14px">
           <div class="row"><span class="oneui-Avatar ico" data-size="2xl" data-content="icon" data-appearance="primary" data-attention="medium" aria-hidden="true">N</span><div class="txt"><div class="oneui-Text t" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Nursery Cam</div><div class="oneui-Text s" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Alerts on</div></div><label class="oneui-Switch" data-size="l" data-appearance="primary"><input type="checkbox" role="switch" checked aria-label="Nursery Cam"><span class="oneui-Switch-track" aria-hidden="true"></span><span class="oneui-Switch-thumb" aria-hidden="true"></span></label></div>
-          <div class="row"><span class="oneui-Avatar ico" data-size="2xl" data-content="icon" data-appearance="primary" data-attention="medium" aria-hidden="true">F</span><div class="txt"><div class="oneui-Text t" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Front Porch</div><div class="oneui-Text s" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Alerts on</div></div><label class="oneui-Switch" data-size="l" data-appearance="primary"><input type="checkbox" role="switch" checked aria-label="Front Porch"><span class="oneui-Switch-track" aria-hidden="true"></span><span class="oneui-Switch-thumb" aria-hidden="true"></span></label></div>
+          <div class="row"><span class="oneui-Avatar ico" data-size="2xl" data-content="icon" data-appearance="primary" data-attention="medium" aria-hidden="true">F</span><div class="txt"><div class="oneui-Text t" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Front Door</div><div class="oneui-Text s" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Alerts on</div></div><label class="oneui-Switch" data-size="l" data-appearance="primary"><input type="checkbox" role="switch" checked aria-label="Front Door"><span class="oneui-Switch-track" aria-hidden="true"></span><span class="oneui-Switch-thumb" aria-hidden="true"></span></label></div>
           <div class="row"><span class="oneui-Avatar ico" data-size="2xl" data-content="icon" data-appearance="primary" data-attention="medium" aria-hidden="true">B</span><div class="txt"><div class="oneui-Text t" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Backyard</div><div class="oneui-Text s" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Muted for 3 more hours</div></div><label class="oneui-Switch" data-size="l" data-appearance="primary"><input type="checkbox" role="switch" aria-label="Backyard"><span class="oneui-Switch-track" aria-hidden="true"></span><span class="oneui-Switch-thumb" aria-hidden="true"></span></label></div>
         </div>
       </section>
@@ -5380,7 +5380,7 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
     <main class="scroll">
       <div class="chiprow" style="margin:calc(-1 * var(--Spacing-1-5)) calc(var(--Spacing-4) * -1) calc(-1 * var(--Spacing-1))">
         <button type="button" class="oneui-Chip chip" data-size="l" data-appearance="primary" data-attention="high" aria-pressed="true">Nursery Cam</button>
-        <button type="button" class="oneui-Chip chip" data-size="l" data-appearance="primary" data-attention="high" aria-pressed="false">Front Porch</button>
+        <button type="button" class="oneui-Chip chip" data-size="l" data-appearance="primary" data-attention="high" aria-pressed="false">Front Door</button>
         <button type="button" class="oneui-Chip chip" data-size="l" data-appearance="primary" data-attention="high" aria-pressed="false">Living Room</button>
         <button type="button" class="oneui-Chip chip" data-size="l" data-appearance="primary" data-attention="high" aria-pressed="false">Backyard</button>
       </div>
@@ -5483,9 +5483,9 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
     <main class="scroll">
       <div class="list oneui-Surface" data-surface="elevated">
         <div class="row"><div class="txt"><div class="oneui-Text t" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Corrected "Unknown" to "Rohan"</div><div class="oneui-Text s" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Nursery Cam · Sep 3</div></div></div>
-        <div class="row"><div class="txt"><div class="oneui-Text t" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Marked alert as not relevant</div><div class="oneui-Text s" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Front Porch · Sep 1</div></div></div>
+        <div class="row"><div class="txt"><div class="oneui-Text t" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Marked alert as not relevant</div><div class="oneui-Text s" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Front Door · Sep 1</div></div></div>
         <div class="row"><div class="txt"><div class="oneui-Text t" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Adjusted motion sensitivity down</div><div class="oneui-Text s" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Backyard · Aug 28</div></div></div>
-        <div class="row"><div class="txt"><div class="oneui-Text t" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Corrected "Person" to "Package"</div><div class="oneui-Text s" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Front Porch · Aug 26</div></div></div>
+        <div class="row"><div class="txt"><div class="oneui-Text t" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Corrected "Person" to "Package"</div><div class="oneui-Text s" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Front Door · Aug 26</div></div></div>
       </div>
     </main>
   </section>
@@ -5745,12 +5745,12 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
     <div class="cam-foot" style="display:none"></div>
   </section>
 
-  <!-- ============================================================ CAMERA DETAIL — MOTION DETECTED (Front Porch) ============================================================ -->
+  <!-- ============================================================ CAMERA DETAIL — MOTION DETECTED (Front Door) ============================================================ -->
   <section class="screen" data-screen="cam-detail-motion">
     <div class="statusbar" aria-hidden="true"><span data-clock>08:14</span></div>
     <header class="appbar">
       <button class="oneui-IconButton back" data-size="10" data-appearance="neutral" data-attention="low" data-back aria-label="Back"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="m15 5-7 7 7 7" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      <h1 class="oneui-Text" data-variant="title" data-size="M" data-appearance="neutral">Front Porch</h1>
+      <h1 class="oneui-Text" data-variant="title" data-size="M" data-appearance="neutral">Front Door</h1>
       <span class="spacer"></span>
       <button type="button" class="oneui-IconButton icon-btn" data-size="10" data-appearance="neutral" data-attention="low" aria-label="Camera settings"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" stroke="currentColor" stroke-width="1.8"/></svg></button>
     </header>
@@ -5758,7 +5758,7 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
 
       <!-- Live feed with motion state -->
       <div style="position:relative;background:linear-gradient(160deg,#1b2838,#2a475e,#1b2a38);overflow:hidden;aspect-ratio:16/9">
-        <img src="assets/frontporch.png" alt="Front Porch live view" style="width:100%;height:100%;object-fit:cover;display:block">
+        <img src="assets/frontporch.png" alt="Front Door live view" style="width:100%;height:100%;object-fit:cover;display:block">
         <!-- Motion badge -->
         <span style="position:absolute;top:12px;left:12px;display:flex;align-items:center;gap:4px;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);border-radius:20px;padding:3px 8px 3px 6px">
           <span style="width:6px;height:6px;border-radius:50%;background:#FF9500;animation:liveblink 1.4s infinite;flex-shrink:0"></span>
@@ -5773,7 +5773,7 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
           <span style="position:absolute;top:-20px;left:0;background:rgba(255,149,0,.9);border-radius:4px;padding:2px 6px;font-size:10px;font-weight:700;color:#fff;white-space:nowrap">Unfamiliar · 88%</span>
         </div>
         <span style="position:absolute;bottom:0;left:0;right:0;padding:28px 12px 10px;background:linear-gradient(to top,rgba(0,0,0,.72),transparent)">
-          <span style="font-size:14px;font-weight:800;color:#fff">Front Porch</span>
+          <span style="font-size:14px;font-weight:800;color:#fff">Front Door</span>
         </span>
       </div>
 
@@ -6146,8 +6146,8 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
       <div class="oneui-Input" data-size="10" data-attention="high" style="margin-top:var(--Spacing-1)"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="search" aria-label="Search the timeline" placeholder="Show me the dog…" data-timeline-filter></div>
 
       <div class="oneui-Text daylabel" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low">Today</div>
-      <button type="button" class="event oneui-Surface" data-surface="elevated" data-tags="person door" data-open="camera-detail" data-cam="Front Porch"><div class="thumb"><img src="assets/frontporch.png" alt=""></div><div class="txt"><div class="top"><span class="oneui-Text t" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Unfamiliar visitor</span></div><div class="oneui-Text s" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low">Front Porch · 7:52 am</div><div class="oneui-Text ttl" data-variant="label" data-size="2XS" data-appearance="neutral" data-attention="low">Saved for 29 more days</div></div></button>
-      <button type="button" class="event oneui-Surface" data-surface="elevated" data-tags="package delivery" data-open="camera-detail" data-cam="Front Porch"><div class="thumb"><img src="assets/frontporch.png" alt=""></div><div class="txt"><div class="top"><span class="oneui-Text t" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Package delivered</span></div><div class="oneui-Text s" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low">Front Porch · 7:53 am</div><div class="oneui-Text ttl" data-variant="label" data-size="2XS" data-appearance="neutral" data-attention="low">Saved for 29 more days</div><div class="storyline"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M4 8a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8Z" stroke="currentColor" stroke-width="1.8"/></svg>Same visitor · 2 cameras</div></div></button>
+      <button type="button" class="event oneui-Surface" data-surface="elevated" data-tags="person door" data-open="camera-detail" data-cam="Front Door"><div class="thumb"><img src="assets/frontporch.png" alt=""></div><div class="txt"><div class="top"><span class="oneui-Text t" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Unfamiliar visitor</span></div><div class="oneui-Text s" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low">Front Door · 7:52 am</div><div class="oneui-Text ttl" data-variant="label" data-size="2XS" data-appearance="neutral" data-attention="low">Saved for 29 more days</div></div></button>
+      <button type="button" class="event oneui-Surface" data-surface="elevated" data-tags="package delivery" data-open="camera-detail" data-cam="Front Door"><div class="thumb"><img src="assets/frontporch.png" alt=""></div><div class="txt"><div class="top"><span class="oneui-Text t" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Package delivered</span></div><div class="oneui-Text s" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low">Front Door · 7:53 am</div><div class="oneui-Text ttl" data-variant="label" data-size="2XS" data-appearance="neutral" data-attention="low">Saved for 29 more days</div><div class="storyline"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M4 8a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8Z" stroke="currentColor" stroke-width="1.8"/></svg>Same visitor · 2 cameras</div></div></button>
       <button type="button" class="event oneui-Surface" data-surface="elevated" data-tags="pet dog" data-open="camera-detail" data-cam="Living Room"><div class="thumb"><img src="assets/livingroom-cam1.png" alt=""></div><div class="txt"><div class="top"><span class="oneui-Text t" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Dog in living room</span><span class="oneui-Badge tag" data-appearance="informative" data-attention="medium" data-size="s" title="AI is still verifying this detection">Verifying…</span></div><div class="oneui-Text s" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low">Living Room · 6:40 am</div><div class="oneui-Text ttl" data-variant="label" data-size="2XS" data-appearance="neutral" data-attention="low">Saved for 29 more days</div></div></button>
       <button type="button" class="event oneui-Surface" data-surface="elevated" data-tags="person nursery" data-open="camera-detail" data-cam="Nursery Cam"><div class="thumb"><img src="assets/nursery.png" alt=""></div><div class="txt"><div class="top"><span class="oneui-Text t" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Rohan checked in</span><span class="oneui-Badge tag" data-appearance="positive" data-attention="medium" data-size="s">Corrected</span></div><div class="oneui-Text s" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low">Nursery · 3:12 am</div><div class="oneui-Text ttl" data-variant="label" data-size="2XS" data-appearance="neutral" data-attention="low">Saved for 29 more days</div></div></button>
 
@@ -6691,7 +6691,7 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
               <p class="oneui-Text cctv-notif-title" data-variant="title" data-size="M" data-appearance="neutral">Motion Detected</p>
             </div>
           </div>
-          <p class="oneui-Text cctv-notif-body" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Unusual activity spotted at the Front Porch camera at 08:12 AM.</p>
+          <p class="oneui-Text cctv-notif-body" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Unusual activity spotted at the Front Door camera at 08:12 AM.</p>
           <button type="button" class="oneui-Button cctv-notif-btn" data-appearance="primary" data-attention="high" data-size="8">View Footage</button>
         </div>
         <!-- Card 2 -->
@@ -6805,20 +6805,20 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
         </div>
       </div>
 
-      <!-- ── Room: Front Porch ── -->
+      <!-- ── Room: Front Door ── -->
       <div class="cctv-room">
         <div class="cctv-room-card oneui-Surface" data-surface="elevated">
           <div class="cctv-room-hdr">
             <div>
-              <p class="oneui-Text cctv-room-name" data-variant="title" data-size="M" data-appearance="neutral">Front Porch</p>
+              <p class="oneui-Text cctv-room-name" data-variant="title" data-size="M" data-appearance="neutral">Front Door</p>
               <p class="oneui-Text cctv-room-meta" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low"><span class="oneui-IndicatorBadge cctv-dot green" data-appearance="sparkle" data-size="xs" aria-hidden="true"></span> 1 Camera</p>
             </div>
-            <button type="button" class="oneui-IconButton cctv-room-arrow" data-size="8" data-appearance="neutral" data-attention="low" data-open="cam-detail-motion" aria-label="Open Front Porch cameras">
+            <button type="button" class="oneui-IconButton cctv-room-arrow" data-size="8" data-appearance="neutral" data-attention="low" data-open="cam-detail-motion" aria-label="Open Front Door cameras">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
           </div>
           <div class="cctv-cam-grid">
-            <button type="button" class="cctv-cam-lg" data-open="cam-detail-motion" aria-label="Front Porch Cam 1 · Motion">
+            <button type="button" class="cctv-cam-lg" data-open="cam-detail-motion" aria-label="Front Door Cam 1 · Motion">
               <img src="assets/frontporch.png" alt="">
               <div class="cctv-cam-gradient"></div>
               <span class="oneui-Text cctv-cam-name" data-variant="label" data-size="XS" data-weight="high">Cam 1</span>
@@ -9595,7 +9595,7 @@ window.addEventListener('error', function(e){
   /* ── Camera detail: populate per-camera image, summary & live state ──── */
   var CAMERAS = {
     'Nursery Cam' : { img: 'assets/nursery.png', live: true,  bbox: true,  summary: 'Quiet since 6:00 am. Last activity 12 minutes ago — Rohan checked in. No alerts in the last hour.' },
-    'Front Porch' : { img: 'assets/front-porch-delivery.png', live: true,  bbox: false, summary: '2 events today — an unfamiliar visitor and a package delivery, both around 7:52 am. No activity in the last 20 minutes.' },
+    'Front Door' : { img: 'assets/front-porch-delivery.png', live: true,  bbox: false, summary: '2 events today — an unfamiliar visitor and a package delivery, both around 7:52 am. No activity in the last 20 minutes.' },
     'Living Room' : { img: 'assets/livingroom-tv-on.png', video: null, live: true,  bbox: false, summary: 'The dog was seen twice today. No people detected since this morning.' },
     'Bedroom'     : { img: 'assets/bedroom.jpg', live: true,  bbox: false, summary: 'Fan running since 1:30 pm with nobody in the room — 42 minutes and counting.' },
     'Backyard'    : { img: 'assets/cam4.jpg', live: false, bbox: false, summary: 'Camera is offline — last seen at 2:10 am. Reconnect to resume live view and alerts.' }
@@ -9608,7 +9608,7 @@ window.addEventListener('error', function(e){
   function camSummary(name, cfg){
     var HAND = {
       'Nursery Cam':'Quiet since 6:00 am. Last activity 12 minutes ago — Rohan checked in. No alerts in the last hour.',
-      'Front Porch':'2 events today — an unfamiliar visitor and a package delivery, both around 7:52 am. No activity in the last 20 minutes.',
+      'Front Door':'2 events today — an unfamiliar visitor and a package delivery, both around 7:52 am. No activity in the last 20 minutes.',
       'Living Room':'The dog was seen twice today. No people detected since this morning.',
       'Bedroom':'Fan running since 1:30 pm with nobody in the room — 42 minutes and counting.',
       'Backyard':'Camera is offline — last seen at 2:10am. Reconnect to resume live view and alerts.'
@@ -9919,7 +9919,7 @@ window.addEventListener('error', function(e){
   }
   var RESPONSES = {
     'who was at the door today?': function(){
-      return '<div>Front Porch saw <b>2 people</b> today — an unfamiliar visitor at 7:52 am and a delivery rider at 7:53 am.</div>' +
+      return '<div>Front Door saw <b>2 people</b> today — an unfamiliar visitor at 7:52 am and a delivery rider at 7:53 am.</div>' +
         '<div class="clipcard"><img src="assets/frontporch.png" alt=""><div><div class="t">Unfamiliar visitor</div><div class="s">7:52 am · View clip →</div></div></div>';
     },
     'show me the dog': function(){
@@ -10031,7 +10031,7 @@ window.addEventListener('error', function(e){
       armed:true,
       stats:{ events:32, insights:2 },
       headline:'All clear — quiet day across all cameras',
-      aiSummary:'A calm morning across the house. Rohan checked into the nursery around 12 minutes ago and a package was left on the front porch at 7:52 am — captured on the door camera. The backyard camera has been offline since 2:10 am. No unfamiliar faces or unexpected door events since this morning.',
+      aiSummary:'A calm morning across the house. Rohan checked into the nursery around 12 minutes ago and a package was left on the front door at 7:52 am — captured on the door camera. The backyard camera has been offline since 2:10 am. No unfamiliar faces or unexpected door events since this morning.',
       peopleTitle:'People at home',
       people:[
         { first:'Aparna', name:'Aparna Sharma', ini:'A', photo:'assets/people/aparna.jpg', home:true,  sub:'You · in since 6:10 am' },
@@ -10067,7 +10067,7 @@ window.addEventListener('error', function(e){
            poster, so the card shows the nursery frame while the file loads and
            keeps showing it if the video cannot play at all. */
         { type:'motion',  priority:'high', cam:'Nursery Cam',  day:0, mins:192,  img:'assets/nursery.png',        video:'assets/nursery-clip.mp4', t:'Motion in nursery after quiet hours', clip:true },
-        { type:'system',  priority:'low',  cam:'Front Porch',  day:0, mins:215,  img:'assets/cam2.jpg',           t:'Front Porch camera rebooted' },
+        { type:'system',  priority:'low',  cam:'Front Door',  day:0, mins:215,  img:'assets/cam2.jpg',           t:'Front Door camera rebooted' },
         { type:'motion',  priority:'low',  cam:'Backyard',     day:0, mins:310,  img:'assets/cam4.jpg',           t:'Wind-triggered motion — no subject detected' },
 
         /* ── Early morning (6 am – 9 am) ── */
@@ -10078,19 +10078,19 @@ window.addEventListener('error', function(e){
            after getting up. 375 = 6:15 am, the time on the card. */
         { type:'motion',  priority:'low',  cam:'Living Room',  day:0, mins:375, who:'Arun',  img:'assets/livingroom.jpg',     t:'Arun up early — living room motion' },
         { type:'system',  priority:'low',  cam:'Nursery Cam',  day:0, mins:390,  img:'assets/nursery.png',        t:'Nursery camera angle adjusted automatically' },
-        { type:'package', priority:'low',  cam:'Front Porch',  day:0, mins:473,  img:'assets/porch-package.png',  t:'Package left on the front porch', clip:true },
-        { type:'package', priority:'med',  cam:'Front Porch',  day:0, mins:488,  img:'assets/alert-delivery.png', video:null, t:'Package delivery at the front door', clip:true },
+        { type:'package', priority:'low',  cam:'Front Door',  day:0, mins:473,  img:'assets/porch-package.png',  t:'Package left at the front door', clip:true },
+        { type:'package', priority:'med',  cam:'Front Door',  day:0, mins:488,  img:'assets/alert-delivery.png', video:null, t:'Package delivery at the front door', clip:true },
         { type:'motion',  priority:'low',  cam:'Kitchen',      day:0, mins:510, who:'Priya',  img:'assets/cam1.jpg',           t:'Kitchen motion — Priya making breakfast' },
-        { type:'person',  priority:'low',  cam:'Front Porch',  day:0, mins:527, who:'Priya',  img:'assets/cam2.jpg',           t:'Priya left for work' },
+        { type:'person',  priority:'low',  cam:'Front Door',  day:0, mins:527, who:'Priya',  img:'assets/cam2.jpg',           t:'Priya left for work' },
 
         /* ── Morning (9 am – 12 pm) ── */
         { type:'motion',  priority:'low',  cam:'Living Room',  day:0, mins:560, who:'Meena',  img:'assets/livingroom.jpg',     t:'Living room motion — housekeeper arrived' },
-        { type:'person',  priority:'low',  cam:'Front Porch',  day:0, mins:565, who:'Meena',  img:'assets/cam2.jpg',           t:'Meena Patil arrived — helper' },
+        { type:'person',  priority:'low',  cam:'Front Door',  day:0, mins:565, who:'Meena',  img:'assets/cam2.jpg',           t:'Meena Patil arrived — helper' },
         { type:'motion',  priority:'low',  cam:'Kitchen',      day:0, mins:575, who:'Meena',  img:'assets/cam1.jpg',           t:'Kitchen activity — cleaning in progress' },
         { type:'motion',  priority:'low',  cam:'Nursery Cam',  day:0, mins:600, who:'Rohan',  img:'assets/nursery.png',        t:'Rohan awake — nursery activity' },
         { type:'system',  priority:'low',  cam:'Living Room',  day:0, mins:620,  img:'assets/livingroom.jpg',     t:'Motion sensitivity auto-adjusted' },
         { type:'motion',  priority:'low',  cam:'Backyard',     day:0, mins:640,  img:'assets/cam4.jpg',           t:'Backyard motion — courier passing lane' },
-        { type:'person',  priority:'low',  cam:'Front Porch',  day:0, mins:676, who:'Meena',  img:'assets/cam2.jpg',           t:'Meena Patil left — helper' },
+        { type:'person',  priority:'low',  cam:'Front Door',  day:0, mins:676, who:'Meena',  img:'assets/cam2.jpg',           t:'Meena Patil left — helper' },
 
         /* ── Afternoon (12 pm – 5 pm) ── */
         /* Bedroom events. Without these the new camera would open to an empty
@@ -10100,20 +10100,20 @@ window.addEventListener('error', function(e){
         { type:'motion',  priority:'low',  cam:'Bedroom',      day:0, mins:810,  img:'assets/bedroom.jpg',        t:'Fan switched on', clip:true },
         { type:'motion',  priority:'low',  cam:'Bedroom',      day:0, mins:852,  img:'assets/bedroom.jpg',        t:'Fan still on — room empty for 42 min', clip:true },
         { type:'pet',     priority:'low',  cam:'Living Room',  day:0, mins:735,  img:'assets/livingroom.jpg',     t:'Dog settled on the living room rug', clip:true },
-        { type:'vehicle', priority:'high', cam:'Front Porch',  day:0, mins:758,  img:'assets/cam2.jpg',           t:'Unknown vehicle idling outside', clip:true },
-        { type:'person',  priority:'low',  cam:'Front Porch',  day:0, mins:840, who:'Arun',  img:'assets/cam2.jpg',           t:'Arun back home', solo:true },
+        { type:'vehicle', priority:'high', cam:'Front Door',  day:0, mins:758,  img:'assets/cam2.jpg',           t:'Unknown vehicle idling outside', clip:true },
+        { type:'person',  priority:'low',  cam:'Front Door',  day:0, mins:840, who:'Arun',  img:'assets/cam2.jpg',           t:'Arun back home', solo:true },
         { type:'motion',  priority:'low',  cam:'Kitchen',      day:0, mins:855, who:'Arun',  img:'assets/cam1.jpg',           t:'Kitchen activity — after-school snack' },
         { type:'motion',  priority:'low',  cam:'Backyard',     day:0, mins:900, who:'Arun',  img:'assets/cam4.jpg',           t:'Arun playing in the backyard' },
-        { type:'package', priority:'low',  cam:'Front Porch',  day:0, mins:940,  img:'assets/porch-package.jpg',  t:'Second delivery collected from porch' },
+        { type:'package', priority:'low',  cam:'Front Door',  day:0, mins:940,  img:'assets/porch-package.jpg',  t:'Second delivery collected from porch' },
 
         /* ── Evening (5 pm – 9 pm) ── */
-        { type:'person',  priority:'low',  cam:'Front Porch',  day:0, mins:1080, who:'Priya', img:'assets/cam2.jpg',           t:'Priya returned home from work' },
+        { type:'person',  priority:'low',  cam:'Front Door',  day:0, mins:1080, who:'Priya', img:'assets/cam2.jpg',           t:'Priya returned home from work' },
         { type:'motion',  priority:'low',  cam:'Kitchen',      day:0, mins:1095, who:'Priya', img:'assets/cam1.jpg',           t:'Dinner preparation — kitchen active' },
         /* An unknown person around the porch over ~10 min — groups into one combined card
            (unknown, so it keeps video: the most important clip big, the others small). */
-        { type:'person',  priority:'low',  cam:'Front Porch',  day:0, mins:minsAgo(11), who:'Unknown person', img:'assets/frontporch.png', t:'Came in through the gate', step:'came in through the gate carrying a package', clip:true },
-        { type:'person',  priority:'low',  cam:'Front Porch',  day:0, mins:minsAgo(6), who:'Unknown person', img:'assets/porch-package.png', t:'Rang the doorbell', step:'rang the doorbell', clip:true },
-        { type:'person',  priority:'med',  cam:'Front Porch',  day:0, mins:minsAgo(1), who:'Unknown person', img:'assets/front-porch-delivery.png', t:'Waited at the door', step:'waited at the door', clip:true },
+        { type:'person',  priority:'low',  cam:'Front Door',  day:0, mins:minsAgo(11), who:'Unknown person', img:'assets/frontporch.png', t:'Came in through the gate', step:'came in through the gate carrying a package', clip:true },
+        { type:'person',  priority:'low',  cam:'Front Door',  day:0, mins:minsAgo(6), who:'Unknown person', img:'assets/porch-package.png', t:'Rang the doorbell', step:'rang the doorbell', clip:true },
+        { type:'person',  priority:'med',  cam:'Front Door',  day:0, mins:minsAgo(1), who:'Unknown person', img:'assets/front-porch-delivery.png', t:'Waited at the door', step:'waited at the door', clip:true },
         { type:'motion',  priority:'low',  cam:'Living Room',  day:0, mins:1230, img:'assets/livingroom.jpg',     t:'Family gathered in the living room' },
         { type:'motion',  priority:'low',  cam:'Backyard',     day:0, mins:1260, img:'assets/cam4.jpg',           t:'Garden light triggered by motion' },
 
@@ -10121,17 +10121,17 @@ window.addEventListener('error', function(e){
         { type:'motion',  priority:'low',  cam:'Nursery Cam',  day:0, mins:1350, img:'assets/nursery.png',        t:'Nursery motion — baby restless' },
         { type:'motion',  priority:'low',  cam:'Living Room',  day:0, mins:1390, img:'assets/livingroom.jpg',     t:'Living room cleared — everyone to bed' },
         { type:'system',  priority:'low',  cam:'Backyard',     day:0, mins:172,  img:'assets/cam4.jpg',           t:'Backyard camera back online' },
-        { type:'person',  priority:'med',  cam:'Front Porch',  day:0, mins:minsAgo(90), who:'Unknown person', img:'assets/front-porch-delivery.png', t:'Unknown person at the door', step:'stood at the front door', clip:true },
+        { type:'person',  priority:'med',  cam:'Front Door',  day:0, mins:minsAgo(90), who:'Unknown person', img:'assets/front-porch-delivery.png', t:'Unknown person at the door', step:'stood at the front door', clip:true },
 
         /* ── Other days (for calendar nav demo) ── */
         { type:'pet',     priority:'low',  cam:'Living Room',  day:1, mins:855,  img:'assets/livingroom.jpg',     t:'Dog on the living room rug' },
-        { type:'vehicle', priority:'med',  cam:'Front Porch',  day:1, mins:1140, img:'assets/cam2.jpg',           t:'Unfamiliar car stopped outside', clip:true },
-        { type:'package', priority:'low',  cam:'Front Porch',  day:3, mins:640,  img:'assets/porch-package.jpg',  t:'Delivery collected from the porch' }
+        { type:'vehicle', priority:'med',  cam:'Front Door',  day:1, mins:1140, img:'assets/cam2.jpg',           t:'Unfamiliar car stopped outside', clip:true },
+        { type:'package', priority:'low',  cam:'Front Door',  day:3, mins:640,  img:'assets/porch-package.jpg',  t:'Delivery collected from the porch' }
       ],
       cams:[
         { name:'Kitchen',      loc:'Offline',      img:'assets/cam4.jpg', live:false, summary:'Camera offline since 2:10 AM' },
         { name:'Nursery Cam',  loc:'Nursery',      img:'assets/nursery.png', live:true,  summary:'Quiet · last motion 3h ago' },
-        { name:'Front Porch',  loc:'Entrance',     img:'assets/cam2.jpg', live:true,  summary:'Arun arrived home at 2:00 PM' },
+        { name:'Front Door',  loc:'Entrance',     img:'assets/cam2.jpg', live:true,  summary:'Arun arrived home at 2:00 PM' },
         { name:'Living Room',  loc:'Ground floor', img:'assets/cam3.jpg', live:true,  summary:'Dog on the rug · quiet since 2 pm' },
         /* Bedroom added so the fan event has a camera of its own. The copy on
            Today always said "Fan is on in the bedroom", but the only camera
@@ -10212,7 +10212,7 @@ window.addEventListener('error', function(e){
       alerts:[
         { type:'system',  priority:'high', cam:'Back Entrance',   day:0, mins:380, img:'assets/cam4.jpg', t:'Shutter opened outside business hours' },
         { type:'person',  priority:'high', cam:'Back Entrance',   day:0, mins:384, img:'assets/cam4.jpg', t:'Unfamiliar visitor at the back entrance' },
-        { type:'person',  priority:'high', cam:'Front Porch',     day:0, mins:622, img:'assets/cam2.jpg', t:'Unfamiliar visitor at the front gate' },
+        { type:'person',  priority:'high', cam:'Front Door',     day:0, mins:622, img:'assets/cam2.jpg', t:'Unfamiliar visitor at the front gate' },
         { type:'motion',  priority:'high', cam:'Backyard',        day:0, mins:840, img:'assets/cam4.jpg', t:'Large motion detected in backyard at night' },
         { type:'motion',  priority:'med',  cam:'Kitchen',         day:0, mins:790, img:'assets/cam1.jpg', t:'Kitchen left unattended — stove activity detected', clip:true },
         { type:'motion',  priority:'med',  cam:'Shop Floor',      day:0, mins:725, img:'assets/cam3.jpg', t:'Fire exit blocked by stock cartons' },
@@ -10870,8 +10870,8 @@ window.addEventListener('error', function(e){
           summary:'You were home from 6:10 am. Four clips across the front door and living room, nothing out of pattern.',
           unusual:[],
           clips:[
-            { time:'06:10 am', mins:370, cam:'Front Porch', label:'Arrived home', dur:22,  img:'assets/frontdoor-visitor.jpg' },
-            { time:'07:53 am', mins:473, cam:'Front Porch', label:'Collected the package', dur:31, img:'assets/porch-package.jpg' },
+            { time:'06:10 am', mins:370, cam:'Front Door', label:'Arrived home', dur:22,  img:'assets/frontdoor-visitor.jpg' },
+            { time:'07:53 am', mins:473, cam:'Front Door', label:'Collected the package', dur:31, img:'assets/porch-package.jpg' },
             { time:'11:20 am', mins:680, cam:'Living Room', label:'Living room, mid-morning', dur:184, img:'assets/livingroom.jpg' },
             { time:'02:15 pm', mins:855, cam:'Living Room', label:'Sat with the dog', dur:96, img:'assets/livingroom.jpg' }
           ]
@@ -10881,8 +10881,8 @@ window.addEventListener('error', function(e){
           summary:'You left at 7:40 am and were back by 6:20 pm. Three clips, all at the door and the living room.',
           unusual:[],
           clips:[
-            { time:'07:40 am', mins:460,  cam:'Front Porch', label:'Left for the day', dur:19, img:'assets/frontdoor-visitor.jpg' },
-            { time:'06:20 pm', mins:1100, cam:'Front Porch', label:'Back home', dur:24, img:'assets/frontdoor-visitor.jpg' },
+            { time:'07:40 am', mins:460,  cam:'Front Door', label:'Left for the day', dur:19, img:'assets/frontdoor-visitor.jpg' },
+            { time:'06:20 pm', mins:1100, cam:'Front Door', label:'Back home', dur:24, img:'assets/frontdoor-visitor.jpg' },
             { time:'09:05 pm', mins:1265, cam:'Living Room', label:'Living room, evening', dur:142, img:'assets/livingroom.jpg' }
           ]
         },
@@ -10892,7 +10892,7 @@ window.addEventListener('error', function(e){
           unusual:[],
           clips:[
             { time:'10:15 am', mins:615,  cam:'Living Room', label:'Living room, morning', dur:120, img:'assets/livingroom.jpg' },
-            { time:'04:50 pm', mins:1010, cam:'Front Porch', label:'Signed for a delivery', dur:44, img:'assets/porch-package.jpg' }
+            { time:'04:50 pm', mins:1010, cam:'Front Door', label:'Signed for a delivery', dur:44, img:'assets/porch-package.jpg' }
           ]
         }
       }
@@ -10908,10 +10908,10 @@ window.addEventListener('error', function(e){
             'Left 20 minutes later than her weekday average.'
           ],
           clips:[
-            { time:'09:05 am', mins:545, cam:'Front Porch', label:'Arrived, let in at the door', dur:26, img:'assets/frontdoor-visitor.jpg' },
+            { time:'09:05 am', mins:545, cam:'Front Door', label:'Arrived, let in at the door', dur:26, img:'assets/frontdoor-visitor.jpg' },
             { time:'09:12 am', mins:552, cam:'Living Room', label:'Living room — cleaning', dur:250, img:'assets/livingroom.jpg' },
             { time:'10:12 am', mins:612, cam:'Living Room', label:'Entered the study', dur:62, img:'assets/livingroom.jpg', unusual:true },
-            { time:'10:40 am', mins:640, cam:'Front Porch', label:'Left for the day', dur:18, img:'assets/porch-face.jpg' }
+            { time:'10:40 am', mins:640, cam:'Front Door', label:'Left for the day', dur:18, img:'assets/porch-face.jpg' }
           ]
         },
         1:{
@@ -10919,9 +10919,9 @@ window.addEventListener('error', function(e){
           summary:'Meena arrived at 9:00 am and left at 10:20 am — her usual weekday shape, living room and kitchen only.',
           unusual:[],
           clips:[
-            { time:'09:00 am', mins:540, cam:'Front Porch', label:'Arrived, let in at the door', dur:24, img:'assets/frontdoor-visitor.jpg' },
+            { time:'09:00 am', mins:540, cam:'Front Door', label:'Arrived, let in at the door', dur:24, img:'assets/frontdoor-visitor.jpg' },
             { time:'09:15 am', mins:555, cam:'Living Room', label:'Living room — cleaning', dur:232, img:'assets/livingroom.jpg' },
-            { time:'10:20 am', mins:620, cam:'Front Porch', label:'Left for the day', dur:17, img:'assets/porch-face.jpg' }
+            { time:'10:20 am', mins:620, cam:'Front Door', label:'Left for the day', dur:17, img:'assets/porch-face.jpg' }
           ]
         },
         3:{
@@ -10929,7 +10929,7 @@ window.addEventListener('error', function(e){
           summary:'A short shift — living room only, and she was out by 10:15 am.',
           unusual:[],
           clips:[
-            { time:'09:10 am', mins:550, cam:'Front Porch', label:'Arrived', dur:21, img:'assets/frontdoor-visitor.jpg' },
+            { time:'09:10 am', mins:550, cam:'Front Door', label:'Arrived', dur:21, img:'assets/frontdoor-visitor.jpg' },
             { time:'10:15 am', mins:615, cam:'Living Room', label:'Living room — cleaning', dur:196, img:'assets/livingroom.jpg' }
           ]
         }
@@ -10945,7 +10945,7 @@ window.addEventListener('error', function(e){
           clips:[
             { time:'12:40 am', mins:40,  cam:'Nursery Cam', label:'Checked on the baby', dur:74, img:'assets/nursery.png' },
             { time:'03:10 am', mins:190, cam:'Nursery Cam', label:'Checked in again', dur:58, img:'assets/nursery.png' },
-            { time:'09:20 am', mins:560, cam:'Front Porch', label:'Left for the shop', dur:20, img:'assets/frontdoor-visitor.jpg' }
+            { time:'09:20 am', mins:560, cam:'Front Door', label:'Left for the shop', dur:20, img:'assets/frontdoor-visitor.jpg' }
           ]
         },
         1:{
@@ -10953,7 +10953,7 @@ window.addEventListener('error', function(e){
           summary:'Rohan was at the shop until late, home at 8:55 pm, and one nursery check just before midnight.',
           unusual:[],
           clips:[
-            { time:'08:55 pm', mins:1255, cam:'Front Porch', label:'Home from the shop', dur:21, img:'assets/frontdoor-visitor.jpg' },
+            { time:'08:55 pm', mins:1255, cam:'Front Door', label:'Home from the shop', dur:21, img:'assets/frontdoor-visitor.jpg' },
             { time:'11:50 pm', mins:1430, cam:'Nursery Cam', label:'Checked on the baby', dur:66, img:'assets/nursery.png' }
           ]
         }
@@ -11064,7 +11064,7 @@ window.addEventListener('error', function(e){
   };
 
   /* ── One still per camera ──────────────────────────────────────────────
-     Tapping Front Porch used to open a camera whose hero image had nothing to
+     Tapping Front Door used to open a camera whose hero image had nothing to
      do with the tile you tapped. The cause was that the image lived on each
      record rather than on the camera: the same physical camera was written as
      cam2.jpg in its alerts, frontdoor-visitor.jpg in a person's clip list,
@@ -11091,7 +11091,7 @@ window.addEventListener('error', function(e){
      one line here to light them up everywhere at once. */
   var CAM_STILL = {
     'Nursery Cam': 'assets/nursery.png',
-    'Front Porch': 'assets/frontporch.png',
+    'Front Door': 'assets/frontporch.png',
     'Living Room': 'assets/livingroom-cam1.png',
     'Bedroom':     'assets/bedroom.jpg'
   };
@@ -11538,7 +11538,7 @@ window.addEventListener('error', function(e){
     /* Open on the clip you actually tapped, not the first of the day.
        `clips` is the camera's whole day sorted by time, so loadClip(0) was
        loading its earliest event — tap the 8:08 am unrecognised face and the
-       player came up on "Front Porch camera rebooted" at 3:35 am, with the
+       player came up on "Front Door camera rebooted" at 3:35 am, with the
        summary above it describing a different event entirely. rec.focusMins is
        set by renderAlertSummary from the alert that was opened; falls back to
        the first clip when there is nothing specific to focus, which is the
@@ -12846,7 +12846,7 @@ window.addEventListener('error', function(e){
        Everything below it never ran: renderLocOptions(), applyLocation(),
        renderPerson('Aparna Sharma') and the minute timers. That is why the
        data-driven screens came up empty — Events, the People row, the camera
-       grid — and why the event detail screen reported "Nothing from Front Porch
+       grid — and why the event detail screen reported "Nothing from Front Door
        today" despite the data being right there: `alerts` was never built.
        Present in the original upload too, with the same four references and no
        matching element. */
