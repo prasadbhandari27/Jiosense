@@ -11117,7 +11117,7 @@ window.addEventListener('error', function(e){
     'assets/livingroom.jpg':        'assets/livingroom-cam1.png'
   };
   /* Subject-specific, so they outrank the camera's own viewpoint still. */
-  var PER_EVENT = { 'assets/porch-package.png': true, 'assets/front-porch-delivery.png': true, 'assets/splash-suspicious.png': true, 'assets/kitchen-maid-dishes.jpg': true, 'assets/kitchen-maid-counter.jpg': true, 'assets/living-maid-dusting.jpg': true, 'assets/living-maid-sofa.jpg': true, 'assets/living-maid-floor.jpg': true, 'assets/living-tv-technician.jpg': true, 'assets/living-family-evening.jpg': true };
+  var PER_EVENT = { 'assets/porch-package.png': true, 'assets/front-porch-delivery.png': true, 'assets/splash-suspicious.png': true, 'assets/kitchen-maid-dishes.jpg': true, 'assets/kitchen-maid-counter.jpg': true, 'assets/living-maid-dusting.jpg': true, 'assets/living-maid-sofa.jpg': true, 'assets/living-maid-floor.jpg': true, 'assets/living-tv-technician.jpg': true, 'assets/living-family-evening.jpg': true, 'assets/living-aarav-fell.jpg': true, 'assets/living-aarav-up.jpg': true };
 
   function resolveStills(node){
     if(!node || typeof node !== 'object') return;
@@ -11160,7 +11160,8 @@ window.addEventListener('error', function(e){
       { type:'person', priority:'low', cam:'Living Room', mins:at(14,30), until:at(15,0), who:'Aarav', solo:true, t:'Aarav watched TV' },
       { type:'person', priority:'low', cam:'Study',      mins:at(15,5), since:at(15,0), who:'Aarav', grp:'aarav-study', headline:'Aarav did his homework and read', unit:'activities', t:'Did his homework', clip:true },
       { type:'person', priority:'low', cam:'Study',      mins:at(15,40), until:at(16,0), who:'Aarav', grp:'aarav-study', t:'Read a book', clip:true },
-      { type:'person', priority:'med', cam:'Living Room', mins:at(16,0), who:'Aarav', solo:true, t:'Aarav fell while playing in the living room', note:'Got back up and carried on', clip:true },
+      { type:'person', priority:'med', cam:'Living Room', mins:at(16,0), who:'Aarav', grp:'aarav-fall', headline:'Aarav fell while playing in the living room', note:'Got back up and carried on', thumb:true, img:'assets/living-aarav-fell.jpg', t:'Fell while playing', clip:true },
+      { type:'person', priority:'low', cam:'Living Room', mins:at(16,2), who:'Aarav', grp:'aarav-fall', img:'assets/living-aarav-up.jpg', t:'Got back up and carried on', clip:true },
       { type:'person', priority:'low', cam:'Bedroom',    mins:at(16,30), who:'Aarav', solo:true, t:'Aarav napped' },
       { type:'person', priority:'low', cam:'Front Door', mins:at(17,30), who:'Hamid', solo:true, t:'Hamid came home' },
       { type:'package', priority:'low', cam:'Front Door', mins:at(17,45), who:'Hamid', solo:true, t:'Hamid received a package' },
@@ -12528,6 +12529,7 @@ window.addEventListener('error', function(e){
       head.appendChild(document.createTextNode(items[0].headline || (items[0].head ? who + ' \u00b7 ' + items[0].head : who)));
       tx.appendChild(oneuiText(head, 'body', 'S', null, 'high'));
       tx.appendChild(oneuiText(camLine(route.join(' → ')), 'label', 'XS', 'low'));
+      if(items[0].note) tx.appendChild(oneuiText(el('span', 's arow-note', items[0].note), 'label', 'XS', 'low'));
       // same clip counter as the important-incident card
       tx.insertAdjacentHTML('beforeend', '<span class="oneui-Text hero-count arow-count" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="7" width="14" height="13" rx="2.5" stroke="currentColor" stroke-width="2"/><path d="M7 4h11.5A2.5 2.5 0 0 1 21 6.5V16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>' + items.length + ' ' + (items[0].unit || 'clips') + '</span>');
       b.setAttribute('aria-label', who + ', ' + items.length + ' clips, ' + route.join(', ') + ', ' + fmtTimestamp(a.mins) + ' to ' + fmtTimestamp(last.mins));
