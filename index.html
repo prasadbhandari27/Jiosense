@@ -2623,6 +2623,21 @@ button.oneui-Avatar{position:relative}
 .inc-sum-hd{display:flex;align-items:center;gap:var(--Spacing-2);margin-bottom:var(--Spacing-2)}
 .inc-spark{width:28px;height:28px;border-radius:50%;background:var(--Primary-Subtle);display:grid;place-items:center;flex:0 0 auto}
 .inc-imp{margin-left:auto}
+.fb-head{display:flex;flex-direction:column;align-items:center;gap:var(--Spacing-1);padding:0 var(--Spacing-2) var(--Spacing-5)}
+.fb-head h2,.fb-head p{margin:0}
+.fb-label{margin:0 0 var(--Spacing-2)}
+.fb-chips{display:flex;gap:var(--Spacing-2)}
+.fb-chips .oneui-Chip{min-width:72px}
+.fb-chips .oneui-Chip[aria-pressed="false"]{background:var(--Surface-Fill-Default);border-color:var(--Neutral-Stroke-Medium)}
+.fb-field{gap:0}
+.fb-field .fb-label{display:block}
+.fb-field{margin-top:var(--Spacing-5)}
+.oneui-Input.fb-textarea{align-items:stretch;padding-top:var(--Spacing-2-5);padding-bottom:var(--Spacing-2-5)}
+.oneui-Input.fb-textarea > textarea{flex:1;min-width:0;border:0;background:none;outline:none;padding:0;resize:none;font:inherit;
+  font-size:var(--Input-fontSize-10);line-height:var(--Input-lineHeight-10);color:var(--Neutral-High)}
+.oneui-Input.fb-textarea > textarea::placeholder{color:var(--Neutral-Low)}
+.fb-acts{display:flex;gap:var(--Spacing-3);margin-top:var(--Spacing-6)}
+.fb-acts .oneui-Button{flex:1}
 .inc-imp[hidden],.inc-ev-dur[hidden]{display:none}
 .inc-sum{margin:0;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden}
 .inc-sum.is-open{-webkit-line-clamp:7;line-clamp:7}
@@ -6395,22 +6410,24 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
 
     <!-- Feedback sheet -->
     <div class="ap-sheet-scrim" data-inc-fb-scrim></div>
-    <div class="ap-photo-sheet" data-inc-fb-sheet role="dialog" aria-modal="true" aria-label="Feedback on this alert">
+    <div class="ap-photo-sheet" data-inc-fb-sheet role="dialog" aria-modal="true" aria-labelledby="fb-title">
       <div class="ap-sheet-handle"></div>
-      <h2 class="oneui-Text ap-sheet-title" data-variant="title" data-size="M" data-appearance="neutral">Was this alert helpful?</h2>
-      <div class="ap-sheet-opts">
-        <button class="ap-sheet-opt oneui-Surface" data-surface="elevated" type="button" data-inc-fb="Thanks — we’ll keep alerts like this coming">
-          <span class="ap-sheet-opt-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M7.5 10.5v9H4.5v-9h3Zm0 0 3.6-6.3a1.6 1.6 0 0 1 3 .9l-.6 4.4h5a2 2 0 0 1 2 2.3l-1.1 6.2a2 2 0 0 1-2 1.5H7.5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
-          <span class="ap-sheet-opt-tx"><span class="oneui-Text t" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral">Yes, this was useful</span></span>
-        </button>
-        <button class="ap-sheet-opt oneui-Surface" data-surface="elevated" type="button" data-inc-fb="Thanks — we’ll show fewer alerts like this">
-          <span class="ap-sheet-opt-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M16.5 13.5v-9h3v9h-3Zm0 0-3.6 6.3a1.6 1.6 0 0 1-3-.9l.6-4.4h-5a2 2 0 0 1-2-2.3l1.1-6.2a2 2 0 0 1 2-1.5h9.9" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
-          <span class="ap-sheet-opt-tx"><span class="oneui-Text t" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral">Not useful</span></span>
-        </button>
-        <button class="ap-sheet-opt oneui-Surface" data-surface="elevated" type="button" data-inc-fb="Thanks — the story will be checked again">
-          <span class="ap-sheet-opt-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.8"/><path d="M12 7.5v5.5M12 16.2v.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-          <span class="ap-sheet-opt-tx"><span class="oneui-Text t" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral">The summary is wrong</span></span>
-        </button>
+      <div class="fb-head">
+        <h2 class="oneui-Text" data-variant="title" data-size="M" data-appearance="neutral" data-text-align="center" id="fb-title">Give feedback</h2>
+        <p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="low" data-text-align="center">Help us make your alerts more useful</p>
+      </div>
+      <p class="oneui-Text fb-label" data-variant="label" data-size="M" data-weight="high" data-appearance="neutral" id="fb-q">Was this alert helpful?</p>
+      <div class="fb-chips" role="radiogroup" aria-labelledby="fb-q">
+        <button type="button" class="oneui-Chip" data-size="l" data-appearance="primary" data-attention="high" role="radio" aria-checked="false" aria-pressed="false" data-fb-pick="yes">Yes</button>
+        <button type="button" class="oneui-Chip" data-size="l" data-appearance="primary" data-attention="high" role="radio" aria-checked="false" aria-pressed="false" data-fb-pick="no">No</button>
+      </div>
+      <div class="oneui-InputField fb-field">
+        <label class="oneui-Text fb-label" data-variant="label" data-size="M" data-weight="high" data-appearance="neutral" for="fb-text">Anything you&rsquo;d like to share?</label>
+        <div class="oneui-Input fb-textarea" data-size="10" data-attention="medium"><textarea id="fb-text" rows="3" maxlength="300" placeholder="Write a review (optional)" data-fb-text></textarea></div>
+      </div>
+      <div class="fb-acts">
+        <button type="button" class="oneui-Button" data-size="12" data-appearance="primary" data-attention="medium" data-fb-cancel>Cancel</button>
+        <button type="button" class="oneui-Button" data-size="12" data-appearance="primary" data-attention="high" data-fb-send disabled>Send feedback</button>
       </div>
     </div>
   </section>
@@ -12066,10 +12083,27 @@ window.addEventListener('error', function(e){
 
     /* Share / Download / Feedback */
     var fbSheet = q('[data-inc-fb-sheet]'), fbScrim = q('[data-inc-fb-scrim]');
-    function fbOpen(on){ fbSheet.classList.toggle('is-up', on); fbScrim.classList.toggle('is-up', on); }
+    function fbOpen(on){ if(on && typeof fbReset === 'function') fbReset(); fbSheet.classList.toggle('is-up', on); fbScrim.classList.toggle('is-up', on); if(!on && document.activeElement && fbSheet.contains(document.activeElement)) document.activeElement.blur(); }
     fbScrim.addEventListener('click', function(){ fbOpen(false); });
-    Array.prototype.forEach.call(scr.querySelectorAll('[data-inc-fb]'), function(b){
-      b.addEventListener('click', function(){ fbOpen(false); toastMsg(b.getAttribute('data-inc-fb')); });
+    /* Yes / No chips (one at a time), an optional review, Send once a choice is made */
+    var fbPick = null, fbSend = q('[data-fb-send]'), fbText = q('[data-fb-text]');
+    var fbChips = Array.prototype.slice.call(scr.querySelectorAll('[data-fb-pick]'));
+    function fbReset(){
+      fbPick = null; fbText.value = ''; fbSend.disabled = true;
+      fbChips.forEach(function(c){ c.setAttribute('aria-pressed', 'false'); c.setAttribute('aria-checked', 'false'); });
+    }
+    fbChips.forEach(function(c){
+      c.addEventListener('click', function(){
+        fbPick = c.getAttribute('data-fb-pick');
+        fbChips.forEach(function(o){ var on = o === c; o.setAttribute('aria-pressed', on ? 'true' : 'false'); o.setAttribute('aria-checked', on ? 'true' : 'false'); });
+        fbSend.disabled = false;
+      });
+    });
+    q('[data-fb-cancel]').addEventListener('click', function(){ fbOpen(false); });
+    fbSend.addEventListener('click', function(){
+      if(!fbPick) return;
+      fbOpen(false);
+      toastMsg(fbPick === 'yes' ? 'Thanks — we\u2019ll keep alerts like this coming' : 'Thanks — we\u2019ll show fewer alerts like this');
     });
     function toastMsg(msg){
       var t = document.querySelector('[data-toast]'); if(!t) return;
