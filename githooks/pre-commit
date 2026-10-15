@@ -1,0 +1,8 @@
+#!/bin/sh
+# Keep index.html (served at /Jiosense/, used for the Maze link) identical to
+# home-app-oneui.html whenever the app file is part of a commit.
+#
+# Turn on once per clone:   git config core.hooksPath githooks
+if git diff --cached --name-only | grep -qx 'home-app-oneui.html'; then
+  cp home-app-oneui.html index.html && git add index.html
+fi
