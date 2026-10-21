@@ -2631,6 +2631,9 @@ button.oneui-Avatar{position:relative}
 .alert-list .acard-row.is-offline-evt .arow-off-for::before{content:"\00b7";margin-right:var(--Spacing-2)}
 .alert-list .acard-row.is-offline-evt::before{background:none;width:0;border-left:2px dashed var(--Warning-TintedA11y,#be5301)}
 .alert-list .acard-row.is-offline-evt::after{display:none}
+/* the alert itself is highlighted: pale amber fill, amber outline */
+.alert-list .acard-row.is-offline-evt .arow-card{background:var(--Warning-Minimal,#fff2ec);box-shadow:inset 0 0 0 1px var(--Warning-Bold,#f06d0f),var(--Elevation-2)}
+.alert-list .acard-row.is-offline-evt .arow-av-off{background:var(--Surface-Fill-Default,#fff)}
 .arow-av.arow-av-unk{background:url(assets/frontporch.png) 90% 19%/900% no-repeat var(--Surface-Fill-Subtle)}
 .alert-list .acard-row .arow-alert{align-self:flex-start;margin-top:var(--Spacing-1-5)}
 .alert-list .acard-row .arow-note{display:block;margin-top:var(--Spacing-0-5)}
