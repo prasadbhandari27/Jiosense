@@ -11220,8 +11220,8 @@ window.addEventListener('error', function(e){
       { type:'person', priority:'high', cam:'Living Room', mins:at(9,30), who:'Unknown person', solo:true, thumb:true, img:'assets/living-tv-technician.jpg', t:'An unknown person came in and worked on the TV', step:'came in and worked on the TV', clip:true },
       { type:'person', priority:'low', cam:'Front Door', mins:at(10,0), who:'Limmi', solo:true, t:'Limmi left home' },
       // cameras that dropped offline for a while today — regular cards with the outage window on the rail
-      { type:'system', priority:'low', offline:true, solo:true, cam:'Kitchen',  mins:minsAgo(190), until:minsAgo(166), cause:'Wi-Fi signal was lost', back:'reconnected on its own', t:'Kitchen camera offline' },
-      { type:'system', priority:'low', offline:true, solo:true, cam:'Backyard', mins:minsAgo(130), until:minsAgo(106), cause:'power was unplugged', back:'came back online', t:'Backyard camera offline' },
+      { type:'system', priority:'low', offline:true, solo:true, cam:'Kitchen',  mins:minsAgo(190), until:minsAgo(166), cause:'Wi-Fi signal was lost', back:'reconnected on its own', t:'Camera offline' },
+      { type:'system', priority:'low', offline:true, solo:true, cam:'Backyard', mins:minsAgo(130), until:minsAgo(106), cause:'power was unplugged', back:'came back online', t:'Camera offline' },
       // the maid's arrival and departure frame her living-room cleaning (45 → 24 min ago)
       { type:'person', priority:'low', cam:'Front Door', mins:minsAgo(48), who:'Meena', solo:true, t:'Your maid arrived' },
       { type:'person', priority:'low', cam:'Front Door', mins:minsAgo(20), who:'Meena', solo:true, t:'Your maid left' },
@@ -12364,7 +12364,7 @@ window.addEventListener('error', function(e){
       grid.closest('.inc-sec').hidden = single;
       var main = items.slice().sort(function(x, y){ return PRIORITY_RANK[x.priority] - PRIORITY_RANK[y.priority] || y.mins - x.mins; })[0];
       var known = !!(g.who && KNOWN_PEOPLE[g.who]);
-      q('[data-inc-title]').textContent = single ? main.t : known ? (items[0].headline || (items[0].head ? g.who + ' \u00b7 ' + items[0].head : g.who + '\u2019s activity')) : (g.who || 'Activity') + ' at ' + main.cam;
+      q('[data-inc-title]').textContent = single ? (main.offline ? main.cam + ' camera offline' : main.t) : known ? (items[0].headline || (items[0].head ? g.who + ' \u00b7 ' + items[0].head : g.who + '\u2019s activity')) : (g.who || 'Activity') + ' at ' + main.cam;
       q('[data-inc-summary]').textContent = story(items, g.who, single, others);
       setSummaryOpen(false);
       q('[data-inc-head]').textContent = heading;
