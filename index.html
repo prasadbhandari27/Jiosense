@@ -11203,7 +11203,7 @@ window.addEventListener('error', function(e){
       { type:'system', priority:'high', alert:true, cam:'Front Door', mins:at(7,30), noFootage:true, t:'Your cook hasn\u2019t arrived \u2014 expected by ' + fmtClock(at(7,0)), summary:'Your cook is usually in by ' + fmtClock(at(7,0)) + ', but the front door camera hasn\u2019t seen them yet this morning.' },
       { type:'person', priority:'low', cam:'Front Door', mins:at(8,0),  who:'Aarav', solo:true, t:'Aarav left home' },
       { type:'person', priority:'low', cam:'Front Door', mins:at(9,0),  who:'Hamid', solo:true, t:'Hamid left home' },
-      { type:'person', priority:'med', cam:'Living Room', mins:at(9,30), who:'Unknown person', solo:true, thumb:true, img:'assets/living-tv-technician.jpg', t:'An unknown person came in and worked on the TV', step:'came in and worked on the TV', clip:true },
+      { type:'person', priority:'high', cam:'Living Room', mins:at(9,30), who:'Unknown person', solo:true, thumb:true, img:'assets/living-tv-technician.jpg', t:'An unknown person came in and worked on the TV', step:'came in and worked on the TV', clip:true },
       { type:'person', priority:'low', cam:'Front Door', mins:at(10,0), who:'Limmi', solo:true, t:'Limmi left home' },
       // the maid's arrival and departure frame her living-room cleaning (45 → 24 min ago)
       { type:'person', priority:'low', cam:'Front Door', mins:minsAgo(48), who:'Meena', solo:true, t:'Your maid arrived' },
