@@ -11214,7 +11214,7 @@ window.addEventListener('error', function(e){
       { type:'person', priority:'high', cam:'Living Room', mins:at(9,30), who:'Unknown person', solo:true, thumb:true, img:'assets/living-tv-technician.jpg', t:'An unknown person came in and worked on the TV', step:'came in and worked on the TV', clip:true },
       { type:'person', priority:'low', cam:'Front Door', mins:at(10,0), who:'Limmi', solo:true, t:'Limmi left home' },
       // cameras that are offline right now — shown as gaps on the timeline at the time they dropped
-      { type:'system', priority:'low', gap:true, offline:true, cam:'Kitchen',  mins:minsAgo(190), cause:'Wi-Fi signal lost', t:'Kitchen camera offline' },
+      { type:'system', priority:'low', gap:true, offline:true, cam:'Kitchen',  mins:minsAgo(190), until:minsAgo(166), cause:'Wi-Fi signal was lost', back:'reconnected on its own', t:'Kitchen camera offline' },
       { type:'system', priority:'low', gap:true, offline:true, cam:'Backyard', mins:minsAgo(130), until:minsAgo(106), cause:'power was unplugged', back:'came back online', t:'Backyard camera offline' },
       // the maid's arrival and departure frame her living-room cleaning (45 → 24 min ago)
       { type:'person', priority:'low', cam:'Front Door', mins:minsAgo(48), who:'Meena', solo:true, t:'Your maid arrived' },
