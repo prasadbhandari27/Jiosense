@@ -12649,12 +12649,12 @@ window.addEventListener('error', function(e){
     b.setAttribute('data-alert-open', '1');
     b._group = { cam:a.cam, day:a.day, items:[a] };
     var hrs = Math.floor(span / 60);
-    var lost = hrs ? hrs + '+ hr' + (hrs === 1 ? '' : 's') + ' not recorded' : span + ' min not recorded';
-    b.setAttribute('aria-label', a.t + ' since ' + fmtTimestamp(a.mins) + ', ' + lost);
+    // one line: since when, which camera, and how long it has been down
+    var dur = hrs ? hrs + '+ hr' + (hrs === 1 ? '' : 's') : span + ' min';
+    b.setAttribute('aria-label', a.t + ' since ' + fmtTimestamp(a.mins) + ', for ' + dur);
     b.innerHTML =
       '<span class="oneui-Text gap-t" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium">' +
-        fmtTimestamp(a.mins) + ' \u2013 now \u00b7 ' + a.t + '</span>' +
-      '<span class="oneui-Text gap-s" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low">' + lost + (a.cause ? ' \u00b7 ' + a.cause : '') + '</span>';
+        fmtTimestamp(a.mins) + ' \u2013 now \u00b7 ' + a.t + ' for ' + dur + '</span>';
     b.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); b.click(); } });
     return b;
   }
