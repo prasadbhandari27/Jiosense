@@ -2625,6 +2625,7 @@ button.oneui-Avatar{position:relative}
 .alert-list .acard-row .s{display:block;margin-top:var(--Spacing-0-5)}
 .alert-list .acard-row .cam-line{display:flex;align-items:center;gap:4px}
 .alert-list .acard-row .cam-line .cam-ico{width:14px;height:14px;flex:0 0 auto}
+.acard-row .arow-av.arow-av-off svg{width:14px;height:14px}
 .arow-av.arow-av-unk{background:url(assets/frontporch.png) 90% 19%/900% no-repeat var(--Surface-Fill-Subtle)}
 .alert-list .acard-row .arow-alert{align-self:flex-start;margin-top:var(--Spacing-1-5)}
 .alert-list .acard-row .arow-note{display:block;margin-top:var(--Spacing-0-5)}
@@ -12732,6 +12733,18 @@ window.addEventListener('error', function(e){
         });
         tx.appendChild(addBtn);
       }
+    } else if(a.offline){
+      // camera outage: an avatar-sized camera-off icon instead of a thumbnail, like a person card
+      b.classList.add('is-known');
+      var oh = el('span', 't arow-who');
+      var oav = el('span', 'oneui-Avatar arow-av arow-av-off');
+      oav.setAttribute('data-size', 'custom'); oav.setAttribute('data-content', 'icon');
+      oav.setAttribute('data-appearance', 'neutral'); oav.setAttribute('data-attention', 'medium'); oav.setAttribute('aria-hidden', 'true');
+      oav.innerHTML = '<svg viewBox="0 0 24 24" fill="none"><path d="M3 3l18 18M10.5 6H14a2 2 0 0 1 2 2v1.5l4-2.5v10M16 16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 1.2-1.83" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      oh.appendChild(oav);
+      oh.appendChild(document.createTextNode(a.t));
+      tx.appendChild(oneuiText(oh, 'body', 'S', null, 'high'));
+      tx.appendChild(oneuiText(camLine((a.place ? a.place + ' · ' : '') + a.cam), 'label', 'XS', 'low'));
     } else {
       tx.appendChild(oneuiText(el('span', 't', a.t), 'body', 'S', null, 'high'));
       tx.appendChild(oneuiText(camLine((a.place ? a.place + ' · ' : '') + a.cam), 'label', 'XS', 'low'));
@@ -12759,7 +12772,7 @@ window.addEventListener('error', function(e){
 
     /* Big thumbnail (the main clip) — never for known people. */
     var thumbClip = items.filter(function(it){ return it.thumb; })[0];
-    if(!a.alert && (thumbClip || (!known && !unknownSolo)) && ((thumbClip || main).img || (thumbClip || main).video || (thumbClip || main).offline)){
+    if(!a.alert && !(a.offline && !combined) && (thumbClip || (!known && !unknownSolo)) && ((thumbClip || main).img || (thumbClip || main).video)){
       b.classList.add('has-thumb');
       var th = clipThumb(thumbClip || main, 'arow-thumb');
       // no play / pause control on the thumbnail — the whole card opens the clip
