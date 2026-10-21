@@ -1807,7 +1807,7 @@ button.oneui-Avatar{position:relative}
 /* High-importance floating button: above the tab bar, Home + Activity only */
 .hi-fab{position:absolute;right:var(--Spacing-4);bottom:calc(var(--tabbar-h, 68px) + var(--Safe-Bottom, 0px) + var(--Spacing-4));z-index:36;
   width:56px;height:56px;border-radius:50%;border:0;display:grid;place-items:center;cursor:pointer;
-  background:var(--Negative-Bold,#df012c);color:var(--Negative-Bold-High,#fff);box-shadow:0 6px 18px rgba(223,1,44,.35),0 2px 6px rgba(12,13,16,.18);
+  background:var(--Negative-Bold,#df012c);color:#fff;box-shadow:0 6px 18px rgba(223,1,44,.35),0 2px 6px rgba(12,13,16,.18);
   animation:hiFabIn .35s cubic-bezier(.2,.8,.2,1) both}
 .hi-fab[hidden]{display:none}
 .hi-fab:active{transform:scale(.96)}
@@ -12447,7 +12447,7 @@ window.addEventListener('error', function(e){
       var queue = groupByPerson(currentAlerts().filter(function(a){ return a.day === 0; }))
         .filter(function(g){ return isHighImportance(g) && !g.items.some(function(it){ return it._nudgeClosed; }); })
         .sort(function(x, y){ return latestMins(y.items) - latestMins(x.items); });
-      if(!queue.length){ row.hidden = true; row.setAttribute('data-stack', '0'); return; }
+      if(!queue.length){ row.hidden = true; row.setAttribute('data-stack', '0'); if(window.__hiFabSync) window.__hiFabSync(); return; }
       var g = queue[0], items = g.items, first = items[0];
       var main = items.slice().sort(function(x, y){ return PRIORITY_RANK[x.priority] - PRIORITY_RANK[y.priority] || y.mins - x.mins; })[0];
       var thumbClip = items.filter(function(it){ return it.thumb; })[0] || main;
@@ -12506,8 +12506,23 @@ window.addEventListener('error', function(e){
       var n = hiGroups().length;
       fab.querySelector('[data-hi-count]').textContent = n;
       fab.setAttribute('aria-label', 'High-importance activity: ' + n + ' event' + (n === 1 ? '' : 's') + ' today');
-      fab.hidden = !(fabScreen === 'my-home' || fabScreen === 'events') || !n || freshQuiet;
+      // on Activity the banner stack is the entry point — the button only takes over once it has scrolled away
+      var bannerShowing = false;
+      if(fabScreen === 'events'){
+        var bRow = document.querySelector('[data-evt-nudge]'), bSc = document.querySelector('[data-screen="events"] .scroll');
+        if(bRow && bSc && !bRow.hidden && bRow.querySelector('.cctv-nudge')){
+          var br = bRow.getBoundingClientRect(), sr = bSc.getBoundingClientRect();
+          bannerShowing = br.bottom > sr.top + 4 && br.top < sr.bottom;
+        }
+      }
+      fab.hidden = !(fabScreen === 'my-home' || fabScreen === 'events') || !n || freshQuiet || bannerShowing;
     }
+    // re-check as Activity scrolls: the button appears once the banner has gone past the top
+    (function(){
+      var sc = document.querySelector('[data-screen="events"] .scroll');
+      if(!sc) return;
+      sc.addEventListener('scroll', function(){ hiSync(); }, { passive:true });
+    })();
     window.__hiFabSync = hiSync;
     function hiOpen(on){
       hiSheet.classList.toggle('is-up', on); hiScrim.classList.toggle('is-up', on);
