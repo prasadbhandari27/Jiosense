@@ -2626,6 +2626,9 @@ button.oneui-Avatar{position:relative}
 .alert-list .acard-row .cam-line{display:flex;align-items:center;gap:4px}
 .alert-list .acard-row .cam-line .cam-ico{width:14px;height:14px;flex:0 0 auto}
 .acard-row .arow-av.arow-av-off svg{width:14px;height:14px}
+.acard-row .arow-av.arow-av-off{background:var(--Warning-Subtle,#ffe5d9);color:var(--Warning-TintedA11y,#be5301)}
+.alert-list .acard-row .arow-off-badge{align-self:flex-start;margin-top:var(--Spacing-1-5)}
+.alert-list .acard-row.is-offline-evt::after{box-shadow:inset 0 0 0 2px var(--Warning-TintedA11y,#be5301);background:var(--Warning-Subtle,#ffe5d9)}
 .arow-av.arow-av-unk{background:url(assets/frontporch.png) 90% 19%/900% no-repeat var(--Surface-Fill-Subtle)}
 .alert-list .acard-row .arow-alert{align-self:flex-start;margin-top:var(--Spacing-1-5)}
 .alert-list .acard-row .arow-note{display:block;margin-top:var(--Spacing-0-5)}
@@ -12739,12 +12742,16 @@ window.addEventListener('error', function(e){
       var oh = el('span', 't arow-who');
       var oav = el('span', 'oneui-Avatar arow-av arow-av-off');
       oav.setAttribute('data-size', 'custom'); oav.setAttribute('data-content', 'icon');
-      oav.setAttribute('data-appearance', 'neutral'); oav.setAttribute('data-attention', 'medium'); oav.setAttribute('aria-hidden', 'true');
+      oav.setAttribute('data-appearance', 'warning'); oav.setAttribute('data-attention', 'medium'); oav.setAttribute('aria-hidden', 'true');
       oav.innerHTML = '<svg viewBox="0 0 24 24" fill="none"><path d="M3 3l18 18M10.5 6H14a2 2 0 0 1 2 2v1.5l4-2.5v10M16 16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 1.2-1.83" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
       oh.appendChild(oav);
       oh.appendChild(document.createTextNode(a.t));
       tx.appendChild(oneuiText(oh, 'body', 'S', null, 'high'));
       tx.appendChild(oneuiText(camLine((a.place ? a.place + ' · ' : '') + a.cam), 'label', 'XS', 'low'));
+      // how long it was down, as an amber badge
+      var ofor = a.until != null ? spanText(Math.max(0, a.until - a.mins)) : 'still offline';
+      tx.insertAdjacentHTML('beforeend', '<span class="oneui-Badge arow-off-badge" data-appearance="warning" data-attention="medium" data-size="s">Offline \u00b7 ' + ofor + '</span>');
+      b.classList.add('is-offline-evt');
     } else {
       tx.appendChild(oneuiText(el('span', 't', a.t), 'body', 'S', null, 'high'));
       tx.appendChild(oneuiText(camLine((a.place ? a.place + ' · ' : '') + a.cam), 'label', 'XS', 'low'));
