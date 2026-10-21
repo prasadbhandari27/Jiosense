@@ -12499,6 +12499,7 @@ window.addEventListener('error', function(e){
     /* ── High-importance floating button + list ─────────────────────── */
     var fab = document.querySelector('[data-hi-fab]'), hiSheet = document.querySelector('[data-hi-sheet]'), hiScrim = document.querySelector('[data-hi-scrim]');
     var fabScreen = null;
+    var HI_FAB_ON = false;   // floating high-importance button is switched off for now (flip to true to bring it back)
     function hiGroups(){
       return groupByPerson(currentAlerts().filter(function(a){ return a.day === 0; }))
         .filter(isHighImportance)
@@ -12523,7 +12524,7 @@ window.addEventListener('error', function(e){
           bannerShowing = br.bottom > sr.top + 4 && br.top < sr.bottom;
         }
       }
-      fab.hidden = !(fabScreen === 'my-home' || fabScreen === 'events') || !n || freshQuiet || bannerShowing;
+      fab.hidden = !HI_FAB_ON || !(fabScreen === 'my-home' || fabScreen === 'events') || !n || freshQuiet || bannerShowing;
     }
     // re-check as Activity scrolls: the button appears once the banner has gone past the top
     (function(){
