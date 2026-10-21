@@ -2627,8 +2627,10 @@ button.oneui-Avatar{position:relative}
 .alert-list .acard-row .cam-line .cam-ico{width:14px;height:14px;flex:0 0 auto}
 .acard-row .arow-av.arow-av-off svg{width:14px;height:14px}
 .acard-row .arow-av.arow-av-off{background:var(--Warning-Subtle,#ffe5d9);color:var(--Warning-TintedA11y,#be5301)}
-.alert-list .acard-row .arow-off-badge{align-self:flex-start;margin-top:var(--Spacing-1-5)}
-.alert-list .acard-row.is-offline-evt::after{box-shadow:inset 0 0 0 2px var(--Warning-TintedA11y,#be5301);background:var(--Warning-Subtle,#ffe5d9)}
+.alert-list .acard-row.is-offline-evt .arow-time,.alert-list .acard-row.is-offline-evt .arow-off-for{color:var(--Warning-TintedA11y,#be5301)}
+.alert-list .acard-row.is-offline-evt .arow-off-for::before{content:"\00b7";margin-right:var(--Spacing-2)}
+.alert-list .acard-row.is-offline-evt::before{background:none;width:0;border-left:2px dashed var(--Warning-TintedA11y,#be5301)}
+.alert-list .acard-row.is-offline-evt::after{display:none}
 .arow-av.arow-av-unk{background:url(assets/frontporch.png) 90% 19%/900% no-repeat var(--Surface-Fill-Subtle)}
 .alert-list .acard-row .arow-alert{align-self:flex-start;margin-top:var(--Spacing-1-5)}
 .alert-list .acard-row .arow-note{display:block;margin-top:var(--Spacing-0-5)}
@@ -12696,6 +12698,10 @@ window.addEventListener('error', function(e){
     }
     var ts = el('span', 'arow-ts');
     ts.appendChild(oneuiText(el('span', 'arow-time', timeRange(items)), 'label', 'S', 'medium', 'high'));
+    if(a.offline && !combined){
+      // outage: the time line says how long, in amber, beside a dashed amber rail
+      ts.appendChild(oneuiText(el('span', 'arow-off-for', 'Offline ' + (a.until != null ? spanText(Math.max(0, a.until - a.mins)) : 'now')), 'label', 'S', null, 'high'));
+    }
     b.appendChild(ts);
     b.appendChild(el('span', 'arow-div'));
 
@@ -12748,9 +12754,6 @@ window.addEventListener('error', function(e){
       oh.appendChild(document.createTextNode(a.t));
       tx.appendChild(oneuiText(oh, 'body', 'S', null, 'high'));
       tx.appendChild(oneuiText(camLine((a.place ? a.place + ' · ' : '') + a.cam), 'label', 'XS', 'low'));
-      // how long it was down, as an amber badge
-      var ofor = a.until != null ? spanText(Math.max(0, a.until - a.mins)) : 'still offline';
-      tx.insertAdjacentHTML('beforeend', '<span class="oneui-Badge arow-off-badge" data-appearance="warning" data-attention="medium" data-size="s">Offline \u00b7 ' + ofor + '</span>');
       b.classList.add('is-offline-evt');
     } else {
       tx.appendChild(oneuiText(el('span', 't', a.t), 'body', 'S', null, 'high'));
