@@ -11213,9 +11213,9 @@ window.addEventListener('error', function(e){
       { type:'person', priority:'low', cam:'Front Door', mins:at(9,0),  who:'Hamid', solo:true, t:'Hamid left home' },
       { type:'person', priority:'high', cam:'Living Room', mins:at(9,30), who:'Unknown person', solo:true, thumb:true, img:'assets/living-tv-technician.jpg', t:'An unknown person came in and worked on the TV', step:'came in and worked on the TV', clip:true },
       { type:'person', priority:'low', cam:'Front Door', mins:at(10,0), who:'Limmi', solo:true, t:'Limmi left home' },
-      // cameras that are offline right now — shown as gaps on the timeline at the time they dropped
-      { type:'system', priority:'low', gap:true, offline:true, cam:'Kitchen',  mins:minsAgo(190), until:minsAgo(166), cause:'Wi-Fi signal was lost', back:'reconnected on its own', t:'Kitchen camera offline' },
-      { type:'system', priority:'low', gap:true, offline:true, cam:'Backyard', mins:minsAgo(130), until:minsAgo(106), cause:'power was unplugged', back:'came back online', t:'Backyard camera offline' },
+      // cameras that dropped offline for a while today — regular cards with the outage window on the rail
+      { type:'system', priority:'low', offline:true, solo:true, cam:'Kitchen',  mins:minsAgo(190), until:minsAgo(166), cause:'Wi-Fi signal was lost', back:'reconnected on its own', t:'Kitchen camera offline' },
+      { type:'system', priority:'low', offline:true, solo:true, cam:'Backyard', mins:minsAgo(130), until:minsAgo(106), cause:'power was unplugged', back:'came back online', t:'Backyard camera offline' },
       // the maid's arrival and departure frame her living-room cleaning (45 → 24 min ago)
       { type:'person', priority:'low', cam:'Front Door', mins:minsAgo(48), who:'Meena', solo:true, t:'Your maid arrived' },
       { type:'person', priority:'low', cam:'Front Door', mins:minsAgo(20), who:'Meena', solo:true, t:'Your maid left' },
@@ -12759,7 +12759,7 @@ window.addEventListener('error', function(e){
 
     /* Big thumbnail (the main clip) — never for known people. */
     var thumbClip = items.filter(function(it){ return it.thumb; })[0];
-    if(!a.alert && (thumbClip || (!known && !unknownSolo)) && ((thumbClip || main).img || (thumbClip || main).video)){
+    if(!a.alert && (thumbClip || (!known && !unknownSolo)) && ((thumbClip || main).img || (thumbClip || main).video || (thumbClip || main).offline)){
       b.classList.add('has-thumb');
       var th = clipThumb(thumbClip || main, 'arow-thumb');
       // no play / pause control on the thumbnail — the whole card opens the clip
