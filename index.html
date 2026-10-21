@@ -1804,6 +1804,30 @@ button.oneui-Avatar{position:relative}
   transform:translateY(100%);transition:transform .3s cubic-bezier(.22,1,.36,1);
 }
 .tabbar.is-on{transform:none}
+/* High-importance floating button: above the tab bar, Home + Activity only */
+.hi-fab{position:absolute;right:var(--Spacing-4);bottom:calc(var(--tabbar-h, 68px) + var(--Safe-Bottom, 0px) + var(--Spacing-4));z-index:36;
+  width:56px;height:56px;border-radius:50%;border:0;display:grid;place-items:center;cursor:pointer;
+  background:var(--Negative-Bold,#df012c);color:var(--Negative-Bold-High,#fff);box-shadow:0 6px 18px rgba(223,1,44,.35),0 2px 6px rgba(12,13,16,.18);
+  animation:hiFabIn .35s cubic-bezier(.2,.8,.2,1) both}
+.hi-fab[hidden]{display:none}
+.hi-fab:active{transform:scale(.96)}
+.hi-fab:focus-visible{outline:2px solid var(--Focus-Outline);outline-offset:3px}
+.hi-fab .hi-fab-count{position:absolute;top:-2px;right:-2px;min-width:20px;height:20px;background:var(--Surface-Fill-Default,#fff);color:var(--Negative-Bold,#df012c);
+  font-weight:700;box-shadow:0 0 0 2px var(--Negative-Bold,#df012c)}
+@keyframes hiFabIn{from{transform:scale(.6);opacity:0}to{transform:none;opacity:1}}
+.hi-sheet{max-height:72%;display:flex;flex-direction:column}
+.hi-head{padding:0 var(--Spacing-1) var(--Spacing-3)}
+.hi-head h2,.hi-head p{margin:0}
+.hi-list{display:flex;flex-direction:column;gap:var(--Spacing-2);overflow:auto;padding-bottom:var(--Spacing-2)}
+.hi-row{display:flex;align-items:center;gap:var(--Spacing-3);width:100%;padding:var(--Spacing-2-5) var(--Spacing-3);border:0;margin:0;text-align:left;font:inherit;color:inherit;cursor:pointer;
+  background:var(--Surface-Fill-Default);border-radius:var(--Shape-4);box-shadow:var(--Elevation-1,0 1px 3px rgba(0,0,0,.06))}
+.hi-row:active{background:var(--Neutral-Ghost-Pressed)}
+.hi-thumb{flex:0 0 auto;width:48px;height:48px;border-radius:var(--Shape-3);overflow:hidden;background:var(--Media-Surface)}
+.hi-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.hi-thumb.is-nomedia{display:grid;place-items:center;background:var(--Negative-Subtle,#fbe5e3);color:var(--Negative-TintedA11y,#df012c)}
+.hi-tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.hi-t{overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.hi-chev{flex:0 0 auto;color:var(--Neutral-Low)}
 .tab{
   position:relative;flex:1 1 0;
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
@@ -7216,6 +7240,21 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
     </button>
   </nav>
 
+  <!-- High-importance activity: floating button on Home and Activity, and the list it opens -->
+  <button type="button" class="hi-fab" data-hi-fab hidden aria-haspopup="dialog">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.2 2.8 19a1.2 1.2 0 0 0 1 1.8h16.4a1.2 1.2 0 0 0 1-1.8L12 3.2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 9.5v4.6M12 17.2v.3" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    <span class="oneui-CounterBadge hi-fab-count" data-hi-count>0</span>
+  </button>
+  <div class="ap-sheet-scrim hi-scrim" data-hi-scrim></div>
+  <div class="ap-photo-sheet hi-sheet" data-hi-sheet role="dialog" aria-modal="true" aria-labelledby="hi-title" aria-hidden="true">
+    <div class="ap-sheet-handle" aria-hidden="true"></div>
+    <div class="hi-head">
+      <h2 class="oneui-Text" data-variant="title" data-size="M" data-appearance="neutral" id="hi-title">High-importance activity</h2>
+      <p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="low" data-hi-sub>Today</p>
+    </div>
+    <div class="hi-list" data-hi-list></div>
+  </div>
+
   <!-- ============================================================ DAILY DIGEST ============================================================ -->
   <section class="screen has-tabbar" data-screen="daily-digest">
     <div class="statusbar" aria-hidden="true"><span data-clock>08:14</span></div>
@@ -7486,6 +7525,7 @@ window.addEventListener('error', function(e){
     });
     if(top !== 'summary' && typeof ppStop === 'function' && ppPlaying) ppStop();
     tabbar.classList.toggle('is-on', onTabRoot);
+    if(typeof window.__hiFabSync === 'function') window.__hiFabSync(top);
     tabs.forEach(function(t){
       var isCurrent = onTabRoot && t.getAttribute('data-tab') === top;
       if(isCurrent) t.setAttribute('aria-current', 'page');
@@ -8730,6 +8770,7 @@ window.addEventListener('error', function(e){
       pill.setAttribute('data-state', on ? 'unknown' : 'empty');
       var home = document.querySelector('[data-screen="my-home"]');
       if(home) home.classList.toggle('has-unk', !!on);   // first-day notification card becomes the incident nudge
+      if(typeof window.__hiFabSync === 'function') window.__hiFabSync();
       var row = pill.querySelector('[data-fresh-unk-pill]');
       if(row){
         if(on){ row.setAttribute('role', 'button'); row.tabIndex = 0; row.setAttribute('aria-label', 'Unknown person in the home'); }
@@ -12372,6 +12413,7 @@ window.addEventListener('error', function(e){
     if(typeof renderAlerts === 'function') renderAlerts();
     if(typeof window.__refreshEventDetail === 'function') window.__refreshEventDetail();
     if(typeof window.__renderHomeNudge === 'function') window.__renderHomeNudge();   // the banner no longer has an unknown person to point at
+    if(typeof window.__hiFabSync === 'function') window.__hiFabSync();
   };
 
   window.__fmtTime = fmtTimestamp;
@@ -12442,6 +12484,62 @@ window.addEventListener('error', function(e){
     }
     setTimeout(renderHomeNudge, 0);
     window.__renderHomeNudge = renderHomeNudge;
+
+    /* ── High-importance floating button + list ─────────────────────── */
+    var fab = document.querySelector('[data-hi-fab]'), hiSheet = document.querySelector('[data-hi-sheet]'), hiScrim = document.querySelector('[data-hi-scrim]');
+    var fabScreen = null;
+    function hiGroups(){
+      return groupByPerson(currentAlerts().filter(function(a){ return a.day === 0; }))
+        .filter(isHighImportance)
+        .sort(function(x, y){ return latestMins(y.items) - latestMins(x.items); });
+    }
+    function hiSync(top){
+      if(top !== undefined) fabScreen = top;
+      if(fabScreen === null){ var act = document.querySelector('.screen.is-active'); fabScreen = act ? act.getAttribute('data-screen') : null; }
+      if(!fab) return;
+      var home = document.querySelector('[data-screen="my-home"]');
+      // a first-day Home has nothing to flag until the unknown person is spotted
+      var freshQuiet = fabScreen === 'my-home' && home && home.classList.contains('is-fresh') && !home.classList.contains('has-unk');
+      var n = hiGroups().length;
+      fab.querySelector('[data-hi-count]').textContent = n;
+      fab.setAttribute('aria-label', 'High-importance activity: ' + n + ' event' + (n === 1 ? '' : 's') + ' today');
+      fab.hidden = !(fabScreen === 'my-home' || fabScreen === 'events') || !n || freshQuiet;
+    }
+    window.__hiFabSync = hiSync;
+    function hiOpen(on){
+      hiSheet.classList.toggle('is-up', on); hiScrim.classList.toggle('is-up', on);
+      hiSheet.setAttribute('aria-hidden', on ? 'false' : 'true');
+      if(on){ var f = hiSheet.querySelector('button'); if(f) f.focus({ preventScroll:true }); } else if(!fab.hidden) fab.focus({ preventScroll:true });
+    }
+    function hiRender(){
+      var list = hiSheet.querySelector('[data-hi-list]'), gs = hiGroups();
+      hiSheet.querySelector('[data-hi-sub]').textContent = 'Today \u00b7 ' + gs.length + ' event' + (gs.length === 1 ? '' : 's');
+      list.innerHTML = '';
+      gs.forEach(function(g){
+        var items = g.items;
+        var main = items.slice().sort(function(x, y){ return PRIORITY_RANK[x.priority] - PRIORITY_RANK[y.priority] || y.mins - x.mins; })[0];
+        var pic = items.filter(function(it){ return it.thumb; })[0] || main;
+        var hasPic = pic.img && !pic.noFootage && !pic.offline;
+        var row = el('button', 'hi-row');
+        row.type = 'button';
+        row.innerHTML =
+          '<span class="hi-thumb' + (hasPic ? '' : ' is-nomedia') + '">' + (hasPic ? '<img src="' + pic.img + '" alt="">' : NUDGE_NO_MEDIA) + '</span>' +
+          '<span class="hi-tx"><span class="oneui-Text hi-t" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">' + nudgeTitle(g) + '</span>' +
+          '<span class="oneui-Text" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low">' + timeRange(items) + ' \u00b7 ' + main.cam + (items.length > 1 ? ' \u00b7 ' + items.length + ' clips' : '') + '</span></span>' +
+          '<svg class="hi-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        row.addEventListener('click', function(){
+          hiOpen(false);
+          if(window.__openEventDetail && window.__openEventDetail(g)) window.__routerOpen('incident');
+        });
+        list.appendChild(row);
+      });
+    }
+    if(fab){
+      fab.addEventListener('click', function(){ hiRender(); hiOpen(true); });
+      hiScrim.addEventListener('click', function(){ hiOpen(false); });
+      document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && hiSheet.classList.contains('is-up')) hiOpen(false); });
+      setTimeout(function(){ hiSync(); }, 0);
+    }
   })();
 
   /* Camera line on an activity card: video-camera icon, then the camera name(s) */
