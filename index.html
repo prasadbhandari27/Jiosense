@@ -2583,6 +2583,11 @@ button.oneui-Avatar{position:relative}
 .alert-list .acard-row:focus-visible{outline:none}
 .alert-list .acard-row:focus-visible .arow-card,.alert-list .acard-row:focus-visible .hero-card{outline:2px solid var(--Primary-Bold);outline-offset:2px}
 .alert-list .acard-row::before{content:"";position:absolute;left:7px;top:0;bottom:0;width:2px;background:var(--Neutral-Stroke-Low)}
+.alert-list .acard-row.is-gap{gap:2px;padding-top:var(--Spacing-2);padding-bottom:var(--Spacing-4);cursor:pointer}
+.alert-list .acard-row.is-gap::before{background:none;border-left:2px dashed var(--Warning-TintedA11y,#be5301);width:0}
+.alert-list .acard-row.is-gap::after{display:none}
+.alert-list .acard-row.is-gap .gap-t{font-style:italic;display:block}
+.alert-list .acard-row.is-gap .gap-s{display:block}
 .alert-list .acard-row::after{content:"";position:absolute;left:3px;top:4px;width:10px;height:10px;border-radius:50%;background:var(--App-Surface);box-shadow:inset 0 0 0 2px var(--Neutral-Stroke-Medium,var(--Neutral-Low))}
 .alert-list .acard-row .arow-dot{top:4px;left:3px;right:auto;width:10px;height:10px;z-index:1;box-shadow:0 0 0 2px var(--App-Surface)}
 .alert-list .acard-row .arow-ts{display:flex;align-items:baseline;align-self:flex-start;gap:var(--Spacing-2)}
@@ -11208,6 +11213,9 @@ window.addEventListener('error', function(e){
       { type:'person', priority:'low', cam:'Front Door', mins:at(9,0),  who:'Hamid', solo:true, t:'Hamid left home' },
       { type:'person', priority:'high', cam:'Living Room', mins:at(9,30), who:'Unknown person', solo:true, thumb:true, img:'assets/living-tv-technician.jpg', t:'An unknown person came in and worked on the TV', step:'came in and worked on the TV', clip:true },
       { type:'person', priority:'low', cam:'Front Door', mins:at(10,0), who:'Limmi', solo:true, t:'Limmi left home' },
+      // cameras that are offline right now — shown as gaps on the timeline at the time they dropped
+      { type:'system', priority:'low', gap:true, offline:true, cam:'Kitchen',  mins:minsAgo(190), cause:'Wi-Fi signal lost', t:'Kitchen camera offline' },
+      { type:'system', priority:'low', gap:true, offline:true, cam:'Backyard', mins:minsAgo(130), cause:'Camera unplugged', t:'Backyard camera offline' },
       // the maid's arrival and departure frame her living-room cleaning (45 → 24 min ago)
       { type:'person', priority:'low', cam:'Front Door', mins:minsAgo(48), who:'Meena', solo:true, t:'Your maid arrived' },
       { type:'person', priority:'low', cam:'Front Door', mins:minsAgo(20), who:'Meena', solo:true, t:'Your maid left' },
@@ -12633,7 +12641,25 @@ window.addEventListener('error', function(e){
     if(g.items.some(function(it){ return it.priority === 'high'; })) return true;
     return !(who && KNOWN_PEOPLE[who]) && combined;
   }
+  /* "Not recorded" gap: a camera that is offline right now */
+  function buildGapRow(a){
+    var d = new Date(), now = d.getHours() * 60 + d.getMinutes(), span = Math.max(0, now - a.mins);
+    var b = el('div', 'acard-row is-gap');
+    b.setAttribute('role', 'button'); b.tabIndex = 0;
+    b.setAttribute('data-alert-open', '1');
+    b._group = { cam:a.cam, day:a.day, items:[a] };
+    var hrs = Math.floor(span / 60);
+    var lost = hrs ? hrs + '+ hr' + (hrs === 1 ? '' : 's') + ' not recorded' : span + ' min not recorded';
+    b.setAttribute('aria-label', a.t + ' since ' + fmtTimestamp(a.mins) + ', ' + lost);
+    b.innerHTML =
+      '<span class="oneui-Text gap-t" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium">' +
+        fmtTimestamp(a.mins) + ' \u2013 now \u00b7 ' + a.t + '</span>' +
+      '<span class="oneui-Text gap-s" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low">' + lost + (a.cause ? ' \u00b7 ' + a.cause : '') + '</span>';
+    b.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); b.click(); } });
+    return b;
+  }
   function buildSimpleRow(a, grp){
+    if(a.gap) return buildGapRow(a);
     var combined = !!(grp && grp.items.length > 1);
     if(isHeroGroup(grp || { items:[a], who:a.who }))
       return buildHeroCard(combined ? grp : { cam:a.cam, day:a.day, place:a.place, who:a.who, items:[a] });
@@ -12951,7 +12977,8 @@ window.addEventListener('error', function(e){
     if(importantOnly) groups = impGroups;
     alertCount.textContent = importantOnly
       ? impGroups.length + ' event' + (impGroups.length === 1 ? '' : 's')
-      : list.length + ' event' + (list.length === 1 ? '' : 's');
+      : (function(){ var n = list.filter(function(a){ return !a.gap; }).length, gaps = list.length - n;
+          return n + ' event' + (n === 1 ? '' : 's') + (gaps ? ' \u00b7 ' + gaps + ' camera' + (gaps === 1 ? '' : 's') + ' offline' : ''); })();
 
     /* Rebuilt on every render, so the dots follow a location switch. */
     if(eventsStrip){
@@ -12981,7 +13008,8 @@ window.addEventListener('error', function(e){
     var sortedGroups = groups.slice().sort(function(x, y){
       /* one timeline, most recent first — important events sit at the time they happened
          (the Important chip is the shortcut to them) */
-      return latestMins(y.items) - latestMins(x.items);
+      var kx = x.items[0].gap ? x.items[0].mins : latestMins(x.items), ky = y.items[0].gap ? y.items[0].mins : latestMins(y.items);
+      return ky - kx;
     });
 
     var lastPeriodKey = null;
