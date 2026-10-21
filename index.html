@@ -12085,7 +12085,7 @@ window.addEventListener('error', function(e){
       img.addEventListener('error', function(){ th.classList.add('no-media'); img.remove(); });
       th.appendChild(img);
     } else th.classList.add('no-media');
-    th.insertAdjacentHTML('beforeend', '<span class="arow-nomedia" aria-hidden="true"><span class="arow-nomedia-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M3 3l18 18M10.5 6H14a2 2 0 0 1 2 2v1.5l4-2.5v10M16 16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 1.2-1.83" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="arow-nomedia-lbl">' + (m.offline ? 'Offline' : 'No footage') + '</span></span>');
+    th.insertAdjacentHTML('beforeend', '<span class="arow-nomedia" aria-hidden="true"><span class="arow-nomedia-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M10.66 6H14a2 2 0 0 1 2 2v2.5l5.25-3.06a.5.5 0 0 1 .75.43v8.2M16 16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h2M2 2l20 20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="arow-nomedia-lbl">' + (m.offline ? 'Offline' : 'No footage') + '</span></span>');
     return th;
   }
 
@@ -12323,7 +12323,7 @@ window.addEventListener('error', function(e){
       return it.video && !still ? '<video src="' + it.video + '" poster="' + (it.img || '') + '" muted playsinline preload="metadata"></video>'
                       : (it.img ? '<img src="' + it.img + '" alt=""' + (it.imgPos ? ' style="object-position:' + it.imgPos + '"' : '') + '>' : null);
     }
-    var NOMEDIA_ICO = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 3l18 18M10.5 6H14a2 2 0 0 1 2 2v1.5l4-2.5v10M16 16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 1.2-1.83" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    var NOMEDIA_ICO = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10.66 6H14a2 2 0 0 1 2 2v2.5l5.25-3.06a.5.5 0 0 1 .75.43v8.2M16 16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h2M2 2l20 20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
     function setNoMedia(box, it){
       box.classList.add('is-nomedia');
       var keep = box.querySelector('.inc-ev-dur');
@@ -12752,7 +12752,7 @@ window.addEventListener('error', function(e){
       var oav = el('span', 'oneui-Avatar arow-av arow-av-off');
       oav.setAttribute('data-size', 'custom'); oav.setAttribute('data-content', 'icon');
       oav.setAttribute('data-appearance', 'warning'); oav.setAttribute('data-attention', 'medium'); oav.setAttribute('aria-hidden', 'true');
-      oav.innerHTML = '<svg viewBox="0 0 24 24" fill="none"><path d="M3 3l18 18M10.5 6H14a2 2 0 0 1 2 2v1.5l4-2.5v10M16 16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 1.2-1.83" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      oav.innerHTML = '<svg viewBox="0 0 24 24" fill="none"><path d="M10.66 6H14a2 2 0 0 1 2 2v2.5l5.25-3.06a.5.5 0 0 1 .75.43v8.2M16 16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h2M2 2l20 20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
       oh.appendChild(oav);
       oh.appendChild(document.createTextNode(a.until != null ? 'Camera offline for ' + spanText(Math.max(0, a.until - a.mins)) : 'Camera offline'));
       tx.appendChild(oneuiText(oh, 'body', 'S', null, 'high'));
