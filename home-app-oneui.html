@@ -2434,6 +2434,9 @@ button.oneui-Avatar{position:relative}
 .acard-row.is-hero:focus-visible{outline:2px solid var(--Primary-Bold);outline-offset:2px}
 .acard-row .arow-who{display:flex;align-items:center;gap:var(--Spacing-1-5)}
 .acard-row .arow-av{--_av-size:22px;width:22px;height:22px;flex:none;font-size:11px}
+.acard-row .arow-av-stack{display:inline-flex;flex:none;align-self:flex-start}
+.acard-row .arow-av-stack .arow-av{box-shadow:0 0 0 2px var(--Surface-Fill-Default)}
+.acard-row .arow-av-stack .arow-av + .arow-av{margin-left:-7px}
 .acard-row .arow-av img{width:100%;height:100%;object-fit:cover;border-radius:50%}
 .acard-row .arow-av svg{width:14px;height:14px}
 .acard-row .arow-av[data-content="icon"]{display:grid;place-items:center;border-radius:50%;background:var(--Neutral-Subtle);color:var(--Neutral-High)}
@@ -11219,7 +11222,7 @@ window.addEventListener('error', function(e){
       { type:'person', priority:'low', cam:'Front Door', mins:at(17,30), who:'Hamid', solo:true, t:'Hamid came home' },
       { type:'package', priority:'low', cam:'Front Door', mins:at(17,45), who:'Hamid', solo:true, t:'Hamid received a package' },
       { type:'person', priority:'low', cam:'Front Door', mins:at(18,0), who:'Limmi', solo:true, t:'Limmi came home' },
-      { type:'person', priority:'low', cam:'Living Room', mins:at(18,30), who:'Aarav', solo:true, thumb:true, img:'assets/living-family-evening.jpg', t:'All residents spent the evening together', clip:true }
+      { type:'person', priority:'low', cam:'Living Room', mins:at(18,30), who:'Aarav', people:['Aarav','Hamid','Limmi'], solo:true, img:'assets/living-family-evening.jpg', t:'Aarav, Hamid and Limmi spent the evening together', clip:true }
     ];
     LOCATIONS.forEach(function(l){
       if(l.key !== 'sharma-residence') return;
@@ -12665,7 +12668,11 @@ window.addEventListener('error', function(e){
       b.setAttribute('aria-label', who + ', ' + items.length + ' clips, ' + route.join(', ') + ', ' + fmtTimestamp(a.mins) + ' to ' + fmtTimestamp(last.mins));
     } else if(known || unknownSolo){
       var kh = el('span', 't arow-who');
-      if(!a.thumb) kh.appendChild(whoAvatar(who));
+      if(a.people && a.people.length > 1){
+        var stack = el('span', 'arow-av-stack');
+        a.people.forEach(function(n){ stack.appendChild(whoAvatar(n)); });
+        kh.appendChild(stack);
+      } else if(!a.thumb) kh.appendChild(whoAvatar(who));
       kh.appendChild(document.createTextNode(a.t));
       tx.appendChild(oneuiText(kh, 'body', 'S', null, 'high'));
       tx.appendChild(oneuiText(camLine((a.place ? a.place + ' · ' : '') + a.cam), 'label', 'XS', 'low'));
