@@ -11215,7 +11215,7 @@ window.addEventListener('error', function(e){
       { type:'person', priority:'low', cam:'Front Door', mins:at(10,0), who:'Limmi', solo:true, t:'Limmi left home' },
       // cameras that are offline right now — shown as gaps on the timeline at the time they dropped
       { type:'system', priority:'low', gap:true, offline:true, cam:'Kitchen',  mins:minsAgo(190), cause:'Wi-Fi signal lost', t:'Kitchen camera offline' },
-      { type:'system', priority:'low', gap:true, offline:true, cam:'Backyard', mins:minsAgo(130), cause:'Camera unplugged', t:'Backyard camera offline' },
+      { type:'system', priority:'low', gap:true, offline:true, cam:'Backyard', mins:minsAgo(130), until:minsAgo(106), cause:'power was unplugged', back:'came back online', t:'Backyard camera offline' },
       // the maid's arrival and departure frame her living-room cleaning (45 → 24 min ago)
       { type:'person', priority:'low', cam:'Front Door', mins:minsAgo(48), who:'Meena', solo:true, t:'Your maid arrived' },
       { type:'person', priority:'low', cam:'Front Door', mins:minsAgo(20), who:'Meena', solo:true, t:'Your maid left' },
@@ -12320,7 +12320,7 @@ window.addEventListener('error', function(e){
       var keep = box.querySelector('.inc-ev-dur');
       var lbl = it.offline ? (it.until != null ? 'Offline ' + fmtTimestamp(it.mins) + ' – ' + fmtTimestamp(it.until) : 'Offline since ' + fmtTimestamp(it.mins)) : 'No footage';
       box.innerHTML = '<span class="inc-nomedia">' + NOMEDIA_ICO + '<span>' + lbl + '</span>' +
-        (it.offline && it.cause ? '<span class="inc-nomedia-sub">' + it.cause + '</span>' : '') + '</span>';
+        (it.offline && it.cause ? '<span class="inc-nomedia-sub">' + it.cause.charAt(0).toUpperCase() + it.cause.slice(1) + '</span>' : '') + '</span>';
       if(keep){ keep.hidden = true; box.appendChild(keep); }
     }
     function fillMedia(box, it, onMeta, still){
@@ -12643,18 +12643,19 @@ window.addEventListener('error', function(e){
   }
   /* "Not recorded" gap: a camera that is offline right now */
   function buildGapRow(a){
-    var d = new Date(), now = d.getHours() * 60 + d.getMinutes(), span = Math.max(0, now - a.mins);
+    var d = new Date(), now = d.getHours() * 60 + d.getMinutes(), ended = a.until != null;
+    var span = Math.max(0, (ended ? a.until : now) - a.mins);
     var b = el('div', 'acard-row is-gap');
     b.setAttribute('role', 'button'); b.tabIndex = 0;
     b.setAttribute('data-alert-open', '1');
     b._group = { cam:a.cam, day:a.day, items:[a] };
     var hrs = Math.floor(span / 60);
     // one line: since when, which camera, and how long it has been down
-    var dur = hrs ? hrs + '+ hr' + (hrs === 1 ? '' : 's') : span + ' min';
+    var dur = ended ? spanText(span) : (hrs ? hrs + '+ hr' + (hrs === 1 ? '' : 's') : span + ' min');
     b.setAttribute('aria-label', a.t + ' since ' + fmtTimestamp(a.mins) + ', for ' + dur);
     b.innerHTML =
       '<span class="oneui-Text gap-t" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium">' +
-        fmtTimestamp(a.mins) + ' \u2013 now \u00b7 ' + a.t + ' for ' + dur + '</span>';
+        fmtTimestamp(a.mins) + ' \u2013 ' + (ended ? fmtTimestamp(a.until) : 'now') + ' \u00b7 ' + a.t + ' for ' + dur + '</span>';
     b.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); b.click(); } });
     return b;
   }
@@ -12977,7 +12978,7 @@ window.addEventListener('error', function(e){
     if(importantOnly) groups = impGroups;
     alertCount.textContent = importantOnly
       ? impGroups.length + ' event' + (impGroups.length === 1 ? '' : 's')
-      : (function(){ var n = list.filter(function(a){ return !a.gap; }).length, gaps = list.length - n;
+      : (function(){ var n = list.filter(function(a){ return !a.gap; }).length, gaps = list.filter(function(a){ return a.gap && a.until == null; }).length;
           return n + ' event' + (n === 1 ? '' : 's') + (gaps ? ' \u00b7 ' + gaps + ' camera' + (gaps === 1 ? '' : 's') + ' offline' : ''); })();
 
     /* Rebuilt on every render, so the dots follow a location switch. */
