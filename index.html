@@ -12701,9 +12701,9 @@ window.addEventListener('error', function(e){
     }
     var ts = el('span', 'arow-ts');
     ts.appendChild(oneuiText(el('span', 'arow-time', timeRange(items)), 'label', 'S', 'medium', 'high'));
-    if(a.offline && !combined){
-      // outage: the time line says how long, in amber, beside a dashed amber rail
-      ts.appendChild(oneuiText(el('span', 'arow-off-for', 'Offline ' + (a.until != null ? spanText(Math.max(0, a.until - a.mins)) : 'now')), 'label', 'S', null, 'high'));
+    if(a.offline && !combined && a.until == null){
+      // still down: the amber time line says so (a finished outage has its length in the title)
+      ts.appendChild(oneuiText(el('span', 'arow-off-for', 'Offline now'), 'label', 'S', null, 'high'));
     }
     b.appendChild(ts);
     b.appendChild(el('span', 'arow-div'));
@@ -12754,7 +12754,7 @@ window.addEventListener('error', function(e){
       oav.setAttribute('data-appearance', 'warning'); oav.setAttribute('data-attention', 'medium'); oav.setAttribute('aria-hidden', 'true');
       oav.innerHTML = '<svg viewBox="0 0 24 24" fill="none"><path d="M3 3l18 18M10.5 6H14a2 2 0 0 1 2 2v1.5l4-2.5v10M16 16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 1.2-1.83" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
       oh.appendChild(oav);
-      oh.appendChild(document.createTextNode(a.t));
+      oh.appendChild(document.createTextNode(a.until != null ? 'Camera offline for ' + spanText(Math.max(0, a.until - a.mins)) : 'Camera offline'));
       tx.appendChild(oneuiText(oh, 'body', 'S', null, 'high'));
       tx.appendChild(oneuiText(camLine((a.place ? a.place + ' · ' : '') + a.cam), 'label', 'XS', 'low'));
       b.classList.add('is-offline-evt');
