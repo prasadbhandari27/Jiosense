@@ -3334,7 +3334,7 @@ button.oneui-Avatar{position:relative}
 .ob-found-foot [data-ob-found-skip]{margin-left:calc(var(--Spacing-3) * -1)}
 .ob-found-foot [data-ob-found-skip][hidden]{display:none}
 .ob-found-foot [data-ob-found-add]{margin-left:auto;min-width:148px}
-[data-ob-providers][hidden]{display:none}
+[data-ob-providers][hidden],.ob-found-help[hidden]{display:none}
 
 /* "Other camera providers" — single row below the list: icon, provider name, and a tertiary
    "Sign in" button that opens the credentials sheet. The whole section is removed once
@@ -4343,7 +4343,7 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
            margin-top:auto pushes it to the bottom of the scroll
            area, right above the footer's Continue button, instead
            of sitting mid-screen with the default section gap. -->
-      <div class="oneui-Container" data-gap="1" style="margin-top:auto">
+      <div class="oneui-Container ob-found-help" data-gap="1" style="margin-top:auto" data-ob-found-help>
         <p class="oneui-Text" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low" data-text-align="center">Still can't find your camera? <a href="#" class="oneui-Text ob-support-link" data-appearance="primary" data-ob-support-link>Visit support</a></p>
       </div>
     </main>
@@ -8421,12 +8421,16 @@ window.addEventListener('error', function(e){
       { id:'tapo',   name:'Tapo C201',    sub:'Pan & tilt indoor camera', img:'assets/cam-mi360.png' }
     ];
     var foundIdx = 0;
+    // Switched off for now: the "Camera found" line, the camera's subline, the TrueView
+    // sign-in and the support line. Flip these back on to restore them.
+    var FOUND_DETAIL_ON = false, FOUND_EXTRAS_ON = false;
     var foundScreen = document.querySelector('[data-screen="ob-camselect"]');
     var foundTrack  = document.querySelector('[data-ob-found-track]');
     var foundDots   = document.querySelector('[data-ob-found-dots]');
     var foundAdd    = document.querySelector('[data-ob-found-add]');
     var foundSkip   = document.querySelector('[data-ob-found-skip]');
     var foundProv   = document.querySelector('[data-ob-providers]');
+    var foundHelp   = document.querySelector('[data-ob-found-help]');
     var SHAPES =
       '<span class="sh dot" style="left:18%;top:12%"></span>' +
       '<svg class="sh tri" style="right:20%;top:6%" viewBox="0 0 36 32" fill="none" aria-hidden="true"><path d="M18 3 33 29H3Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/></svg>' +
@@ -8439,9 +8443,9 @@ window.addEventListener('error', function(e){
       var n = FOUND_CAMS.length;
       foundTrack.innerHTML = FOUND_CAMS.map(function(c, i){
         return '<div class="ob-found-page" data-found-page="' + c.id + '"' + (i === foundIdx ? '' : ' aria-hidden="true"') + '>' +
-          '<p class="oneui-Text" data-variant="label" data-size="S" data-weight="high" data-appearance="primary">' + (n > 1 ? 'Camera found · ' + (i + 1) + ' of ' + n : 'Camera found') + '</p>' +
+          (FOUND_DETAIL_ON ? '<p class="oneui-Text" data-variant="label" data-size="S" data-weight="high" data-appearance="primary">' + (n > 1 ? 'Camera found · ' + (i + 1) + ' of ' + n : 'Camera found') + '</p>' : '') +
           '<h1 class="oneui-Text" data-variant="headline" data-size="M" data-weight="high" data-appearance="neutral">' + c.name + '</h1>' +
-          '<p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium">' + c.sub + '</p>' +
+          (FOUND_DETAIL_ON ? '<p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium">' + c.sub + '</p>' : '') +
           '<div class="ob-found-stage" aria-hidden="true">' + SHAPES + '<img src="' + c.img + '" alt="" onerror="this.style.display=\'none\'"></div>' +
         '</div>';
       }).join('');
@@ -8460,7 +8464,8 @@ window.addEventListener('error', function(e){
       if(foundDots) Array.prototype.forEach.call(foundDots.children, function(d, i){ d.classList.toggle('is-on', i === foundIdx); });
       if(foundScreen) foundScreen.classList.toggle('is-paged', foundIdx > 0);
       // TrueView sign-in shows under the last camera until it's connected
-      if(foundProv) foundProv.hidden = !last || state.cams.indexOf('trueview') > -1;
+      if(foundProv) foundProv.hidden = !FOUND_EXTRAS_ON || !last || state.cams.indexOf('trueview') > -1;
+      if(foundHelp) foundHelp.hidden = !FOUND_EXTRAS_ON;
       var others = state.cams.filter(function(id){ return id !== cur.id; }).length;
       if(foundSkip) foundSkip.hidden = last && others === 0;
     }
