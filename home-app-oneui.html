@@ -3094,6 +3094,29 @@ button.oneui-Avatar{position:relative}
    user straight into a camera list with no transition. No back arrow
    or footer: it isn't a step the user drives, just a beat that
    auto-advances (see primeLoading() in the onboarding controller). */
+/* ── Sign in (OTP) ── */
+.auth-screen{background:var(--App-Surface)}
+.auth-top{display:flex;align-items:center;padding:var(--Spacing-2) var(--Spacing-4) 0;margin-left:calc(-1 * var(--Spacing-2-5))}
+.auth-main{padding:var(--Spacing-4) var(--Spacing-6) var(--Spacing-6)}
+.auth-main h1{margin:0}
+.auth-sub{margin:var(--Spacing-2) 0 var(--Spacing-6)}
+.auth-phone{gap:var(--Spacing-2)}
+.auth-cc{font-weight:600;color:var(--Neutral-High);padding-right:var(--Spacing-2);border-right:1px solid var(--Neutral-Stroke-Medium)}
+.oneui-Input.is-error{border-color:var(--Negative-TintedA11y,#df012c)}
+.auth-err{margin:var(--Spacing-1-5) 0 0}
+.auth-err[hidden],.auth-resend[hidden],.auth-resend-btn[hidden]{display:none}
+.auth-terms{margin-top:var(--Spacing-6)}
+.auth-link{border:0;background:none;padding:0;font:inherit;color:var(--Primary-TintedA11y);font-weight:600;cursor:pointer}
+.auth-otp{display:grid;grid-template-columns:repeat(6,1fr);gap:var(--Spacing-2)}
+.auth-otp input{width:100%;height:56px;box-sizing:border-box;text-align:center;font:inherit;font-size:22px;font-weight:600;color:var(--Neutral-High);
+  border:1px solid var(--Neutral-Stroke-Medium);border-radius:var(--Shape-3);background:var(--Surface-Fill-Default);outline:none;caret-color:var(--Primary-Bold);
+  transition:border-color var(--Motion-Duration-Micro) var(--Motion-Easing-Standard)}
+.auth-otp input:focus{border:2px solid var(--Primary-TintedA11y)}
+.auth-otp input.is-filled{border-color:var(--Neutral-High)}
+.auth-otp.is-error input{border-color:var(--Negative-TintedA11y,#df012c)}
+.auth-resend{margin:var(--Spacing-5) 0 0}
+.auth-resend-btn{margin:var(--Spacing-4) 0 0 calc(-1 * var(--Button-paddingHorizontal-8,12px))}
+.auth-hint{margin-top:var(--Spacing-6)}
 [data-screen="ob-loading"]{background:var(--App-Surface)}
 [data-screen="ob-loading"] .statusbar{background:var(--App-Surface)}
 .ob-loading-main{height:100%;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;z-index:2;pointer-events:none}
@@ -4132,6 +4155,50 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
        does (camera discovery), so the copy previews that. Not part of
        OB_FLOW: no step number, no Back, no Continue — primeLoading()
        auto-advances it into ob-camselect after a short simulated scan. -->
+  <!-- ============================================================ SIGN IN (OTP) ============================================================
+       After the splash: mobile number → 6-digit OTP → camera search. Prototype only — no SMS is
+       sent; any 6 digits verify (000000 shows the wrong-code state). -->
+  <section class="screen auth-screen" data-screen="ob-login">
+    <div class="statusbar" aria-hidden="true"><span data-clock>08:14</span></div>
+    <header class="auth-top"><button type="button" class="oneui-IconButton auth-back" data-size="10" data-appearance="neutral" data-attention="low" data-back aria-label="Back"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 5-7 7 7 7" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button></header>
+    <main class="scroll auth-main">
+      <h1 class="oneui-Text" data-variant="headline" data-size="S" data-weight="high" data-appearance="neutral">Enter your mobile number</h1>
+      <p class="oneui-Text auth-sub" data-variant="body" data-size="S" data-appearance="neutral" data-attention="low">We'll send a 6-digit code to verify it's you.</p>
+      <div class="oneui-InputField">
+        <label class="oneui-InputField-label" for="auth-phone">Mobile number</label>
+        <div class="oneui-Input auth-phone" data-size="10" data-attention="medium">
+          <span class="auth-cc" aria-hidden="true">+91</span>
+          <input id="auth-phone" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="11" placeholder="98765 43210" data-auth-phone>
+        </div>
+        <p class="oneui-Text auth-err" data-variant="label" data-size="XS" data-appearance="negative" data-attention="tintedA11y" data-auth-phone-err hidden>Enter a 10-digit mobile number</p>
+      </div>
+      <p class="oneui-Text auth-terms" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low">By continuing, you agree to JioSense's Terms of use and Privacy policy.</p>
+    </main>
+    <div class="ob-footer"><button type="button" class="oneui-Button" data-size="12" data-appearance="primary" data-attention="high" data-auth-send disabled>Get OTP</button></div>
+  </section>
+
+  <section class="screen auth-screen" data-screen="ob-otp">
+    <div class="statusbar" aria-hidden="true"><span data-clock>08:14</span></div>
+    <header class="auth-top"><button type="button" class="oneui-IconButton auth-back" data-size="10" data-appearance="neutral" data-attention="low" data-back aria-label="Back"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 5-7 7 7 7" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button></header>
+    <main class="scroll auth-main">
+      <h1 class="oneui-Text" data-variant="headline" data-size="S" data-weight="high" data-appearance="neutral">Enter the code</h1>
+      <p class="oneui-Text auth-sub" data-variant="body" data-size="S" data-appearance="neutral" data-attention="low">Sent to <span data-auth-to>+91 98765 43210</span> · <button type="button" class="auth-link" data-auth-edit>Edit</button></p>
+      <div class="auth-otp" role="group" aria-label="6-digit code" data-auth-otp>
+        <input type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="1" aria-label="Digit 1">
+        <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 2">
+        <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 3">
+        <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 4">
+        <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 5">
+        <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 6">
+      </div>
+      <p class="oneui-Text auth-err" data-variant="label" data-size="XS" data-appearance="negative" data-attention="tintedA11y" data-auth-otp-err hidden>That code isn't right. Check the SMS and try again.</p>
+      <p class="oneui-Text auth-resend" data-variant="label" data-size="S" data-appearance="neutral" data-attention="low" data-auth-resend-wrap>Resend code in <span data-auth-timer>0:30</span></p>
+      <button type="button" class="oneui-Button auth-resend-btn" data-size="8" data-appearance="primary" data-attention="low" data-auth-resend hidden>Resend code</button>
+      <p class="oneui-Text auth-hint" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low">Prototype: any 6 digits work.</p>
+    </main>
+    <div class="ob-footer"><button type="button" class="oneui-Button" data-size="12" data-appearance="primary" data-attention="high" data-auth-verify disabled>Verify</button></div>
+  </section>
+
   <section class="screen" data-screen="ob-loading" style="overflow:hidden">
     <div class="statusbar" aria-hidden="true"><span data-clock>08:14</span></div>
     <div class="ob-search" id="ob-search" aria-hidden="true">
@@ -7841,6 +7908,82 @@ window.addEventListener('error', function(e){
     r.addEventListener('input', fill); fill();
   });
 
+  /* ── Sign in with OTP (after the splash, before the camera search) ─────────── */
+  (function(){
+    var login = document.querySelector('[data-screen="ob-login"]'), otp = document.querySelector('[data-screen="ob-otp"]');
+    if(!login || !otp) return;
+    var phone = login.querySelector('[data-auth-phone]'), send = login.querySelector('[data-auth-send]'), pErr = login.querySelector('[data-auth-phone-err]');
+    var boxes = Array.prototype.slice.call(otp.querySelectorAll('[data-auth-otp] input'));
+    var verify = otp.querySelector('[data-auth-verify]'), oErr = otp.querySelector('[data-auth-otp-err]');
+    var timerEl = otp.querySelector('[data-auth-timer]'), resendWrap = otp.querySelector('[data-auth-resend-wrap]'), resendBtn = otp.querySelector('[data-auth-resend]');
+    var tick = null;
+    function digits(){ return phone.value.replace(/\D/g, '').slice(0, 10); }
+    function fmt(d){ return d.length > 5 ? d.slice(0, 5) + ' ' + d.slice(5) : d; }
+    phone.addEventListener('input', function(){
+      var d = digits(); phone.value = fmt(d);
+      send.disabled = d.length !== 10; pErr.hidden = true;
+      phone.closest('.oneui-Input').classList.remove('is-error');
+    });
+    phone.addEventListener('keydown', function(e){ if(e.key === 'Enter' && !send.disabled) send.click(); });
+    function startTimer(){
+      var left = 30; clearInterval(tick);
+      resendWrap.hidden = false; resendBtn.hidden = true;
+      timerEl.textContent = '0:30';
+      tick = setInterval(function(){
+        left--; timerEl.textContent = '0:' + (left < 10 ? '0' : '') + left;
+        if(left <= 0){ clearInterval(tick); resendWrap.hidden = true; resendBtn.hidden = false; }
+      }, 1000);
+    }
+    function clearOtp(){ boxes.forEach(function(b){ b.value = ''; b.classList.remove('is-filled'); }); verify.disabled = true; oErr.hidden = true; otp.querySelector('[data-auth-otp]').classList.remove('is-error'); }
+    send.addEventListener('click', function(){
+      if(digits().length !== 10){ pErr.hidden = false; phone.closest('.oneui-Input').classList.add('is-error'); return; }
+      otp.querySelector('[data-auth-to]').textContent = '+91 ' + fmt(digits());
+      clearOtp(); startTimer();
+      window.__routerOpen('ob-otp');
+      setTimeout(function(){ boxes[0].focus({ preventScroll:true }); }, 420);
+    });
+    otp.querySelector('[data-auth-edit]').addEventListener('click', function(){ window.__routerBack(); setTimeout(function(){ phone.focus(); }, 380); });
+    function code(){ return boxes.map(function(b){ return b.value; }).join(''); }
+    function sync(){
+      boxes.forEach(function(b){ b.classList.toggle('is-filled', !!b.value); });
+      verify.disabled = code().length !== 6;
+      oErr.hidden = true; otp.querySelector('[data-auth-otp]').classList.remove('is-error');
+      if(code().length === 6) setTimeout(doVerify, 150);   // auto-verify once all six are in
+    }
+    boxes.forEach(function(b, i){
+      b.addEventListener('input', function(){
+        var v = b.value.replace(/\D/g, '');
+        if(v.length > 1){   // pasted or autofilled code
+          v.split('').slice(0, 6 - i).forEach(function(ch, k){ boxes[i + k].value = ch; });
+          (boxes[Math.min(5, i + v.length)] || b).focus();
+        } else { b.value = v; if(v && boxes[i + 1]) boxes[i + 1].focus(); }
+        sync();
+      });
+      b.addEventListener('keydown', function(e){
+        if(e.key === 'Backspace' && !b.value && boxes[i - 1]){ boxes[i - 1].value = ''; boxes[i - 1].focus(); sync(); e.preventDefault(); }
+        if(e.key === 'ArrowLeft' && boxes[i - 1]) boxes[i - 1].focus();
+        if(e.key === 'ArrowRight' && boxes[i + 1]) boxes[i + 1].focus();
+      });
+    });
+    var verifying = false;
+    function doVerify(){
+      if(verifying || code().length !== 6) return;
+      if(code() === '000000'){
+        oErr.hidden = false; otp.querySelector('[data-auth-otp]').classList.add('is-error');
+        boxes.forEach(function(b){ b.value = ''; b.classList.remove('is-filled'); }); verify.disabled = true; boxes[0].focus();
+        return;
+      }
+      verifying = true; verify.disabled = true; verify.textContent = 'Verifying\u2026';
+      setTimeout(function(){
+        verifying = false; verify.textContent = 'Verify'; clearInterval(tick);
+        try { localStorage.setItem('jiosense_phone', digits()); } catch(e){}
+        window.__routerOpen('ob-loading');
+      }, 700);
+    }
+    verify.addEventListener('click', doVerify);
+    resendBtn.addEventListener('click', function(){ clearOtp(); startTimer(); boxes[0].focus(); toast('Code sent to +91 ' + fmt(digits())); });
+  })();
+
   /* ── Proactive insight cards: accept / snooze / dismiss ───────────── */
   function toast(msg){
     var t = document.querySelector('[data-toast]');
@@ -7960,8 +8103,8 @@ window.addEventListener('error', function(e){
       /* Hand off to the contextual loading interstitial first — it
          auto-advances into onboarding step 1 (ob-camselect) shortly
          after, via primeLoading() in the onboarding controller. */
-      if(typeof window.__routerOpen === 'function') window.__routerOpen('ob-loading');
-      else { location.hash = 'ob-loading'; }
+      if(typeof window.__routerOpen === 'function') window.__routerOpen('ob-login');
+      else { location.hash = 'ob-login'; }
     }
     /* Button always hands off — slides are navigated by swipe or
        dot-tap only. Was previously "Next → last-slide → Get started";
