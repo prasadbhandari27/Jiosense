@@ -8296,7 +8296,7 @@ window.addEventListener('error', function(e){
 
     var state = {
       home: { name: '', type: '' },
-      cams: ['tapo', 'cpplus'],   /* multi-cam: the 2 auto-discovered cams default-selected; TrueView joins only after the credentials sheet succeeds */
+      cams: ['tapo'],   /* the one auto-discovered cam, default-selected; TrueView joins only after the credentials sheet succeeds */
       household: {
         dependents: { adults:1, infant:0, kids:0, elder:0 },
         staff:      { cook:0, maid:0, nanny:0, driver:0, caregiver:0, other:0 },
@@ -8418,8 +8418,7 @@ window.addEventListener('error', function(e){
        Step 2. The back arrow steps back through the pages before leaving the screen.
        Skip is hidden on the last page when nothing else was added (Step 2 needs one). */
     var FOUND_CAMS = [
-      { id:'tapo',   name:'Tapo C201',    sub:'Pan & tilt indoor camera', img:'assets/cam-mi360.png' },
-      { id:'cpplus', name:'CP Plus E45Q', sub:'Indoor Wi-Fi camera',      img:'assets/cam-battery.png' }
+      { id:'tapo',   name:'Tapo C201',    sub:'Pan & tilt indoor camera', img:'assets/cam-mi360.png' }
     ];
     var foundIdx = 0;
     var foundScreen = document.querySelector('[data-screen="ob-camselect"]');
