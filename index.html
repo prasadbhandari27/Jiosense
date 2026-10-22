@@ -3077,7 +3077,7 @@ button.oneui-Avatar{position:relative}
    row (so label → bar and header height are identical on every step) and pull the arrow
    glyph onto the 16px gutter; the global 44px touch floor keeps it easy to tap. */
 .ob-progress .ob-p-back{margin:calc(var(--Spacing-2) * -1) calc(var(--Spacing-1) * -1) calc(var(--Spacing-2) * -1) calc(var(--Spacing-3) * -1)}
-[data-screen="ob-camselect"] .ob-p-back{display:none}
+[data-screen="ob-camselect"]:not(.is-paged) .ob-p-back{display:none}
 .ob-progress .ob-p-step{flex:1}
 
 .ob-footer{
@@ -3303,6 +3303,38 @@ button.oneui-Avatar{position:relative}
 .ob-camcard-tx{flex:1;display:flex;flex-direction:column;gap:var(--Spacing-0-5,2px);min-width:0}
 .ob-camcard-tx .t,.ob-camcard-tx .s{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ob-camcard .cbox-float{flex:none;order:3}
+
+/* Step 1 · Camera found — one hero page per camera (reference: Nest setup). Big name,
+   product shot centred on a stage of soft floating shapes, dots for position. */
+.ob-found{overflow:hidden;margin:0 calc(var(--Spacing-6) * -1);flex:none}
+.ob-found-track{display:flex;transition:transform var(--Motion-Duration-Medium,320ms) var(--Motion-Easing-Standard,cubic-bezier(.2,0,0,1))}
+.ob-found-page{flex:0 0 100%;min-width:0;padding:0 var(--Spacing-6);display:flex;flex-direction:column;gap:var(--Spacing-1)}
+.ob-found-page h1{text-wrap:balance}
+.ob-found-stage{position:relative;height:300px;margin-top:var(--Spacing-6);display:flex;align-items:center;justify-content:center}
+.ob-found-stage::before{content:"";position:absolute;width:208px;height:208px;border-radius:50%;background:radial-gradient(closest-side,var(--Primary-Minimal),transparent)}
+.ob-found-stage img{position:relative;display:block;max-width:150px;max-height:210px;width:auto;height:auto;object-fit:contain;filter:drop-shadow(0 18px 24px rgba(0,0,0,.16))}
+.ob-found-stage .sh{position:absolute;display:block;animation:obFloat 6s ease-in-out infinite}
+.ob-found-stage .sh.dot{width:26px;height:26px;border-radius:50%;background:var(--Neutral-Fill-Moderate,#d9d9d9)}
+.ob-found-stage .sh.dot.sm{width:20px;height:20px}
+.ob-found-stage .sh.sq{width:24px;height:24px;border:2px solid var(--Neutral-Fill-Moderate,#d9d9d9);border-radius:2px}
+.ob-found-stage .sh.tri{width:36px;height:32px;color:var(--Neutral-Fill-Moderate,#d9d9d9)}
+.ob-found-stage .sh:nth-child(2){animation-delay:-1.5s}
+.ob-found-stage .sh:nth-child(3){animation-delay:-3s}
+.ob-found-stage .sh:nth-child(4){animation-delay:-4.5s}
+.ob-found-stage .sh:nth-child(5){animation-delay:-2.2s}
+.ob-found-stage .sh:nth-child(6){animation-delay:-3.8s}
+@keyframes obFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@media (prefers-reduced-motion:reduce){.ob-found-stage .sh{animation:none}.ob-found-track{transition:none}}
+.ob-found-dots{display:flex;justify-content:center;gap:var(--Spacing-1-5,6px)}
+.ob-found-dots:empty,.ob-found-dots[data-n="1"]{display:none}
+.ob-found-dots i{width:8px;height:8px;border-radius:50%;background:var(--Neutral-Fill-Moderate,#d9d9d9);transition:width var(--Motion-Duration-Short) var(--Motion-Easing-Standard),background var(--Motion-Duration-Short)}
+.ob-found-dots i.is-on{width:20px;border-radius:4px;background:var(--Primary-Bold,var(--Primary-Fill-Bold))}
+.ob-found-foot{justify-content:space-between;align-items:center}
+.ob-found-foot .oneui-Button{flex:none}
+.ob-found-foot [data-ob-found-skip]{margin-left:calc(var(--Spacing-3) * -1)}
+.ob-found-foot [data-ob-found-skip][hidden]{display:none}
+.ob-found-foot [data-ob-found-add]{margin-left:auto;min-width:148px}
+[data-ob-providers][hidden]{display:none}
 
 /* "Other camera providers" — single row below the list: icon, provider name, and a tertiary
    "Sign in" button that opens the credentials sheet. The whole section is removed once
@@ -4287,33 +4319,15 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
       <div class="ob-segs" role="progressbar" aria-label="Setup progress" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1" aria-valuetext="Step 1 of 4" data-ob-segs><span class="ob-seg is-on"></span><span class="ob-seg"></span><span class="ob-seg"></span><span class="ob-seg"></span></div>
     </div>
     <main class="scroll oneui-Container" data-gap="5" data-padding-x="6" data-padding-y="4">
-      <div class="oneui-Container" data-gap="1">
-        <h1 class="oneui-Text" data-variant="headline" data-size="S" data-weight="high" data-appearance="neutral" data-ob-cam-heading>2 cameras found</h1>
-        <p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium">Select cameras that you want to onboard.</p>
+      <!-- One hero page per found camera: name as a big headline, the product shot on a stage
+           of floating shapes. Pages are built by renderFound() from FOUND_CAMS; the footer's
+           Add camera / Skip this camera decide the current one and move to the next. -->
+      <div class="ob-found" data-ob-found>
+        <div class="ob-found-track" data-ob-found-track></div>
       </div>
+      <div class="ob-found-dots" data-ob-found-dots aria-hidden="true"></div>
 
-      <!-- data-ob-cam-count is set by JS (see wireCamGridLayout) to
-           the live card count, so the grid CSS can size a lone
-           camera as a full-width hero rather than a half-empty row. -->
-      <div class="ob-camgrid" data-ob-camgrid>
-        <button type="button" class="ob-camcard is-checked" data-ob-cam="tapo" aria-pressed="true">
-          <span class="oneui-Checkbox cbox-float" data-size="l" data-appearance="primary" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <span class="ob-camcard-thumb" aria-hidden="true"><img src="assets/cam-mi360.png" alt="" onerror="this.style.display='none'"></span>
-          <span class="ob-camcard-tx">
-            <span class="oneui-Text t" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral">Tapo - C201</span>
-          </span>
-        </button>
-
-        <button type="button" class="ob-camcard is-checked" data-ob-cam="cpplus" aria-pressed="true">
-          <span class="oneui-Checkbox cbox-float" data-size="l" data-appearance="primary" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <span class="ob-camcard-thumb" aria-hidden="true"><img src="assets/cam-battery.png" alt="" onerror="this.style.display='none'"></span>
-          <span class="ob-camcard-tx">
-            <span class="oneui-Text t" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral">CP Plus - E45Q</span>
-          </span>
-        </button>
-      </div>
-
-      <div class="oneui-Container ob-section" data-gap="3" data-ob-providers>
+      <div class="oneui-Container ob-section" data-gap="3" data-ob-providers hidden>
         <p class="oneui-Text" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral">Other camera providers</p>
         <div class="ob-provider-row">
           <span class="oneui-Avatar r-ico" data-size="2xl" data-content="icon" data-appearance="primary" data-attention="medium" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M17 10.5 21 8v8l-4-2.5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
@@ -4356,8 +4370,9 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
       <button type="button" class="oneui-Button ob-tv-submit" data-appearance="primary" data-attention="high" data-size="12" data-full-width="true" data-ob-tv-submit>Connect TrueView</button>
     </div>
 
-    <div class="ob-footer">
-      <button type="button" class="oneui-Button" data-appearance="primary" data-attention="high" data-size="12" data-full-width="true" data-ob-next>Continue</button>
+    <div class="ob-footer ob-found-foot">
+      <button type="button" class="oneui-Button" data-appearance="primary" data-attention="low" data-size="12" data-ob-found-skip>Skip this camera</button>
+      <button type="button" class="oneui-Button" data-appearance="primary" data-attention="high" data-size="12" data-ob-found-add>Add camera</button>
     </div>
   </section>
 
@@ -8397,30 +8412,76 @@ window.addEventListener('error', function(e){
     syncNextEnabled('ob-privacy');
     syncNextEnabled('ob-camselect');
 
-    /* ── Multi-camera picker ────────────────────────────────────────
-       Each .ob-camcard in the grid is a self-contained toggle: click
-       flips the card's is-checked class, mutates the state.cams
-       list, and re-runs the Continue gate. TrueView isn't part of
-       this generic handler — it only joins state.cams once the
-       credentials sheet below succeeds. When every camera is
-       deselected the gate blocks Continue — the flow needs at least
-       one to proceed. */
-    document.querySelectorAll('[data-ob-cam]').forEach(function(row){
-      row.addEventListener('click', function(){
-        var id = row.getAttribute('data-ob-cam');
-        var i  = state.cams.indexOf(id);
-        if(i > -1){
-          state.cams.splice(i, 1);
-          row.classList.remove('is-checked');
-          row.setAttribute('aria-pressed', 'false');
-        } else {
-          state.cams.push(id);
-          row.classList.add('is-checked');
-          row.setAttribute('aria-pressed', 'true');
-        }
-        syncNextEnabled('ob-camselect');
+    /* ── Step 1 · Camera found pager ────────────────────────────────
+       One hero page per found camera. "Add camera" keeps it in state.cams, "Skip this
+       camera" drops it; either moves to the next page, and the last page continues to
+       Step 2. The back arrow steps back through the pages before leaving the screen.
+       Skip is hidden on the last page when nothing else was added (Step 2 needs one). */
+    var FOUND_CAMS = [
+      { id:'tapo',   name:'Tapo C201',    sub:'Pan & tilt indoor camera', img:'assets/cam-mi360.png' },
+      { id:'cpplus', name:'CP Plus E45Q', sub:'Indoor Wi-Fi camera',      img:'assets/cam-battery.png' }
+    ];
+    var foundIdx = 0;
+    var foundScreen = document.querySelector('[data-screen="ob-camselect"]');
+    var foundTrack  = document.querySelector('[data-ob-found-track]');
+    var foundDots   = document.querySelector('[data-ob-found-dots]');
+    var foundAdd    = document.querySelector('[data-ob-found-add]');
+    var foundSkip   = document.querySelector('[data-ob-found-skip]');
+    var foundProv   = document.querySelector('[data-ob-providers]');
+    var SHAPES =
+      '<span class="sh dot" style="left:18%;top:12%"></span>' +
+      '<svg class="sh tri" style="right:20%;top:6%" viewBox="0 0 36 32" fill="none" aria-hidden="true"><path d="M18 3 33 29H3Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/></svg>' +
+      '<span class="sh sq" style="left:8%;top:46%"></span>' +
+      '<span class="sh dot sm" style="right:8%;top:38%"></span>' +
+      '<span class="sh dot sm" style="left:22%;bottom:8%"></span>' +
+      '<span class="sh sq" style="right:20%;bottom:14%"></span>';
+    function renderFound(){
+      if(!foundTrack) return;
+      var n = FOUND_CAMS.length;
+      foundTrack.innerHTML = FOUND_CAMS.map(function(c, i){
+        return '<div class="ob-found-page" data-found-page="' + c.id + '"' + (i === foundIdx ? '' : ' aria-hidden="true"') + '>' +
+          '<p class="oneui-Text" data-variant="label" data-size="S" data-weight="high" data-appearance="primary">' + (n > 1 ? 'Camera found · ' + (i + 1) + ' of ' + n : 'Camera found') + '</p>' +
+          '<h1 class="oneui-Text" data-variant="headline" data-size="M" data-weight="high" data-appearance="neutral">' + c.name + '</h1>' +
+          '<p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium">' + c.sub + '</p>' +
+          '<div class="ob-found-stage" aria-hidden="true">' + SHAPES + '<img src="' + c.img + '" alt="" onerror="this.style.display=\'none\'"></div>' +
+        '</div>';
+      }).join('');
+      if(foundDots){
+        foundDots.setAttribute('data-n', n);
+        foundDots.innerHTML = FOUND_CAMS.map(function(_, i){ return '<i' + (i === foundIdx ? ' class="is-on"' : '') + '></i>'; }).join('');
+      }
+      paintFound();
+    }
+    function paintFound(){
+      var n = FOUND_CAMS.length, last = foundIdx === n - 1, cur = FOUND_CAMS[foundIdx];
+      if(foundTrack) foundTrack.style.transform = 'translateX(' + (-100 * foundIdx) + '%)';
+      if(foundTrack) Array.prototype.forEach.call(foundTrack.children, function(pg, i){
+        if(i === foundIdx) pg.removeAttribute('aria-hidden'); else pg.setAttribute('aria-hidden', 'true');
       });
-    });
+      if(foundDots) Array.prototype.forEach.call(foundDots.children, function(d, i){ d.classList.toggle('is-on', i === foundIdx); });
+      if(foundScreen) foundScreen.classList.toggle('is-paged', foundIdx > 0);
+      // TrueView sign-in shows under the last camera until it's connected
+      if(foundProv) foundProv.hidden = !last || state.cams.indexOf('trueview') > -1;
+      var others = state.cams.filter(function(id){ return id !== cur.id; }).length;
+      if(foundSkip) foundSkip.hidden = last && others === 0;
+    }
+    function decideFound(keep){
+      var id = FOUND_CAMS[foundIdx].id, i = state.cams.indexOf(id);
+      if(keep && i === -1) state.cams.push(id);
+      if(!keep && i > -1) state.cams.splice(i, 1);
+      if(foundIdx < FOUND_CAMS.length - 1){ foundIdx++; paintFound(); return; }
+      if(state.cams.length) goNext('ob-camselect');
+    }
+    if(foundAdd)  foundAdd.addEventListener('click', function(){ decideFound(true); });
+    if(foundSkip) foundSkip.addEventListener('click', function(){ decideFound(false); });
+    // Back arrow: previous camera first (capture runs before the shared back handler)
+    if(foundScreen) foundScreen.addEventListener('click', function(e){
+      if(foundIdx > 0 && e.target.closest('[data-ob-back-arrow]')){
+        e.stopPropagation();
+        foundIdx--; paintFound();
+      }
+    }, true);
+    renderFound();
 
     /* ── TrueView "other provider" credentials sheet ──────────────
        TrueView isn't auto-discovered on this network, so it lives
@@ -8461,49 +8522,12 @@ window.addEventListener('error', function(e){
     var supportLink = document.querySelector('[data-ob-support-link]');
     if(supportLink) supportLink.addEventListener('click', function(e){ e.preventDefault(); });
 
-    var camGrid = document.querySelector('[data-ob-camgrid]');
-    /* Keeps the grid's progressive sizing in sync with however many
-       cards actually exist — needed both at load and after
-       addTrueviewCard() appends a third one. A lone camera gets the
-       [data-ob-cam-count="1"] hero treatment; anything else is left
-       to the auto-fit grid to lay out evenly. */
-    var camHeading = document.querySelector('[data-ob-cam-heading]');
-    function syncCamGridCount(){
-      if(!camGrid) return;
-      var n = camGrid.children.length;
-      camGrid.setAttribute('data-ob-cam-count', n);
-      // heading always reflects how many cameras are listed
-      if(camHeading) camHeading.textContent = n + (n === 1 ? ' camera found' : ' cameras found');
-    }
-    syncCamGridCount();
+    /* A connected TrueView camera becomes the next "Camera found" page, opened right away. */
     function addTrueviewCard(){
-      if(!camGrid || document.querySelector('[data-ob-cam="trueview"]')) return;
-      var card = document.createElement('button');
-      card.type = 'button';
-      card.className = 'ob-camcard is-checked';
-      card.setAttribute('data-ob-cam', 'trueview');
-      card.setAttribute('aria-pressed', 'true');
-      card.innerHTML =
-        '<span class="oneui-Checkbox cbox-float" data-size="l" data-appearance="primary" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
-        '<span class="ob-camcard-thumb" aria-hidden="true"><img src="assets/dome-cam.png" alt="" onerror="this.style.display=\'none\'"></span>' +
-        '<span class="ob-camcard-tx">' +
-          '<span class="oneui-Text t" data-variant="body" data-size="M" data-weight="high" data-appearance="neutral">TrueView - T18161S</span>' +
-        '</span>';
-      camGrid.appendChild(card);
-      syncCamGridCount();
-      card.addEventListener('click', function(){
-        var i = state.cams.indexOf('trueview');
-        if(i > -1){
-          state.cams.splice(i, 1);
-          card.classList.remove('is-checked');
-          card.setAttribute('aria-pressed', 'false');
-        } else {
-          state.cams.push('trueview');
-          card.classList.add('is-checked');
-          card.setAttribute('aria-pressed', 'true');
-        }
-        syncNextEnabled('ob-camselect');
-      });
+      if(FOUND_CAMS.some(function(c){ return c.id === 'trueview'; })) return;
+      FOUND_CAMS.push({ id:'trueview', name:'TrueView T18161S', sub:'Dome camera · via your TrueView account', img:'assets/dome-cam.png' });
+      foundIdx = FOUND_CAMS.length - 1;
+      renderFound();
     }
 
     if(tvSubmit) tvSubmit.addEventListener('click', function(){
@@ -8518,7 +8542,6 @@ window.addEventListener('error', function(e){
       // Connected: TrueView now has its own card in the list, so the providers section goes
       if(tvProviders) tvProviders.style.display = 'none';
       addTrueviewCard();
-      syncNextEnabled('ob-camselect');
       closeTvSheet();
     });
 
