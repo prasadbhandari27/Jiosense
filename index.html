@@ -3117,6 +3117,11 @@ button.oneui-Avatar{position:relative}
 .auth-resend{margin:var(--Spacing-5) 0 0}
 .auth-resend-btn{margin:var(--Spacing-4) 0 0 calc(-1 * var(--Button-paddingHorizontal-8,12px))}
 .auth-hint{margin-top:var(--Spacing-6)}
+.auth-sms-from{display:flex;align-items:center;gap:var(--Spacing-3);padding:0 var(--Spacing-1)}
+.auth-sms-ico{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;flex:0 0 auto;background:var(--Primary-Subtle);color:var(--Primary-TintedA11y)}
+.auth-sms-msg{margin:var(--Spacing-3) var(--Spacing-1) 0}
+.auth-sms-code{margin:var(--Spacing-5) 0 var(--Spacing-1);text-align:center;font-size:34px;line-height:1.1;font-weight:700;letter-spacing:6px;color:var(--Neutral-High);font-variant-numeric:tabular-nums}
+.auth-sms-status{text-align:center;margin:0 0 var(--Spacing-4)}
 [data-screen="ob-loading"]{background:var(--App-Surface)}
 [data-screen="ob-loading"] .statusbar{background:var(--App-Surface)}
 .ob-loading-main{height:100%;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;z-index:2;pointer-events:none}
@@ -4197,6 +4202,21 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
       <p class="oneui-Text auth-hint" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low">Prototype: any 6 digits work.</p>
     </main>
     <div class="ob-footer"><button type="button" class="oneui-Button" data-size="12" data-appearance="primary" data-attention="high" data-auth-verify disabled>Verify</button></div>
+
+    <!-- The SMS arriving: the code is shown and filled in automatically -->
+    <div class="ap-sheet-scrim auth-sms-scrim" data-auth-sms-scrim></div>
+    <div class="ap-photo-sheet auth-sms" data-auth-sms role="dialog" aria-modal="true" aria-labelledby="auth-sms-title" aria-hidden="true">
+      <div class="ap-sheet-handle" aria-hidden="true"></div>
+      <div class="auth-sms-from">
+        <span class="auth-sms-ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-1.5 1.5H9l-4.2 3.6c-.3.3-.8 0-.8-.4V5.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
+        <span><span class="oneui-Text" data-variant="label" data-size="S" data-weight="high" data-appearance="neutral" id="auth-sms-title">Code from Messages</span>
+        <span class="oneui-Text" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low" style="display:block">JM-JIOSNS · now</span></span>
+      </div>
+      <p class="oneui-Text auth-sms-msg" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium"><span data-auth-sms-code-inline>482913</span> is your JioSense verification code. Don't share it with anyone.</p>
+      <div class="auth-sms-code" data-auth-sms-code aria-live="polite">482 913</div>
+      <p class="oneui-Text auth-sms-status" data-variant="label" data-size="S" data-appearance="neutral" data-attention="low" data-auth-sms-status>Filling it in for you…</p>
+      <button type="button" class="oneui-Button auth-sms-manual" data-size="10" data-appearance="neutral" data-attention="low" data-full-width="true" data-auth-sms-manual>Enter it myself</button>
+    </div>
   </section>
 
   <section class="screen" data-screen="ob-loading" style="overflow:hidden">
@@ -7935,12 +7955,43 @@ window.addEventListener('error', function(e){
       }, 1000);
     }
     function clearOtp(){ boxes.forEach(function(b){ b.value = ''; b.classList.remove('is-filled'); }); verify.disabled = true; oErr.hidden = true; otp.querySelector('[data-auth-otp]').classList.remove('is-error'); }
+    /* The SMS: a moment after the code is sent it "arrives", the sheet shows it, and it's
+       typed into the boxes one digit at a time, then verified. */
+    var sms = otp.querySelector('[data-auth-sms]'), smsScrim = otp.querySelector('[data-auth-sms-scrim]');
+    var smsTimers = [];
+    function smsClear(){ smsTimers.forEach(clearTimeout); smsTimers = []; }
+    function smsOpen(on){
+      sms.classList.toggle('is-up', on); smsScrim.classList.toggle('is-up', on);
+      sms.setAttribute('aria-hidden', on ? 'false' : 'true');
+    }
+    function smsArrive(){
+      smsClear();
+      var c = String(Math.floor(100000 + Math.random() * 900000));
+      sms.querySelector('[data-auth-sms-code]').textContent = c.slice(0, 3) + ' ' + c.slice(3);
+      sms.querySelector('[data-auth-sms-code-inline]').textContent = c;
+      sms.querySelector('[data-auth-sms-status]').textContent = 'Filling it in for you\u2026';
+      smsTimers.push(setTimeout(function(){ if(otp.classList.contains('is-active')) smsOpen(true); }, 1500));
+      c.split('').forEach(function(d, i){
+        smsTimers.push(setTimeout(function(){
+          if(!sms.classList.contains('is-up')) return;
+          boxes[i].value = d; boxes[i].classList.add('is-filled');
+          if(i === 5){
+            sms.querySelector('[data-auth-sms-status]').textContent = 'Code filled in';
+            smsTimers.push(setTimeout(function(){ smsOpen(false); verify.disabled = false; doVerify(); }, 650));
+          }
+        }, 2600 + i * 160));
+      });
+    }
+    otp.querySelector('[data-auth-sms-manual]').addEventListener('click', function(){ smsClear(); smsOpen(false); clearOtp(); boxes[0].focus(); });
+    smsScrim.addEventListener('click', function(){ smsClear(); smsOpen(false); });
+
     send.addEventListener('click', function(){
       if(digits().length !== 10){ pErr.hidden = false; phone.closest('.oneui-Input').classList.add('is-error'); return; }
       otp.querySelector('[data-auth-to]').textContent = '+91 ' + fmt(digits());
-      clearOtp(); startTimer();
+      clearOtp(); startTimer(); smsOpen(false);
       window.__routerOpen('ob-otp');
       setTimeout(function(){ boxes[0].focus({ preventScroll:true }); }, 420);
+      smsArrive();
     });
     otp.querySelector('[data-auth-edit]').addEventListener('click', function(){ window.__routerBack(); setTimeout(function(){ phone.focus(); }, 380); });
     function code(){ return boxes.map(function(b){ return b.value; }).join(''); }
@@ -7952,6 +8003,7 @@ window.addEventListener('error', function(e){
     }
     boxes.forEach(function(b, i){
       b.addEventListener('input', function(){
+        if(sms.classList.contains('is-up')){ smsClear(); smsOpen(false); }
         var v = b.value.replace(/\D/g, '');
         if(v.length > 1){   // pasted or autofilled code
           v.split('').slice(0, 6 - i).forEach(function(ch, k){ boxes[i + k].value = ch; });
@@ -7981,7 +8033,8 @@ window.addEventListener('error', function(e){
       }, 700);
     }
     verify.addEventListener('click', doVerify);
-    resendBtn.addEventListener('click', function(){ clearOtp(); startTimer(); boxes[0].focus(); toast('Code sent to +91 ' + fmt(digits())); });
+    resendBtn.addEventListener('click', function(){ clearOtp(); startTimer(); boxes[0].focus(); toast('Code sent to +91 ' + fmt(digits())); smsArrive(); });
+    otp.querySelector('[data-auth-edit]').addEventListener('click', function(){ smsClear(); smsOpen(false); });
   })();
 
   /* ── Proactive insight cards: accept / snooze / dismiss ───────────── */
