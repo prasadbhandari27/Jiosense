@@ -3335,6 +3335,7 @@ button.oneui-Avatar{position:relative}
 .ob-found-foot [data-ob-found-skip][hidden]{display:none}
 .ob-found-foot [data-ob-found-add]{margin-left:auto;min-width:148px}
 [data-ob-providers][hidden],.ob-found-help[hidden]{display:none}
+.ob-found-other a{text-decoration:underline;text-underline-offset:3px;font-weight:600}
 
 /* "Other camera providers" — single row below the list: icon, provider name, and a tertiary
    "Sign in" button that opens the credentials sheet. The whole section is removed once
@@ -4326,6 +4327,8 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
         <div class="ob-found-track" data-ob-found-track></div>
       </div>
       <div class="ob-found-dots" data-ob-found-dots aria-hidden="true"></div>
+      <!-- Wrong camera? Runs the "Looking for camera" scan again. -->
+      <p class="oneui-Text ob-found-other" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium" data-text-align="center">Not this camera? <a href="#" class="oneui-Text ob-support-link" data-appearance="primary" data-weight="high" data-ob-found-other>Find another camera</a></p>
 
       <div class="oneui-Container ob-section" data-gap="3" data-ob-providers hidden>
         <p class="oneui-Text" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral">Other camera providers</p>
@@ -8477,6 +8480,8 @@ window.addEventListener('error', function(e){
       if(state.cams.length) goNext('ob-camselect');
     }
     if(foundAdd)  foundAdd.addEventListener('click', function(){ decideFound(true); });
+    var foundOther = document.querySelector('[data-ob-found-other]');
+    if(foundOther) foundOther.addEventListener('click', function(e){ e.preventDefault(); openScreen('ob-loading'); });
     if(foundSkip) foundSkip.addEventListener('click', function(){ decideFound(false); });
     // Back arrow: previous camera first (capture runs before the shared back handler)
     if(foundScreen) foundScreen.addEventListener('click', function(e){
