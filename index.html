@@ -4175,7 +4175,12 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
    plain 12px row gap fixes that. */
 /* Privacy — one soft card of plain one-line assurances with outline icons (reference) */
 .ob-priv{list-style:none;margin:0;padding:var(--Spacing-5) var(--Spacing-4);display:flex;flex-direction:column;gap:var(--Spacing-4);background:var(--Surface-Fill-Default);border-radius:var(--Shape-5,20px)}
-[data-screen="ob-privacy"] .ob-legal-note{margin-top:auto}
+.ob-agree{margin-top:auto;display:flex;flex-direction:column;gap:var(--Spacing-4)}
+.ob-agree-row{display:flex;align-items:flex-start;gap:var(--Spacing-4);cursor:pointer}
+.ob-agree-row .oneui-Checkbox{flex:none;margin-top:1px}
+.ob-agree-row .oneui-Text{flex:1}
+.ob-agree-legal{margin-top:var(--Spacing-1)}
+.ob-agree-link{color:var(--Primary-Bold);font-weight:600;text-decoration:none}
 .ob-priv-row{display:flex;align-items:flex-start;gap:var(--Spacing-4)}
 .ob-priv-ico{flex:none;width:24px;height:24px;color:var(--Neutral-Low,#767678);margin-top:-1px}
 .ob-priv-row .oneui-Text{flex:1}
@@ -5182,10 +5187,21 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
         <li class="ob-priv-row"><svg class="ob-priv-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 5 6v5.5c0 4.3 3 7.6 7 9 4-1.4 7-4.7 7-9V6Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="m9 12 2.2 2.2L15.2 10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium">Stored securely, auto-deleted after 30 days</span></li>
         <li class="ob-priv-row"><svg class="ob-priv-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 8h9M17 8h3M4 16h3M11 16h9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="15" cy="8" r="2" stroke="currentColor" stroke-width="1.7"/><circle cx="9" cy="16" r="2" stroke="currentColor" stroke-width="1.7"/></svg><span class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium">Manage all controls in Settings, including auto-pause when you&rsquo;re home</span></li>
       </ul>
-      <p class="oneui-Text ob-legal-note" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">By tapping Continue, you accept our <a href="#" class="oneui-Text ob-support-link" data-appearance="primary" data-ob-legal-link>Terms</a> and acknowledge our <a href="#" class="oneui-Text ob-support-link" data-appearance="primary" data-ob-legal-link>Privacy Policy</a>.</p>
+<!-- Agreement: the first box is required for Continue; the second is optional sharing -->
+      <div class="ob-agree">
+        <label class="ob-agree-row" data-ob-consent-read>
+          <input type="checkbox" class="oneui-Checkbox-input"><span class="oneui-Checkbox" data-size="l" data-appearance="primary" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium">I&rsquo;ve read and understood the above.</span>
+        </label>
+        <label class="ob-agree-row" data-ob-consent-share>
+          <input type="checkbox" class="oneui-Checkbox-input"><span class="oneui-Checkbox" data-size="l" data-appearance="primary" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium">Help improve JioEye by sharing my activity timeline and metadata, never my video clips.</span>
+        </label>
+        <p class="oneui-Text ob-agree-legal" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium">By continuing you agree to our <a href="#" class="oneui-Text ob-agree-link" data-ob-legal-link>Terms of Service</a> and <a href="#" class="oneui-Text ob-agree-link" data-ob-legal-link>Privacy &amp; Legal Policy</a>.</p>
+      </div>
     </main>
     <div class="ob-footer ob-found-foot">
-      <button type="button" class="oneui-Button" data-appearance="primary" data-attention="high" data-size="12" data-ob-next>Continue</button>
+      <button type="button" class="oneui-Button" data-appearance="primary" data-attention="high" data-size="12" data-ob-next disabled>Continue</button>
     </div>
   </section>
 
@@ -8756,7 +8772,7 @@ window.addEventListener('error', function(e){
       var next = screen.querySelector('[data-ob-next]');
       if(!next) return;
       if(id === 'ob-household') { next.disabled = !state.home.name.trim(); }
-      if(id === 'ob-privacy')   { next.disabled = false; }   // consent checkboxes removed; the legal line covers it
+      if(id === 'ob-privacy')   { next.disabled = !state.consent; }   // needs "I've read and understood"
       if(id === 'ob-camselect') { next.disabled = state.cams.length === 0; }
       if(id === 'ob-cam-room')  { next.disabled = !whereRoom(); }
       if(id === 'ob-cam-check') { next.disabled = !state.lightOK; }
@@ -10022,12 +10038,14 @@ window.addEventListener('error', function(e){
        parallel flags threading through syncNextEnabled. */
     var consentPrivate = document.querySelector('[data-ob-consent-private]');
     var consentRead    = document.querySelector('[data-ob-consent-read]');
+    var consentShare   = document.querySelector('[data-ob-consent-share]');
     function refreshConsent(){
-      state.consent = !!(consentPrivate && consentPrivate.classList.contains('is-checked') &&
-                          consentRead && consentRead.classList.contains('is-checked'));
+      // only "I've read and understood" is required; the sharing box is optional
+      state.consent = !!(consentRead && consentRead.classList.contains('is-checked'));
+      state.shareData = !!(consentShare && consentShare.classList.contains('is-checked'));
       syncNextEnabled('ob-privacy');
     }
-    [consentPrivate, consentRead].forEach(function(row){
+    [consentPrivate, consentRead, consentShare].forEach(function(row){
       var input = row && row.querySelector('input');
       if(!input) return;
       input.addEventListener('change', function(){
