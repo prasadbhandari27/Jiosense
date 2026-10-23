@@ -3335,6 +3335,15 @@ button.oneui-Avatar{position:relative}
 .ob-found-foot [data-ob-found-skip][hidden]{display:none}
 .ob-found-foot [data-ob-found-add]{margin-left:auto;min-width:120px}
 [data-ob-providers][hidden],.ob-found-help[hidden]{display:none}
+.ob-found-foot [data-ob-next]{margin-left:auto;min-width:120px}
+.ob-found-foot [data-ob-rescan][hidden],.ob-camroom-old[hidden],.ob-where-custom[hidden]{display:none}
+/* Step 2 · Where is this camera? — grouped radio lists on white cards */
+.ob-where-list{display:flex;flex-direction:column;padding:0 var(--Spacing-4);background:var(--Surface-Fill-Default);border-radius:var(--Shape-4);box-shadow:0 1px 3px rgba(0,0,0,.06),0 6px 18px rgba(0,0,0,.05)}
+.ob-where-row{display:flex;align-items:center;gap:var(--Spacing-3);padding:var(--Spacing-3) 0;cursor:pointer}
+.ob-where-row + .ob-where-row{border-top:1px solid var(--Surface-Fill-Minimal)}
+.ob-where-row .r-ico svg{width:20px;height:20px}
+.ob-where-row .r-name{flex:1}
+.ob-where-custom{padding:0 0 var(--Spacing-4)}
 .ob-found-other a{text-decoration:underline;text-underline-offset:3px;font-weight:600}
 
 /* "Other camera providers" — single row below the list: icon, provider name, and a tertiary
@@ -4396,11 +4405,90 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
            renderCamAcc(). Closed: thumbnail and name. Open (the first card starts
            open): live view, the suggested room in a dropdown-style field, and the
            objects JioSense found plus an "Add object" tile for anything it missed. -->
+      <!-- Where is this camera? (reference: Nest "Where is this device?"). Pick one of the
+           usual rooms or a new one; Next stays off until a room is picked. The room is saved
+           to state.camRooms for the camera found on Step 1. -->
+      <div class="oneui-Container" data-gap="1">
+        <h1 class="oneui-Text" data-variant="headline" data-size="M" data-weight="high" data-appearance="neutral">Where is this camera?</h1>
+        <p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium" data-ob-where-sub>Choose a location for your Tapo C201</p>
+      </div>
+      <div class="oneui-Container" data-gap="2">
+        <p class="oneui-Text" data-variant="label" data-size="S" data-weight="high" data-appearance="neutral" data-attention="medium">My rooms</p>
+        <div class="ob-where-list" role="radiogroup" aria-label="My rooms">
+          <label class="ob-where-row">
+            <span class="oneui-Avatar r-ico" data-size="2xl" data-content="icon" data-appearance="neutral" data-attention="medium" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12v6h16v-6" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M6 12V9a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v3" stroke="currentColor" stroke-width="1.8"/><path d="M5 15h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+            <span class="oneui-Text r-name" data-variant="body" data-size="M" data-appearance="neutral">Living Room</span>
+            <input type="radio" class="oneui-Radio-input" name="ob-where" value="Living Room" data-ob-where>
+            <span class="oneui-Radio" data-size="l" data-appearance="primary" aria-hidden="true"></span>
+          </label>
+          <label class="ob-where-row">
+            <span class="oneui-Avatar r-ico" data-size="2xl" data-content="icon" data-appearance="neutral" data-attention="medium" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="10" width="16" height="9" rx="1.6" stroke="currentColor" stroke-width="1.8"/><path d="M4 14h16" stroke="currentColor" stroke-width="1.8"/><circle cx="8" cy="17" r="1.1" fill="currentColor"/><circle cx="12" cy="17" r="1.1" fill="currentColor"/><path d="M9 10V6a3 3 0 0 1 6 0v4" stroke="currentColor" stroke-width="1.8"/></svg></span>
+            <span class="oneui-Text r-name" data-variant="body" data-size="M" data-appearance="neutral">Kitchen</span>
+            <input type="radio" class="oneui-Radio-input" name="ob-where" value="Kitchen" data-ob-where>
+            <span class="oneui-Radio" data-size="l" data-appearance="primary" aria-hidden="true"></span>
+          </label>
+          <label class="ob-where-row">
+            <span class="oneui-Avatar r-ico" data-size="2xl" data-content="icon" data-appearance="neutral" data-attention="medium" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3 18v-3a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v3" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M3 18v2M21 18v2M6 12V9a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+            <span class="oneui-Text r-name" data-variant="body" data-size="M" data-appearance="neutral">Bedroom</span>
+            <input type="radio" class="oneui-Radio-input" name="ob-where" value="Bedroom" data-ob-where>
+            <span class="oneui-Radio" data-size="l" data-appearance="primary" aria-hidden="true"></span>
+          </label>
+          <label class="ob-where-row">
+            <span class="oneui-Avatar r-ico" data-size="2xl" data-content="icon" data-appearance="neutral" data-attention="medium" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="7" y="3" width="10" height="18" rx="1.4" stroke="currentColor" stroke-width="1.8"/><circle cx="14" cy="12" r=".9" fill="currentColor"/></svg></span>
+            <span class="oneui-Text r-name" data-variant="body" data-size="M" data-appearance="neutral">Entrance</span>
+            <input type="radio" class="oneui-Radio-input" name="ob-where" value="Entrance" data-ob-where>
+            <span class="oneui-Radio" data-size="l" data-appearance="primary" aria-hidden="true"></span>
+          </label>
+          <label class="ob-where-row">
+            <span class="oneui-Avatar r-ico" data-size="2xl" data-content="icon" data-appearance="neutral" data-attention="medium" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="14" rx="8" ry="2.4" stroke="currentColor" stroke-width="1.8"/><path d="M5 14v5M19 14v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="7" r="2.4" stroke="currentColor" stroke-width="1.8"/><path d="M12 9.4v4" stroke="currentColor" stroke-width="1.8"/></svg></span>
+            <span class="oneui-Text r-name" data-variant="body" data-size="M" data-appearance="neutral">Dining Room</span>
+            <input type="radio" class="oneui-Radio-input" name="ob-where" value="Dining Room" data-ob-where>
+            <span class="oneui-Radio" data-size="l" data-appearance="primary" aria-hidden="true"></span>
+          </label>
+        </div>
+      </div>
+      <div class="oneui-Container" data-gap="2">
+        <p class="oneui-Text" data-variant="label" data-size="S" data-weight="high" data-appearance="neutral" data-attention="medium">Create new</p>
+        <div class="ob-where-list" role="radiogroup" aria-label="Create new">
+          <label class="ob-where-row">
+            <span class="oneui-Avatar r-ico" data-size="2xl" data-content="icon" data-appearance="neutral" data-attention="medium" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 11h16M4 20h16M6 11v9M10 11v9M14 11v9M18 11v9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M7 11V6a5 5 0 0 1 10 0v5" stroke="currentColor" stroke-width="1.8"/></svg></span>
+            <span class="oneui-Text r-name" data-variant="body" data-size="M" data-appearance="neutral">Balcony</span>
+            <input type="radio" class="oneui-Radio-input" name="ob-where" value="Balcony" data-ob-where>
+            <span class="oneui-Radio" data-size="l" data-appearance="primary" aria-hidden="true"></span>
+          </label>
+          <label class="ob-where-row">
+            <span class="oneui-Avatar r-ico" data-size="2xl" data-content="icon" data-appearance="neutral" data-attention="medium" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m12 4 2.3 4.7 5.2.8-3.8 3.6.9 5.1-4.6-2.4-4.6 2.4.9-5.1-3.8-3.6 5.2-.8Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
+            <span class="oneui-Text r-name" data-variant="body" data-size="M" data-appearance="neutral">Kids' Room</span>
+            <input type="radio" class="oneui-Radio-input" name="ob-where" value="Kids' Room" data-ob-where>
+            <span class="oneui-Radio" data-size="l" data-appearance="primary" aria-hidden="true"></span>
+          </label>
+          <label class="ob-where-row">
+            <span class="oneui-Avatar r-ico" data-size="2xl" data-content="icon" data-appearance="neutral" data-attention="medium" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3 10h18M5 10v9M19 10v9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><rect x="8" y="4" width="8" height="6" rx="1" stroke="currentColor" stroke-width="1.8"/></svg></span>
+            <span class="oneui-Text r-name" data-variant="body" data-size="M" data-appearance="neutral">Study</span>
+            <input type="radio" class="oneui-Radio-input" name="ob-where" value="Study" data-ob-where>
+            <span class="oneui-Radio" data-size="l" data-appearance="primary" aria-hidden="true"></span>
+          </label>
+          <label class="ob-where-row">
+            <span class="oneui-Avatar r-ico" data-size="2xl" data-content="icon" data-appearance="primary" data-attention="medium" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <span class="oneui-Text r-name" data-variant="body" data-size="M" data-appearance="neutral">Name a new room</span>
+            <input type="radio" class="oneui-Radio-input" name="ob-where" value="__custom" data-ob-where>
+            <span class="oneui-Radio" data-size="l" data-appearance="primary" aria-hidden="true"></span>
+          </label>
+          <div class="oneui-InputField ob-where-custom" data-ob-where-custom hidden>
+            <label class="oneui-InputField-label" for="ob-where-name">Room name</label>
+            <div class="oneui-Input" data-size="10" data-attention="medium"><input id="ob-where-name" type="text" maxlength="24" autocomplete="off" placeholder="e.g. Pooja Room" data-ob-where-name></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Previous Step 2 (live view, objects, suggested room per camera) — hidden for now. -->
+      <div class="ob-camroom-old" hidden>
       <div class="oneui-Container" data-gap="1">
         <h1 class="oneui-Text" data-variant="headline" data-size="S" data-weight="high" data-appearance="neutral">Set up your cameras</h1>
         <p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium">Check each camera's live view and confirm the room it's in.</p>
       </div>
       <div class="ob-camacc" data-ob-camacc></div>
+      </div>
     </main>
 
     <!-- Room-picker bottom sheet — opened by "Not quite" in the
@@ -4468,9 +4556,9 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
       <button type="button" class="oneui-Button ob-obj-add-btn" data-appearance="primary" data-attention="high" data-size="12" data-full-width="true" data-ob-obj-add disabled>Add</button>
     </div>
 
-    <div class="ob-footer">
-      <button type="button" class="oneui-Button" data-appearance="neutral" data-attention="medium" data-size="12" data-full-width="true" data-ob-rescan>Rescan</button>
-      <button type="button" class="oneui-Button" data-appearance="primary" data-attention="high" data-size="12" data-full-width="true" data-ob-next>Continue</button>
+    <div class="ob-footer ob-found-foot">
+      <button type="button" class="oneui-Button" data-appearance="neutral" data-attention="medium" data-size="12" data-ob-rescan hidden>Rescan</button>
+      <button type="button" class="oneui-Button" data-appearance="primary" data-attention="high" data-size="12" data-ob-next disabled>Next</button>
     </div>
   </section>
 
@@ -8410,6 +8498,7 @@ window.addEventListener('error', function(e){
       if(id === 'ob-household') { next.disabled = !state.home.name.trim(); }
       if(id === 'ob-privacy')   { next.disabled = !state.consent; }
       if(id === 'ob-camselect') { next.disabled = state.cams.length === 0; }
+      if(id === 'ob-cam-room')  { next.disabled = !whereRoom(); }
     }
     syncNextEnabled('ob-household');
     syncNextEnabled('ob-privacy');
@@ -9055,7 +9144,40 @@ window.addEventListener('error', function(e){
       arm();
     })();
 
+    /* ── Step 2 · Where is this camera? ──
+       The picked room (or the typed name for "Name a new room") is saved to
+       state.camRooms for the Step 1 camera. */
+    var whereCustom = document.querySelector('[data-ob-where-custom]');
+    var whereName   = document.querySelector('[data-ob-where-name]');
+    var whereSub    = document.querySelector('[data-ob-where-sub]');
+    function whereRoom(){
+      var r = document.querySelector('[data-ob-where]:checked');
+      if(!r) return '';
+      if(r.value !== '__custom') return r.value;
+      var v = whereName ? whereName.value.trim() : '';
+      return v ? v.charAt(0).toUpperCase() + v.slice(1) : '';
+    }
+    function syncWhere(){
+      var r = document.querySelector('[data-ob-where]:checked');
+      var custom = !!r && r.value === '__custom';
+      if(whereCustom) whereCustom.hidden = !custom;
+      var room = whereRoom(), id = state.cams[0];
+      if(room && id) state.camRooms[id] = room;
+      syncNextEnabled('ob-cam-room');
+      return custom;
+    }
+    document.querySelectorAll('[data-ob-where]').forEach(function(r){
+      r.addEventListener('change', function(){ if(syncWhere() && whereName) whereName.focus(); });
+    });
+    if(whereName) whereName.addEventListener('input', syncWhere);
+    function primeWhere(){
+      var id = state.cams[0], c = id && CAM_INFO[id];
+      if(whereSub && c) whereSub.textContent = 'Choose a location for your ' + c.name.replace(' - ', ' ');
+      syncNextEnabled('ob-cam-room');
+    }
+
     function primeCamRoom(opts){
+      primeWhere();
       renderCamAcc();
       var first = camAccIds()[0];
       if(camAcc) camAcc.querySelectorAll('.ob-acc').forEach(function(c){ c.classList.remove('is-open'); });
