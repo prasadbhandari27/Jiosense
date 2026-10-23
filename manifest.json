@@ -1,6 +1,6 @@
 {
-  "name": "JioSense",
-  "short_name": "JioSense",
+  "name": "JioEye",
+  "short_name": "JioEye",
   "description": "AI-ready home security camera app",
   "start_url": "/Jiosense/",
   "scope": "/Jiosense/",

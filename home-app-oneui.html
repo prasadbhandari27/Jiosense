@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#FFFFFF">
-<title>JioSense — OneUI</title>
+<title>JioEye — OneUI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- ═══════════════════════════════════════════════════════════════════════
@@ -745,7 +745,7 @@ label:active > .oneui-Checkbox{transform:scale(1.07)}
 
 <style>
 /* ==========================================================================
-   JioSense — Home camera (consumer AI camera app)
+   JioEye — Home camera (consumer AI camera app)
    Reuses the OneUI/JDS static tokens + the device-shell / card / dock
    patterns already established in mobile/index-v4.html, applied to the
    Home-Camera IA from Home_Camera_Functional_elements.xlsx (Onboarding,
@@ -3626,7 +3626,7 @@ button.oneui-Avatar{position:relative}
 .ob-acc-pad{padding:0 var(--Spacing-3) var(--Spacing-4)}
 .ob-acc:not(.is-open) .ob-acc-pad{visibility:hidden;transition:visibility 0s var(--Motion-Duration-L)}
 /* Open card, in scan order: live view (scan line + "Scanning room…" tag) → objects detected
-   (chips pop in one by one) → the room JioSense concludes, as an inline dropdown. */
+   (chips pop in one by one) → the room JioEye concludes, as an inline dropdown. */
 .ob-feed .ob-scan-tag{position:absolute;left:var(--Spacing-2);bottom:var(--Spacing-2)}
 .ob-feed .ob-scan-tag[hidden]{display:none}
 /* Results take no space until their stage lands, so the card grows as the scan reports in
@@ -4314,7 +4314,7 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
 
   <!-- ============================================================ SPLASH / USP INTRO ============================================================
        Three-slide horizontal carousel that runs before onboarding.
-       Slide 1 sets the brand promise; slides 2 and 3 name a JioSense
+       Slide 1 sets the brand promise; slides 2 and 3 name a JioEye
        USP each. Copy overlays the hero image at the bottom; the
        shared footer holds dot indicators + primary CTA. Skip in the
        top-right jumps straight to onboarding. Boot enters here via
@@ -4326,13 +4326,13 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
 
       <!-- Slide 1 · Hero / brand. Video instead of a still: the
            uploaded clip already has the "Aarav is crying in the crib"
-           JioSense AI notification bubble burned into the footage, so
+           JioEye AI notification bubble burned into the footage, so
            no separate HTML overlay is needed — same reasoning as
            Slide 3 below. -->
       <div class="splash-slide" style="background:#000" data-splash-slide>
         <video class="splash-slide-video" src="assets/splash-worried-office.mp4" autoplay muted loop playsinline></video>
         <div class="splash-copy">
-          <span class="oneui-Text sp-eyebrow" data-variant="label" data-size="XS" data-weight="high">Welcome to JioSense</span>
+          <span class="oneui-Text sp-eyebrow" data-variant="label" data-size="XS" data-weight="high">Welcome to JioEye</span>
           <h1 class="oneui-Text sp-title" data-variant="headline" data-size="L">Your home, understood.</h1>
           <p class="oneui-Text sp-sub" data-variant="body" data-size="S">Learns your home's rhythm — and tells you when something's off.</p>
         </div>
@@ -4557,7 +4557,7 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
     <div class="timer-sheet trueview-sheet" data-trueview-sheet role="dialog" aria-modal="true" aria-labelledby="trueview-sheet-head">
       <span class="grabber" aria-hidden="true"></span>
       <h3 class="oneui-Text ts-head" data-variant="title" data-size="M" data-appearance="neutral" id="trueview-sheet-head">Connect your TrueView camera</h3>
-      <p class="oneui-Text ts-sub" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Sign in with your TrueView account to bring this camera into JioSense.</p>
+      <p class="oneui-Text ts-sub" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Sign in with your TrueView account to bring this camera into JioEye.</p>
       <div class="oneui-InputField">
         <label class="oneui-InputField-label" for="ob-tv-user">Username or email</label>
         <div class="oneui-Input" data-size="10" data-attention="medium"><input id="ob-tv-user" type="text" autocomplete="username" placeholder="TrueView username" data-ob-tv-user></div>
@@ -4592,7 +4592,7 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
       <!-- Camera setup: one expandable card per camera picked on Step 1, built by
            renderCamAcc(). Closed: thumbnail and name. Open (the first card starts
            open): live view, the suggested room in a dropdown-style field, and the
-           objects JioSense found plus an "Add object" tile for anything it missed. -->
+           objects JioEye found plus an "Add object" tile for anything it missed. -->
       <!-- Where is this camera? (reference: Nest "Where is this device?"). Pick one of the
            usual rooms or a new one; Next stays off until a room is picked. The room is saved
            to state.camRooms for the camera found on Step 1. -->
@@ -4714,7 +4714,7 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
           <span class="ob-tips-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.7.6 1.1 1.3 1.1 2.2h5c0-.9.4-1.6 1.1-2.2A6 6 0 0 0 12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <span class="ob-tips-ht">
             <span class="oneui-Text" data-variant="label" data-size="S" data-weight="high" data-appearance="neutral" data-attention="medium">Camera adjustment tips</span>
-            <span class="oneui-Text" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low">Helps JioSense recognise people and objects clearly</span>
+            <span class="oneui-Text" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low">Helps JioEye recognise people and objects clearly</span>
           </span>
         </div>
         <div class="ob-tips-body">
@@ -4773,9 +4773,9 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
     <main class="scroll oneui-Container" data-gap="5" data-padding-x="6" data-padding-y="4">
       <div class="oneui-Container" data-gap="1">
         <h1 class="oneui-Text" data-variant="headline" data-size="M" data-weight="high" data-appearance="neutral">Check your room</h1>
-        <p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium">JioSense scanned the live view to learn this room.</p>
+        <p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium">JioEye scanned the live view to learn this room.</p>
       </div>
-      <!-- Same layout as Step 3: the live view first, then the room JioSense thinks this is
+      <!-- Same layout as Step 3: the live view first, then the room JioEye thinks this is
            (changeable), then the lighting result — an inline fix when the light is poor. -->
       <div class="ob-feed ob-view-feed ob-ck-feed" data-ck-feed>
         <img src="assets/livingroom-cam1.png" alt="Live view from your camera" data-ck-img>
@@ -4883,7 +4883,7 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
     <main class="scroll oneui-Container" data-gap="6" data-padding-x="6" data-padding-y="4">
       <div class="oneui-Container" data-gap="1">
         <h1 class="oneui-Text" data-variant="headline" data-size="S" data-weight="high" data-appearance="neutral">Your household</h1>
-        <p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium">Tell us who's around — it helps JioSense tell family from strangers.</p>
+        <p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium">Tell us who's around — it helps JioEye tell family from strangers.</p>
       </div>
 
       <!-- Home name — moved here from the old Home setup step, which
@@ -5525,7 +5525,7 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
       </div>
 
       <!-- ══ Watching for you · Surface mode=elevated ══
-           A monitoring set: patterns JioSense is actively watching for on
+           A monitoring set: patterns JioEye is actively watching for on
            the user's behalf. Different from Right now (what IS happening)
            and Insights (what has been observed) — this is what the app
            will surface the moment it triggers. Same in-card title +
@@ -5744,7 +5744,7 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
     <div class="statusbar" aria-hidden="true"><span data-clock>08:14</span></div>
     <header class="appbar">
       <button class="oneui-IconButton back" data-size="10" data-appearance="neutral" data-attention="low" data-back aria-label="Close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 5l14 14M19 5 5 19" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/></svg></button>
-      <h1 class="oneui-Text" data-variant="title" data-size="M" data-appearance="neutral">Ask JioSense</h1>
+      <h1 class="oneui-Text" data-variant="title" data-size="M" data-appearance="neutral">Ask JioEye</h1>
     </header>
     <div class="prompts" data-prompts>
       <button type="button" class="oneui-Button chip" data-appearance="neutral" data-attention="medium" data-size="8" data-ask="Who was at the door today?">Who was at the door today?</button>
@@ -5756,7 +5756,7 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
       <div class="bubble ai oneui-Text" data-variant="body" data-size="S" data-appearance="neutral">Ask me about anything your cameras have seen — I'll search across your household's history.</div>
     </div>
     <div class="inputbar">
-      <div class="oneui-Input ask-input" data-size="10" data-attention="medium" data-shape="pill"><input type="text" placeholder="Type a question…" aria-label="Ask JioSense a question" data-ask-input></div>
+      <div class="oneui-Input ask-input" data-size="10" data-attention="medium" data-shape="pill"><input type="text" placeholder="Type a question…" aria-label="Ask JioEye a question" data-ask-input></div>
       <button type="button" class="oneui-IconButton mic" data-size="10" data-appearance="primary" data-attention="high" data-mic aria-label="Voice input"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="9" y="2" width="6" height="12" rx="3" fill="currentColor"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
       <button type="button" class="oneui-IconButton mic" data-size="10" data-appearance="primary" data-attention="high" data-ask-send aria-label="Send"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     </div>
@@ -5805,7 +5805,7 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
 
       <section class="section">
         <div class="head"><h2 class="oneui-Text" data-variant="title" data-size="M" data-appearance="neutral">Smart alerts</h2></div>
-        <p class="oneui-Text sub" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Only notify when JioSense's confidence is above your threshold.</p>
+        <p class="oneui-Text sub" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Only notify when JioEye's confidence is above your threshold.</p>
         <div class="list stack-gap oneui-Surface" data-surface="elevated" style="background:none;box-shadow:none;margin-top:10px;gap:14px">
           <div class="card oneui-Surface" data-surface="elevated" style="padding:14px"><div class="row" style="padding:0 0 10px;border:0"><div class="txt"><div class="oneui-Text t" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Person</div></div><label class="oneui-Switch" data-size="l" data-appearance="primary"><input type="checkbox" role="switch" checked aria-label="Person"><span class="oneui-Switch-track" aria-hidden="true"></span><span class="oneui-Switch-thumb" aria-hidden="true"></span></label></div><div class="slider"><div class="lbl"><span class="oneui-Text" data-variant="label" data-size="S" data-appearance="neutral" data-attention="low">Notify above</span><b class="oneui-Text" data-thresh-val="person" data-variant="label" data-size="S" data-weight="high" data-appearance="neutral">70%</b></div><input type="range" class="oneui-Slider" aria-label="Notify above" min="0" max="100" value="70" data-thresh="person"></div></div>
           <div class="card oneui-Surface" data-surface="elevated" style="padding:14px"><div class="row" style="padding:0 0 10px;border:0"><div class="txt"><div class="oneui-Text t" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Package</div></div><label class="oneui-Switch" data-size="l" data-appearance="primary"><input type="checkbox" role="switch" checked aria-label="Package"><span class="oneui-Switch-track" aria-hidden="true"></span><span class="oneui-Switch-thumb" aria-hidden="true"></span></label></div><div class="slider"><div class="lbl"><span class="oneui-Text" data-variant="label" data-size="S" data-appearance="neutral" data-attention="low">Notify above</span><b class="oneui-Text" data-thresh-val="package" data-variant="label" data-size="S" data-weight="high" data-appearance="neutral">50%</b></div><input type="range" class="oneui-Slider" aria-label="Notify above" min="0" max="100" value="50" data-thresh="package"></div></div>
@@ -5822,7 +5822,7 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
 
       <section class="section">
         <div class="head"><h2 class="oneui-Text" data-variant="title" data-size="M" data-appearance="neutral">Delivery reliability</h2></div>
-        <div class="callout"><span aria-hidden="true">📶</span><p class="oneui-Text" data-variant="body" data-size="XS" data-appearance="informative" data-attention="tintedA11y">If your phone was offline, we'll catch up on any alerts you missed the next time you open JioSense.</p></div>
+        <div class="callout"><span aria-hidden="true">📶</span><p class="oneui-Text" data-variant="body" data-size="XS" data-appearance="informative" data-attention="tintedA11y">If your phone was offline, we'll catch up on any alerts you missed the next time you open JioEye.</p></div>
       </section>
 
     </main>
@@ -5925,7 +5925,7 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
 
       <section class="section">
         <div class="head"><h2 class="oneui-Text" data-variant="title" data-size="M" data-appearance="neutral">Activity zones</h2></div>
-        <p class="oneui-Text sub" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Suggested by JioSense based on where movement happens most. You can still draw your own.</p>
+        <p class="oneui-Text sub" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Suggested by JioEye based on where movement happens most. You can still draw your own.</p>
         <div class="hero-illo" style="height:140px;margin-top:10px">
           <svg width="48" height="48" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><rect x="6" y="13" width="6" height="6" rx="1" fill="currentColor" opacity=".35"/></svg>
         </div>
@@ -5986,7 +5986,7 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
     <main class="scroll">
       <div class="card oneui-Surface" data-surface="elevated" style="padding:16px">
         <div class="oneui-Text t" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Your home's routine</div>
-        <p class="oneui-Text sub" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium" style="margin-top:var(--Spacing-1-5)">JioSense has learned: household is usually asleep 11:00 pm – 6:00 am, front door is used 7–9 am and 6–8 pm.</p>
+        <p class="oneui-Text sub" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium" style="margin-top:var(--Spacing-1-5)">JioEye has learned: household is usually asleep 11:00 pm – 6:00 am, front door is used 7–9 am and 6–8 pm.</p>
         <button type="button" class="oneui-Button" data-appearance="neutral" data-attention="medium" data-size="8" style="margin-top:12px">View full baseline</button>
       </div>
       <div class="card row oneui-Surface" data-surface="elevated" style="margin-top:14px"><div class="txt"><div class="oneui-Text t" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Pause learning</div><div class="oneui-Text s" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Useful during a house party or houseguests</div></div><label class="oneui-Switch" data-size="l" data-appearance="primary"><input type="checkbox" role="switch" aria-label="Pause learning"><span class="oneui-Switch-track" aria-hidden="true"></span><span class="oneui-Switch-thumb" aria-hidden="true"></span></label></div>
@@ -5995,7 +5995,7 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
     <div class="confirm-scrim" data-confirm-scrim="reset-baseline"></div>
     <div class="confirm oneui-Modal" data-confirm="reset-baseline" role="dialog" aria-modal="true" aria-labelledby="confirm-reset-baseline-title">
       <h3 class="oneui-Text" id="confirm-reset-baseline-title" data-variant="title" data-size="M" data-appearance="neutral">Start fresh?</h3>
-      <p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="low">JioSense will clear your household's routine and begin learning again. Your footage and account stay exactly as they are.</p>
+      <p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="low">JioEye will clear your household's routine and begin learning again. Your footage and account stay exactly as they are.</p>
       <div class="oneui-Modal-footer"><button class="oneui-Button" data-appearance="neutral" data-attention="medium" data-size="12" data-full-width="true" data-close-confirm>Cancel</button><button class="oneui-Button" data-appearance="negative" data-attention="medium" data-size="12" data-full-width="true" data-close-confirm>Start fresh</button></div>
     </div>
   </section>
@@ -6065,9 +6065,9 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
       </section>
     </main>
     <div class="confirm-scrim" data-confirm-scrim="unpair"></div>
-    <div class="confirm oneui-Modal" data-confirm="unpair" role="dialog" aria-modal="true" aria-labelledby="confirm-unpair-title"><h3 class="oneui-Text" id="confirm-unpair-title" data-variant="title" data-size="M" data-appearance="neutral">Disconnect Backyard camera?</h3><p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="low">It will stop sending footage and alerts until you set it up again in JioSense.</p><div class="oneui-Modal-footer"><button class="oneui-Button" data-appearance="neutral" data-attention="medium" data-size="12" data-full-width="true" data-close-confirm>Cancel</button><button class="oneui-Button" data-appearance="negative" data-attention="medium" data-size="12" data-full-width="true" data-close-confirm>Disconnect</button></div></div>
+    <div class="confirm oneui-Modal" data-confirm="unpair" role="dialog" aria-modal="true" aria-labelledby="confirm-unpair-title"><h3 class="oneui-Text" id="confirm-unpair-title" data-variant="title" data-size="M" data-appearance="neutral">Disconnect Backyard camera?</h3><p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="low">It will stop sending footage and alerts until you set it up again in JioEye.</p><div class="oneui-Modal-footer"><button class="oneui-Button" data-appearance="neutral" data-attention="medium" data-size="12" data-full-width="true" data-close-confirm>Cancel</button><button class="oneui-Button" data-appearance="negative" data-attention="medium" data-size="12" data-full-width="true" data-close-confirm>Disconnect</button></div></div>
     <div class="confirm-scrim" data-confirm-scrim="delete-ai"></div>
-    <div class="confirm oneui-Modal" data-confirm="delete-ai" role="dialog" aria-modal="true" aria-labelledby="confirm-delete-ai-title"><h3 class="oneui-Text" id="confirm-delete-ai-title" data-variant="title" data-size="M" data-appearance="neutral">Delete my AI data?</h3><p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="low">This clears what JioSense has learned — your routines, labeled faces, and activity patterns. Your footage, cameras, and account stay exactly as they are.</p><div class="oneui-Modal-footer"><button class="oneui-Button" data-appearance="neutral" data-attention="medium" data-size="12" data-full-width="true" data-close-confirm>Cancel</button><button class="oneui-Button" data-appearance="negative" data-attention="medium" data-size="12" data-full-width="true" data-close-confirm>Delete AI data</button></div></div>
+    <div class="confirm oneui-Modal" data-confirm="delete-ai" role="dialog" aria-modal="true" aria-labelledby="confirm-delete-ai-title"><h3 class="oneui-Text" id="confirm-delete-ai-title" data-variant="title" data-size="M" data-appearance="neutral">Delete my AI data?</h3><p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="low">This clears what JioEye has learned — your routines, labeled faces, and activity patterns. Your footage, cameras, and account stay exactly as they are.</p><div class="oneui-Modal-footer"><button class="oneui-Button" data-appearance="neutral" data-attention="medium" data-size="12" data-full-width="true" data-close-confirm>Cancel</button><button class="oneui-Button" data-appearance="negative" data-attention="medium" data-size="12" data-full-width="true" data-close-confirm>Delete AI data</button></div></div>
     <div class="confirm-scrim" data-confirm-scrim="delete-account"></div>
     <div class="confirm oneui-Modal" data-confirm="delete-account" role="dialog" aria-modal="true" aria-labelledby="confirm-delete-account-title"><h3 class="oneui-Text" id="confirm-delete-account-title" data-variant="title" data-size="M" data-appearance="neutral">Delete account?</h3><p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="low">This permanently removes your account, cameras, footage, and all household access. This can't be undone.</p><div class="oneui-Modal-footer"><button class="oneui-Button" data-appearance="neutral" data-attention="medium" data-size="12" data-full-width="true" data-close-confirm>Cancel</button><button class="oneui-Button" data-appearance="negative" data-attention="medium" data-size="12" data-full-width="true" data-close-confirm>Delete account</button></div></div>
   </section>
@@ -6844,7 +6844,7 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
 
       <div class="alert-list" data-alert-list></div>
       <!-- Empty state for a day with nothing on it. Copy is set per case by renderAlerts():
-           the install day ("first day with JioSense"), a quiet day, or no events at all. -->
+           the install day ("first day with JioEye"), a quiet day, or no events at all. -->
       <div class="evt-empty" data-alert-empty hidden>
         <svg class="evt-empty-art" viewBox="0 0 168 104" fill="none" aria-hidden="true">
           <rect x="48" y="6" width="104" height="64" rx="12" style="fill:var(--Primary-Bold);opacity:.12"/>
@@ -7107,12 +7107,12 @@ window.__oneuiText = function(node, variant, size, attention, weight, appearance
     </header>
     <main class="scroll">
       <section class="section">
-        <div class="head"><h2 class="oneui-Text" data-variant="title" data-size="M" data-appearance="neutral">Suggested for you</h2><p class="oneui-Text sub" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Patterns JioSense noticed that you may want to act on.</p></div>
+        <div class="head"><h2 class="oneui-Text" data-variant="title" data-size="M" data-appearance="neutral">Suggested for you</h2><p class="oneui-Text sub" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Patterns JioEye noticed that you may want to act on.</p></div>
         <div data-insights-list></div>
       </section>
 
       <section class="section">
-        <div class="head"><h2 class="oneui-Text" data-variant="title" data-size="M" data-appearance="neutral">How JioSense is learning</h2></div>
+        <div class="head"><h2 class="oneui-Text" data-variant="title" data-size="M" data-appearance="neutral">How JioEye is learning</h2></div>
         <div class="list oneui-Surface" data-surface="elevated">
           <button type="button" class="row" data-open="settings-learning">
             <span class="oneui-Avatar ico" data-size="2xl" data-content="icon" data-appearance="primary" data-attention="medium" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4a5 5 0 0 0-5 5c0 1.6.7 2.6 1.5 3.6.6.8 1 1.5 1 2.4v.5h5v-.5c0-.9.4-1.6 1-2.4.8-1 1.5-2 1.5-3.6a5 5 0 0 0-5-5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M10 19h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
@@ -9005,7 +9005,7 @@ window.addEventListener('error', function(e){
       cpplus:   { name:'CP Plus - E45Q',     img:'assets/cam-battery.png', feed:'assets/kitchen.jpg',              room:'Kitchen',     env:'Indoor',  objects:['stove','fridge'] },
       trueview: { name:'TrueView - T18161S', img:'assets/dome-cam.png',    feed:'assets/frontporch.png',           room:'Entrance',    env:'Outdoor', objects:['door','gate'] }
     };
-    /* Objects JioSense can recognise. Furniture comes from the AI pass; ADDABLE are the quick
+    /* Objects JioEye can recognise. Furniture comes from the AI pass; ADDABLE are the quick
        picks offered when the user adds something the AI missed. */
     function objSvg(d){ return '<svg viewBox="0 0 56 56" fill="none" aria-hidden="true"><path fill-rule="evenodd" d="' + d + '" fill="currentColor"/></svg>'; }
     var OBJ = {
@@ -9282,7 +9282,7 @@ window.addEventListener('error', function(e){
           '<div class="ob-light" data-ob-light hidden role="alert">' +
             '<div class="ob-light-hd"><span class="ob-light-ico"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4 2.8 19.5h18.4Z" fill="currentColor"/><path d="M12 10v4.2" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17" r="1.2" fill="#fff"/></svg></span><div>' +
               '<p class="oneui-Text" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Too much light in view</p>' +
-              '<p class="oneui-Text" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="medium">A bright window is in the picture, so faces look dark and JioSense may not recognise people.</p>' +
+              '<p class="oneui-Text" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="medium">A bright window is in the picture, so faces look dark and JioEye may not recognise people.</p>' +
             '</div></div>' +
             '<p class="oneui-Text ob-light-try" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral">Try one of these</p>' +
             '<ol class="ob-light-fix">' +
@@ -9297,7 +9297,7 @@ window.addEventListener('error', function(e){
           '<div class="ob-scan-reveal ob-obj-block" data-ob-scan-reveal>' +
             '<div class="ob-obj-hd">' +
               '<div class="oneui-Text" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral">Objects detected</div>' +
-              '<p class="oneui-Text" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Missed something? Add it so JioSense keeps an eye on it.</p>' +
+              '<p class="oneui-Text" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Missed something? Add it so JioEye keeps an eye on it.</p>' +
             '</div>' +
             '<div class="ob-obj-list" data-ob-obj-grid></div>' +
           '</div>' +
@@ -10067,7 +10067,7 @@ window.addEventListener('error', function(e){
       var subEl  = document.querySelector('[data-ob-final-sub]');
       var homeName = state.home.name.trim() || 'Your home';
       if(homeEl) homeEl.textContent = homeName;
-      if(subEl)  subEl.textContent  = homeName + ' is live on JioSense.';
+      if(subEl)  subEl.textContent  = homeName + ' is live on JioEye.';
       if(camsEl){
         camsEl.textContent = state.cams.length
           ? state.cams.map(function(id){ return CAM_LABELS[id] + ' Camera'; }).join(', ')
@@ -13754,7 +13754,7 @@ window.addEventListener('error', function(e){
       eTitle.textContent = 'No events yet';
       eBody.textContent = 'Once your cameras notice something at ' + (loc ? loc.name : 'home') + ', it shows up here.';
     } else if(eventsDay === INSTALL_DAY && !onDay.length){
-      eTitle.textContent = 'Your first day with JioSense';
+      eTitle.textContent = 'Your first day with JioEye';
       eBody.textContent = 'Your cameras were just set up. Activity will show up here.';
     } else if(!onDay.length){
       eTitle.textContent = 'A quiet day';
@@ -13923,7 +13923,7 @@ window.addEventListener('error', function(e){
   /* ── AI summary for the day ────────────────────────────────────────
      The brief is a timeline of the day. Which segments are filled in is
      decided by the actual clock, so the sheet tells the truth about how much
-     of today JioSense has actually seen. */
+     of today JioEye has actually seen. */
   /* The day as people describe it — morning through to night — which is the
      sequence the summary is shown in, reversed. DAY_SEGMENTS stays in clock
      order because that is what the hour is matched against. */
