@@ -4173,6 +4173,12 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
    right next to a 12px inter-card margin, so the gap between cards
    read as tighter than the padding inside them; a single card with a
    plain 12px row gap fixes that. */
+/* Privacy — one soft card of plain one-line assurances with outline icons (reference) */
+.ob-priv{list-style:none;margin:0;padding:var(--Spacing-5) var(--Spacing-4);display:flex;flex-direction:column;gap:var(--Spacing-4);background:var(--Surface-Fill-Default);border-radius:var(--Shape-5,20px)}
+[data-screen="ob-privacy"] .ob-legal-note{margin-top:auto}
+.ob-priv-row{display:flex;align-items:flex-start;gap:var(--Spacing-4)}
+.ob-priv-ico{flex:none;width:24px;height:24px;color:var(--Neutral-Low,#767678);margin-top:-1px}
+.ob-priv-row .oneui-Text{flex:1}
 .ob-info-group{
   display:flex;flex-direction:column;gap:var(--Spacing-6);
   padding:var(--Spacing-4);
@@ -5164,68 +5170,22 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
       <div class="ob-segs" role="progressbar" aria-label="Setup progress" aria-valuemin="1" aria-valuemax="5" aria-valuenow="5" aria-valuetext="Step 5 of 5" data-ob-segs><span class="ob-seg is-on"></span><span class="ob-seg is-on"></span><span class="ob-seg is-on"></span><span class="ob-seg is-on"></span><span class="ob-seg is-on"></span></div>
     </div>
     <main class="scroll oneui-Container" data-gap="5" data-padding-x="6" data-padding-y="4">
+      <!-- Privacy (reference provided): heading + one line, then one soft card of four
+           plain one-line assurances with outline icons. No consent checkboxes. -->
       <div class="oneui-Container" data-gap="1">
-        <h1 class="oneui-Text" data-variant="headline" data-size="S" data-weight="high" data-appearance="neutral">Your home. Your data. Your control.</h1>
+        <h1 class="oneui-Text" data-variant="headline" data-size="M" data-weight="high" data-appearance="neutral">How JioEye keeps your home private</h1>
+        <p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium">A few things to know before we set up your cameras.</p>
       </div>
-
-      <!-- The three assurance rows below used to each be their own
-           .ob-info card — own background, own padding, own margin-top —
-           so the 12px gap between cards visually competed with the
-           16px padding inside each one and read as uneven spacing.
-           Combined into one .ob-info-group card (one background, one
-           padding) with the rows spaced by a plain 12px gap instead. -->
-      <div class="ob-info-group oneui-Surface" data-surface="elevated">
-      <div class="ob-info">
-        <span class="oneui-Avatar o-ic" data-size="2xl" data-content="icon" data-appearance="primary" data-attention="medium" aria-hidden="true">
-          <!-- Camera glyph: choosing which cameras connect. -->
-          <svg viewBox="0 0 56 56" fill="none" aria-hidden="true"><path d="M51.1233 24.5233C51.0585 24.3018 50.9643 24.0899 50.8433 23.8933C50.8356 23.8392 50.8356 23.7842 50.8433 23.73C50.6818 23.4989 50.4939 23.2875 50.2833 23.1C50.2833 23.1 50.2833 23.1 50.1433 22.9833C49.9739 22.8457 49.7946 22.7209 49.6066 22.61H49.3966C49.1628 22.5112 48.9208 22.4331 48.6733 22.3767V22.3767H47.9733L47.2966 22.4933H46.97C46.6167 22.6079 46.2853 22.7815 45.99 23.0067L39.6666 27.4167V25.6667C39.6666 23.8102 38.9291 22.0297 37.6164 20.7169C36.3036 19.4042 34.5231 18.6667 32.6666 18.6667H11.6666C9.81011 18.6667 8.02963 19.4042 6.71688 20.7169C5.40412 22.0297 4.66663 23.8102 4.66663 25.6667V39.6667C4.66663 41.5232 5.40412 43.3037 6.71688 44.6164C8.02963 45.9292 9.81011 46.6667 11.6666 46.6667H32.6666C34.5231 46.6667 36.3036 45.9292 37.6164 44.6164C38.9291 43.3037 39.6666 41.5232 39.6666 39.6667V37.9167L45.7333 42.4667C46.0286 42.6919 46.36 42.8654 46.7133 42.98H47.04L47.7166 43.0967C47.9494 43.1196 48.1839 43.1196 48.4166 43.0967V43.0967C48.6641 43.0402 48.9061 42.9621 49.14 42.8633L49.35 42.7467C49.5379 42.6357 49.7173 42.511 49.8866 42.3733C49.8866 42.3733 50.0033 42.3733 50.0266 42.3733C50.2372 42.1859 50.4252 41.9744 50.5866 41.7433C50.579 41.6892 50.579 41.6342 50.5866 41.58C50.7076 41.3834 50.8018 41.1715 50.8666 40.95V40.7167C51.0914 40.4017 51.2501 40.0445 51.3333 39.6667V25.6667C51.3359 25.3578 51.2886 25.0505 51.1933 24.7567L51.1233 24.5233ZM46.8533 10.5233L42 14.28V12.8333C42.0154 12.0826 41.8829 11.3361 41.6098 10.6366C41.3367 9.93709 40.9285 9.29823 40.4084 8.75653C39.8884 8.21482 39.2667 7.78088 38.5789 7.47949C37.8912 7.1781 37.1507 7.01517 36.4 7H19.6C18.8492 7.01517 18.1088 7.1781 17.421 7.47949C16.7332 7.78088 16.1115 8.21482 15.5915 8.75653C15.0714 9.29823 14.6632 9.93709 14.3901 10.6366C14.1171 11.3361 13.9845 12.0826 14 12.8333V14H32.6666C34.637 13.999 36.5756 14.497 38.3015 15.4477C40.0274 16.3984 41.4844 17.7707 42.5366 19.4367L42.9333 19.1333C44.1207 18.2331 45.5346 17.6801 47.0177 17.536C48.5008 17.3918 49.9947 17.662 51.3333 18.3167V12.8333C51.3511 12.3054 51.2193 11.7833 50.953 11.3271C50.6867 10.871 50.2968 10.4994 49.8283 10.2554C49.3598 10.0115 48.8319 9.90494 48.3055 9.94821C47.7791 9.99149 47.2756 10.1828 46.8533 10.5V10.5233Z" fill="currentColor"/></svg>
-        </span>
-        <div class="o-tx">
-          <div class="oneui-Text t" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">You're in control of your cameras</div>
-          <div class="oneui-Text b" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Turn any camera off anytime in Settings.</div>
-        </div>
-      </div>
-
-      <div class="ob-info">
-        <span class="oneui-Avatar o-ic" data-size="2xl" data-content="icon" data-appearance="primary" data-attention="medium" aria-hidden="true">
-          <!-- Shield/lock glyph: footage stored securely. -->
-          <svg viewBox="0 0 56 56" fill="none" aria-hidden="true"><path d="M47.74 10.9203C46.9664 10.0263 45.8823 9.45921 44.7067 9.33366C39.5622 8.79461 34.5538 7.34896 29.9133 5.06366C29.3179 4.77121 28.6634 4.61914 28 4.61914C27.3366 4.61914 26.6821 4.77121 26.0867 5.06366C21.4802 7.35138 16.5019 8.79744 11.3867 9.33366C10.2098 9.43651 9.11199 9.96916 8.30285 10.8299C7.49372 11.6907 7.02992 12.8193 7 14.0003V25.667C7 41.3937 22.75 51.3337 28 51.3337C33.25 51.3337 49 41.417 49 25.667V14.0003C48.9728 12.8537 48.5242 11.7573 47.74 10.9203ZM36.6567 24.9203L27.3233 34.2537C27.1064 34.4724 26.8484 34.6459 26.564 34.7644C26.2797 34.8829 25.9747 34.9439 25.6667 34.9439C25.3586 34.9439 25.0537 34.8829 24.7693 34.7644C24.485 34.6459 24.2269 34.4724 24.01 34.2537L19.3433 29.587C18.904 29.1476 18.6571 28.5517 18.6571 27.9303C18.6571 27.309 18.904 26.713 19.3433 26.2737C19.7827 25.8343 20.3786 25.5874 21 25.5874C21.6214 25.5874 22.2173 25.8343 22.6567 26.2737L25.6667 29.377L33.3433 21.677C33.7827 21.2376 34.3786 20.9908 35 20.9908C35.6214 20.9908 36.2173 21.2376 36.6567 21.677C37.096 22.1164 37.3429 22.7123 37.3429 23.3337C37.3429 23.955 37.096 24.551 36.6567 24.9903V24.9203Z" fill="currentColor"/></svg>
-        </span>
-        <div class="o-tx">
-          <div class="oneui-Text t" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Footage is stored securely</div>
-          <div class="oneui-Text b" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Encrypted, and auto-deleted after 30 days.</div>
-        </div>
-      </div>
-
-      <div class="ob-info">
-        <span class="oneui-Avatar o-ic" data-size="2xl" data-content="icon" data-appearance="primary" data-attention="medium" aria-hidden="true">
-          <!-- Face-scan glyph: face processing for who's-home. -->
-          <svg viewBox="0 0 56 56" fill="none" aria-hidden="true"><path d="M28 4.66602C23.3851 4.66602 18.8738 6.03449 15.0367 8.59839C11.1995 11.1623 8.20883 14.8065 6.44278 19.0701C4.67674 23.3337 4.21466 28.0252 5.11498 32.5515C6.0153 37.0777 8.23759 41.2353 11.5008 44.4985C14.764 47.7617 18.9216 49.984 23.4479 50.8843C27.9741 51.7847 32.6656 51.3226 36.9293 49.5565C41.1929 47.7905 44.837 44.7998 47.4009 40.9627C49.9648 37.1255 51.3333 32.6142 51.3333 27.9993C51.3333 24.9352 50.7298 21.901 49.5572 19.0701C48.3845 16.2391 46.6658 13.6669 44.4991 11.5002C42.3324 9.33349 39.7602 7.61477 36.9293 6.44216C34.0983 5.26955 31.0641 4.66602 28 4.66602ZM36.1666 18.666C36.8589 18.666 37.5356 18.8713 38.1111 19.2559C38.6867 19.6405 39.1353 20.1871 39.4002 20.8266C39.6651 21.4662 39.7344 22.1699 39.5994 22.8488C39.4643 23.5278 39.131 24.1514 38.6415 24.6409C38.152 25.1304 37.5284 25.4637 36.8495 25.5988C36.1705 25.7338 35.4668 25.6645 34.8272 25.3996C34.1877 25.1347 33.6411 24.6861 33.2565 24.1105C32.8719 23.5349 32.6666 22.8582 32.6666 22.166C32.6666 21.2378 33.0354 20.3475 33.6918 19.6911C34.3481 19.0348 35.2384 18.666 36.1666 18.666ZM19.8333 18.666C20.5255 18.666 21.2022 18.8713 21.7778 19.2559C22.3534 19.6405 22.802 20.1871 23.0669 20.8266C23.3318 21.4662 23.4011 22.1699 23.2661 22.8488C23.131 23.5278 22.7977 24.1514 22.3082 24.6409C21.8187 25.1304 21.1951 25.4637 20.5161 25.5988C19.8372 25.7338 19.1335 25.6645 18.4939 25.3996C17.8544 25.1347 17.3077 24.6861 16.9232 24.1105C16.5386 23.5349 16.3333 22.8582 16.3333 22.166C16.3333 21.2378 16.7021 20.3475 17.3584 19.6911C18.0148 19.0348 18.905 18.666 19.8333 18.666ZM39.8533 35.3727C39.3342 36.215 38.7239 36.9975 38.0333 37.706C37.9949 37.7812 37.9479 37.8516 37.8933 37.916C37.3873 38.4186 36.841 38.8791 36.26 39.2927C34.8953 40.3043 33.3514 41.0485 31.71 41.486H31.3366C30.9299 41.5962 30.5169 41.6819 30.1 41.7427H29.6566C29.12 41.7427 28.5833 41.7427 28.0233 41.7427C27.4633 41.7427 26.9266 41.7427 26.39 41.7427H25.9466C25.5297 41.6819 25.1167 41.5962 24.71 41.486H24.3366C22.6952 41.0485 21.1513 40.3043 19.7866 39.2927C19.2056 38.8791 18.6593 38.4186 18.1533 37.916C18.0987 37.8516 18.0517 37.7812 18.0133 37.706C17.3227 36.9975 16.7124 36.215 16.1933 35.3727C15.9735 35.1191 15.8111 34.821 15.717 34.4989C15.6229 34.1768 15.5994 33.8381 15.6481 33.5061C15.6967 33.1741 15.8165 32.8564 15.9991 32.5749C16.1817 32.2933 16.4229 32.0545 16.7063 31.8746C16.9896 31.6948 17.3084 31.5782 17.6409 31.5328C17.9734 31.4874 18.3118 31.5142 18.633 31.6115C18.9542 31.7087 19.2506 31.8741 19.502 32.0964C19.7535 32.3187 19.954 32.5925 20.09 32.8993C20.5172 33.5813 21.0265 34.2083 21.6066 34.766C21.9532 35.0939 22.328 35.3906 22.7266 35.6527L22.96 35.816C24.4773 36.744 26.2214 37.235 28 37.235C29.7786 37.235 31.5226 36.744 33.04 35.816L33.2733 35.6527C33.672 35.3906 34.0467 35.0939 34.3933 34.766C34.9734 34.2083 35.4828 33.5813 35.91 32.8993C36.0605 32.6165 36.2676 32.3676 36.5185 32.1683C36.7694 31.969 37.0586 31.8234 37.3682 31.7408C37.6778 31.6582 38.001 31.6402 38.3179 31.688C38.6347 31.7357 38.9383 31.8483 39.2098 32.0185C39.4812 32.1888 39.7147 32.4131 39.8956 32.6775C40.0766 32.942 40.2011 33.2409 40.2615 33.5555C40.3219 33.8702 40.3168 34.194 40.2466 34.5066C40.1763 34.8192 40.0425 35.1141 39.8533 35.3727Z" fill="currentColor"/></svg>
-        </span>
-        <div class="o-tx">
-          <div class="oneui-Text t" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">We recognize faces at home</div>
-          <div class="oneui-Text b" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">Helps us tell you who's home.</div>
-        </div>
-      </div>
-      </div>
-
-      <label class="ob-consent oneui-Surface" data-surface="elevated" data-ob-consent-private>
-        <input type="checkbox" class="oneui-Checkbox-input">
-        <span class="oneui-Checkbox" data-size="l" data-appearance="sparkle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        <span class="oneui-Text ct" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">No camera faces a bathroom or other private space.</span>
-      </label>
-
-      <label class="ob-consent oneui-Surface" data-surface="elevated" data-ob-consent-read>
-        <input type="checkbox" class="oneui-Checkbox-input">
-        <span class="oneui-Checkbox" data-size="l" data-appearance="sparkle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        <span class="oneui-Text ct" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">I have read and understood the above.</span>
-      </label>
-
+      <ul class="ob-priv">
+        <li class="ob-priv-row"><svg class="ob-priv-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 10.5 20 7.5v9l-2.2-1.3M3 3l18 18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.5 17.5H5a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h1.5M10 6.5h3a2 2 0 0 1 2 2v3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium">You can turn off any camera, anytime</span></li>
+        <li class="ob-priv-row"><svg class="ob-priv-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="15.5" r="1.4" fill="currentColor"/></svg><span class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium">Your videos are private &mdash; only you can share clips</span></li>
+        <li class="ob-priv-row"><svg class="ob-priv-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 5 6v5.5c0 4.3 3 7.6 7 9 4-1.4 7-4.7 7-9V6Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="m9 12 2.2 2.2L15.2 10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium">Stored securely, auto-deleted after 30 days</span></li>
+        <li class="ob-priv-row"><svg class="ob-priv-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 8h9M17 8h3M4 16h3M11 16h9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="15" cy="8" r="2" stroke="currentColor" stroke-width="1.7"/><circle cx="9" cy="16" r="2" stroke="currentColor" stroke-width="1.7"/></svg><span class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium">Manage all controls in Settings, including auto-pause when you&rsquo;re home</span></li>
+      </ul>
       <p class="oneui-Text ob-legal-note" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="low">By tapping Continue, you accept our <a href="#" class="oneui-Text ob-support-link" data-appearance="primary" data-ob-legal-link>Terms</a> and acknowledge our <a href="#" class="oneui-Text ob-support-link" data-appearance="primary" data-ob-legal-link>Privacy Policy</a>.</p>
     </main>
-    <div class="ob-footer">
-      <button type="button" class="oneui-Button" data-appearance="neutral" data-attention="medium" data-size="12" data-full-width="true" data-ob-back>Back</button>
-      <button type="button" class="oneui-Button" data-appearance="primary" data-attention="high" data-size="12" data-full-width="true" data-ob-next disabled>Continue</button>
+    <div class="ob-footer ob-found-foot">
+      <button type="button" class="oneui-Button" data-appearance="primary" data-attention="high" data-size="12" data-ob-next>Continue</button>
     </div>
   </section>
 
@@ -8796,7 +8756,7 @@ window.addEventListener('error', function(e){
       var next = screen.querySelector('[data-ob-next]');
       if(!next) return;
       if(id === 'ob-household') { next.disabled = !state.home.name.trim(); }
-      if(id === 'ob-privacy')   { next.disabled = !state.consent; }
+      if(id === 'ob-privacy')   { next.disabled = false; }   // consent checkboxes removed; the legal line covers it
       if(id === 'ob-camselect') { next.disabled = state.cams.length === 0; }
       if(id === 'ob-cam-room')  { next.disabled = !whereRoom(); }
       if(id === 'ob-cam-check') { next.disabled = !state.lightOK; }
