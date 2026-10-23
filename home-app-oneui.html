@@ -4247,6 +4247,8 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
 .confirm p{margin-top:var(--Spacing-2)}
 .toast{position:absolute;left:50%;bottom:120px;transform:translateX(-50%) translateY(20px);z-index:80;background:var(--Inverse-Surface);color:var(--Neutral-Bold-High,#fff);padding:10px 16px;border-radius:var(--Shape-Pill);font-size:12px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease;white-space:nowrap}
 .toast.is-on{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast .toast-ok{display:inline-grid;place-items:center;width:18px;height:18px;margin-right:8px;border-radius:50%;background:#1f9d55;color:#fff;vertical-align:-4px}
+.toast .toast-ok svg{width:12px;height:12px}
 .toast.has-action{display:flex;align-items:center;gap:var(--Spacing-3);padding-block:var(--Spacing-1);pointer-events:auto}
 .toast-action{min-height:var(--Spacing-8);padding:0 var(--Spacing-1);font-weight:var(--Typography-Weight-Bold);text-decoration:underline;text-underline-offset:2px}
 .toast-action:focus-visible{outline:2px solid var(--Focus-Outline);outline-offset:2px;border-radius:var(--Shape-1-5)}
@@ -9595,14 +9597,24 @@ window.addEventListener('error', function(e){
       // the room row waits until the lighting is fixed — while there's an error, only the fix shows
       if(ck.room){ ck.room.hidden = !state.lightOK; ck.room.classList.toggle('is-in', state.lightOK); }
       if(ck.light) ck.light.hidden = state.lightOK;
-      if(ck.ok) ck.ok.classList.toggle('is-in', state.lightOK);
+      if(ck.ok) ck.ok.classList.remove('is-in');   // the pass is announced in a toast instead
+      if(state.lightOK && ck.toastPending){ ck.toastPending = false; checkToast('Lighting looks good'); }
       syncNextEnabled('ob-cam-check');
+    }
+    function checkToast(msg){
+      var t = document.querySelector('[data-toast]');
+      if(!t) return;
+      t.classList.remove('has-action');
+      t.innerHTML = '<span class="toast-ok" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="m4.5 8.3 2.4 2.4 4.6-4.9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' + msg;
+      clearTimeout(t._timer);
+      setTimeout(function(){ t.classList.add('is-on'); }, 250);   // after the screen settles
+      t._timer = setTimeout(function(){ t.classList.remove('is-on'); }, 2800);
     }
     if(ck.btn) ck.btn.addEventListener('click', function(){ if(state.cams[0]) openRoomSheet(state.cams[0]); });
     // Check again → the "Scanning your room" beat again (swapped in place, so Back still goes to
     // Step 3), which then lands back here with the lighting fixed
     if(ck.retry) ck.retry.addEventListener('click', function(){
-      state.lightOK = true;
+      state.lightOK = true; ck.toastPending = true;
       if(typeof window.__routerReplace === 'function') window.__routerReplace('ob-device-ready'); else runCheck();
     });
     function primeCamCheck(){ runCheck(); }
