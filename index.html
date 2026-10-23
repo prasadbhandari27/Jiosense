@@ -3412,6 +3412,15 @@ button.oneui-Avatar{position:relative}
 .ob-ready-pct{position:relative;font-size:28px;font-weight:700;color:var(--Primary-Bold);font-variant-numeric:tabular-nums;letter-spacing:-.5px}
 @media (prefers-reduced-motion:reduce){.screen.is-active .ob-ready-ring .arc{animation:none;stroke-dashoffset:0}.screen.is-active .ob-ready-sweep::before{animation:none}}
 
+/* Step 4 · Check your room — live view (LIVE top-left, scan tag bottom-left), room row, lighting */
+.ob-ck-feed .ob-live-pill{top:var(--Spacing-3);bottom:auto}
+.ob-ck-feed .ob-scan-tag{left:var(--Spacing-3);bottom:var(--Spacing-3)}
+.ob-ck-room{display:flex;align-items:center;gap:var(--Spacing-2);padding:var(--Spacing-2-5,10px) var(--Spacing-3);background:var(--Surface-Fill-Default);border-radius:var(--Shape-4);box-shadow:0 1px 3px rgba(0,0,0,.06),0 6px 18px rgba(0,0,0,.05)}
+.ob-ck-room > .oneui-Text{flex:1}
+.ob-ck-room-ico{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--Primary-Minimal);color:var(--Primary-Bold);flex:none}
+.ob-ck-room-ico svg{width:18px;height:18px}
+[data-screen="ob-cam-check"] .ob-light,[data-screen="ob-cam-check"] .ob-light-ok{margin-top:0}
+[data-screen="ob-cam-check"] .ob-light-ok:not(.is-in){display:none}
 /* Step 4 · lighting check inside the camera card */
 .ob-feed.is-glare img{filter:brightness(1.32) contrast(.72) saturate(.75);transition:filter .6s ease}
 .ob-feed.is-glare::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 30% 18%,rgba(255,255,255,.9),rgba(255,248,225,.45) 32%,transparent 62%)}
@@ -4734,7 +4743,31 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
         <h1 class="oneui-Text" data-variant="headline" data-size="M" data-weight="high" data-appearance="neutral">Check your room</h1>
         <p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium">JioSense scanned the live view to learn this room.</p>
       </div>
-      <div class="ob-camacc" data-ob-camacc></div>
+      <!-- Same layout as Step 3: the live view first, then the room JioSense thinks this is
+           (changeable), then the lighting result — an inline fix when the light is poor. -->
+      <div class="ob-feed ob-view-feed ob-ck-feed" data-ck-feed>
+        <img src="assets/livingroom-cam1.png" alt="Live view from your camera" data-ck-img>
+        <span class="oneui-Badge ob-live-pill" data-appearance="neutral" data-attention="high" data-size="s"><span class="oneui-IndicatorBadge" data-appearance="negative" data-size="xs" aria-hidden="true"></span>Live</span>
+        <span class="ob-scan" data-ck-line hidden></span>
+        <span class="oneui-Badge ob-scan-tag" data-appearance="neutral" data-attention="high" data-size="s" data-ck-tag hidden>Scanning room…</span>
+      </div>
+      <div class="ob-ck-room ob-scan-reveal" data-ck-room>
+        <span class="ob-ck-room-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 11 12 4l8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
+        <span class="oneui-Text" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral" data-ck-lead>Looks like your</span>
+        <button type="button" class="oneui-Button ob-room-btn" data-appearance="primary" data-attention="medium" data-size="8" data-ck-room-btn aria-haspopup="dialog"><span data-ck-room-val>Living Room</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+      <div class="ob-light" data-ck-light hidden role="alert">
+        <div class="ob-light-hd"><span class="ob-light-ico"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4 2.8 19.5h18.4Z" fill="currentColor"/><path d="M12 10v4.2" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17" r="1.2" fill="#fff"/></svg></span><div>
+          <p class="oneui-Text" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Too much light in view</p>
+          <p class="oneui-Text" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="medium">A bright window makes faces look dark, so JioSense may not recognise people.</p>
+        </div></div>
+        <ol class="ob-light-fix">
+          <li class="oneui-Text" data-variant="body" data-size="XS" data-appearance="neutral">Turn the camera away from the window</li>
+          <li class="oneui-Text" data-variant="body" data-size="XS" data-appearance="neutral">Close the curtains or blinds</li>
+        </ol>
+        <button type="button" class="oneui-Button" data-appearance="primary" data-attention="medium" data-size="10" data-full-width="true" data-ck-retry>I&rsquo;ve fixed it, check again</button>
+      </div>
+      <div class="ob-light-ok ob-scan-reveal" data-ck-ok><span class="ob-light-ok-ico"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4.5 8.3 2.4 2.4 4.6-4.9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="oneui-Text" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Lighting looks good</span></div>
     </main>
 
     <!-- Room-picker bottom sheet — opened by "Not quite" in the
@@ -9509,6 +9542,53 @@ window.addEventListener('error', function(e){
       }, DUR + 500));
     }
 
+    /* ── Step 4 · Check your room ──
+       Scan the live view → room suggestion (changeable via the room sheet) → lighting
+       result. The first scan finds too much light; "check again" passes. */
+    var ck = {
+      scr:  document.querySelector('[data-screen="ob-cam-check"]'),
+      feed: document.querySelector('[data-ck-feed]'), img: document.querySelector('[data-ck-img]'),
+      line: document.querySelector('[data-ck-line]'), tag: document.querySelector('[data-ck-tag]'),
+      room: document.querySelector('[data-ck-room]'), lead: document.querySelector('[data-ck-lead]'),
+      val:  document.querySelector('[data-ck-room-val]'), btn: document.querySelector('[data-ck-room-btn]'),
+      light: document.querySelector('[data-ck-light]'), ok: document.querySelector('[data-ck-ok]'),
+      retry: document.querySelector('[data-ck-retry]'), timers: []
+    };
+    function syncCheckRoom(){
+      var id = state.cams[0], c = id && CAM_INFO[id];
+      if(!c) return;
+      var room = camRoomOf(id);
+      if(ck.val) ck.val.textContent = room;
+      if(ck.lead) ck.lead.textContent = (room === c.room) ? 'Looks like your' : 'This camera is in your';
+      if(ck.btn) ck.btn.setAttribute('aria-label', 'Room: ' + room + '. Change room');
+      if(ck.img) ck.img.src = (typeof VIEW_FEED !== 'undefined' && VIEW_FEED[room]) || c.live || c.feed;
+    }
+    function runCheck(relight){
+      ck.timers.forEach(clearTimeout); ck.timers = [];
+      syncCheckRoom();
+      [ck.room, ck.ok].forEach(function(n){ if(n) n.classList.remove('is-in'); });
+      if(ck.light) ck.light.hidden = true;
+      if(ck.feed) ck.feed.classList.toggle('is-glare', !state.lightOK);
+      if(ck.feed) ck.feed.classList.toggle('is-fixing', !!relight);
+      if(ck.line) ck.line.hidden = false;
+      if(ck.tag){ ck.tag.hidden = false; ck.tag.textContent = relight ? 'Checking lighting…' : 'Scanning room…'; }
+      syncNextEnabled('ob-cam-check');
+      ck.timers.push(setTimeout(function(){
+        if(ck.line) ck.line.hidden = true;
+        if(ck.tag) ck.tag.hidden = true;
+        if(ck.feed) ck.feed.classList.remove('is-fixing');
+        if(ck.room) ck.room.classList.add('is-in');
+      }, 1600));
+      ck.timers.push(setTimeout(function(){
+        if(!state.lightOK){ if(ck.light) ck.light.hidden = false; }
+        else { if(ck.feed) ck.feed.classList.remove('is-glare'); if(ck.ok) ck.ok.classList.add('is-in'); }
+        syncNextEnabled('ob-cam-check');
+      }, 2000));
+    }
+    if(ck.btn) ck.btn.addEventListener('click', function(){ if(state.cams[0]) openRoomSheet(state.cams[0]); });
+    if(ck.retry) ck.retry.addEventListener('click', function(){ state.lightOK = true; runCheck(true); });
+    function primeCamCheck(){ runCheck(false); }
+
     function primeCamRoom(opts){
       renderCamAcc();
       var first = camAccIds()[0];
@@ -10068,6 +10148,7 @@ window.addEventListener('error', function(e){
             card.querySelector('[data-ob-room-lead]').textContent = (name === c.room) ? 'Looks like your' : 'This camera is in your';
             card.querySelector('[data-ob-room-select]').setAttribute('aria-label', 'Room for ' + c.name + ': ' + name + '. Change room');
           }
+          if(typeof syncCheckRoom === 'function') syncCheckRoom();
         }
         closeRoomSheet();
       });
@@ -10090,7 +10171,7 @@ window.addEventListener('error', function(e){
         if(id === 'ob-cam-connecting') primeConnecting();
         if(id === 'ob-cam-room') primeWhere();
         if(id === 'ob-device-ready') primeDeviceReady();
-        if(id === 'ob-cam-check') primeCamRoom();
+        if(id === 'ob-cam-check') primeCamCheck();
       });
     });
     document.querySelectorAll('[data-screen^="ob-"]').forEach(function(s){
@@ -10107,7 +10188,7 @@ window.addEventListener('error', function(e){
         paintProgress(bootId);
         if(bootId === 'ob-cam-connecting') primeConnecting();
         if(bootId === 'ob-cam-room') primeWhere();
-        if(bootId === 'ob-cam-check') primeCamRoom();
+        if(bootId === 'ob-cam-check') primeCamCheck();
       }
       if(bootId === 'ob-loading') primeLoading();
       if(bootId === 'ob-cam-view') primeCamView();
