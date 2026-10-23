@@ -3379,7 +3379,8 @@ button.oneui-Avatar{position:relative}
 .ob-feed .ob-live-pill{position:absolute;top:var(--Spacing-2);left:var(--Spacing-2)}
 /* Step 3 · camera view — bigger feed, camera name top-right, full-screen toggle bottom-right */
 .ob-view-feed{aspect-ratio:4/3;border-radius:var(--Shape-4);box-shadow:0 1px 3px rgba(0,0,0,.08),0 8px 24px rgba(0,0,0,.08)}
-.ob-view-feed .ob-live-pill{top:var(--Spacing-3);left:var(--Spacing-3)}
+.ob-view-feed .ob-live-pill{top:auto;bottom:var(--Spacing-3);left:var(--Spacing-3)}
+.ob-view-cam[hidden]{display:none}
 .ob-view-cam{position:absolute;top:var(--Spacing-3);right:var(--Spacing-3);color:#fff;font-size:12px;font-weight:600;text-shadow:0 1px 3px rgba(0,0,0,.45)}
 .ob-view-full{position:absolute;right:var(--Spacing-3);bottom:var(--Spacing-3);background:var(--Surface-Fill-Default);color:var(--Primary-Bold);border-radius:var(--Shape-3);box-shadow:0 2px 8px rgba(0,0,0,.18)}
 .ob-view-full svg{width:22px;height:22px}
@@ -3388,8 +3389,9 @@ button.oneui-Avatar{position:relative}
 /* full screen: the feed covers the whole phone screen on black */
 .ob-view-feed.is-full{position:absolute;inset:0;z-index:30;aspect-ratio:auto;border-radius:0;background:#000;box-shadow:none}
 .ob-view-feed.is-full img{object-fit:contain}
-.ob-view-feed.is-full .ob-live-pill,.ob-view-feed.is-full .ob-view-cam{top:calc(var(--Spacing-6) + 24px)}
-.ob-view-feed.is-full .ob-view-full{bottom:calc(var(--Spacing-6) + 16px)}
+.ob-view-feed.is-full .ob-view-cam{top:calc(var(--Spacing-6) + 24px)}
+.ob-view-feed.is-full .ob-view-full,.ob-view-feed.is-full .ob-live-pill{bottom:calc(var(--Spacing-6) + 16px)}
+.ob-view-feed.is-full .ob-live-pill{bottom:calc(var(--Spacing-6) + 26px)}
 .ob-view-learn{display:inline;text-decoration:underline;text-underline-offset:3px;font-weight:600}
 .ob-feed .ob-scan{
   position:absolute;left:0;right:0;top:0;height:3px;
@@ -4594,6 +4596,7 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
       <div class="ob-segs" role="progressbar" aria-label="Setup progress" aria-valuemin="1" aria-valuemax="4" aria-valuenow="3" aria-valuetext="Step 3 of 4" data-ob-segs><span class="ob-seg is-on"></span><span class="ob-seg is-on"></span><span class="ob-seg is-on"></span><span class="ob-seg"></span></div>
     </div>
     <main class="scroll oneui-Container" data-gap="5" data-padding-x="6" data-padding-y="4">
+        <h1 class="oneui-Text" data-variant="headline" data-size="M" data-weight="high" data-appearance="neutral">Adjust the camera&rsquo;s view</h1>
       <div class="ob-feed ob-view-feed" data-ob-view-feed>
         <img src="assets/livingroom-cam1.png" alt="Live view from your camera" data-ob-view-img>
         <span class="oneui-Badge ob-live-pill" data-appearance="neutral" data-attention="high" data-size="s"><span class="oneui-IndicatorBadge" data-appearance="negative" data-size="xs" aria-hidden="true"></span>Live</span>
@@ -4604,7 +4607,6 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
         </button>
       </div>
       <div class="oneui-Container" data-gap="3">
-        <h1 class="oneui-Text" data-variant="headline" data-size="M" data-weight="high" data-appearance="neutral">Adjust the camera&rsquo;s view</h1>
         <p class="oneui-Text" data-variant="body" data-size="M" data-appearance="neutral" data-attention="medium">Make sure the view covers the areas and level of detail you want, especially for recognising familiar faces. If the video keeps pausing, try moving your Wi-Fi router closer &mdash; even a little can improve the connection. <a href="#" class="oneui-Text ob-support-link ob-view-learn" data-appearance="primary" data-ob-view-learn>Learn more</a></p>
         <p class="oneui-Text" data-variant="body" data-size="M" data-appearance="neutral" data-attention="medium">If the picture is upside down, remount the camera or flip the view later in camera settings. Tapo C201 can pan and tilt, so you can turn it from the live view at any time.</p>
       </div>
@@ -9231,7 +9233,9 @@ window.addEventListener('error', function(e){
     /* ── Step 3 · Adjust the camera's view ──
        Shows the Step 1 camera's feed for the room picked on Step 2; the corner button
        toggles a full-screen view over the whole screen. */
+    // camOsd: the still already has the camera's own date/name overlay, so ours is left off
     var VIEW_FEED = { 'Living Room':'assets/livingroom-cam1.png', 'Kitchen':'assets/kitchen.jpg', 'Bedroom':'assets/bedroom.jpg' };
+    var VIEW_OSD  = { 'assets/livingroom-cam1.png':1, 'assets/livingroom-cam2.png':1, 'assets/livingroom-detections.png':1 };
     var viewFeed = document.querySelector('[data-ob-view-feed]');
     var viewImg  = document.querySelector('[data-ob-view-img]');
     var viewCam  = document.querySelector('[data-ob-view-cam]');
@@ -9246,8 +9250,9 @@ window.addEventListener('error', function(e){
       setViewFull(false);
       if(!c) return;
       var room = camRoomOf(id);
-      if(viewImg) viewImg.src = VIEW_FEED[room] || c.live || c.feed;
-      if(viewCam) viewCam.textContent = c.name.replace(' - ', ' ') + ' · ' + room;
+      var src = VIEW_FEED[room] || c.live || c.feed;
+      if(viewImg) viewImg.src = src;
+      if(viewCam){ viewCam.textContent = c.name.replace(' - ', ' ') + ' · ' + room; viewCam.hidden = !!VIEW_OSD[src]; }
     }
     if(viewFull) viewFull.addEventListener('click', function(){ setViewFull(!viewFeed.classList.contains('is-full')); });
     var viewLearn = document.querySelector('[data-ob-view-learn]');
