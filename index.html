@@ -3398,24 +3398,30 @@ button.oneui-Avatar{position:relative}
 .ob-view-feed.is-full .ob-view-full,.ob-view-feed.is-full .ob-live-pill{bottom:calc(var(--Spacing-6) + 16px)}
 .ob-view-feed.is-full .ob-live-pill{bottom:calc(var(--Spacing-6) + 26px)}
 .ob-view-learn{display:inline;text-decoration:underline;text-underline-offset:3px;font-weight:600}
-/* Scanning your room (between Step 3 and Step 4) — everything centred: a ring that fills
-   with a % count and a soft radar sweep inside, then title + one line */
-[data-screen="ob-device-ready"]{background:var(--App-Surface)}
+/* Scanning your room (between Step 3 and Step 4) — reference "Loading and Done": soft
+   gradient, two faint rings, a spinning arc round a solid circle + white icon; .is-done
+   closes the arc and swaps the icon for a check */
+[data-screen="ob-device-ready"]{background:linear-gradient(180deg,var(--Primary-Minimal) 0%,var(--App-Surface) 55%)}
 .ob-ready{flex:1;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--Spacing-2);padding:0 var(--Spacing-8,32px) 64px;text-align:center}
-.ob-ready-art{position:relative;width:168px;height:168px;margin-bottom:var(--Spacing-6);display:grid;place-items:center}
-.ob-ready-ring{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
-.ob-ready-ring circle{fill:none;stroke-width:7}
-.ob-ready-ring .trk{stroke:#e4e2f6}
-.ob-ready-ring .arc{stroke:var(--Primary-Bold);stroke-linecap:round;stroke-dasharray:340;stroke-dashoffset:340}
-.screen.is-active .ob-ready-ring .arc{animation:obReadyArc 3.6s cubic-bezier(.25,.6,.35,1) forwards}
-@keyframes obReadyArc{to{stroke-dashoffset:0}}
-.ob-ready-sweep{position:absolute;inset:16px;border-radius:50%;overflow:hidden;background:var(--Primary-Minimal)}
-.ob-ready-sweep::before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,rgba(57,0,173,0) 0deg,rgba(57,0,173,0) 270deg,rgba(57,0,173,.22) 360deg)}
-.ob-ready-sweep::after{content:"";position:absolute;inset:22%;border-radius:50%;border:1.5px dashed rgba(57,0,173,.18)}
-.screen.is-active .ob-ready-sweep::before{animation:obReadySweep 1.8s linear infinite}
-@keyframes obReadySweep{to{transform:rotate(360deg)}}
-.ob-ready-pct{position:relative;font-size:28px;font-weight:700;color:var(--Primary-Bold);font-variant-numeric:tabular-nums;letter-spacing:-.5px}
-@media (prefers-reduced-motion:reduce){.screen.is-active .ob-ready-ring .arc{animation:none;stroke-dashoffset:0}.screen.is-active .ob-ready-sweep::before{animation:none}}
+.ob-ready-art{position:relative;width:200px;height:200px;margin-bottom:var(--Spacing-6);display:grid;place-items:center}
+.ob-ready-halo{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(57,0,173,.07);background:radial-gradient(circle,rgba(255,255,255,.7) 40%,rgba(255,255,255,0) 72%)}
+.ob-ready-ring{position:absolute;inset:14px;width:calc(100% - 28px);height:calc(100% - 28px)}
+.ob-ready-ring circle{fill:none;stroke-width:4}
+.ob-ready-ring .trk{stroke:rgba(57,0,173,.1)}
+.ob-ready-ring .arc{stroke:var(--Primary-Bold);stroke-linecap:round;stroke-dasharray:80 235;transform-origin:60px 60px;transition:stroke-dasharray .6s cubic-bezier(.4,0,.2,1)}
+.screen.is-active .ob-ready-ring .arc{animation:obReadySpin 1.3s linear infinite}
+.ob-ready.is-done .ob-ready-ring .arc{stroke-dasharray:315 0}
+@keyframes obReadySpin{to{transform:rotate(360deg)}}
+.ob-ready-core{position:relative;width:84px;height:84px;border-radius:50%;background:var(--Primary-Bold);color:#fff;display:grid;place-items:center;box-shadow:0 10px 24px rgba(57,0,173,.28)}
+.ob-ready-core svg{position:absolute;width:34px;height:34px;transition:opacity .3s ease,transform .4s cubic-bezier(.3,1.5,.5,1)}
+.ob-ready-core .ico-done{opacity:0;transform:scale(.4)}
+.ob-ready.is-done .ob-ready-core .ico-scan{opacity:0;transform:scale(.4)}
+.ob-ready.is-done .ob-ready-core .ico-done{opacity:1;transform:none}
+.screen.is-active .ob-ready-core{animation:obReadyCore 1.6s ease-in-out infinite}
+.ob-ready.is-done .ob-ready-core{animation:obReadyPop .45s cubic-bezier(.3,1.5,.5,1)}
+@keyframes obReadyCore{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes obReadyPop{0%{transform:scale(.9)}100%{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){.screen.is-active .ob-ready-ring .arc,.screen.is-active .ob-ready-core{animation:none}}
 
 /* Step 4 · Check your room — live view (LIVE top-left, scan tag bottom-left), room row, lighting */
 .ob-ck-feed .ob-live-pill{top:var(--Spacing-3);bottom:auto}
@@ -4714,16 +4720,20 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
        Back from Step 4 returns to Step 3). See primeDeviceReady(). -->
   <section class="screen" data-screen="ob-device-ready" style="overflow:hidden">
     <div class="statusbar" aria-hidden="true"><span data-clock>08:14</span></div>
-    <!-- Centred: a progress ring that fills over the scan with a % count and a soft radar
-         sweep inside, then the title and one line. No photo, no top bar. -->
+    <!-- Reference: "UI Motion: Loading and Done" — soft gradient, two faint rings, a spinning
+         arc around a solid circle with a white icon; when the scan finishes the arc closes
+         and the icon turns into a check, then Step 4 opens. -->
     <main class="ob-ready" role="status" aria-live="polite">
       <div class="ob-ready-art" aria-hidden="true">
-        <span class="ob-ready-sweep"></span>
-        <svg class="ob-ready-ring" viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" class="trk"/><circle cx="60" cy="60" r="54" class="arc"/></svg>
-        <span class="ob-ready-pct" data-ready-pct>0%</span>
+        <span class="ob-ready-halo"></span>
+        <svg class="ob-ready-ring" viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" class="trk"/><circle cx="60" cy="60" r="50" class="arc"/></svg>
+        <span class="ob-ready-core">
+          <svg class="ico-scan" viewBox="0 0 24 24" fill="none"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M8 13.5 12 10l4 3.5V16H8Z" fill="currentColor"/></svg>
+          <svg class="ico-done" viewBox="0 0 24 24" fill="none"><path d="m6 12.5 4 4 8-9" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
       </div>
-      <h1 class="oneui-Text" data-variant="headline" data-size="M" data-weight="high" data-appearance="neutral" data-text-align="center">Scanning your room</h1>
-      <p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium" data-text-align="center">This may take a few moments.</p>
+      <h1 class="oneui-Text" data-variant="headline" data-size="M" data-weight="high" data-appearance="neutral" data-text-align="center" data-ready-title>Scanning your room</h1>
+      <p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium" data-text-align="center" data-ready-sub>This may take a few moments.</p>
     </main>
   </section>
 
@@ -9528,23 +9538,28 @@ window.addEventListener('error', function(e){
     if(viewLearn) viewLearn.addEventListener('click', function(e){ e.preventDefault(); });
 
     /* ── Scanning your room (between Step 3 and Step 4) ──
-       Ring + % fill over ~3.6s, then the screen replaces itself with Step 4. */
+       Spinner ~3.2s → done (check) → the screen replaces itself with Step 4. */
     var readyTimers = [];
     function primeDeviceReady(){
       readyTimers.forEach(clearTimeout); readyTimers = [];
       var scr = document.querySelector('[data-screen="ob-device-ready"]');
       if(!scr) return;
-      var pct = scr.querySelector('[data-ready-pct]'), t0 = performance.now(), DUR = 3600;
-      (function tick(){
-        var k = Math.min(1, (performance.now() - t0) / DUR);
-        var e = 1 - Math.pow(1 - k, 2.2);   // matches the ring's ease-out
-        if(pct) pct.textContent = Math.round(e * 100) + '%';
-        if(k < 1 && scr.classList.contains('is-active')) readyTimers.push(setTimeout(tick, 40));
-      })();
+      var title = scr.querySelector('[data-ready-title]'), sub = scr.querySelector('[data-ready-sub]');
+      // done state lives on <main>, not the section — a class change on the section would
+      // re-fire the screen observer that calls this function
+      var box = scr.querySelector('.ob-ready');
+      if(box) box.classList.remove('is-done');
+      if(title) title.textContent = 'Scanning your room';
+      if(sub) sub.textContent = 'This may take a few moments.';
+      readyTimers.push(setTimeout(function(){   // done: arc closes, icon → check
+        if(box) box.classList.add('is-done');
+        if(title) title.textContent = 'Room scanned';
+        if(sub) sub.textContent = 'All set for the next step.';
+      }, 3200));
       readyTimers.push(setTimeout(function(){
         if(!scr.classList.contains('is-active')) return;
         if(typeof window.__routerReplace === 'function') window.__routerReplace('ob-cam-check'); else openScreen('ob-cam-check');
-      }, DUR + 500));
+      }, 4400));
     }
 
     /* ── Step 4 · Check your room ──
