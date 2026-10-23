@@ -56,3 +56,16 @@ Preview with any static server from the repo root, e.g. `npx serve -l 3456`, the
 - `priority:'high'` (or an unknown person) = high importance: the big card, a red badge and a place in the stack under the week strip.
 - Event-specific images must be listed in `PER_EVENT`, otherwise `CAM_STILL` replaces them with the camera's default frame.
 - Known people are in `KNOWN_PEOPLE`; photos are in `WHO_PHOTO` (`assets/people/`).
+
+## Onboarding flow (inside `home-app-oneui.html`)
+
+splash → `ob-login` (OTP sheet) → `ob-loading` (camera search, auto-advances) → steps in `OB_FLOW`:
+
+1. `ob-camselect` — "Camera found" hero per camera (`FOUND_CAMS`), Next / Exit setup (→ splash).
+2. `ob-cam-room` — "Where is this camera?" room picker (saves `state.camRooms`).
+3. `ob-cam-view` — live view + "Camera adjustment tips" animated card (pure CSS/SVG).
+   → `ob-device-ready` "Getting your device ready" (not a step; replaces itself via `__routerReplace`).
+4. `ob-cam-check` — camera card: scan, lighting check (fails first, inline fix, "check again"), objects, "Looks like your <room>" changeable.
+5. `ob-privacy` → first-day Home.
+
+Hidden for now, code kept: problem sheet on `ob-loading` (`PROBLEM_SHEET_ON`), household step (`ob-household`, out of `OB_FLOW`), TrueView/support on Step 1 (`FOUND_EXTRAS_ON`).

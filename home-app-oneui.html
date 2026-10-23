@@ -3393,6 +3393,50 @@ button.oneui-Avatar{position:relative}
 .ob-view-feed.is-full .ob-view-full,.ob-view-feed.is-full .ob-live-pill{bottom:calc(var(--Spacing-6) + 16px)}
 .ob-view-feed.is-full .ob-live-pill{bottom:calc(var(--Spacing-6) + 26px)}
 .ob-view-learn{display:inline;text-decoration:underline;text-underline-offset:3px;font-weight:600}
+/* Getting your device ready — camera in a progress ring, three checks ticking off */
+[data-screen="ob-device-ready"]{background:var(--App-Surface)}
+.ob-ready{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--Spacing-2);padding:0 var(--Spacing-8,32px) 48px;text-align:center}
+.ob-ready-art{position:relative;width:148px;height:148px;margin-bottom:var(--Spacing-5);display:grid;place-items:center}
+.ob-ready-art img{position:relative;width:64px;height:auto;filter:drop-shadow(0 10px 14px rgba(0,0,0,.15))}
+.ob-ready-ring{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.ob-ready-ring circle{fill:none;stroke-width:6}
+.ob-ready-ring .trk{stroke:var(--Primary-Minimal)}
+.ob-ready-ring .arc{stroke:var(--Primary-Bold);stroke-linecap:round;stroke-dasharray:340;stroke-dashoffset:340}
+.ob-ready-pulse{position:absolute;inset:18px;border-radius:50%;background:var(--Primary-Minimal)}
+.screen.is-active .ob-ready-ring .arc{animation:obReadyArc 3.9s cubic-bezier(.4,0,.2,1) forwards}
+.screen.is-active .ob-ready-pulse{animation:obReadyPulse 1.6s ease-in-out infinite}
+@keyframes obReadyArc{to{stroke-dashoffset:0}}
+@keyframes obReadyPulse{0%,100%{transform:scale(.94);opacity:.8}50%{transform:scale(1.04);opacity:1}}
+.ob-ready-steps{list-style:none;margin:var(--Spacing-5) 0 0;padding:0;display:flex;flex-direction:column;gap:var(--Spacing-3);text-align:left;align-self:center}
+.ob-ready-step{display:flex;align-items:center;gap:var(--Spacing-3);opacity:.45;transition:opacity var(--Motion-Duration-Short) var(--Motion-Easing-Standard)}
+.ob-ready-step.is-now,.ob-ready-step.is-done{opacity:1}
+.ob-ready-dot{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;border:2px solid #d6d3ee;color:#fff;box-sizing:border-box;transition:background var(--Motion-Duration-Short),border-color var(--Motion-Duration-Short)}
+.ob-ready-dot svg{width:14px;height:14px;opacity:0;transform:scale(.6);transition:opacity .2s,transform .25s cubic-bezier(.3,1.4,.5,1)}
+.ob-ready-step.is-now .ob-ready-dot{border-color:var(--Primary-Bold);border-top-color:transparent;animation:obReadySpin .8s linear infinite}
+.ob-ready-step.is-done .ob-ready-dot{background:#1f9d55;border-color:#1f9d55;animation:none}
+.ob-ready-step.is-done .ob-ready-dot svg{opacity:1;transform:none}
+@keyframes obReadySpin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.screen.is-active .ob-ready-ring .arc{animation:none;stroke-dashoffset:0}.ob-ready-step.is-now .ob-ready-dot{animation:none}}
+
+/* Step 4 · lighting check inside the camera card */
+.ob-feed.is-glare img{filter:brightness(1.32) contrast(.72) saturate(.75);transition:filter .6s ease}
+.ob-feed.is-glare::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 30% 18%,rgba(255,255,255,.9),rgba(255,248,225,.45) 32%,transparent 62%)}
+.ob-feed.is-fixing::after{opacity:0;transition:opacity 1.4s ease}
+.ob-feed img{transition:filter .8s ease}
+.ob-light{margin-top:var(--Spacing-3);padding:var(--Spacing-3);border-radius:var(--Shape-3);background:#fff6e8;border:1px solid #f6d7a6;display:flex;flex-direction:column;gap:var(--Spacing-2)}
+.ob-light[hidden]{display:none}
+.ob-acc.is-light-bad .ob-scan-reveal{display:none}   /* nothing else until the light is fixed */
+.ob-light-hd{display:flex;gap:var(--Spacing-2-5,10px);align-items:flex-start}
+.ob-light-ico{flex:none;width:24px;height:24px;color:var(--Warning-Bold);margin-top:1px}
+.ob-light-ico svg{width:100%;height:100%}
+.ob-light-try{margin-top:var(--Spacing-1)}
+.ob-light-fix{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px}
+.ob-light-fix li{padding-left:2px}
+.ob-light .oneui-Button{margin-top:var(--Spacing-1)}
+.ob-light-ok{display:flex;align-items:center;gap:var(--Spacing-2);margin-top:var(--Spacing-3)}
+.ob-light-ok-ico{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:#1f9d55;color:#fff}
+.ob-light-ok-ico svg{width:13px;height:13px}
+
 /* Step 3 · Camera adjustment tips — one card with a 16s illustrated loop:
    tip 1 (0–50%): camera low behind the sofa ✗ → slides up the wall (2–2.5 m) → tilts down → face ✓
    tip 2 (50–100%): camera faces the sunny window, person in shadow ✗ → moves beside the window → face ✓
@@ -4437,9 +4481,9 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 5-7 7 7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <span class="oneui-Text ob-p-step" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low" data-ob-phase>Step 1 · Your cameras</span>
-        <span class="oneui-Text" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low" data-ob-frac>1 / 4</span>
+        <span class="oneui-Text" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low" data-ob-frac>1 / 5</span>
       </div>
-      <div class="ob-segs" role="progressbar" aria-label="Setup progress" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1" aria-valuetext="Step 1 of 4" data-ob-segs><span class="ob-seg is-on"></span><span class="ob-seg"></span><span class="ob-seg"></span><span class="ob-seg"></span></div>
+      <div class="ob-segs" role="progressbar" aria-label="Setup progress" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1" aria-valuetext="Step 1 of 5" data-ob-segs><span class="ob-seg is-on"></span><span class="ob-seg"></span><span class="ob-seg"></span><span class="ob-seg"></span><span class="ob-seg"></span></div>
     </div>
     <main class="scroll oneui-Container" data-gap="5" data-padding-x="6" data-padding-y="4">
       <!-- One hero page per found camera: name as a big headline, the product shot on a stage
@@ -4509,9 +4553,9 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 5-7 7 7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <span class="oneui-Text ob-p-step" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low" data-ob-phase>Step 2 · Set up cameras</span>
-        <span class="oneui-Text" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low" data-ob-frac>2 / 4</span>
+        <span class="oneui-Text" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low" data-ob-frac>2 / 5</span>
       </div>
-      <div class="ob-segs" role="progressbar" aria-label="Setup progress" aria-valuemin="1" aria-valuemax="4" aria-valuenow="2" aria-valuetext="Step 2 of 4" data-ob-segs><span class="ob-seg is-on"></span><span class="ob-seg is-on"></span><span class="ob-seg"></span><span class="ob-seg"></span></div>
+      <div class="ob-segs" role="progressbar" aria-label="Setup progress" aria-valuemin="1" aria-valuemax="5" aria-valuenow="2" aria-valuetext="Step 2 of 5" data-ob-segs><span class="ob-seg is-on"></span><span class="ob-seg is-on"></span><span class="ob-seg"></span><span class="ob-seg"></span><span class="ob-seg"></span></div>
     </div>
     <main class="scroll oneui-Container" data-gap="5" data-padding-x="6" data-padding-y="4">
       <!-- Camera setup: one expandable card per camera picked on Step 1, built by
@@ -4595,14 +4639,111 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
         </div>
       </div>
 
-      <!-- Previous Step 2 (live view, objects, suggested room per camera) — hidden for now. -->
-      <div class="ob-camroom-old" hidden>
+    </main>
+
+    <div class="ob-footer ob-found-foot">
+      <button type="button" class="oneui-Button" data-appearance="primary" data-attention="high" data-size="12" data-ob-next disabled>Next</button>
+    </div>
+  </section>
+
+  <!-- STEP 3 · Household questionnaire -->
+  <!-- STEP 3 · Adjust the camera's view (reference: Nest setup). Live feed of the Step 1
+       camera in the room picked on Step 2, with a full-screen toggle, then tips. Replaces the
+       Household step in OB_FLOW for now (ob-household is still in the file, just not in the flow). -->
+  <section class="screen" data-screen="ob-cam-view" data-ob-step="3">
+    <div class="statusbar" aria-hidden="true"><span data-clock>08:14</span></div>
+    <div class="ob-progress">
+      <div class="ob-p-row">
+        <button type="button" class="oneui-IconButton ob-p-back" data-size="8" data-appearance="neutral" data-attention="low" data-ob-back-arrow aria-label="Back">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 5-7 7 7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <span class="oneui-Text ob-p-step" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low" data-ob-phase>Step 3 · Camera view</span>
+        <span class="oneui-Text" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low" data-ob-frac>3 / 5</span>
+      </div>
+      <div class="ob-segs" role="progressbar" aria-label="Setup progress" aria-valuemin="1" aria-valuemax="5" aria-valuenow="3" aria-valuetext="Step 3 of 5" data-ob-segs><span class="ob-seg is-on"></span><span class="ob-seg is-on"></span><span class="ob-seg is-on"></span><span class="ob-seg"></span><span class="ob-seg"></span></div>
+    </div>
+    <main class="scroll oneui-Container" data-gap="5" data-padding-x="6" data-padding-y="4">
       <div class="oneui-Container" data-gap="1">
-        <h1 class="oneui-Text" data-variant="headline" data-size="S" data-weight="high" data-appearance="neutral">Set up your cameras</h1>
-        <p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium">Check each camera's live view and confirm the room it's in.</p>
+        <h1 class="oneui-Text" data-variant="headline" data-size="M" data-weight="high" data-appearance="neutral">Adjust the camera&rsquo;s view</h1>
+        <p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium">Make sure the room is clearly in view.</p>
+      </div>
+      <div class="ob-feed ob-view-feed" data-ob-view-feed>
+        <img src="assets/livingroom-cam1.png" alt="Live view from your camera" data-ob-view-img>
+        <span class="oneui-Badge ob-live-pill" data-appearance="neutral" data-attention="high" data-size="s"><span class="oneui-IndicatorBadge" data-appearance="negative" data-size="xs" aria-hidden="true"></span>Live</span>
+        <span class="ob-view-cam" data-ob-view-cam>Tapo C201</span>
+        <button type="button" class="oneui-IconButton ob-view-full" data-size="10" data-appearance="neutral" data-attention="medium" aria-label="Full screen" aria-pressed="false" data-ob-view-full>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" data-ico="expand"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" data-ico="collapse"><path d="M9 4v5H4M20 9h-5V4M15 20v-5h5M4 15h5v5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+      <!-- Camera adjustment tips — one card, one illustrated loop: tip 1 (height and angle)
+           then tip 2 (lighting). Each acts out wrong → fix → right; the caption and dots follow. -->
+      <div class="ob-tips" role="group" aria-label="Camera adjustment tips">
+        <div class="ob-tips-hd">
+          <span class="ob-tips-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.7.6 1.1 1.3 1.1 2.2h5c0-.9.4-1.6 1.1-2.2A6 6 0 0 0 12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="ob-tips-ht">
+            <span class="oneui-Text" data-variant="label" data-size="S" data-weight="high" data-appearance="neutral" data-attention="medium">Camera adjustment tips</span>
+            <span class="oneui-Text" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low">Helps JioSense recognise people and objects clearly</span>
+          </span>
+        </div>
+        <div class="ob-tips-body">
+        <div class="ob-tips-scene"><svg viewBox="0 0 320 150" fill="none" aria-hidden="true"><defs><linearGradient id="tp-wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f8f7ff"/><stop offset="1" stop-color="#efedfc"/></linearGradient><linearGradient id="tp-beam" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="var(--Primary-Bold)" stop-opacity=".34"/><stop offset="1" stop-color="var(--Primary-Bold)" stop-opacity=".03"/></linearGradient><linearGradient id="tp-beam-w" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f0a020" stop-opacity=".08"/><stop offset="1" stop-color="#f0a020" stop-opacity=".45"/></linearGradient><linearGradient id="tp-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff6dc"/><stop offset="1" stop-color="#ffe3a6"/></linearGradient><radialGradient id="tp-glare" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff" stop-opacity="1"/><stop offset=".45" stop-color="#fff4cf" stop-opacity=".8"/><stop offset="1" stop-color="#fff4cf" stop-opacity="0"/></radialGradient><clipPath id="tp-room"><rect width="320" height="132"/></clipPath></defs><rect width="320" height="150" fill="url(#tp-wall)"/><rect y="132" width="320" height="18" fill="#e7e4f8"/><path d="M0 132h320" stroke="#d8d4f0" stroke-width="2"/><rect width="12" height="132" fill="#e3e0f6"/><g class="tp1"><g><rect x="120" y="97" width="58" height="22" rx="8" fill="#c9c1f0"/><rect x="116" y="110" width="66" height="16" rx="6" fill="#d7d0f6"/><rect x="111" y="103" width="11" height="25" rx="5.5" fill="#bdb4ea"/><rect x="176" y="103" width="11" height="25" rx="5.5" fill="#bdb4ea"/><rect x="118" y="126" width="4" height="6" rx="1" fill="#a49bd6"/><rect x="176" y="126" width="4" height="6" rx="1" fill="#a49bd6"/></g><g class="tp-sway"><g class=""><rect x="243" y="92" width="8" height="40" rx="3" fill="#4a4e6e"/><rect x="253" y="92" width="8" height="40" rx="3" fill="#4a4e6e"/><rect x="241" y="127.5" width="11" height="4.5" rx="2.2" fill="#2f3146"/><rect x="252" y="127.5" width="11" height="4.5" rx="2.2" fill="#2f3146"/><rect x="232" y="66" width="6" height="30" rx="3" fill="#6f60e6"/><rect x="266" y="66" width="6" height="30" rx="3" fill="#6f60e6"/><circle cx="235" cy="96" r="3.2" fill="#f1c4a0"/><circle cx="269" cy="96" r="3.2" fill="#f1c4a0"/><path d="M237 94V72a15 15 0 0 1 30 0V94Z" fill="#8a7cf8"/><rect x="248.5" y="61" width="7" height="7" fill="#e7b48e"/><circle cx="252" cy="52" r="11.5" fill="#f1c4a0"/><path d="M240.4 51.5a11.6 11.6 0 0 1 23.2 0q-4-6.5-11.6-6.5t-11.6 6.5Z" fill="#2d2b3a"/><circle cx="248" cy="53" r="1.4" fill="#2d2b3a"/><circle cx="256" cy="53" r="1.4" fill="#2d2b3a"/><path d="M248.5 57.5q3.5 2.6 7 0" stroke="#2d2b3a" stroke-width="1.4" stroke-linecap="round" fill="none"/></g></g><g class="tp1-ruler"><path d="M22 128V44" stroke="var(--Primary-Bold)" stroke-width="1.8" stroke-dasharray="3 3"/><path d="M18 128h8M18 44h8" stroke="var(--Primary-Bold)" stroke-width="1.8" stroke-linecap="round"/></g><g clip-path="url(#tp-room)"><g class="tp1-cam"><g transform="translate(38 0)"><path class="tp-beam" d="M0 0L250 -91L250 150Z"/></g><rect class="c-plate" x="-2" y="-8" width="5" height="16" rx="2"/><rect class="c-arm" x="2" y="-2.2" width="9" height="4.4" rx="2"/><rect class="c-body" x="9" y="-8.5" width="27" height="17" rx="8.5"/><circle class="c-face" cx="33" cy="0" r="7.5"/><circle class="c-lens" cx="33" cy="0" r="3.4"/><circle class="c-glint" cx="31.6" cy="-1.4" r="1"/><circle class="c-led" cx="19" cy="-3.6" r="1.6"/></g></g><g class="tp1-miss"><circle cx="128" cy="94" r="10" fill="var(--Negative-Bold)"/><path d="m124 90 8 8M132 90l-8 8" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></g><g class="tp1-hit"><rect class="bx bx-good" x="234" y="38" width="36" height="34" rx="6"/><rect class="ch-bg ch-good" x="222" y="12" width="60" height="22" rx="11"/><text class="ch-tx" x="252" y="27.6" text-anchor="middle">Person</text><rect class="bx bx-obj" x="106" y="91" width="86" height="43" rx="7"/><rect class="ch-bg ch-obj" x="123" y="65" width="52" height="22" rx="11"/><text class="ch-tx" x="149" y="80.6" text-anchor="middle">Sofa</text></g></g><g class="tp2"><circle class="tp2-glare" cx="272" cy="56" r="74" fill="url(#tp-glare)"/><rect x="244" y="18" width="58" height="78" rx="5" fill="url(#tp-sky)" stroke="#fff" stroke-width="4"/><g class="tp2-sun"><circle cx="283" cy="42" r="9" fill="#ffb547"/><path d="M283 27v-4M283 61v-4M268 42h-4M302 42h-4M272.4 31.4l-2.8-2.8M296.4 55.4l-2.8-2.8M272.4 52.6l-2.8 2.8M296.4 28.6l-2.8 2.8" stroke="#ffb547" stroke-width="2.2" stroke-linecap="round"/></g><path d="M273 18v78M244 57h58" stroke="#fff" stroke-width="3"/><g class="tp-sway"><g class=""><rect x="141" y="92" width="8" height="40" rx="3" fill="#4a4e6e"/><rect x="151" y="92" width="8" height="40" rx="3" fill="#4a4e6e"/><rect x="139" y="127.5" width="11" height="4.5" rx="2.2" fill="#2f3146"/><rect x="150" y="127.5" width="11" height="4.5" rx="2.2" fill="#2f3146"/><rect x="130" y="66" width="6" height="30" rx="3" fill="#6f60e6"/><rect x="164" y="66" width="6" height="30" rx="3" fill="#6f60e6"/><circle cx="133" cy="96" r="3.2" fill="#f1c4a0"/><circle cx="167" cy="96" r="3.2" fill="#f1c4a0"/><path d="M135 94V72a15 15 0 0 1 30 0V94Z" fill="#8a7cf8"/><rect x="146.5" y="61" width="7" height="7" fill="#e7b48e"/><circle cx="150" cy="52" r="11.5" fill="#f1c4a0"/><path d="M138.4 51.5a11.6 11.6 0 0 1 23.2 0q-4-6.5-11.6-6.5t-11.6 6.5Z" fill="#2d2b3a"/><circle cx="146" cy="53" r="1.4" fill="#2d2b3a"/><circle cx="154" cy="53" r="1.4" fill="#2d2b3a"/><path d="M146.5 57.5q3.5 2.6 7 0" stroke="#2d2b3a" stroke-width="1.4" stroke-linecap="round" fill="none"/></g><g class="tp2-dark" fill="#34344a"><rect x="141" y="92" width="8" height="40" rx="3"/><rect x="151" y="92" width="8" height="40" rx="3"/><path d="M135 94V72a15 15 0 0 1 30 0V94Z"/><rect x="130" y="66" width="6" height="30" rx="3"/><rect x="164" y="66" width="6" height="30" rx="3"/><rect x="146.5" y="61" width="7" height="7"/><circle cx="150" cy="52" r="11.5"/></g></g><g class="tp2-q"><circle cx="150" cy="28" r="12" fill="#fff" stroke="#e3e0f6"/><text x="150" y="34" text-anchor="middle" class="q-tx">?</text></g><g class="tp2-arrow"><path d="M60 30C110 4 178 2 222 20" stroke="var(--Primary-Bold)" stroke-width="2" stroke-dasharray="4 4" stroke-linecap="round" fill="none"/><path d="m213 13 10 7-12 4" stroke="var(--Primary-Bold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></g><g clip-path="url(#tp-room)"><g transform="translate(14 46)"><g class="tp2-camA"><g class=""><g transform="translate(38 0)"><path class="tp-beam-w" d="M0 0L196 -56L196 56Z"/></g><rect class="c-plate" x="-2" y="-8" width="5" height="16" rx="2"/><rect class="c-arm" x="2" y="-2.2" width="9" height="4.4" rx="2"/><rect class="c-body" x="9" y="-8.5" width="27" height="17" rx="8.5"/><circle class="c-face" cx="33" cy="0" r="7.5"/><circle class="c-lens" cx="33" cy="0" r="3.4"/><circle class="c-glint" cx="31.6" cy="-1.4" r="1"/><circle class="c-led" cx="19" cy="-3.6" r="1.6"/></g></g></g><g transform="translate(232 30) scale(-1 1) rotate(16)"><g class="tp2-camB"><g class=""><g transform="translate(38 0)"><path class="tp-beam" d="M0 0L230 -70L230 70Z"/></g><rect class="c-plate" x="-2" y="-8" width="5" height="16" rx="2"/><rect class="c-arm" x="2" y="-2.2" width="9" height="4.4" rx="2"/><rect class="c-body" x="9" y="-8.5" width="27" height="17" rx="8.5"/><circle class="c-face" cx="33" cy="0" r="7.5"/><circle class="c-lens" cx="33" cy="0" r="3.4"/><circle class="c-glint" cx="31.6" cy="-1.4" r="1"/><circle class="c-led" cx="19" cy="-3.6" r="1.6"/></g></g></g></g><g class="tp2-hit"><rect class="bx bx-good" x="132" y="38" width="36" height="34" rx="6"/><rect class="ch-bg ch-good" x="118" y="12" width="64" height="22" rx="11"/><text class="ch-tx" x="150" y="27.6" text-anchor="middle">Meena</text></g></g></svg></div>
+        <div class="ob-tips-tx">
+          <div class="tx1"><p class="oneui-Text" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Height and angle</p><p class="oneui-Text" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="medium">Mount it 2–2.5 m high, tilted slightly down.</p></div>
+          <div class="tx2"><p class="oneui-Text" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Lighting</p><p class="oneui-Text" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="medium">Keep light behind the camera, not in front.</p></div>
+        </div>
+        </div>
+        <span class="ob-tips-dots" aria-hidden="true"><i class="d1"></i><i class="d2"></i></span>
+      </div>
+    </main>
+    <div class="ob-footer ob-found-foot">
+      <button type="button" class="oneui-Button" data-appearance="primary" data-attention="high" data-size="12" data-ob-next>Next</button>
+    </div>
+  </section>
+
+  <!-- Between Step 3 and Step 4: "Getting your device ready". Not in OB_FLOW (no step
+       number); three checks tick off, then it swaps itself for Step 4 (router replace, so
+       Back from Step 4 returns to Step 3). See primeDeviceReady(). -->
+  <section class="screen" data-screen="ob-device-ready" style="overflow:hidden">
+    <div class="statusbar" aria-hidden="true"><span data-clock>08:14</span></div>
+    <main class="ob-ready">
+      <div class="ob-ready-art" aria-hidden="true">
+        <svg class="ob-ready-ring" viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" class="trk"/><circle cx="60" cy="60" r="54" class="arc"/></svg>
+        <span class="ob-ready-pulse"></span>
+        <img src="assets/cam-mi360.png" alt="" onerror="this.style.display='none'">
+      </div>
+      <h1 class="oneui-Text" data-variant="headline" data-size="M" data-weight="high" data-appearance="neutral" data-text-align="center">Getting your device ready</h1>
+      <p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium" data-text-align="center">This takes a few seconds. Keep your phone close to the camera.</p>
+      <ul class="ob-ready-steps">
+        <li class="ob-ready-step" data-ready-step="1"><span class="ob-ready-dot"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4.5 8.3 2.4 2.4 4.6-4.9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral">Connecting to Tapo C201</span></li>
+        <li class="ob-ready-step" data-ready-step="2"><span class="ob-ready-dot"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4.5 8.3 2.4 2.4 4.6-4.9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral">Starting the live video</span></li>
+        <li class="ob-ready-step" data-ready-step="3"><span class="ob-ready-dot"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4.5 8.3 2.4 2.4 4.6-4.9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral">Turning on smart detection</span></li>
+      </ul>
+    </main>
+  </section>
+
+  <!-- STEP 4 · Check your room. The camera card from the old Step 2: live view scan, the
+       lighting check (with an inline fix when the light is poor), objects found and
+       "Looks like your <room>" — changeable from the room sheet. Next unlocks once the
+       lighting check passes. -->
+  <section class="screen" data-screen="ob-cam-check" data-ob-step="4">
+    <div class="statusbar" aria-hidden="true"><span data-clock>08:14</span></div>
+    <div class="ob-progress">
+      <div class="ob-p-row">
+        <button type="button" class="oneui-IconButton ob-p-back" data-size="8" data-appearance="neutral" data-attention="low" data-ob-back-arrow aria-label="Back">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 5-7 7 7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <span class="oneui-Text ob-p-step" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low" data-ob-phase>Step 4 · Room check</span>
+        <span class="oneui-Text" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low" data-ob-frac>4 / 5</span>
+      </div>
+      <div class="ob-segs" role="progressbar" aria-label="Setup progress" aria-valuemin="1" aria-valuemax="5" aria-valuenow="4" aria-valuetext="Step 4 of 5" data-ob-segs><span class="ob-seg is-on"></span><span class="ob-seg is-on"></span><span class="ob-seg is-on"></span><span class="ob-seg is-on"></span><span class="ob-seg"></span></div>
+    </div>
+    <main class="scroll oneui-Container" data-gap="5" data-padding-x="6" data-padding-y="4">
+      <div class="oneui-Container" data-gap="1">
+        <h1 class="oneui-Text" data-variant="headline" data-size="M" data-weight="high" data-appearance="neutral">Check your room</h1>
+        <p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium">JioSense scanned the live view to learn this room.</p>
       </div>
       <div class="ob-camacc" data-ob-camacc></div>
-      </div>
     </main>
 
     <!-- Room-picker bottom sheet — opened by "Not quite" in the
@@ -4671,63 +4812,7 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
     </div>
 
     <div class="ob-footer ob-found-foot">
-      <button type="button" class="oneui-Button" data-appearance="neutral" data-attention="medium" data-size="12" data-ob-rescan hidden>Rescan</button>
       <button type="button" class="oneui-Button" data-appearance="primary" data-attention="high" data-size="12" data-ob-next disabled>Next</button>
-    </div>
-  </section>
-
-  <!-- STEP 3 · Household questionnaire -->
-  <!-- STEP 3 · Adjust the camera's view (reference: Nest setup). Live feed of the Step 1
-       camera in the room picked on Step 2, with a full-screen toggle, then tips. Replaces the
-       Household step in OB_FLOW for now (ob-household is still in the file, just not in the flow). -->
-  <section class="screen" data-screen="ob-cam-view" data-ob-step="3">
-    <div class="statusbar" aria-hidden="true"><span data-clock>08:14</span></div>
-    <div class="ob-progress">
-      <div class="ob-p-row">
-        <button type="button" class="oneui-IconButton ob-p-back" data-size="8" data-appearance="neutral" data-attention="low" data-ob-back-arrow aria-label="Back">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 5-7 7 7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <span class="oneui-Text ob-p-step" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low" data-ob-phase>Step 3 · Camera view</span>
-        <span class="oneui-Text" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low" data-ob-frac>3 / 4</span>
-      </div>
-      <div class="ob-segs" role="progressbar" aria-label="Setup progress" aria-valuemin="1" aria-valuemax="4" aria-valuenow="3" aria-valuetext="Step 3 of 4" data-ob-segs><span class="ob-seg is-on"></span><span class="ob-seg is-on"></span><span class="ob-seg is-on"></span><span class="ob-seg"></span></div>
-    </div>
-    <main class="scroll oneui-Container" data-gap="5" data-padding-x="6" data-padding-y="4">
-      <div class="oneui-Container" data-gap="1">
-        <h1 class="oneui-Text" data-variant="headline" data-size="M" data-weight="high" data-appearance="neutral">Adjust the camera&rsquo;s view</h1>
-        <p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium">Make sure the room is clearly in view.</p>
-      </div>
-      <div class="ob-feed ob-view-feed" data-ob-view-feed>
-        <img src="assets/livingroom-cam1.png" alt="Live view from your camera" data-ob-view-img>
-        <span class="oneui-Badge ob-live-pill" data-appearance="neutral" data-attention="high" data-size="s"><span class="oneui-IndicatorBadge" data-appearance="negative" data-size="xs" aria-hidden="true"></span>Live</span>
-        <span class="ob-view-cam" data-ob-view-cam>Tapo C201</span>
-        <button type="button" class="oneui-IconButton ob-view-full" data-size="10" data-appearance="neutral" data-attention="medium" aria-label="Full screen" aria-pressed="false" data-ob-view-full>
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" data-ico="expand"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" data-ico="collapse"><path d="M9 4v5H4M20 9h-5V4M15 20v-5h5M4 15h5v5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-      </div>
-      <!-- Camera adjustment tips — one card, one illustrated loop: tip 1 (height and angle)
-           then tip 2 (lighting). Each acts out wrong → fix → right; the caption and dots follow. -->
-      <div class="ob-tips" role="group" aria-label="Camera adjustment tips">
-        <div class="ob-tips-hd">
-          <span class="ob-tips-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.7.6 1.1 1.3 1.1 2.2h5c0-.9.4-1.6 1.1-2.2A6 6 0 0 0 12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <span class="ob-tips-ht">
-            <span class="oneui-Text" data-variant="label" data-size="S" data-weight="high" data-appearance="neutral" data-attention="medium">Camera adjustment tips</span>
-            <span class="oneui-Text" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low">Helps JioSense recognise people and objects clearly</span>
-          </span>
-        </div>
-        <div class="ob-tips-body">
-        <div class="ob-tips-scene"><svg viewBox="0 0 320 150" fill="none" aria-hidden="true"><defs><linearGradient id="tp-wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f8f7ff"/><stop offset="1" stop-color="#efedfc"/></linearGradient><linearGradient id="tp-beam" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="var(--Primary-Bold)" stop-opacity=".34"/><stop offset="1" stop-color="var(--Primary-Bold)" stop-opacity=".03"/></linearGradient><linearGradient id="tp-beam-w" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f0a020" stop-opacity=".08"/><stop offset="1" stop-color="#f0a020" stop-opacity=".45"/></linearGradient><linearGradient id="tp-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff6dc"/><stop offset="1" stop-color="#ffe3a6"/></linearGradient><radialGradient id="tp-glare" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff" stop-opacity="1"/><stop offset=".45" stop-color="#fff4cf" stop-opacity=".8"/><stop offset="1" stop-color="#fff4cf" stop-opacity="0"/></radialGradient><clipPath id="tp-room"><rect width="320" height="132"/></clipPath></defs><rect width="320" height="150" fill="url(#tp-wall)"/><rect y="132" width="320" height="18" fill="#e7e4f8"/><path d="M0 132h320" stroke="#d8d4f0" stroke-width="2"/><rect width="12" height="132" fill="#e3e0f6"/><g class="tp1"><g><rect x="120" y="97" width="58" height="22" rx="8" fill="#c9c1f0"/><rect x="116" y="110" width="66" height="16" rx="6" fill="#d7d0f6"/><rect x="111" y="103" width="11" height="25" rx="5.5" fill="#bdb4ea"/><rect x="176" y="103" width="11" height="25" rx="5.5" fill="#bdb4ea"/><rect x="118" y="126" width="4" height="6" rx="1" fill="#a49bd6"/><rect x="176" y="126" width="4" height="6" rx="1" fill="#a49bd6"/></g><g class="tp-sway"><g class=""><rect x="243" y="92" width="8" height="40" rx="3" fill="#4a4e6e"/><rect x="253" y="92" width="8" height="40" rx="3" fill="#4a4e6e"/><rect x="241" y="127.5" width="11" height="4.5" rx="2.2" fill="#2f3146"/><rect x="252" y="127.5" width="11" height="4.5" rx="2.2" fill="#2f3146"/><rect x="232" y="66" width="6" height="30" rx="3" fill="#6f60e6"/><rect x="266" y="66" width="6" height="30" rx="3" fill="#6f60e6"/><circle cx="235" cy="96" r="3.2" fill="#f1c4a0"/><circle cx="269" cy="96" r="3.2" fill="#f1c4a0"/><path d="M237 94V72a15 15 0 0 1 30 0V94Z" fill="#8a7cf8"/><rect x="248.5" y="61" width="7" height="7" fill="#e7b48e"/><circle cx="252" cy="52" r="11.5" fill="#f1c4a0"/><path d="M240.4 51.5a11.6 11.6 0 0 1 23.2 0q-4-6.5-11.6-6.5t-11.6 6.5Z" fill="#2d2b3a"/><circle cx="248" cy="53" r="1.4" fill="#2d2b3a"/><circle cx="256" cy="53" r="1.4" fill="#2d2b3a"/><path d="M248.5 57.5q3.5 2.6 7 0" stroke="#2d2b3a" stroke-width="1.4" stroke-linecap="round" fill="none"/></g></g><g class="tp1-ruler"><path d="M22 128V44" stroke="var(--Primary-Bold)" stroke-width="1.8" stroke-dasharray="3 3"/><path d="M18 128h8M18 44h8" stroke="var(--Primary-Bold)" stroke-width="1.8" stroke-linecap="round"/></g><g clip-path="url(#tp-room)"><g class="tp1-cam"><g transform="translate(38 0)"><path class="tp-beam" d="M0 0L250 -91L250 150Z"/></g><rect class="c-plate" x="-2" y="-8" width="5" height="16" rx="2"/><rect class="c-arm" x="2" y="-2.2" width="9" height="4.4" rx="2"/><rect class="c-body" x="9" y="-8.5" width="27" height="17" rx="8.5"/><circle class="c-face" cx="33" cy="0" r="7.5"/><circle class="c-lens" cx="33" cy="0" r="3.4"/><circle class="c-glint" cx="31.6" cy="-1.4" r="1"/><circle class="c-led" cx="19" cy="-3.6" r="1.6"/></g></g><g class="tp1-miss"><circle cx="128" cy="94" r="10" fill="var(--Negative-Bold)"/><path d="m124 90 8 8M132 90l-8 8" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></g><g class="tp1-hit"><rect class="bx bx-good" x="234" y="38" width="36" height="34" rx="6"/><rect class="ch-bg ch-good" x="222" y="12" width="60" height="22" rx="11"/><text class="ch-tx" x="252" y="27.6" text-anchor="middle">Person</text><rect class="bx bx-obj" x="106" y="91" width="86" height="43" rx="7"/><rect class="ch-bg ch-obj" x="123" y="65" width="52" height="22" rx="11"/><text class="ch-tx" x="149" y="80.6" text-anchor="middle">Sofa</text></g></g><g class="tp2"><circle class="tp2-glare" cx="272" cy="56" r="74" fill="url(#tp-glare)"/><rect x="244" y="18" width="58" height="78" rx="5" fill="url(#tp-sky)" stroke="#fff" stroke-width="4"/><g class="tp2-sun"><circle cx="283" cy="42" r="9" fill="#ffb547"/><path d="M283 27v-4M283 61v-4M268 42h-4M302 42h-4M272.4 31.4l-2.8-2.8M296.4 55.4l-2.8-2.8M272.4 52.6l-2.8 2.8M296.4 28.6l-2.8 2.8" stroke="#ffb547" stroke-width="2.2" stroke-linecap="round"/></g><path d="M273 18v78M244 57h58" stroke="#fff" stroke-width="3"/><g class="tp-sway"><g class=""><rect x="141" y="92" width="8" height="40" rx="3" fill="#4a4e6e"/><rect x="151" y="92" width="8" height="40" rx="3" fill="#4a4e6e"/><rect x="139" y="127.5" width="11" height="4.5" rx="2.2" fill="#2f3146"/><rect x="150" y="127.5" width="11" height="4.5" rx="2.2" fill="#2f3146"/><rect x="130" y="66" width="6" height="30" rx="3" fill="#6f60e6"/><rect x="164" y="66" width="6" height="30" rx="3" fill="#6f60e6"/><circle cx="133" cy="96" r="3.2" fill="#f1c4a0"/><circle cx="167" cy="96" r="3.2" fill="#f1c4a0"/><path d="M135 94V72a15 15 0 0 1 30 0V94Z" fill="#8a7cf8"/><rect x="146.5" y="61" width="7" height="7" fill="#e7b48e"/><circle cx="150" cy="52" r="11.5" fill="#f1c4a0"/><path d="M138.4 51.5a11.6 11.6 0 0 1 23.2 0q-4-6.5-11.6-6.5t-11.6 6.5Z" fill="#2d2b3a"/><circle cx="146" cy="53" r="1.4" fill="#2d2b3a"/><circle cx="154" cy="53" r="1.4" fill="#2d2b3a"/><path d="M146.5 57.5q3.5 2.6 7 0" stroke="#2d2b3a" stroke-width="1.4" stroke-linecap="round" fill="none"/></g><g class="tp2-dark" fill="#34344a"><rect x="141" y="92" width="8" height="40" rx="3"/><rect x="151" y="92" width="8" height="40" rx="3"/><path d="M135 94V72a15 15 0 0 1 30 0V94Z"/><rect x="130" y="66" width="6" height="30" rx="3"/><rect x="164" y="66" width="6" height="30" rx="3"/><rect x="146.5" y="61" width="7" height="7"/><circle cx="150" cy="52" r="11.5"/></g></g><g class="tp2-q"><circle cx="150" cy="28" r="12" fill="#fff" stroke="#e3e0f6"/><text x="150" y="34" text-anchor="middle" class="q-tx">?</text></g><g class="tp2-arrow"><path d="M60 30C110 4 178 2 222 20" stroke="var(--Primary-Bold)" stroke-width="2" stroke-dasharray="4 4" stroke-linecap="round" fill="none"/><path d="m213 13 10 7-12 4" stroke="var(--Primary-Bold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></g><g clip-path="url(#tp-room)"><g transform="translate(14 46)"><g class="tp2-camA"><g class=""><g transform="translate(38 0)"><path class="tp-beam-w" d="M0 0L196 -56L196 56Z"/></g><rect class="c-plate" x="-2" y="-8" width="5" height="16" rx="2"/><rect class="c-arm" x="2" y="-2.2" width="9" height="4.4" rx="2"/><rect class="c-body" x="9" y="-8.5" width="27" height="17" rx="8.5"/><circle class="c-face" cx="33" cy="0" r="7.5"/><circle class="c-lens" cx="33" cy="0" r="3.4"/><circle class="c-glint" cx="31.6" cy="-1.4" r="1"/><circle class="c-led" cx="19" cy="-3.6" r="1.6"/></g></g></g><g transform="translate(232 30) scale(-1 1) rotate(16)"><g class="tp2-camB"><g class=""><g transform="translate(38 0)"><path class="tp-beam" d="M0 0L230 -70L230 70Z"/></g><rect class="c-plate" x="-2" y="-8" width="5" height="16" rx="2"/><rect class="c-arm" x="2" y="-2.2" width="9" height="4.4" rx="2"/><rect class="c-body" x="9" y="-8.5" width="27" height="17" rx="8.5"/><circle class="c-face" cx="33" cy="0" r="7.5"/><circle class="c-lens" cx="33" cy="0" r="3.4"/><circle class="c-glint" cx="31.6" cy="-1.4" r="1"/><circle class="c-led" cx="19" cy="-3.6" r="1.6"/></g></g></g></g><g class="tp2-hit"><rect class="bx bx-good" x="132" y="38" width="36" height="34" rx="6"/><rect class="ch-bg ch-good" x="118" y="12" width="64" height="22" rx="11"/><text class="ch-tx" x="150" y="27.6" text-anchor="middle">Meena</text></g></g></svg></div>
-        <div class="ob-tips-tx">
-          <div class="tx1"><p class="oneui-Text" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Height and angle</p><p class="oneui-Text" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="medium">Mount it 2–2.5 m high, tilted slightly down.</p></div>
-          <div class="tx2"><p class="oneui-Text" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Lighting</p><p class="oneui-Text" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="medium">Keep light behind the camera, not in front.</p></div>
-        </div>
-        </div>
-        <span class="ob-tips-dots" aria-hidden="true"><i class="d1"></i><i class="d2"></i></span>
-      </div>
-    </main>
-    <div class="ob-footer ob-found-foot">
-      <button type="button" class="oneui-Button" data-appearance="primary" data-attention="high" data-size="12" data-ob-next>Next</button>
     </div>
   </section>
 
@@ -4739,9 +4824,9 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 5-7 7 7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <span class="oneui-Text ob-p-step" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low" data-ob-phase>Step 3 · Household</span>
-        <span class="oneui-Text" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low" data-ob-frac>3 / 4</span>
+        <span class="oneui-Text" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low" data-ob-frac>3 / 5</span>
       </div>
-      <div class="ob-segs" role="progressbar" aria-label="Setup progress" aria-valuemin="1" aria-valuemax="4" aria-valuenow="3" aria-valuetext="Step 3 of 4" data-ob-segs><span class="ob-seg is-on"></span><span class="ob-seg is-on"></span><span class="ob-seg is-on"></span><span class="ob-seg"></span></div>
+      <div class="ob-segs" role="progressbar" aria-label="Setup progress" aria-valuemin="1" aria-valuemax="5" aria-valuenow="3" aria-valuetext="Step 3 of 5" data-ob-segs><span class="ob-seg is-on"></span><span class="ob-seg is-on"></span><span class="ob-seg is-on"></span><span class="ob-seg"></span><span class="ob-seg"></span></div>
     </div>
     <main class="scroll oneui-Container" data-gap="6" data-padding-x="6" data-padding-y="4">
       <div class="oneui-Container" data-gap="1">
@@ -5025,17 +5110,17 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
   </div>
 
   <!-- STEP 4 · Privacy consent -->
-  <section class="screen" data-screen="ob-privacy" data-ob-step="4">
+  <section class="screen" data-screen="ob-privacy" data-ob-step="5">
     <div class="statusbar" aria-hidden="true"><span data-clock>08:14</span></div>
     <div class="ob-progress">
       <div class="ob-p-row">
         <button type="button" class="oneui-IconButton ob-p-back" data-size="8" data-appearance="neutral" data-attention="low" data-ob-back-arrow aria-label="Back">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 5-7 7 7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
-        <span class="oneui-Text ob-p-step" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low" data-ob-phase>Step 4 · Privacy</span>
-        <span class="oneui-Text" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low" data-ob-frac>4 / 4</span>
+        <span class="oneui-Text ob-p-step" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral" data-attention="low" data-ob-phase>Step 5 · Privacy</span>
+        <span class="oneui-Text" data-variant="label" data-size="XS" data-appearance="neutral" data-attention="low" data-ob-frac>5 / 5</span>
       </div>
-      <div class="ob-segs" role="progressbar" aria-label="Setup progress" aria-valuemin="1" aria-valuemax="4" aria-valuenow="4" aria-valuetext="Step 4 of 4" data-ob-segs><span class="ob-seg is-on"></span><span class="ob-seg is-on"></span><span class="ob-seg is-on"></span><span class="ob-seg is-on"></span></div>
+      <div class="ob-segs" role="progressbar" aria-label="Setup progress" aria-valuemin="1" aria-valuemax="5" aria-valuenow="5" aria-valuetext="Step 5 of 5" data-ob-segs><span class="ob-seg is-on"></span><span class="ob-seg is-on"></span><span class="ob-seg is-on"></span><span class="ob-seg is-on"></span><span class="ob-seg is-on"></span></div>
     </div>
     <main class="scroll oneui-Container" data-gap="5" data-padding-x="6" data-padding-y="4">
       <div class="oneui-Container" data-gap="1">
@@ -7975,6 +8060,8 @@ window.addEventListener('error', function(e){
      poking the hash and hoping the router picks it up. */
   window.__routerOpen = function(name){ if(byName[name]) open(name); };
   window.__routerBack = back;
+  // swap the top screen (no history entry) — loading screens use it so Back skips them
+  window.__routerReplace = function(name){ if(!byName[name]) return; stack[stack.length-1] = name; render(); };
 
   /* Stage-level "Onboarding" link — jumps into the splash carousel
      from any screen via the router so a reviewer can walk the
@@ -8545,11 +8632,13 @@ window.addEventListener('error', function(e){
          all set" screen) was removed too — the last step now hands
          off straight to Home. Flow is now 4 screens total;
          percentages re-spread evenly. */
-      { id:'ob-camselect',      phase:'Step 1 · Your cameras', frac:'1 / 4', pct:25 },
-      { id:'ob-cam-room',       phase:'Step 2 · Set up cameras', frac:'2 / 4', pct:50 },
+      { id:'ob-camselect',      phase:'Step 1 · Your cameras', frac:'1 / 5', pct:20 },
+      { id:'ob-cam-room',       phase:'Step 2 · Set up cameras', frac:'2 / 5', pct:40 },
       // Household is out of the flow for now; Step 3 is the camera-view check instead
-      { id:'ob-cam-view',       phase:'Step 3 · Camera view', frac:'3 / 4', pct:75 },
-      { id:'ob-privacy',        phase:'Step 4 · Privacy',     frac:'4 / 4', pct:100 }
+      { id:'ob-cam-view',       phase:'Step 3 · Camera view', frac:'3 / 5', pct:60 },
+      // reached through the "Getting your device ready" screen (ob-device-ready)
+      { id:'ob-cam-check',      phase:'Step 4 · Room check',  frac:'4 / 5', pct:80 },
+      { id:'ob-privacy',        phase:'Step 5 · Privacy',     frac:'5 / 5', pct:100 }
     ];
     var indexOf = {};
     OB_FLOW.forEach(function(s, i){ indexOf[s.id] = i; });
@@ -8572,7 +8661,8 @@ window.addEventListener('error', function(e){
         schedules:  {}   /* keyed by staff role, e.g. schedules.maid = { days:['Mon',...], slots:[{in,out},...] } */
       },
       gates: { dependents:null, staff:null, pets:null, objects:null },
-      consent: false
+      consent: false,
+      lightOK: false   /* Step 4 lighting check — fails first, passes after the user fixes it */
     };
     var CAM_LABELS = { tapo:'Tapo', trueview:'TrueView', cpplus:'CP Plus' };
 
@@ -8622,7 +8712,7 @@ window.addEventListener('error', function(e){
          observer picking up the router's class change. Both paths
          call the same idempotent primeCamRoom(), so this is safe
          even if the observer also fires. */
-      if(nextId === 'ob-cam-room' && typeof primeCamRoom === 'function') primeCamRoom();
+      if(nextId === 'ob-cam-check'){ openScreen('ob-device-ready'); return; }   // loading beat first
       openScreen(nextId);
     }
     function goBack(){
@@ -8668,6 +8758,7 @@ window.addEventListener('error', function(e){
       if(id === 'ob-privacy')   { next.disabled = !state.consent; }
       if(id === 'ob-camselect') { next.disabled = state.cams.length === 0; }
       if(id === 'ob-cam-room')  { next.disabled = !whereRoom(); }
+      if(id === 'ob-cam-check') { next.disabled = !state.lightOK; }
     }
     syncNextEnabled('ob-household');
     syncNextEnabled('ob-privacy');
@@ -9170,6 +9261,21 @@ window.addEventListener('error', function(e){
             '<button type="button" class="oneui-Button" data-appearance="neutral" data-attention="medium" data-size="10" data-full-width="true" data-ob-mark-cancel>Cancel</button>' +
             '<button type="button" class="oneui-Button" data-appearance="primary" data-attention="high" data-size="10" data-full-width="true" data-ob-mark-next disabled>Next</button>' +
           '</div>' +
+          // 0) lighting check — a fix-it panel when the light is poor, a quiet pass line when fine
+          '<div class="ob-light" data-ob-light hidden role="alert">' +
+            '<div class="ob-light-hd"><span class="ob-light-ico"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4 2.8 19.5h18.4Z" fill="currentColor"/><path d="M12 10v4.2" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17" r="1.2" fill="#fff"/></svg></span><div>' +
+              '<p class="oneui-Text" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Too much light in view</p>' +
+              '<p class="oneui-Text" data-variant="body" data-size="XS" data-appearance="neutral" data-attention="medium">A bright window is in the picture, so faces look dark and JioSense may not recognise people.</p>' +
+            '</div></div>' +
+            '<p class="oneui-Text ob-light-try" data-variant="label" data-size="XS" data-weight="high" data-appearance="neutral">Try one of these</p>' +
+            '<ol class="ob-light-fix">' +
+              '<li class="oneui-Text" data-variant="body" data-size="XS" data-appearance="neutral">Turn the camera away from the window</li>' +
+              '<li class="oneui-Text" data-variant="body" data-size="XS" data-appearance="neutral">Close the curtains or blinds</li>' +
+              '<li class="oneui-Text" data-variant="body" data-size="XS" data-appearance="neutral">At night, switch on a room light</li>' +
+            '</ol>' +
+            '<button type="button" class="oneui-Button" data-appearance="primary" data-attention="medium" data-size="10" data-full-width="true" data-ob-light-retry>I&rsquo;ve fixed it, check again</button>' +
+          '</div>' +
+          '<div class="ob-light-ok ob-scan-reveal" data-ob-light-ok><span class="ob-light-ok-ico"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4.5 8.3 2.4 2.4 4.6-4.9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="oneui-Text" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral">Lighting looks good</span></div>' +
           // 1) what the scan found …
           '<div class="ob-scan-reveal ob-obj-block" data-ob-scan-reveal>' +
             '<div class="ob-obj-hd">' +
@@ -9180,7 +9286,7 @@ window.addEventListener('error', function(e){
           '</div>' +
           // 2) … then the room it concludes from them, changeable inline
           '<div class="ob-scan-reveal ob-room-guess" data-ob-room-reveal>' +
-            '<span class="oneui-Text" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral" data-ob-room-lead>' + (room === c.room ? 'We think this is your' : 'This camera is in your') + '</span>' +
+            '<span class="oneui-Text" data-variant="body" data-size="S" data-weight="high" data-appearance="neutral" data-ob-room-lead>' + (room === c.room ? 'Looks like your' : 'This camera is in your') + '</span>' +
             '<button type="button" class="oneui-Button ob-room-btn" data-appearance="primary" data-attention="medium" data-size="8" data-ob-room-select aria-haspopup="dialog" aria-label="Room for ' + c.name + ': ' + room + '. Change room">' +
               '<span data-ob-room-val>' + room + '</span>' + CHEV_DOWN +
             '</button>' +
@@ -9192,6 +9298,10 @@ window.addEventListener('error', function(e){
         if(el.classList.contains('is-open')) setCamAccOpen(null); else setCamAccOpen(id);
       });
       el.querySelector('[data-ob-room-select]').addEventListener('click', function(){ openRoomSheet(id); });
+      el.querySelector('[data-ob-light-retry]').addEventListener('click', function(){
+        state.lightOK = true;   // the user fixed it: re-run the scan, which now passes
+        scanCamCard(el, { relight: true });
+      });
       return el;
     }
     function renderCamAcc(){
@@ -9208,19 +9318,34 @@ window.addEventListener('error', function(e){
       var id = card.getAttribute('data-ob-acc');
       // scan the live view → objects land one by one → then the room guess
       var line = card.querySelector('[data-ob-scan-line]'), tag = card.querySelector('[data-ob-scan-tag]');
-      var objs = card.querySelector('[data-ob-scan-reveal]'), roomGuess = card.querySelector('[data-ob-room-reveal]');
+      var objs = card.querySelector('.ob-obj-block'), roomGuess = card.querySelector('[data-ob-room-reveal]');
+      var light = card.querySelector('[data-ob-light]'), lightOk = card.querySelector('[data-ob-light-ok]');
+      var feed = card.querySelector('.ob-feed');
       (camScanTimers[id] || []).forEach(clearTimeout);
-      [objs, roomGuess].forEach(function(n){ if(n) n.classList.remove('is-in'); });
+      [objs, roomGuess, lightOk].forEach(function(n){ if(n) n.classList.remove('is-in'); });
+      if(light) light.hidden = true;
+      if(feed) feed.classList.toggle('is-glare', !state.lightOK);
       if(line) line.hidden = false;
-      if(tag) tag.hidden = false;
+      if(tag){ tag.hidden = false; tag.textContent = (opts && opts.relight) ? 'Checking lighting…' : 'Scanning room…'; }
+      if(feed && opts && opts.relight) feed.classList.add('is-fixing');
       var chips = objs ? objs.querySelectorAll('.ob-obj-chip').length : 0;
       camScanTimers[id] = [
         setTimeout(function(){
           if(line) line.hidden = true;
           if(tag) tag.hidden = true;
-          if(objs) objs.classList.add('is-in');
-        }, 1500),
-        setTimeout(function(){ if(roomGuess) roomGuess.classList.add('is-in'); }, 1500 + 200 + chips * 90)
+          if(feed) feed.classList.remove('is-fixing');
+          card.classList.toggle('is-light-bad', !state.lightOK);
+          if(!state.lightOK){   // poor light: stop here and help the user fix it
+            if(light) light.hidden = false;
+            syncNextEnabled('ob-cam-check');
+            return;
+          }
+          if(feed) feed.classList.remove('is-glare');
+          if(lightOk) lightOk.classList.add('is-in');
+          syncNextEnabled('ob-cam-check');
+        }, 1600),
+        setTimeout(function(){ if(state.lightOK && objs) objs.classList.add('is-in'); }, 1600 + 350),
+        setTimeout(function(){ if(state.lightOK && roomGuess) roomGuess.classList.add('is-in'); }, 1600 + 550 + chips * 90)
       ];
     }
     function setCamAccOpen(id, opts){
@@ -9373,8 +9498,28 @@ window.addEventListener('error', function(e){
     var viewLearn = document.querySelector('[data-ob-view-learn]');
     if(viewLearn) viewLearn.addEventListener('click', function(e){ e.preventDefault(); });
 
+    /* ── Getting your device ready (between Step 3 and Step 4) ──
+       Three checks tick off, then the screen replaces itself with Step 4. */
+    var readyTimers = [];
+    function primeDeviceReady(){
+      readyTimers.forEach(clearTimeout); readyTimers = [];
+      var scr = document.querySelector('[data-screen="ob-device-ready"]');
+      if(!scr) return;
+      var steps = scr.querySelectorAll('[data-ready-step]');
+      steps.forEach(function(li, i){ li.classList.remove('is-done'); li.classList.toggle('is-now', i === 0); });
+      steps.forEach(function(li, i){
+        readyTimers.push(setTimeout(function(){
+          li.classList.remove('is-now'); li.classList.add('is-done');
+          if(steps[i+1]) steps[i+1].classList.add('is-now');
+        }, 1100 * (i + 1)));
+      });
+      readyTimers.push(setTimeout(function(){
+        if(!scr.classList.contains('is-active')) return;
+        if(typeof window.__routerReplace === 'function') window.__routerReplace('ob-cam-check'); else openScreen('ob-cam-check');
+      }, 1100 * steps.length + 600));
+    }
+
     function primeCamRoom(opts){
-      primeWhere();
       renderCamAcc();
       var first = camAccIds()[0];
       if(camAcc) camAcc.querySelectorAll('.ob-acc').forEach(function(c){ c.classList.remove('is-open'); });
@@ -9930,7 +10075,7 @@ window.addEventListener('error', function(e){
           if(card){
             var c = CAM_INFO[roomSheetCam];
             card.querySelector('[data-ob-room-val]').textContent = name;
-            card.querySelector('[data-ob-room-lead]').textContent = (name === c.room) ? 'We think this is your' : 'This camera is in your';
+            card.querySelector('[data-ob-room-lead]').textContent = (name === c.room) ? 'Looks like your' : 'This camera is in your';
             card.querySelector('[data-ob-room-select]').setAttribute('aria-label', 'Room for ' + c.name + ': ' + name + '. Change room');
           }
         }
@@ -9953,7 +10098,9 @@ window.addEventListener('error', function(e){
         if(id === 'ob-loading') primeLoading();
         if(id === 'ob-cam-view') primeCamView();
         if(id === 'ob-cam-connecting') primeConnecting();
-        if(id === 'ob-cam-room') primeCamRoom();
+        if(id === 'ob-cam-room') primeWhere();
+        if(id === 'ob-device-ready') primeDeviceReady();
+        if(id === 'ob-cam-check') primeCamRoom();
       });
     });
     document.querySelectorAll('[data-screen^="ob-"]').forEach(function(s){
@@ -9969,10 +10116,12 @@ window.addEventListener('error', function(e){
       if(bootId && indexOf[bootId] != null){
         paintProgress(bootId);
         if(bootId === 'ob-cam-connecting') primeConnecting();
-        if(bootId === 'ob-cam-room') primeCamRoom();
+        if(bootId === 'ob-cam-room') primeWhere();
+        if(bootId === 'ob-cam-check') primeCamRoom();
       }
       if(bootId === 'ob-loading') primeLoading();
       if(bootId === 'ob-cam-view') primeCamView();
+      if(bootId === 'ob-device-ready') primeDeviceReady();
     }
   })();
 
