@@ -3336,7 +3336,7 @@ button.oneui-Avatar{position:relative}
 .ob-found-foot [data-ob-found-add]{margin-left:auto;min-width:120px}
 [data-ob-providers][hidden],.ob-found-help[hidden]{display:none}
 .ob-found-foot [data-ob-next]{margin-left:auto;min-width:120px}
-.ob-found-foot [data-ob-rescan][hidden],.ob-camroom-old[hidden],.ob-where-custom[hidden]{display:none}
+.ob-found-foot [data-ob-rescan][hidden],.ob-camroom-old[hidden],.ob-where-custom[hidden],.ob-where-new[hidden]{display:none}
 /* Step 2 · Where is this camera? — grouped radio lists on white cards */
 .ob-where-list{display:flex;flex-direction:column;padding:0 var(--Spacing-4);background:var(--Surface-Fill-Default);border-radius:var(--Shape-4);box-shadow:0 1px 3px rgba(0,0,0,.06),0 6px 18px rgba(0,0,0,.05)}
 .ob-where-row{display:flex;align-items:center;gap:var(--Spacing-3);padding:var(--Spacing-3) 0;cursor:pointer}
@@ -4447,7 +4447,8 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
           </label>
         </div>
       </div>
-      <div class="oneui-Container" data-gap="2">
+      <!-- "Create new" rooms — hidden for now -->
+      <div class="oneui-Container ob-where-new" data-gap="2" hidden>
         <p class="oneui-Text" data-variant="label" data-size="S" data-weight="high" data-appearance="neutral" data-attention="medium">Create new</p>
         <div class="ob-where-list" role="radiogroup" aria-label="Create new">
           <label class="ob-where-row">
