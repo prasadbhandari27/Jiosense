@@ -8480,12 +8480,9 @@ window.addEventListener('error', function(e){
       if(state.cams.length) goNext('ob-camselect');
     }
     if(foundAdd)  foundAdd.addEventListener('click', function(){ decideFound(true); });
-    // Exit setup: leave onboarding for Home (setup isn't marked done, so it runs again next launch)
+    // Exit setup: leave onboarding and go back to the splash screens
     var foundExit = document.querySelector('[data-ob-found-exit]');
-    if(foundExit) foundExit.addEventListener('click', function(){
-      if(typeof setFreshHome === 'function') setFreshHome(true);
-      openScreen('my-home');
-    });
+    if(foundExit) foundExit.addEventListener('click', function(){ openScreen('splash'); });
     var foundOther = document.querySelector('[data-ob-found-other]');
     if(foundOther) foundOther.addEventListener('click', function(e){ e.preventDefault(); openScreen('ob-loading'); });
     if(foundSkip) foundSkip.addEventListener('click', function(){ decideFound(false); });
