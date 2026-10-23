@@ -62,7 +62,7 @@ Preview with any static server from the repo root, e.g. `npx serve -l 3456`, the
 splash → `ob-login` (OTP sheet) → `ob-loading` (camera search, auto-advances) → steps in `OB_FLOW`:
 
 1. `ob-camselect` — "Camera found" hero per camera (`FOUND_CAMS`), Next / Exit setup (→ splash).
-2. `ob-cam-room` — "Where is this camera?" room picker (saves `state.camRooms`).
+2. `ob-cam-room` — "Where is this camera?" room picker (saves `state.camRooms`). **Out of `OB_FLOW` for now**; the room is confirmed on Step 4.
 3. `ob-cam-view` — live view + "Camera adjustment tips" animated card (pure CSS/SVG).
    → `ob-device-ready` "Scanning your room" (not a step; replaces itself via `__routerReplace`).
 4. `ob-cam-check` — Step 3 layout: live view (scan), "Looks like your <room>" row (room sheet), then lighting result (fails first, inline fix, "check again"). `primeCamCheck()`.
