@@ -3331,9 +3331,9 @@ button.oneui-Avatar{position:relative}
 .ob-found-dots i.is-on{width:20px;border-radius:4px;background:var(--Primary-Bold,var(--Primary-Fill-Bold))}
 .ob-found-foot{justify-content:space-between;align-items:center}
 .ob-found-foot .oneui-Button{flex:none}
-.ob-found-foot [data-ob-found-skip]{margin-left:calc(var(--Spacing-3) * -1)}
+.ob-found-foot [data-ob-found-skip],.ob-found-foot [data-ob-found-exit]{margin-left:calc(var(--Spacing-3) * -1)}
 .ob-found-foot [data-ob-found-skip][hidden]{display:none}
-.ob-found-foot [data-ob-found-add]{margin-left:auto;min-width:148px}
+.ob-found-foot [data-ob-found-add]{margin-left:auto;min-width:120px}
 [data-ob-providers][hidden],.ob-found-help[hidden]{display:none}
 .ob-found-other a{text-decoration:underline;text-underline-offset:3px;font-weight:600}
 
@@ -4322,7 +4322,7 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
     <main class="scroll oneui-Container" data-gap="5" data-padding-x="6" data-padding-y="4">
       <!-- One hero page per found camera: name as a big headline, the product shot on a stage
            of floating shapes. Pages are built by renderFound() from FOUND_CAMS; the footer's
-           Add camera / Skip this camera decide the current one and move to the next. -->
+           Next adds the current camera and moves on; Exit setup leaves onboarding. -->
       <div class="ob-found" data-ob-found>
         <div class="ob-found-track" data-ob-found-track></div>
       </div>
@@ -4374,8 +4374,8 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
     </div>
 
     <div class="ob-footer ob-found-foot">
-      <button type="button" class="oneui-Button" data-appearance="primary" data-attention="low" data-size="12" data-ob-found-skip>Skip this camera</button>
-      <button type="button" class="oneui-Button" data-appearance="primary" data-attention="high" data-size="12" data-ob-found-add>Add camera</button>
+      <button type="button" class="oneui-Button" data-appearance="primary" data-attention="low" data-size="12" data-ob-found-exit>Exit setup</button>
+      <button type="button" class="oneui-Button" data-appearance="primary" data-attention="high" data-size="12" data-ob-found-add>Next</button>
     </div>
   </section>
 
@@ -8480,6 +8480,12 @@ window.addEventListener('error', function(e){
       if(state.cams.length) goNext('ob-camselect');
     }
     if(foundAdd)  foundAdd.addEventListener('click', function(){ decideFound(true); });
+    // Exit setup: leave onboarding for Home (setup isn't marked done, so it runs again next launch)
+    var foundExit = document.querySelector('[data-ob-found-exit]');
+    if(foundExit) foundExit.addEventListener('click', function(){
+      if(typeof setFreshHome === 'function') setFreshHome(true);
+      openScreen('my-home');
+    });
     var foundOther = document.querySelector('[data-ob-found-other]');
     if(foundOther) foundOther.addEventListener('click', function(e){ e.preventDefault(); openScreen('ob-loading'); });
     if(foundSkip) foundSkip.addEventListener('click', function(){ decideFound(false); });
