@@ -8570,6 +8570,7 @@ window.addEventListener('error', function(e){
        primeCamRoom, so revisiting via Back-then-forward replays it
        instead of leaving a stale timer. */
     var loadingTimer = null, loadingTimer2 = null, loadingTimer3 = null;
+    var PROBLEM_SHEET_ON = false;
     function primeLoading(){
       // Reset state
       [loadingTimer, loadingTimer2, loadingTimer3].forEach(function(t){ if(t) clearTimeout(t); });
@@ -8581,11 +8582,13 @@ window.addEventListener('error', function(e){
       loadingTimer = setTimeout(function(){
         if(title){ title.style.opacity='0'; setTimeout(function(){ title.textContent='Still looking…'; title.style.opacity='1'; }, 200); }
       }, 2800);
-      // Phase 3: Problem sheet slides up at 4s
+      // Phase 3 at 4s: the "Is camera plugged in?" sheet slides up. Switched off for now
+      // (PROBLEM_SHEET_ON) — the scan finds the camera and opens Step 1 instead.
       loadingTimer2 = setTimeout(function(){
-        if(sheet) sheet.classList.add('is-up');
+        if(PROBLEM_SHEET_ON){ if(sheet) sheet.classList.add('is-up'); return; }
+        var cur = document.querySelector('section.screen.is-active');
+        if(cur && cur.getAttribute('data-screen') === 'ob-loading') openScreen('ob-camselect');
       }, 4000);
-      // No auto-advance — user must tap Yes or No on the problem sheet
       // Problem sheet buttons
       var closeBtn = document.getElementById('ob-problem-close');
       var yesBtn = document.getElementById('ob-ps-yes');
