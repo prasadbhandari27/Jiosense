@@ -3393,30 +3393,33 @@ button.oneui-Avatar{position:relative}
 .ob-view-feed.is-full .ob-view-full,.ob-view-feed.is-full .ob-live-pill{bottom:calc(var(--Spacing-6) + 16px)}
 .ob-view-feed.is-full .ob-live-pill{bottom:calc(var(--Spacing-6) + 26px)}
 .ob-view-learn{display:inline;text-decoration:underline;text-underline-offset:3px;font-weight:600}
-/* Getting your device ready — camera in a progress ring, three checks ticking off */
+/* Getting your device ready — Google-style: thin indeterminate bar, title, device with
+   soft ripples, four bouncing dots */
 [data-screen="ob-device-ready"]{background:var(--App-Surface)}
-.ob-ready{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--Spacing-2);padding:0 var(--Spacing-8,32px) 48px;text-align:center}
-.ob-ready-art{position:relative;width:148px;height:148px;margin-bottom:var(--Spacing-5);display:grid;place-items:center}
-.ob-ready-art img{position:relative;width:64px;height:auto;filter:drop-shadow(0 10px 14px rgba(0,0,0,.15))}
-.ob-ready-ring{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
-.ob-ready-ring circle{fill:none;stroke-width:6}
-.ob-ready-ring .trk{stroke:var(--Primary-Minimal)}
-.ob-ready-ring .arc{stroke:var(--Primary-Bold);stroke-linecap:round;stroke-dasharray:340;stroke-dashoffset:340}
-.ob-ready-pulse{position:absolute;inset:18px;border-radius:50%;background:var(--Primary-Minimal)}
-.screen.is-active .ob-ready-ring .arc{animation:obReadyArc 3.9s cubic-bezier(.4,0,.2,1) forwards}
-.screen.is-active .ob-ready-pulse{animation:obReadyPulse 1.6s ease-in-out infinite}
-@keyframes obReadyArc{to{stroke-dashoffset:0}}
-@keyframes obReadyPulse{0%,100%{transform:scale(.94);opacity:.8}50%{transform:scale(1.04);opacity:1}}
-.ob-ready-steps{list-style:none;margin:var(--Spacing-5) 0 0;padding:0;display:flex;flex-direction:column;gap:var(--Spacing-3);text-align:left;align-self:center}
-.ob-ready-step{display:flex;align-items:center;gap:var(--Spacing-3);opacity:.45;transition:opacity var(--Motion-Duration-Short) var(--Motion-Easing-Standard)}
-.ob-ready-step.is-now,.ob-ready-step.is-done{opacity:1}
-.ob-ready-dot{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;border:2px solid #d6d3ee;color:#fff;box-sizing:border-box;transition:background var(--Motion-Duration-Short),border-color var(--Motion-Duration-Short)}
-.ob-ready-dot svg{width:14px;height:14px;opacity:0;transform:scale(.6);transition:opacity .2s,transform .25s cubic-bezier(.3,1.4,.5,1)}
-.ob-ready-step.is-now .ob-ready-dot{border-color:var(--Primary-Bold);border-top-color:transparent;animation:obReadySpin .8s linear infinite}
-.ob-ready-step.is-done .ob-ready-dot{background:#1f9d55;border-color:#1f9d55;animation:none}
-.ob-ready-step.is-done .ob-ready-dot svg{opacity:1;transform:none}
-@keyframes obReadySpin{to{transform:rotate(360deg)}}
-@media (prefers-reduced-motion:reduce){.screen.is-active .ob-ready-ring .arc{animation:none;stroke-dashoffset:0}.ob-ready-step.is-now .ob-ready-dot{animation:none}}
+.ob-ready-bar{position:relative;height:4px;margin:calc(var(--Safe-Top,0px) + 52px) var(--Spacing-6) 0;border-radius:2px;overflow:hidden;background:#e4e2f6}   /* same height as the step progress bars */
+.ob-ready-bar i{position:absolute;top:0;bottom:0;left:0;width:40%;border-radius:2px;background:var(--Primary-Bold)}
+.screen.is-active .ob-ready-bar i{animation:obReadyBar 1.6s cubic-bezier(.4,0,.2,1) infinite}
+@keyframes obReadyBar{0%{transform:translateX(-100%)}100%{transform:translateX(260%)}}
+.ob-ready{flex:1;display:flex;flex-direction:column;padding:var(--Spacing-6) var(--Spacing-6) 0}
+.ob-ready-hd{display:flex;flex-direction:column;gap:var(--Spacing-1)}
+.ob-ready-art{position:relative;align-self:center;width:220px;height:220px;margin-top:18%;display:grid;place-items:center}
+.ob-ready-art img{position:relative;z-index:1;width:92px;height:auto;filter:drop-shadow(0 14px 18px rgba(0,0,0,.16))}
+.ob-ready-art .rp{position:absolute;inset:40px;border-radius:50%;background:var(--Primary-Minimal);border:1px solid var(--Primary-Subtle,#e3e6ff);opacity:0}
+.screen.is-active .ob-ready-art .rp{animation:obReadyRipple 3s cubic-bezier(.2,.6,.3,1) infinite}
+.screen.is-active .ob-ready-art .rp:nth-child(2){animation-delay:1s}
+.screen.is-active .ob-ready-art .rp:nth-child(3){animation-delay:2s}
+@keyframes obReadyRipple{0%{transform:scale(.6);opacity:0}15%{opacity:1}100%{transform:scale(1.45);opacity:0}}
+.ob-ready-dots{align-self:center;display:flex;gap:8px;margin-top:var(--Spacing-6)}
+.ob-ready-dots i{width:9px;height:9px;border-radius:50%;background:var(--Primary-Bold)}
+.ob-ready-dots i:nth-child(2){background:#5f50e3}
+.ob-ready-dots i:nth-child(3){background:#8a7cf8}
+.ob-ready-dots i:nth-child(4){background:#b3a9fb}
+.screen.is-active .ob-ready-dots i{animation:obReadyDot 1.2s ease-in-out infinite}
+.screen.is-active .ob-ready-dots i:nth-child(2){animation-delay:.12s}
+.screen.is-active .ob-ready-dots i:nth-child(3){animation-delay:.24s}
+.screen.is-active .ob-ready-dots i:nth-child(4){animation-delay:.36s}
+@keyframes obReadyDot{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-8px)}}
+@media (prefers-reduced-motion:reduce){.screen.is-active .ob-ready-bar i,.screen.is-active .ob-ready-art .rp,.screen.is-active .ob-ready-dots i{animation:none}.ob-ready-art .rp:first-child{opacity:1}}
 
 /* Step 4 · lighting check inside the camera card */
 .ob-feed.is-glare img{filter:brightness(1.32) contrast(.72) saturate(.75);transition:filter .6s ease}
@@ -4702,23 +4705,23 @@ main[data-gap="6"] > .ob-section{margin-top:var(--Spacing-2)}
   </section>
 
   <!-- Between Step 3 and Step 4: "Getting your device ready". Not in OB_FLOW (no step
-       number); three checks tick off, then it swaps itself for Step 4 (router replace, so
+       number); plays ~4s, then it swaps itself for Step 4 (router replace, so
        Back from Step 4 returns to Step 3). See primeDeviceReady(). -->
   <section class="screen" data-screen="ob-device-ready" style="overflow:hidden">
     <div class="statusbar" aria-hidden="true"><span data-clock>08:14</span></div>
-    <main class="ob-ready">
+    <!-- Google-style: indeterminate bar on top, title + one line, the device in the middle
+         with soft ripples and four bouncing dots. No checklist. -->
+    <div class="ob-ready-bar" aria-hidden="true"><i></i></div>
+    <main class="ob-ready" role="status" aria-live="polite">
+      <div class="ob-ready-hd">
+        <h1 class="oneui-Text" data-variant="headline" data-size="M" data-weight="high" data-appearance="neutral">Getting your device ready</h1>
+        <p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium">This may take a few moments.</p>
+      </div>
       <div class="ob-ready-art" aria-hidden="true">
-        <svg class="ob-ready-ring" viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" class="trk"/><circle cx="60" cy="60" r="54" class="arc"/></svg>
-        <span class="ob-ready-pulse"></span>
+        <span class="rp"></span><span class="rp"></span><span class="rp"></span>
         <img src="assets/cam-mi360.png" alt="" onerror="this.style.display='none'">
       </div>
-      <h1 class="oneui-Text" data-variant="headline" data-size="M" data-weight="high" data-appearance="neutral" data-text-align="center">Getting your device ready</h1>
-      <p class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral" data-attention="medium" data-text-align="center">This takes a few seconds. Keep your phone close to the camera.</p>
-      <ul class="ob-ready-steps">
-        <li class="ob-ready-step" data-ready-step="1"><span class="ob-ready-dot"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4.5 8.3 2.4 2.4 4.6-4.9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral">Connecting to Tapo C201</span></li>
-        <li class="ob-ready-step" data-ready-step="2"><span class="ob-ready-dot"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4.5 8.3 2.4 2.4 4.6-4.9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral">Starting the live video</span></li>
-        <li class="ob-ready-step" data-ready-step="3"><span class="ob-ready-dot"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4.5 8.3 2.4 2.4 4.6-4.9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="oneui-Text" data-variant="body" data-size="S" data-appearance="neutral">Turning on smart detection</span></li>
-      </ul>
+      <div class="ob-ready-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
     </main>
   </section>
 
@@ -9499,24 +9502,16 @@ window.addEventListener('error', function(e){
     if(viewLearn) viewLearn.addEventListener('click', function(e){ e.preventDefault(); });
 
     /* ── Getting your device ready (between Step 3 and Step 4) ──
-       Three checks tick off, then the screen replaces itself with Step 4. */
+       Plays ~4s, then the screen replaces itself with Step 4. */
     var readyTimers = [];
     function primeDeviceReady(){
       readyTimers.forEach(clearTimeout); readyTimers = [];
       var scr = document.querySelector('[data-screen="ob-device-ready"]');
       if(!scr) return;
-      var steps = scr.querySelectorAll('[data-ready-step]');
-      steps.forEach(function(li, i){ li.classList.remove('is-done'); li.classList.toggle('is-now', i === 0); });
-      steps.forEach(function(li, i){
-        readyTimers.push(setTimeout(function(){
-          li.classList.remove('is-now'); li.classList.add('is-done');
-          if(steps[i+1]) steps[i+1].classList.add('is-now');
-        }, 1100 * (i + 1)));
-      });
       readyTimers.push(setTimeout(function(){
         if(!scr.classList.contains('is-active')) return;
         if(typeof window.__routerReplace === 'function') window.__routerReplace('ob-cam-check'); else openScreen('ob-cam-check');
-      }, 1100 * steps.length + 600));
+      }, 4000));
     }
 
     function primeCamRoom(opts){
