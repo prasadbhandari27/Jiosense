@@ -9563,8 +9563,8 @@ window.addEventListener('error', function(e){
     }
 
     /* ── Step 4 · Check your room ──
-       Scan the live view → room suggestion (changeable via the room sheet) → lighting
-       result. The first scan finds too much light; "check again" passes. */
+       Live view → room suggestion (changeable via the room sheet) → lighting result,
+       all shown at once. The first visit finds too much light; "check again" passes. */
     var ck = {
       scr:  document.querySelector('[data-screen="ob-cam-check"]'),
       feed: document.querySelector('[data-ck-feed]'), img: document.querySelector('[data-ck-img]'),
@@ -9583,31 +9583,22 @@ window.addEventListener('error', function(e){
       if(ck.btn) ck.btn.setAttribute('aria-label', 'Room: ' + room + '. Change room');
       if(ck.img) ck.img.src = (typeof VIEW_FEED !== 'undefined' && VIEW_FEED[room]) || c.live || c.feed;
     }
-    function runCheck(relight){
+    // No scan on this screen (the "Scanning your room" beat before it covers that):
+    // show the result straight away — room row, then the lighting error or the pass line.
+    function runCheck(){
       ck.timers.forEach(clearTimeout); ck.timers = [];
       syncCheckRoom();
-      [ck.room, ck.ok].forEach(function(n){ if(n) n.classList.remove('is-in'); });
-      if(ck.light) ck.light.hidden = true;
-      if(ck.feed) ck.feed.classList.toggle('is-glare', !state.lightOK);
-      if(ck.feed) ck.feed.classList.toggle('is-fixing', !!relight);
-      if(ck.line) ck.line.hidden = false;
-      if(ck.tag){ ck.tag.hidden = false; ck.tag.textContent = relight ? 'Checking lighting…' : 'Scanning room…'; }
+      if(ck.line) ck.line.hidden = true;
+      if(ck.tag) ck.tag.hidden = true;
+      if(ck.feed){ ck.feed.classList.remove('is-fixing'); ck.feed.classList.toggle('is-glare', !state.lightOK); }
+      if(ck.room) ck.room.classList.add('is-in');
+      if(ck.light) ck.light.hidden = state.lightOK;
+      if(ck.ok) ck.ok.classList.toggle('is-in', state.lightOK);
       syncNextEnabled('ob-cam-check');
-      ck.timers.push(setTimeout(function(){
-        if(ck.line) ck.line.hidden = true;
-        if(ck.tag) ck.tag.hidden = true;
-        if(ck.feed) ck.feed.classList.remove('is-fixing');
-        if(ck.room) ck.room.classList.add('is-in');
-      }, 1600));
-      ck.timers.push(setTimeout(function(){
-        if(!state.lightOK){ if(ck.light) ck.light.hidden = false; }
-        else { if(ck.feed) ck.feed.classList.remove('is-glare'); if(ck.ok) ck.ok.classList.add('is-in'); }
-        syncNextEnabled('ob-cam-check');
-      }, 2000));
     }
     if(ck.btn) ck.btn.addEventListener('click', function(){ if(state.cams[0]) openRoomSheet(state.cams[0]); });
-    if(ck.retry) ck.retry.addEventListener('click', function(){ state.lightOK = true; runCheck(true); });
-    function primeCamCheck(){ runCheck(false); }
+    if(ck.retry) ck.retry.addEventListener('click', function(){ state.lightOK = true; runCheck(); });
+    function primeCamCheck(){ runCheck(); }
 
     function primeCamRoom(opts){
       renderCamAcc();
