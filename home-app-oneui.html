@@ -9599,7 +9599,12 @@ window.addEventListener('error', function(e){
       syncNextEnabled('ob-cam-check');
     }
     if(ck.btn) ck.btn.addEventListener('click', function(){ if(state.cams[0]) openRoomSheet(state.cams[0]); });
-    if(ck.retry) ck.retry.addEventListener('click', function(){ state.lightOK = true; runCheck(); });
+    // Check again → the "Scanning your room" beat again (swapped in place, so Back still goes to
+    // Step 3), which then lands back here with the lighting fixed
+    if(ck.retry) ck.retry.addEventListener('click', function(){
+      state.lightOK = true;
+      if(typeof window.__routerReplace === 'function') window.__routerReplace('ob-device-ready'); else runCheck();
+    });
     function primeCamCheck(){ runCheck(); }
 
     function primeCamRoom(opts){

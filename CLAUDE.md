@@ -65,7 +65,7 @@ splash → `ob-login` (OTP sheet) → `ob-loading` (camera search, auto-advances
 2. `ob-cam-room` — "Where is this camera?" room picker (saves `state.camRooms`). **Out of `OB_FLOW` for now**; the room is confirmed on Step 4.
 3. `ob-cam-view` — live view + "Camera adjustment tips" animated card (pure CSS/SVG).
    → `ob-device-ready` "Scanning your room" (not a step; replaces itself via `__routerReplace`).
-4. `ob-cam-check` — Step 3 layout, result shown at once (no scan): live view, "Looks like your <room>" row (room sheet), then lighting result (fails first, inline fix, "check again"). `primeCamCheck()`.
+4. `ob-cam-check` — Step 3 layout, result shown at once (no scan): live view, "Looks like your <room>" row (room sheet), then lighting result (fails first, inline fix; "Check again" replays `ob-device-ready` and lands on the fixed state). `primeCamCheck()`.
 5. `ob-privacy` → first-day Home.
 
 Hidden for now, code kept: problem sheet on `ob-loading` (`PROBLEM_SHEET_ON`), household step (`ob-household`, out of `OB_FLOW`), TrueView/support on Step 1 (`FOUND_EXTRAS_ON`).
