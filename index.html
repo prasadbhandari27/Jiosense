@@ -3428,6 +3428,7 @@ button.oneui-Avatar{position:relative}
 .ob-ck-feed .ob-scan-tag{left:var(--Spacing-3);bottom:var(--Spacing-3)}
 .ob-ck-room{display:flex;align-items:center;gap:var(--Spacing-2);padding:var(--Spacing-2-5,10px) var(--Spacing-3);background:var(--Surface-Fill-Default);border-radius:var(--Shape-4);box-shadow:0 1px 3px rgba(0,0,0,.06),0 6px 18px rgba(0,0,0,.05)}
 .ob-ck-room > .oneui-Text{flex:1}
+.ob-ck-room[hidden]{display:none}
 .ob-ck-room-ico{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--Primary-Minimal);color:var(--Primary-Bold);flex:none}
 .ob-ck-room-ico svg{width:18px;height:18px}
 [data-screen="ob-cam-check"] .ob-light,[data-screen="ob-cam-check"] .ob-light-ok{margin-top:0}
@@ -9563,8 +9564,9 @@ window.addEventListener('error', function(e){
     }
 
     /* ── Step 4 · Check your room ──
-       Live view → room suggestion (changeable via the room sheet) → lighting result,
-       all shown at once. The first visit finds too much light; "check again" passes. */
+       Live view → lighting result → room suggestion (changeable via the room sheet).
+       The first visit finds too much light and shows only the fix; "check again" passes
+       and the room row appears. */
     var ck = {
       scr:  document.querySelector('[data-screen="ob-cam-check"]'),
       feed: document.querySelector('[data-ck-feed]'), img: document.querySelector('[data-ck-img]'),
@@ -9591,7 +9593,8 @@ window.addEventListener('error', function(e){
       if(ck.line) ck.line.hidden = true;
       if(ck.tag) ck.tag.hidden = true;
       if(ck.feed){ ck.feed.classList.remove('is-fixing'); ck.feed.classList.toggle('is-glare', !state.lightOK); }
-      if(ck.room) ck.room.classList.add('is-in');
+      // the room row waits until the lighting is fixed — while there's an error, only the fix shows
+      if(ck.room){ ck.room.hidden = !state.lightOK; ck.room.classList.toggle('is-in', state.lightOK); }
       if(ck.light) ck.light.hidden = state.lightOK;
       if(ck.ok) ck.ok.classList.toggle('is-in', state.lightOK);
       syncNextEnabled('ob-cam-check');
