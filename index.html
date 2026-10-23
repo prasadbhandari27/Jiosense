@@ -3079,6 +3079,11 @@ button.oneui-Avatar{position:relative}
 .ob-progress .ob-p-back{margin:calc(var(--Spacing-2) * -1) calc(var(--Spacing-1) * -1) calc(var(--Spacing-2) * -1) calc(var(--Spacing-3) * -1)}
 [data-screen="ob-camselect"]:not(.is-paged) .ob-p-back{display:none}
 .ob-progress .ob-p-step{flex:1}
+/* Stepper hidden for now: only the back arrow shows. The label keeps its row height
+   (visibility, not display) so the header stays the same height on every step. */
+.ob-progress{padding-bottom:var(--Spacing-2)}
+.ob-progress .ob-p-step,.ob-progress [data-ob-frac]{visibility:hidden}
+.ob-progress .ob-segs{display:none}
 
 .ob-footer{
   position:sticky;bottom:0;left:0;right:0;
